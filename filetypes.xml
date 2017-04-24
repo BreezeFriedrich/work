@@ -1,8 +1,0 @@
-<application>
-  <component name="FileTypeManager" version="17">
-    <extensionMap>
-      <mapping pattern="uo" type="JAVA" />
-      <mapping pattern="testGit" type="XML" />
-    </extensionMap>
-  </component>
-</application>
