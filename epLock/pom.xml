@@ -168,6 +168,131 @@
             <version>1.2</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- 使用 @ResponseBody注解需要用到 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.1</version>
+        </dependency>
     </dependencies>
+
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>development</id>
+            <properties>
+                <profiles.active>development</profiles.active>
+                <deploy.url>http://localhost:8080/shiroLiwei/index.jsp</deploy.url>
+            </properties>
+        </profile>
+        <!-- 测试环境 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+                <deploy.url>http://host:port/manager/text</deploy.url>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <profiles.active>production</profiles.active>
+                <deploy.url>http://localhost:8080/shiroLiwei/index.jsp</deploy.url>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>shiroLiwei</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <excludes>
+                    <exclude>config/production/jdbc.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <wtpversion>2.0</wtpversion>
+                </configuration>
+            </plugin>
+
+            <!-- 编译插件,用于指定编译的JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <!-- invalid <encoding>UTF-8</encoding> -->
+                </configuration>
+            </plugin>
+
+            <!-- tomcat7 -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <url>${deploy.url}</url>
+                    <server>tomcat7</server>
+                    <port>8080</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <warName>${project.build.finalName}</warName>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/resources/config/${profiles.active}</directory>
+                            <!-- target不能以/结尾 -->
+                            <targetPath>WEB-INF/classes</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
 
 </project>
