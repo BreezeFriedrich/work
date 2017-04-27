@@ -6,7 +6,7 @@
     <groupId>com.yishu</groupId>
     <artifactId>epLock</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>epLock:shiroLiwei</name>
+    <name>epLock:shiro</name>
     <url>http://www.yishutech.org</url>
     <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -193,7 +193,7 @@
             <id>development</id>
             <properties>
                 <profiles.active>development</profiles.active>
-                <deploy.url>http://localhost:8080/shiroLiwei/index.jsp</deploy.url>
+                <deploy.url>http://localhost:8080/epLock/index.jsp</deploy.url>
             </properties>
         </profile>
         <!-- 测试环境 -->
@@ -209,7 +209,7 @@
             <id>production</id>
             <properties>
                 <profiles.active>production</profiles.active>
-                <deploy.url>http://localhost:8080/shiroLiwei/index.jsp</deploy.url>
+                <deploy.url>http://localhost:8080/epLock/index.jsp</deploy.url>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -218,7 +218,7 @@
     </profiles>
 
     <build>
-        <finalName>shiroLiwei</finalName>
+        <finalName>epLock</finalName>
 
         <resources>
             <resource>
@@ -268,7 +268,7 @@
                     <url>${deploy.url}</url>
                     <server>tomcat7</server>
                     <port>8080</port>
-                    <path>/</path>
+                    <path>/shiro</path>
                 </configuration>
             </plugin>
 
