@@ -1,0 +1,30 @@
+create database EntranceGuard CHARACTER SET utf8;
+
+create table if not exists ownerinfo (SEQ integer primary key auto_increment,ownername varchar(50),ownerpassword varchar(300),phonenumber varchar(20),timetag varchar(21),mail varchar(50),wechat varchar(50),qq varchar(50),superior varchar(20),grade integer default 0,superip varchar(30),dbip varchar(30),imei varchar(32));
+// superior 上级用户手机号    grade  0 无上下级 1 底层 2 中层 3 高层    grade=3 则不能被添加为下属用户
+
+create table if not exists guardinfo (SEQ integer primary key auto_increment,guardname varchar(50),guardid varchar(50),guardlocation varchar(150),guardcomment varchar(150),dbip varchar(30),keydays integer,keyreadflag integer,keychangetimes integer,workstatus integer,phonenumber varchar(32),operatorid varchar(32),getopcodeflag integer default 0,defaultpassword1 varchar(32),defaultpassword2 varchar(32),timetag varchar(21));
+
+create table if not exists guardpasswordinfo (SEQ integer primary key auto_increment,guardid varchar(32) not null,servicenumb varchar(32),status integer default 1,sendflag integer,phonenumber varchar(32),operatorid varchar(32),password varchar(32),starttime varchar(21),endtime varchar(21),timetag varchar(21));
+// status    0  expired; 1  valid; 2  invalid
+// serviceNumb	32位   timetag 14位+使用者手机号11位+随机整数7位
+
+create table if not exists lockcardinfo (SEQ integer primary key auto_increment,guardid varchar(32) not null,servicenumb varchar(32),status integer default 1,sendflag integer,phonenumber varchar(32),operatorid varchar(32),name varchar(32),cardnumb  varchar(32),dnnumb varchar(64),starttime varchar(21),endtime varchar(21),timetag varchar(21));
+// status    0  expired; 1  valid  2  invalid
+
+create table if not exists usercardinfo (SEQ integer primary key auto_increment,dncode varchar(64) not null,name varchar(32),sex integer,cardnumb varchar(32),address varchar(70),qianfa varchar(70),mingzu varchar(20),starttime varchar(20),endtime varchar(20),cardinfo varchar(256),timetag varchar(21));
+
+
+// 记录开锁记录   seqid openmode
+create table if not exists lockoperate (SEQ integer primary key auto_increment,guardid varchar(32) not null,phonenumber varchar(32),operatorid varchar(32),openmode integer,operatememo varchar(100),timetag varchar(21),seqid integer);
+
+// 记录owner操作
+create table if not exists owneroperate (SEQ integer primary key auto_increment,guardid varchar(32) not null,phonenumber varchar(32),operatorid varchar(32),openmode integer,operatememo varchar(100),timetag varchar(21),seqid integer);
+
+
+create table if not exists guardipassign (SEQ integer primary key auto_increment,guardid varchar(32),phonenumber varchar(32),ip varchar(50),dns varchar(50),timetag varchar(21));
+
+create table if not exists owneripassign (SEQ integer primary key auto_increment,phonenumber varchar(32),ip varchar(50),dns varchar(50),timetag varchar(21));
+
+create table if not exists ippool (SEQ integer primary key auto_increment,ip varchar(50),dns varchar(50),oldip varchar(50),olddns varchar(50),membernumb integer default 0,flag integer default 1,timetag varchar(21));
+//flag   1 guard  2 owner

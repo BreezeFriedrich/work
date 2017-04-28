@@ -1,0 +1,475 @@
+owner为客户端使用者 guard为门禁  
+获得owner数据首先要获取owner所在服务器IP即ownerIp,获得门禁相关数据则先要获得门禁数据所在服务器IP即guardIp，门禁开锁授权开锁密码等数据与门禁在同一服务器
+owner与guard数据不一定在同一个服务器
+获取ownerIp与guardIp都需要访问固定域名"guard.qixutech.com"来获取
+
+
+注册时获取新分配的owner数据库所在ip (guard.qixutech.com)
+Client->Server
+{
+  "sign": 1
+  "ownerPhoneNumber":    String   
+  "timetag" : String  
+}
+
+Server->Client
+{
+  "result": int          // 0 分配成功  1  分配失败
+  "ownerIp" : String       // 分配成功则返回owner数据所在IP
+}
+
+
+注册新用户,并且检查手机号是否已经被注册 (ownerIp)
+Client->Server     
+{
+  "sign" :2
+  "ownerName" : String,
+  "ownerPhoneNumber":    String   //  用户手机号
+  "ownerPassword":  String        // 用户登录密码
+  "timetag" : String             // 当前时间   yyyyMMddHHmmss   例如 2017年5月10日12时30分30秒  表示为 20170510123030
+  "imei":  String                //注册设备的IMEI号   
+}
+
+Server->Client
+{
+  "result": int          // 0 成功  1 注册失败  2 该号码已经被注册
+}
+
+
+登录时获取owner所在服务器的IP(ownerIp 可存在客户端，如果ownerIp不存在则向服务器获取)  (ownerIp)
+Client->Server
+{
+  "sign": 3
+  "ownerPhoneNumber":    String     
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+  "ownerIp" : String     // owner数据所在服务器的IP
+}
+
+登录验证    (ownerIp)
+Client->Server     
+{ 
+  "sign": 4
+  "ownerPhoneNumber":    String,
+  "ownerPassword":  String
+  "imei":  String                //登录设备的IMEI号     
+  "timetag" : String  
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败
+  "ownerName" : String
+  "imei":  String         // 返回上一次登录的imei号,如果imei与当前设备IMEI号不同,提醒用户
+  "grade": String         // owner 层级
+}
+
+
+添加门禁前，先获取门禁所在服务器的IP   (guard.qixutech.com)
+Client->Server
+{
+  "sign": 5
+  "ownerPhoneNumber":    String     
+  "guardId" : String    
+
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+  "guardIp" : String       // 门禁数据所在IP
+}
+
+
+判断门禁是否已经已经被添加 如果已经被添加则返回已经添加门禁人的手机号     (guardIp)
+Client->Server     
+{ 
+  "sign": 6
+  "ownerPhoneNumber":    String
+  "guardId" : String
+}
+
+Server->Client
+{
+  "result": int ,           0 没有被别人添加  1 已经被他人添加
+  "alreadyPhoneNumber" : String       //已经添加者的手机号，如果没有被添加则为空
+}
+
+
+判断门禁验证码是否正确    (guardIp)
+
+Client->Server     
+{ 
+  "sign": 7
+  "ownerPhoneNumber":    String
+  "guardId" : String
+  "opCode" : String        //门禁验证码
+}
+
+Server->Client
+{
+  "result": int ,     // -1 门禁未曾连接网络或者该门禁不存在 0 门禁验证码不存在 1 门禁验证码匹配成功   2 门禁验证码匹配失败
+}
+
+
+添加门禁           (guardIp)
+
+Client->Server     
+{ 
+  "sign": 8
+  "ownerPhoneNumber":    String
+  "guardName" : String,               // 门禁名称
+  "guardId" : String                // 门禁条码
+  "guardLocation" : String            // 门禁地址
+  "guardComment" : String             // 门禁备注
+  "opCode" : String
+  "timetag" : String 
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功    1  失败
+}
+
+
+修改门禁信息       (guardIp)
+
+Client->Server
+{
+    "sign": 9
+    "ownerPhoneNumber":    String
+	"guardId" : String
+	"guardName" : String
+	"guardLocation" :String 
+	"guardComment" : String
+	"timetag" : String 
+}
+
+Server->Client
+{
+  "result": int          // 0 成功  1  失败 
+}
+
+
+删除门禁          (guardIp)
+
+Client->Server
+{
+    "sign": 10
+    "ownerPhoneNumber":    String,
+	"guardId" : int
+	"timetag" : String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+}
+
+
+
+获取所有门禁所在服务器的IP        (guard.qixutech.com)
+Client->Server
+{
+  "sign": 11
+  "ownerPhoneNumber":    String     
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+  "guardIpList" : [
+     {
+	   "guardId" : String    
+	   "guardIp" : String       // 门禁数据所在IP
+	 }
+  ]
+}
+
+
+获取所有门禁信息        (guardIp)
+Client->Server     
+{
+  "sign": 12
+  "ownerPhoneNumber":    String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败
+  "guards":[
+    {
+		"guardName" : String
+		"guardId" : String
+		"guardLocation" : String
+		"guardComment" : String
+		"guardStatus" : int             // 门禁工作状态       1 工作正常    2 工作异常  3 无连接
+		"defaultPassword1": String
+		"defaultPassword2": String 
+	}
+    ]
+}
+
+获取门禁授权开锁身份证信息      (guardIp)
+
+Client->Server     
+{ 
+  "sign": 13
+  "ownerPhoneNumber":    String
+  "guardId" : String             // 添加门锁所对应的门禁条码
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败
+  "userList" : [
+	{
+		  "serviceNumb" :String      // 开锁信息序列号	32位   timetag 14位+使用者手机号11位+随机整数7位
+		  "name" : String,           // 开锁者姓名
+          "cardNumb" : String     	 // 开锁者身份证号码
+          "dnCode" : String			// 开锁者身份证dn码,如果非nfc方式添加身份证则为空
+          "startTime" : String 		//开锁授权起始时间    yyyyMMddHHmm     年月日时分 
+          "endTime" : String        //开锁授权截止时间    yyyyMMddHHmm     年月日时分
+	}
+  ]
+}
+
+
+添加身份证开锁授权         (guardIp)
+Client->Server     
+{ 
+  "sign": 14
+  "ownerPhoneNumber":    String
+  "guardId" : String             // 添加身份证开锁授权所对应的门禁条码
+  "serviceNumb" :String      // 开锁信息序列号	32位   timetag 14位+使用者手机号11位+随机整数7位
+  "name" : String,           // 开锁者姓名
+  "cardNumb" : String     	 // 开锁者身份证号码
+  "dnCode" : String			// 开锁者身份证dn码 ,如果非nfc方式添加身份证则为空
+  "startTime" : String 		//开锁授权起始时间
+  "endTime" : String        //开锁授权截止时间
+  "timetag" : String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败
+}
+
+
+取消身份证开锁授权          (guardIp)
+Client->Server     
+{ 
+  "sign": 15
+  "ownerPhoneNumber":    String
+  "guardId" :   String
+  "serviceNumb" :String      // 开锁信息序列号	32位   timetag 14位+使用者手机号11位+随机整数7位
+  "cardNumb" : String     	 // 开锁者身份证号码
+  "timetag" : String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败
+}
+
+
+获取智能锁开锁密码          (guardIp)
+
+Client->Server     
+{ 
+  "sign": 16
+  "ownerPhoneNumber":    String
+  "guardId" : String 
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败
+  "defaultPassword1": String 
+  "defaultPassword2": String 
+  "passwordList" :[
+     "password" :String   // 开锁密码
+	 "serviceNumb" :String      // 密码信息序列号	32位   timetag 14位+使用者手机号11位+随机整数7位
+	 "startTime" : String 		//密码有效起始时间    yyyyMMddHHmm     年月日时分 
+     "endTime" : String        //密码有效截止时间    yyyyMMddHHmm     年月日时分
+
+  ]
+}
+
+
+添加智能锁密码          (guardIp)
+Client->Server     
+{ 
+  "sign": 17
+  "ownerPhoneNumber":    String
+  "guardId" : String 
+  "password" : String
+  "serviceNumb" :String      // 密码信息序列号	32位   timetag 14位+使用者手机号11位+随机整数7位
+  "startTime" : String
+  "endTime" :String
+  "timetag" : String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+}
+
+取消智能锁密码       (guardIp)
+
+Client->Server     
+{
+  "sign": 18
+  "ownerPhoneNumber":    String
+  "guardId" : String 
+  "serviceNumb" :String      // 密码信息序列号	32位   timetag 14位+使用者手机号11位+随机整数7位
+  "timetag" : String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+}
+
+登录密码重置       (ownerIp)
+Client->Server     
+{
+  "sign": 19
+  "ownerPhoneNumber":    String
+  "newPassword" : String           // 新登录密码
+  "timetag" : String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+}
+
+owner名称修改  (ownerIp)
+Client->Server     
+{ 
+  "sign": 20
+  "ownerPhoneNumber":    String
+  "newName" :   String
+  "timetag" : String
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败 
+}
+
+
+定期获取数据库中的Imei,登录时客户端会上传新设备的imei号，保持服务器与客户端连接,如果服务器中imei与当前设备IMEI号不同则退出登录，并提醒使用者该账户已经在其他设备登录(ownerIp)
+
+Client->Server
+{
+  "sign": 21
+  "ownerPhoneNumber":    String    
+}
+
+Server->Client
+{
+  "result": int          // 0 成功  1  失败 
+  "imei" : String
+}
+
+
+// 获取开锁记录
+
+Client->Server
+{
+  "sign": 22
+  "ownerPhoneNumber":    String    
+  "startTime" : String   // 开锁记录起始时间
+  "endTime"  :  String     // 开锁记录截止时间
+}
+
+Server->Client
+{
+  "result": int          // 0 成功  1  失败 
+  "recordList" :[
+       "guardId" : String
+		"openMode" : int        // 1 card开锁  2  password开锁
+		"timetag" : String     //  开锁时间 
+		"cardInfo": {
+						"name" : String   
+						"cardNumb" : String
+						"dnCode"  : String--
+						"serviceNumb" : String
+		            }
+		"passwordInfo" :{
+							"password":String
+							"serviceNumb" : String
+						}			
+  ]
+
+}
+
+//  添加下级用户
+Client->Server     
+{
+  "sign": 23
+  "ownerPhoneNumber":    String
+  "juniorPhoneNumber" :  String
+  "superiorGrade" : int 
+}
+
+Server->Client
+{
+  "result": int      
+  // 0 添加成功  1  该手机号未注册  2 该手机号已经是最高等级用户，不可添加   3 该手机号已经被添加为下级用户  4 添加失败
+}
+
+
+// 获得已经添加的下级用户数据
+Client->Server     
+{
+  "sign": 24
+  "ownerPhoneNumber":    String
+}
+
+Server->Client
+{
+  "result": int         // 0 成功  1  失败 
+  "juniorList" :[
+		{
+			  "juniorName" : String          //  下级用户注册名
+			  "juniorPhoneNumber":    String   //  下级用户手机号
+		}
+  ]
+}
+
+// 取消下级用户
+Client->Server     
+{
+  "sign": 25
+  "ownerPhoneNumber":    String
+  "juniorPhoneNumber" :  String
+}
+
+Server->Client
+{
+  "result": int         // 0 成功  1  失败 
+}
+
+
+// web端登录专用(密码 java TEA 加密)(ownerIp)
+Client->Server     
+{ 
+  "sign": 26
+  "ownerPhoneNumber":    String,
+  "ownerPassword":  String
+  "timetag" : String  
+
+}
+
+Server->Client
+{
+  "result": int ,         // 0 成功  1  失败
+  "ownerName" : String
+}
+
