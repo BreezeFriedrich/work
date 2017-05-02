@@ -7,20 +7,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
         <meta charset="utf-8">
         <title>亿数漫行智能锁</title>
-		<link rel='icon' href='resources/styles/images/intellilock.png ' type=‘image/x-icon’ />
-		<link rel="stylesheet" type="text/css" href="resources/easyui/themes/default/easyui.css"/>
-		<link rel="stylesheet" type="text/css" href="resources/easyui/themes/icon.css"/>
-		<link rel="stylesheet" type="text/css" href="resources/easyui/demo/demo.css"/>
-		<link rel="stylesheet" type="text/css" href="resources/styles/main.css"/>
-		<link rel="stylesheet" type="text/css" href="resources/styles/UserManage.css"/>
-		<link rel="stylesheet" type="text/css" href="resources/styles/deviceManage.css"/>
-		<script type="text/javascript" src="resources/easyui/jquery.min.js"></script>
-		<script type="text/javascript" src="resources/easyui/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-		<script type="text/javascript" src="resources/scripts/cookie_util.js"></script>
-		<script type="text/javascript" src="resources/scripts/main.js"></script>
-		<script type="text/javascript" src="resources/scripts/lockoperate.js"></script>
-		<script type="text/javascript" src="resources/scripts/device-manage.js"></script>
+		<link rel='icon' href='../../resources/styles/images/intellilock.png ' type=‘image/x-icon’ />
+		<link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/icon.css"/>
+		<link rel="stylesheet" type="text/css" href="../../resources/easyui/demo/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="../../resources/styles/main.css"/>
+		<link rel="stylesheet" type="text/css" href="../../resources/styles/UserManage.css"/>
+		<link rel="stylesheet" type="text/css" href="../../resources/styles/deviceManage.css"/>
+		<script type="text/javascript" src="../../resources/easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="../../resources/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../resources/easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="../../resources/scripts/cookie_util.js"></script>
+		<script type="text/javascript" src="../../resources/scripts/main.js"></script>
+		<script type="text/javascript" src="../../resources/scripts/lockoperate.js"></script>
+		<script type="text/javascript" src="../../resources/scripts/device-manage.js"></script>
 		<!-- <script type="text/javascript">
 			//客户端登陆信息检查
 			var user = getCookie("userId");

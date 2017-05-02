@@ -9,7 +9,7 @@ public class UserUtil {
 //		String ip="112.25.233.122";
 		int sign=27;
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
-		String timetag=sdf.format(new Date());System.out.println("util-CheckLogin-timetag:"+timetag);
+		String timetag=sdf.format(new Date());
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
 		System.out.println("util-CheckLogin-data:"+data);
 		String strData= HttpUtil.postData(data);

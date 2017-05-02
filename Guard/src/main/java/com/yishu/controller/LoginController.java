@@ -26,15 +26,6 @@ public class LoginController {
 		String author = request.getHeader("Authorization");
 		NoteResult result =
 			userService.checkLogin(author);
-//		try {
-//			request.getRequestDispatcher("managecenterlist.jsp").forward(request,response);
-//		} catch (ServletException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		return result;
 	}
 

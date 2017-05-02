@@ -47,7 +47,7 @@ function func_checklogin(){
 		          addCookie("token",token,0.5);
 		          addCookie("ownerPhoneNumber",account,0.5);
 		          
-		          window.location.href="main.jsp";
+		          window.location.href="../../WEB-INF/jsp/main.jsp";
 		        }else if(result.status==1){
 		          //用户名错误
 		          $("#account_msg").text(result.msg);

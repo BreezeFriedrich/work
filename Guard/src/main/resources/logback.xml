@@ -47,7 +47,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
             <!--连接池 -->
             <dataSource class="com.alibaba.druid.pool.DruidDataSource">
                 <driverClass>com.mysql.jdbc.Driver</driverClass>
-                <url>jdbc:mysql://127.0.0.1:3306/Guard</url>
+                <url>jdbc:mysql://127.0.0.1:3306/guard</url>
                 <user>root</user>
                 <password>tiger</password>
             </dataSource>

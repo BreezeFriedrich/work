@@ -27,7 +27,7 @@
     </bean>
 
     <!-- 声明一个自定义的过滤器 -->
-    <bean id="resourceCheckFilter" class="com.yishu.guard.filter.ResourceCheckFilter">
+    <bean id="resourceCheckFilter" class="com.yishu.shiro.filter.ResourceCheckFilter">
         <!-- 为上面声明的自定义过滤器注入属性值 -->
         <property name="errorUrl" value="/unAuthorization"/>
     </bean>
@@ -43,7 +43,7 @@
     </bean>
 
     <!-- 声明一个自定义的 Realm -->
-    <bean id="myRealm" class="com.yishu.guard.realm.MyRealm">
+    <bean id="myRealm" class="com.yishu.shiro.realm.MyRealm">
         <!-- 将上面声明的密码匹配器注入到自定义 Realm 的属性中去 -->
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <!-- 将自定义的权限匹配器注入到自定义 Realm 中 -->
@@ -69,7 +69,7 @@
     </bean>
 
     <!-- 自定义一个权限匹配器 -->
-    <bean id="permissionResolver" class="com.yishu.guard.permission.UrlPermissionResolver"/>
+    <bean id="permissionResolver" class="com.yishu.shiro.permission.UrlPermissionResolver"/>
 
     <!-- 配置 Spring 的 EhCacheCacheManager,须要 spring-context-support 的支持 -->
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
