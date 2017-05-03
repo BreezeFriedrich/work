@@ -90,7 +90,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    项目源码：<a href="https://github.com/weimingge14/Shiro-project">https://github.com/weimingge14/Shiro-project</a>
+                    Contact us：<a href="https://www.yishutech.com">https://www.yishutech.com</a>
                 </div>
             </div>
         </div>

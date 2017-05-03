@@ -199,16 +199,37 @@
     </dependencies>
     
     <profiles>
+        <!-- 开发环境 -->
         <profile>
-            <id>product</id>
+            <id>development</id>
             <properties>
-                <package.environment>prod</package.environment>
+                <profiles.active>development</profiles.active>
+                <deploy.url>http://localhost:8080/shiroLiwei/index.jsp</deploy.url>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- 测试环境 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+                <deploy.url>http://host:port/manager/text</deploy.url>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <profiles.active>production</profiles.active>
+                <deploy.url>http://www.yishutech:12001/manager/text</deploy.url>
             </properties>
         </profile>
     </profiles>
 
     <build>
-        <finalName>ssm-shiro</finalName>
+        <finalName>shiroLiwei</finalName>
 
         <resources>
             <resource>
@@ -258,7 +279,8 @@
 			    <artifactId>tomcat7-maven-plugin</artifactId>
 			    <version>2.2</version>
 			    <configuration>
-				    <url>http://localhost:8080/shiroLiwei/index.jsp</url>
+                    <uriEncoding>UTF-8</uriEncoding>
+				    <url>${deploy.url}</url>
             	    <server>Tomcat7</server>
             	    <port>8080</port>
 				    <path>/shiro</path>
@@ -285,10 +307,10 @@
                     </archive>
                     <!-- 部署在百度云 bae 上，一定要叫 ROOT.war -->
                     <!-- 虽然 IDEA 工具报提示警告，但是可以不理会，不影响使用 -->
-                    <warName>shiroLiwei</warName>
+                    <warName>${project.build.finalName}</warName>
                     <webResources>
                         <resource>
-                            <directory>src/main/resources/config/${package.environment}</directory>
+                            <directory>src/main/resources/config/${profiles.active}</directory>
                             <!-- target 节点不能以 / 结尾 -->
                             <targetPath>WEB-INF/classes</targetPath>
                             <filtering>true</filtering>

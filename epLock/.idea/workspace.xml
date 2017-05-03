@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49149be5-f9f8-4134-b826-f411e189fa57" name="Default" comment="2017.04.26-epLock{shiro}_2">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Lock0410/target/classes/com/yishu/controller/DeviceManageController.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Lock0410/target/classes/com/yishu/controller/LockOperateController.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Lock0410/target/classes/com/yishu/controller/LoginController.class" afterPath="" />
@@ -38,164 +37,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Lock0410/target/classes/com/yishu/util/NoteUtil.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Lock0410/target/classes/com/yishu/util/Tea.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Lock0410/target/classes/com/yishu/util/UserUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resources/add.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resources/inc.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resources/list.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resources/update.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/cache/BaseCacheService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/cache/UserServiceAspect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/ResourceDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/RoleDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/UserDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/filter/ResourceCheckFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/kit/ShiroKit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/Resource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/Role.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/RoleResource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/UserRole.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/permission/UrlPermission.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/permission/UrlPermissionResolver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/realm/MyRealm.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/HelloWorld.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/IResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/IRoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/IUserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/impl/ResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/impl/RoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/impl/UserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/InitServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/LoginController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/ResourceController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/RoleController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/UserController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/jdbc.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mappers/ResourceMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mappers/RoleMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mappers/UserMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-dao.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-service.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-shiro.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/epLock/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei.war" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/cache/BaseCacheService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/cache/UserServiceAspect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/dao/ResourceDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/dao/RoleDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/dao/UserDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/filter/ResourceCheckFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/kit/ShiroKit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/model/Resource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/model/Role.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/model/RoleResource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/model/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/model/UserRole.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/permission/UrlPermission.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/permission/UrlPermissionResolver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/realm/MyRealm.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/service/HelloWorld.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/service/IResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/service/IRoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/service/IUserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/service/impl/ResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/service/impl/RoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/service/impl/UserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/web/InitServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/web/LoginController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/web/ResourceController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/web/RoleController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/com/yishu/shiro/web/UserController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/jdbc.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/mappers/ResourceMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/mappers/RoleMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/mappers/UserMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/mybatis-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/spring/spring-dao.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/spring/spring-service.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/spring/spring-shiro.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/classes/spring/spring-web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/login.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/resources/inc.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/role/add.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/role/list.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/role/resources.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/role/update.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/unAuthorization.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/user/add.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/user/inc.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/user/list.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/user/resources.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/user/update.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/aspectjrt-1.8.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/aspectjweaver-1.8.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/commons-beanutils-1.8.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/druid-1.0.18.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/ehcache-2.10.2.2.21.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/ehcache-core-2.5.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/jackson-annotations-2.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/jackson-core-2.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/jackson-databind-2.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/jstl-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/log4j-1.2.17.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/mybatis-3.4.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/mybatis-spring-1.3.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/mysql-connector-java-5.1.38.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/shiro-core-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/shiro-ehcache-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/shiro-spring-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/shiro-web-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/slf4j-api-1.7.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/slf4j-log4j12-1.7.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-aop-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-beans-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-context-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-context-support-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-core-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-expression-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-jdbc-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-test-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-tx-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-web-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/lib/spring-webmvc-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/jsp/common.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/css/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/bootstrap-3.3.0/js/npm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/shiroLiwei/resources/jquery-3.1.0.min.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/src/main/resources/logback.xml" afterPath="$PROJECT_DIR$/../Lock0410/src/main/resources/logback.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/epLock.iml" afterPath="$PROJECT_DIR$/epLock.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/ResourceDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/ResourceDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/RoleDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/RoleDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/service/impl/ResourceService.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/service/impl/ResourceService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mappers/ResourceMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mappers/ResourceMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-dao.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-dao.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-web.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../shiroLiwei/.classpath" afterPath="$PROJECT_DIR$/../shiroLiwei/.classpath" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../shiroLiwei/.project" afterPath="$PROJECT_DIR$/../shiroLiwei/.project" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../shiroLiwei/.settings/org.eclipse.wst.common.component" afterPath="$PROJECT_DIR$/../shiroLiwei/.settings/org.eclipse.wst.common.component" />
@@ -204,10 +48,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../shiroLiwei/src/main/resources/spring/spring-web.xml" afterPath="$PROJECT_DIR$/../shiroLiwei/src/main/resources/spring/spring-web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../shiroLiwei/src/main/webapp/WEB-INF/jsp/login.jsp" afterPath="$PROJECT_DIR$/../shiroLiwei/src/main/webapp/WEB-INF/jsp/login.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../shiroLiwei/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../shiroLiwei/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/resources/add.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resource/add.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/resources/list.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resource/list.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/resources/update.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resource/update.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/shiroLiwei/WEB-INF/jsp/role/inc.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/resource/inc.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -864,7 +704,7 @@
       <workItem from="1493705225361" duration="12510000" />
       <workItem from="1493718861684" duration="2554000" />
       <workItem from="1493775110639" duration="7073000" />
-      <workItem from="1493789087291" duration="701000" />
+      <workItem from="1493789087291" duration="1416000" />
     </task>
     <task id="LOCAL-00001" summary="04.25_1">
       <created>1493115712020</created>
@@ -901,7 +741,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493290323857</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="2017.05.03_1">
+      <created>1493789993930</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1493789993930</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -910,7 +757,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97174000" />
+    <option name="totallyTimeSpent" value="97889000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -931,12 +778,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18321678" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22943445" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10349651" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42097902" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35244754" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18321678" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32587412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24935733" sideWeight="0.48659793" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24935733" sideWeight="0.48659793" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5118881" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1651671" sideWeight="0.48811188" order="7" side_tool="false" content_ui="tabs" />
@@ -1035,7 +882,8 @@
     <MESSAGE value="2017.04.26-epLock{shiro}_2" />
     <MESSAGE value="2017.04.26-epLock{shiro}_3" />
     <MESSAGE value="2017.04.26-epLock{shiro}_4" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017.04.26-epLock{shiro}_4" />
+    <MESSAGE value="2017.05.03_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017.05.03_1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1131,6 +979,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="1" column="61" lean-forward="false" selection-start-line="1" selection-start-column="61" selection-end-line="1" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1145,6 +994,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="68" lean-forward="true" selection-start-line="10" selection-start-column="68" selection-end-line="10" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1152,6 +1002,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="60" lean-forward="true" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
+          <folding>
+            <element signature="n#bean#0;n#beans#0;n#!!top" expanded="false" />
+            <element signature="n#bean#3;n#beans#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1159,6 +1013,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="70" column="73" lean-forward="true" selection-start-line="70" selection-start-column="73" selection-end-line="70" selection-end-column="73" />
+          <folding>
+            <marker date="1493780883883" expanded="true" signature="306:425" ph="INSERT INTO t_user... " />
+            <marker date="1493780883883" expanded="true" signature="519:987" ph="UPDATE t_use... " />
+            <marker date="1493780883883" expanded="true" signature="1056:1099" ph="DELETE FROM " />
+            <marker date="1493780883883" expanded="true" signature="1431:1583" ph="SELECT id, u... t_user" />
+            <marker date="1493780883883" expanded="true" signature="1652:1771" ph="SELECT id, u... t_user" />
+            <marker date="1493780883883" expanded="true" signature="1869:2033" ph="SELECT id, u... t_user" />
+            <marker date="1493780883883" expanded="true" signature="2124:2397" ph="SELECT tu.id... t_user" />
+            <marker date="1493780883883" expanded="true" signature="2545:2796" ph="SELECT tr.`i... t_resource" />
+            <marker date="1493780883883" expanded="true" signature="2932:3124" ph="SELECT tr.sn... t_role" />
+            <marker date="1493780883883" expanded="true" signature="3253:3483" ph="SELECT tr.`i... t_role" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1166,6 +1032,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1493780886936" expanded="true" signature="265:325" ph="INSERT INTO t_role... " />
+            <marker date="1493780886936" expanded="true" signature="394:437" ph="DELETE FROM " />
+            <marker date="1493780886936" expanded="true" signature="750:848" ph="SELECT id, `... t_role" />
+            <marker date="1493780886936" expanded="true" signature="918:1161" ph="UPDATE t_rol... " />
+            <marker date="1493780886936" expanded="true" signature="1230:1303" ph="SELECT id, `... t_role" />
+            <marker date="1493780886936" expanded="true" signature="1400:1550" ph="SELECT id, u... t_user_role" />
+            <marker date="1493780886936" expanded="true" signature="1624:1706" ph="INSERT INTO `t_user_role`... " />
+            <marker date="1493780886936" expanded="true" signature="2068:2157" ph="DELETE FROM " />
+            <marker date="1493780886936" expanded="true" signature="2240:2305" ph="DELETE FROM " />
+            <marker date="1493780886936" expanded="true" signature="2443:2667" ph="SELECT tr.`i... t_resource" />
+            <marker date="1493780886936" expanded="true" signature="2745:2833" ph="INSERT INTO t_role_resource... " />
+            <marker date="1493780886936" expanded="true" signature="2914:3015" ph="DELETE FROM " />
+            <marker date="1493780886936" expanded="true" signature="3120:3286" ph="SELECT id, r... t_role_resource" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1173,6 +1054,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="499">
           <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+          <folding>
+            <marker date="1493780889993" expanded="true" signature="585:709" ph="SELECT `id`,... t_resource" />
+            <marker date="1493780889993" expanded="true" signature="689:709" ph="SELECT `id`,... t_resource" />
+            <marker date="1493780889993" expanded="true" signature="780:869" ph="insert into t_resource... " />
+            <marker date="1493780889993" expanded="true" signature="943:1290" ph="update t_res... " />
+            <marker date="1493780889993" expanded="true" signature="1359:1406" ph="DELETE FROM " />
+            <marker date="1493780889993" expanded="true" signature="1495:1626" ph="SELECT `id`,... t_resource" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1187,6 +1076,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1194,6 +1084,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,6 +1092,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,6 +1100,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1222,6 +1115,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1229,6 +1123,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1236,6 +1131,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1250,6 +1146,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1257,6 +1154,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1264,6 +1162,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1306,6 +1205,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1313,6 +1213,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1320,6 +1221,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1327,6 +1229,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1334,6 +1237,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1341,6 +1245,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1348,6 +1253,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1362,6 +1268,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="24" column="20" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1369,6 +1276,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="67" column="60" lean-forward="true" selection-start-line="67" selection-start-column="60" selection-end-line="67" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1376,6 +1284,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding>
+            <element signature="n#bean#1;n#beans#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1391,6 +1302,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-117">
           <caret line="41" column="39" lean-forward="true" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
