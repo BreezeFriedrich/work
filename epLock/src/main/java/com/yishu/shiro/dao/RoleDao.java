@@ -5,6 +5,7 @@ import com.yishu.shiro.model.Role;
 import com.yishu.shiro.model.RoleResource;
 import com.yishu.shiro.model.UserRole;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

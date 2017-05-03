@@ -6,7 +6,7 @@
     <groupId>com.yishu</groupId>
     <artifactId>epLock</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>epLock:shiro</name>
+    <name>epLock_shiro</name>
     <url>http://www.yishutech.org</url>
     <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

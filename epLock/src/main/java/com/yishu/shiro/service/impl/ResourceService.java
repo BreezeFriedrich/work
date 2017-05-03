@@ -16,15 +16,9 @@ public class ResourceService implements IResourceService {
     @Autowired
     private ResourceDao resourceDao;
 
-
     @Override
     public Integer add(Resource res) {
         return resourceDao.add(res);
-    }
-
-    @Override
-    public Integer delete(int id) {
-        return resourceDao.delete(id);
     }
 
     @Override
@@ -33,12 +27,17 @@ public class ResourceService implements IResourceService {
     }
 
     @Override
-    public List<Resource> listResource() {
-        return resourceDao.listResoure();
+    public Integer delete(int id) {
+        return resourceDao.delete(id);
     }
 
     @Override
     public Resource load(int id) {
         return resourceDao.load(id);
+    }
+
+    @Override
+    public List<Resource> listResource() {
+        return resourceDao.listResource();
     }
 }

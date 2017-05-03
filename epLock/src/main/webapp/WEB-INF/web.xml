@@ -26,18 +26,22 @@
     <servlet-class>com.yishu.shiro.web.InitServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>
-      classpath:spring/spring-dao.xml,
-      classpath:spring/spring-service.xml,
-      classpath:spring/spring-shiro.xml
-    </param-value>
-  </context-param>
 
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextCleanupListener</listener-class>
+  </listener>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      classpath:spring/spring-service.xml,
+      classpath:spring/spring-dao.xml,
+      classpath:spring/spring-shiro.xml
+    </param-value>
+  </context-param>
 
   <filter>
     <filter-name>shiroFilter</filter-name>
@@ -51,4 +55,18 @@
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
 </web-app>

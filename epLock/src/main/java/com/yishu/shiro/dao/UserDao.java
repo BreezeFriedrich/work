@@ -4,6 +4,7 @@ import com.yishu.shiro.model.Resource;
 import com.yishu.shiro.model.Role;
 import com.yishu.shiro.model.User;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

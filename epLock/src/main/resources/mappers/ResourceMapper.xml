@@ -4,14 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yishu.shiro.dao.ResourceDao">
 
+    <!--<resultMap id="resourceMap" type="Resource">-->
+        <!--<id column="id" property="id" />-->
+        <!--<result column="name" property="name" />-->
+        <!--<result column="permission" property="permission" />-->
+        <!--<result column="url" property="url"/>-->
+    <!--</resultMap>-->
+
     <select id="listResource" resultType="Resource">
         SELECT
-        `id`,
-        `name`,
-        `permission`,
-        `url`
+            `id`,
+            `name`,
+            `permission`,
+            `url`
         FROM
-        `t_resource`
+          `t_resource`
     </select>
 
     <insert id="add" parameterType="Resource">
