@@ -1,15 +1,15 @@
 //动态菜单数据
 	var unlockTreeData =[{
-				text : "开锁授权",
-				attributes : {
-				url : "deviceManage.jsp"
-				}
-			}];
+		text : "开锁授权",
+		attributes : {
+		url : "dispatcher/deviceManage.jsp"
+		}
+	}];
 	
 	var countTreeData =[{
 		text : "查询记录",
 		attributes : {
-		url : "lockoperate.jsp"
+		url : "dispatcher/lockoperate.jsp"
 		},
 //		iconCls:"styles/images/querryDatagrid.png",
 	}];

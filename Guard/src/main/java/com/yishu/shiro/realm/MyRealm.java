@@ -29,7 +29,7 @@ public class MyRealm extends AuthorizingRealm {
 
     private static final Logger logger= LoggerFactory.getLogger(MyRealm.class);
     @Autowired
-    private IUserService userService;
+    private IUserService shiroUserService;
 
     /**
      * 认证
@@ -46,7 +46,7 @@ public class MyRealm extends AuthorizingRealm {
         // 可以在登录的逻辑里面抛出各种异常
         // 再到 subject.login(token) 里面去捕获对应的异常
 
-        User user=userService.login(username,password);
+        User user=shiroUserService.login(username,password);
         if (user!=null){
             SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(user,user.getPassword(),getName());
             info.setCredentialsSalt(ByteSource.Util.bytes(username.getBytes()));
@@ -66,8 +66,8 @@ public class MyRealm extends AuthorizingRealm {
 
         User user=(User) principalCollection.getPrimaryPrincipal();
         Integer userId=user.getId();
-        List<Resource> resourceList=userService.listAllResource(userId);
-        List<String> roleSnList =userService.listRoleSnByUser(userId);
+        List<Resource> resourceList=shiroUserService.listAllResource(userId);
+        List<String> roleSnList =shiroUserService.listRoleSnByUser(userId);
 
         List<String> resStrList=new ArrayList<>();
         for (Resource resource:resourceList){

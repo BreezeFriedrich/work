@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
-@ContextConfiguration(locations = { "/spring.xml" })
 @Controller
 @RequestMapping("/deviceManage")
 public class DeviceManageController {

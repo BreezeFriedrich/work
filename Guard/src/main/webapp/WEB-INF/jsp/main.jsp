@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
         <meta charset="utf-8">
         <title>亿数漫行智能锁</title>
-		<link rel='icon' href='../../resources/styles/images/intellilock.png ' type=‘image/x-icon’ />
+		<link rel="icon" type="image/x-icon" href="../../resources/styles/images/intellilock.png"/>
 		<link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/default/easyui.css"/>
 		<link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/icon.css"/>
 		<link rel="stylesheet" type="text/css" href="../../resources/easyui/demo/demo.css"/>
@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
 		</div>
 		<div data-options="region:'west',split:true,title:'菜单'" style="width:150px;padding:0px;">
-			<div class="easyui-accordion" data-options="fit:true,border:false" style="width:30px,font-size:25px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false" style="width:30px;font-size:25px;">
 				<div title="设备管理" style="padding-left:10px;font-size:20px;">
 					<ul id="tree_unlock"></ul>
 				</div>

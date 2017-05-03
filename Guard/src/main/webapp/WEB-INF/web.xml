@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <display-name>Guard</display-name>
   <welcome-file-list>
-    <welcome-file>jsp/main.jsp</welcome-file>
+    <welcome-file>/WEB-INF/jsp/main.jsp</welcome-file>
     <welcome-file>login.jsp</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -36,6 +36,21 @@
   <servlet-mapping>
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>com.yishu.controller.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/spring-web.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>/dispatcher</url-pattern>
   </servlet-mapping>
 
   <filter>
