@@ -1,4 +1,16 @@
 //动态菜单数据
+	var accountListTreeData =[{
+    	text : "用户列表",
+    	attributes : {
+        	url : "dispatcher/loginShiro.jsp"
+    	}
+	}];
+	var RBACTreeData =[{
+    	text : "权限管理",
+    	attributes : {
+        	url : "dispatcher/user/list.jsp"
+    	}
+	}];
 	var unlockTreeData =[{
 		text : "开锁授权",
 		attributes : {
@@ -16,6 +28,24 @@
 
 $(function () {
 	//实例化树形菜单
+    $("#tree_accountList").tree({
+        data : accountListTreeData,
+        lines : true,
+        onClick : function (node) {
+            if (node.attributes) {
+                Open(node.text, node.attributes.url);
+            }
+        }
+    });
+    $("#tree_RBAC").tree({
+        data : RBACTreeData,
+        lines : true,
+        onClick : function (node) {
+            if (node.attributes) {
+                Open(node.text, node.attributes.url);
+            }
+        }
+    });
 	$("#tree_unlock").tree({
 		data : unlockTreeData,
 		lines : true,

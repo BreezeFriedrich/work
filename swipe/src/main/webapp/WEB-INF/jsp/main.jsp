@@ -62,6 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div data-options="region:'west',split:true,title:'菜单'" style="width:150px;padding:0px;">
 			<div class="easyui-accordion" data-options="fit:true,border:false" style="width:30px;font-size:25px;">
+				<div title="用户管理" style="padding-left:10px;font-size:20px;">
+					<ul id="tree_accountList"></ul>
+					<ul id="tree_RBAC"></ul>
+				</div>
 				<div title="设备管理" style="padding-left:10px;font-size:20px;">
 					<ul id="tree_unlock"></ul>
 				</div>
