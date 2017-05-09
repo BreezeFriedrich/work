@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 /* button 
----------------------------------------------- */
+------------------------------------------------------------------------------------------------------------------------*/
 
 .button {
 	display: inline-block;
@@ -67,8 +67,15 @@
 
 /*----------------------------------------------------------*/
 
-#pagetitle {
-	letter-spacing: 4px;
+#pagetitle 
+{ width:100%;
+display:inline-block;
+line-height:1.5em;
+overflow:visible;
+font-size:22px;
+text-shadow:#f3f3f3 1px 1px 0px, #b2b2b2 1px 2px 0;
+text-align:center;
+letter-spacing: 4px;
 }
 
 img {
@@ -100,14 +107,15 @@ body {
 	overflow-x: hidden;
 }
 
-/*left*/
+/*------------------------------------------------------------------------------------------------------------------------
+left*/
 
 .leftsidebar {
-	width: 144px;
-	height: auto !important;
+	width: 150px;
+	/*height: auto !important;*/
+	height: 100%;
 	overflow: visible !important;
-	position: fixed;
-	height: 100% !important;
+	position: relative;	
 	background-color: #B7D2FF;
 }
 
@@ -118,6 +126,7 @@ body {
 	background-repeat: repeat-x;
 }
 
+/*1级菜单*/
 .leftsidebar dt {
 	padding-left: 40px;
 	padding-right: 10px;
@@ -129,36 +138,39 @@ body {
 	line-height: 48px;
 	cursor: pointer;
 }
-
-.leftsidebar dd {
+/*2级菜单*/
+.leftsidebar dd {	
 	background-color: #AAC5E7;
 	padding-left: 40px;
 }
-
+/*2级菜单标题样式*/
 .leftsidebar dd a {
+	cursor: pointer;
 	color: #f5f5f5;
 	line-height: 20px;
 	font-size: 14px;
 }
-
+/*下拉箭头*/
 .leftsidebar dt img {
 	position: absolute;
 	right: 10px;
 	top: 20px;
 }
+/*2级菜单最后标题下边距*/
+.leftsidebar dl dd:last-child {
+	padding-bottom: 10px;
+}
 
+/*valid
 .custom dt {
 	background-image: url(img/left/custom.png)
 }
 
-.syetem_management dt {
-	background-image: url(img/left/syetem_management.png)
+.deviceManage dt {
+	background-image: url(img/left/device_manage.png)
 }
 
 .statistics dt {
 	background-image: url(img/left/statistics.png)
-}
-
-.leftsidebar dl dd:last-child {
-	padding-bottom: 10px;
-}
+}*/
+/*----------------------------------------------------------------------------------------------------------------------*/
