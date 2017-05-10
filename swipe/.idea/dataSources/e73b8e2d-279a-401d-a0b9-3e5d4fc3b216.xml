@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - swipe@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="swipe">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="cardsave"/>
+    <schema id="4" parent="1" name="datainfo"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="PublicData"/>
+    <schema id="8" parent="1" name="SAMRECORD"/>
+    <schema id="9" parent="1" name="test"/>
+    <schema id="10" parent="1" name="VIRTUALTELECOM"/>
+    <table id="11" parent="2" name="DeviceStatus">
+      <Comment>模块状态</Comment>
+    </table>
+    <table id="12" parent="2" name="SwipeRecord">
+      <Comment>刷卡信息表</Comment>
+    </table>
+    <column id="13" parent="11" name="SEQ">
+      <Position>1</Position>
+      <Comment>序号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="14" parent="11" name="deviceid">
+      <Position>2</Position>
+      <Comment>模块id</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="11" name="deviceip">
+      <Position>3</Position>
+      <Comment>模块ip</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="11" name="status">
+      <Position>4</Position>
+      <Comment>模块状态:0 正常,1 异常</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="11" name="timestamp">
+      <Position>5</Position>
+      <Comment>时间戳</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="11" name="info">
+      <Position>6</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="11" name="reserved">
+      <Position>7</Position>
+      <DataType>char(8)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="20" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SEQ</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="21" parent="12" name="SEQ">
+      <Position>1</Position>
+      <Comment>序号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="22" parent="12" name="deviceid">
+      <Position>2</Position>
+      <Comment>模块id</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="12" name="deviceip">
+      <Position>3</Position>
+      <Comment>模块ip</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="12" name="clientid">
+      <Position>4</Position>
+      <Comment>刷卡设备id</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="12" name="clientip">
+      <Position>5</Position>
+      <Comment>刷卡设备ip</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="12" name="result">
+      <Position>6</Position>
+      <Comment>刷卡结果:0 刷卡成功,1 刷卡失败</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="12" name="timestamp">
+      <Position>7</Position>
+      <Comment>时间戳</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="28" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SEQ</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
