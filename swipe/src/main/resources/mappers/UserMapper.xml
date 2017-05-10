@@ -26,8 +26,7 @@
                 `status` = #{status}
             </if>
         </set>
-        WHERE
-        id = #{id}
+        WHERE id = #{id}
     </update>
 
     <delete id="delete" parameterType="int">
@@ -51,10 +50,8 @@
         `password`,
         nickname,
         `status`
-        FROM
-        t_user
-        WHERE
-        id = #{id}
+        FROM t_user
+        WHERE id = #{id}
     </select>
 
     <select id="listUser" resultType="User">
@@ -64,8 +61,7 @@
         `password`,
         nickname,
         `status`
-        FROM
-        t_user
+        FROM t_user
     </select>
 
     <select id="loadByUserName" parameterType="string" resultType="User">
@@ -75,10 +71,8 @@
         `password`,
         nickname,
         `status`
-        FROM
-        t_user
-        WHERE
-        username = #{username}
+        FROM t_user
+        WHERE username = #{username}
     </select>
 
     <select id="listByRole" parameterType="int" resultType="User">
@@ -88,8 +82,7 @@
         tu.`password`,
         tu.nickname,
         tu.`status`
-        FROM
-        t_user tu
+        FROM t_user tu
         LEFT JOIN t_user_role tur ON tu.id = tur.user_id
         LEFT JOIN t_role tr ON tur.role_id = tr.id
         WHERE tr.id =#{rid}
@@ -106,8 +99,7 @@
 
     <!-- 根据用户 id 查询用户所具有的角色字符串表示 -->
     <select id="listRoleSnByUser" parameterType="int" resultType="string">
-        SELECT
-        tr.sn
+        SELECT tr.sn
         FROM `t_role` tr
         LEFT JOIN `t_user_role` tur ON tr.`id` = tur.role_id
         LEFT JOIN `t_user` tu ON tur.`user_id` = tu.id
