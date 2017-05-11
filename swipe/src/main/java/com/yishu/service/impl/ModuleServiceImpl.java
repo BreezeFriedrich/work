@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by admin on 2017/5/10.
  */
-@Service
+@Service("moduleService")
 public class ModuleServiceImpl implements ModuleService {
 
     @Autowired

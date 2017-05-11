@@ -7,13 +7,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<head>
 		<meta charset="utf-8">
-		<title>亿数漫行智能锁</title>
-		<link rel="icon" type="image/x-icon" href="styles/images/intellilock.png" />
+		<title>亿数漫行智能锁</title>		
 		<link rel="stylesheet" type="text/css" href="styles/main.css" />
 		<script type="text/javascript" src="easyui/jquery.min.js"></script>
-		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="js/cookie_util.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/main_plain.js"></script>
 		<!-- <script type="text/javascript">
 			//客户端登陆信息检查
 			var user = getCookie("userId");

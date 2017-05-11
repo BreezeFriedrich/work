@@ -1,9 +1,11 @@
 package com.yishu.model;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 2017/5/10.
  */
-public class DeviceStatus {
+public class DeviceStatus implements Serializable{
 
     private String deviceid;
     private String deviceip;

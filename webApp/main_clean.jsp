@@ -93,7 +93,7 @@
 					background-image: url(img/left/custom.png)
 				}
 				.syetem_management dt {
-					background-image: url(img/left/syetem_management.png)
+					background-image: url(img/left/device_manage.png)
 				}
 				.statistics dt {
 					background-image: url(img/left/statistics.png)

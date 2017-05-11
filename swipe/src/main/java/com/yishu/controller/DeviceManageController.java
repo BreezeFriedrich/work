@@ -56,6 +56,7 @@ public class DeviceManageController {
 		System.out.println("data:"+data);
 		return data;
 	}
+
 	@RequestMapping("/doCertiAuth.do")
 	@ResponseBody
 	public int doCertiAuth(HttpServletRequest request){

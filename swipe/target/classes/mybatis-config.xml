@@ -8,7 +8,7 @@
     <settings>
         <!--使用 jdbc 的 getGeneratekeys 获取自增主键值-->
         <setting name="useGeneratedKeys" value="true"/>
-        <!--使用列别名替换别名　　默认true
+        <!--使用列别名替换别名,默认true
         select name as title form table;
         -->
         <setting name="useColumnLabel" value="true"/>

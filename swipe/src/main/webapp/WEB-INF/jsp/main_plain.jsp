@@ -8,21 +8,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="utf-8">
 		<title>亿数漫行智能锁</title>
-		<link rel="icon" type="image/x-icon" href="../../resources/styles/images/intellilock.png" />
-		<%--<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css" />--%>
-		<%--<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />--%>
-		<%--<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css" />--%>
-		<link rel="stylesheet" type="text/css" href="../../resources/styles/main.css" />
-		<%--<link rel="stylesheet" type="text/css" href="styles/userManage.css" />--%>
-		<%--<link rel="stylesheet" type="text/css" href="styles/deviceManage.css" />--%>
-		<!--<script type="text/javascript" src="js/jquery.js"></script>-->
+		<%--<link rel="icon" type="image/x-icon" href="../../resources/styles/images/intellilock.png" />--%>
+		<link rel="stylesheet" type="text/css" href="../../resources/styles/main_plain.css" />
+		<%--<script type="text/javascript" src="../../resources/scripts/cookie_util.js"></script>--%>
 		<script type="text/javascript" src="../../resources/easyui/jquery.min.js"></script>
-		<%--<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>--%>
-		<%--<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>--%>
-		<script type="text/javascript" src="../../resources/scripts/cookie_util.js"></script>
 		<script type="text/javascript" src="../../resources/scripts/main_plain.js"></script>
-		<%--<script type="text/javascript" src="js/lockoperate.js"></script>--%>
-		<%--<script type="text/javascript" src="js/device-manage.js"></script>--%>
 		<!-- <script type="text/javascript">
 			//客户端登陆信息检查
 			var user = getCookie("userId");
@@ -33,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		-->		
 	</head>
 
-	<body style="width:1400px;">		
+	<body style="min-width:1400px;">
 		<div id="container">
 			<div id="north" style="height:60px;background:#95b8e7;padding:10px;border: none;clear: both;position: relative;">
 				<div class="header-brand" style="float:left;">
@@ -53,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<div class="line"></div>
 					<dl class="custom">
-						<dt style="background-image: url(img/left/custom.png)">用户管理<img src="img/left/select_xl01.png"></dt>
+						<dt style="background-image: url(../../resources/styles/images/left/custom.png)">用户管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
 							<a onclick=iframe("userList.jsp")>用户列表</a>
 						</dd>
@@ -66,14 +56,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</dl>
 
 					<dl class="deviceManage">
-						<dt style="background-image: url(img/left/device_manage.png)">设备管理<img src="img/left/select_xl01.png"></dt>
+						<dt style="background-image: url(../../resources/styles/images/left/device_manage.png)">设备管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
 							<a onclick=iframe("moduleStatus.jsp")>模块状态</a>
 						</dd>
 					</dl>
 
 					<dl class="statistics">
-						<dt style="background-image: url(img/left/statistics.png)">统计分析<img src="img/left/select_xl01.png"></dt>
+						<dt style="background-image: url(../../resources/styles/images/left/statistics.png)">统计分析<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
 							<a onclick=iframe("dataQuery.jsp")>数据查询</a>
 						</dd>
