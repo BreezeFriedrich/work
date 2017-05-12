@@ -2,6 +2,7 @@ package com.yishu.controller;
 
 import com.yishu.model.DeviceStatus;
 import com.yishu.service.ModuleService;
+import com.yishu.util.JsonUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,11 +26,12 @@ public class ModuleStatusController {
 
     @RequestMapping("/listByStatus.do")
     @ResponseBody
-    public List listByStatus(HttpServletRequest request){
+    public String listByStatus(HttpServletRequest request){
         logger.info("Controller:listByStatus");
         int status=Integer.valueOf(request.getParameter("status"));
         List<DeviceStatus> moduleList=moduleService.listByStatus(status);
-        return moduleList;
+        JsonUtil jsonUtil=new JsonUtil();
+        return jsonUtil.listToJsonArray(moduleList);
     }
 
     @RequestMapping("/hello.do")

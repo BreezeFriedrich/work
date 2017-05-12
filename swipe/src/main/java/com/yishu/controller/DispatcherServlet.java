@@ -25,7 +25,7 @@ public class DispatcherServlet extends HttpServlet{
         int beginIndex=str.indexOf("/",9)+1;
         String str2=str.substring(beginIndex);
         String str3=request.getContextPath()+"/"+"WEB-INF"+"/"+"jsp"+"/"+str2;
-        logger.info("request.getRequestDispatcher(str3).forward-->>"+str3);
+        logger.info("RequestDispatcher--->>"+str3);
         try {
             request.getRequestDispatcher(str3).forward(request, response);
         } catch (ServletException e) {

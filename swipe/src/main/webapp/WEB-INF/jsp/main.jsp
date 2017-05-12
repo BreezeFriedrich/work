@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="../../resources/easyui/jquery.min.js"></script>
 		<script type="text/javascript" src="../../resources/easyui/jquery.easyui.min.js"></script>
 		<script type="text/javascript" src="../../resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-		<script type="text/javascript" src="../../resources/scripts/cookie_util.js"></script>
+		<script type="text/javascript" src="../../resources/scripts/component/cookie.js"></script>
 		<script type="text/javascript" src="../../resources/scripts/main.js"></script>
 		<script type="text/javascript" src="../../resources/scripts/lockoperate.js"></script>
 		<script type="text/javascript" src="../../resources/scripts/device-manage.js"></script>

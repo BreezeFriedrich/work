@@ -7,7 +7,7 @@ import com.yishu.model.json.LockOperateJson.LockOperateRecord;
 import com.yishu.model.json.ServerTreeNode;
 import com.yishu.service.LockOperateService;
 import com.yishu.util.LockOperateUtil;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

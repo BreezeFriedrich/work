@@ -7,10 +7,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<head>
 		<meta charset="utf-8">
-		<title>亿数漫行智能锁</title>
+		<title>亿数刷卡管理中心</title>
 		<%--<link rel="icon" type="image/x-icon" href="../../resources/styles/images/intellilock.png" />--%>
 		<link rel="stylesheet" type="text/css" href="../../resources/styles/main_plain.css" />
-		<%--<script type="text/javascript" src="../../resources/scripts/cookie_util.js"></script>--%>
+		<script type="text/javascript" src="../../resources/scripts/component/cookie.js"></script>
 		<script type="text/javascript" src="../../resources/easyui/jquery.min.js"></script>
 		<script type="text/javascript" src="../../resources/scripts/main_plain.js"></script>
 		<!-- <script type="text/javascript">
@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<img class="brand-logo" src="" alt="Logo">
 					</a>
 				</div>
-				<div id="pagetitle" style="display:inline-block;float:left;width:238px;height:34px;position:absolute;top:50%;left:50%;margin-left:-118px;margin-top:-17px;">漫行智能锁管理系统</div>
+				<div id="pagetitle" style="display:inline-block;float:left;width:238px;height:34px;position:absolute;top:50%;left:50%;margin-left:-118px;margin-top:-17px;">亿数刷卡管理中心</div>
 				<div class="header-menu" style="float:right;display:inline-block;">
 					<span id="loginStatus">登录信息</span>
 					<button class="button" id="safetylogout" style="border:2px solid #b2cef3;border-radius:3px;background-color:#c4d8f3;font-size:17px;font-family:Arial, Helvetica, sans-serif;color:#305b96;padding:8px 8px;">安全退出</button>

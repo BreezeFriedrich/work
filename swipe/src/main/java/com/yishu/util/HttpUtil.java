@@ -145,7 +145,7 @@ public class HttpUtil {
 
 
 
-    /**
+    /*
      public static String postData(String data,String ip){
      URL url;
      HttpURLConnection httpURLConnection=null;
@@ -220,6 +220,6 @@ public class HttpUtil {
      }
      return null;
      }
-     **/
+     */
 
 }
