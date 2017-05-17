@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yishu.dao.DeviceStatusDao">
+<mapper namespace="dao.DeviceStatusDao">
 
     <insert id="add" parameterType="DeviceStatus">
         INSERT INTO DeviceStatus(`deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`)

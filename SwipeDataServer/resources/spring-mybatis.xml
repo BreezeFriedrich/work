@@ -19,7 +19,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 		<property name="driverClassName" value="${driverClassName}" />
 		<property name="url" value="${url}"/>
-		<property name="username" value="${username}" />
+		<property name="username" value="root" />
 		<property name="password" value="${password}" />
 
 		<!-- 初始化连接大小 -->
@@ -54,7 +54,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	</bean>
 
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean  id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="typeAliasesPackage" value="model" />
 		<property name="mapperLocations" value="classpath:mappers/*.xml" />
@@ -66,8 +66,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<!--</bean>-->
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-		<property name="basePackage" value="dao.*"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+		<property name="basePackage" value="dao"/>
 	</bean>
 
 	<!--&lt;!&ndash; 注册Mapper方式二：也可不指定特定mapper，而使用自动扫描包的方式来注册各种Mapper ，配置如下： &ndash;&gt;-->

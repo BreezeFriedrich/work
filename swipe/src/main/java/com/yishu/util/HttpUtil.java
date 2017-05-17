@@ -35,7 +35,8 @@ public class HttpUtil {
     }
 
     public static String postData(String data){
-    	String ip= HttpUtil.getIp();
+//    	String ip= HttpUtil.getIp();
+        String ip="http://127.0.0.1:2017/";
     	String infos= HttpUtil.postData(data, ip);
         logger.info(ip);
         logger.info(infos);

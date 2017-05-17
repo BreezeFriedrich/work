@@ -9,13 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.ModuleService;
+import service.impl.ModuleServiceImpl;
 
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.URI;
-import java.security.KeyStore;
-import java.sql.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -26,7 +25,12 @@ import java.util.concurrent.Executors;
  * Created by admin on 2017/5/15.
  */
 public class DataServer {
+    @Autowired
+    private ModuleService moduleService;
 
+    public ModuleService getModuleService (){
+        return this.moduleService;
+    }
 //    public void test(){
 //
 //        Properties pro = new Properties();
@@ -78,80 +82,87 @@ public class DataServer {
         return logger;
     }
 
-    private static final int port=222;
+    private static final int port=2017;
 
-    public static void getBeans(){
+    public static void main(String[] args) throws IOException{
 
         ApplicationContext context=new ClassPathXmlApplicationContext("spring-mybatis.xml");
-        SqlSessionFactory sqlSessionFactory= (SqlSessionFactory) context.getBean("SqlSessionFactory");
+        List<DeviceStatus> list=((ModuleServiceImpl)(context.getBean("moduleService"))).listByStatus(0);
+        Iterator it=list.iterator();
+        DeviceStatus deviceStatus=null;
+        while(it.hasNext()){
+            deviceStatus= (DeviceStatus) it.next();
+            System.out.println("devicestatus[i]:"+deviceStatus);
+            System.out.println("id:"+deviceStatus.getDeviceid()+";ip:"+deviceStatus.getDeviceip()+";timestamp:"+deviceStatus.getTimestamp());
+        }
         try {
-            System.out.println(sqlSessionFactory.openSession().getConnection().getClientInfo().elements().toString());
-        } catch (SQLException e) {
+            InetSocketAddress address = new InetSocketAddress(port);
+            System.out.print("Server-address:"+address);
+            HttpServer httpServer=HttpServer.create(address,100);
+            httpServer.createContext("/", new MyHandler());
+            httpServer.setExecutor(Executors.newCachedThreadPool());
+            httpServer.start();
+        }catch (Exception e){
             e.printStackTrace();
         }
 
-    }
-
-    public static void main(String[] args) throws IOException{
-//        getBeans();
-        try {
-            // setup the socket address
-            InetSocketAddress address = new InetSocketAddress(port);
-
-            // initialise the HTTPS server
-            HttpsServer httpsServer = HttpsServer.create(address, 100000);
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-//            sslContext.getSocketFactory().createSocket();
-
-            /*
-            // initialise the keystore
-            char[] password = "password".toCharArray();
-            KeyStore ks = KeyStore.getInstance("JKS");
-            FileInputStream fis = new FileInputStream("testkey.jks");
-            ks.load(fis, password);
-
-            // setup the key manager factory
-            KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-            kmf.init(ks, password);
-
-            // setup the trust manager factory
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
-            tmf.init(ks);
-
-            // setup the HTTPS context and parameters
-            sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
-            */
-
-            httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
-                public void configure(HttpsParameters params) {
-                    try {
-                        // initialise the SSL context
-                        SSLContext c = SSLContext.getDefault();
-                        SSLEngine engine = c.createSSLEngine();
-                        params.setNeedClientAuth(false);
-                        params.setCipherSuites(engine.getEnabledCipherSuites());
-                        params.setProtocols(engine.getEnabledProtocols());
-
-                        // get the default parameters
-                        SSLParameters defaultSSLParameters = c.getDefaultSSLParameters();
-                        params.setSSLParameters(defaultSSLParameters);
-
-                    } catch (Exception ex) {
-                        System.out.println("Failed to create HTTPS port");
-                    }
-                }
-            });
-//            httpsServer.createContext("/test", new MyHandler());
-            httpsServer.createContext("/", new MyHandler());
-            httpsServer.setExecutor(Executors.newCachedThreadPool());
-            httpsServer.start();
-            System.out.println("Server is listening on port" +address.getPort() );
-
-        } catch (Exception exception) {
-            System.out.println("Failed to create HTTPS server on port " + port + " of localhost");
-            exception.printStackTrace();
-
-        }
+//        try {
+//            // setup the socket address
+//            InetSocketAddress address = new InetSocketAddress(port);
+//
+//            // initialise the HTTPS server
+//            HttpsServer httpsServer = HttpsServer.create(address, 100);
+//            SSLContext sslContext = SSLContext.getInstance("TLS");
+////            sslContext.getSocketFactory().createSocket();
+//
+//            /*
+//            // initialise the keystore
+//            char[] password = "yishutech".toCharArray();
+//            KeyStore ks = KeyStore.getInstance("JKS");
+//            FileInputStream fis = new FileInputStream("testkey.jks");
+//            ks.load(fis, password);
+//
+//            // setup the key manager factory
+//            KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+//            kmf.init(ks, password);
+//
+//            // setup the trust manager factory
+//            TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+//            tmf.init(ks);
+//
+//            // setup the HTTPS context and parameters
+//            sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+//            */
+//
+//            httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
+//                public void configure(HttpsParameters params) {
+//                    try {
+//                        // initialise the SSL context
+//                        SSLContext c = SSLContext.getDefault();
+//                        SSLEngine engine = c.createSSLEngine();
+//                        params.setNeedClientAuth(false);
+//                        params.setCipherSuites(engine.getEnabledCipherSuites());
+//                        params.setProtocols(engine.getEnabledProtocols());
+//
+//                        // get the default parameters
+//                        SSLParameters defaultSSLParameters = c.getDefaultSSLParameters();
+//                        params.setSSLParameters(defaultSSLParameters);
+//
+//                    } catch (Exception ex) {
+//                        System.out.println("Failed to create HTTPS port");
+//                    }
+//                }
+//            });
+//            httpsServer.createContext("/", new MyHandler());
+//            httpsServer.setExecutor(Executors.newCachedThreadPool());
+//            httpsServer.start();
+//            System.out.println("Server is listening on port" +address.getPort());
+//
+//        } catch (Exception exception) {
+//            System.out.println("Failed to create HTTPS server on port " + port + " of localhost");
+//            exception.printStackTrace();
+//
+//        }
     }
 
 }
@@ -188,11 +199,8 @@ class MyHandler implements HttpHandler{
         }
         String method=exchange.getRequestMethod();
         URI uri=exchange.getRequestURI();
-        System.out.println("method:"+method);
-        //System.out.println("uri  "+uri.getPath().length());
         System.out.println("result结果:"+result);
 
-        ContextLoader contextLoader=ContextLoader.getInstance();
         ObjectMapper objectMapper=new ObjectMapper();
         Map map=new HashMap();
 
@@ -213,7 +221,6 @@ class MyHandler implements HttpHandler{
                     map.put("data",deviceStatus);
                 }
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                responseBody.write(objectMapper.toString().getBytes());
                 break;
 
             default:break;
@@ -221,18 +228,5 @@ class MyHandler implements HttpHandler{
             responseBody.close();
             requestBody.close();
     }
-
-//    public static String printHexString( byte[] b, int len)
-//    {
-//        String bstr="";
-//        for (int i = 0; i < len; i++) {
-//            String hex = Integer.toHexString(b[i] & 0xFF);
-//            if (hex.length() == 1) {
-//                hex = '0' + hex;
-//            }
-//            bstr=bstr+" "+hex.toUpperCase();
-//        }
-//        return bstr;
-//    }
 
 }
