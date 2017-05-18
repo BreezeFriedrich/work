@@ -52,19 +52,19 @@ public class HttpTool {
         }catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(outputStream!=null){
-                try {
-                    outputStream.flush();
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
             if(inputStream!=null){
                 try{
                     inputStream.close();
                 }
                 catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            if(outputStream!=null){
+                try {
+                    outputStream.flush();
+                    outputStream.close();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }

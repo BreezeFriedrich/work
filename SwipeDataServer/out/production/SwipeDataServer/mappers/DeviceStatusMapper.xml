@@ -47,7 +47,7 @@
     <select id="listAllWithoutDuplicate" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
         FROM
-            (SELECT SEQ,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid)
+            (SELECT *,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid)
     </select>
 
     <delete id="discardDuplicate">
