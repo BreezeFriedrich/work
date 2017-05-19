@@ -1,3 +1,5 @@
+package com.yishu.util;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,8 +11,8 @@ import java.net.URL;
 /**
  * Created by admin on 2017/5/17.
  */
-public class HttpTool {
-    private static final Logger logger= LoggerFactory.getLogger(HttpTool.class);
+public class HttpUtil {
+    private static final Logger logger= LoggerFactory.getLogger(HttpUtil.class);
 
     public static String postData(String data){
         String ip="127.0.0.1";
@@ -23,7 +25,8 @@ public class HttpTool {
         InputStreamReader inputStreamReader;
         BufferedReader bufferedReader=null;
         String result="";
-        String line;
+        String line=null;
+        StringBuffer strBuffer=new StringBuffer();
         try {
             url=new URL("http://"+ip+":2017/");
 //            logger.info("#CON      ~ "+String.valueOf(url));
@@ -39,13 +42,16 @@ public class HttpTool {
 //            logger.info("#TAG      ~ "+"connect:sucesses");
             outputStream=httpURLConnection.getOutputStream();
             dataOutputStream=new DataOutputStream(outputStream);
+            logger.info("postdata:"+data);
             dataOutputStream.write(data.getBytes());
             inputStream=httpURLConnection.getInputStream();
             inputStreamReader=new InputStreamReader(inputStream,"UTF-8");
             bufferedReader=new BufferedReader(inputStreamReader);
             while((line=bufferedReader.readLine())!=null){
-                result+=line+"\n";
+                strBuffer.append(line+"\n");
             }
+            result=new String(strBuffer);
+            logger.info("getData:"+result);
             return result;
         } catch (MalformedURLException e) {
             e.printStackTrace();

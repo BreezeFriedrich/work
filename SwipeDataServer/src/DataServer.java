@@ -100,12 +100,10 @@ class MyHandler implements HttpHandler{
 
     private static  final Logger logger = LoggerFactory.getLogger(HttpHandler.class);
     private ModuleService moduleService=null;
-    StringBuffer readStr=null;
-    String result="";
+
 
     MyHandler() throws SQLException {
         this.moduleService = (ModuleServiceImpl) ContextLoader.getBean("moduleService");
-        this.readStr=new StringBuffer();
     }
 
     @Override
@@ -114,6 +112,10 @@ class MyHandler implements HttpHandler{
 //        logger.info(Thread.currentThread().getName());
 //        logger.info("#THREAD   ~ "+String.valueOf(Thread.activeCount()));
 //        logger.info("#OBJ      ~ moduleService:"+moduleService);
+
+        StringBuffer readStr=null;
+        readStr=new StringBuffer();//要放到handle里面
+        String result="";
 
         String requestMethod = exchange.getRequestMethod();
         if (!requestMethod.equalsIgnoreCase("POST")) {
@@ -144,7 +146,7 @@ class MyHandler implements HttpHandler{
 
         JsonNode node=objectMapper.readTree(result);
         int sign=node.get("sign").asInt();
-//        logger.info("sign:"+String.valueOf(sign));
+        logger.info("sign:"+String.valueOf(sign));
 
         List<DeviceStatus> dataList=null;
         List<DeviceStatus> list=null;
@@ -164,7 +166,7 @@ class MyHandler implements HttpHandler{
                 }
                 map.put("data",dataList);
 //                logger.info("#TAG      ~ end   <<<<");
-                logger.info(String.valueOf(map));
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 
@@ -178,6 +180,7 @@ class MyHandler implements HttpHandler{
                     dataList.add(deviceStatus);
                 }
                 map.put("data",dataList);
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 

@@ -18,42 +18,47 @@
             <if test="info !=null">info=#{info}</if>
             <if test="reserved !=null">reserved=#{reserved}</if>
         </set>
-        WHERE deviceid=#{deviceid}
+        WHERE deviceid=#{deviceid};
     </update>
 
     <delete id="deleteByTime" parameterType="String">
         DELETE FROM DeviceStatus
-        WHERE <![CDATA[`timestamp` <= #{endTime} ]]>
+        WHERE <![CDATA[`timestamp` <= #{endTime} ]]>;
         <!--WHERE `timestamp` &lt;= #{timestamp}-->
     </delete>
 
     <delete id="deleteByDeviceid" parameterType="String">
         DELETE FROM DeviceStatus
-        WHERE deviceid=#{deviceid}
+        WHERE deviceid=#{deviceid};
     </delete>
 
     <select id="listByDeviceid" parameterType="String" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
         FROM DeviceStatus
         WHERE deviceid=#{deviceid}
+        ORDER BY `deviceid` DESC,`timestamp` DESC;
     </select>
 
     <select id="listByStatus" parameterType="int" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
         FROM DeviceStatus
-        WHERE `status`=#{status}
+        WHERE `status`=#{status};
     </select>
 
     <select id="listAllWithoutDuplicate" resultType="DeviceStatus">
-        SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
-        FROM
-            (SELECT *,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid)
+        SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
+        FROM DeviceStatus
+#         GROUP BY deviceid HAVING `timestamp`=max(`newTime`)
+        ORDER BY `deviceid` DESC,`timestamp` DESC
+        ;
+#         SELECT FROM_UNIXTIME(`starttime` / 1000, '%Y-%m-%d %H:%i:%S') AS `t` FROM `texs`
+#         WHERE `starttime` IS NOT NULL
     </select>
 
     <delete id="discardDuplicate">
         DELETE FROM DeviceStatus
         WHERE SEQ NOT IN
-              (SELECT SEQ,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid)
+              (SELECT SEQ,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid);
     </delete>
 
 </mapper>

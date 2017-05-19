@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yishu.dao.DeviceStatusDao">
+
+    <insert id="add" parameterType="DeviceStatus">
+        INSERT INTO DeviceStatus(`deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`)
+        VALUES (#{deviceid},#{deviceip},#{status},#{timestamp},#{info},#{reserved});
+    </insert>
+
+    <update id="update" parameterType="DeviceStatus">
+        UPDATE DeviceStatus
+        <set>
+            <if test="deviceip !=null">deviceip=#{deviceip}</if>
+            <if test="status !=null">`status`=#{status}</if>
+            <if test="timestamp !=null">`timestamp`=#{timestamp}</if>
+            <if test="info !=null">info=#{info}</if>
+            <if test="reserved !=null">reserved=#{reserved}</if>
+        </set>
+        WHERE deviceid=#{deviceid}
+    </update>
+
+    <delete id="deleteByTime" parameterType="String">
+        DELETE FROM DeviceStatus
+        WHERE <![CDATA[`timestamp` <= #{endTime} ]]>
+        <!--WHERE `timestamp` &lt;= #{timestamp}-->
+    </delete>
+
+    <delete id="deleteByDeviceid" parameterType="String">
+        DELETE FROM DeviceStatus
+        WHERE deviceid=#{deviceid}
+    </delete>
+
+    <select id="listByDeviceid" parameterType="String" resultType="DeviceStatus">
+        SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
+        FROM DeviceStatus
+        WHERE deviceid=#{deviceid}
+    </select>
+
+    <select id="listByStatus" parameterType="int" resultType="DeviceStatus">
+        SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
+        FROM DeviceStatus
+        WHERE `status`=#{status}
+    </select>
+
+    <select id="listAllWithoutDuplicate" resultType="DeviceStatus">
+        SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
+        FROM
+            (SELECT SEQ,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid)
+    </select>
+
+    <delete id="discardDuplicate">
+        DELETE FROM DeviceStatus
+        WHERE SEQ NOT IN
+              (SELECT SEQ,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid)
+    </delete>
+
+</mapper>
+        <!--Integer add(DeviceStatus deviceStatus);-->
+        <!--Integer update(DeviceStatus deviceStatus);-->
+        <!--Integer deleteByTime(String endTime);-->
+        <!--Integer deleteByDeiviceid(String deviceid);-->
+        <!--List<DeviceStatus> listByDeviceid(String deviceid);-->
+        <!--List<DeviceStatus> listByStatus(int status);-->
+
+        <!--List<DeviceStatus> listAllWithoutDuplicate();-->
+        <!--Integer discardDuplicate();-->

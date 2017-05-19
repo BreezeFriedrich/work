@@ -22,15 +22,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DataServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="187" column="32" lean-forward="false" selection-start-line="187" selection-start-column="32" selection-end-line="187" selection-end-column="32" />
+            <state relative-caret-position="182">
+              <caret line="116" column="48" lean-forward="false" selection-start-line="116" selection-start-column="48" selection-end-line="116" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1495104482734" expanded="true" signature="925:951" ph="SELECT * FRO... DeviceStatus" />
-                <marker date="1495104482734" expanded="true" signature="1612:1638" ph="SELECT * FRO... DeviceStatus" />
+                <marker date="1495178052659" expanded="true" signature="925:951" ph="SELECT * FRO... DeviceStatus" />
+                <marker date="1495178052659" expanded="true" signature="1612:1638" ph="SELECT * FRO... DeviceStatus" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeviceStatusMapper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="54" column="9" lean-forward="false" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+              <folding>
+                <marker date="1495187603628" expanded="true" signature="265:435" ph="INSERT INTO DeviceStatus... " />
+                <marker date="1495187603628" expanded="true" signature="514:911" ph="UPDATE Devic... " />
+                <marker date="1495187603628" expanded="true" signature="990:1063" ph="DELETE FROM " />
+                <marker date="1495187603628" expanded="true" signature="1202:1261" ph="DELETE FROM " />
+                <marker date="1495187603628" expanded="true" signature="1368:1496" ph="SELECT `devi... DeviceStatus" />
+                <marker date="1495187603628" expanded="true" signature="1368:1546" ph="SELECT `devi... DeviceStatus" />
+                <marker date="1495187603628" expanded="true" signature="1648:1824" ph="SELECT `devi... DeviceStatus" />
+                <marker date="1495187603628" expanded="true" signature="1926:2180" ph="SELECT `devi... DeviceStatus" />
+                <marker date="1495187603628" expanded="true" signature="1926:2190" ph="..." />
+                <marker date="1495187603628" expanded="true" signature="2056:2096" ph="SELECT SEQ,M... DeviceStatus" />
+                <marker date="1495187603628" expanded="true" signature="2249:2378" ph="DELETE FROM " />
+                <marker date="1495187603628" expanded="true" signature="2314:2377" ph="SELECT SEQ,M... DeviceStatus" />
               </folding>
             </state>
           </provider>
@@ -48,9 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SwiResultMap</find>
-      <find>SwipResultMap</find>
-      <find>SwipeResultMap</find>
       <find>SwipeRResultMap</find>
       <find>SwipeReResultMap</find>
       <find>SwipeRecResultMap</find>
@@ -76,8 +96,11 @@
       <find>Sys</find>
       <find>Syst</find>
       <find>System.</find>
-      <find>System</find>
       <find>Syste</find>
+      <find>System</find>
+      <find>w</find>
+      <find>writ</find>
+      <find>write</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -125,8 +148,8 @@
         <option value="$PROJECT_DIR$/src/HttpConServer.java" />
         <option value="$PROJECT_DIR$/src/util/SpringTool.java" />
         <option value="$PROJECT_DIR$/resources/druid.properties" />
-        <option value="$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml" />
         <option value="$PROJECT_DIR$/src/DataServer.java" />
+        <option value="$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml" />
       </list>
     </option>
   </component>
@@ -137,9 +160,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-28" />
-    <option name="y" value="1" />
-    <option name="width" value="1612" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -182,9 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -303,6 +323,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -634,14 +657,16 @@
       <workItem from="1494984319022" duration="10545000" />
       <workItem from="1495000826675" duration="15468000" />
       <workItem from="1495070211697" duration="26322000" />
+      <workItem from="1495157243413" duration="24254000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96779000" />
+    <option name="totallyTimeSpent" value="121033000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-28" y="1" width="1612" height="876" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -649,19 +674,19 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282123" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26675978" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2150838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2261598" sideWeight="0.49007446" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2281491" sideWeight="0.49007446" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.400838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.236875" sideWeight="0.50992554" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.400838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -718,49 +743,49 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>115</line>
+          <line>113</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>139</line>
+          <line>141</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>146</line>
+          <line>148</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>158</line>
+          <line>160</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>165</line>
+          <line>167</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>166</line>
+          <line>168</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>114</line>
+          <line>112</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>113</line>
+          <line>111</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -947,92 +972,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backup/DataSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/ConThreadPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/DbPoolConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="68" column="14" lean-forward="false" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/HttpConServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="59" column="12" lean-forward="false" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/HttpServerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="88" column="8" lean-forward="false" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backup/ServerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="521" column="22" lean-forward="false" selection-start-line="521" selection-start-column="22" selection-end-line="521" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/backup/DataSource.java" />
+    <entry file="file://$PROJECT_DIR$/backup/ConThreadPool.java" />
+    <entry file="file://$PROJECT_DIR$/src/Context.java" />
+    <entry file="file://$PROJECT_DIR$/backup/DbPoolConnection.java" />
+    <entry file="file://$PROJECT_DIR$/backup/HttpConServer.java" />
+    <entry file="file://$PROJECT_DIR$/backup/HttpServerTest.java" />
+    <entry file="file://$PROJECT_DIR$/backup/ServerMain.java" />
     <entry file="file://$PROJECT_DIR$/src/util/SpringTool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="65" lean-forward="true" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContextLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding>
-            <marker date="1494989821630" expanded="true" signature="263:440" ph="INSERT INTO SwipeRecord... " />
-            <marker date="1494989821630" expanded="true" signature="517:923" ph="UPDATE Swipe... " />
-            <marker date="1494989821630" expanded="true" signature="1001:1075" ph="DELETE FROM " />
-            <marker date="1494989821630" expanded="true" signature="1161:1219" ph="DELETE FROM " />
-            <marker date="1494989821630" expanded="true" signature="1324:1455" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1494989821630" expanded="true" signature="1538:1706" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1494989821630" expanded="true" signature="2229:2358" ph="SELECT `devi... SwipeRecord" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1053,7 +1003,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,7 +1010,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1069,7 +1017,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="11" column="45" lean-forward="true" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1077,37 +1024,62 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContextLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="49" column="75" lean-forward="true" selection-start-line="49" selection-start-column="75" selection-end-line="49" selection-end-column="75" />
+        <state relative-caret-position="407">
+          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
-            <marker date="1495096927871" expanded="true" signature="265:435" ph="INSERT INTO DeviceStatus... " />
-            <marker date="1495096927871" expanded="true" signature="514:911" ph="UPDATE Devic... " />
-            <marker date="1495096927871" expanded="true" signature="989:1062" ph="DELETE FROM " />
-            <marker date="1495096927871" expanded="true" signature="1200:1259" ph="DELETE FROM " />
-            <marker date="1495096927871" expanded="true" signature="1365:1493" ph="SELECT `devi... DeviceStatus" />
-            <marker date="1495096927871" expanded="true" signature="1594:1720" ph="SELECT `devi... DeviceStatus" />
-            <marker date="1495096927871" expanded="true" signature="1812:1968" ph="SELECT `devi... SEQ" />
-            <marker date="1495096927871" expanded="true" signature="1906:1967" ph="SELECT SEQ,M... DeviceStatus" />
-            <marker date="1495096927871" expanded="true" signature="2027:2156" ph="DELETE FROM " />
-            <marker date="1495096927871" expanded="true" signature="2092:2155" ph="SELECT SEQ,M... DeviceStatus" />
+            <marker date="1494989821630" expanded="true" signature="263:440" ph="INSERT INTO SwipeRecord... " />
+            <marker date="1494989821630" expanded="true" signature="517:923" ph="UPDATE Swipe... " />
+            <marker date="1494989821630" expanded="true" signature="1001:1075" ph="DELETE FROM " />
+            <marker date="1494989821630" expanded="true" signature="1161:1219" ph="DELETE FROM " />
+            <marker date="1494989821630" expanded="true" signature="1324:1455" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1494989821630" expanded="true" signature="1538:1706" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1494989821630" expanded="true" signature="2229:2358" ph="SELECT `devi... SwipeRecord" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DataServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="187" column="32" lean-forward="false" selection-start-line="187" selection-start-column="32" selection-end-line="187" selection-end-column="32" />
+        <state relative-caret-position="182">
+          <caret line="116" column="48" lean-forward="false" selection-start-line="116" selection-start-column="48" selection-end-line="116" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1495104482734" expanded="true" signature="925:951" ph="SELECT * FRO... DeviceStatus" />
-            <marker date="1495104482734" expanded="true" signature="1612:1638" ph="SELECT * FRO... DeviceStatus" />
+            <marker date="1495178052659" expanded="true" signature="925:951" ph="SELECT * FRO... DeviceStatus" />
+            <marker date="1495178052659" expanded="true" signature="1612:1638" ph="SELECT * FRO... DeviceStatus" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="54" column="9" lean-forward="false" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <folding>
+            <marker date="1495187603628" expanded="true" signature="265:435" ph="INSERT INTO DeviceStatus... " />
+            <marker date="1495187603628" expanded="true" signature="514:911" ph="UPDATE Devic... " />
+            <marker date="1495187603628" expanded="true" signature="990:1063" ph="DELETE FROM " />
+            <marker date="1495187603628" expanded="true" signature="1202:1261" ph="DELETE FROM " />
+            <marker date="1495187603628" expanded="true" signature="1368:1496" ph="SELECT `devi... DeviceStatus" />
+            <marker date="1495187603628" expanded="true" signature="1368:1546" ph="SELECT `devi... DeviceStatus" />
+            <marker date="1495187603628" expanded="true" signature="1648:1824" ph="SELECT `devi... DeviceStatus" />
+            <marker date="1495187603628" expanded="true" signature="1926:2180" ph="SELECT `devi... DeviceStatus" />
+            <marker date="1495187603628" expanded="true" signature="1926:2190" ph="..." />
+            <marker date="1495187603628" expanded="true" signature="2056:2096" ph="SELECT SEQ,M... DeviceStatus" />
+            <marker date="1495187603628" expanded="true" signature="2249:2378" ph="DELETE FROM " />
+            <marker date="1495187603628" expanded="true" signature="2314:2377" ph="SELECT SEQ,M... DeviceStatus" />
           </folding>
         </state>
       </provider>

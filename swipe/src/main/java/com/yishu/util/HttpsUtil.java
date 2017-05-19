@@ -16,9 +16,9 @@ import java.security.cert.X509Certificate;
 /**
  * Created by Administrator on 2016/7/11.
  */
-public class HttpUtil {
+public class HttpsUtil {
 
-    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(HttpUtil.class);
+    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(HttpsUtil.class);
     //public final static String IP="http://192.168.1.80:2016/";     //192.168.1.54//43.254.149.28
 
     public final static String hostName="lock.qixutech.com";
@@ -37,7 +37,7 @@ public class HttpUtil {
     public static String postData(String data){
 //    	String ip= HttpUtil.getIp();
         String ip="http://127.0.0.1:2017/";
-    	String infos= HttpUtil.postData(data, ip);
+    	String infos= HttpsUtil.postData(data, ip);
         logger.info(ip);
         logger.info(infos);
     	return infos;

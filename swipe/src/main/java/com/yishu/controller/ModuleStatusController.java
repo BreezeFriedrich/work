@@ -20,17 +20,36 @@ import java.util.List;
 @RequestMapping("/moduleStatus")
 public class ModuleStatusController {
     private static final org.slf4j.Logger logger= LoggerFactory.getLogger(ModuleStatusController.class);
+    JsonUtil jsonUtil=new JsonUtil();
+
     @Autowired
     @Qualifier("moduleService")
     private ModuleService moduleService;
 
+//    @RequestMapping("/listByStatus.do")
+//    @ResponseBody
+//    public String listByStatus(HttpServletRequest request){
+//        logger.info("Controller:listByStatus");
+//        int status=Integer.valueOf(request.getParameter("status"));
+//        List<DeviceStatus> moduleList=moduleService.listByStatus(status);
+//        JsonUtil jsonUtil=new JsonUtil();
+//        return jsonUtil.listToJsonArray(moduleList);
+//    }
+
     @RequestMapping("/listByStatus.do")
     @ResponseBody
     public String listByStatus(HttpServletRequest request){
-        logger.info("Controller:listByStatus");
+        logger.info("#CTL      ~ listByStatus");
         int status=Integer.valueOf(request.getParameter("status"));
         List<DeviceStatus> moduleList=moduleService.listByStatus(status);
-        JsonUtil jsonUtil=new JsonUtil();
+        return jsonUtil.listToJsonArray(moduleList);
+    }
+
+    @RequestMapping("/listAllWithoutDuplicate.do")
+    @ResponseBody
+    public String listAllWithoutDuplicate(HttpServletRequest request){
+        logger.info("#CTL      ~ listAllWithoutDuplicate");
+        List<DeviceStatus> moduleList=moduleService.listAllWithoutDuplicate();
         return jsonUtil.listToJsonArray(moduleList);
     }
 
