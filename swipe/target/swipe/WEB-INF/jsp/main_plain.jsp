@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl class="custom">
 						<dt style="background-image: url(../../resources/styles/images/left/custom.png)">用户管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("userList.jsp")>用户列表</a>
+							<a onclick=iframe("user_list.jsp")>用户列表</a>
 						</dd>
 						<dd>
 							<a onclick=iframe("accessCtrl.jsp")>权限管理</a>
@@ -58,17 +58,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<dl class="deviceManage">
 						<dt style="background-image: url(../../resources/styles/images/left/device_manage.png)">设备管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("moduleStatus.jsp")>模块状态</a>
+							<a onclick=iframe("modulestatus_table.jsp")>模块状态-表</a>
 						</dd>
 					</dl>
 
 					<dl class="statistics">
 						<dt style="background-image: url(../../resources/styles/images/left/statistics.png)">统计分析<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("dataQuery.jsp")>数据查询</a>
+							<a onclick=iframe("swiperecord_table.jsp")>数据查询-表</a>
 						</dd>
 						<dd>
-							<a href="#">成功率分析</a>
+							<a onclick=iframe("swiperecord_chart.jsp")>成功率分析-图</a>
 						</dd>
 						<dd>
 							<a href="#">数据对比</a>

@@ -59,5 +59,5 @@ function leftsideBarInit() {
 
 function iframe(page){
 	alert(page);
-	document.getElementById("iframe").setAttribute("src","dispatcher/moduleStatus.jsp");
+	document.getElementById("iframe").setAttribute("src","dispatcher/"+page);
 }

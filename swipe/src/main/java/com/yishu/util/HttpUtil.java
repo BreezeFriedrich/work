@@ -28,7 +28,7 @@ public class HttpUtil {
         String line=null;
         StringBuffer strBuffer=new StringBuffer();
         try {
-            url=new URL("http://"+ip+":2017/");
+            url=new URL("http://"+ip+":2017/?characterEncoding=utf8&useSSL=false");
 //            logger.info("#CON      ~ "+String.valueOf(url));
 //            logger.info("Https");
             httpURLConnection= (HttpURLConnection) url.openConnection();

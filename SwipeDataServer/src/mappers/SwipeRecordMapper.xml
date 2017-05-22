@@ -31,13 +31,18 @@
         WHERE deviceid=#{deviceid}
     </delete>
 
+    <select id="listAll" resultType="SwipeRecord">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
+        FROM SwipeRecord
+    </select>
+
     <select id="listByDeviceid" parameterType="String" resultType="SwipeRecord">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
         FROM SwipeRecord
         WHERE deviceid=#{deviceid}
     </select>
 
-    <select id="listByTimestamp" resultType="SwipeRecord">
+    <select id="listByTime" resultType="SwipeRecord">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
         FROM SwipeRecord
         WHERE <![CDATA[ `timestamp` BETWEEN #{beginTime} AND #{endTime}]]>

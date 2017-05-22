@@ -3,13 +3,11 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yishu.dao.DeviceStatusDao;
 import com.yishu.model.DeviceStatus;
 import com.yishu.service.ModuleService;
 import com.yishu.util.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -48,7 +46,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     public List<DeviceStatus> getDataListFromJson(String param){
         try {
-            JsonNode node=objectMapper.readTree(getdata);
+            JsonNode node=objectMapper.readTree(param);
             result=node.get("result").asInt();
             if(0==result){
                 deviceStatusList=objectMapper.readValue(String.valueOf(node.get("data")), new TypeReference<ArrayList<DeviceStatus>>() { });

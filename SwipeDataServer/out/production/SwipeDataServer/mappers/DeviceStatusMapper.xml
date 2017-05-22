@@ -42,7 +42,9 @@
     <select id="listByStatus" parameterType="int" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
         FROM DeviceStatus
-        WHERE `status`=#{status};
+        WHERE `status`=#{status}
+        ORDER BY `deviceid` DESC,`timestamp` DESC
+        ;
     </select>
 
     <select id="listAllWithoutDuplicate" resultType="DeviceStatus">
@@ -51,8 +53,6 @@
 #         GROUP BY deviceid HAVING `timestamp`=max(`newTime`)
         ORDER BY `deviceid` DESC,`timestamp` DESC
         ;
-#         SELECT FROM_UNIXTIME(`starttime` / 1000, '%Y-%m-%d %H:%i:%S') AS `t` FROM `texs`
-#         WHERE `starttime` IS NOT NULL
     </select>
 
     <delete id="discardDuplicate">

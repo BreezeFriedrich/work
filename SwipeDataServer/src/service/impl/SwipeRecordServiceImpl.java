@@ -38,13 +38,18 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     }
 
     @Override
+    public List<SwipeRecord> listAll() {
+        return swipeRecordDao.listAll();
+    }
+
+    @Override
     public List<SwipeRecord> listByDeivceid(String deviceid) {
         return swipeRecordDao.listByDeivceid(deviceid);
     }
 
     @Override
-    public List<SwipeRecord> listByTimestamp(String beginTime, String endTime) {
-        return swipeRecordDao.listByTimestamp(beginTime,endTime);
+    public List<SwipeRecord> listByTime(String beginTime, String endTime) {
+        return swipeRecordDao.listByTime(beginTime,endTime);
     }
 
     @Override

@@ -1,10 +1,12 @@
 import com.sun.net.httpserver.*;
 import model.DeviceStatus;
+import model.SwipeRecord;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.ModuleService;
+import service.SwipeRecordService;
 import service.impl.ModuleServiceImpl;
 
 import java.io.*;
@@ -100,10 +102,11 @@ class MyHandler implements HttpHandler{
 
     private static  final Logger logger = LoggerFactory.getLogger(HttpHandler.class);
     private ModuleService moduleService=null;
-
+    private SwipeRecordService swipeRecordService=null;
 
     MyHandler() throws SQLException {
         this.moduleService = (ModuleServiceImpl) ContextLoader.getBean("moduleService");
+        this.swipeRecordService = (SwipeRecordService) ContextLoader.getBean("swipeRecordService");
     }
 
     @Override
@@ -139,49 +142,92 @@ class MyHandler implements HttpHandler{
         result=new String(readStr);
         String method=exchange.getRequestMethod();
         URI uri=exchange.getRequestURI();
-        logger.info("#DATA     ~ postData:"+result);
+        logger.info("#DATA     ~ request-data:"+result);
 
         ObjectMapper objectMapper=new ObjectMapper();
-        Map map=new HashMap();
+        Map map=null;
 
         JsonNode node=objectMapper.readTree(result);
         int sign=node.get("sign").asInt();
-        logger.info("sign:"+String.valueOf(sign));
+//        logger.info("sign:"+String.valueOf(sign));
 
-        List<DeviceStatus> dataList=null;
-        List<DeviceStatus> list=null;
         Iterator it=null;
+        List<DeviceStatus> tempDeviceStatusList=null;
+        List<DeviceStatus> deviceStatusList=null;
         DeviceStatus deviceStatus=null;
+
+        List<SwipeRecord> tempSwipeRecordList=null;
+        List<SwipeRecord> swipeRecordList=null;
+        SwipeRecord swipeRecord=null;
+
         switch (sign) {
             case 1:// listByStatus
                 int status=node.get("status").asInt();
-                dataList=new ArrayList();
-                list=moduleService.listByStatus(status);
-                it=list.iterator();
+                deviceStatusList=new ArrayList();
+                map=new HashMap();
+                tempDeviceStatusList=moduleService.listByStatus(status);
+                it=tempDeviceStatusList.iterator();
 //                logger.info("#TAG      ~ start >>>>");
                 map.put("result",0);//0--获取数据成功
                 while(it.hasNext()){
                     deviceStatus= (DeviceStatus) it.next();
-                    dataList.add(deviceStatus);
+                    deviceStatusList.add(deviceStatus);
                 }
-                map.put("data",dataList);
+                map.put("data",deviceStatusList);
 //                logger.info("#TAG      ~ end   <<<<");
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
+                map=null;
                 break;
 
             case 2://listAllWithoutDuplicate
-                dataList=new ArrayList();
-                list=moduleService.listAllWithoutDuplicate();
-                it=list.iterator();
+                deviceStatusList=new ArrayList();
+                map=new HashMap();
+                tempDeviceStatusList=moduleService.listAllWithoutDuplicate();
+                it=tempDeviceStatusList.iterator();
                 map.put("result",0);//0--获取数据成功
                 while(it.hasNext()){
                     deviceStatus= (DeviceStatus) it.next();
-                    dataList.add(deviceStatus);
+                    deviceStatusList.add(deviceStatus);
                 }
-                map.put("data",dataList);
+                map.put("data",deviceStatusList);
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
+                map=null;
+                break;
+
+            case 3://swipeRecord/listAll
+                swipeRecordList=new ArrayList<>();
+                map=new HashMap();
+                tempSwipeRecordList=swipeRecordService.listAll();
+                it=tempSwipeRecordList.iterator();
+                map.put("result",0);
+                while (it.hasNext()){
+                    swipeRecord= (SwipeRecord) it.next();
+                    swipeRecordList.add(swipeRecord);
+                }
+                map.put("data",swipeRecordList);
+                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                map=null;
+                break;
+
+            case 4://swipeRecord/listByTime
+                swipeRecordList=new ArrayList<>();
+                map=new HashMap();
+                String beginTime=node.get("beginTime").asText();
+                String endTime=node.get("endTime").asText();
+                tempSwipeRecordList=swipeRecordService.listByTime(beginTime,endTime);
+                it=tempSwipeRecordList.iterator();
+                map.put("result",0);
+                while (it.hasNext()){
+                    swipeRecord= (SwipeRecord) it.next();
+                    swipeRecordList.add(swipeRecord);
+                }
+                map.put("data",swipeRecordList);
+                logger.info("#DATA     ~response-data:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                map=null;
                 break;
 
             default:break;

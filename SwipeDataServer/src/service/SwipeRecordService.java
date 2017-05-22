@@ -14,8 +14,9 @@ public interface SwipeRecordService {
     public void update(SwipeRecord swipeRecord);
     public void deleteByTime(String timestamp);
     public void deleteByDeviceid(String deviceid);
+    public List<SwipeRecord> listAll();
     public List<SwipeRecord> listByDeivceid(String deviceid);
-    public List<SwipeRecord> listByTimestamp(@Param("beginTime") String beginTime, @Param("endTime") String endTime);
+    public List<SwipeRecord> listByTime(@Param("beginTime") String beginTime, @Param("endTime") String endTime);
     List<SwipeRecord> listByResult(int result);
 }
 /*

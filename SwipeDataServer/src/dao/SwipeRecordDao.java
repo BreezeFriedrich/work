@@ -14,7 +14,8 @@ public interface SwipeRecordDao {
     Integer update(SwipeRecord swipeRecord);
     Integer deleteByTime(String timestamp);
     Integer deleteByDeviceid(String deviceid);
+    List<SwipeRecord> listAll();
     List<SwipeRecord> listByDeivceid(String deviceid);
-    List<SwipeRecord> listByTimestamp(@Param("beginTime") String beginTime, @Param("endTime") String endTime);
+    List<SwipeRecord> listByTime(@Param("beginTime") String beginTime, @Param("endTime") String endTime);
     List<SwipeRecord> listByResult(int result);
 }
