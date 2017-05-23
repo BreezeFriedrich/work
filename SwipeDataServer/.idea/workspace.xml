@@ -1,7 +1,746 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="" />
+    <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/DeviceManageController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/DispatcherServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LockOperateController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LoginController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/ModuleStatusController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/SwipeRecordController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/DeviceStatus.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/LockOperate.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/NoteResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/OwnerInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/SwipeRecord.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/User.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/ClientTreeNode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LoginJSON.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/ServerTreeNode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/DeviceService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/LockOperateService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/ModuleService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/SwipeRecordService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/UserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/DeviceServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/DeviceUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/JsonUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/LockOperateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/NoteUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/Tea.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/UserUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-dao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-service.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe.war" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/DeviceManageController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/DispatcherServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LockOperateController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LoginController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/DeviceStatus.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/LockOperate.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/NoteResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/OwnerInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/SwipeRecord.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/User.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/ClientTreeNode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LoginJSON.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/ServerTreeNode.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/DeviceService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/LockOperateService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/ModuleService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/SwipeRecordService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/UserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/DeviceServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/DeviceUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/JsonUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/LockOperateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/NoteUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/Tea.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/UserUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-dao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-service.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/deviceManage.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/lockoperate.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/login.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/loginShiro.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/main.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/main_plain.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/modulestatus_table.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/modulestatus_table_ori.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/resource/add.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/resource/inc.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/resource/list.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/resource/update.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/role/add.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/role/inc.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/role/list.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/role/resources.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/role/update.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_chart.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_table.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/unAuthorization.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/user/add.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/user/inc.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/user/list.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/user/resources.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/user/update.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/welcome.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/aspectjrt-1.8.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/aspectjweaver-1.8.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/commons-beanutils-1.8.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/commons-codec-1.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/commons-collections-3.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/commons-lang-2.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/druid-1.0.18.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/ehcache-2.10.2.2.21.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/ehcache-core-2.5.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/ezmorph-1.0.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/gson-2.6.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/jackson-annotations-2.8.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/jackson-core-2.8.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/jackson-databind-2.8.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/jboss-logging-3.1.4.GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/jcl-over-slf4j-1.7.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/json-lib-2.4-jdk15.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/jstl-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/jul-to-slf4j-1.7.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/log4j-over-slf4j-1.7.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/logback-classic-1.0.13.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/logback-core-1.0.13.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/mybatis-3.4.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/mybatis-spring-1.3.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/mysql-connector-java-5.1.38.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/shiro-core-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/shiro-ehcache-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/shiro-spring-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/shiro-web-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/slf4j-api-1.7.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-aop-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-beans-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-context-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-context-support-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-core-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-expression-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-jdbc-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-test-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-tx-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-web-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/spring-webmvc-4.2.6.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/lib/standard-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/jsp/common.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/bootstrap-3.3.0/js/npm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.bootstrap4.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.bootstrap4.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.foundation.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.foundation.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.jqueryui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.jqueryui.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.material.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.material.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.semanticui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.semanticui.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.uikit.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/dataTables.uikit.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/jquery.dataTables.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/jquery.dataTables.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/css/jquery.dataTables_themeroller.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/images/Sorting icons.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/images/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/images/sort_asc.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/images/sort_asc_disabled.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/images/sort_both.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/images/sort_desc.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/images/sort_desc_disabled.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.bootstrap4.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.bootstrap4.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.foundation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.foundation.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.jqueryui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.jqueryui.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.material.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.material.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.semanticui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.semanticui.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.uikit.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/dataTables.uikit.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/jquery.dataTables.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/jquery.dataTables.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/dataTables/js/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/demo/demo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/easyloader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/jquery.easyui.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/locale/easyui-lang-en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/locale/easyui-lang-zh_CN.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/locale/easyui-lang-zh_TW.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.accordion.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.calendar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.combo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.combobox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.combogrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.combotree.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.combotreegrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.datagrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.datalist.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.datebox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.datetimebox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.datetimespinner.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.dialog.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.draggable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.droppable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.filebox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.form.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.layout.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.linkbutton.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.menu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.menubutton.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.messager.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.mobile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.numberbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.numberspinner.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.pagination.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.panel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.parser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.passwordbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.progressbar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.propertygrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.resizable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.searchbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.slider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.spinner.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.splitbutton.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.switchbutton.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.tabs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.tagbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.textbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.timespinner.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.tooltip.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.tree.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.treegrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.validatebox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/plugins/jquery.window.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/easyloader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.accordion.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.calendar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.combobox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.datebox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.draggable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.droppable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.form.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.linkbutton.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.menu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.parser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.progressbar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.propertygrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.resizable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.slider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.tabs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/src/jquery.window.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/passwordbox_close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/passwordbox_open.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/tagbox_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/passwordbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/switchbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/tagbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/black/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/passwordbox_close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/passwordbox_open.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/tagbox_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/passwordbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/switchbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/tagbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/bootstrap/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/color.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/passwordbox_close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/passwordbox_open.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/tagbox_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/passwordbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/switchbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/tagbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/default/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/passwordbox_close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/passwordbox_open.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/tagbox_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/passwordbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/switchbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/tagbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/gray/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icon.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/cancel.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/clear.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/cut.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/edit_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/edit_remove.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/filesave.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/filter.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/help.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/large_chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/large_clipart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/large_picture.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/large_shapes.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/large_smartart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/lock.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/man.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/mini_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/mini_edit.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/mini_refresh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/more.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/no.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/ok.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/pencil.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/print.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/redo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/reload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/sum.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/tip.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/icons/undo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/Thumbs.db" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/passwordbox_close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/passwordbox_open.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/tagbox_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/passwordbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/switchbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/tagbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/material/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/passwordbox_close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/passwordbox_open.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/tagbox_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/passwordbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/switchbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/tagbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/metro/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/easyui/themes/mobile.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/jquery-3.1.0.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/base64.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/basevalue.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/component/cookie.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/component/table.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/dataTables-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/device-manage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/echarts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/lockoperate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/login.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/main_plain.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/moduleStatus.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/modulestatus_table.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/swiperecord_table.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/UserManage.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/component/table.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/deviceManage.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/O2loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/Oloading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/SafetyExit.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/analyGraphy.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/certiAuthBtn.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/certiAuthBtn2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/doorlock.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/equivementManage.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/gateway.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/intellilock.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/app.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/app_current.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/custom.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/device_manage.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/home.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/home_current.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/line_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/select_xl.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/select_xl01.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/source.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/source_current.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/statistics.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/statistics_current.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/system.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/left/system_current.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/pwdAuthBtn.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/querryDatagrid.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/images/refresh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/login.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/main_plain.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/styles/moduleStatus.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/DataServer.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/DataServer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/MyHandler.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/MyHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/mappers/SwipeRecordMapper.xml" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/mappers/SwipeRecordMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataServer.java" afterPath="$PROJECT_DIR$/src/DataServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml" afterPath="$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_table.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_table.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/modulestatus_table.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/modulestatus_table.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_table.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_table.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,53 +754,16 @@
     <option name="HIDE_WARNINGS" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="SwipeDataServer" />
+  </component>
   <component name="FileColors">
     <fileColor scope="Problems" color="ff0000" />
     <fileColor scope="Project Files" color="342e2a" />
     <fileColor scope="All" color="2d2b34" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DataServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1495450205504" expanded="true" signature="986:1012" ph="SELECT * FRO... DeviceStatus" />
-                <marker date="1495450205504" expanded="true" signature="1673:1699" ph="SELECT * FRO... DeviceStatus" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="druid.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/druid.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="73" lean-forward="true" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="17" column="72" lean-forward="false" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
-              <folding>
-                <element signature="n#bean#0;n#beans#0;n#!!top" expanded="false" />
-                <element signature="n#bean#1;n#beans#0;n#!!top" expanded="false" />
-                <element signature="n#bean#2;n#beans#0;n#!!top" expanded="false" />
-                <element signature="n#bean#3;n#beans#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -73,7 +775,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SwipeRecordsultMap</find>
       <find>SwipeRecordultMap</find>
       <find>SwipeRecordltMap</find>
       <find>SwipeRecordtMap</find>
@@ -103,6 +804,7 @@
       <find>dataList</find>
       <find>DeviceStatusList</find>
       <find>list</find>
+      <find>node</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -116,6 +818,9 @@
       <replace>deviceStatusList</replace>
       <replace>tempDeviceStatusList</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -149,12 +854,12 @@
         <option value="$PROJECT_DIR$/src/HttpConServer.java" />
         <option value="$PROJECT_DIR$/src/util/SpringTool.java" />
         <option value="$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml" />
-        <option value="$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml" />
         <option value="$PROJECT_DIR$/src/dao/SwipeRecordDao.java" />
         <option value="$PROJECT_DIR$/src/service/SwipeRecordService.java" />
+        <option value="$PROJECT_DIR$/resources/druid.properties" />
+        <option value="$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml" />
         <option value="$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/DataServer.java" />
-        <option value="$PROJECT_DIR$/resources/druid.properties" />
       </list>
     </option>
   </component>
@@ -195,6 +900,7 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -210,7 +916,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -329,8 +1036,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -664,33 +1370,34 @@
       <workItem from="1495070211697" duration="26322000" />
       <workItem from="1495157243413" duration="24254000" />
       <workItem from="1495415945763" duration="10813000" />
+      <workItem from="1495502113849" duration="14618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131846000" />
+    <option name="totallyTimeSpent" value="146464000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30726257" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3062937" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3784916" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28111887" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2150838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23136246" sideWeight="0.49007446" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23393317" sideWeight="0.48391607" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.236875" sideWeight="0.50992554" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23457584" sideWeight="0.5160839" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.400838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -748,49 +1455,49 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>116</line>
+          <line>118</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>144</line>
+          <line>146</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>151</line>
+          <line>152</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>169</line>
+          <line>172</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>176</line>
+          <line>179</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>177</line>
+          <line>180</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>115</line>
+          <line>117</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>114</line>
+          <line>116</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -1010,7 +1717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="11" column="45" lean-forward="true" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1018,10 +1724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding>
-            <element signature="e#610#611#0" expanded="false" />
-            <element signature="e#669#670#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1029,24 +1731,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
-          <folding>
-            <marker date="1495441797066" expanded="true" signature="263:440" ph="INSERT INTO SwipeRecord... " />
-            <marker date="1495441797066" expanded="true" signature="517:923" ph="UPDATE Swipe... " />
-            <marker date="1495441797066" expanded="true" signature="1001:1075" ph="DELETE FROM " />
-            <marker date="1495441797066" expanded="true" signature="1161:1219" ph="DELETE FROM " />
-            <marker date="1495441797066" expanded="true" signature="1294:1390" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1495441797066" expanded="true" signature="1495:1626" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1495441797066" expanded="true" signature="1704:1872" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1495441797066" expanded="true" signature="2395:2524" ph="SELECT `devi... SwipeRecord" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1054,35 +1738,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/druid.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="73" lean-forward="false" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="40" column="28" lean-forward="true" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-          <folding>
-            <element signature="method#listByTime#0;class#SwipeRecordServiceImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1495450205504" expanded="true" signature="986:1012" ph="SELECT * FRO... DeviceStatus" />
-            <marker date="1495450205504" expanded="true" signature="1673:1699" ph="SELECT * FRO... DeviceStatus" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
+        <state relative-caret-position="54">
           <caret line="17" column="72" lean-forward="false" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
           <folding>
             <element signature="n#bean#0;n#beans#0;n#!!top" expanded="false" />
@@ -1093,11 +1762,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/druid.properties">
+    <entry file="file://$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="73" lean-forward="true" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
+        <state relative-caret-position="100">
+          <caret line="38" column="80" lean-forward="true" selection-start-line="38" selection-start-column="80" selection-end-line="38" selection-end-column="80" />
+          <folding>
+            <marker date="1495523497653" expanded="true" signature="263:440" ph="INSERT INTO SwipeRecord... " />
+            <marker date="1495523497653" expanded="true" signature="517:923" ph="UPDATE Swipe... " />
+            <marker date="1495523497653" expanded="true" signature="1001:1075" ph="DELETE FROM " />
+            <marker date="1495523497653" expanded="true" signature="1161:1219" ph="DELETE FROM " />
+            <marker date="1495523497653" expanded="true" signature="1294:1390" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1495523497653" expanded="true" signature="1495:1626" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1495523497653" expanded="true" signature="1704:1945" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1495523497653" expanded="true" signature="2465:2594" ph="SELECT `devi... SwipeRecord" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="144" column="50" lean-forward="true" selection-start-line="144" selection-start-column="50" selection-end-line="144" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1495531145177" expanded="true" signature="1054:1080" ph="SELECT * FRO... DeviceStatus" />
+            <marker date="1495531145177" expanded="true" signature="1741:1767" ph="SELECT * FRO... DeviceStatus" />
+          </folding>
         </state>
       </provider>
     </entry>

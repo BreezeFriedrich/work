@@ -13,6 +13,8 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.Executors;
 
@@ -146,10 +148,9 @@ class MyHandler implements HttpHandler{
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map map=null;
-
         JsonNode node=objectMapper.readTree(result);
         int sign=node.get("sign").asInt();
-//        logger.info("sign:"+String.valueOf(sign));
+        logger.info("sign:"+String.valueOf(sign));
 
         Iterator it=null;
         List<DeviceStatus> tempDeviceStatusList=null;
@@ -159,6 +160,8 @@ class MyHandler implements HttpHandler{
         List<SwipeRecord> tempSwipeRecordList=null;
         List<SwipeRecord> swipeRecordList=null;
         SwipeRecord swipeRecord=null;
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date=null;
 
         switch (sign) {
             case 1:// listByStatus
@@ -217,7 +220,10 @@ class MyHandler implements HttpHandler{
                 map=new HashMap();
                 String beginTime=node.get("beginTime").asText();
                 String endTime=node.get("endTime").asText();
-                tempSwipeRecordList=swipeRecordService.listByTime(beginTime,endTime);
+//                logger.info("tag2 - beginTime.date="+beginTime+"; endTime.date"+endTime);
+//                String beginTime=node.get("beginTime").asText();
+//                String endTime=node.get("endTime").asText();
+                tempSwipeRecordList=swipeRecordService.listByTime(beginTime.toString(),endTime.toString());
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
                 while (it.hasNext()){

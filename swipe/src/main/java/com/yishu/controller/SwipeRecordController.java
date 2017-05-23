@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/swipeRecord")
 public class SwipeRecordController {
-    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(ModuleStatusController.class);
+    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(SwipeRecordController.class);
     JsonUtil jsonUtil=new JsonUtil();
 
     @Autowired
@@ -29,7 +29,7 @@ public class SwipeRecordController {
     @RequestMapping("/listAll.do")
     @ResponseBody
     public String listAll(HttpServletRequest request){
-        logger.info("#CTL      ~ listAllWithoutDuplicate");
+        logger.info("#CTL      ~ listAll");
         List<SwipeRecord> moduleList=swipeRecordService.listAll();
         return jsonUtil.listToJsonArray(moduleList);
     }
@@ -37,7 +37,7 @@ public class SwipeRecordController {
     @RequestMapping("/listByTime.do")
     @ResponseBody
     public String listByStatus(HttpServletRequest request){
-        logger.info("#CTL      ~ listByStatus");
+        logger.info("#CTL      ~ listByTime");
         String beginTime=request.getParameter("beginTime");
         String endTime=request.getParameter("endTime");
         List<SwipeRecord> moduleList=swipeRecordService.listByTime(beginTime,endTime);

@@ -2,6 +2,8 @@ package service.impl;
 
 import dao.SwipeRecordDao;
 import model.SwipeRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.SwipeRecordService;
@@ -14,6 +16,7 @@ import java.util.List;
 @Service("swipeRecordService")
 public class SwipeRecordServiceImpl implements SwipeRecordService {
 
+    private static  final Logger logger = LoggerFactory.getLogger(SwipeRecordServiceImpl.class);
     @Autowired
     private SwipeRecordDao swipeRecordDao;
 
@@ -49,6 +52,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     @Override
     public List<SwipeRecord> listByTime(String beginTime, String endTime) {
+        logger.info("beginTime:"+beginTime+" endTime:"+endTime);
         return swipeRecordDao.listByTime(beginTime,endTime);
     }
 

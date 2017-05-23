@@ -3,6 +3,8 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.yishu.model.SwipeRecord;
 import com.yishu.service.SwipeRecordService;
 import com.yishu.util.HttpUtil;
@@ -21,7 +23,7 @@ import java.util.List;
 @Service("swipeRecordService")
 public class SwipeRecordServiceImpl implements SwipeRecordService {
 
-    private static final Logger logger= LoggerFactory.getLogger(ModuleServiceImpl.class);
+    private static final Logger logger= LoggerFactory.getLogger(SwipeRecordServiceImpl.class);
 
     String postdata=null;
     String getdata=null;
@@ -33,7 +35,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     public List<SwipeRecord> getDataListFromJson(String param){
         try {
-            logger.info("param:"+param);
+//            logger.info("param:"+param);
             JsonNode node=objectMapper.readTree(param);
             result=node.get("result").asInt();
             if(0==result){
@@ -62,7 +64,8 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     @Override
     public List<SwipeRecord> listByTime(String beginTime, String endTime) {
-        postdata="{\"sign\":4,\"beginTime\":"+beginTime+",\"endTime\":"+endTime+"}";
+        postdata="{\"sign\":4,\"beginTime\":\""+beginTime+"\",\"endTime\":\""+endTime+"\"}";
+        logger.info("#request-DATA     ~ "+postdata);
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 

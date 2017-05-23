@@ -43,9 +43,9 @@
     </select>
 
     <select id="listByTime" resultType="SwipeRecord">
-        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
         FROM SwipeRecord
-        WHERE <![CDATA[ `timestamp` BETWEEN #{beginTime} AND #{endTime}]]>
+        WHERE DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') BETWEEN #{beginTime} AND #{endTime}
     </select>
 
     <!--
