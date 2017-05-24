@@ -46,7 +46,7 @@
         <tbody id="tbody2">
         </tbody>
     </table>
-    <div id="container-table" style="width: 700px;margin-top: 100px;margin-left: 100px;">
+    <div id="container-table" style="width: 800px;margin-top: 100px;margin-left: 100px;">
         <table id="table-swipeRecord" cellpadding="0" cellspacing="0" border="0" width="100%">
             <thead>
                 <tr>

@@ -1,7 +1,8 @@
 $(function(){
-    testA();
-    testB();
-    testD();
+    // testA();
+    // testB();
+    ajaxData();
+    // testD();
 });
 function testC() {
     $.ajax({
@@ -29,7 +30,7 @@ function testA() {
         dataType:"json",
         async:false,
         success: function(data){
-            create_tbody($("#tbody"),data);
+            create_tbody($("#tbody"),data.data);
         },
         error:function(XMLHttpRequest){
             alert('ajax-error');
@@ -46,62 +47,315 @@ function testB() {
         dataType:"json",
         async:false,
         success: function(data){
-            create_tbody($("#tbody2"),data);
+            create_tbody($("#tbody2"),data.data);
         },
         error:function(XMLHttpRequest){
             alert('ajax-error');
         }
     })
 };
-function testD() {
-    dt = $('#table-swipeRecord').dataTable({
+
+function ajaxData() {
+    $('#table-swipeRecord').dataTable({
+        "language": {
+            "sProcessing":   "处理中...",
+            "sLengthMenu":   "每页 _MENU_ 项",
+            "sZeroRecords":  "没有匹配结果",
+            "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+            "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
+            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+            "sInfoPostFix":  "",
+            "sSearch":       "搜索:",
+            "sUrl":          "",
+            "sEmptyTable":     "表中数据为空",
+            "sLoadingRecords": "载入中...",
+            "sInfoThousands":  ",",
+            "oPaginate": {
+                "sFirst":    "首页",
+                "sPrevious": "上页",
+                "sNext":     "下页",
+                "sLast":     "末页",
+                "sJump":     "跳转"
+            },
+            "oAria": {
+                "sSortAscending":  ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+        },
+        "iDisplayLength" : 10,//默认每页数量
+        //"bPaginate": true, //翻页功能
+        "bLengthChange" : false, //改变每页显示数据数量
+        //"bFilter" : true, //过滤功能
+        "ordering" : false,
+        "bSort" : false, //排序功能
+        //"bInfo" : true,//页脚信息
+        //"bAutoWidth" : true,//自动宽度
+        "stateSave" : true,
+        "retrieve" : true,
+        "processing" : true,
+        "serverSide" : true,
+        //"bPaginate" : true,
+        //"bProcessing": true//服务器端进行分页处理的意思
+
         "bProcessing": true,
         "bServerSide": true,
         "bSort": false,
-        // "sAjaxSource" : "/swipeRecord/listAll.do",//这是要请求json数据的url
-        "oLanguage": {
-            "sLengthMenu": "每页显示 _MENU_ 条记录",
-            "sZeroRecords": "对不起，查询不到任何相关数据",
-            "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-            "sInfoEmtpy": "找不到相关数据",
-            //"sInfoFiltered": "数据表中共为 _MAX_ 条记录",
-            "sProcessing": "正在加载中...",
-            "sSearch": "搜索",
-            "sInfoEmpty": "显示 0 至 0 共 0 项",
-            "oPaginate": { "sFirst": "第一页", "sPrevious": "上一页 ", "sNext": "下一页 ", "sLast": "末页 " }
+        "aoColumns": [{
+            // {"sName": "deviceid", "sClass": "center"},
+            // {"sName": "deviceip", "sClass": "center"},
+            // {"sName": "clientid", "sClass": "center"},
+            // {"sName": "clientip", "sClass": "center"},
+            // {"sName": "result", "sClass": "center"},
+            // {"sName": "timestamp", "sClass": "center"},
+            "mDataProp":"deviceid",
+            // "bVisible" : false,//此列不显示
+            "sTitle" : "模块编号",
+            "sDefaultContent" : "",
+            "sClass" : "left"
         },
-        "aoColumns": [
-            { "sName": "deviceid", "sClass": "center" },
-            { "sName": "deviceip", "sClass": "center" },
-            { "sName": "clientid", "sClass": "center" },
-            { "sName": "clientip", "sClass": "center" },
-            { "sName": "result", "sClass": "center" },
-            { "sName": "timestamp", "sClass": "center" },
+            {"mDataProp":"deviceip",
+                "sTitle" : "模块IP",
+                "sDefaultContent" : "",
+                "sClass" : "left"
+            },
+            {"mDataProp":"clientid",
+                "sTitle" : "设备编号",
+                "sDefaultContent" : "",
+                "sClass" : "left"
+            },
+            {"mDataProp":"clientip",
+                "sTitle" : "设备IP",
+                "sDefaultContent" : "",
+                "sClass" : "left"
+            },
+            {"mDataProp":"result",
+                "sTitle" : "刷卡结果",
+                "sDefaultContent" : "",
+                "sClass" : "center"
+            },
+            {"mDataProp":"timestamp",
+                "sTitle" : "刷卡时间",
+                "sDefaultContent" : "",
+                "sClass" : "center"
+            }],
+        // "columns" : [
+        //     {
+        //         data : "deviceid"
+        //     },
+        //     {
+        //         data : "deviceip"
+        //     },
+        //     {
+        //         data : "clientid"
+        //     },
+        //     {
+        //         data : "clientip"
+        //     },
+        //     {
+        //         data : "result",
+        //         render : function(data,type,row) {
+        //             if (data == "0") {
+        //                 return "成功";
+        //             } else {
+        //                 return "失败";
+        //             }
+        //         }
+        //     },
+        //     {
+        //         data : "timestamp"
+        //     }],
+        "aoColumnDefs" : [{
+            // 定义操作列,######以下是重点########
+            "targets" : 4,//操作按钮目标列
+            "render" : function(data,type,row) {
+                if (data == "0") {
+                return "成功";
+                } else {
+                    return "失败";
+                }
+            }
+        }],
+        "ajax": function (data, callback, settings) {
+            //封装请求参数
+            var param = {};
+            param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
+            param.start = data.start;//开始的记录序号
+            param.page = (data.start / data.length) + 1;//当前页码
+            //console.log(param);
+            //ajax请求数据
+            $.ajax({
+                type: "POST",
+                url: '/swipeRecord/listAll.do',
+                cache: false,  //禁用缓存
+                data: param,  //传入组装的参数
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    //setTimeout仅为测试延迟效果
+                    alert('result:'+result);
+                    setTimeout(function () {
+                        //封装返回数据
+                        var returnData = {};
+                        returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                        returnData.recordsTotal = result.recordsTotal;//返回数据全部记录
+                        returnData.recordsFiltered = result.recordsFiltered;//后台不实现过滤功能，每次查询均视作全部结果
+                        returnData.data = result.data;//返回的数据列表
+                        //console.log(returnData);
+                        //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                        //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                        //关闭遮罩
+                        //$wrapper.spinModal(false);
+                        callback(returnData);
+                    },1);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $.dialog.alert("查询失败");
+                    $wrapper.spinModal(false);
+                }
+            })
+        }
+    })
+}
+
+function testD() {
+    var _table = $('#table-swipeRecord').dataTable($.extend(true,{},CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
+        // "aoColumns": [{
+        //     // {"sName": "deviceid", "sClass": "center"},
+        //     // {"sName": "deviceip", "sClass": "center"},
+        //     // {"sName": "clientid", "sClass": "center"},
+        //     // {"sName": "clientip", "sClass": "center"},
+        //     // {"sName": "result", "sClass": "center"},
+        //     // {"sName": "timestamp", "sClass": "center"},
+        //         "mDataProp":"deviceid",
+        //         // "bVisible" : false,//此列不显示
+        //         "sTitle" : "模块编号",
+        //         "sDefaultContent" : "",
+        //         "sClass" : "left"
+        //     },
+        //     {"mDataProp":"deviceip",
+        //         "sTitle" : "模块IP",
+        //         "sDefaultContent" : "",
+        //         "sClass" : "left"
+        //     },
+        //     {"mDataProp":"clientid",
+        //         "sTitle" : "设备编号",
+        //         "sDefaultContent" : "",
+        //         "sClass" : "left"
+        //     },
+        //     {"mDataProp":"clientip",
+        //         "sTitle" : "设备IP",
+        //         "sDefaultContent" : "",
+        //         "sClass" : "left"
+        //     },
+        //     {"mDataProp":"result",
+        //         "sTitle" : "刷卡结果",
+        //         "sDefaultContent" : "",
+        //         "sClass" : "center"
+        //     },
+        //     {"mDataProp":"timestamp",
+        //         "sTitle" : "刷卡时间",
+        //         "sDefaultContent" : "",
+        //         "sClass" : "center"
+        //     }],
+        // "aoColumnDefs": [
+        //     {
+        //         "aTargets": [4],
+        //         "sName": "操作",
+        //         "mRender": function (data, type, full) {
+        //             return '<a href="javascript:void(0);" class="delete" tag=' + data + '>删除</a>';
+        //         }
+        //     }
+        // ],
+        columns:[CONSTANT.DATA_TABLES.COLUMN.CHECKBOX,
+            {
+                className : "ellipsis", //文字过长时用省略号显示，CSS实现
+                data: "deviceid",
+                width : "180px",
+                render : CONSTANT.DATA_TABLES.RENDER.ELLIPSIS,//会显示省略号的列，需要用title属性实现划过时显示全部文本的效果
+            },
+            {
+                className : "ellipsis",
+                data: "deviceip",
+                width : "180px",
+                render : CONSTANT.DATA_TABLES.RENDER.ELLIPSIS,
+                //固定列宽，但至少留下一个活动列不要固定宽度，让表格自行调整。不要将所有列都指定列宽，否则页面伸缩时所有列都会随之按比例伸缩。
+                //切记设置table样式为table-layout:fixed; 否则列宽不会强制为指定宽度，也不会出现省略号。
+            },
+            {
+                data : "clientid",
+                width : "100px",
+                render : function(data,type, row, meta) {
+                    return '<i class="fa fa-male"></i> '+(data?"在线":"离线");
+                }
+            },
+            {
+                className : "ellipsis",
+                data: "clientip",
+                width : "100px",
+                render : CONSTANT.DATA_TABLES.RENDER.ELLIPSIS,
+                //固定列宽，但至少留下一个活动列不要固定宽度，让表格自行调整。不要将所有列都指定列宽，否则页面伸缩时所有列都会随之按比例伸缩。
+                //切记设置table样式为table-layout:fixed; 否则列宽不会强制为指定宽度，也不会出现省略号。
+            },
+            {
+                className : "ellipsis",
+                data: "result",
+                width : "80px",
+                render : CONSTANT.DATA_TABLES.RENDER.ELLIPSIS,
+            },
+            {
+                className : "ellipsis",
+                data: "timestamp",
+                width : "80px",
+                render : CONSTANT.DATA_TABLES.RENDER.ELLIPSIS,
+            },
+            {
+                className : "td-operation",
+                data: null,
+                defaultContent:"",
+                orderable : false,
+                width : "120px"
+            }
         ],
-        "aoColumnDefs": [
-            // {
-            //     "aTargets": [4],
-            //     "sName": "操作",
-            //     "mRender": function (data, type, full) {
-            //         return '<a href="javascript:void(0);" class="delete" tag=' + data + '>删除</a>';
-            //     }
-            // }
-        ],
-        // "fnServerData": fnDataTablesPipeline
-        // "fnServerData" : function(sSource, aDataSet, fnCallback) {
-        //     $.ajax({
-        //         "dataType" : 'json',
-        //         "type" : "POST",
-        //         "url" : sSource,
-        //         "data" : aDataSet,
-        //         "success" : fnCallback
-        //     });
-        // },
-        ajax: {
-            url: '/swipeRecord/listAll.do',
-            dataSrc: ''
-        },
-    });
+        ajax: function (data, callback, settings) {
+            //手动控制遮罩
+            $wrapper.spinModal();
+            //封装请求参数
+            var param = {};
+            param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
+            param.start = data.start;//开始的记录序号
+            param.page = (data.start / data.length) + 1;//当前页码
+            //console.log(param);
+            //ajax请求数据
+            $.ajax({
+                type: "POST",
+                url: '/swipeRecord/listAll.do',
+                cache: false,  //禁用缓存
+                data: param,  //传入组装的参数
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    //setTimeout仅为测试延迟效果
+                    alert('result:'+result);
+                    setTimeout(function () {
+                        //封装返回数据
+                        var returnData = {};
+                        returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                        returnData.recordsTotal = result.total;//返回数据全部记录
+                        returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                        returnData.data = result.data;//返回的数据列表
+                        //console.log(returnData);
+                        //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                        //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                        callback(returnData);
+                    }, 200);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $.dialog.alert("查询失败");
+                    $wrapper.spinModal(false);
+                }
+            })
+        }
+    }))
 }
 function testK() {
         var table=$('#table-swipeRecord').DataTable({
@@ -125,112 +379,58 @@ function testK() {
         });
 }
 
-function testE() {
-    $('#table-swipeRecord').DataTable({
-        "bProcessing" : true, //DataTables载入数据时，是否显示‘进度’提示
-        "bServerSide" : true, //是否启动服务器端数据导入
-        "bStateSave" : true, //是否打开客户端状态记录功能,此功能在ajax刷新纪录的时候不会将个性化设定回复为初始化状态
-        "bJQueryUI" : true, //是否使用 jQury的UI theme
-        "sScrollY" : 450, //DataTables的高
-        "sScrollX" : 820, //DataTables的宽
-        "aLengthMenu" : [20, 40, 60], //更改显示记录数选项
-        "iDisplayLength" : 40, //默认显示的记录数
-        "iCookieDuration": 60*60*1,
-        "bAutoWidth" : false, //是否自适应宽度
-        //"bScrollInfinite" : false, //是否启动初始化滚动条
-        "bScrollCollapse" : true, //是否开启DataTables的高度自适应，当数据条数不够分页数据条数的时候，插件高度是否随数据条数而改变
-        "bPaginate" : true, //是否显示（应用）分页器
-        "bInfo" : true, //是否显示页脚信息，DataTables插件左下角显示记录数
-        "sPaginationType" : "full_numbers", //详细分页组，可以支持直接跳转到某页
-        "bSort" : true, //是否启动各个字段的排序功能
-        "aaSorting" : [[1, "asc"]], //默认的排序方式，第2列，升序排列
-        "bFilter" : true, //是否启动过滤、搜索功能
-        "aoColumns" : [{
-            "mDataProp" : "deviceid",
-            "sTitle" : "用户名",
-            "sDefaultContent" : "",//此列默认值为""，以防数据中没有此值，DataTables加载数据的时候报错
-            "sClass" : "center"
-            // "bVisible" : false //此列不显示
-        }, {
-            "mDataProp" : "deviceip",
-            "sTitle" : "电子邮箱",
-            "sDefaultContent" : "",
-            "sClass" : "center"
-        }, {
-            "mDataProp" : "clientid",
-            "sTitle" : "手机",
-            "sDefaultContent" : "",
-            "sClass" : "center"
-        }, {
-            "mDataProp" : "clientip",
-            "sTitle" : "座机",
-            "sDefaultContent" : "",
-            "sClass" : "center"
-        }, {
-            "mDataProp" : "result",
-            "sTitle" : "姓名",
-            "sDefaultContent" : "",
-            "sClass" : "center"
-        }, {
-            "mDataProp" : "timestamp",
-            "sTitle" : "用户权限",
-            "sDefaultContent" : "",
-            "sClass" : "center"
-        }],
-        "oLanguage": { //国际化配置
-            "sProcessing" : "正在获取数据，请稍后...",
-            "sLengthMenu" : "显示 _MENU_ 条",
-            "sZeroRecords" : "没有您要搜索的内容",
-            "sInfo" : "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
-            "sInfoEmpty" : "记录数为0",
-            "sInfoFiltered" : "(全部记录数 _MAX_ 条)",
-            "sInfoPostFix" : "",
-            "sSearch" : "搜索",
-            "sUrl" : "",
-            "oPaginate": {
-                "sFirst" : "第一页",
-                "sPrevious" : "上一页",
-                "sNext" : "下一页",
-                "sLast" : "最后一页"
+var CONSTANT = {
+    DATA_TABLES : {
+        DEFAULT_OPTION : { //DataTables初始化选项
+            //国际化
+            language: {
+                "sProcessing":   "处理中...",
+                "sLengthMenu":   "每页 _MENU_ 项",
+                "sZeroRecords":  "没有匹配结果",
+                "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix":  "",
+                "sSearch":       "搜索:",
+                "sUrl":          "",
+                "sEmptyTable":     "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands":  ",",
+                "oPaginate": {
+                    "sFirst":    "首页",
+                    "sPrevious": "上页",
+                    "sNext":     "下页",
+                    "sLast":     "末页",
+                    "sJump":     "跳转"
+                },
+                "oAria": {
+                    "sSortAscending":  ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            autoWidth: false,   //禁用自动调整列宽
+            stripeClasses: ["odd", "even"],//为奇偶行加上样式，兼容不支持CSS伪类的场合
+            order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
+            processing: false,  //隐藏加载提示,自行处理
+            serverSide: true,   //启用服务器端分页
+            searching: false    //禁用原生搜索
+        },
+        COLUMN: {
+            CHECKBOX: { //复选框单元格
+                className: "td-checkbox",
+                orderable: false,
+                width: "30px",
+                data: null,
+                render: function (data, type, row, meta) {
+                    return '<input type="checkbox" class="iCheck">';
+                }
             }
         },
-
-        "fnRowCallback" : function(nRow, aData, iDisplayIndex) {
-            /* 用来改写用户权限的 */
-            if (aData.result == '0')
-                $('td:eq(5)', nRow).html('管理员');
-            if (aData.result == '1')
-                $('td:eq(5)', nRow).html('资料下载');
-            return nRow;
-        },
-
-        "sAjaxSource" : "/swipeRecord/listAll.do?now=" + new Date().getTime(),
-        //服务器端，数据回调处理
-        "fnServerData" : function(sSource, aDataSet, fnCallback) {
-            $.ajax({
-                "dataType" : 'json',
-                "type" : "POST",
-                "url" : sSource,
-                "data" : aDataSet,
-                "success" : fnCallback
-            });
+        RENDER: {   //常用render可以抽取出来，如日期时间、头像等
+            ELLIPSIS: function (data, type, row, meta) {
+                data = data||"";
+                return '<span title="' + data + '">' + data + '</span>';
+            }
         }
-    });
-
-    $("#table-swipeRecord tbody").click(function(event) { //当点击表格内某一条记录的时候，会将此记录的cId和cName写入到隐藏域中
-        $(docrTable.fnSettings().aoData).each(function() {
-            $(this.nTr).removeClass('row_selected');
-        });
-        $(event.target.parentNode).addClass('row_selected');
-        var aData = docrTable.fnGetData(event.target.parentNode);
-
-        $("#deviceid").val(aData.deviceid);
-        $("#timestamp").val(aData.timestamp);
-    });
-
-    $('#table-swipeRecord_filter').html('<span>用户管理列表');
-    $('#table-swipeRecord_filter').append('   <input type="button" class="addBtn" id="addBut" value="创建"/>');
-    $('#table-swipeRecord_filter').append('   <input type="button" class="addBtn" id="addBut" value="修改"/>');
-    $('#table-swipeRecord_filter').append('   <input type="button" class="addBtn" id="addBut" value="删除"/>');
-    $('#table-swipeRecord_filter').append('</span>');
-}
+    }
+};
