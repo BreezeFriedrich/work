@@ -52,11 +52,11 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     public List<SwipeRecord> listAll() {
         postdata="{\"sign\":3}";
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
+//        logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
-            logger.info("deviceStatusList:"+String.valueOf(swipeRecordList));
+//            logger.info("deviceStatusList:"+String.valueOf(swipeRecordList));
             return swipeRecordList;
         }
         return null;

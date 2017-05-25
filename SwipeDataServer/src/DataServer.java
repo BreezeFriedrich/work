@@ -150,7 +150,7 @@ class MyHandler implements HttpHandler{
         Map map=null;
         JsonNode node=objectMapper.readTree(result);
         int sign=node.get("sign").asInt();
-        logger.info("sign:"+String.valueOf(sign));
+//        logger.info("sign:"+String.valueOf(sign));
 
         Iterator it=null;
         List<DeviceStatus> tempDeviceStatusList=null;

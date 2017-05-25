@@ -3,6 +3,9 @@ $(function(){
     // testB();
     ajaxData();
     // testD();
+    // $(window.parent.document).find("#iframe").load(function(){
+
+    // });
 });
 function testC() {
     $.ajax({
@@ -84,7 +87,8 @@ function ajaxData() {
         },
         "iDisplayLength" : 10,//默认每页数量
         //"bPaginate": true, //翻页功能
-        "bLengthChange" : false, //改变每页显示数据数量
+        "bLengthChange" : true, //改变每页显示数据数量
+        "lengthMenu" : [10,20,30],
         //"bFilter" : true, //过滤功能
         "ordering" : false,
         "bSort" : false, //排序功能
@@ -111,17 +115,17 @@ function ajaxData() {
             // "bVisible" : false,//此列不显示
             "sTitle" : "模块编号",
             "sDefaultContent" : "",
-            "sClass" : "left"
+            "sClass" : "center"
         },
             {"mDataProp":"deviceip",
                 "sTitle" : "模块IP",
                 "sDefaultContent" : "",
-                "sClass" : "left"
+                "sClass" : "left",
             },
             {"mDataProp":"clientid",
                 "sTitle" : "设备编号",
                 "sDefaultContent" : "",
-                "sClass" : "left"
+                "sClass" : "center"
             },
             {"mDataProp":"clientip",
                 "sTitle" : "设备IP",
@@ -175,6 +179,14 @@ function ajaxData() {
                 }
             }
         }],
+        "columnDefs":[{
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]  //如果第2列进行排序，有相同数据则按照第1列顺序排列
+        }, {
+            targets: [ 4 ],
+            orderData: [ 4, 5 ]  //如果第5列进行排序，有相同数据则按照第6列顺序排列
+        }],
+
         "ajax": function (data, callback, settings) {
             //封装请求参数
             var param = {};
@@ -192,7 +204,7 @@ function ajaxData() {
                 success: function (result) {
                     //console.log(result);
                     //setTimeout仅为测试延迟效果
-                    alert('result:'+result);
+                    // alert('result:'+result);
                     setTimeout(function () {
                         //封装返回数据
                         var returnData = {};
@@ -206,6 +218,12 @@ function ajaxData() {
                         //关闭遮罩
                         //$wrapper.spinModal(false);
                         callback(returnData);
+                        // iframe和导航高度随table元素高度变化
+                        var thisheight = $(document).height();
+                        var myIframe = $(window.parent.document).find("#iframe");
+                        var west = $(window.parent.document).find("#west");
+                        myIframe.height(thisheight);
+                        west.height(thisheight);
                     },1);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -213,8 +231,18 @@ function ajaxData() {
                     $wrapper.spinModal(false);
                 }
             })
-        }
+        },
+        //数据渲染,使数据“失败”高亮!
+        "createdRow": function ( row, data, index ) {
+            if ( data['result'] =='1' ) {
+                $('td', row).eq(4).css('font-weight',"bold").css("color","red");
+            }
+        },
     })
+
+    $('#table-swipeRecord tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    } );
 }
 
 function testD() {
@@ -335,7 +363,7 @@ function testD() {
                 success: function (result) {
                     //console.log(result);
                     //setTimeout仅为测试延迟效果
-                    alert('result:'+result);
+                    // alert('result:'+result);
                     setTimeout(function () {
                         //封装返回数据
                         var returnData = {};
@@ -434,3 +462,47 @@ var CONSTANT = {
         }
     }
 };
+
+//供主页面调用
+//设置iframe高度
+function setActiveIframeHeight(){
+    //计算iframe内容的高度
+    function getBodyHeight(){
+        var height = 0;
+        if (document) {
+            height = $(document.body).height();//Math.max(document.body.clientHeight,document.body.offsetHeight);
+            //获取iframe中显示的脱离文档流的元素
+            var panels = $('.page-shadow.active'),
+                pHeight = 0;
+            //计算其中最大的值
+            for(var i = 0; i < panels.length; i++){
+                //计算撑开iframe的高度
+                var panelContent = $(panels[i]),
+                    panelContentHeight = panelContent.height() + panelContent.offset().top + 50;
+                pHeight = (panelContentHeight > pHeight)?panelContentHeight:pHeight;
+            }
+            height = (pHeight > height)?pHeight:height;
+        }
+        return height;
+    }
+    var curHeight = getBodyHeight(),
+        //这里使用#right-content-test自适应来探测中部内容显示区域的最小高度
+        minHeight = top.$('#right-content-test').height(),
+        //获取iframe元素
+        htmlDom = top.$('.tab-content>.active').find('iframe')[0];
+
+    curHeight = (minHeight >= curHeight) ? minHeight : curHeight;
+
+    //top.activeIframeHeight记录了当前的iframe的的高度
+    if(htmlDom && htmlDom.height != top.activeIframeHeight){
+        htmlDom.height = top.activeIframeHeight;
+    }
+
+    //防止临界值导致滚动条时有时无使用Math.abs处理
+    if(setActiveIframeHeight.isFirst || (Math.abs(top.activeIframeHeight - curHeight) > 2)){
+        top.activeIframeHeight = curHeight;
+        htmlDom && (htmlDom.height = top.activeIframeHeight);
+    }
+    setActiveIframeHeight.isFirst = 0;
+}
+setActiveIframeHeight.isFirst  = 1;
