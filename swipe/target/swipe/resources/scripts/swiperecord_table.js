@@ -1,11 +1,8 @@
 $(function(){
     // testA();
-    // testB();
+    testB();
     ajaxData();
     // testD();
-    // $(window.parent.document).find("#iframe").load(function(){
-
-    // });
 });
 function testC() {
     $.ajax({
@@ -41,16 +38,16 @@ function testA() {
     })
 };
 function testB() {
-    beginTime="2014-01-01 00:00:01";
+    startTime="2014-01-01 00:00:01";
     endTime="2015-12-10 13:35:34";
     $.ajax({
         type:"POST",
-        url:"/swipeRecord/listByTime.do",
-        data:{"beginTime":beginTime,"endTime":endTime},
+        url:"/swipeRecord/listByTimezone.do",
+        data:{"startTime":startTime,"endTime":endTime},
         dataType:"json",
         async:false,
         success: function(data){
-            create_tbody($("#tbody2"),data.data);
+            create_tbody($("#tbody2"),data);
         },
         error:function(XMLHttpRequest){
             alert('ajax-error');
@@ -398,7 +395,7 @@ function testK() {
                 url:"/swipeRecord/listAll.do",
                 type:"POST",
                 data:function(d){
-                    d.beginTime="2014-01-01 00:00:01";
+                    d.startTime="2014-01-01 00:00:01";
                     d.endTime="2015-12-10 13:35:34";
                 }
             },

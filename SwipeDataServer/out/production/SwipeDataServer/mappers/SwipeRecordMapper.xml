@@ -42,10 +42,10 @@
         WHERE deviceid=#{deviceid}
     </select>
 
-    <select id="listByTime" resultType="SwipeRecord">
+    <select id="listByTimezone" resultType="SwipeRecord">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
         FROM SwipeRecord
-        WHERE DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') BETWEEN #{beginTime} AND #{endTime}
+        WHERE DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') BETWEEN #{startTime} AND #{endTime}
     </select>
 
     <!--
@@ -53,7 +53,7 @@
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
         FROM SwipeRecord
         WHERE
-        <if test="biginTime !=null and beginTime !='' ">`timestamp` &gt;=#{beginTime}</if>
+        <if test="biginTime !=null and startTime !='' ">`timestamp` &gt;=#{startTime}</if>
         <if test="endTime !=null and endTime !='' ">`timestamp` &lt;=#{endTime}</if>
     </select>
     -->
@@ -71,5 +71,5 @@
         <!--Integer deleteByDeviceid(String deviceid);-->
         <!--List<SwipeRecord> listByDeivceid(String deviceid);-->
         <!--List<SwipeRecord> listByTimestamp(String timestamp);-->
-        <!--List<SwipeRecord> listByTimestamp(@Param("beginTime") String beginTime,@Param("endTime") String endTime);-->
+        <!--List<SwipeRecord> listByTimestamp(@Param("startTime") String startTime,@Param("endTime") String endTime);-->
         <!--List<SwipeRecord> listByResult(int result);-->

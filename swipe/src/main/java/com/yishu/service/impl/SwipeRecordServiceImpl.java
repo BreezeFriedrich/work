@@ -56,22 +56,22 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
-//            logger.info("deviceStatusList:"+String.valueOf(swipeRecordList));
+//            logger.info("swipeRecordList:"+String.valueOf(swipeRecordList));
             return swipeRecordList;
         }
         return null;
     }
 
     @Override
-    public List<SwipeRecord> listByTime(String beginTime, String endTime) {
-        postdata="{\"sign\":4,\"beginTime\":\""+beginTime+"\",\"endTime\":\""+endTime+"\"}";
+    public List<SwipeRecord> listByTimezone(String startTime, String endTime) {
+        postdata="{\"sign\":4,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
         logger.info("#request-DATA     ~ "+postdata);
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
-            logger.info("deviceStatusList:"+String.valueOf(swipeRecordList));
+            logger.info("swipeRecordList:"+String.valueOf(swipeRecordList));
             return swipeRecordList;
         }
         return null;

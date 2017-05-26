@@ -53,14 +53,14 @@ public class SwipeRecordController {
         //{total:23,(page:2,limit:10,)data:[...]}
     }
 
-    @RequestMapping("/listByTime.do")
+    @RequestMapping("/listByTimezone.do")
     @ResponseBody
     public String listByStatus(HttpServletRequest request){
-        logger.info("#CTL      ~ listByTime");
-        String beginTime=request.getParameter("beginTime");
+        logger.info("#CTL      ~ listByTimezone");
+        String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
-        List<SwipeRecord> moduleList=swipeRecordService.listByTime(beginTime,endTime);
-        return jsonUtil.listToJsonArray(moduleList);
+        List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
+        return jsonUtil.listToJsonArray(swipeRecordList);
     }
 
     public String listToObj(List list,int total){

@@ -215,15 +215,15 @@ class MyHandler implements HttpHandler{
                 map=null;
                 break;
 
-            case 4://swipeRecord/listByTime
+            case 4://swipeRecord/listByTimezone
                 swipeRecordList=new ArrayList<>();
                 map=new HashMap();
-                String beginTime=node.get("beginTime").asText();
+                String startTime=node.get("startTime").asText();
                 String endTime=node.get("endTime").asText();
-//                logger.info("tag2 - beginTime.date="+beginTime+"; endTime.date"+endTime);
-//                String beginTime=node.get("beginTime").asText();
+//                logger.info("tag2 - startTime.date="+startTime+"; endTime.date"+endTime);
+//                String startTime=node.get("startTime").asText();
 //                String endTime=node.get("endTime").asText();
-                tempSwipeRecordList=swipeRecordService.listByTime(beginTime.toString(),endTime.toString());
+                tempSwipeRecordList=swipeRecordService.listByTimezone(startTime.toString(),endTime.toString());
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
                 while (it.hasNext()){

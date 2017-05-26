@@ -51,9 +51,9 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     }
 
     @Override
-    public List<SwipeRecord> listByTime(String beginTime, String endTime) {
-        logger.info("beginTime:"+beginTime+" endTime:"+endTime);
-        return swipeRecordDao.listByTime(beginTime,endTime);
+    public List<SwipeRecord> listByTimezone(String startTime, String endTime) {
+        logger.info("startTime:"+startTime+" endTime:"+endTime);
+        return swipeRecordDao.listByTimezone(startTime,endTime);
     }
 
     @Override

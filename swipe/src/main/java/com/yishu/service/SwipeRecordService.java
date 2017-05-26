@@ -15,6 +15,6 @@ public interface SwipeRecordService {
 //    Integer deleteByDeviceid(String deviceid);
     List<com.yishu.model.SwipeRecord> listAll();
 //    List<com.yishu.model.SwipeRecord> listByDeivceid(String deviceid);
-    List<com.yishu.model.SwipeRecord> listByTime(@Param("beginTime") String beginTime, @Param("endTime") String endTime);
+    List<com.yishu.model.SwipeRecord> listByTimezone(@Param("startTime") String startTime, @Param("endTime") String endTime);
 //    List<com.yishu.model.SwipeRecord> listByResult(int result);
 }

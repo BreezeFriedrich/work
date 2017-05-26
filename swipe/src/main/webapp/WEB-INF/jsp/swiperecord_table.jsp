@@ -33,21 +33,21 @@
         <%--<tbody id="tbody">--%>
         <%--</tbody>--%>
     <%--</table>--%>
-    <%--<table id="swipeRecordTable2">--%>
-        <%--<caption>刷卡记录表</caption>--%>
-        <%--<thead>--%>
-        <%--<tr>--%>
-            <%--<th>deviceid</th>--%>
-            <%--<th>deviceip</th>--%>
-            <%--<th>clientid</th>--%>
-            <%--<th>clientip</th>--%>
-            <%--<th>result</th>--%>
-            <%--<th>timestamp</th>--%>
-        <%--</tr>--%>
-        <%--</thead>--%>
-        <%--<tbody id="tbody2">--%>
-        <%--</tbody>--%>
-    <%--</table>--%>
+    <table id="swipeRecordTable2">
+        <caption>刷卡记录表</caption>
+        <thead>
+        <tr>
+            <th>deviceid</th>
+            <th>deviceip</th>
+            <th>clientid</th>
+            <th>clientip</th>
+            <th>result</th>
+            <th>timestamp</th>
+        </tr>
+        </thead>
+        <tbody id="tbody2">
+        </tbody>
+    </table>
     <div id="container-table" style="width: 800px;margin-top: 100px;margin-left: 100px;">
         <table id="table-swipeRecord" cellpadding="0" cellspacing="0" border="0" width="1000px">
             <thead>
