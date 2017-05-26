@@ -2,37 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fe19d41-1d58-4792-904b-ae052b82136f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_trail.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_trail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/MyHandler.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/MyHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/SwipeRecordDao.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/SwipeRecordDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/SwipeRecordService.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/SwipeRecordService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/SwipeRecordService.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/service/SwipeRecordService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe.war" afterPath="$PROJECT_DIR$/target/swipe.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/SwipeRecordService.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/SwipeRecordService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Guard/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Guard/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/mappers/SwipeRecordMapper.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/mappers/SwipeRecordMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/DataServer.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/DataServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/dao/SwipeRecordDao.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/dao/SwipeRecordDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/mappers/SwipeRecordMapper.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/mappers/SwipeRecordMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/service/SwipeRecordService.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/service/SwipeRecordService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/service/impl/SwipeRecordServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/service/SwipeRecordService.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/service/SwipeRecordService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_plain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_table.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_table.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_table.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/main_plain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/swiperecord_table.jsp" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/swiperecord_table.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/resources/scripts/swiperecord_table.js" afterPath="$PROJECT_DIR$/target/swipe/resources/scripts/swiperecord_table.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -909,7 +880,7 @@
       <workItem from="1495603313137" duration="15913000" />
       <workItem from="1495676790377" duration="25848000" />
       <workItem from="1495761811756" duration="3571000" />
-      <workItem from="1495778337947" duration="12450000" />
+      <workItem from="1495778337947" duration="12542000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.04-swipe">
       <created>1493895311625</created>
@@ -918,15 +889,21 @@
       <option name="project" value="LOCAL" />
       <updated>1493895311625</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2017.05.26">
+      <created>1495796168452</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1495796168452</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252559000" />
+    <option name="totallyTimeSpent" value="252651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -936,7 +913,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3006993" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3902098" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23216783" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25734267" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1008,7 +985,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2017.05.04-swipe" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017.05.04-swipe" />
+    <MESSAGE value="2017.05.26" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017.05.26" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
