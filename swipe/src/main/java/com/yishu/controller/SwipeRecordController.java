@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by admin on 2017/5/22.
@@ -34,7 +33,7 @@ public class SwipeRecordController {
     @RequestMapping("/listAll.do")
     @ResponseBody
     public String listAll(HttpServletRequest request){
-//        logger.info("#CTL      ~ listAll");
+        logger.info("#CTL      ~ listAll");
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
         int start= Integer.parseInt(request.getParameter("start"));
@@ -55,12 +54,71 @@ public class SwipeRecordController {
 
     @RequestMapping("/listByTimezone.do")
     @ResponseBody
-    public String listByStatus(HttpServletRequest request){
+    public String listByTimezone(HttpServletRequest request){
         logger.info("#CTL      ~ listByTimezone");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
-        return jsonUtil.listToJsonArray(swipeRecordList);
+        return jsonUtil.listToJson(swipeRecordList);
+    }
+
+    @RequestMapping("/listByTimezoneToChart.do")
+    @ResponseBody
+    public String listByTimezoneToChart(HttpServletRequest request){
+        logger.info("#CTL      ~ listByTimezoneToChart");
+        String startTime=request.getParameter("startTime");
+        String endTime=request.getParameter("endTime");
+        List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
+        Date time1 = null,time2 = null;
+        try {
+            time1=sdf.parse(startTime);
+            time2=sdf.parse(endTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int days = (int) ((time2.getTime() - time1.getTime())/86400000);
+        Date[] xAxisArr=new Date[days+1];
+        while (days>=0) {
+            xAxisArr[days] = new Date(days*86400000+time1.getTime());
+            days--;
+        }
+        SwipeRecord swipeRecord=null;
+        Date tempTime=null;
+        Map<String,Integer> successMap=new HashMap();
+        Map<String,Integer> failMap=new HashMap();
+        for(SwipeRecord x:swipeRecordList){
+            try {
+                tempTime=sdf.parse(x.getTimestamp());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            int i= (int) ((tempTime.getTime()-time1.getTime())/86400000);
+            if(0==x.getResult()){
+                if(successMap.containsKey(String.valueOf(i))) {
+                    successMap.put(String.valueOf(i), successMap.get(String.valueOf(i)) + 1);
+                }else{
+                    successMap.put(String.valueOf(i), 1);
+                }
+            }else {
+                if(failMap.containsKey(String.valueOf(i))) {
+                    failMap.put(String.valueOf(i), failMap.get(String.valueOf(i)) + 1);
+                }else{
+                    failMap.put(String.valueOf(i), 1);
+                }
+            }
+        }
+        double value=0;
+        double index[]=new double[days+1];
+        for(int j=0;j<=days;j++){
+            value=successMap.get(String.valueOf(j))*1.0/successMap.get(String.valueOf(j))+failMap.get(String.valueOf(j));
+            index[j]=value;
+        }
+        Map resultMap=new HashMap();
+        resultMap.put("xAxisArr",xAxisArr);
+        resultMap.put("data",index);
+        return jsonUtil.mapToJson(resultMap);
     }
 
     public String listToObj(List list,int total){

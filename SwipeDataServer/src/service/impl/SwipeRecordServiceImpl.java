@@ -52,7 +52,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     @Override
     public List<SwipeRecord> listByTimezone(String startTime, String endTime) {
-        logger.info("startTime:"+startTime+" endTime:"+endTime);
+//        logger.info("startTime:"+startTime+" endTime:"+endTime);
         return swipeRecordDao.listByTimezone(startTime,endTime);
     }
 

@@ -33,7 +33,7 @@ public class ModuleStatusController {
 //        int status=Integer.valueOf(request.getParameter("status"));
 //        List<DeviceStatus> moduleList=moduleService.listByStatus(status);
 //        JsonUtil jsonUtil=new JsonUtil();
-//        return jsonUtil.listToJsonArray(moduleList);
+//        return jsonUtil.listToJson(moduleList);
 //    }
 
     @RequestMapping("/listByStatus.do")
@@ -42,7 +42,7 @@ public class ModuleStatusController {
         logger.info("#CTL      ~ listByStatus");
         int status=Integer.valueOf(request.getParameter("status"));
         List<DeviceStatus> moduleList=moduleService.listByStatus(status);
-        return jsonUtil.listToJsonArray(moduleList);
+        return jsonUtil.listToJson(moduleList);
     }
 
     @RequestMapping("/listAllWithoutDuplicate.do")
@@ -50,7 +50,7 @@ public class ModuleStatusController {
     public String listAllWithoutDuplicate(HttpServletRequest request){
         logger.info("#CTL      ~ listAllWithoutDuplicate");
         List<DeviceStatus> moduleList=moduleService.listAllWithoutDuplicate();
-        return jsonUtil.listToJsonArray(moduleList);
+        return jsonUtil.listToJson(moduleList);
     }
 
     @RequestMapping("/hello.do")
