@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<body style="min-width:1400px;">
 		<div id="container">
-
 			<div id="north" style="height:60px;background:#95b8e7;padding:10px;border: none;clear: both;position: relative;">
 				<div class="header-brand" style="float:left;">
 					<a>
@@ -38,14 +37,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<button class="button" id="safetylogout" style="border:2px solid #b2cef3;border-radius:3px;background-color:#c4d8f3;font-size:17px;font-family:Arial, Helvetica, sans-serif;color:#305b96;padding:8px 8px;">安全退出</button>
 				</div>
 			</div>
-
 			<div id="west" style="width:150px;padding:0px;float: left;">
+
 				<div class="leftsidebar">
+
 					<div class="line"></div>
 					<dl class="custom">
 						<dt style="background-image: url(../../resources/styles/images/left/custom.png)">用户管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("user_list.jsp")>用户列表</a>
+							<a onclick=iframe("userList.jsp")>用户列表</a>
 						</dd>
 						<dd>
 							<a onclick=iframe("accessCtrl.jsp")>权限管理</a>
@@ -54,30 +54,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a onclick=iframe("dataClear.jsp")>数据清理</a>
 						</dd>
 					</dl>
+
 					<dl class="deviceManage">
 						<dt style="background-image: url(../../resources/styles/images/left/device_manage.png)">设备管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("modulestatus_table.jsp")>模块状态-表</a>
+							<a onclick=iframe("moduleStatus.jsp")>模块状态</a>
 						</dd>
 					</dl>
+
 					<dl class="statistics">
 						<dt style="background-image: url(../../resources/styles/images/left/statistics.png)">统计分析<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("swiperecord_table.jsp")>数据查询-表</a>
+							<a onclick=iframe("dataQuery.jsp")>数据查询</a>
 						</dd>
 						<dd>
-							<a onclick=iframe("swiperecord_chart.jsp")>成功率分析-图</a>
+							<a href="#">成功率分析</a>
 						</dd>
 						<dd>
-							<a onclick=iframe("swiperecord_trail.jsp")>数据对比</a>
+							<a onclick=iframe("main.jsp")>数据对比</a>
 						</dd>
 					</dl>
+
 				</div>
 			</div>
-
 			<div id="center" style="position:relative;float: left;width:1250px;">
 				<iframe id="iframe" style="height: 100%;width: 100%;" frameborder="0" scrolling="no"></iframe>
-            </div>
+			</div>
 		</div>
 
 	</body>

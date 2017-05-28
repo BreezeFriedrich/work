@@ -58,6 +58,6 @@ function leftsideBarInit() {
 }
 
 function iframe(page){
-    document.getElementById("iframe").setAttribute("src","dispatcher/"+page);
-    // $("#iframe").attr("src","dispatcher/"+page);
+	alert(page);
+	document.getElementById("iframe").setAttribute("src","dispatcher/lockoperate.jsp");
 }
