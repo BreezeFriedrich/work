@@ -48,8 +48,9 @@ function create_tbody(data) {
     }
 }
 */
-function create_tbody(jsonArr) {
-    $("#tbody").empty();
+function create_tbody(tableElement,jsonArr) {
+    // $("#tbody").empty();
+    tableElement.empty();
     for( i = 0; i < jsonArr.length; i++ ) {
         //动态创建一个tr行标签,并且转换成jQuery对象
         var $trTemp = $("<tr></tr>");
@@ -60,6 +61,7 @@ function create_tbody(jsonArr) {
         }
 
         // $("#tbody").append($trTemp);
-        $trTemp.appendTo("#tbody");
+        // $trTemp.appendTo("#tbody");
+        $trTemp.appendTo(tableElement);
     }
 }

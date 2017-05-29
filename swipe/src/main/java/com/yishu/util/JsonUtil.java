@@ -3,9 +3,7 @@ package com.yishu.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by admin on 2017/5/12.
@@ -13,7 +11,7 @@ import java.util.List;
 public class JsonUtil {
 
     //List<t_object>---->>JSON
-    public String listToJsonArray(List list){
+    public String listToJson(List list){
         ObjectMapper objectMapper = new ObjectMapper();
 
 //        Iterator it =list.iterator();
@@ -23,6 +21,17 @@ public class JsonUtil {
         String data=null;
         try {
             data=objectMapper.writeValueAsString(list);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public String mapToJson(Map map){
+        ObjectMapper objectMapper = new ObjectMapper();
+        String data=null;
+        try {
+            data=objectMapper.writeValueAsString(map);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

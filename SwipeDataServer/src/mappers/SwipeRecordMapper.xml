@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.SwipeRecordDao">
+
+    <insert id="add" parameterType="SwipeRecord">
+        INSERT INTO SwipeRecord(`deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`)
+        VALUES (#{deviceid},#{deviceip},#{clientid},#{clientip},#{result},#{timestamp})
+    </insert>
+
+    <update id="update" parameterType="SwipeRecord">
+        UPDATE SwipeRecord
+        <set>
+            <if test="deviceip !=null">deviceip=#{deviceip}</if>
+            <if test="clientid !=null">clientid=#{clientid}</if>
+            <if test="clientip !=null">clientip=#{clientip}</if>
+            <if test="result !=null">result=#{result}</if>
+            <if test="timestamp !=null">`timestamp`=#{timestamp}</if>
+        </set>
+        WHERE deviceid=#{deviceid}
+    </update>
+
+    <delete id="deleteByTime" parameterType="String">
+        DELETE FROM SwipeRecord
+        WHERE <![CDATA[`timestamp` <= #{timestamp} ]]>
+    </delete>
+
+    <delete id="deleteByDeviceid" parameterType="String">
+        DELETE FROM SwipeRecord
+        WHERE deviceid=#{deviceid}
+    </delete>
+
+    <select id="listAll" resultType="SwipeRecord">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
+        FROM SwipeRecord
+    </select>
+
+    <select id="listByDeviceid" parameterType="String" resultType="SwipeRecord">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
+        FROM SwipeRecord
+        WHERE deviceid=#{deviceid}
+    </select>
+
+    <select id="listByTimezone" resultType="SwipeRecord">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
+        FROM SwipeRecord
+        WHERE DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') BETWEEN #{startTime} AND #{endTime}
+    </select>
+
+    <!--
+    <select id="listByTimestamp" resultType="SwipeRecord" parameterType="java.util.HashMap">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
+        FROM SwipeRecord
+        WHERE
+        <if test="biginTime !=null and startTime !='' ">`timestamp` &gt;=#{startTime}</if>
+        <if test="endTime !=null and endTime !='' ">`timestamp` &lt;=#{endTime}</if>
+    </select>
+    -->
+
+    <select id="listByResult" parameterType="int" resultType="SwipeRecord">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
+        FROM SwipeRecord
+        WHERE `result`=#{result}
+    </select>
+
+</mapper>
+        <!--Integer add(SwipeRecord swipeRecord);-->
+        <!--Integer update(SwipeRecord swipeRecord);-->
+        <!--Integer deleteByTime(String timestamp);-->
+        <!--Integer deleteByDeviceid(String deviceid);-->
+        <!--List<SwipeRecord> listByDeivceid(String deviceid);-->
+        <!--List<SwipeRecord> listByTimestamp(String timestamp);-->
+        <!--List<SwipeRecord> listByTimestamp(@Param("startTime") String startTime,@Param("endTime") String endTime);-->
+        <!--List<SwipeRecord> listByResult(int result);-->

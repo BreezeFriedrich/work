@@ -13,15 +13,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
-	  <link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/default/easyui.css"/>
-	  <link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/icon.css"/>
-	  <link rel="stylesheet" type="text/css" href="../../resources/easyui/demo/demo.css"/>
-	  <script type="text/javascript" src="../../resources/easyui/jquery.min.js"></script>
-	  <script type="text/javascript" src="../../resources/easyui/jquery.easyui.min.js"></script>
-	  <script type="text/javascript" src="../../resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-	  <script type="text/javascript" src="../../resources/scripts/component/cookie.js"></script>
-	  <script type="text/javascript" src="../../resources/scripts/main.js"></script>
-	  <script type="text/javascript" src="../../resources/scripts/lockoperate.js"></script>
   </head>
   
 	<body>
