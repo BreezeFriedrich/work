@@ -59,7 +59,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         <Encoding>UTF-8</Encoding>
         <!-- 指定日志文件的名称 -->
         <!--相对路径<file>${LOG_HOME}/${appName}.log</file>-->
-        <file>e:/workspace/log/swipe.log</file>
+        <file>e:/workspaces/log/swipe.log</file>
         <!--
         当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名
         TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。

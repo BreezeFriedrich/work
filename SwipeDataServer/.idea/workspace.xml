@@ -2,59 +2,216 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/laydate/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/layer/default/icon-ext.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/layer/default/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/layer/default/loading-0.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/layer/default/loading-1.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/layer/default/loading-2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/font/iconfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/font/iconfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/font/iconfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/component/laydate/skins/default/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/component/laydate/skins/molv/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/layui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/code.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/laydate/laydate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/css/modules/layer/default/layer.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/font/iconfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/dest/layui.all.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/code.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/element.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/flow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/form.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/laydate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/layedit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/layer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/laypage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/laytpl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/mobile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/tree.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/upload.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/lay/modules/util.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/layui/layui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/component/laydate/laydate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/component/laydate/need/laydate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/component/laydate/skins/default/laydate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/component/laydate/skins/molv/laydate.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/.idea/dictionaries/WindSpring.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/shiro.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/DatabaseController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/cache/BaseCacheService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/cache/UserServiceAspect.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/ResourceDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/RoleDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/UserDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/filter/ResourceCheckFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/kit/ShiroKit.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/Resource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/Role.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/RoleResource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/User.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/UserRole.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/permission/UrlPermission.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/permission/UrlPermissionResolver.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/realm/MyRealm.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/HelloWorld.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/IResourceService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/IRoleService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/IUserService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/ResourceService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/RoleService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/ShiroUserService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/InitServlet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/ResourceController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/RoleController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/ShiroLoginController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/UserController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/ehcache.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/mappers/ResourceMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/mappers/RoleMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/mappers/UserMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-shiro.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/database/data_clear.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/data_clear.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_chart.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources.local.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources/831dc3b0-d8e5-4c72-977a-c5871c4ac7bd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources/e73b8e2d-279a-401d-a0b9-3e5d4fc3b216.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dictionaries/admin.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/sqldialects.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/uiDesigner.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/ContextLoader.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/ContextLoader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/DataServer.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/DataServer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/MyHandler.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/MyHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/dao/DeviceStatusDao.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/dao/DeviceStatusDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/dao/SwipeRecordDao.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/dao/SwipeRecordDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/model/DeviceStatus.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/model/DeviceStatus.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/model/SwipeRecord.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/model/SwipeRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/service/ModuleService.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/service/ModuleService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/service/SwipeRecordService.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/service/SwipeRecordService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/service/impl/ModuleServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/util/SpringTool.class" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/util/SpringTool.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/DispatcherServlet.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/DispatcherServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LockOperateController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LockOperateController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LoginController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LoginController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/ModuleStatusController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/JsonUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/JsonUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/UserServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/DeviceUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/DeviceUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$2.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/LockOperateUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/LockOperateUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/NoteUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/NoteUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/Tea.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/Tea.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe.war" afterPath="$PROJECT_DIR$/../swipe/target/swipe.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/DispatcherServlet.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/DispatcherServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LockOperateController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LockOperateController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LoginController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LoginController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/JsonUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/JsonUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/UserServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/DeviceUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/DeviceUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$2.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/LockOperateUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/LockOperateUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/NoteUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/NoteUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/Tea.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/Tea.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Guard/.idea/misc.xml" afterPath="$PROJECT_DIR$/../Guard/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Guard/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Guard/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Guard/Guard.iml" afterPath="$PROJECT_DIR$/../Guard/Guard.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwipeDataServer.iml" afterPath="$PROJECT_DIR$/SwipeDataServer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/druid.properties" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/druid.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/logback.xml" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/druid.properties" afterPath="$PROJECT_DIR$/resources/druid.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/logback.xml" afterPath="$PROJECT_DIR$/resources/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataServer.java" afterPath="$PROJECT_DIR$/src/DataServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/compiler.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/encodings.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_0_13.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_0_13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_core_1_0_13.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_core_1_0_13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_alibaba_druid_1_0_18.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_alibaba_druid_1_0_18.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_google_code_gson_gson_2_6_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_google_code_gson_gson_2_6_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_lang_commons_lang_2_5.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_lang_commons_lang_2_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_servlet_api_3_0_alpha_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_servlet_api_3_0_alpha_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_38.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_38.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_2_10_2_2_21.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_2_10_2_2_21.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_5_3.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_5_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_json_lib_json_lib_jdk15_2_4.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_json_lib_json_lib_jdk15_2_4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_spring_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_spring_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_9.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_9.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_1_4_GA.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_1_4_GA.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_3_4_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_3_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_aop_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_aop_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_beans_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_beans_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_support_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_support_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_core_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_core_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_expression_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_expression_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_jdbc_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_jdbc_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_test_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_test_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_tx_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_tx_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_web_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_web_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_webmvc_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_webmvc_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__taglibs_standard_1_1_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__taglibs_standard_1_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/misc.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/modules.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/ModuleStatusController.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/ModuleStatusController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/util/JsonUtil.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/util/JsonUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-dao.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-service.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-service.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-web.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/main_plain.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_chart.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_chart.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_trail.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_trail.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/main_plain.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/main_plain.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_trail.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_trail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/swipe.iml" afterPath="$PROJECT_DIR$/../swipe/swipe.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/jdbc.properties" afterPath="$PROJECT_DIR$/../swipe/target/classes/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-dao.xml" afterPath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-service.xml" afterPath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-service.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-web.xml" afterPath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../swipe/target/swipe/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/jdbc.properties" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-dao.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-service.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-service.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-web.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/main_plain.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_chart.jsp" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_chart.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_trail.jsp" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_trail.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/main_plain.js" afterPath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/main_plain.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/swiperecord_trail.js" afterPath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/swiperecord_trail.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -83,22 +240,8 @@
       <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DataServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="146" column="56" lean-forward="true" selection-start-line="146" selection-start-column="56" selection-end-line="146" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1495864173332" expanded="true" signature="1054:1080" ph="SELECT * FRO... DeviceStatus" />
-                <marker date="1495864173332" expanded="true" signature="1741:1767" ph="SELECT * FRO... DeviceStatus" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SwipeRecordServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="54" column="66" lean-forward="false" selection-start-line="54" selection-start-column="66" selection-end-line="54" selection-end-column="66" />
+            <state relative-caret-position="297">
+              <caret line="149" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -196,12 +339,13 @@
         <option value="$PROJECT_DIR$/src/HttpConServer.java" />
         <option value="$PROJECT_DIR$/src/util/SpringTool.java" />
         <option value="$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml" />
-        <option value="$PROJECT_DIR$/resources/druid.properties" />
         <option value="$PROJECT_DIR$/swipe_database.sql" />
         <option value="$PROJECT_DIR$/src/dao/SwipeRecordDao.java" />
         <option value="$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml" />
         <option value="$PROJECT_DIR$/src/service/SwipeRecordService.java" />
         <option value="$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java" />
+        <option value="$PROJECT_DIR$/resources/druid.properties" />
+        <option value="$PROJECT_DIR$/resources/logback.xml" />
         <option value="$PROJECT_DIR$/src/DataServer.java" />
       </list>
     </option>
@@ -213,10 +357,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1932" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -259,8 +403,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -397,19 +539,21 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../shiroLiwei" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
@@ -447,7 +591,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DataServer">
+  <component name="RunManager" selected="Application.SwipeDataServer">
     <configuration default="false" name="druid-1.0.9-javadoc.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="JAR_PATH" value="$PROJECT_DIR$/lib/druid-1.0.9-javadoc.jar" />
@@ -497,58 +641,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
-      <method />
-    </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -609,9 +701,6 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -670,27 +759,14 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
     <configuration default="false" name="SwipeDataServer" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="HttpConServer" />
+      <option name="MAIN_CLASS_NAME" value="DataServer" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.7" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -738,6 +814,10 @@
       <workItem from="1495761687883" duration="1924000" />
       <workItem from="1495787263267" duration="6357000" />
       <workItem from="1495848245198" duration="10351000" />
+      <workItem from="1496053597733" duration="1124000" />
+      <workItem from="1496111440451" duration="141000" />
+      <workItem from="1496111732933" duration="16358000" />
+      <workItem from="1496161763424" duration="4201000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -750,30 +830,29 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197577000" />
+    <option name="totallyTimeSpent" value="219401000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1932" height="1048" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3062937" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30552292" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2596945" sideWeight="0.08583691" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20094007" sideWeight="0.9141631" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26153848" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2769231" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2150838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19601542" sideWeight="0.48391607" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34983853" sideWeight="0.48391607" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23457584" sideWeight="0.5160839" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.400838" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23457584" sideWeight="0.5160839" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -991,14 +1070,6 @@
     <entry file="file://$PROJECT_DIR$/src/service/SwipeSer.java" />
     <entry file="file://$PROJECT_DIR$/src/service/DeviceService.java" />
     <entry file="file://$PROJECT_DIR$/src/mappers/SwipeRecord.xml" />
-    <entry file="file://$PROJECT_DIR$/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="54" lean-forward="true" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/logback.xml" />
     <entry file="file://$PROJECT_DIR$/src/resources/spring-mybatis.xml" />
     <entry file="file://$PROJECT_DIR$/src/model/DeviceStatus.java">
@@ -1061,20 +1132,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <marker date="1495187603628" expanded="true" signature="265:435" ph="INSERT INTO DeviceStatus... " />
-            <marker date="1495187603628" expanded="true" signature="514:911" ph="UPDATE Devic... " />
-            <marker date="1495187603628" expanded="true" signature="990:1063" ph="DELETE FROM " />
-            <marker date="1495187603628" expanded="true" signature="1202:1261" ph="DELETE FROM " />
-            <marker date="1495187603628" expanded="true" signature="1368:1496" ph="SELECT `devi... DeviceStatus" />
-            <marker date="1495187603628" expanded="true" signature="1368:1546" ph="SELECT `devi... DeviceStatus" />
-            <marker date="1495187603628" expanded="true" signature="1648:1824" ph="SELECT `devi... DeviceStatus" />
-            <marker date="1495187603628" expanded="true" signature="1926:2180" ph="SELECT `devi... DeviceStatus" />
-            <marker date="1495187603628" expanded="true" signature="1926:2190" ph="..." />
-            <marker date="1495187603628" expanded="true" signature="2056:2096" ph="SELECT SEQ,M... DeviceStatus" />
-            <marker date="1495187603628" expanded="true" signature="2249:2378" ph="DELETE FROM " />
-            <marker date="1495187603628" expanded="true" signature="2314:2377" ph="SELECT SEQ,M... DeviceStatus" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1085,31 +1143,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/impl/ModuleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/druid.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="73" lean-forward="false" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="17" column="72" lean-forward="false" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swipe_database.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="67" column="36" lean-forward="false" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1125,7 +1162,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="18" column="64" lean-forward="false" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,16 +1169,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="73" column="54" lean-forward="false" selection-start-line="73" selection-start-column="54" selection-end-line="73" selection-end-column="54" />
-          <folding>
-            <marker date="1495793905524" expanded="true" signature="263:440" ph="INSERT INTO SwipeRecord... " />
-            <marker date="1495793905524" expanded="true" signature="517:923" ph="UPDATE Swipe... " />
-            <marker date="1495793905524" expanded="true" signature="1001:1075" ph="DELETE FROM " />
-            <marker date="1495793905524" expanded="true" signature="1161:1219" ph="DELETE FROM " />
-            <marker date="1495793905524" expanded="true" signature="1294:1390" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1495793905524" expanded="true" signature="1495:1626" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1495793905524" expanded="true" signature="1708:1949" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1495793905524" expanded="true" signature="2469:2598" ph="SELECT `devi... SwipeRecord" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1153,23 +1180,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/impl/ModuleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swipe_database.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1541">
+          <caret line="67" column="36" lean-forward="false" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/druid.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
+        <state relative-caret-position="246">
           <caret line="54" column="66" lean-forward="false" selection-start-line="54" selection-start-column="66" selection-end-line="54" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="61" column="27" lean-forward="false" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DataServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="146" column="56" lean-forward="true" selection-start-line="146" selection-start-column="56" selection-end-line="146" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1495864173332" expanded="true" signature="1054:1080" ph="SELECT * FRO... DeviceStatus" />
-            <marker date="1495864173332" expanded="true" signature="1741:1767" ph="SELECT * FRO... DeviceStatus" />
-          </folding>
+        <state relative-caret-position="297">
+          <caret line="149" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1213,7 +1268,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1230,7 +1285,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

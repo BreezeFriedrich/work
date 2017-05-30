@@ -52,7 +52,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     public List<SwipeRecord> listAll() {
         postdata="{\"sign\":3}";
         getdata=HttpUtil.postData(postdata);
-//        logger.info("#DATA     ~ "+getdata);
+        logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
@@ -65,13 +65,13 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     @Override
     public List<SwipeRecord> listByTimezone(String startTime, String endTime) {
         postdata="{\"sign\":4,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
-        logger.info("#request-DATA     ~ "+postdata);
+//        logger.info("#request-DATA     ~ "+postdata);
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
-            logger.info("swipeRecordList:"+String.valueOf(swipeRecordList));
+//            logger.info("swipeRecordList:"+String.valueOf(swipeRecordList));
             return swipeRecordList;
         }
         return null;

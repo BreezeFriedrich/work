@@ -58,6 +58,7 @@ function leftsideBarInit() {
 }
 
 function iframe(page){
-    document.getElementById("iframe").setAttribute("src","dispatcher/"+page);
+    // document.getElementById("iframe").setAttribute("src","dispatcher/"+page);
+    document.getElementById("iframe").setAttribute("src",page);
     // $("#iframe").attr("src","dispatcher/"+page);
 }

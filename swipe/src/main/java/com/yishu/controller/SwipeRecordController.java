@@ -79,12 +79,22 @@ public class SwipeRecordController {
             e.printStackTrace();
         }
         int days = (int) ((time2.getTime() - time1.getTime())/86400000);
-        Date[] xAxisArr=new Date[days+1];
-        while (days>=0) {
-            xAxisArr[days] = new Date(days*86400000+time1.getTime());
-            days--;
-        }
-        SwipeRecord swipeRecord=null;
+        HashMap xAxisTime=new HashMap<String,Date>();
+        xAxisTime.put("min",time1);
+        xAxisTime.put("max",time2);
+
+//        String[] xAxisArr=new String[days+1];
+//        Date day;
+//        int dayCount=days;
+//        System.out.println("xAxisArr[days]");
+//        while (dayCount>=0) {
+//            day=new Date(dayCount*86400000+time1.getTime());
+//            xAxisArr[days] = day.getFullYear()+"."+(day.getMonth()+1)+"."+day.getDate();
+//            System.out.print(xAxisArr[days]+" ");
+//            dayCount--;
+//        }
+//        System.out.println();
+
         Date tempTime=null;
         Map<String,Integer> successMap=new HashMap();
         Map<String,Integer> failMap=new HashMap();
@@ -97,28 +107,75 @@ public class SwipeRecordController {
             int i= (int) ((tempTime.getTime()-time1.getTime())/86400000);
             if(0==x.getResult()){
                 if(successMap.containsKey(String.valueOf(i))) {
-                    successMap.put(String.valueOf(i), successMap.get(String.valueOf(i)) + 1);
+                    successMap.put(String.valueOf(i), (int)successMap.get(String.valueOf(i)) + 1);
                 }else{
                     successMap.put(String.valueOf(i), 1);
                 }
             }else {
                 if(failMap.containsKey(String.valueOf(i))) {
-                    failMap.put(String.valueOf(i), failMap.get(String.valueOf(i)) + 1);
+                    failMap.put(String.valueOf(i), (int)failMap.get(String.valueOf(i)) + 1);
                 }else{
                     failMap.put(String.valueOf(i), 1);
                 }
             }
         }
+//        logger.info("successMap.size:"+successMap);
+//        logger.info("failMap.size:"+failMap);
         double value=0;
         double index[]=new double[days+1];
+        int successNum=0;
+        int failNum=0;
         for(int j=0;j<=days;j++){
-            value=successMap.get(String.valueOf(j))*1.0/successMap.get(String.valueOf(j))+failMap.get(String.valueOf(j));
-            index[j]=value;
+            if(successMap.containsKey(String.valueOf(j))) {
+                successNum=successMap.get(String.valueOf(j));
+            }else{
+                successNum=0;
+            }
+            if(failMap.containsKey(String.valueOf(j))) {
+                failNum=failMap.get(String.valueOf(j));
+            }else{
+                failNum=0;
+            }
+            if(0!=successNum+failNum){
+                value=successNum*1.00/(successNum+failNum);
+                index[j]=value;
+            }else {
+                index[j]=0;
+            }
         }
         Map resultMap=new HashMap();
-        resultMap.put("xAxisArr",xAxisArr);
+        resultMap.put("xAxisTime",xAxisTime);
         resultMap.put("data",index);
         return jsonUtil.mapToJson(resultMap);
+    }
+
+    @RequestMapping("/listByTimezoneToChartPie.do")
+    @ResponseBody
+    public String listByTimezoneToChartPie(HttpServletRequest request) {
+        logger.info("#CTL      ~ listByTimezoneToChart");
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        List<SwipeRecord> swipeRecordList = swipeRecordService.listByTimezone(startTime, endTime);
+
+        int successNum = 0;
+        int failNum = 0;
+        for(SwipeRecord x:swipeRecordList){
+            if(0==x.getResult()){
+                successNum++;
+            }else {
+                failNum++;
+            }
+        }
+        List result=new ArrayList();
+        HashMap resultMap1=new HashMap();
+        resultMap1.put("value",successNum);
+        resultMap1.put("name","成功");
+        HashMap resultMap2=new HashMap();
+        resultMap2.put("value",failNum);
+        resultMap2.put("name","失败");
+        result.add(resultMap1);
+        result.add(resultMap2);
+        return jsonUtil.listToJson(result);
     }
 
     public String listToObj(List list,int total){

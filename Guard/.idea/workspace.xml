@@ -2,8 +2,210 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c657c2e8-2f95-4b74-a179-3024c5fea630" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/.idea/dictionaries/WindSpring.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/shiro.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/cache/BaseCacheService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/cache/UserServiceAspect.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/ResourceDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/RoleDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/UserDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/filter/ResourceCheckFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/kit/ShiroKit.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/Resource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/Role.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/RoleResource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/User.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/model/UserRole.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/permission/UrlPermission.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/permission/UrlPermissionResolver.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/realm/MyRealm.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/HelloWorld.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/IResourceService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/IRoleService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/IUserService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/ResourceService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/RoleService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/ShiroUserService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/InitServlet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/ResourceController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/RoleController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/ShiroLoginController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/UserController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/ehcache.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/mappers/ResourceMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/mappers/RoleMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/mappers/UserMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-shiro.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_chart.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources.local.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources/831dc3b0-d8e5-4c72-977a-c5871c4ac7bd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dataSources/e73b8e2d-279a-401d-a0b9-3e5d4fc3b216.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/dictionaries/admin.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/sqldialects.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/.idea/uiDesigner.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/ContextLoader.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/ContextLoader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/DataServer.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/DataServer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/MyHandler.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/MyHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/DeviceStatusDao.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/DeviceStatusDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/SwipeRecordDao.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/SwipeRecordDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/model/DeviceStatus.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/model/DeviceStatus.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/model/SwipeRecord.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/model/SwipeRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/ModuleService.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/ModuleService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/SwipeRecordService.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/SwipeRecordService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/ModuleServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/util/SpringTool.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/util/SpringTool.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/DispatcherServlet.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/DispatcherServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LockOperateController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LockOperateController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LoginController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/LoginController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/ModuleStatusController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/SwipeRecordController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/DeviceData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/model/json/LockOperateJson.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/LockOperateServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/UserServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/DeviceUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/DeviceUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$2.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/HttpsUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/LockOperateUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/LockOperateUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/NoteUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/NoteUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/Tea.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/util/Tea.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe.war" afterPath="$PROJECT_DIR$/../swipe/target/swipe.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/DispatcherServlet.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/DispatcherServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LockOperateController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LockOperateController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LoginController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/LoginController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/DeviceData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/model/json/LockOperateJson.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/UserServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/DeviceUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/DeviceUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$2.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/HttpsUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/LockOperateUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/LockOperateUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/NoteUtil.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/NoteUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/Tea.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/util/Tea.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guard.iml" afterPath="$PROJECT_DIR$/Guard.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/.idea/misc.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/SwipeDataServer.iml" afterPath="$PROJECT_DIR$/../SwipeDataServer/SwipeDataServer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/druid.properties" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/druid.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/logback.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/resources/druid.properties" afterPath="$PROJECT_DIR$/../SwipeDataServer/resources/druid.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/resources/logback.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/resources/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/DataServer.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/DataServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/compiler.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/encodings.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_0_13.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_0_13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_core_1_0_13.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__ch_qos_logback_logback_core_1_0_13.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_alibaba_druid_1_0_18.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_alibaba_druid_1_0_18.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_google_code_gson_gson_2_6_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__com_google_code_gson_gson_2_6_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_lang_commons_lang_2_5.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_lang_commons_lang_2_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_servlet_api_3_0_alpha_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__javax_servlet_servlet_api_3_0_alpha_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_38.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_38.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_2_10_2_2_21.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_2_10_2_2_21.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_5_3.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_5_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_json_lib_json_lib_jdk15_2_4.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__net_sf_json_lib_json_lib_jdk15_2_4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_spring_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_spring_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_3_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_3_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_9.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_9.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_1_4_GA.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_1_4_GA.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_3_4_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_3_4_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_0.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_12.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_12.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_aop_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_aop_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_beans_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_beans_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_support_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_context_support_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_core_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_core_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_expression_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_expression_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_jdbc_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_jdbc_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_test_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_test_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_tx_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_tx_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_web_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_web_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_webmvc_4_2_6_RELEASE.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__org_springframework_spring_webmvc_4_2_6_RELEASE.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__taglibs_standard_1_1_1.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/libraries/Maven__taglibs_standard_1_1_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/misc.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/modules.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-dao.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-service.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-service.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-web.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_chart.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_chart.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_trail.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_trail.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_trail.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_trail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/swipe.iml" afterPath="$PROJECT_DIR$/../swipe/swipe.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/jdbc.properties" afterPath="$PROJECT_DIR$/../swipe/target/classes/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-dao.xml" afterPath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-service.xml" afterPath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-service.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-web.xml" afterPath="$PROJECT_DIR$/../swipe/target/classes/spring/spring-web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../swipe/target/swipe/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/jdbc.properties" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-dao.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-service.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-service.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-web.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/spring/spring-web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_chart.jsp" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_chart.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_trail.jsp" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/swiperecord_trail.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/swiperecord_trail.js" afterPath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/swiperecord_trail.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,11 +233,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1886">
+              <caret line="82" column="17" lean-forward="false" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -44,7 +246,7 @@
       <file leaf-file-name="shiro.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shiro.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="759">
               <caret line="33" column="58" lean-forward="false" selection-start-line="33" selection-start-column="58" selection-end-line="33" selection-end-column="58" />
               <folding />
             </state>
@@ -63,7 +265,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>shiro</find>
+      <find>Tea</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -139,10 +345,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="81" />
+    <option name="y" value="83" />
     <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="height" value="983" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -179,9 +385,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -260,6 +463,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Guard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Guard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -283,10 +520,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mappers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -312,21 +545,80 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
+              <option name="myItemId" value="yishu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Guard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Guard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="yishu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Guard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Guard" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yishu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shiro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="node.js.path.for.package.stylelint" value="project" />
@@ -472,58 +764,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
-      <method />
-    </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -582,9 +822,6 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -641,19 +878,6 @@
       <scripts />
       <node-interpreter value="project" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
       <method />
     </configuration>
     <configuration default="false" name="tomcat7" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.73" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:\Program Files\Java\jdk1.7\jre">
@@ -748,6 +972,8 @@
       <workItem from="1493951309436" duration="377000" />
       <workItem from="1494293172541" duration="1839000" />
       <workItem from="1495764509337" duration="235000" />
+      <workItem from="1496157675354" duration="3081000" />
+      <workItem from="1496161039877" duration="1125000" />
     </task>
     <task id="LOCAL-00001" summary="2017.04.28">
       <created>1493376363036</created>
@@ -760,25 +986,23 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75822000" />
+    <option name="totallyTimeSpent" value="80028000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="81" y="83" width="1616" height="983" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25454545" sideWeight="0.50385606" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25734267" sideWeight="0.4974293" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32587412" sideWeight="0.49614397" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26092544" sideWeight="0.49007446" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3249027" sideWeight="0.49007446" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -790,6 +1014,7 @@
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25734267" sideWeight="0.4974293" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
@@ -821,71 +1046,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/model/UserRole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/realm/MyRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ehcache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-564">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/kit/ShiroKit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/util/UserUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/filter/ResourceCheckFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/cache/BaseCacheService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/RoleDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/dao/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -904,39 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/ShiroLoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="24" column="64" lean-forward="true" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/ResourceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,13 +1089,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/welcome.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1038,35 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/InitServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="7" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-shiro.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="84" column="91" lean-forward="false" selection-start-line="84" selection-start-column="91" selection-end-line="84" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-dao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="22" column="78" lean-forward="false" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-service.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="62" lean-forward="true" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1082,25 +1173,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/DispatcherController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/DispatcherServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="22" column="66" lean-forward="true" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="12" column="67" lean-forward="true" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1116,13 +1192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1151,28 +1220,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-80">
           <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <marker date="1493793440116" expanded="true" signature="279:385" ph="SELECT `id`,... t_resource" />
-            <marker date="1493793440116" expanded="true" signature="456:545" ph="insert into t_resource... " />
-            <marker date="1493793440116" expanded="true" signature="619:966" ph="update t_res... " />
-            <marker date="1493793440116" expanded="true" signature="1035:1082" ph="DELETE FROM " />
-            <marker date="1493793440116" expanded="true" signature="1171:1302" ph="SELECT `id`,... t_resource" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="54" lean-forward="true" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-          <folding>
-            <element signature="n#listener#0;n#web-app#0;n#!!top" expanded="false" />
-            <element signature="n#listener#1;n#web-app#0;n#!!top" expanded="false" />
-            <element signature="n#filter#0;n#web-app#0;n#!!top" expanded="false" />
-            <element signature="n#filter-mapping#0;n#web-app#0;n#!!top" expanded="false" />
-            <element signature="n#filter#1;n#web-app#0;n#!!top" expanded="false" />
-            <element signature="n#filter-mapping#1;n#web-app#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1183,7 +1231,106 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/ShiroLoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391">
+          <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/InitServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/util/UserUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/ResourceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2546">
+          <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/util/NoteUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1035">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/base64.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/cookie_util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1191,13 +1338,176 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/util/Tea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="65" lean-forward="true" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-dao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-service.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="68" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-shiro.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1212">
+          <caret line="84" column="91" lean-forward="false" selection-start-line="84" selection-start-column="91" selection-end-line="84" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1886">
+          <caret line="82" column="17" lean-forward="false" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shiro.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="759">
           <caret line="33" column="58" lean-forward="false" selection-start-line="33" selection-start-column="58" selection-end-line="33" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>Guard:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Guard</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

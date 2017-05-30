@@ -20,7 +20,7 @@
     结束日：<li class="laydate-icon" id="endTime" style="width:200px;"></li>
 
     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-    <div id="container-chart" style="width: 600px;height:400px;">
+    <div id="container-chart" style="width: 900px;height:400px;">
     </div>
 
 </body>

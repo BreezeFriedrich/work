@@ -3,10 +3,9 @@
  */
 var startTime;
 var endTime;
+var myChart;
 $(function () {
     date_plugin_init();
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('container-chart'));
     myChartInit();
 
     setTimeout(function(){
@@ -24,16 +23,20 @@ $(function () {
                 dataType:"json",
                 async:false,
                 success: function(result){
-                    // var arr=new Array();
                     myChart.setOption({
                         xAxis: {
-                            // data: timeArr
-                            data:result.xAxisArr
+                            // data:result.xAxisArr
+                            type : 'time',
+                            interval:86400000,
+                            min:result.xAxisTime.min,
+                            max:result.xAxisTime.max
                         },
                         series: [{
                             // 根据名字对应到相应的系列
                             name: '刷卡成功率',
-                            // data: indexArr
+                            data:result.data
+                        },{
+                            name: '折线',
                             data:result.data
                         }]
                     });
@@ -76,6 +79,8 @@ $(function () {
 
 function myChartInit(){
 
+    // 基于准备好的dom，初始化echarts实例
+    myChart = echarts.init(document.getElementById('container-chart'));
 // 指定图表的配置项和数据
     var option = {
         title: {
@@ -110,7 +115,7 @@ function myChartInit(){
             type: 'value',
             scale:true,
             name:'成功率',
-            max:1.0,
+            max:1.5,
             min:0,
             boundaryGap:[0.02,0.02]
         },
@@ -120,6 +125,11 @@ function myChartInit(){
         series: [{
             name: '刷卡成功率',
             type: 'bar',
+            // dimensions: ['xValue', 'yValue'],
+            // encode: {
+            //     x: 'xValue',
+            //     y: 'yValue'
+            // },
             data: []
         },{
             name:'折线',
