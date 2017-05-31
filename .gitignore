@@ -1,2 +1,3 @@
 #maven项目 原本较小但生成的target很大
 /target
+/out
