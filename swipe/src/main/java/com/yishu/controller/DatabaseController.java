@@ -1,13 +1,15 @@
 package com.yishu.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yishu.model.DeviceStatus;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +25,28 @@ public class DatabaseController {
 //    @Qualifier("databaseService")
 //    private DatabaseService databaseService;
 
-    @RequestMapping("/data_clear")
-    @ResponseBody
-    public String data_clear(HttpServletRequest request) {
-        logger.info("#CTL      ~ database/data_clear");
-
+    @RequestMapping(value = "/clear",method = RequestMethod.GET)
+//    @ResponseBody
+    public String data_clear() {
+        logger.info("#CTL      ~ database/clear");
         return "database/data_clear";
+    }
+
+    @RequestMapping("/clearSwipeRecord")
+    @ResponseBody
+    public String clearSwipeRecord(HttpServletRequest request) {
+        logger.info("#CTL      ~ database/clearSwipeRecord");
+        String str=request.getParameter("rows");
+        List<DeviceStatus> deviceStatusList = null;
+        ObjectMapper objectMapper=new ObjectMapper();
+        try {
+            deviceStatusList=objectMapper.readValue(str,List.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (DeviceStatus deviceStatus:deviceStatusList){
+            System.out.print(deviceStatus);
+        }
+        return null;
     }
 }

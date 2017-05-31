@@ -68,7 +68,8 @@ function clearCookie()
 		tempCookieStrs = allCookie[i].split("=");
 		tempCookie=new Object();
 		tempCookie.name=trim(tempCookieStrs[0]);
-		tempCookie.value=trim(tempCookieStrs[1]);
+		// tempCookie.value=trim(tempCookieStrs[1]);
+        tempCookie.value=tempCookieStrs[1];
 //		alert("cookie:[,"+tempCookie.name+":"+tempCookie.value+",]");
 		delCookie(tempCookie.name);
 	}

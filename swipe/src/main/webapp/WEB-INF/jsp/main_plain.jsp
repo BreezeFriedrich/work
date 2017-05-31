@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a onclick=iframe("admin/resource/list")>资源管理</a>
 						</dd>
 						<dd>
-							<a onclick=iframe("database/data_clear")>数据清理</a>
+							<a onclick=iframe("database/clear")>数据清理</a>
 						</dd>
 					</dl>
 					<dl class="deviceManage">

@@ -17,5 +17,6 @@ public interface DeviceStatusDao {
     List<DeviceStatus> listByStatus(int status);
 
     List<DeviceStatus> listAllWithoutDuplicate();
+    List<DeviceStatus> listAll();
     Integer discardDuplicate();
 }

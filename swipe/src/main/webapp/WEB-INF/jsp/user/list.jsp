@@ -1,12 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
 <html>
     <head>
         <title>用户列表</title>
     </head>
     <body>
         <div class="container">
-            <jsp:include page="inc.jsp"></jsp:include>
+            <%--<jsp:include page="inc.jsp"></jsp:include>--%>
             <table class="table table-striped">
                 <thead>
                     <tr class="info">

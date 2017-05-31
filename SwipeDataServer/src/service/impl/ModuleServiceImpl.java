@@ -43,6 +43,11 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public List<DeviceStatus> listAll() {
+        return deviceStatusDao.listAll();
+    }
+
+    @Override
     public void discardDuplicate() {
         deviceStatusDao.discardDuplicate();
     }

@@ -8,4 +8,6 @@
 
     <context:component-scan base-package="com.yishu.service"/>
 
+    <context:component-scan base-package="com.yishu.shiro.cache"/>
+    <context:component-scan base-package="com.yishu.shiro.service"/>
 </beans>

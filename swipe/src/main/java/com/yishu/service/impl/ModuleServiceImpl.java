@@ -96,6 +96,22 @@ public class ModuleServiceImpl implements ModuleService {
         return null;
     }
 
+    @Override
+    public List<DeviceStatus> listAll() {
+        postdata="{\"sign\":5}";
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        if(null!=getdata&&""!=getdata){
+            deviceStatusList=getDataListFromJson(getdata);
+        }
+        if(deviceStatusList.size()>0){
+//            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
+            return deviceStatusList;
+        }
+        return null;
+    }
+
 //    @Override
 //    public void discardDuplicate() {
 //        deviceStatusDao.discardDuplicate();

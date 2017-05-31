@@ -86,44 +86,44 @@ public class MyRealm extends AuthorizingRealm {
     @Override
     protected void clearCachedAuthenticationInfo(PrincipalCollection principals) {
         Cache c=getAuthenticationCache();
-        logger.info("before clear authtication cache");
+//        logger.info("before clear authtication cache");
         for(Object o : c.keys()){
-            logger.info( o + " , " + c.get(o));
+//            logger.info( o + " , " + c.get(o));
         }
         super.clearCachedAuthenticationInfo(principals);
-        logger.info("after clear authtication cache by parent class");
+//        logger.info("after clear authtication cache by parent class");
         for(Object o : c.keys()){
-            logger.info( o + " , " + c.get(o));
+//            logger.info( o + " , " + c.get(o));
         }
 
         User user=(User)principals.getPrimaryPrincipal();
         SimplePrincipalCollection spc=new SimplePrincipalCollection(user.getUsername(),getName());
         super.clearCachedAuthenticationInfo(spc);
-        logger.info("添加了代码清除【认证】缓存之后");
+//        logger.info("添加了代码清除【认证】缓存之后");
         int cacheSize = c.keys().size();
-        logger.info("【认证】缓存的大小:" + c.keys().size());
+//        logger.info("【认证】缓存的大小:" + c.keys().size());
         if (cacheSize == 0){
-            logger.info("说明【认证】缓存被清空了。");
+//            logger.info("说明【认证】缓存被清空了。");
         }
     }
 
     @Override
     protected void clearCachedAuthorizationInfo(PrincipalCollection principals) {
-        logger.info("清除【授权】缓存之前");
+//        logger.info("清除【授权】缓存之前");
         Cache c = getAuthorizationCache();
         for(Object o : c.keys()){
-            logger.info( o + " , " + c.get(o));
+//            logger.info( o + " , " + c.get(o));
         }
         super.clearCachedAuthorizationInfo(principals);
-        logger.info("清除【授权】缓存之后");
+//        logger.info("清除【授权】缓存之后");
         int cacheSize = c.keys().size();
-        logger.info("【授权】缓存的大小:" + cacheSize);
+//        logger.info("【授权】缓存的大小:" + cacheSize);
 
         for(Object o : c.keys()){
-            logger.info( o + " , " + c.get(o));
+//            logger.info( o + " , " + c.get(o));
         }
         if(cacheSize == 0){
-            logger.info("说明【授权】缓存被清空了。");
+//            logger.info("说明【授权】缓存被清空了。");
         }
     }
 

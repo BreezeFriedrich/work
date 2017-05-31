@@ -199,6 +199,22 @@ class MyHandler implements HttpHandler{
                 map=null;
                 break;
 
+            case 5://listAll
+                deviceStatusList=new ArrayList();
+                map=new HashMap();
+                tempDeviceStatusList=moduleService.listAll();
+                it=tempDeviceStatusList.iterator();
+                map.put("result",0);//0--获取数据成功
+                while(it.hasNext()){
+                    deviceStatus= (DeviceStatus) it.next();
+                    deviceStatusList.add(deviceStatus);
+                }
+                map.put("data",deviceStatusList);
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                map=null;
+                break;
+
             case 3://swipeRecord/listAll
                 swipeRecordList=new ArrayList<>();
                 map=new HashMap();

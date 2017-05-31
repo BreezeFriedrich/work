@@ -55,6 +55,13 @@
         ;
     </select>
 
+    <select id="listAll" resultType="DeviceStatus">
+        SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
+        FROM DeviceStatus
+        ORDER BY `timestamp` DESC,`deviceid` DESC
+        ;
+    </select>
+
     <delete id="discardDuplicate">
         DELETE FROM DeviceStatus
         WHERE SEQ NOT IN

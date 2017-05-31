@@ -16,7 +16,8 @@ $(function () {
 	document.getElementById("safetylogout").onclick=function(){
 		clearCookie();
 //		window.history.forward(1);
-		window.location.href="http://localhost/Lock/login.jsp";
+// 		window.location.href="http://localhost/Lock/login.jsp";
+        window.location.href="logout";
 	};
 });
 
