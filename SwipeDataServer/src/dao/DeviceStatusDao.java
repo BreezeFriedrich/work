@@ -1,6 +1,7 @@
 package dao;
 
 import model.DeviceStatus;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,5 +19,6 @@ public interface DeviceStatusDao {
 
     List<DeviceStatus> listAllWithoutDuplicate();
     List<DeviceStatus> listAll();
+    List<DeviceStatus> listByParam(@Param("endTime") String endTime,@Param("status") int status,@Param("deviceid") String deviceid);
     Integer discardDuplicate();
 }

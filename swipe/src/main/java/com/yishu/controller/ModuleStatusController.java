@@ -83,6 +83,17 @@ public class ModuleStatusController {
 //        return jsonUtil.listToJson(moduleList);
     }
 
+    @RequestMapping("/listByParam.do")
+    @ResponseBody
+    public String listByParam(HttpServletRequest request){
+        logger.info("#CTL      ~ listByParam");
+        String deviceid=request.getParameter("deviceid");
+        int status =Integer.parseInt(request.getParameter("status"));
+        String endTime=request.getParameter("endTime");
+        List<DeviceStatus> deviceStatusList=moduleService.listByParam(endTime,status,deviceid);
+        return null;
+    }
+
     @RequestMapping("/hello.do")
     @ResponseBody
     public int hello(){

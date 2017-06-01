@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +28,7 @@ public class DatabaseController {
 //    @ResponseBody
     public String data_clear() {
         logger.info("#CTL      ~ database/clear");
-        return "database/data_clear";
+        return "database/clearData";
     }
 
     @RequestMapping("/clearSwipeRecord")

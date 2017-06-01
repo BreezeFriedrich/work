@@ -48,6 +48,11 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public List<DeviceStatus> listByParam(String endTime, int status, String deviceid) {
+        return deviceStatusDao.listByParam(endTime,status,deviceid);
+    }
+
+    @Override
     public void discardDuplicate() {
         deviceStatusDao.discardDuplicate();
     }

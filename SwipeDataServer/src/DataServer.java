@@ -162,10 +162,14 @@ class MyHandler implements HttpHandler{
         SwipeRecord swipeRecord=null;
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=null;
+        String startTime="";
+        String endTime="";
+        int status=0;
+        String deviceid="";
 
         switch (sign) {
             case 1:// listByStatus
-                int status=node.get("status").asInt();
+                status=node.get("status").asInt();
                 deviceStatusList=new ArrayList();
                 map=new HashMap();
                 tempDeviceStatusList=moduleService.listByStatus(status);
@@ -215,6 +219,25 @@ class MyHandler implements HttpHandler{
                 map=null;
                 break;
 
+            case 6://listByParam
+                status=node.get("status").asInt();
+                endTime=node.get("endTime").asText();
+                deviceid=node.get("deviceid").asText();
+                deviceStatusList=new ArrayList();
+                map=new HashMap();
+                tempDeviceStatusList=moduleService.listByParam(endTime,status,deviceid);
+                it=tempDeviceStatusList.iterator();
+                map.put("result",0);//0--获取数据成功
+                while(it.hasNext()){
+                    deviceStatus= (DeviceStatus) it.next();
+                    deviceStatusList.add(deviceStatus);
+                }
+                map.put("data",deviceStatusList);
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                map=null;
+                break;
+
             case 3://swipeRecord/listAll
                 swipeRecordList=new ArrayList<>();
                 map=new HashMap();
@@ -234,8 +257,8 @@ class MyHandler implements HttpHandler{
             case 4://swipeRecord/listByTimezone
                 swipeRecordList=new ArrayList<>();
                 map=new HashMap();
-                String startTime=node.get("startTime").asText();
-                String endTime=node.get("endTime").asText();
+                startTime=node.get("startTime").asText();
+                endTime=node.get("endTime").asText();
 //                logger.info("tag2 - startTime.date="+startTime+"; endTime.date"+endTime);
 //                String startTime=node.get("startTime").asText();
 //                String endTime=node.get("endTime").asText();

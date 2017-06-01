@@ -23,6 +23,8 @@
                 /admin/**=authc,resourceCheckFilter
                 /login=anon
                 /database/**=authc,roles[admin]
+                /moduleStatus/**=anon
+                /swipeRecord/**=anon
             </value>
         </property>
     </bean>

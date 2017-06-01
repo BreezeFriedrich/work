@@ -112,6 +112,22 @@ public class ModuleServiceImpl implements ModuleService {
         return null;
     }
 
+    @Override
+    public List<DeviceStatus> listByParam(String endTime, int status, String deviceid) {
+        postdata="{\"sign\":6,\"endTime\":"+endTime+",\"status\":"+status+",\"deviceid\":"+deviceid+"}";
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        if(null!=getdata&&""!=getdata){
+            deviceStatusList=getDataListFromJson(getdata);
+        }
+        if(deviceStatusList.size()>0){
+//            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
+            return deviceStatusList;
+        }
+        return null;
+    }
+
 //    @Override
 //    public void discardDuplicate() {
 //        deviceStatusDao.discardDuplicate();

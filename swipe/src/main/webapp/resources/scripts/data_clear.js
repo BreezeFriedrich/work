@@ -4,11 +4,12 @@ var table_api;
 
 $(function(){
     moduleStatus();
+    // swipeRecord();
     edit();
-    swipeRecord();
 });
+
 function moduleStatus() {
-    table_moduleStatus =$('#table-moduleStatus').dataTable({
+    table_api =$('#table-moduleStatus').dataTable($.extend(true,{},{
         "language": {
             "sProcessing":   "处理中...",
             "sLengthMenu":   "每页 _MENU_ 项",
@@ -47,22 +48,19 @@ function moduleStatus() {
         "retrieve" : true,
         "processing" : true,
         "serverSide" : true,
-        //"bPaginate" : true,
-        //"bProcessing": true//服务器端进行分页处理的意思
 
-        "bProcessing": true,
+        "bProcessing": true,//服务器端进行分页处理的意思
         "bServerSide": true,
-        "bSort": false,
         "aoColumns": [{
             "mDataProp":"deviceid",
             "sTitle" : "模块编号",
             "sDefaultContent" : "",
             "sClass" : "center"
-        },
+            },
             {"mDataProp":"deviceip",
                 "sTitle" : "模块IP",
                 "sDefaultContent" : "",
-                "sClass" : "left",
+                "sClass" : "left"
             },
             {"mDataProp":"status",
                 "sTitle" : "模块状态",
@@ -87,7 +85,7 @@ function moduleStatus() {
         "aoColumnDefs" : [{
             "targets" : 2,//操作按钮目标列
             "render" : function(data,type,row) {
-                if (data == "0") {
+                if (0 === data ) {
                     return "正常";
                 } else {
                     return "异常";
@@ -103,8 +101,13 @@ function moduleStatus() {
         }],
 
         "ajax": function (data, callback,settings) {
+            alert('data:'+data);
             //封装请求参数
             var param = {};
+            if(typeof(data)==undefined ){
+                data=table_api.data();
+            }
+            alert('data:'+data);
             param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
             param.start = data.start;//开始的记录序号
             param.page = (data.start / data.length) + 1;//当前页码
@@ -122,10 +125,6 @@ function moduleStatus() {
                         returnData.recordsTotal = result.recordsTotal;//返回数据全部记录
                         returnData.recordsFiltered = result.recordsFiltered;//后台不实现过滤功能，每次查询均视作全部结果
                         returnData.data = result.data;//返回的数据列表
-                        //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
-                        //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
-                        //关闭遮罩
-                        //$wrapper.spinModal(false);
                         callback(returnData);
                         // iframe和导航高度随table元素高度变化
                         var thisheight = $(document).height();
@@ -143,14 +142,20 @@ function moduleStatus() {
         },
         //数据渲染,使数据“失败”高亮!
         "createdRow": function ( row, data, index ) {
-            if ( data['status'] =='0' ) {
+            if ( data['status'] ===0 ) {
                 $('td', row).eq(2).css('font-weight',"bold").css("color","green");
             }
-            if ( data['status'] =='1' ){
+            if ( data['status'] ===1 ){
                 $('td', row).eq(2).css('font-weight',"bold").css("color","red");
             }
-        },
-    })
+        }
+    })).api();
+    // $([name='table-moduleStatus_length select']).on('change', function () {
+    //     page_length=$([name='table-moduleStatus_length select']).val();
+    // } );
+    $('#table-moduleStatus tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    });
 }
 function edit() {
 
@@ -164,38 +169,26 @@ function edit() {
     //     }
     // } );
 
-    $('#table-moduleStatus tbody').on( 'click', 'tr', function () {
-        $(this).toggleClass('selected');
-    });
-
     $('#delbutton-moduleStatus').click( function () {
-        // var rowdata = table_moduleStatus.row( $(this).parents('tr') ).data();
-        // tables.row( $(this).parents('tr') ).data();
-        table_api=$('#table-moduleStatus').DataTable();
-        var data=table_api.rows( {selected:true} ).data();
-        // alert('rowdata:'+rowdata);
-        // alert('rowdata0: '+rowdata[0]);
-        // var data= table_api.row('.selected').data();
-        alert('data0: '+data[0]);
-        alert('data0: '+data[0].deviceid);
+        // table_api=$('#table-moduleStatus').DataTable();
+        var selectRows=table_api.rows( {selected:true} ).data();
+        alert('data0: '+selectRows[0]);
+        alert('data0: '+selectRows[0].deviceid);
         $.ajax({
             type: "POST",
             url: 'database/clearSwipeRecord',
             dataType: 'json',
-            data: {rows:data},
+            data: {rows:selectRows},
             success: function (getData) {
-                if (getData.result=="0") {
-                    table_moduleStatus.ajax.reload();
-                };
+                alert('edit-success');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("查询失败");
             }
-        })
+        });
         alert('tag');
-        // table_moduleStatus.row('.selected').remove().draw( false );
     });
-};
+}
 function swipeRecord() {
     $('#table-swipeRecord').dataTable({
         "language": {
@@ -241,7 +234,6 @@ function swipeRecord() {
 
         "bProcessing": true,
         "bServerSide": true,
-        "bSort": false,
         "aoColumns": [{
             // {"sName": "deviceid", "sClass": "center"},
             // {"sName": "deviceip", "sClass": "center"},
