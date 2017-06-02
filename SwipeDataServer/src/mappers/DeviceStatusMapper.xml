@@ -65,15 +65,41 @@
     <select id="listByParam" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
         FROM DeviceStatus
-        WHERE
-            <set>
-                <if test="endTime !=null">#{endTime} > `timestamp`</if> AND
-                <if test="status !=null">`status` = #{status}</if> AND
-                <if test="deviceid !=null">`deviceid` = #{deviceid}</if>
-            </set>
-        ORDER BY `timestamp` DESC;
-        ;
+        <where>
+            <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
+            <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
+        </where>
     </select>
+
+    <select id="countByParam" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM DeviceStatus
+        <where>
+            <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
+            <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
+        </where>
+    </select>
+
+    <select id="countByParams" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM DeviceStatus
+        <where>
+            <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
+            <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
+        </where>
+    </select>
+
+    <delete id="deleteByParam">
+        DELETE FROM DeviceStatus
+        <where>
+            <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
+            <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
+        </where>
+    </delete>
 
     <delete id="discardDuplicate">
         DELETE FROM DeviceStatus

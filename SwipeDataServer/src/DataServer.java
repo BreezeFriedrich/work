@@ -147,12 +147,14 @@ class MyHandler implements HttpHandler{
         logger.info("#DATA     ~ request-data:"+result);
 
         ObjectMapper objectMapper=new ObjectMapper();
-        Map map=null;
+        Map map=new HashMap();
         JsonNode node=objectMapper.readTree(result);
         int sign=node.get("sign").asInt();
 //        logger.info("sign:"+String.valueOf(sign));
 
         Iterator it=null;
+        int countNum=0;
+        int affectedNum=0;
         List<DeviceStatus> tempDeviceStatusList=null;
         List<DeviceStatus> deviceStatusList=null;
         DeviceStatus deviceStatus=null;
@@ -171,25 +173,23 @@ class MyHandler implements HttpHandler{
             case 1:// listByStatus
                 status=node.get("status").asInt();
                 deviceStatusList=new ArrayList();
-                map=new HashMap();
+//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listByStatus(status);
                 it=tempDeviceStatusList.iterator();
-//                logger.info("#TAG      ~ start >>>>");
                 map.put("result",0);//0--获取数据成功
                 while(it.hasNext()){
                     deviceStatus= (DeviceStatus) it.next();
                     deviceStatusList.add(deviceStatus);
                 }
                 map.put("data",deviceStatusList);
-//                logger.info("#TAG      ~ end   <<<<");
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-                map=null;
+//                map=null;
                 break;
 
             case 2://listAllWithoutDuplicate
                 deviceStatusList=new ArrayList();
-                map=new HashMap();
+//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAllWithoutDuplicate();
                 it=tempDeviceStatusList.iterator();
                 map.put("result",0);//0--获取数据成功
@@ -200,12 +200,12 @@ class MyHandler implements HttpHandler{
                 map.put("data",deviceStatusList);
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-                map=null;
+//                map=null;
                 break;
 
             case 5://listAll
                 deviceStatusList=new ArrayList();
-                map=new HashMap();
+//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAll();
                 it=tempDeviceStatusList.iterator();
                 map.put("result",0);//0--获取数据成功
@@ -216,7 +216,7 @@ class MyHandler implements HttpHandler{
                 map.put("data",deviceStatusList);
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-                map=null;
+//                map=null;
                 break;
 
             case 6://listByParam
@@ -224,7 +224,7 @@ class MyHandler implements HttpHandler{
                 endTime=node.get("endTime").asText();
                 deviceid=node.get("deviceid").asText();
                 deviceStatusList=new ArrayList();
-                map=new HashMap();
+//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listByParam(endTime,status,deviceid);
                 it=tempDeviceStatusList.iterator();
                 map.put("result",0);//0--获取数据成功
@@ -235,12 +235,38 @@ class MyHandler implements HttpHandler{
                 map.put("data",deviceStatusList);
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-                map=null;
+//                map=null;
+                break;
+
+            case 7://countByParam
+                status=node.get("status").asInt();
+                endTime=node.get("endTime").asText();
+                deviceid=node.get("deviceid").asText();
+//                map=new HashMap();
+                countNum=moduleService.countByParam(endTime,status,deviceid);
+                map.put("result",0);//0--获取数据成功
+                map.put("data",countNum);
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(countNum));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
+            case 8://moduleStatus/deleteByParam
+                status=node.get("status").asInt();
+                endTime=node.get("endTime").asText();
+                deviceid=node.get("deviceid").asText();
+//                map=new HashMap();
+                affectedNum=moduleService.deleteByParam(endTime,status,deviceid);
+                map.put("result",0);//0--获取数据成功
+                map.put("data",affectedNum);
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(affectedNum));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
                 break;
 
             case 3://swipeRecord/listAll
                 swipeRecordList=new ArrayList<>();
-                map=new HashMap();
+//                map=new HashMap();
                 tempSwipeRecordList=swipeRecordService.listAll();
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
@@ -251,12 +277,12 @@ class MyHandler implements HttpHandler{
                 map.put("data",swipeRecordList);
                 logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-                map=null;
+//                map=null;
                 break;
 
             case 4://swipeRecord/listByTimezone
                 swipeRecordList=new ArrayList<>();
-                map=new HashMap();
+//                map=new HashMap();
                 startTime=node.get("startTime").asText();
                 endTime=node.get("endTime").asText();
 //                logger.info("tag2 - startTime.date="+startTime+"; endTime.date"+endTime);
@@ -272,7 +298,7 @@ class MyHandler implements HttpHandler{
                 map.put("data",swipeRecordList);
                 logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-                map=null;
+//                map=null;
                 break;
 
             default:break;

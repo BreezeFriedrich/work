@@ -17,6 +17,8 @@ public interface ModuleService {
     public List<DeviceStatus> listAllWithoutDuplicate();
     public List<DeviceStatus> listAll();
     public List<DeviceStatus> listByParam(String endTime,int status,String deviceid);
+    public int countByParam(String endTime,int status,String deviceid);
+    public int deleteByParam(String endTime,int status,String deviceid);
     public void discardDuplicate();//删除过去模块status记录,只保留最新的模块status
 
 }

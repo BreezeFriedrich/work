@@ -27,6 +27,7 @@ public class ModuleServiceImpl implements ModuleService {
     int result=0;
     Iterator it=null;
     List<DeviceStatus> deviceStatusList=null;
+    int countNum=0;
     ObjectMapper objectMapper=new ObjectMapper();
 
 //    @Override
@@ -57,6 +58,21 @@ public class ModuleServiceImpl implements ModuleService {
         }
         return null;
     }
+
+    public int getDataIntFromJson(String param){
+        try {
+            JsonNode node=objectMapper.readTree(param);
+            result=node.get("result").asInt();
+            if(0==result){
+                countNum=node.get("data").asInt();
+            }
+            return countNum;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -100;
+    }
+
     @Override
     public List<DeviceStatus> listByStatus(int status) {
 //        ObjectMapper mapper=new ObjectMapper();
@@ -114,7 +130,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<DeviceStatus> listByParam(String endTime, int status, String deviceid) {
-        postdata="{\"sign\":6,\"endTime\":"+endTime+",\"status\":"+status+",\"deviceid\":"+deviceid+"}";
+        postdata="{\"sign\":6,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
@@ -126,6 +142,22 @@ public class ModuleServiceImpl implements ModuleService {
             return deviceStatusList;
         }
         return null;
+    }
+
+    @Override
+    public int countByParam(String endTime, int status, String deviceid) {
+        postdata="{\"sign\":7,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        if(null!=getdata&&""!=getdata){
+            countNum=getDataIntFromJson(getdata);
+        }
+        if(countNum>=0){
+//            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
+            return countNum;
+        }
+        return -100;
     }
 
 //    @Override

@@ -85,20 +85,44 @@ public class ModuleStatusController {
 
     @RequestMapping("/listByParam.do")
     @ResponseBody
-    public String listByParam(HttpServletRequest request){
-        logger.info("#CTL      ~ listByParam");
-        String deviceid=request.getParameter("deviceid");
-        int status =Integer.parseInt(request.getParameter("status"));
+    public int listByParam(HttpServletRequest request){
+        logger.info("#CTL      ~ listByParam.do");
+        String deviceid="";
+        if(request.getParameter("deviceid")!=null){
+            deviceid=request.getParameter("deviceid");
+        }
+        int status=-100;
+        if(request.getParameter("status")!=""){
+            status =Integer.parseInt(request.getParameter("status"));
+        }
         String endTime=request.getParameter("endTime");
         List<DeviceStatus> deviceStatusList=moduleService.listByParam(endTime,status,deviceid);
-        return null;
+        if (deviceStatusList!=null&&!deviceStatusList.isEmpty()){
+            logger.info("deviceStatusList:"+deviceStatusList.toString());
+            return deviceStatusList.size();
+        }
+        return 0;
     }
 
-    @RequestMapping("/hello.do")
+    @RequestMapping("/countByParam.do")
     @ResponseBody
-    public int hello(){
-        logger.info("Controller:hello.do");
-        return 9;
+    public int countByParam(HttpServletRequest request){
+        logger.info("#CTL      ~ countByParam.do");
+        String deviceid="";
+        if(request.getParameter("deviceid")!=null){
+            deviceid=request.getParameter("deviceid");
+        }
+        int status=-100;
+        if(request.getParameter("status")!=""){
+            status =Integer.parseInt(request.getParameter("status"));
+        }
+        String endTime=request.getParameter("endTime");
+        int countNum;
+        countNum=moduleService.countByParam(endTime,status,deviceid);
+        if(countNum>=0){
+            return countNum;
+        }
+        return -100;
     }
 
     public String listToObj(List list,int total){

@@ -10,22 +10,25 @@ function retrieveData() {
     //取值
     deviceid = $("#deviceid").val();
     status = $('input:radio[name="optionsRadiosinline"]:checked').val();
-    alert('deviceid'+deviceid);
-    alert('status'+status);
-    alert('endTime'+endTime);
-    $.ajax({
-        type: "POST",
-        url: "moduleStatus/listByParam.do",
-        data: {"deviceid": deviceid,"status":status,"endTime":endTime},
-        dataType: "json",
-        async: false,
-        success: function (result) {
-            alert('ajax-success');
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert('ajax-error');
-        }
-    })
+    alert('deviceid'+deviceid+'status'+status+'endTime'+endTime);
+    if(endTime===undefined||endTime===null||endTime===''){
+        alert("至少需要填写截止时间");
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "/moduleStatus/countByParam.do",
+            data: {"deviceid": deviceid,"status":status,"endTime":endTime},
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                alert('ajax-success');
+                alert("result:"+result);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert('ajax-error');
+            }
+        })
+    }
 }
 
 function laydate_init() {

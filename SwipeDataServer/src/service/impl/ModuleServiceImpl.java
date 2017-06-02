@@ -53,6 +53,16 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public int countByParam(String endTime, int status, String deviceid) {
+        return deviceStatusDao.countByParams(endTime, status, deviceid);
+    }
+
+    @Override
+    public int deleteByParam(String endTime, int status, String deviceid) {
+        return deviceStatusDao.deleteByParam(endTime, status, deviceid);
+    }
+
+    @Override
     public void discardDuplicate() {
         deviceStatusDao.discardDuplicate();
     }

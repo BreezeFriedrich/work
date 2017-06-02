@@ -36,15 +36,9 @@ public class DeviceUtil {
 		String certiResult= HttpUtil.postData(certiPostData);
 		String pwdResult= HttpUtil.postData(pwdPostData);
 		System.out.print("Util-UnlockAccount:"+certiResult+';'+pwdResult);
-		
-		JsonGenerator jsonGenerator=null;
+
 		ObjectMapper objectMapper=new ObjectMapper();
-		try {
-			//jsonGenerator = objectMapper.getFactory().createGenerator(System.out);
-            jsonGenerator = objectMapper.getJsonFactory().createJsonGenerator(System.out, JsonEncoding.UTF8);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 		List<LinkedHashMap<String, Object>> authList=new ArrayList();
 		//List<LinkedHashMap<String, Object>> list = objectMapper.readValue(json, List.class);
 		LinkedHashMap<String, Object> certiMap = null;
@@ -109,19 +103,6 @@ public class DeviceUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        try {
-            if (jsonGenerator != null) {
-                jsonGenerator.flush();
-            }
-            if (!jsonGenerator.isClosed()) {
-                jsonGenerator.close();
-            }
-            jsonGenerator = null;
-            objectMapper = null;
-            System.gc();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 		return result;
 	}
 	
