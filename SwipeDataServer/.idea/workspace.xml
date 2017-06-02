@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/ModuleStatusController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/ModuleService.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/ModuleService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe.war" afterPath="$PROJECT_DIR$/../swipe/target/swipe.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/ModuleService.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/ModuleService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/ModuleStatusController.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/ModuleStatusController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/ModuleService.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/ModuleService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/ModuleServiceImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/ModuleServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/clearData.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/clearData.js" />
-    </list>
+    <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -210,8 +194,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="57" />
+    <option name="y" value="90" />
     <option name="width" value="1612" />
     <option name="height" value="876" />
   </component>
@@ -743,7 +727,7 @@
       <workItem from="1496195689141" duration="22959000" />
       <workItem from="1496280727932" duration="15937000" />
       <workItem from="1496367014738" duration="14450000" />
-      <workItem from="1496394175931" duration="5037000" />
+      <workItem from="1496394175931" duration="5073000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -759,11 +743,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496399299821</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="2017.06.02">
+      <created>1496400043194</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1496400043194</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277784000" />
+    <option name="totallyTimeSpent" value="277820000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -775,7 +766,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
+    <frame x="57" y="90" width="1612" height="876" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
