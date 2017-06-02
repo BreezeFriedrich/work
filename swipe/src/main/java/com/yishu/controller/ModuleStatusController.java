@@ -125,6 +125,24 @@ public class ModuleStatusController {
         return -100;
     }
 
+    @RequestMapping("/deleteByParam.do")
+    @ResponseBody
+    public int deleteByParam(HttpServletRequest request){
+        logger.info("#CTL      ~ deleteByParam.do");
+        String deviceid="";
+        if(request.getParameter("deviceid")!=null){
+            deviceid=request.getParameter("deviceid");
+        }
+        int status=-100;
+        if(request.getParameter("status")!=""){
+            status =Integer.parseInt(request.getParameter("status"));
+        }
+        String endTime=request.getParameter("endTime");
+        int affectedNum=0;
+        affectedNum=moduleService.deleteByParam(endTime,status,deviceid);
+        return affectedNum;
+    }
+
     public String listToObj(List list,int total){
         HashMap<String,Object> map=new HashMap<>();
         map.put("draw",1);

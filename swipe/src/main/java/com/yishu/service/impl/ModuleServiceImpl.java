@@ -28,6 +28,7 @@ public class ModuleServiceImpl implements ModuleService {
     Iterator it=null;
     List<DeviceStatus> deviceStatusList=null;
     int countNum=0;
+    int affectedNum=0;
     ObjectMapper objectMapper=new ObjectMapper();
 
 //    @Override
@@ -158,6 +159,19 @@ public class ModuleServiceImpl implements ModuleService {
             return countNum;
         }
         return -100;
+    }
+
+    @Override
+    public int deleteByParam(String endTime, int status, String deviceid) {
+        postdata="{\"sign\":8,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        affectedNum=0;
+        if(null!=getdata&&""!=getdata){
+            affectedNum=getDataIntFromJson(getdata);
+        }
+        return affectedNum;
     }
 
 //    @Override

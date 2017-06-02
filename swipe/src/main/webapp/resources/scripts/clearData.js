@@ -23,6 +23,21 @@ function retrieveData() {
             success: function (result) {
                 alert('ajax-success');
                 alert("result:"+result);
+                if(confirm("您确定删除吗？")){
+                    $.ajax({
+                        type: "POST",
+                        url: "/moduleStatus/deleteByParam.do",
+                        data: {"deviceid": deviceid,"status":status,"endTime":endTime},
+                        dataType: "json",
+                        async: false,
+                        success: function (result) {
+                            alert(result+'条记录删除成功');
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert('删除数据出错');
+                        }
+                    })
+                }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert('ajax-error');
