@@ -97,8 +97,8 @@
         <where>
             <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
             <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
-            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
-        </where>
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>        </where>
+
     </delete>
 
     <delete id="discardDuplicate">

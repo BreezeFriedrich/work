@@ -12,6 +12,7 @@ import service.impl.ModuleServiceImpl;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,7 +74,18 @@ public class DataServer {
     private static final int port=2017;
 
     public static void main(String[] args) throws IOException, SQLException {
+        String encodingStr="生态";
+        String  str1=new String(encodingStr.getBytes("utf-8"),"gbk");
+        String str2=new String(str1.getBytes("gbk"),"utf-8");
+        String str3=new String(encodingStr.getBytes("utf-8"),"utf-8");
+        String str4=new String(encodingStr.getBytes("ISO-8859-1"),"utf-8");
+        String str5=new String(encodingStr.getBytes("utf-8"),"ISO-8859-1");
 
+        System.out.println(str1);
+        System.out.println(str2);
+        System.out.println(str3);
+        System.out.println(str4);
+        System.out.println(str5);
 //        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis.xml");
 //        List<DeviceStatus> list = ((ModuleServiceImpl) (context.getBean("moduleService"))).listByStatus(0);
 /*        List<DeviceStatus> list = null;
