@@ -12,9 +12,9 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container" style="padding-left:auto;padding-top: 150px;width: 60%">
             <div class="loginTitle">
-                <h1>用户、角色、权限管理系统</h1>
+                <h1>刷卡管理中心</h1>
             </div>
             <hr>
             <form class="form-horizontal" role="form" method="post" action="${pageContext.request.contextPath}/login">
@@ -51,11 +51,11 @@
             <br><br>
 
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">项目源码及测试账号</h3>
-                </div>
+                <%--<div class="panel-heading">--%>
+                    <%--<h3 class="panel-title">项目源码及测试账号</h3>--%>
+                <%--</div>--%>
                 <div class="panel-body">
-
+                    <%--
                     <table class="table table-condensed">
                         <thead>
                             <tr>
@@ -90,7 +90,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    Contact us：<a href="https://www.yishutech.com">https://www.yishutech.com</a>
+                    --%>
+                    <span>©2015-2016 南京亿数信息科技有限公司 版权所有</span>
+                    <span>Contact us：<a href="https://www.yishutech.com">https://www.yishutech.com</a> </span>
                 </div>
             </div>
         </div>

@@ -31,6 +31,8 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     int result=0;
     Iterator it=null;
     List<SwipeRecord> swipeRecordList=null;
+    int countNum=0;
+    int affectedNum=0;
     ObjectMapper objectMapper=new ObjectMapper();
 
     public List<SwipeRecord> getDataListFromJson(String param){
@@ -46,6 +48,20 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int getDataIntFromJson(String param){
+        try {
+            JsonNode node=objectMapper.readTree(param);
+            result=node.get("result").asInt();
+            if(0==result){
+                countNum=node.get("data").asInt();
+            }
+            return countNum;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -100;
     }
 
     @Override
@@ -75,5 +91,34 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
             return swipeRecordList;
         }
         return null;
+    }
+
+    @Override
+    public int countByParam(String endTime, int result, String deviceid) {
+        postdata="{\"sign\":9,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        if(null!=getdata&&""!=getdata){
+            countNum=getDataIntFromJson(getdata);
+        }
+        if(countNum>=0){
+//            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
+            return countNum;
+        }
+        return -100;
+    }
+
+    @Override
+    public int deleteByParam(String endTime, int result, String deviceid) {
+        postdata="{\"sign\":10,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        affectedNum=0;
+        if(null!=getdata&&""!=getdata){
+            affectedNum=getDataIntFromJson(getdata);
+        }
+        return affectedNum;
     }
 }

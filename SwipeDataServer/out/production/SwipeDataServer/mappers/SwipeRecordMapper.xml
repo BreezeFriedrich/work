@@ -64,6 +64,27 @@
         WHERE `result`=#{result}
     </select>
 
+    <select id="countByParam" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM SwipeRecord
+        <where>
+            <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
+            <if test="result !=null and result !='' and result >=0">and `result` = #{result}</if>
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
+        </where>
+        ;
+    </select>
+
+    <delete id="deleteByParam">
+        DELETE FROM SwipeRecord
+        <where>
+            <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
+            <if test="result !=null and result !='' and result >=0">and `result` = #{result}</if>
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
+        </where>
+        ;
+    </delete>
+
 </mapper>
         <!--Integer add(SwipeRecord swipeRecord);-->
         <!--Integer update(SwipeRecord swipeRecord);-->

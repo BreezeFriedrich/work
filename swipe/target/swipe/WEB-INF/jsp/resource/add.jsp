@@ -3,10 +3,11 @@
 <html>
     <head>
         <title>添加权限页面</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-            <jsp:include page="inc.jsp"/>
+            <%--<jsp:include page="inc.jsp"/>--%>
             <div class="panel panel-danger">
                 <div class="panel-heading">添加权限</div>
                 <div class="panel-body">

@@ -3,10 +3,11 @@
 <html>
     <head>
         <title>用户权限列表</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-            <jsp:include page="inc.jsp"/>
+            <%--<jsp:include page="inc.jsp"/>--%>
             用户名：${user.username}，昵称：${user.nickname}
             <hr>
             <table class="table table-striped">

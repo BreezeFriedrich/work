@@ -5,10 +5,10 @@
 <html>
     <head>
         <title>修改用户信息</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-        <jsp:include page="inc.jsp"></jsp:include>
             <span></span>
             <div class="panel panel-info">
                 <div class="panel-heading">修改用户信息</div>

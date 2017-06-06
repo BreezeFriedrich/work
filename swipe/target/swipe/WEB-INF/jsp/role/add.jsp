@@ -3,10 +3,11 @@
 <html>
     <head>
         <title>添加角色</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-            <jsp:include page="inc.jsp"/>
+            <%--<jsp:include page="inc.jsp"/>--%>
             <div class="panel panel-success">
                 <div class="panel-heading">添加角色</div>
                 <div class="panel-body">

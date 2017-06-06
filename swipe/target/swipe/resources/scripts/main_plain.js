@@ -5,12 +5,13 @@ $(".leftsidebar dt img").attr("src", "../../resources/styles/images/left/select_
 
 $(function () {
 	leftsideBarInit();
-
+	/*
 	if(getCookie("ownerName")){
 		document.getElementById("loginStatus").innerHTML=getCookie("ownerName")+"|"+getNowFormat();
 	}else{
 		document.getElementById("loginStatus").innerHTML="未登录";
 	}
+	*/
 	document.getElementById("loginStatus").style.cssText="line-height:15px;font-size:14px;color:#7f93ad";
 	//安全退出
 	document.getElementById("safetylogout").onclick=function(){

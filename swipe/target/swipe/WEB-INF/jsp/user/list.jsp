@@ -1,14 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
 <html>
     <head>
         <title>用户列表</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-            <%--<jsp:include page="inc.jsp"></jsp:include>--%>
             <table class="table table-striped">
                 <thead>
                     <tr class="info">
@@ -32,20 +31,33 @@
                                 <%--${user.password}--%>
                             </td>
                             <td>${user.nickname}</td>
+                            <shiro:principal property="status">
                             <td >
                                 【<a class="status" data-id="${user.id}" data-status="${user.status}">启用</a>】
                             </td>
+                            </shiro:principal>
                             <td>
-                                <a href="${pageContext.request.contextPath}/admin/user/update/${user.id}">更新用户信息</a>
-                                <a href="${pageContext.request.contextPath}/admin/user/resources/${user.id}">查询用户权限</a>
+                                <shiro:hasPermission name="/admin/user/update">
+                                    <a href="${pageContext.request.contextPath}/admin/user/update/${user.id}">更新用户信息</a>
+                                </shiro:hasPermission>
+                                <shiro:hasPermission name="/admin/user/resources">
+                                    <a href="${pageContext.request.contextPath}/admin/user/resources/${user.id}">查询用户权限</a>
+                                </shiro:hasPermission>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
             用户操作：
-            <a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/admin/user/add">添加用户</a>
-            <a class="btn btn-primary" role="button" href="#" id="deleteUserBtn" >删除用户</a>
+            <shiro:lacksPermission name="/admin/role/*">
+                无权限!
+            </shiro:lacksPermission>
+            <shiro:hasPermission name="/admin/user/add">
+                <a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/admin/user/add">添加用户</a>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="/admin/user/delete">
+                <a class="btn btn-primary" role="button" href="#" id="deleteUserBtn" >删除用户</a>
+            </shiro:hasPermission>
         </div>
 
         <%-- 不要使用自结束 --%>

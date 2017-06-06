@@ -18,6 +18,8 @@ public interface SwipeRecordService {
     public List<SwipeRecord> listByDeivceid(String deviceid);
     public List<SwipeRecord> listByTimezone(@Param("startTime") String startTime, @Param("endTime") String endTime);
     List<SwipeRecord> listByResult(int result);
+    public int countByParam(String endTime,int result,String deviceid);
+    public int deleteByParam(String endTime,int result,String deviceid);
 }
 /*
 Integer add(SwipeRecord swipeRecord);

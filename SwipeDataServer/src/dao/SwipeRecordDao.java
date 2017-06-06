@@ -18,4 +18,6 @@ public interface SwipeRecordDao {
     List<SwipeRecord> listByDeivceid(String deviceid);
     List<SwipeRecord> listByTimezone(@Param("startTime") String startTime, @Param("endTime") String endTime);
     List<SwipeRecord> listByResult(int result);
+    Integer countByParam (@Param("endTime") String endTime,@Param("result") int result,@Param("deviceid") String deviceid);
+    Integer deleteByParam(@Param("endTime") String endTime,@Param("result") int result,@Param("deviceid") String deviceid);
 }

@@ -3,10 +3,11 @@
 <html>
     <head>
         <title>角色资源列表</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-            <jsp:include page="inc.jsp"/>
+            <%--<jsp:include page="inc.jsp"/>--%>
             <span>${role.name}（${role.sn}）的拥有的权限有：</span>
             <table class="table table-striped">
                 <thead>

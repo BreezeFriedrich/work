@@ -5,6 +5,7 @@
 <html>
     <head>
         <title>角色列表查询</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
@@ -31,15 +32,27 @@
                             <td>${role.name}</td>
                             <td>${role.sn}</td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/admin/role/update/${role.id}">更新</a>
-                                <a href="${pageContext.request.contextPath}/admin/role/resources/${role.id}">设置资源</a>
+                                <shiro:hasPermission name="/admin/role/update">
+                                    <a href="${pageContext.request.contextPath}/admin/role/update/${role.id}">更新</a>
+                                </shiro:hasPermission>
+                                <shiro:hasPermission name="/admin/role/resources">
+                                    <a href="${pageContext.request.contextPath}/admin/role/resources/${role.id}">设置资源</a>
+                                </shiro:hasPermission>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-            角色操作：<a class="btn btn-success" role="button" href="${pageContext.request.contextPath}/admin/role/add">添加角色</a>
-            <a id="deleteRoleBtn" class="btn btn-success" role="button">删除角色</a>
+            角色操作：
+            <shiro:lacksPermission name="/admin/role/*">
+                无权限!
+            </shiro:lacksPermission>
+            <shiro:hasPermission name="/admin/role/add">
+                <a class="btn btn-success" role="button" href="${pageContext.request.contextPath}/admin/role/add">添加角色</a>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="/admin/role/delete">
+                <a id="deleteRoleBtn" class="btn btn-success" role="button">删除角色</a>
+            </shiro:hasPermission>
         </div>
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.1.0.min.js"></script>

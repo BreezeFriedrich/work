@@ -74,18 +74,19 @@ public class DataServer {
     private static final int port=2017;
 
     public static void main(String[] args) throws IOException, SQLException {
-        String encodingStr="生态";
-        String  str1=new String(encodingStr.getBytes("utf-8"),"gbk");
-        String str2=new String(str1.getBytes("gbk"),"utf-8");
-        String str3=new String(encodingStr.getBytes("utf-8"),"utf-8");
-        String str4=new String(encodingStr.getBytes("ISO-8859-1"),"utf-8");
-        String str5=new String(encodingStr.getBytes("utf-8"),"ISO-8859-1");
 
-        System.out.println(str1);
-        System.out.println(str2);
-        System.out.println(str3);
-        System.out.println(str4);
-        System.out.println(str5);
+//        String encodingStr="生态";
+//        String str1=new String(encodingStr.getBytes("utf-8"),"gbk");
+//        String str2=new String(str1.getBytes("gbk"),"utf-8");
+//        String str3=new String(encodingStr.getBytes("utf-8"),"utf-8");
+//        String str4=new String(encodingStr.getBytes("ISO-8859-1"),"utf-8");
+//        String str5=new String(encodingStr.getBytes("utf-8"),"ISO-8859-1");
+//        System.out.println(str1);
+//        System.out.println(str2);
+//        System.out.println(str3);
+//        System.out.println(str4);
+//        System.out.println(str5);
+
 //        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis.xml");
 //        List<DeviceStatus> list = ((ModuleServiceImpl) (context.getBean("moduleService"))).listByStatus(0);
 /*        List<DeviceStatus> list = null;
@@ -132,7 +133,7 @@ class MyHandler implements HttpHandler{
 
         StringBuffer readStr=null;
         readStr=new StringBuffer();//要放到handle里面
-        String result="";
+        String reqData="";
 
         String requestMethod = exchange.getRequestMethod();
         if (!requestMethod.equalsIgnoreCase("POST")) {
@@ -153,14 +154,14 @@ class MyHandler implements HttpHandler{
         while((line=bufferedReader.readLine())!=null){
             readStr.append(line+"\n");
         }
-        result=new String(readStr);
+        reqData=new String(readStr);
         String method=exchange.getRequestMethod();
         URI uri=exchange.getRequestURI();
-        logger.info("#DATA     ~ request-data:"+result);
+        logger.info("#DATA     ~ request-data:"+reqData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map map=new HashMap();
-        JsonNode node=objectMapper.readTree(result);
+        JsonNode node=objectMapper.readTree(reqData);
         int sign=node.get("sign").asInt();
 //        logger.info("sign:"+String.valueOf(sign));
 
@@ -174,15 +175,17 @@ class MyHandler implements HttpHandler{
         List<SwipeRecord> tempSwipeRecordList=null;
         List<SwipeRecord> swipeRecordList=null;
         SwipeRecord swipeRecord=null;
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date=null;
         String startTime="";
         String endTime="";
         int status=0;
         String deviceid="";
+        int result=0;
 
         switch (sign) {
-            case 1:// listByStatus
+            case 1://moduleStatus/listByStatus
                 status=node.get("status").asInt();
                 deviceStatusList=new ArrayList();
 //                map=new HashMap();
@@ -199,7 +202,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 2://listAllWithoutDuplicate
+            case 2://moduleStatus/listAllWithoutDuplicate
                 deviceStatusList=new ArrayList();
 //                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAllWithoutDuplicate();
@@ -215,7 +218,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 5://listAll
+            case 5://moduleStatus/listAll
                 deviceStatusList=new ArrayList();
 //                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAll();
@@ -231,7 +234,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 6://listByParam
+            case 6://moduleStatus/listByParam
                 status=node.get("status").asInt();
                 endTime=node.get("endTime").asText();
                 deviceid=node.get("deviceid").asText();
@@ -250,9 +253,16 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 7://countByParam
+            case 7://moduleStatus/countByParam
                 status=node.get("status").asInt();
                 endTime=node.get("endTime").asText();
+                try {
+                    date=sdf1.parse(endTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                endTime=sdf2.format(date);
+                logger.info("endTime:"+endTime);
                 deviceid=node.get("deviceid").asText();
 //                map=new HashMap();
                 countNum=moduleService.countByParam(endTime,status,deviceid);
@@ -266,6 +276,12 @@ class MyHandler implements HttpHandler{
             case 8://moduleStatus/deleteByParam
                 status=node.get("status").asInt();
                 endTime=node.get("endTime").asText();
+                try {
+                    date=sdf1.parse(endTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                endTime=sdf2.format(date);
                 deviceid=node.get("deviceid").asText();
 //                map=new HashMap();
                 affectedNum=moduleService.deleteByParam(endTime,status,deviceid);
@@ -309,6 +325,45 @@ class MyHandler implements HttpHandler{
                 }
                 map.put("data",swipeRecordList);
                 logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
+            case 9://swipeRecord/countByParam
+                result=node.get("result").asInt();
+                endTime=node.get("endTime").asText();
+                try {
+                    date=sdf1.parse(endTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                endTime=sdf2.format(date);
+                logger.info("endTime:"+endTime);
+                deviceid=node.get("deviceid").asText();
+//                map=new HashMap();
+                countNum=swipeRecordService.countByParam(endTime,result,deviceid);
+                map.put("result",0);//0--获取数据成功
+                map.put("data",countNum);
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(countNum));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
+            case 10://swipeRecord/deleteByParam
+                result=node.get("result").asInt();
+                endTime=node.get("endTime").asText();
+                try {
+                    date=sdf1.parse(endTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                endTime=sdf2.format(date);
+                deviceid=node.get("deviceid").asText();
+//                map=new HashMap();
+                affectedNum=swipeRecordService.deleteByParam(endTime,result,deviceid);
+                map.put("result",0);//0--获取数据成功
+                map.put("data",affectedNum);
+                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(affectedNum));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;

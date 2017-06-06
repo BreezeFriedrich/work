@@ -1,37 +1,77 @@
 var startTime;
-var endTime;
-var deviceid;
+var moduleStatus_endTime;
+var swipeRecord_endTime
+var moduleStatus_deviceid;
 var status;
+var result;
 $(function () {
     laydate_init();
 });
 
-function retrieveData() {
+function retrieveModuleStatus() {
     //取值
-    deviceid = $("#deviceid").val();
-    status = $('input:radio[name="optionsRadiosinline"]:checked').val();
-    alert('deviceid'+deviceid+'status'+status+'endTime'+endTime);
-    if(endTime===undefined||endTime===null||endTime===''){
+    moduleStatus_deviceid = $("#moduleStatus_deviceid").val();
+    status = $('input:radio[name="moduleStatus_options"]:checked').val();
+    alert('deviceid'+moduleStatus_deviceid+'status'+status+'endTime'+moduleStatus_endTime);
+    if(moduleStatus_endTime===undefined||moduleStatus_endTime===null||moduleStatus_endTime===''){
         alert("至少需要填写截止时间");
     }else{
         $.ajax({
             type: "POST",
             url: "/moduleStatus/countByParam.do",
-            data: {"deviceid": deviceid,"status":status,"endTime":endTime},
+            data: {"deviceid":moduleStatus_deviceid,"status":status,"endTime":moduleStatus_endTime},
             dataType: "json",
             async: false,
-            success: function (result) {
-                alert('ajax-success');
-                alert("result:"+result);
-                if(confirm("您确定删除吗？")){
+            success: function (data1) {
+                alert("查询到符合条件的记录总数为:"+data1);
+                if(data1>0 && confirm("您确定删除吗？")){
                     $.ajax({
                         type: "POST",
                         url: "/moduleStatus/deleteByParam.do",
-                        data: {"deviceid": deviceid,"status":status,"endTime":endTime},
+                        data: {"deviceid": moduleStatus_deviceid,"status":status,"endTime":moduleStatus_endTime},
                         dataType: "json",
                         async: false,
-                        success: function (result) {
-                            alert(result+'条记录删除成功');
+                        success: function (data2) {
+                            alert(data2+'条记录删除成功');
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert('删除数据出错');
+                        }
+                    })
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert('ajax-error');
+            }
+        })
+    }
+}
+
+function retrieveSwipeRecord() {
+    //取值
+    swipeRecord_deviceid = $("#swipeRecord_deviceid").val();
+    result = $('input:radio[name="swipeRecord_options"]:checked').val();
+    alert('deviceid'+swipeRecord_deviceid+'result'+result+'endTime'+swipeRecord_endTime);
+    if(swipeRecord_endTime===undefined||swipeRecord_endTime===null||swipeRecord_endTime===''){
+        alert("至少需要填写截止时间");
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "/swipeRecord/countByParam.do",
+            data: {"deviceid":swipeRecord_deviceid,"result":result,"endTime":swipeRecord_endTime},
+            dataType: "json",
+            async: false,
+            success: function (data1) {
+                alert("查询到符合条件的记录总数为:"+data1);
+                if(data1>0 && confirm("您确定删除吗？")){
+                    $.ajax({
+                        type: "POST",
+                        url: "/swipeRecord/deleteByParam.do",
+                        data: {"deviceid":swipeRecord_deviceid,"result":result,"endTime":swipeRecord_endTime},
+                        dataType: "json",
+                        async: false,
+                        success: function (data2) {
+                            alert(data2+'条记录删除成功');
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             alert('删除数据出错');
@@ -47,8 +87,8 @@ function retrieveData() {
 }
 
 function laydate_init() {
-    var end = {
-        elem: '#endTime',
+    var moduleStatus_end = {
+        elem: '#moduleStatus_endTime',
         format: 'YYYY-MM-DD hh:mm:ss',
         min: '2012-01-01 00:00:01',
         max: laydate.now(),
@@ -56,11 +96,24 @@ function laydate_init() {
         istoday: false,
         festival:true,
         choose: function(time){
-            endTime=time;
+            moduleStatus_endTime=time;
+        }
+    };
+    var swipeRecord_end = {
+        elem: '#swipeRecord_endTime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        min: '2012-01-01 00:00:01',
+        max: laydate.now(),
+        istime: true,
+        istoday: false,
+        festival:true,
+        choose: function(time){
+            swipeRecord_endTime=time;
         }
     };
     laydate.skin('molv');
-    laydate(end);
+    laydate(moduleStatus_end);
+    laydate(swipeRecord_end);
 }
 
 function getFormatTime(date) {

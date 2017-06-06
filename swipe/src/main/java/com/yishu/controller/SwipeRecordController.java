@@ -178,6 +178,45 @@ public class SwipeRecordController {
         return jsonUtil.listToJson(result);
     }
 
+    @RequestMapping("/countByParam.do")
+    @ResponseBody
+    public int countByParam(HttpServletRequest request){
+        logger.info("#CTL      ~ countByParam.do");
+        String deviceid="";
+        if(request.getParameter("deviceid")!=null){
+            deviceid=request.getParameter("deviceid");
+        }
+        int result=-100;
+        if(request.getParameter("result")!=""){
+            result =Integer.parseInt(request.getParameter("result"));
+        }
+        String endTime=request.getParameter("endTime");
+        int countNum;
+        countNum=swipeRecordService.countByParam(endTime,result,deviceid);
+        if(countNum>=0){
+            return countNum;
+        }
+        return -100;
+    }
+
+    @RequestMapping("/deleteByParam.do")
+    @ResponseBody
+    public int deleteByParam(HttpServletRequest request){
+        logger.info("#CTL      ~ deleteByParam.do");
+        String deviceid="";
+        if(request.getParameter("deviceid")!=null){
+            deviceid=request.getParameter("deviceid");
+        }
+        int result=-100;
+        if(request.getParameter("result")!=""){
+            result =Integer.parseInt(request.getParameter("result"));
+        }
+        String endTime=request.getParameter("endTime");
+        int affectedNum=0;
+        affectedNum=swipeRecordService.deleteByParam(endTime,result,deviceid);
+        return affectedNum;
+    }
+
     public String listToObj(List list,int total){
         HashMap<String,Object> map=new HashMap<>();
         map.put("draw",1);

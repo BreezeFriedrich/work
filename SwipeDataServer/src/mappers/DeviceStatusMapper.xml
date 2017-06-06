@@ -72,16 +72,6 @@
         </where>
     </select>
 
-    <select id="countByParam" resultType="java.lang.Integer">
-        SELECT COUNT(*)
-        FROM DeviceStatus
-        <where>
-            <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
-            <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
-            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
-        </where>
-    </select>
-
     <select id="countByParams" resultType="java.lang.Integer">
         SELECT COUNT(*)
         FROM DeviceStatus
@@ -90,6 +80,7 @@
             <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
             <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
         </where>
+        ;
     </select>
 
     <delete id="deleteByParam">
@@ -97,8 +88,9 @@
         <where>
             <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
             <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
-            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>        </where>
-
+            <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
+        </where>
+        ;
     </delete>
 
     <delete id="discardDuplicate">

@@ -24,7 +24,7 @@ public class ShiroLoginController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(){
-        return "login";
+        return "loginShiro";
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -54,7 +54,7 @@ public class ShiroLoginController {
         }
 
         model.addAttribute("msg",msg);
-        return "login";
+        return "loginShiro";
     }
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)

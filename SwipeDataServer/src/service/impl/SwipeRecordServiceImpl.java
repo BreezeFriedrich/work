@@ -57,8 +57,17 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     }
 
     @Override
-
     public List<SwipeRecord> listByResult(int result) {
         return swipeRecordDao.listByResult(result);
+    }
+
+    @Override
+    public int countByParam(String endTime, int result, String deviceid) {
+        return swipeRecordDao.countByParam(endTime, result, deviceid);
+    }
+
+    @Override
+    public int deleteByParam(String endTime, int result, String deviceid) {
+        return swipeRecordDao.deleteByParam(endTime, result, deviceid);
     }
 }

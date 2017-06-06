@@ -4,10 +4,10 @@
 <html>
     <head>
         <title>添加用户</title>
+        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
-            <jsp:include page="inc.jsp"></jsp:include>
             <div class="panel panel-primary">
                 <div class="panel-heading">添加用户</div>
                 <div class="panel-body">
