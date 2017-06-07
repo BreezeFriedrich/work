@@ -130,6 +130,21 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public List<DeviceStatus> listByTimezone(String startTime, String endTime) {
+        postdata="{\"sign\":11,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
+//        logger.info("#request-DATA     ~ "+postdata);
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        deviceStatusList=getDataListFromJson(getdata);
+        if(deviceStatusList.size()>0){
+//            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
+            return deviceStatusList;
+        }
+        return null;
+    }
+
+    @Override
     public List<DeviceStatus> listByParam(String endTime, int status, String deviceid) {
         postdata="{\"sign\":6,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);

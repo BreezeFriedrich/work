@@ -15,9 +15,9 @@ $(function () {
                 async:false,
                 success: function(result){
                     myChart.setOption({
-                        title : {
-                            text: '时间:'+startTime+"--"+endTime
-                        },
+                        // title : {
+                        //     text: '时间:'+startTime+"--"+endTime
+                        // },
                         series: [{
                             // 根据名字对应到相应的系列
                             name: '刷卡成功率',
@@ -33,7 +33,7 @@ $(function () {
 
         }
     },10000);
-})
+});
 
 function myChartInit() {
     // 基于准备好的dom，初始化echarts实例
@@ -41,11 +41,11 @@ function myChartInit() {
 
 // 指定图表的配置项和数据
     var option = {
-        title : {
-            text: '时间',
-            subtext: '...',
-            x:'center'
-        },
+        // title : {
+        //     text: '时间',
+        //     subtext: '...',
+        //     x:'center'
+        // },
         tooltip : {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -84,7 +84,7 @@ function date_plugin_init() {
     var start = {
         elem: '#startTime',
         format: 'YYYY-MM-DD hh:mm:ss',
-        min: '2010-01-01 00:00:01', //设定最小日期为当前日期
+        min: '2010-01-01 00:00:01', //设定最小日期
         max: laydate.now(-1), //最大日期
         istime: true,
         istoday: false,

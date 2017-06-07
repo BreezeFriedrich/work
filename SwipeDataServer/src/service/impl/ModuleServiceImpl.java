@@ -48,6 +48,11 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public List<DeviceStatus> listByTimezone(String startTime, String endTime) {
+        return deviceStatusDao.listByTimezone(startTime,endTime);
+    }
+
+    @Override
     public List<DeviceStatus> listByParam(String endTime, int status, String deviceid) {
         return deviceStatusDao.listByParam(endTime,status,deviceid);
     }

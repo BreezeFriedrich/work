@@ -113,7 +113,7 @@ function ajaxData() {
             "sTitle" : "模块编号",
             "sDefaultContent" : "",
             "sClass" : "center"
-        },
+            },
             {"mDataProp":"deviceip",
                 "sTitle" : "模块IP",
                 "sDefaultContent" : "",

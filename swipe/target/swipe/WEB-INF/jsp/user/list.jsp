@@ -94,9 +94,7 @@
                                 }
                             }
                     );
-
                 });
-
 
                 // 批量删除
                 $("#deleteUserBtn").on("click",function(){
@@ -129,7 +127,6 @@
                         error:function () {
                             alert("您没有相应的权限删除用户数据,请联系管理员");
                         }
-
                     });
                 });
             })

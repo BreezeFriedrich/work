@@ -45,8 +45,15 @@
     <select id="listByTimezone" resultType="SwipeRecord">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
         FROM SwipeRecord
-        WHERE DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') BETWEEN #{startTime} AND #{endTime}
+        WHERE `timestamp` BETWEEN DATE_FORMAT(#{startTime},'%Y/%m/%d %H:%i:%S') AND DATE_FORMAT(#{endTime},'%Y/%m/%d %H:%i:%S')
+        ORDER BY `timestamp` DESC ;
     </select>
+
+    <!--<select id="listByTimezone" resultType="SwipeRecord">-->
+        <!--SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`-->
+        <!--FROM SwipeRecord-->
+        <!--WHERE DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') BETWEEN #{startTime} AND #{endTime};-->
+    <!--</select>-->
 
     <!--
     <select id="listByTimestamp" resultType="SwipeRecord" parameterType="java.util.HashMap">
@@ -61,7 +68,7 @@
     <select id="listByResult" parameterType="int" resultType="SwipeRecord">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
         FROM SwipeRecord
-        WHERE `result`=#{result}
+        WHERE `result`=#{result};
     </select>
 
     <select id="countByParam" resultType="java.lang.Integer">
@@ -71,8 +78,7 @@
             <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
             <if test="result !=null and result !='' and result >=0">and `result` = #{result}</if>
             <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
-        </where>
-        ;
+        </where>;
     </select>
 
     <delete id="deleteByParam">
@@ -81,8 +87,7 @@
             <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
             <if test="result !=null and result !='' and result >=0">and `result` = #{result}</if>
             <if test="deviceid !=null and deviceid !=''">and `deviceid` = #{deviceid}</if>
-        </where>
-        ;
+        </where>;
     </delete>
 
 </mapper>

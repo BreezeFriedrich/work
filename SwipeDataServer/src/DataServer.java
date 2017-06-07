@@ -234,6 +234,25 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
+            case 11://moduleStatus/listByTimezone
+                startTime=node.get("startTime").asText();
+                endTime=node.get("endTime").asText();
+                deviceStatusList=new ArrayList<>();
+//                map=new HashMap();
+                logger.info("tag - startTime.date="+startTime+"; endTime.date"+endTime);
+                tempDeviceStatusList=moduleService.listByTimezone(startTime.toString(),endTime.toString());
+                it=tempDeviceStatusList.iterator();
+                map.put("result",0);
+                while (it.hasNext()){
+                    deviceStatus= (DeviceStatus) it.next();
+                    deviceStatusList.add(deviceStatus);
+                }
+                map.put("data",deviceStatusList);
+                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
             case 6://moduleStatus/listByParam
                 status=node.get("status").asInt();
                 endTime=node.get("endTime").asText();

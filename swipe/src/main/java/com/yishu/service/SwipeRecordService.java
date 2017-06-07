@@ -1,7 +1,6 @@
 package com.yishu.service;
 
-import org.apache.ibatis.annotations.Param;
-
+import com.yishu.model.SwipeRecord;
 import java.util.List;
 
 /**
@@ -9,14 +8,14 @@ import java.util.List;
  */
 public interface SwipeRecordService {
 
-//    Integer add(com.yishu.model.SwipeRecord swipeRecord);
-//    Integer update(com.yishu.model.SwipeRecord swipeRecord);
+//    Integer add(SwipeRecord swipeRecord);
+//    Integer update(SwipeRecord swipeRecord);
 //    Integer deleteByTime(String timestamp);
 //    Integer deleteByDeviceid(String deviceid);
-    List<com.yishu.model.SwipeRecord> listAll();
-//    List<com.yishu.model.SwipeRecord> listByDeivceid(String deviceid);
-    List<com.yishu.model.SwipeRecord> listByTimezone(@Param("startTime") String startTime, @Param("endTime") String endTime);
+    List<SwipeRecord> listAll();
+//    List<SwipeRecord> listByDeivceid(String deviceid);
+    List<SwipeRecord> listByTimezone(String startTime,String endTime);
     public int countByParam(String endTime,int result,String deviceid);
     public int deleteByParam(String endTime,int result,String deviceid);
-//    List<com.yishu.model.SwipeRecord> listByResult(int result);
+//    List<SwipeRecord> listByResult(int result);
 }

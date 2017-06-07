@@ -83,6 +83,34 @@ public class ModuleStatusController {
 //        return jsonUtil.listToJson(moduleList);
     }
 
+    @RequestMapping("/listByTimezone.do")
+    @ResponseBody
+    public String listByTimezone(HttpServletRequest request){
+        logger.info("#CTL      ~ listByTimezone");
+        int limit= Integer.parseInt(request.getParameter("limit"));
+        int page= Integer.parseInt(request.getParameter("page"));
+        int start= Integer.parseInt(request.getParameter("start"));
+        String startTime= request.getParameter("startTime");
+        String endTime= request.getParameter("endTime");
+        List<DeviceStatus> moduleStatusList=moduleService.listByTimezone(startTime,endTime);
+        List<DeviceStatus> newModuleStatusList=new ArrayList<>();
+        DeviceStatus deviceStatus=null;
+        int total=moduleStatusList.size();
+        for(int i=((page-1)*limit);i<(page-1+1)*limit&&i<total;i++){
+            deviceStatus=moduleStatusList.get(i);
+            newModuleStatusList.add(deviceStatus);
+        }
+        if (!newModuleStatusList.isEmpty()){
+            return listToObj(newModuleStatusList,total);
+        }
+        return null;
+        //{total:23,(page:2,limit:10,)data:[...]}
+
+//        logger.info("#CTL      ~ listAll");
+//        List<DeviceStatus> moduleList=moduleService.listAll();
+//        return jsonUtil.listToJson(moduleList);
+    }
+
     @RequestMapping("/listByParam.do")
     @ResponseBody
     public int listByParam(HttpServletRequest request){
