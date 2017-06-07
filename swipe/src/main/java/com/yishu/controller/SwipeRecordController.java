@@ -62,10 +62,87 @@ public class SwipeRecordController {
         return jsonUtil.listToJson(swipeRecordList);
     }
 
+//    @RequestMapping("/listByTimezoneToChart.do")
+//    @ResponseBody
+//    public String listByTimezoneToChart(HttpServletRequest request){
+//        logger.info("#CTL      ~ listByTimezoneToChart");
+//        int mode= Integer.parseInt(request.getParameter("mode"));
+//        String startTime=request.getParameter("startTime");
+//        String endTime=request.getParameter("endTime");
+//        List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
+//
+//        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
+//        Date time1 = null,time2 = null;
+//        try {
+//            time1=sdf.parse(startTime);
+//            time2=sdf.parse(endTime);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        int days = (int) ((time2.getTime() - time1.getTime())/86400000);
+//        HashMap xAxisTime=new HashMap<String,Date>();
+//        xAxisTime.put("min",time1);
+//        xAxisTime.put("max",time2);
+//
+//        Date tempTime=null;
+//        Map<String,Integer> successMap=new HashMap();
+//        Map<String,Integer> failMap=new HashMap();
+//        for(SwipeRecord x:swipeRecordList){
+//            try {
+//                tempTime=sdf.parse(x.getTimestamp());
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            int i= (int) ((tempTime.getTime()-time1.getTime())/86400000);
+//            if(0==x.getResult()){
+//                if(successMap.containsKey(String.valueOf(i))) {
+//                    successMap.put(String.valueOf(i), (int)successMap.get(String.valueOf(i)) + 1);
+//                }else{
+//                    successMap.put(String.valueOf(i), 1);
+//                }
+//            }else {
+//                if(failMap.containsKey(String.valueOf(i))) {
+//                    failMap.put(String.valueOf(i), (int)failMap.get(String.valueOf(i)) + 1);
+//                }else{
+//                    failMap.put(String.valueOf(i), 1);
+//                }
+//            }
+//        }
+//        logger.info("successMap.size:"+successMap);
+//        logger.info("failMap.size:"+failMap);
+//        double value=0;
+//        double index[]=new double[days+1];
+//        int successNum=0;
+//        int failNum=0;
+//        for(int j=0;j<=days;j++){
+//            if(successMap.containsKey(String.valueOf(j))) {
+//                successNum=successMap.get(String.valueOf(j));
+//            }else{
+//                successNum=0;
+//            }
+//            if(failMap.containsKey(String.valueOf(j))) {
+//                failNum=failMap.get(String.valueOf(j));
+//            }else{
+//                failNum=0;
+//            }
+//            if(0!=successNum+failNum){
+//                value=successNum*1.00/(successNum+failNum);
+//                index[j]=value;
+//            }else {
+//                index[j]=0;
+//            }
+//        }
+//        Map resultMap=new HashMap();
+//        resultMap.put("xAxisTime",xAxisTime);
+//        resultMap.put("data",index);
+//        return jsonUtil.mapToJson(resultMap);
+//    }
+
     @RequestMapping("/listByTimezoneToChart.do")
     @ResponseBody
     public String listByTimezoneToChart(HttpServletRequest request){
         logger.info("#CTL      ~ listByTimezoneToChart");
+        int mode= Integer.parseInt(request.getParameter("mode"));
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
@@ -80,72 +157,67 @@ public class SwipeRecordController {
         }
         int days = (int) ((time2.getTime() - time1.getTime())/86400000);
         HashMap xAxisTime=new HashMap<String,Date>();
-        xAxisTime.put("min",time1);
-        xAxisTime.put("max",time2);
-
-//        String[] xAxisArr=new String[days+1];
-//        Date day;
-//        int dayCount=days;
-//        System.out.println("xAxisArr[days]");
-//        while (dayCount>=0) {
-//            day=new Date(dayCount*86400000+time1.getTime());
-//            xAxisArr[days] = day.getFullYear()+"."+(day.getMonth()+1)+"."+day.getDate();
-//            System.out.print(xAxisArr[days]+" ");
-//            dayCount--;
-//        }
-//        System.out.println();
-
+        Date t1=new Date((time1.getTime()/86400000+1)*86400000);
+        Date t2=new Date((time2.getTime()/86400000+1)*86400000);
+        xAxisTime.put("min",t1);
+        xAxisTime.put("max",t2);
         Date tempTime=null;
-        Map<String,Integer> successMap=new HashMap();
-        Map<String,Integer> failMap=new HashMap();
-        for(SwipeRecord x:swipeRecordList){
-            try {
-                tempTime=sdf.parse(x.getTimestamp());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            int i= (int) ((tempTime.getTime()-time1.getTime())/86400000);
-            if(0==x.getResult()){
-                if(successMap.containsKey(String.valueOf(i))) {
-                    successMap.put(String.valueOf(i), (int)successMap.get(String.valueOf(i)) + 1);
-                }else{
-                    successMap.put(String.valueOf(i), 1);
+        double index[]=null;
+
+        //按月
+        if(2==mode){};
+        //按周
+        if(1==mode){};
+        //按日
+        if(0==mode){
+            index=new double[days+1];
+            Arrays.fill(index,0.00);
+            double success[]=new double[days+1];
+            double fail[]=new double[days+1];
+            Map<String,Integer> successMap=new HashMap();
+            Map<String,Integer> failMap=new HashMap();
+            for(SwipeRecord x:swipeRecordList){
+                try {
+                    tempTime=sdf.parse(x.getTimestamp());
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            }else {
-                if(failMap.containsKey(String.valueOf(i))) {
-                    failMap.put(String.valueOf(i), (int)failMap.get(String.valueOf(i)) + 1);
-                }else{
-                    failMap.put(String.valueOf(i), 1);
+                int i= (int) ((tempTime.getTime()-time1.getTime())/86400000);
+                if(0==x.getResult()){
+                    success[i]++;
+                }else {
+                    fail[i]++;
                 }
             }
-        }
-//        logger.info("successMap.size:"+successMap);
-//        logger.info("failMap.size:"+failMap);
-        double value=0;
-        double index[]=new double[days+1];
-        int successNum=0;
-        int failNum=0;
-        for(int j=0;j<=days;j++){
-            if(successMap.containsKey(String.valueOf(j))) {
-                successNum=successMap.get(String.valueOf(j));
-            }else{
-                successNum=0;
+            System.out.println("index>>>>>>>>>");
+            for(int j=0;j<=days;j++){
+                if(success[j]+fail[j]>0){
+                    index[j]=success[j]*1.00/(success[j]+fail[j]);
+                }
+                System.out.print(index[j]+",  ");
             }
-            if(failMap.containsKey(String.valueOf(j))) {
-                failNum=failMap.get(String.valueOf(j));
-            }else{
-                failNum=0;
-            }
-            if(0!=successNum+failNum){
-                value=successNum*1.00/(successNum+failNum);
-                index[j]=value;
-            }else {
-                index[j]=0;
-            }
-        }
+            System.out.println();
+            System.out.println("index<<<<<<<<<");
+        };
+
         Map resultMap=new HashMap();
-        resultMap.put("xAxisTime",xAxisTime);
+//        resultMap.put("xAxisTime",xAxisTime);
         resultMap.put("data",index);
+        Date[] xAxisData=new Date[days+1];
+        int[] xAxisNum=new int[days+1];
+        System.out.println("xAxisNum>>>>>>>>>");
+        for(int k=0;k<days+1;k++){
+            xAxisData[k]=new Date((time1.getTime()/86400000+1+k)*86400000);
+            xAxisNum[k]=k+1;
+            System.out.print(xAxisNum[k]+",  ");
+        }
+        System.out.println();
+        System.out.println("xAxisNum<<<<<<<<<");
+//        resultMap.put("xAxisData",xAxisData);
+        resultMap.put("xAxisNum",xAxisNum);
+        logger.info(String.valueOf(index.length));
+        logger.info(String.valueOf(xAxisTime.get("min")));
+        logger.info(String.valueOf(xAxisTime.get("max")));
         return jsonUtil.mapToJson(resultMap);
     }
 

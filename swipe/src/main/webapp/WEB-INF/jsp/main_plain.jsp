@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a onclick=iframe("dispatcher/swiperecord_chart.jsp")>成功率分析-图</a>
 						</dd>
 						<dd>
-							<a onclick=iframe("dispatcher/swiperecord_trail.jsp")>数据对比</a>
+							<a onclick=iframe("dispatcher/swiperecord_show.jsp")>数据对比</a>
 						</dd>
 					</dl>
 				</div>
