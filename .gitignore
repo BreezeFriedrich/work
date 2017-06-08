@@ -1,3 +1,9 @@
-#maven项目 原本较小但生成的target很大
 /target
 /out
+/.project
+/.settings
+/pom.xml.releaseBackup
+/*.iml
+/.idea
+/.DS_Store
+.idea
