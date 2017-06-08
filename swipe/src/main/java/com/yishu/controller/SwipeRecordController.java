@@ -79,7 +79,7 @@ public class SwipeRecordController {
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
-//        int days = (int) ((time2.getTime() - time1.getTime())/86400000);
+//        int dateDiff = (int) ((time2.getTime() - time1.getTime())/86400000);
 //        HashMap xAxisTime=new HashMap<String,Date>();
 //        xAxisTime.put("min",time1);
 //        xAxisTime.put("max",time2);
@@ -111,10 +111,10 @@ public class SwipeRecordController {
 //        logger.info("successMap.size:"+successMap);
 //        logger.info("failMap.size:"+failMap);
 //        double value=0;
-//        double index[]=new double[days+1];
+//        double index[]=new double[dateDiff+1];
 //        int successNum=0;
 //        int failNum=0;
-//        for(int j=0;j<=days;j++){
+//        for(int j=0;j<=dateDiff;j++){
 //            if(successMap.containsKey(String.valueOf(j))) {
 //                successNum=successMap.get(String.valueOf(j));
 //            }else{
@@ -147,6 +147,7 @@ public class SwipeRecordController {
         String endTime=request.getParameter("endTime");
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
 
+        //时间参数处理
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
         Date time1 = null,time2 = null;
         try {
@@ -155,69 +156,115 @@ public class SwipeRecordController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        int days = (int) ((time2.getTime() - time1.getTime())/86400000);
+        Calendar calendar1=Calendar.getInstance();
+        Calendar calendar2=Calendar.getInstance();
+        calendar1.setTime(time1);
+        calendar2.setTime(time2);
+        int dateDiff = (int) ((time2.getTime() - time1.getTime())/86400000);
+        int monthDiff=calendar2.get(Calendar.YEAR)*12-calendar1.get(Calendar.YEAR)*12
+                +calendar2.get(Calendar.MONTH)-calendar1.get(Calendar.MONTH);
+
         HashMap xAxisTime=new HashMap<String,Date>();
+        Map resultMap=new HashMap();
         Date t1=new Date((time1.getTime()/86400000+1)*86400000);
         Date t2=new Date((time2.getTime()/86400000+1)*86400000);
-        xAxisTime.put("min",t1);
+        xAxisTime.put("min",t1);//xAxis的最小值
         xAxisTime.put("max",t2);
+        resultMap.put("xAxisTime",xAxisTime);
         Date tempTime=null;
         double index[]=null;
 
         //按月
-        if(2==mode){};
-        //按周
-        if(1==mode){};
-        //按日
-        if(0==mode){
-            index=new double[days+1];
+        if(2==mode){
+            //获取series:data[]的值index[]
+            index=new double[monthDiff+1];
             Arrays.fill(index,0.00);
-            double success[]=new double[days+1];
-            double fail[]=new double[days+1];
-            Map<String,Integer> successMap=new HashMap();
-            Map<String,Integer> failMap=new HashMap();
+            double success[]=new double[monthDiff+1];
+            double fail[]=new double[monthDiff+1];
             for(SwipeRecord x:swipeRecordList){
                 try {
                     tempTime=sdf.parse(x.getTimestamp());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                int i= (int) ((tempTime.getTime()-time1.getTime())/86400000);
+                calendar2.setTime(tempTime);
+                int trmpMonthDiff=calendar2.get(Calendar.YEAR)*12-calendar1.get(Calendar.YEAR)*12
+                        +calendar2.get(Calendar.MONTH)-calendar1.get(Calendar.MONTH);
                 if(0==x.getResult()){
-                    success[i]++;
+                    success[trmpMonthDiff]++;
                 }else {
-                    fail[i]++;
+                    fail[trmpMonthDiff]++;
+                }
+            }
+            for(int i=0;i<=monthDiff;i++){
+                if(success[i]+fail[i]>0){
+                    index[i]=success[i]*1.00/(success[i]+fail[i]);
+                }
+                System.out.print(index[i]+",  ");
+            }
+            //获取xAxis:data[]的值xAxisData[]
+            String[] xAxisData=new String[monthDiff+1];
+            for(int k=0;k<monthDiff+1;k++) {
+                int month=calendar1.get(Calendar.MONTH) + 1+k;
+                xAxisData[k] = 0==month%12 ?
+                        String.valueOf(calendar1.get(Calendar.YEAR)+month/12-1)+'-'+String.valueOf(12)
+                        :String.valueOf(calendar1.get(Calendar.YEAR)+month/12)+'-'+String.valueOf(month%12);
+            }
+            resultMap.put("category",xAxisData);
+        }
+
+        //按周
+        if(1==mode){};
+
+        //按日
+        if(0==mode){
+            index=new double[dateDiff+1];
+            Arrays.fill(index,0.00);
+            double success[]=new double[dateDiff+1];
+            double fail[]=new double[dateDiff+1];
+            for(SwipeRecord x:swipeRecordList){
+                try {
+                    tempTime=sdf.parse(x.getTimestamp());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                int tempDateDiff= (int) ((tempTime.getTime()-time1.getTime())/86400000);
+                if(0==x.getResult()){
+                    success[tempDateDiff]++;
+                }else {
+                    fail[tempDateDiff]++;
                 }
             }
             System.out.println("index>>>>>>>>>");
-            for(int j=0;j<=days;j++){
-                if(success[j]+fail[j]>0){
-                    index[j]=success[j]*1.00/(success[j]+fail[j]);
+            for(int i=0;i<=dateDiff;i++){
+                if(success[i]+fail[i]>0){
+                    index[i]=success[i]*1.00/(success[i]+fail[i]);
                 }
-                System.out.print(index[j]+",  ");
+                System.out.print(index[i]+",  ");
             }
             System.out.println();
             System.out.println("index<<<<<<<<<");
-        };
 
-        Map resultMap=new HashMap();
-        resultMap.put("xAxisTime",xAxisTime);
-        resultMap.put("data",index);
-        Date[] xAxisData=new Date[days+1];
-        int[] xAxisNum=new int[days+1];
-        System.out.println("xAxisNum>>>>>>>>>");
-        for(int k=0;k<days+1;k++){
-            xAxisData[k]=new Date((time1.getTime()/86400000+1+k)*86400000);
-            xAxisNum[k]=k+1;
-            System.out.print(xAxisNum[k]+",  ");
+            String[] xAxisData=new String[dateDiff+1];
+            int[] xAxisNum=new int[dateDiff+1];
+            System.out.println("xAxisNum>>>>>>>>>");
+            for(int k=0;k<dateDiff+1;k++){
+                Date tempDate=new Date((time1.getTime()/86400000+1+k)*86400000);
+                xAxisData[k]=sdf.format(tempDate);
+                xAxisNum[k]=k+1;
+                System.out.print(xAxisNum[k]+",  ");
+            }
+            System.out.println();
+            System.out.println("xAxisNum<<<<<<<<<");
+            resultMap.put("xAxisNum",xAxisNum);
+            resultMap.put("category",xAxisData);
         }
-        System.out.println();
-        System.out.println("xAxisNum<<<<<<<<<");
-//        resultMap.put("xAxisData",xAxisData);
-        resultMap.put("xAxisNum",xAxisNum);
-        logger.info(String.valueOf(index.length));
-        logger.info(String.valueOf(xAxisTime.get("min")));
-        logger.info(String.valueOf(xAxisTime.get("max")));
+
+        resultMap.put("data",index);
+
+//        logger.info(String.valueOf(index.length));
+//        logger.info(String.valueOf(xAxisTime.get("min")));
+//        logger.info(String.valueOf(xAxisTime.get("max")));
         return jsonUtil.mapToJson(resultMap);
     }
 

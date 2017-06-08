@@ -26,19 +26,14 @@ function refreshData(){
                 alert("result:"+result);
                 myChart.setOption({
                     xAxis: {
-
+                        /*
                         type: 'time',
+                        boundaryGap: true,
                         interval:86400000,
                         min:result.xAxisTime.min,
                         max:result.xAxisTime.max
-
-                        // type: 'time',
-                        // // boundaryGap: true,
-                        // // interval:86400000,
-                        // min:result.xAxisTime.min,
-                        // max:result.xAxisTime.max
-
-                        // data :result.xAxisNum
+                        */
+                        data :result.category
                     },
                     series: {
                         // 根据名字对应到相应的系列
@@ -123,7 +118,7 @@ function myChartInit(){
         },
         xAxis: {
             name:'时间',
-            // type:'category',
+            type:'category',
             boundaryGap:true,
             axisLabel: {
                 rotate: 60
