@@ -43,7 +43,7 @@ public class ShiroLoginController {
             msg = e.getMessage();
         } catch (IncorrectCredentialsException e){
             e.printStackTrace();
-            msg = "密码不匹配(生产环境中应该写:用户名和密码的组合不正确)";
+            msg = "用户名和密码的组合不正确";
         } catch (LockedAccountException e){
             e.printStackTrace();
             msg = e.getMessage();

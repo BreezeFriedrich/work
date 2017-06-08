@@ -13,7 +13,6 @@ function refreshData(){
     mode = $('input:radio[name="swipeRecord_options"]:checked').val();
     if(startTime&&endTime){
 
-        // (new Date).toLocaleTimeString().replace(/^\D*/,'');
         date = new Date();
         now = getNowFormatDate(date);
 
@@ -27,14 +26,19 @@ function refreshData(){
                 alert("result:"+result);
                 myChart.setOption({
                     xAxis: {
+
+                        type: 'time',
+                        interval:86400000,
+                        min:result.xAxisTime.min,
+                        max:result.xAxisTime.max
+
                         // type: 'time',
                         // // boundaryGap: true,
                         // // interval:86400000,
                         // min:result.xAxisTime.min,
                         // max:result.xAxisTime.max
-                        type : 'category',
-                        boundaryGap : false,
-                        data :result.xAxisNum
+
+                        // data :result.xAxisNum
                     },
                     series: {
                         // 根据名字对应到相应的系列
@@ -89,7 +93,7 @@ function myChartInit(){
         toolbox: {
             show: true,
             feature: {
-                dataView: {readOnly: false},
+                // dataView: {readOnly: false},
                 restore: {},
                 saveAsImage: {}
             }
@@ -108,21 +112,43 @@ function myChartInit(){
                 }
             }
         },
+        grid: {
+            // left: '3%',
+            // right: '4%',
+            // bottom: '3%',
+            // containLabel: true
+            x: 40,
+            x2: 40,
+            y2: 100
+        },
         xAxis: {
+            name:'时间',
+            // type:'category',
+            boundaryGap:true,
+            axisLabel: {
+                rotate: 60
+            },
             data:[]
+            // data : function(){
+            //     var list = [];
+            //     for (var x in data) {
+            //         if (x != '')
+            //             list.push(App.formatDate(x));
+            //     }
+            //     return list;
+            // }()
         },
         yAxis: {
-            type: 'value',
-            scale:true,
             name:'成功率',
-            max:1.5,
+            type: 'value',
             min:0,
+            interval:0.1,
             boundaryGap:[0.02,0.02]
         },
         legend: {
-            data:'刷卡成功率'
+            data:['刷卡成功率']
         },
-        series: {
+        series: [{
             name: '刷卡成功率',
             type: 'bar',
             data: [],
@@ -137,7 +163,7 @@ function myChartInit(){
                     {type : 'average', name: '平均值'}
                 ]
             }
-        }
+        }]
     };
 // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);

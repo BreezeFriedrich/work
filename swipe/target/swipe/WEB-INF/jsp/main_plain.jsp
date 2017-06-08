@@ -66,6 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</dd>
 						</shiro:hasPermission>
 					</dl>
+					<!--
 					<dl class="deviceManage">
 						<dt style="background-image: url(../../resources/styles/images/left/device_manage.png)">设备管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
@@ -82,6 +83,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</dd>
 						<dd>
 							<a onclick=iframe("dispatcher/swiperecord_show.jsp")>数据对比</a>
+						</dd>
+					</dl>
+					-->
+					<dl class="deviceManage">
+						<dt style="background-image: url(../../resources/styles/images/left/device_manage.png)">模块状态<img src="../../resources/styles/images/left/select_xl01.png"></dt>
+						<dd class="first_dd">
+							<a onclick=iframe("dispatcher/modulestatus_table.jsp")>模块状态表</a>
+						</dd>
+					</dl>
+					<dl class="statistics">
+						<dt style="background-image: url(../../resources/styles/images/left/statistics.png)">刷卡记录<img src="../../resources/styles/images/left/select_xl01.png"></dt>
+						<dd class="first_dd">
+							<a onclick=iframe("dispatcher/swiperecord_table.jsp")>总记录表</a>
+						</dd>
+						<dd>
+							<a onclick=iframe("dispatcher/swiperecord_chart.jsp")>成功率饼图</a>
+						</dd>
+						<dd>
+							<a onclick=iframe("dispatcher/swiperecord_show.jsp")>成功率柱状图</a>
 						</dd>
 					</dl>
 				</div>

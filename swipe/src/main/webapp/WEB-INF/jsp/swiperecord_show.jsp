@@ -15,13 +15,14 @@
     <script type="text/javascript" src="../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../resources/scripts/echarts.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/swiperecord_show.js?ver=7"></script>
+    <script type="text/javascript" src="../../resources/scripts/swiperecord_show.js?ver=13"></script>
 </head>
 <body>
+<div style="height:1000px;">
     <div class="panel panel-primary"style="width: 800px;margin:30px auto;">
         <div class="panel-heading">删除记录:刷卡记录</div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form">
+            <div class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="swipeRecord_startTime" class="col-sm-2 control-label">开始时间</label>
                     <div class="col-sm-10">
@@ -51,20 +52,20 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-danger" onclick="refreshData()">查询</button>
+                        <button type="submit" class="btn btn-info" onclick="refreshData()">查询</button>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="panel panel-info"style="width: 1000px;margin:30px auto;">
-        <div class="panel-heading">删除记录:刷卡记录</div>
-        <div class="panel-body">
-            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-            <div id="container-chart" style="width: 900px;height:400px;">
             </div>
         </div>
     </div>
+
+    <div class="panel panel-info"style="width: 1000px;height:550px;margin:30px auto 50px;">
+        <div class="panel-heading">删除记录:刷卡记录</div>
+        <div class="panel-body">
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div id="container-chart" style="width: 900px;height:450px;"></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 $(function(){
     // testA();
-    testB();
+    // testB();
     ajaxData();
     // testD();
 });

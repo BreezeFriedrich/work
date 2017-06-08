@@ -4,36 +4,35 @@ var myChart;
 $(function () {
     date_plugin_init();
     myChartInit();
-    setTimeout(function(){
-        if(startTime&&endTime){
-
-            $.ajax({
-                type:"POST",
-                url:"/swipeRecord/listByTimezoneToChartPie.do",
-                data:{startTime:startTime,endTime:endTime},
-                dataType:"json",
-                async:false,
-                success: function(result){
-                    myChart.setOption({
-                        // title : {
-                        //     text: '时间:'+startTime+"--"+endTime
-                        // },
-                        series: [{
-                            // 根据名字对应到相应的系列
-                            name: '刷卡成功率',
-                            data:result
-                        }]
-                    });
-                },
-                error:function(XMLHttpRequest){
-                    alert(XMLHttpRequest.status);
-                    alert(XMLHttpRequest.readyState);
-                }
-            });
-
-        }
-    },10000);
+    getPie();
 });
+
+function getPie(){
+    if(startTime&&endTime){
+        $.ajax({
+            type:"POST",
+            url:"/swipeRecord/listByTimezoneToChartPie.do",
+            data:{startTime:startTime,endTime:endTime},
+            dataType:"json",
+            async:false,
+            success: function(result){
+                myChart.setOption({
+                    // title : {
+                    //     text: '时间:'+startTime+"--"+endTime
+                    // },
+                    series: [{
+                        name: '刷卡',
+                        data:result
+                    }]
+                });
+            },
+            error:function(XMLHttpRequest){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+            }
+        });
+    }
+}
 
 function myChartInit() {
     // 基于准备好的dom，初始化echarts实例

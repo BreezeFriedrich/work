@@ -163,7 +163,7 @@ public class ShiroUserService implements IUserService {
         // 密码匹配的工作交给 Shiro 去完成
         if(user == null ){
             // 因为缓存切面的原因,在这里就抛出用户名不存在的异常
-            throw new UnknownAccountException("用户名不存在(生产环境中应该写:用户名和密码的组合不正确)");
+            throw new UnknownAccountException("用户名和密码的组合不正确");
         }else if(user.getStatus() == 0){
             throw new LockedAccountException("用户已经被禁用，请联系管理员启用该账号");
         }

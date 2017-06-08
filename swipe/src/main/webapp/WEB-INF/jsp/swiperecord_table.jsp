@@ -14,7 +14,7 @@
     <script type="text/javascript" charset="utf8" src="../../resources/dataTables/js/jquery.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/table.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/swiperecord_table.js"></script>
+    <script type="text/javascript" src="../../resources/scripts/swiperecord_table.js?ver=1"></script>
 </head>
 
 <body>
@@ -33,6 +33,8 @@
         <%--<tbody id="tbody">--%>
         <%--</tbody>--%>
     <%--</table>--%>
+
+    <!--
     <table id="swipeRecordTable2">
         <caption>刷卡记录表</caption>
         <thead>
@@ -48,7 +50,9 @@
         <tbody id="tbody2">
         </tbody>
     </table>
-    <div id="container-table" style="width: 800px;margin-top: 100px;margin-left: 100px;">
+    -->
+    <div id="container-table" style="width: 1000px;margin-top: 100px;margin-left: 100px;">
+        <div style="padding-left: 380px"><h2>刷卡记录表</h2></div>
         <table id="table-swipeRecord" cellpadding="0" cellspacing="0" border="0" width="1000px">
             <thead>
                 <tr>

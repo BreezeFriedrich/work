@@ -15,14 +15,17 @@
     <script type="text/javascript" charset="utf8" src="../../resources/dataTables/js/jquery.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" charset="utf8" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/modulestatus_table.js?ver=11"></script>
+    <script type="text/javascript" src="../../resources/scripts/modulestatus_table.js?ver=12"></script>
 </head>
 <body>
     <div id="container-table" style="width: 800px;margin-top: 100px;margin-left: 100px;">
+        <!--
         开始日：<input class="laydate-icon" id="startTime" style="width:160px;height: 25px;"/>
         结束日：<input class="laydate-icon" id="endTime" style="width:160px;height: 25px;"/>
         <button onclick="refreshData()">按时间查询</button>
-        <table id="table-moduleStatus" cellpadding="0" cellspacing="0" border="1px #333" width="1000px">
+        -->
+        <div style="padding-left: 380px"><h2>模块状态表</h2></div>
+        <table id="table-moduleStatus" cellpadding="0" cellspacing="0" border="0px #333" width="1000px">
             <thead>
             <tr>
                 <th width="220px">deviceid</th>

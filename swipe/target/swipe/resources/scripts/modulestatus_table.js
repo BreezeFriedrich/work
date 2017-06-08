@@ -4,14 +4,9 @@ var table_moduleStatus;
 var table_moduleStatus_new;
 var param;
 $(function(){
-    date_plugin_init();
+    // date_plugin_init();
     initData();
 });
-
-// var table = $('#example').DataTable( {
-//     ajax: "data.json"
-// } );
-// table.ajax.url( 'newData.json' ).load();
 
 function refreshData() {
     if(startTime&&endTime){

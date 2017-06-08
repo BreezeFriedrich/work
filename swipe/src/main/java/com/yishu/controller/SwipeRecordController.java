@@ -201,7 +201,7 @@ public class SwipeRecordController {
         };
 
         Map resultMap=new HashMap();
-//        resultMap.put("xAxisTime",xAxisTime);
+        resultMap.put("xAxisTime",xAxisTime);
         resultMap.put("data",index);
         Date[] xAxisData=new Date[days+1];
         int[] xAxisNum=new int[days+1];
