@@ -2,8 +2,6 @@
 /out
 /.project
 /.settings
-/pom.xml.releaseBackup
 /*.iml
 /.idea
-/.DS_Store
 .idea
