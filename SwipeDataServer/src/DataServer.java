@@ -177,6 +177,7 @@ class MyHandler implements HttpHandler{
         SwipeRecord swipeRecord=null;
         SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf2=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar calendar=Calendar.getInstance();
         Date date=null;
         String startTime="";
         String endTime="";
@@ -383,6 +384,35 @@ class MyHandler implements HttpHandler{
                 map.put("result",0);//0--获取数据成功
                 map.put("data",affectedNum);
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(affectedNum));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
+            case 12://swipeRecord/listByDate
+                swipeRecordList=new ArrayList<>();
+//                map=new HashMap();
+                String param_date=node.get("date").asText();
+                Date theDay=null;
+                try {
+                    theDay=sdf1.parse(param_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date date1=null;
+                Date date2=null;
+                date1=new Date(theDay.getTime()/86400000*86400000);
+                date2=new Date((theDay.getTime()/86400000+1)*86400000);
+                logger.info("date1:"+date1);
+                logger.info("date2:"+date2);
+                tempSwipeRecordList=swipeRecordService.listByTimezone(date1.toString(),date2.toString());
+                it=tempSwipeRecordList.iterator();
+                map.put("result",0);
+                while (it.hasNext()){
+                    swipeRecord= (SwipeRecord) it.next();
+                    swipeRecordList.add(swipeRecord);
+                }
+                map.put("data",swipeRecordList);
+                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;

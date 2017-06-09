@@ -5,7 +5,6 @@ var myChart;
 $(function () {
     date_plugin_init();
     myChartInit();
-    refreshData();
 });
 
 function refreshData(){

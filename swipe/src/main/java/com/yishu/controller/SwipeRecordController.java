@@ -138,6 +138,87 @@ public class SwipeRecordController {
 //        return jsonUtil.mapToJson(resultMap);
 //    }
 
+    @RequestMapping("/listByDateToChart.do")
+    @ResponseBody
+    public String listByDateToChart(HttpServletRequest request){
+        logger.info("#CTL      ~ listByDateToChart");
+        String param_date=request.getParameter("param_date");
+        logger.info("param_date:"+param_date);
+        String param_interval=request.getParameter("param_interval");
+        int interval=Integer.parseInt(param_interval);
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar=Calendar.getInstance();
+        Date theDay=null;
+        try {
+            theDay=sdf.parse(param_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        logger.info("theDay:"+theDay);
+        Date time1=null;
+        Date time2=null;
+        time1=new Date(theDay.getTime()/86400000*86400000);
+        time2=new Date((theDay.getTime()/86400000+1)*86400000);
+        logger.info("time1:"+time1);
+        logger.info("time2:"+time2);
+        String startTime=sdf.format(time1);
+        String endTime=sdf.format(time2);
+        logger.info("startTime:"+startTime);
+        logger.info("endTime:"+endTime);
+        List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
+
+        Map resultMap=new HashMap();
+        Date tempTime=null;
+        double index[]=null;
+        boolean isToday=false;
+        isToday=(theDay.getTime()/86400000)==(new Date().getTime()/86400000);
+        int pieces=86400000/interval;
+
+        //按月
+        if(!isToday){
+            //获取series:data[]的值index[]
+            index=new double[pieces];
+            Arrays.fill(index,0.00);
+            double success[]=new double[pieces];
+            double fail[]=new double[pieces];
+            for(SwipeRecord x:swipeRecordList){
+                try {
+                    tempTime=sdf.parse(x.getTimestamp());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                int piece= (int) ((tempTime.getTime()-time1.getTime())/interval);
+                if(0==x.getResult()){
+                    success[piece]++;
+                }else {
+                    fail[piece]++;
+                }
+            }
+            for(int i=0;i<pieces;i++){
+                if(success[i]+fail[i]>0){
+                    index[i]=success[i]*1.00/(success[i]+fail[i]);
+                }
+                System.out.print(index[i]+",  ");
+            }
+            //获取xAxis:data[]的值xAxisData[]
+            String[] xAxisData=new String[pieces];
+            for(int k=0;k<pieces;k++) {
+                Date tempDate=new Date(time1.getTime()+k*interval);
+                calendar.setTime(tempDate);
+                int hh=calendar.get(Calendar.HOUR_OF_DAY);
+                int mm=calendar.get(Calendar.MINUTE);
+                int ss=calendar.get(Calendar.SECOND);
+                xAxisData[k] =String.valueOf(hh)+':'+String.valueOf(mm)+':'+String.valueOf(ss);
+            }
+            resultMap.put("category",xAxisData);
+        }
+
+        resultMap.put("data",index);
+
+        logger.info(String.valueOf(index.length));
+        return jsonUtil.mapToJson(resultMap);
+    }
+
     @RequestMapping("/listByTimezoneToChart.do")
     @ResponseBody
     public String listByTimezoneToChart(HttpServletRequest request){

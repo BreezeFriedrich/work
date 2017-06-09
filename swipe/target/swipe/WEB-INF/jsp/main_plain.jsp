@@ -103,6 +103,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<dd>
 							<a onclick=iframe("dispatcher/swiperecord_show.jsp")>成功率柱状图</a>
 						</dd>
+						<dd>
+							<a onclick=iframe("dispatcher/analyse_byday.jsp")>单日分析</a>
+						</dd>
 					</dl>
 				</div>
 			</div>
