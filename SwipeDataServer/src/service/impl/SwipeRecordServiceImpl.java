@@ -46,6 +46,11 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     }
 
     @Override
+    public List<SwipeRecord> listByTimezoneWhenFail(String startTime, String endTime) {
+        return swipeRecordDao.listByTimezoneWhenFail(startTime,endTime);
+    }
+
+    @Override
     public List<SwipeRecord> listByDeivceid(String deviceid) {
         return swipeRecordDao.listByDeivceid(deviceid);
     }

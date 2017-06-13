@@ -328,6 +328,24 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
+            case 13://swipeRecord/listByTimezoneWhenFail
+                swipeRecordList=new ArrayList<>();
+//                map=new HashMap();
+                startTime=node.get("startTime").asText();
+                endTime=node.get("endTime").asText();
+                tempSwipeRecordList=swipeRecordService.listByTimezoneWhenFail(startTime.toString(),endTime.toString());
+                it=tempSwipeRecordList.iterator();
+                map.put("result",0);
+                while (it.hasNext()){
+                    swipeRecord= (SwipeRecord) it.next();
+                    swipeRecordList.add(swipeRecord);
+                }
+                map.put("data",swipeRecordList);
+                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
             case 4://swipeRecord/listByTimezone
                 swipeRecordList=new ArrayList<>();
 //                map=new HashMap();

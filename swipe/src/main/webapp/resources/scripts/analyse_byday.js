@@ -20,10 +20,11 @@ function getChart(){
                         /*
                          type: 'time',
                          boundaryGap: true,
-                         interval:86400000,
+
                          min:result.xAxisTime.min,
                          max:result.xAxisTime.max
                          */
+                        interval:0,
                         data :result.category
                     },
                     series: {
@@ -81,7 +82,7 @@ function myChartInit(){
             type:'category',
             boundaryGap:true,
             axisLabel: {
-                rotate: 60
+                rotate: -60
             },
             data:[]
             // data : function(){

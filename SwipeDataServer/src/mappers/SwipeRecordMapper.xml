@@ -36,6 +36,13 @@
         FROM SwipeRecord
     </select>
 
+    <select id="listByTimezoneWhenFail" resultType="SwipeRecord">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
+        FROM SwipeRecord
+        WHERE result!=0 AND `timestamp` BETWEEN DATE_FORMAT(#{startTime},'%Y/%m/%d %H:%i:%S') AND DATE_FORMAT(#{endTime},'%Y/%m/%d %H:%i:%S')
+        ORDER BY `timestamp` DESC ;
+    </select>
+
     <select id="listByDeviceid" parameterType="String" resultType="SwipeRecord">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,`timestamp`
         FROM SwipeRecord

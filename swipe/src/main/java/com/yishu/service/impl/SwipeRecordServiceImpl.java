@@ -79,6 +79,19 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     }
 
     @Override
+    public List<SwipeRecord> listByTimezoneWhenFail(String startTime, String endTime) {
+        postdata="{\"sign\":13,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        swipeRecordList=getDataListFromJson(getdata);
+        if(swipeRecordList.size()>0){
+            return swipeRecordList;
+        }
+        return null;
+    }
+
+    @Override
     public List<SwipeRecord> listByTimezone(String startTime, String endTime) {
         postdata="{\"sign\":4,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
 //        logger.info("#request-DATA     ~ "+postdata);

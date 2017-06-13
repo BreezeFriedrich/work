@@ -52,6 +52,30 @@ public class SwipeRecordController {
         //{total:23,(page:2,limit:10,)data:[...]}
     }
 
+    @RequestMapping("/listByTimezoneWhenFail.do")
+    @ResponseBody
+    public String listByTimezoneWhenFail(HttpServletRequest request){
+        logger.info("#CTL      ~ listByTimezoneWhenFail");
+        int limit= Integer.parseInt(request.getParameter("limit"));
+        int page= Integer.parseInt(request.getParameter("page"));
+        int start= Integer.parseInt(request.getParameter("start"));
+        String startTime=request.getParameter("startTime");
+        String endTime=request.getParameter("endTime");
+        List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezoneWhenFail(startTime,endTime);
+        List<SwipeRecord> newSwipeRecordList=new ArrayList<>();
+        SwipeRecord swipeRecord=null;
+        int total=swipeRecordList.size();
+        for(int i=((page-1)*limit);i<(page-1+1)*limit&&i<total;i++){
+            swipeRecord=swipeRecordList.get(i);
+            newSwipeRecordList.add(swipeRecord);
+        }
+        if (!newSwipeRecordList.isEmpty()){
+            return listToObj(newSwipeRecordList,total);
+        }
+        return null;
+        //{total:23,(page:2,limit:10,)data:[...]}
+    }
+
     @RequestMapping("/listByTimezone.do")
     @ResponseBody
     public String listByTimezone(HttpServletRequest request){
@@ -157,16 +181,17 @@ public class SwipeRecordController {
         logger.info("theDay:"+theDay);
         Date time1=null;
         Date time2=null;
-        time1=new Date(theDay.getTime()/86400000*86400000);
-        time2=new Date((theDay.getTime()/86400000+1)*86400000);
-        logger.info("time1:"+time1);
-        logger.info("time2:"+time2);
+        time1=new Date(theDay.getTime()/86400000*86400000+57600000);
+        time2=new Date((theDay.getTime()/86400000+1)*86400000+57600000);
         String startTime=sdf.format(time1);
         String endTime=sdf.format(time2);
         logger.info("startTime:"+startTime);
         logger.info("endTime:"+endTime);
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
-
+        if (swipeRecordList==null||swipeRecordList.size()<1){
+            logger.info("swipeRecordList is empty");
+            return null;
+        }
         Map resultMap=new HashMap();
         Date tempTime=null;
         double index[]=null;
@@ -182,8 +207,9 @@ public class SwipeRecordController {
             double success[]=new double[pieces];
             double fail[]=new double[pieces];
             for(SwipeRecord x:swipeRecordList){
+//                logger.info("SwipeRecord.x:"+x+" .time:"+x.getTimestamp());
                 try {
-                    tempTime=sdf.parse(x.getTimestamp());
+                    tempTime=sdf.parse(x.getTimestamp());//timestamp数据格式和范围必须正确
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -198,7 +224,7 @@ public class SwipeRecordController {
                 if(success[i]+fail[i]>0){
                     index[i]=success[i]*1.00/(success[i]+fail[i]);
                 }
-                System.out.print(index[i]+",  ");
+//                System.out.print(index[i]+",  ");
             }
             //获取xAxis:data[]的值xAxisData[]
             String[] xAxisData=new String[pieces];
