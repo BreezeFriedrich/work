@@ -3,8 +3,11 @@ package com.yishu.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.model.SwipeRecord;
+import com.yishu.model.SwipeRecordStrategy;
 import com.yishu.service.SwipeRecordService;
 import com.yishu.util.JsonUtil;
+import com.yishu.util.PageUtil;
+import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,6 +55,92 @@ public class SwipeRecordController {
         //{total:23,(page:2,limit:10,)data:[...]}
     }
 
+    @RequestMapping(value = "/listAllWithStrategy")
+    @ResponseBody
+    public String listAllWithStrategy(HttpServletRequest request) throws Exception{
+        //直接返回前台
+        String draw = request.getParameter("draw");
+        //数据起始位置
+        String startIndex = request.getParameter("startIndex");
+        //每页显示的条数
+        String pageSize = request.getParameter("pageSize");
+        //获取排序字段
+        String orderColumn = request.getParameter("orderColumn");
+        if(orderColumn == null){
+            orderColumn = "deviceid";
+        }
+        //获取排序方式
+        String orderDir = request.getParameter("orderDir");
+        if(orderDir == null){
+            orderDir = "asc";
+        }
+        //查询条件
+        String deviceid = request.getParameter("deviceid");
+        String timestamp = request.getParameter("timestamp");
+        String result = request.getParameter("result");
+        SwipeRecordStrategy strategy = new SwipeRecordStrategy();
+        if(null != deviceid && !"".equals(deviceid)){
+            strategy.setDeviceid(deviceid);
+        }
+        strategy.setTimestamp(timestamp);
+        if(null != result && !"".equals(result)){
+            strategy.setResult(Integer.parseInt(result));
+        }
+        List<SwipeRecord> swipeRecords = SwipeRecordService.querySelectByCondition(orderColumn, orderDir, strategy);
+        PageUtil<SwipeRecord> pageUtil=new PageUtil<SwipeRecord>(swipeRecords);
+        pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
+        Map<Object, Object> info = new HashMap<Object, Object>();
+        System.out.println(JSONObject.fromObject(pageUtil));
+        info.put("pageData", pageUtil.getList());
+        info.put("total", pageUtil.getTotal());
+        info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+        return JSONObject.fromObject(info)+"";
+    }
+
+/*
+    @RequestMapping(value = "/getCarrierByPage")
+    @ResponseBody
+    public String getCarrierByPage() throws Exception{
+        //直接返回前台
+        String draw = request.getParameter("draw");
+        //数据起始位置
+        String startIndex = request.getParameter("startIndex");
+        //每页显示的条数
+        String pageSize = request.getParameter("pageSize");
+        //获取排序字段
+        String orderColumn = request.getParameter("orderColumn");
+        if(orderColumn == null){
+            orderColumn = "deviceid";
+        }
+        //获取排序方式
+        String orderDir = request.getParameter("orderDir");
+        if(orderDir == null){
+            orderDir = "asc";
+        }
+        //查询条件
+        String deviceid = request.getParameter("deviceid");
+        String timestamp = request.getParameter("name");
+        String carrierStatus = request.getParameter("status");
+        XcxCarrier x = new SwipeRecord();
+        if(null != deviceid && !"".equals(deviceid)){
+            x.setdeviceid(Long.parseLong(deviceid));
+        }
+        x.settimestamp(timestamp);
+        if(null != carrierStatus && !"".equals(carrierStatus)){
+            x.setCarrierStatus(Integer.parseInt(carrierStatus));
+        }
+        PageHelper.offsetPage(getPageNo(Integer.parseInt(startIndex)), getPageSize(Integer.parseInt(pageSize)));
+        List<SwipeRecord> result = this.SwipeRecordService.querySelectByCondition(orderColumn, orderDir, x);
+        PageInfo<SwipeRecord> pageInfo = new PageInfo<SwipeRecord>(result);
+        Map<Object, Object> info = new HashMap<Object, Object>();
+        System.out.println(JSONObject.fromObject(pageInfo));
+        info.put("pageData", pageInfo.getList());
+        info.put("total", pageInfo.getTotal());
+        info.put("draw", draw);
+        return JSONObject.fromObject(info)+"";
+    }
+*/
+
     @RequestMapping("/listByTimezoneWhenFail.do")
     @ResponseBody
     public String listByTimezoneWhenFail(HttpServletRequest request){
@@ -65,11 +154,14 @@ public class SwipeRecordController {
         List<SwipeRecord> newSwipeRecordList=new ArrayList<>();
         SwipeRecord swipeRecord=null;
         int total=swipeRecordList.size();
+        if((page-1)*limit+1>total){
+            page=1;
+        }
         for(int i=((page-1)*limit);i<(page-1+1)*limit&&i<total;i++){
             swipeRecord=swipeRecordList.get(i);
             newSwipeRecordList.add(swipeRecord);
         }
-        if (!newSwipeRecordList.isEmpty()){
+        if (newSwipeRecordList.size()>0){
             return listToObj(newSwipeRecordList,total);
         }
         return null;

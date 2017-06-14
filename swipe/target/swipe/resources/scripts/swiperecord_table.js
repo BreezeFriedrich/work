@@ -224,7 +224,7 @@ function ajaxData() {
                     },1);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $.dialog.alert("查询失败");
+                    alert("查询失败");
                     $wrapper.spinModal(false);
                 }
             })
@@ -375,7 +375,7 @@ function testD() {
                     }, 200);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $.dialog.alert("查询失败");
+                    alert("查询失败");
                     $wrapper.spinModal(false);
                 }
             })

@@ -7,87 +7,206 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
         <meta charset="utf-8">
         <title>亿数漫行智能锁</title>
-		<link rel="icon" type="image/x-icon" href="../../resources/styles/images/intellilock.png"/>
-		<link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/default/easyui.css"/>
-		<link rel="stylesheet" type="text/css" href="../../resources/easyui/themes/icon.css"/>
-		<link rel="stylesheet" type="text/css" href="../../resources/easyui/demo/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="../../resources/styles/main.css"/>
-		<link rel="stylesheet" type="text/css" href="../../resources/styles/UserManage.css"/>
-		<link rel="stylesheet" type="text/css" href="../../resources/styles/deviceManage.css"/>
 		<script type="text/javascript" src="../../resources/easyui/jquery.min.js"></script>
-		<script type="text/javascript" src="../../resources/easyui/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="../../resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-		<script type="text/javascript" src="../../resources/scripts/cookie_util.js"></script>
 		<script type="text/javascript" src="../../resources/scripts/main.js"></script>
-		<script type="text/javascript" src="../../resources/scripts/lockoperate.js"></script>
-		<script type="text/javascript" src="../../resources/scripts/device-manage.js"></script>
-		<!-- <script type="text/javascript">
-			//客户端登陆信息检查
-			var user = getCookie("userId");
-			if(user==null){//如果用户信息不存在进入登陆页面
-  			window.location.href="login.jsp";
-			}
-		</script>
-		 -->
+		<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+		<script type="text/javascript" charset="utf8" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="js/jquery.dataTables.js"></script>
 		<script type="text/javascript">
-			//载入提示遮罩
-			function closes(){
-				$("#Loading").fadeOut("normal",function(){
-					$(this).remove();
-					});
-			}
-			var pc;
-			$.parser.onComplete = function(){
-				if(pc) clearTimeout(pc);
-				pc = setTimeout(closes, 1000);
-			}
+    		var rootPath = '${pageContext.request.contextPath}';
 		</script>
     </head>
-	
-	<body class="easyui-layout" style="min-width:900px;">
-		<div id='Loading' style="position:absolute;top: 50%; left: 50%;margin-left: -150px;margin-top: -150px;width:100%;height:100%;">
-			<image src='resources/styles/images/loading.svg'/>
-		</div>
-		<div data-options="region:'north',border:false" style="height:60px;background:#95b8e7;padding:10px">
-			<div class="header-brand" style="float:left;">
-                <a>
-                	<img class="brand-logo" src="" alt="Logo">
-                </a>
-            </div>
-            <div id="pagetitle" style="display:inline-block;float:left;width:238px;height:34px;position:absolute;top:50%;left:50%;margin-left:-118px;margin-top:-17px;">漫行智能锁管理系统</div>
-            <div class="header-menu" style="float:right;display:inline-block;">
-            	<span id="loginStatus">登录信息</span>
-            	<button class="button" id="safetylogout" style="border:2px solid #b2cef3;border-radius:3px;background-color:#c4d8f3;font-size:17px;font-family:Arial, Helvetica, sans-serif;color:#305b96;padding:8px 8px;">安全退出</button>
-            </div>
-		</div>
-		<div data-options="region:'west',split:true,title:'菜单'" style="width:150px;padding:0px;">
-			<div class="easyui-accordion" data-options="fit:true,border:false" style="width:30px;font-size:25px;">
-				<div title="用户管理" style="padding-left:10px;font-size:20px;">
-					<ul id="tree_accountList"></ul>
-					<ul id="tree_RBAC"></ul>
-				</div>
-				<div title="设备管理" style="padding-left:10px;font-size:20px;">
-					<ul id="tree_unlock"></ul>
-				</div>
-				<div title="查询与统计" data-options="selected:true" style="padding-left:10px;font-size:20px;">
-					<ul id="tree_count"></ul>
-				</div>
-			</div>
-		</div>
-		<div data-options="region:'east',split:true,collapsed:true,title:'帮助'" style="width:100px;padding:10px;">
-			<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>
-		</div>
-		<div data-options="region:'south',border:false" style="height:50px;background:#95b8e7;padding:10px;color:#7F93AD;font-size:14px;">©2015-2016 南京亿数信息科技有限公司 版权所有</div>
-		<div data-options="region:'center',title:'详情'">
-			<div class="easyui-tabs" data-options="fit:true,border:false,plain:true" id="tabs">
-				<!-- <div title="欢迎" data-options="href:'welcome.jsp'" style="padding:10px"></div> -->
-			</div>
-		</div>
-		<div id="tabsMenu" class="easyui-menu" style="width:120px;">
-			<div name="close">关闭</div>
-			<div name="Other">关闭其他</div>
-			<div name="All">关闭所有</div>
-		</div>
-	</body>
-			
+	<body>  
+    <form>  
+        <span>编号:</span> <input type="text" placeholder="编号" id="id-search">  
+        <span>名称:</span> <input type="text" placeholder="名称" id="name-search">  
+        <span>状态:</span> <select id="status-search">  
+            <option value="">全部</option>
+            <option value="1">可以查发</option>  
+            <option value="2">可以链接</option>  
+            <option value="3">仅供查询</option>  
+            <option value="4">不可用</option>  
+        </select>  
+        <button type="button" id="btn_search">查询</button>  
+          
+        <a href="#" data-column="0">影藏编号</a>  
+        <a href="#" data-column="1">影藏名称</a>  
+        <a href="#" data-column="2">影藏状态</a>  
+        <a href="#" data-column="3">影藏电话</a>  
+        <a href="#" data-column="4">影藏网址</a>  
+        <a href="#" data-column="5">影藏操作</a>  
+    </form>  
+    <table id="table" class="display">  
+        <thead>  
+            <tr>  
+                <th>编号</th>  
+                <th>名称</th>  
+                <th>状态</th>  
+                <th>电话</th>  
+                <th>网址</th>  
+                <th>操作</th>  
+            </tr>  
+        </thead>  
+        <tbody></tbody>  
+    </table>  
+    <script type="text/javascript" src="js/constant.js"></script>  
+    <script type="text/javascript">  
+    $(function(){
+        var $table = $("#table");
+        var _table = $table.dataTable($.extend(true,{},CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
+            ajax : function(data, callback, settings) {
+                //封装请求参数  
+                var param = userManage.getQueryCondition(data);
+                $.ajax({  
+                        type: "GET",  
+                        url: rootPath+"/carrier/getCarrierByPage.action",
+                        cache : false,  //禁用缓存  
+                        data: param,    //传入已封装的参数  
+                        dataType: "json",  
+                        success: function(result) {
+                                //异常判断与处理  
+                                if (result.errorCode) {
+                                    alert("查询失败");
+                                    return;
+                                }
+                                //封装返回数据
+                                var returnData = {};
+                                returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                                returnData.recordsTotal = result.total;//总记录数
+                                returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                                returnData.data = result.pageData;  
+                                //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                                //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                                callback(returnData);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert("查询失败");  
+                        }  
+                    });  
+            },  
+            //绑定数据  
+            columns: [  
+                {  
+                    data: "carrierId",//字段名  
+                },  
+                {  
+                    data: "carrierName",//字段名  
+                },  
+                {  
+                    data : "carrierStatus",//字段名  
+                    render : function(data,type, row, meta) {  
+                        return (data == 1? "可以查发":data == 2?"可以链接":data == 3?"仅供查询":"不可用");  
+                    }  
+                },  
+                {  
+                    data : "carrierPhone",//字段名  
+                },  
+                {  
+                    data : "carrierLink",//字段名  
+                    orderable : false,//禁用排序  
+                    render : CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果  
+                },  
+                 {  
+                    data: null,//字段名  
+                    defaultContent:"",//无默认值  
+                    orderable : false//禁用排序  
+                }  
+            ],  
+            "createdRow": function ( row, data, index ) {  
+                //不使用render，改用jquery文档操作呈现单元格  
+                var $btnEdit = $('<button type="button" class="btn-edit">修改</button>');  
+                var $btnDel = $('<button type="button" class="btn-del">删除</button>');  
+                $('td', row).eq(5).append($btnEdit).append($btnDel);  
+            },  
+            "drawCallback": function( settings ) {  
+                //渲染完毕后的回调  
+                //默认选中第一行  
+                //$("tbody tr",$table).eq(0).click();  
+            }  
+        })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
+        //查询  
+        $("#btn_search").click(function(){  
+            _table.draw();  
+        });  
+        //行点击事件  
+        $("tbody",$table).on("click","tr",function(event) {  
+            $(this).addClass("active").siblings().removeClass("active");
+            //获取该行对应的数据  
+            var item = _table.row($(this).closest('tr')).data();  
+            userManage.showItemDetail(item);  
+        });  
+        //按钮点击事件  
+        $table.on("click",".btn-edit",function() {  
+            //点击编辑按钮  
+            var item = _table.row($(this).closest('tr')).data();  
+            userManage.editItemInit(item);  
+        }).on("click",".btn-del",function() {  
+            //点击删除按钮  
+            var item = _table.row($(this).closest('tr')).data();  
+            userManage.deleteItem(item);  
+        });  
+        //影藏列  
+        $('a').on( 'click', function (e) {  
+            var cut = $(this).text()  
+            if(cut.indexOf("显示")>-1){  
+                $(this).text("影藏"+cut.split("示")[1])  
+            }else{  
+                $(this).text("显示"+cut.split("藏")[1])  
+            }  
+            e.preventDefault();  
+            var column = _table.column( $(this).attr('data-column') );  
+            column.visible( ! column.visible() );  
+        } );  
+          
+    });  
+    var userManage = {  
+            getQueryCondition : function(data) {  
+                var param = {};  
+                //组装排序参数  
+                if (data.order&&data.order.length&&data.order[0]) {  
+                    switch (data.order[0].column) {  
+                    case 0:  
+                        param.orderColumn = "carrier_id";//数据库列名称  
+                        break;  
+                    case 1:  
+                        param.orderColumn = "carrier_name";//数据库列名称  
+                        break;  
+                    case 2:  
+                        param.orderColumn = "carrier_status";//数据库列名称  
+                        break;  
+                    case 3:  
+                        param.orderColumn = "carrier_phone";//数据库列名称  
+                        break;  
+                    default:  
+                        param.orderColumn = "carrier_id";//数据库列名称  
+                        break;  
+                    }  
+                    //排序方式asc或者desc  
+                    param.orderDir = data.order[0].dir;  
+                }  
+                param.id = $("#id-search").val();//查询条件  
+                param.name = $("#name-search").val();//查询条件  
+                param.status = $("#status-search").val();//查询条件  
+                //组装分页参数  
+                param.startIndex = data.start;  
+                param.pageSize = data.length;  
+                param.draw = data.draw;  
+                return param;  
+            },  
+            editItemInit : function(item) {  
+                //编辑方法  
+                alert("编辑"+item.carrierId+"  "+item.carrierName);  
+            },  
+            deleteItem : function(item) {  
+                //删除  
+                alert("删除"+item.carrierId+"  "+item.carrierName);     
+            },  
+            showItemDetail: function(item){  
+                //点击行  
+                alert("点击"+item.carrierId+"  "+item.carrierName);  
+            }  
+        };  
+   </script>  
+</body>
 </html>

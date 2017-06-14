@@ -107,6 +107,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a onclick=iframe("dispatcher/analyse_byday.jsp")>单日分析</a>
 						</dd>
 					</dl>
+					<dl class="statistics">
+						<dt style="background-image: url(../../resources/styles/images/left/statistics.png)">测试<img src="../../resources/styles/images/left/select_xl01.png"></dt>
+						<dd class="first_dd">
+							<a onclick=iframe("dispatcher/test_datatables.jsp")>DataTables</a>
+						</dd>
+					</dl>
 				</div>
 			</div>
 

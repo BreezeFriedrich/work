@@ -100,7 +100,6 @@ function ajaxData() {
 
         "bProcessing": true,
         "bServerSide": true,
-        "bSort": false,
         "aoColumns": [{
             // {"sName": "deviceid", "sClass": "center"},
             // {"sName": "deviceip", "sClass": "center"},
@@ -117,7 +116,7 @@ function ajaxData() {
             {"mDataProp":"deviceip",
                 "sTitle" : "模块IP",
                 "sDefaultContent" : "",
-                "sClass" : "left",
+                "sClass" : "left"
             },
             {"mDataProp":"clientid",
                 "sTitle" : "设备编号",
@@ -224,7 +223,7 @@ function ajaxData() {
                     },1);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $.dialog.alert("查询失败");
+                    alert("查询失败");
                     $wrapper.spinModal(false);
                 }
             })
@@ -375,7 +374,7 @@ function testD() {
                     }, 200);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $.dialog.alert("查询失败");
+                    alert("查询失败");
                     $wrapper.spinModal(false);
                 }
             })

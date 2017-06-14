@@ -17,7 +17,7 @@
     <script type="text/javascript" src="../../resources/scripts/echarts.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/swiperecord_chart.js?ver=13"></script>
+    <script type="text/javascript" src="../../resources/scripts/swiperecord_chart.js?ver=38"></script>
 </head>
 <body>
 <div class="container">

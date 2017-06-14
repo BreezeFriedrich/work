@@ -77,7 +77,7 @@ $(function (){
                     setTimeout(function(){
                         //异常判断与处理
                         if (result.errorCode) {
-                            $.dialog.alert("查询失败。错误码："+result.errorCode);
+                            alert("查询失败。错误码："+result.errorCode);
                             return;
                         }
 
