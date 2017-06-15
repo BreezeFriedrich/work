@@ -1,6 +1,7 @@
 import com.sun.net.httpserver.*;
 import model.DeviceStatus;
 import model.SwipeRecord;
+import model.SwipeRecordStrategy;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
@@ -334,6 +335,27 @@ class MyHandler implements HttpHandler{
                 startTime=node.get("startTime").asText();
                 endTime=node.get("endTime").asText();
                 tempSwipeRecordList=swipeRecordService.listByTimezoneWhenFail(startTime.toString(),endTime.toString());
+                it=tempSwipeRecordList.iterator();
+                map.put("result",0);
+                while (it.hasNext()){
+                    swipeRecord= (SwipeRecord) it.next();
+                    swipeRecordList.add(swipeRecord);
+                }
+                map.put("data",swipeRecordList);
+                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
+            case 14://swipeRecord/listByTimezoneWhenFail
+                swipeRecordList=new ArrayList<>();
+//                map=new HashMap();
+//                String orderColumn=node.get("orderColumn").asText();
+//                String orderDir=node.get("orderDir").asText();
+//                SwipeRecordStrategy strategy=objectMapper.readValue(node.get("strategy"),SwipeRecordStrategy.class);
+//                tempSwipeRecordList=swipeRecordService.listAllWithStrategy(orderColumn,orderDir,strategy);
+                HashMap paramMap=objectMapper.readValue(reqData,HashMap.class);
+                tempSwipeRecordList=swipeRecordService.listAllWithStrategy(paramMap);
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
                 while (it.hasNext()){

@@ -1,15 +1,16 @@
 /**
  * Created by admin on 2017/6/14.
  */
+var param;
 $(function () {
     var $table = $("#table");
     var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
         ajax: function (data, callback, settings) {
             //封装请求参数
-            var param = userManage.getQueryCondition(data);
+            param = userManage.getQueryCondition(data);
             $.ajax({
                 type: "POST",
-                url: '/swipeRecord/listAll.do',
+                url: '/swipeRecord/listAllWithStrategy.do',
                 cache: false,  //禁用缓存
                 data: param,  //传入组装的参数
                 dataType: "json",
@@ -37,29 +38,30 @@ $(function () {
         //绑定数据
         columns: [
             {
-                data: "carrierId",//字段名
+                data: "deviceid",
+                orderable: true
             },
             {
-                data: "carrierName",//字段名
+                data: "deviceip"
             },
             {
-                data: "carrierStatus",//字段名
+                data: "clientid",
+                defaultContent: "",//无默认值
+                orderable: false
+            },
+            {
+                data: "clientip"
+            },
+            {
+                data: "result",//字段名
                 render: function (data, type, row, meta) {
-                    return (data == 1 ? "可以查发" : data == 2 ? "可以链接" : data == 3 ? "仅供查询" : "不可用");
+                    return (data == 0 ? "刷卡成功" : data == 1 ? "刷卡失败" : "刷卡结果奇异");
                 }
             },
             {
-                data: "carrierPhone",//字段名
-            },
-            {
-                data: "carrierLink",//字段名
-                orderable: false,//禁用排序
+                data: "timestamp",//字段名
+                orderable: true,
                 render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
-            },
-            {
-                data: null,//字段名
-                defaultContent: "",//无默认值
-                orderable: false//禁用排序
             }
         ],
         "createdRow": function (row, data, index) {
@@ -76,6 +78,11 @@ $(function () {
     })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
     //查询
     $("#btn_search").click(function () {
+        // _table.ajax.url='/swipeRecord/listAllWithStrategy.do';
+        // param = userManage.getQueryCondition(_table.ajax.data);
+        // _table.ajax.param=param;
+        // _table.ajax.reload();
+        // console.log("额外传到后台的参数值extra_search为："+table.ajax.params());
         _table.draw();
     });
     //行点击事件
@@ -97,7 +104,7 @@ $(function () {
     });
     //影藏列
     $('a').on('click', function (e) {
-        var cut = $(this).text()
+        var cut = $(this).text();
         if (cut.indexOf("显示") > -1) {
             $(this).text("影藏" + cut.split("示")[1])
         } else {
@@ -142,7 +149,22 @@ var CONSTANT = {
             order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
             processing: false,  //隐藏加载提示,自行处理
             serverSide: true,   //启用服务器端分页
-            searching: false    //禁用原生搜索
+            searching: false,    //禁用原生搜索
+            // bProcessing: true,
+            // bServerSide: true,
+            iDisplayLength : 10,//默认每页数量
+            bLengthChange : true, //改变每页显示数据数量
+            lengthMenu : [10,20,30],
+            ordering : true,
+            stateSave : true,
+            retrieve : true
+            //bPaginate: true, //翻页功能
+            //bFilter : true, //过滤功能
+            // bSort : false, //排序功能
+            //bInfo : true,//页脚信息
+            //bAutoWidth : true,//自动宽度
+            //bPaginate : true,
+            //bProcessing: true//服务器端进行分页处理的意思
         },
         COLUMN: {
             CHECKBOX: { //复选框单元格
@@ -194,9 +216,10 @@ var userManage = {
             //排序方式asc或者desc
             param.orderDir = data.order[0].dir;
         }
-        param.deviceid = $("#deviceid-search").val();//查询条件
-        param.timestamp = $("#timestamp-search").val();//查询条件
-        param.result = $("#result-search").val();//查询条件
+        param.deviceid = $("#deviceid-search").val();
+        param.endTime = $("#endTime-search").val();
+        param.result = $("#result-search").val();
+        // param.result = $("#result-search").val()===""?-1:$("#result-search").val();
         //组装分页参数
         param.startIndex = data.start;
         param.pageSize = data.length;

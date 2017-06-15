@@ -58,6 +58,7 @@ public class SwipeRecordController {
     @RequestMapping(value = "/listAllWithStrategy")
     @ResponseBody
     public String listAllWithStrategy(HttpServletRequest request) throws Exception{
+        HashMap paramMap= new HashMap(15);
         //直接返回前台
         String draw = request.getParameter("draw");
         //数据起始位置
@@ -68,31 +69,42 @@ public class SwipeRecordController {
         String orderColumn = request.getParameter("orderColumn");
         if(orderColumn == null){
             orderColumn = "deviceid";
+            paramMap.put("orderColumn",orderColumn);
         }
         //获取排序方式
         String orderDir = request.getParameter("orderDir");
         if(orderDir == null){
             orderDir = "asc";
+            paramMap.put("orderDir",orderDir);
         }
         //查询条件
         String deviceid = request.getParameter("deviceid");
-        String timestamp = request.getParameter("timestamp");
+        String endTime = request.getParameter("endTime");
         String result = request.getParameter("result");
         SwipeRecordStrategy strategy = new SwipeRecordStrategy();
         if(null != deviceid && !"".equals(deviceid)){
-            strategy.setDeviceid(deviceid);
+//            strategy.setDeviceid(deviceid);
+            paramMap.put("deviceid",deviceid);
         }
-        strategy.setTimestamp(timestamp);
+//        strategy.setEndTime(endTime);
+        paramMap.put("endTime",endTime);
         if(null != result && !"".equals(result)){
-            strategy.setResult(Integer.parseInt(result));
+//            strategy.setResult(result);
+            paramMap.put("result",result);
         }
-        List<SwipeRecord> swipeRecords = SwipeRecordService.querySelectByCondition(orderColumn, orderDir, strategy);
-        PageUtil<SwipeRecord> pageUtil=new PageUtil<SwipeRecord>(swipeRecords);
-        pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
+//        List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(orderColumn, orderDir, strategy);
+        List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(paramMap);
         Map<Object, Object> info = new HashMap<Object, Object>();
-        System.out.println(JSONObject.fromObject(pageUtil));
-        info.put("pageData", pageUtil.getList());
-        info.put("total", pageUtil.getTotal());
+        if(swipeRecords==null){
+            info.put("pageData",null);
+            info.put("total",0);
+        }else{
+            PageUtil<SwipeRecord> pageUtil=new PageUtil<SwipeRecord>(swipeRecords);
+            pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
+            System.out.println(JSONObject.fromObject(pageUtil));
+            info.put("pageData", pageUtil.getList());
+            info.put("total", pageUtil.getTotal());
+        }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
         return JSONObject.fromObject(info)+"";
     }

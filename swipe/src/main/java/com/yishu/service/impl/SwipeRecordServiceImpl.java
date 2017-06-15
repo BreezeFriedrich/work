@@ -1,11 +1,14 @@
 package com.yishu.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.gson.Gson;
 import com.yishu.model.SwipeRecord;
+import com.yishu.model.SwipeRecordStrategy;
 import com.yishu.service.SwipeRecordService;
 import com.yishu.util.HttpUtil;
 import org.slf4j.Logger;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -73,6 +77,28 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
 //            logger.info("swipeRecordList:"+String.valueOf(swipeRecordList));
+            return swipeRecordList;
+        }
+        return null;
+    }
+
+    @Override
+    public List<SwipeRecord> listAllWithStrategy(HashMap paramMap) {
+
+        Gson gson=new Gson();
+        paramMap.put("sign",14);
+        try {
+            postdata=objectMapper.writeValueAsString(paramMap);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+//        postdata="{\"sign\":14,\"orderColumn\":\"" + orderColumn + "\",\"orderDir\":\"" + orderDir + "\",\"strategy\":"+gson.toJson(strategy)+"}";
+        logger.info("postdata:"+postdata);
+        getdata=HttpUtil.postData(postdata);
+        logger.info("#DATA     ~ "+getdata);
+
+        swipeRecordList=getDataListFromJson(getdata);
+        if(swipeRecordList.size()>0){
             return swipeRecordList;
         }
         return null;

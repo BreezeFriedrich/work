@@ -21,7 +21,7 @@
     <script type="text/javascript" src="../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=2"></script>
+    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=11"></script>
     <script type="text/javascript">
         var rootPath = '${pageContext.request.contextPath}';
     </script>
@@ -29,7 +29,7 @@
 <body>
 <form>
     <span>设备编号:</span> <input type="text" placeholder="设备编号" id="deviceid-search">
-    <span>刷卡时间:</span> <input type="text" placeholder="刷卡时间" id="timestamp-search">
+    <span>刷卡时间:</span> <input type="text" placeholder="刷卡时间" id="endTime-search">
     <span>刷卡结果:</span> <select id="result-search">
     <option value="">全部</option>
     <option value="0">成功</option>

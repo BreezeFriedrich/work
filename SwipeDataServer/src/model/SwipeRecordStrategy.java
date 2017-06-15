@@ -1,4 +1,4 @@
-package com.yishu.model;
+package model;
 
 /**
  * Created by admin on 2017/6/14.
@@ -9,7 +9,7 @@ public class SwipeRecordStrategy {
     private String deviceip;
     private String clientid;
     private String clientip;
-    private String result;
+    private int result;
     private String timestamp;
     private String startTime;
     private String endTime;
@@ -46,11 +46,11 @@ public class SwipeRecordStrategy {
         this.clientip = clientip;
     }
 
-    public String getResult() {
+    public int getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(int result) {
         this.result = result;
     }
 

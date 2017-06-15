@@ -1,6 +1,9 @@
 package service;
 
 import model.SwipeRecord;
+import model.SwipeRecordStrategy;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,6 +16,8 @@ public interface SwipeRecordService {
     public void deleteByTime(String timestamp);
     public void deleteByDeviceid(String deviceid);
     public List<SwipeRecord> listAll();
+//    public List<SwipeRecord> listAllWithStrategy(String orderColumn, String orderDir, SwipeRecordStrategy strategy);
+    public List<SwipeRecord> listAllWithStrategy(HashMap paramMap);
     public List<SwipeRecord> listByTimezoneWhenFail(String startTime,String endTime);
     public List<SwipeRecord> listByDeivceid(String deviceid);
     public List<SwipeRecord> listByTimezone(String startTime,String endTime);

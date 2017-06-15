@@ -2,12 +2,14 @@ package service.impl;
 
 import dao.SwipeRecordDao;
 import model.SwipeRecord;
+import model.SwipeRecordStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.SwipeRecordService;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,6 +45,16 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     @Override
     public List<SwipeRecord> listAll() {
         return swipeRecordDao.listAll();
+    }
+
+//    @Override
+//    public List<SwipeRecord> listAllWithStrategy(String orderColumn, String orderDir, SwipeRecordStrategy strategy) {
+//        return swipeRecordDao.listAllWithStrategy(orderColumn,orderDir,strategy);
+//    }
+
+    @Override
+    public List<SwipeRecord> listAllWithStrategy(HashMap paramMap) {
+        return swipeRecordDao.listAllWithStrategy(paramMap);
     }
 
     @Override

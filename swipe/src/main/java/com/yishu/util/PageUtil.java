@@ -33,9 +33,10 @@ public class PageUtil<X> {
     }
 
     public void remodel(int pageSize,int startIndex){
-        List<X> newList=null;
-        for(int i=startIndex;i<startIndex+pageSize && i<list.size()+1;i++){
+        List<X> newList=new ArrayList<>(pageSize<list.size()?pageSize:list.size());
+        for(int i=startIndex;i<startIndex+pageSize && i<list.size();i++){
             newList.add(list.get(i));
+            System.out.print(",i="+i);
         }
         this.list=newList;
         if(null==this.list){

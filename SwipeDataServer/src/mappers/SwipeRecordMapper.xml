@@ -36,6 +36,35 @@
         FROM SwipeRecord
     </select>
 
+    <!--<select id="listAllWithStrategy" resultType="SwipeRecord">-->
+        <!--SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`-->
+        <!--FROM SwipeRecord-->
+        <!--<where>-->
+            <!--<if test="#{strategy}.deviceid !=null and #{strategy}.deviceid !=''">and `deviceid` = #{strategy}.deviceid</if>-->
+            <!--<if test="#{strategy}.result !=null and #{strategy}.result !='' and #{strategy}.result >=0">and `result` = #{strategy}.result</if>-->
+            <!--<if test="#{strategy}.endTime !=null and #{strategy}.endTime !=''">and #{strategy}.endTime >= `timestamp`</if>-->
+        <!--</where>-->
+        <!--ORDER BY #{orderColumn} #{orderDir};-->
+    <!--</select>-->
+
+    <!--<select id="listAllWithStrategy" resultType="SwipeRecord" parameterType="model.SwipeRecordStrategy">-->
+        <!--SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`-->
+        <!--FROM SwipeRecord-->
+    <!--</select>-->
+    <!--<if test="ch_name!=''"> and ch_id in ( select ch_id from channel where ch_name like '%#{ch_name}%')</if>-->
+
+    <select id="listAllWithStrategy" resultType="SwipeRecord" parameterType="Map">
+        SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
+        FROM SwipeRecord
+        <where>
+            <if test="deviceid!=''"> and deviceid=#{deviceid}</if>
+            <if test="deviceip!=''"> and deviceip=#{deviceip}</if>
+            <if test="result!=''"> and result=#{result}</if>
+        </where>
+        <if test="orderColumn!=''">ORDER BY #{orderColumn} ASC
+        </if>
+    </select>
+
     <select id="listByTimezoneWhenFail" resultType="SwipeRecord">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
         FROM SwipeRecord

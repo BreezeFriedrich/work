@@ -100,7 +100,6 @@ function ajaxData() {
 
         "bProcessing": true,
         "bServerSide": true,
-        "bSort": false,
         "aoColumns": [{
             // {"sName": "deviceid", "sClass": "center"},
             // {"sName": "deviceip", "sClass": "center"},
@@ -117,7 +116,7 @@ function ajaxData() {
             {"mDataProp":"deviceip",
                 "sTitle" : "模块IP",
                 "sDefaultContent" : "",
-                "sClass" : "left",
+                "sClass" : "left"
             },
             {"mDataProp":"clientid",
                 "sTitle" : "设备编号",
