@@ -28,6 +28,9 @@ $(function () {
                     returnData.data = result.pageData;
                     //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
                     //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                    if(null===returnData.data){
+                        returnData.data={};
+                    }
                     callback(returnData);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -39,7 +42,6 @@ $(function () {
         columns: [
             {
                 data: "deviceid",
-                orderable: true
             },
             {
                 data: "deviceip"
@@ -53,22 +55,32 @@ $(function () {
                 data: "clientip"
             },
             {
-                data: "result",//字段名
+                data: "result",
                 render: function (data, type, row, meta) {
                     return (data == 0 ? "刷卡成功" : data == 1 ? "刷卡失败" : "刷卡结果奇异");
                 }
             },
             {
-                data: "timestamp",//字段名
-                orderable: true,
+                data: "timestamp",
                 render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
+            },{
+                data: "edit",
+                orderable: false
+            }
+        ],
+        "columnDefs": [
+            {
+                "defaultContent": "",
+                "targets": "_all"
             }
         ],
         "createdRow": function (row, data, index) {
-            //不使用render，改用jquery文档操作呈现单元格
-            var $btnEdit = $('<button type="button" class="btn-edit">修改</button>');
-            var $btnDel = $('<button type="button" class="btn-del">删除</button>');
-            $('td', row).eq(5).append($btnEdit).append($btnDel);
+            //添加编辑行的2种方法： 1.render方式 "columnDefs":[{"render": function(data, type, row) {} }] 2.用jquery DOM操作呈现单元格createdRow.
+            // var $btnEdit = $('<button type="button" class="btn-edit">修改</button>');
+            // var $btnDel = $('<button type="button" class="btn-del">删除</button>');
+            var $btnEdit = $('<a type="button" class="btn-edit">修改</a>');
+            var $btnDel = $('<a class="delete btn btn-default btn-sm">删除</a>');
+            $('td', row).eq(6).append($btnEdit).append($btnDel);
         },
         "drawCallback": function (settings) {
             //渲染完毕后的回调
@@ -78,11 +90,6 @@ $(function () {
     })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
     //查询
     $("#btn_search").click(function () {
-        // _table.ajax.url='/swipeRecord/listAllWithStrategy.do';
-        // param = userManage.getQueryCondition(_table.ajax.data);
-        // _table.ajax.param=param;
-        // _table.ajax.reload();
-        // console.log("额外传到后台的参数值extra_search为："+table.ajax.params());
         _table.draw();
     });
     //行点击事件
@@ -99,14 +106,16 @@ $(function () {
         userManage.editItemInit(item);
     }).on("click", ".btn-del", function () {
         //点击删除按钮
-        var item = _table.row($(this).closest('tr')).data();
+        var row = _table.row($(this).closest('tr'));
+        var item = row.data();
         userManage.deleteItem(item);
+        row.remove().draw(false);
     });
-    //影藏列
+    //隐藏列
     $('a').on('click', function (e) {
         var cut = $(this).text();
         if (cut.indexOf("显示") > -1) {
-            $(this).text("影藏" + cut.split("示")[1])
+            $(this).text("隐藏" + cut.split("示")[1])
         } else {
             $(this).text("显示" + cut.split("藏")[1])
         }
@@ -192,16 +201,16 @@ var userManage = {
         if (data.order && data.order.length && data.order[0]) {
             switch (data.order[0].column) {
                 case 0:
-                    param.orderColumn = "deviceid";//数据库列名称
+                    param.orderColumn = "deviceid";
                     break;
                 case 1:
-                    param.orderColumn = "deviceip";//数据库列名称
+                    param.orderColumn = "deviceip";
                     break;
                 case 2:
-                    param.orderColumn = "clientid";//数据库列名称
+                    param.orderColumn = "clientid";
                     break;
                 case 3:
-                    param.orderColumn = "clientip";//数据库列名称
+                    param.orderColumn = "clientip";
                     break;
                 case 4:
                     param.orderColumn = "result";
@@ -210,7 +219,7 @@ var userManage = {
                     param.orderColumn = "timestamp";
                     break;
                 default:
-                    param.orderColumn = "deviceid";//数据库列名称
+                    param.orderColumn = "timestamp";
                     break;
             }
             //排序方式asc或者desc
@@ -227,10 +236,12 @@ var userManage = {
         return param;
     },
     editItemInit: function (item) {
+        console.log(item);
         //编辑方法
         alert("编辑" + item.deviceid + "  " + item.timestamp);
     },
     deleteItem: function (item) {
+        console.log(item);
         //删除
         alert("删除" + item.deviceid + "  " + item.timestamp);
     },

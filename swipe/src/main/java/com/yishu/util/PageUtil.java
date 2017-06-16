@@ -36,13 +36,7 @@ public class PageUtil<X> {
         List<X> newList=new ArrayList<>(pageSize<list.size()?pageSize:list.size());
         for(int i=startIndex;i<startIndex+pageSize && i<list.size();i++){
             newList.add(list.get(i));
-            System.out.print(",i="+i);
         }
         this.list=newList;
-        if(null==this.list){
-            this.total=0;
-        }else {
-            this.total=this.list.size();
-        }
     }
 }

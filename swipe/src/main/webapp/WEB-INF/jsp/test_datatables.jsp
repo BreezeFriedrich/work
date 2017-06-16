@@ -21,7 +21,7 @@
     <script type="text/javascript" src="../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=11"></script>
+    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=30"></script>
     <script type="text/javascript">
         var rootPath = '${pageContext.request.contextPath}';
     </script>
@@ -60,9 +60,29 @@
     <tbody></tbody>
 </table>
 -->
-    <div id="container-table" style="width: 1000px;">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th width="220px">deviceid</th>
+                    <th width="150px">deviceip</th>
+                    <th width="100px">clientid</th>
+                    <th width="150px">clientip</th>
+                    <th width="100px">result</th>
+                    <th width="250px">timestamp</th>
+                    <th width="200px">edit</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!--
+    <div id="container-table" style="width: 1200px;">
         <div style="padding-left: 380px"><h2>刷卡记录表</h2></div>
-        <table id="table" cellpadding="0" cellspacing="0" border="0" width="1000px">
+        <table id="table" cellpadding="0" cellspacing="0" border="0" width="1200px">
             <thead>
             <tr>
                 <th width="220px">deviceid</th>
@@ -71,9 +91,11 @@
                 <th width="150px">clientip</th>
                 <th width="100px">result</th>
                 <th width="250px">timestamp</th>
+                <th width="200px">edit</th>
             </tr>
             </thead>
         </table>
     </div>
+-->
 </body>
 </html>

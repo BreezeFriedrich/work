@@ -53,16 +53,23 @@
     <!--</select>-->
     <!--<if test="ch_name!=''"> and ch_id in ( select ch_id from channel where ch_name like '%#{ch_name}%')</if>-->
 
+    <!--<where>-->
+        <!--<if test="deviceid!=''"> and deviceid=#{deviceid}</if>-->
+        <!--<if test="deviceip!=''"> and deviceip=#{deviceip}</if>-->
+        <!--<if test="result!=''"> and result=#{result}</if>-->
+    <!--</where>-->
+    <!--<if test="orderColumn!=''">ORDER BY #{orderColumn} ASC-->
+    <!--</if>-->
+
     <select id="listAllWithStrategy" resultType="SwipeRecord" parameterType="Map">
         SELECT `deviceid`,`deviceip`,`clientid`,`clientip`,`result`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`
         FROM SwipeRecord
         <where>
-            <if test="deviceid!=''"> and deviceid=#{deviceid}</if>
-            <if test="deviceip!=''"> and deviceip=#{deviceip}</if>
-            <if test="result!=''"> and result=#{result}</if>
+            <if test="null!=deviceid and deviceid!=''"> AND deviceid=#{deviceid}</if>
+            <if test="null!=result and result!=''"> AND result=#{result}</if>
+            <if test="null!=endTime and endTime!=''"> AND DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') &lt;= #{endTime}</if>
         </where>
-        <if test="orderColumn!=''">ORDER BY #{orderColumn} ASC
-        </if>
+        ORDER BY ${orderColumn} ${orderDir}
     </select>
 
     <select id="listByTimezoneWhenFail" resultType="SwipeRecord">

@@ -68,15 +68,15 @@ public class SwipeRecordController {
         //获取排序字段
         String orderColumn = request.getParameter("orderColumn");
         if(orderColumn == null){
-            orderColumn = "deviceid";
-            paramMap.put("orderColumn",orderColumn);
+            orderColumn = "timestamp";
         }
+        paramMap.put("orderColumn",orderColumn);
         //获取排序方式
         String orderDir = request.getParameter("orderDir");
         if(orderDir == null){
-            orderDir = "asc";
-            paramMap.put("orderDir",orderDir);
+            orderDir = "desc";
         }
+        paramMap.put("orderDir",orderDir);
         //查询条件
         String deviceid = request.getParameter("deviceid");
         String endTime = request.getParameter("endTime");
@@ -87,14 +87,16 @@ public class SwipeRecordController {
             paramMap.put("deviceid",deviceid);
         }
 //        strategy.setEndTime(endTime);
-        paramMap.put("endTime",endTime);
+        if(null != endTime && !"".equals(endTime)){
+            paramMap.put("endTime",endTime);
+        }
         if(null != result && !"".equals(result)){
 //            strategy.setResult(result);
             paramMap.put("result",result);
         }
 //        List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(orderColumn, orderDir, strategy);
         List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(paramMap);
-        Map<Object, Object> info = new HashMap<Object, Object>();
+        Map<String, Object> info = new HashMap<String, Object>();
         if(swipeRecords==null){
             info.put("pageData",null);
             info.put("total",0);
