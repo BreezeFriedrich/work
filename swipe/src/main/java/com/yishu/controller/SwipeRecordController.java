@@ -401,12 +401,12 @@ public class SwipeRecordController {
                     e.printStackTrace();
                 }
                 calendar2.setTime(tempTime);
-                int trmpMonthDiff=calendar2.get(Calendar.YEAR)*12-calendar1.get(Calendar.YEAR)*12
+                int tempMonthDiff=calendar2.get(Calendar.YEAR)*12-calendar1.get(Calendar.YEAR)*12
                         +calendar2.get(Calendar.MONTH)-calendar1.get(Calendar.MONTH);
                 if(0==x.getResult()){
-                    success[trmpMonthDiff]++;
+                    success[tempMonthDiff]++;
                 }else {
-                    fail[trmpMonthDiff]++;
+                    fail[tempMonthDiff]++;
                 }
             }
             for(int i=0;i<=monthDiff;i++){
@@ -457,6 +457,186 @@ public class SwipeRecordController {
             }
             System.out.println();
             System.out.println("index<<<<<<<<<");
+
+            String[] xAxisData=new String[dateDiff+1];
+            int[] xAxisNum=new int[dateDiff+1];
+            System.out.println("xAxisNum>>>>>>>>>");
+            for(int k=0;k<dateDiff+1;k++){
+                Date tempDate=new Date((time1.getTime()/86400000+1+k)*86400000);
+                xAxisData[k]=sdf.format(tempDate);
+                xAxisNum[k]=k+1;
+                System.out.print(xAxisNum[k]+",  ");
+            }
+            System.out.println();
+            System.out.println("xAxisNum<<<<<<<<<");
+            resultMap.put("xAxisNum",xAxisNum);
+            resultMap.put("category",xAxisData);
+        }
+
+        resultMap.put("data",index);
+
+//        logger.info(String.valueOf(index.length));
+//        logger.info(String.valueOf(xAxisTime.get("min")));
+//        logger.info(String.valueOf(xAxisTime.get("max")));
+        return jsonUtil.mapToJson(resultMap);
+    }
+
+    @RequestMapping("/listByTimezoneToMainChart1.do")
+    @ResponseBody
+    public String listByTimezoneToMainChart1(HttpServletRequest request){
+        logger.info("#CTL      ~ listByTimezoneToMainChart1");
+        int mode= Integer.parseInt(request.getParameter("mode"));
+        String startTime=request.getParameter("startTime");
+        String endTime=request.getParameter("endTime");
+        List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
+
+        //时间参数处理
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
+        Date time1 = null,time2 = null;
+        try {
+            time1=sdf.parse(startTime);
+            time2=sdf.parse(endTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar1=Calendar.getInstance();
+        Calendar calendar2=Calendar.getInstance();
+        calendar1.setTime(time1);
+        calendar2.setTime(time2);
+        int dateDiff = (int) ((time2.getTime() - time1.getTime())/86400000);
+        int monthDiff=calendar2.get(Calendar.YEAR)*12-calendar1.get(Calendar.YEAR)*12
+                +calendar2.get(Calendar.MONTH)-calendar1.get(Calendar.MONTH);
+
+        HashMap xAxisTime=new HashMap<String,Date>();
+        Map resultMap=new HashMap();
+        Date t1=new Date((time1.getTime()/86400000+1)*86400000);
+        Date t2=new Date((time2.getTime()/86400000+1)*86400000);
+        xAxisTime.put("min",t1);//xAxis的最小值
+        xAxisTime.put("max",t2);
+        resultMap.put("xAxisTime",xAxisTime);
+        Date tempTime=null;
+        double index[]=null;
+        List<String> sams=new ArrayList<>();
+        int[] series_samConcurrency=null;
+        List[] swipeRecordSegs=null;
+        String tempStr="";
+        int[] series_frequency=null;
+
+        //按月
+        if(2==mode){
+            //获取series:data[]的值index[] | series_samConcurrency[] | series_frequency[]
+            index=new double[monthDiff+1];
+            Arrays.fill(index,0.00);
+            swipeRecordSegs=new ArrayList[monthDiff+1];
+            series_samConcurrency=new int[monthDiff+1];
+            series_frequency=new int[monthDiff+1];
+            for(int i=0;i<swipeRecordSegs.length;i++){
+                swipeRecordSegs[i]=new ArrayList();
+            }
+            double success[]=new double[monthDiff+1];
+            double fail[]=new double[monthDiff+1];
+            for(SwipeRecord x:swipeRecordList){
+                try {
+                    tempTime=sdf.parse(x.getTimestamp());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                };
+                calendar2.setTime(tempTime);
+                int tempMonthDiff=calendar2.get(Calendar.YEAR)*12-calendar1.get(Calendar.YEAR)*12
+                        +calendar2.get(Calendar.MONTH)-calendar1.get(Calendar.MONTH);
+                if(0==x.getResult()){
+                    success[tempMonthDiff]++;
+                }else {
+                    fail[tempMonthDiff]++;
+                }
+                //将数据集swipeRecordList按时间interval分组
+                swipeRecordSegs[tempMonthDiff].add(x);
+            }
+
+            for(int i=0;i<swipeRecordSegs.length;i++){//遍历数组[{},{},{},{},...]
+                series_frequency[i]=swipeRecordSegs[i].size();
+                for(Iterator it=swipeRecordSegs[i].iterator();it.hasNext();){//遍历集合
+                    tempStr=((SwipeRecord)it.next()).getDeviceid();
+                    if(!sams.contains(tempStr)){
+                        sams.add(tempStr);
+                    }
+                }
+                 series_samConcurrency[i]=sams.size();
+                sams.clear();
+            }
+            resultMap.put("series_frequency",series_frequency);
+            resultMap.put("series_samConcurrency",series_samConcurrency);
+
+            for(int i=0;i<=monthDiff;i++){
+                if(success[i]+fail[i]>0){
+                    index[i]=fail[i]*1.00/(success[i]+fail[i]);
+                }
+                System.out.print(index[i]+",  ");
+            };
+            //获取xAxis:data[]的值xAxisData[]
+            String[] xAxisData=new String[monthDiff+1];
+            for(int k=0;k<monthDiff+1;k++) {
+                int month=calendar1.get(Calendar.MONTH) + 1+k;
+                xAxisData[k] = 0==month%12 ?
+                        String.valueOf(calendar1.get(Calendar.YEAR)+month/12-1)+'-'+String.valueOf(12)
+                        :String.valueOf(calendar1.get(Calendar.YEAR)+month/12)+'-'+String.valueOf(month%12);
+            }
+            resultMap.put("category",xAxisData);
+        }
+
+        //按周
+        if(1==mode){};
+
+        //按日
+        if(0==mode){
+            index=new double[dateDiff+1];
+            Arrays.fill(index,0.00);
+            swipeRecordSegs=new ArrayList[dateDiff+1];
+            series_samConcurrency=new int[dateDiff+1];
+            series_frequency=new int[dateDiff+1];
+            for(int i=0;i<swipeRecordSegs.length;i++){
+                swipeRecordSegs[i]=new ArrayList();
+            }
+            double success[]=new double[dateDiff+1];
+            double fail[]=new double[dateDiff+1];
+            for(SwipeRecord x:swipeRecordList){
+                try {
+                    tempTime=sdf.parse(x.getTimestamp());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                };
+                int tempDateDiff= (int) ((tempTime.getTime()-time1.getTime())/86400000);
+                if(0==x.getResult()){
+                    success[tempDateDiff]++;
+                }else {
+                    fail[tempDateDiff]++;
+                }
+                //将数据集swipeRecordList按时间interval分组
+                swipeRecordSegs[tempDateDiff].add(x);
+            }
+            for(int i=0;i<swipeRecordSegs.length;i++){//遍历数组[{},{},{},{},...]
+                series_frequency[i]=swipeRecordSegs[i].size();
+                for(Iterator it=swipeRecordSegs[i].iterator();it.hasNext();){//遍历集合
+                    tempStr=((SwipeRecord)it.next()).getDeviceid();
+                    if(!sams.contains(tempStr)){
+                        sams.add(tempStr);
+                    }
+                }
+                series_samConcurrency[i]=sams.size();
+                sams.clear();
+            }
+            resultMap.put("series_frequency",series_frequency);
+            resultMap.put("series_samConcurrency",series_samConcurrency);
+
+            System.out.println("index>>>>>>>>>");
+            for(int i=0;i<=dateDiff;i++){
+                if(success[i]+fail[i]>0){
+                    index[i]=fail[i]*1.00/(success[i]+fail[i]);
+                }
+                System.out.print(index[i]+",  ");
+            }
+            System.out.println();
+            System.out.println("index<<<<<<<<<<");
 
             String[] xAxisData=new String[dateDiff+1];
             int[] xAxisNum=new int[dateDiff+1];
