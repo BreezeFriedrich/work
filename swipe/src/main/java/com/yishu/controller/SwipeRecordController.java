@@ -179,7 +179,6 @@ public class SwipeRecordController {
             return listToObj(newSwipeRecordList,total);
         }
         return null;
-        //{total:23,(page:2,limit:10,)data:[...]}
     }
 
     @RequestMapping("/listByTimezone.do")
@@ -492,6 +491,7 @@ public class SwipeRecordController {
 
         //时间参数处理
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//小写的mm表示的是分钟
+        java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.00");
         Date time1 = null,time2 = null;
         try {
             time1=sdf.parse(startTime);
@@ -521,8 +521,16 @@ public class SwipeRecordController {
         List[] swipeRecordSegs=null;
         String tempStr="";
         int[] series_frequency=null;
+        int sumSuccess=0;
+        int sumFail=0;
+        int sumSwipeFrequency=0;
+        int sumSAM=0;
+        int sumDevices=0;
+        List samList=new ArrayList();
+        List deviceList=new ArrayList();
+        resultMap.put("sumSwipeFrequency",swipeRecordList.size());
 
-        //按月
+        //按月分割
         if(2==mode){
             //获取series:data[]的值index[] | series_samConcurrency[] | series_frequency[]
             index=new double[monthDiff+1];
@@ -535,24 +543,39 @@ public class SwipeRecordController {
             }
             double success[]=new double[monthDiff+1];
             double fail[]=new double[monthDiff+1];
+
+            //遍历刷卡记录集合
             for(SwipeRecord x:swipeRecordList){
                 try {
                     tempTime=sdf.parse(x.getTimestamp());
                 } catch (ParseException e) {
                     e.printStackTrace();
-                };
+                }
                 calendar2.setTime(tempTime);
                 int tempMonthDiff=calendar2.get(Calendar.YEAR)*12-calendar1.get(Calendar.YEAR)*12
                         +calendar2.get(Calendar.MONTH)-calendar1.get(Calendar.MONTH);
                 if(0==x.getResult()){
                     success[tempMonthDiff]++;
+                    sumSuccess++;
                 }else {
                     fail[tempMonthDiff]++;
+                    sumFail++;
                 }
-                //将数据集swipeRecordList按时间interval分组
+                if(!samList.contains(x.getDeviceid())){
+                    samList.add(x.getDeviceid());
+                }
+                if(!deviceList.contains(x.getClientid())){
+                    deviceList.add(x.getClientid());
+                }
+                //将刷卡记录集合swipeRecordList按时间interval月分组
                 swipeRecordSegs[tempMonthDiff].add(x);
             }
+            double sumFailRatio=0<(sumSuccess+sumFail)?sumFail*1.0/(sumSuccess+sumFail):0;
+            resultMap.put("sumFailRatio",Double.parseDouble(df.format(sumFailRatio)));
+            resultMap.put("sumSAM",samList.size());
+            resultMap.put("sumDevices",deviceList.size());
 
+            //遍历各刷卡记录集(月)分段
             for(int i=0;i<swipeRecordSegs.length;i++){//遍历数组[{},{},{},{},...]
                 series_frequency[i]=swipeRecordSegs[i].size();
                 for(Iterator it=swipeRecordSegs[i].iterator();it.hasNext();){//遍历集合
@@ -569,7 +592,7 @@ public class SwipeRecordController {
 
             for(int i=0;i<=monthDiff;i++){
                 if(success[i]+fail[i]>0){
-                    index[i]=fail[i]*1.00/(success[i]+fail[i]);
+                    index[i]= Double.parseDouble(df.format(fail[i]*1.00/(success[i]+fail[i])));
                 }
                 System.out.print(index[i]+",  ");
             };
@@ -599,6 +622,8 @@ public class SwipeRecordController {
             }
             double success[]=new double[dateDiff+1];
             double fail[]=new double[dateDiff+1];
+
+            //遍历刷卡记录集合
             for(SwipeRecord x:swipeRecordList){
                 try {
                     tempTime=sdf.parse(x.getTimestamp());
@@ -608,12 +633,26 @@ public class SwipeRecordController {
                 int tempDateDiff= (int) ((tempTime.getTime()-time1.getTime())/86400000);
                 if(0==x.getResult()){
                     success[tempDateDiff]++;
+                    sumSuccess++;
                 }else {
                     fail[tempDateDiff]++;
+                    sumFail++;
                 }
-                //将数据集swipeRecordList按时间interval分组
+                if(!samList.contains(x.getDeviceid())){
+                    samList.add(x.getDeviceid());
+                }
+                if(!deviceList.contains(x.getClientid())){
+                    deviceList.add(x.getClientid());
+                }
+                //将刷卡记录集合swipeRecordList按时间interval日分组
                 swipeRecordSegs[tempDateDiff].add(x);
             }
+            double sumFailRatio=0<(sumSuccess+sumFail)?sumFail*1.0/(sumSuccess+sumFail):0;
+            resultMap.put("sumFailRatio",Double.parseDouble(df.format(sumFailRatio)));
+            resultMap.put("sumSAM",samList.size());
+            resultMap.put("sumDevices",deviceList.size());
+
+            //遍历各刷卡记录集(日)分段
             for(int i=0;i<swipeRecordSegs.length;i++){//遍历数组[{},{},{},{},...]
                 series_frequency[i]=swipeRecordSegs[i].size();
                 for(Iterator it=swipeRecordSegs[i].iterator();it.hasNext();){//遍历集合
@@ -631,7 +670,7 @@ public class SwipeRecordController {
             System.out.println("index>>>>>>>>>");
             for(int i=0;i<=dateDiff;i++){
                 if(success[i]+fail[i]>0){
-                    index[i]=fail[i]*1.00/(success[i]+fail[i]);
+                    index[i]= Double.parseDouble(df.format(fail[i]*1.00/(success[i]+fail[i])));
                 }
                 System.out.print(index[i]+",  ");
             }

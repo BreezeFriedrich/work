@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_mainchart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/styles/common.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/rep/swiperecord_mainchart.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe.war" afterPath="$PROJECT_DIR$/../swipe/target/swipe.war" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/logback.xml" afterPath="$PROJECT_DIR$/out/production/SwipeDataServer/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/logback.xml" afterPath="$PROJECT_DIR$/resources/logback.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/controller/SwipeRecordController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/main_plain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/jsp/main_plain.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/logback.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_chart.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_chart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_mainchart.js" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/resources/scripts/swiperecord_mainchart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/classes/logback.xml" afterPath="$PROJECT_DIR$/../swipe/target/classes/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/logback.xml" afterPath="$PROJECT_DIR$/../swipe/target/swipe/WEB-INF/classes/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/swiperecord_chart.js" afterPath="$PROJECT_DIR$/../swipe/target/swipe/resources/scripts/swiperecord_chart.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +74,28 @@
     <fileColor scope="All" color="2d2b34" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="logback.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/logback.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="19" column="93" lean-forward="false" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/DataServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="128" column="66" lean-forward="true" selection-start-line="128" selection-start-column="66" selection-end-line="128" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -165,7 +186,6 @@
         <option value="$PROJECT_DIR$/src/Context.java" />
         <option value="$PROJECT_DIR$/src/HttpConServer.java" />
         <option value="$PROJECT_DIR$/src/util/SpringTool.java" />
-        <option value="$PROJECT_DIR$/resources/logback.xml" />
         <option value="dbtable:/24ba2f77/bbdde03b-61db-4e06-b412-c4b2ebd6578e/swipe.devicestatus" />
         <option value="$PROJECT_DIR$/src/service/impl/ModuleServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/service/ModuleService.java" />
@@ -180,6 +200,7 @@
         <option value="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.13.jar!/org/codehaus/jackson/map/ObjectMapper.class" />
         <option value="$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml" />
         <option value="$PROJECT_DIR$/src/DataServer.java" />
+        <option value="$PROJECT_DIR$/resources/logback.xml" />
       </list>
     </option>
   </component>
@@ -195,7 +216,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
+    <option name="width" value="1612" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -239,6 +260,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -359,11 +383,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -729,7 +764,9 @@
       <workItem from="1497403314207" duration="12521000" />
       <workItem from="1497489947507" duration="17238000" />
       <workItem from="1497575882051" duration="21178000" />
-      <workItem from="1497834972845" duration="16087000" />
+      <workItem from="1497834972845" duration="16149000" />
+      <workItem from="1497921556269" duration="4285000" />
+      <workItem from="1497936374934" duration="10843000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -794,11 +831,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497608976642</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="2017.06.19-work">
+      <created>1497869674337</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1497869674338</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="437577000" />
+    <option name="totallyTimeSpent" value="452767000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -810,7 +854,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -818,18 +862,18 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29090908" sideWeight="0.095115684" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2769231" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26086956" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3104895" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21398601" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15488432" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20747423" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17416452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28277636" sideWeight="0.5246548" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46433565" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28277636" sideWeight="0.5246548" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -922,7 +966,8 @@
     <MESSAGE value="2017.06.13-work" />
     <MESSAGE value="2017.06.15-work" />
     <MESSAGE value="2017.06.16-work" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017.06.16-work" />
+    <MESSAGE value="2017.06.19-work" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017.06.19-work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1080,13 +1125,6 @@
     <entry file="dbDummy://dbtable:/24ba2f77/bbdde03b-61db-4e06-b412-c4b2ebd6578e/swipe.swiperecord" />
     <entry file="dbDummy://dbtable:/24ba2f77/bbdde03b-61db-4e06-b412-c4b2ebd6578e/swipe.devicestatus" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bbdde03b-61db-4e06-b412-c4b2ebd6578e/console.sql" />
-    <entry file="file://$PROJECT_DIR$/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="61" column="27" lean-forward="false" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SwipeDataServer.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1154,9 +1192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="19" column="66" lean-forward="false" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1178,23 +1213,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#720#721#0" expanded="false" />
-            <element signature="e#767#768#0" expanded="false" />
-            <element signature="e#832#833#0" expanded="false" />
-            <element signature="e#882#883#0" expanded="false" />
-            <element signature="e#946#947#0" expanded="false" />
-            <element signature="e#1000#1001#0" expanded="false" />
-            <element signature="e#1067#1068#0" expanded="false" />
-            <element signature="e#1124#1125#0" expanded="false" />
-            <element signature="e#1180#1181#0" expanded="false" />
-            <element signature="e#1227#1228#0" expanded="false" />
-            <element signature="e#1867#1868#0" expanded="false" />
-            <element signature="e#1929#1930#0" expanded="false" />
-            <element signature="e#2233#2234#0" expanded="false" />
-            <element signature="e#2291#2292#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1246,10 +1264,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="93" lean-forward="false" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DataServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-460">
-          <caret line="361" column="57" lean-forward="false" selection-start-line="361" selection-start-column="57" selection-end-line="361" selection-end-column="57" />
+        <state relative-caret-position="440">
+          <caret line="128" column="66" lean-forward="true" selection-start-line="128" selection-start-column="66" selection-end-line="128" selection-end-column="66" />
           <folding />
         </state>
       </provider>

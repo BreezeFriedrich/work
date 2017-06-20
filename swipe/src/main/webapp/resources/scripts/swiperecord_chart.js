@@ -74,7 +74,7 @@ function myChartInit() {
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
                 },
-                color:['#00CC00','#FF0000'],
+                color:['#00CC00','#FF0000']
                 // label: {
                 //     normal: {
                 //         formatter: function (obj) {
@@ -163,7 +163,6 @@ function date_plugin_init() {
 function create_table() {
     $('#panel-table').css('display','block');
     if (typeof(myTable) == "undefined") {
-        alert('undefined');
         myTable=$('#table-swipeRecord').dataTable({
             "language": {
                 "sProcessing":   "处理中...",

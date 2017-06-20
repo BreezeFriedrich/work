@@ -8,12 +8,12 @@ $(function () {
 });
 
 function refreshData(){
-
     mode = $('input:radio[name="swipeRecord_options"]:checked').val();
     if(startTime&&endTime){
+        $("#summary").css('display','block');
 
-        date = new Date();
-        now = getNowFormatDate(date);
+        // date = new Date();
+        // now = getNowFormatDate(date);
 
         $.ajax({
             type:"POST",
@@ -22,7 +22,6 @@ function refreshData(){
             dataType:"json",
             async:false,
             success: function(result){
-                alert("result:"+result);
                 myChart.setOption({
                     xAxis: {
                         data :result.category
@@ -38,6 +37,10 @@ function refreshData(){
                         data:result.series_samConcurrency
                     }]
                 });
+                $("dl dd").eq(0).text(result.sumFailRatio);
+                $("dl dd").eq(1).text(result.sumSwipeFrequency);
+                $("dl dd").eq(2).text(result.sumSAM);
+                $("dl dd").eq(3).text(result.sumDevices);
             },
             error:function(XMLHttpRequest){
                 alert(XMLHttpRequest.status);
@@ -115,7 +118,6 @@ function myChartInit(){
                 interval:0.1,
                 boundaryGap:[0,0.02],
                 // name:'体积 m',
-                // type: 'value',
                 // boundaryGap: [0, '50%'],
                 position:'left',
                 axisLabel: {
@@ -195,22 +197,161 @@ function myChartInit(){
     myChart.setOption(option);
 }
 
-// 获取当前时间 格式“yyyy-MM-dd HH:MM:SS”
-function getNowFormatDate(date) {
-    var seperator1 = "-";
-    var seperator2 = ":";
-    var month = date.getMonth() + 1;
-    var strDate = date.getDate();
-    if (month >= 1 && month <= 9) {
-        month = "0" + month;
+function create_table() {
+    if($("#swipeFailRecord").css("display")==='none'){
+        $('#swipeFailRecord').css('display','block');
+        $('#collapseOne').collapse('show');
     }
-    if (strDate >= 0 && strDate <= 9) {
-        strDate = "0" + strDate;
+    if (typeof(myTable) == "undefined") {
+        myTable=$('#table-swipeRecord').dataTable({
+            "language": {
+                "sProcessing":   "处理中...",
+                "sLengthMenu":   "每页 _MENU_ 项",
+                "sZeroRecords":  "没有匹配结果",
+                "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix":  "",
+                // "sSearch":       "搜索:",
+                "sUrl":          "",
+                "sEmptyTable":     "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands":  ",",
+                "oPaginate": {
+                    "sFirst":    "首页",
+                    "sPrevious": "上页",
+                    "sNext":     "下页",
+                    "sLast":     "末页",
+                    "sJump":     "跳转"
+                },
+                "oAria": {
+                    "sSortAscending":  ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            "iDisplayLength" : 10,//默认每页数量
+            //"bPaginate": true, //翻页功能
+            "bLengthChange" : true, //改变每页显示数据数量
+            "lengthMenu" : [10,20,30],
+            "bFilter" : false, //过滤功能
+            "ordering" : false,
+            "searching":false,
+            //"bInfo" : true,//页脚信息
+            //"bAutoWidth" : true,//自动宽度
+            "stateSave" : true,
+            "processing" : true,
+            "serverSide" : true,
+            "bProcessing": true,//服务器端进行分页处理的意思
+            "bServerSide": true,
+            "bSort": false,
+            "bDestroy":true,
+            "retrieve":true,//一个表格实例
+            "aoColumns": [{
+                "mDataProp":"deviceid",
+                // "bVisible" : false,//此列不显示
+                "sTitle" : "模块编号",
+                "sDefaultContent" : "",
+                "sClass" : "center"
+            },
+                {"mDataProp":"deviceip",
+                    "sTitle" : "模块IP",
+                    "sDefaultContent" : "",
+                    "sClass" : "left"
+                },
+                {"mDataProp":"clientid",
+                    "sTitle" : "设备编号",
+                    "sDefaultContent" : "",
+                    "sClass" : "center"
+                },
+                {"mDataProp":"clientip",
+                    "sTitle" : "设备IP",
+                    "sDefaultContent" : "",
+                    "sClass" : "left"
+                },
+                {"mDataProp":"result",
+                    "sTitle" : "刷卡结果",
+                    "sDefaultContent" : "",
+                    "sClass" : "center"
+                },
+                {"mDataProp":"timestamp",
+                    "sTitle" : "刷卡时间",
+                    "sDefaultContent" : "",
+                    "sClass" : "center",
+                    "orderable":true,
+                    "orderSequence":["asc","desc","asc"]
+                }],
+            "aoColumnDefs" : [{
+                "targets" : 4,//操作按钮目标列
+                "render" : function(data,type,row) {
+                    if (data == "0") {
+                        return "成功";
+                    } else {
+                        return "失败";
+                    }
+                }
+            }],
+            "columnDefs":[{
+                targets: [ 1 ],
+                orderData: [ 1, 0 ]  //如果第2列进行排序，有相同数据则按照第1列顺序排列
+            }, {
+                targets: [ 4 ],
+                orderData: [ 4, 5 ]  //如果第5列进行排序，有相同数据则按照第6列顺序排列
+            }],
+
+            "ajax": function (data, callback, settings) {
+                //封装请求参数
+                var param = {};
+                param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
+                param.start = data.start;//开始的记录序号
+                param.page = (data.start / data.length) + 1;//当前页码
+                param.startTime=startTime;
+                param.endTime=endTime;
+                //console.log(param);
+                $.ajax({
+                    type: "POST",
+                    url: '/swipeRecord/listByTimezoneWhenFail.do',
+                    cache: false,  //禁用缓存
+                    data: param,  //传入组装的参数
+                    dataType: "json",
+                    success: function (result) {
+                        // alert('result:'+result);
+                        //封装返回数据
+                        var returnData = {};
+                        returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                        returnData.recordsTotal = result.recordsTotal;//返回数据全部记录
+                        returnData.recordsFiltered = result.recordsFiltered;//后台不实现过滤功能，每次查询均视作全部结果
+                        returnData.data = result.data;//返回的数据列表
+                        //关闭遮罩
+                        //$wrapper.spinModal(false);
+                        callback(returnData);
+                        // iframe和导航高度随table元素高度变化
+                        var thisheight = $(document).height();
+                        var myIframe = $(window.parent.document).find("#iframe");
+                        var west = $(window.parent.document).find("#west");
+                        myIframe.height(thisheight);
+                        west.height(thisheight);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("查询失败");
+                        // $wrapper.spinModal(false);
+                    }
+                })
+            },
+            //数据渲染,使数据“失败”高亮!
+            "createdRow": function ( row, data, index ) {
+                if ( data['result'] =='1' ) {
+                    $('td', row).eq(4).css('font-weight',"bold").css("color","red");
+                }
+            }
+        });
+    }else {
+        tableApi=$('#table-swipeRecord').DataTable();
+        tableApi.ajax.reload();
     }
-    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-        + " " + date.getHours() + seperator2 + date.getMinutes()
-        + seperator2 + date.getSeconds();
-    return currentdate;
+
+    $('#table-swipeRecord tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    } );
 }
 
 function date_plugin_init() {
