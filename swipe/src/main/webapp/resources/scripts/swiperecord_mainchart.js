@@ -37,10 +37,10 @@ function refreshData(){
                         data:result.series_samConcurrency
                     }]
                 });
-                $("dl dd").eq(0).text(result.sumFailRatio);
-                $("dl dd").eq(1).text(result.sumSwipeFrequency);
-                $("dl dd").eq(2).text(result.sumSAM);
-                $("dl dd").eq(3).text(result.sumDevices);
+                $("#summary dl dt").eq(0).text('总失败率      :'+result.sumFailRatio);
+                $("#summary dl dt").eq(1).text('刷卡总次数    :'+result.sumSwipeFrequency);
+                $("#summary dl dt").eq(2).text('所用SAM数量   :'+result.sumSAM);
+                $("#summary dl dt").eq(3).text('刷卡设备的数量 :'+result.sumDevices);
             },
             error:function(XMLHttpRequest){
                 alert(XMLHttpRequest.status);

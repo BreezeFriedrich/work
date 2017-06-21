@@ -15,11 +15,11 @@ $(function () {
                 data: param,  //传入组装的参数
                 dataType: "json",
                 success: function (result) {
-                    //异常判断与处理
-                    if (result.errorCode) {
-                        alert("查询失败");
-                        return;
-                    }
+                    // //异常判断与处理
+                    // if (result.errorCode) {
+                    //     alert("查询失败");
+                    //     return;
+                    // }
                     //封装返回数据
                     var returnData = {};
                     returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
@@ -41,7 +41,7 @@ $(function () {
         //绑定数据
         columns: [
             {
-                data: "deviceid",
+                data: "deviceid"
             },
             {
                 data: "deviceip"

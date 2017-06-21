@@ -17,52 +17,74 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="../../resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="../../resources/dataTables/css/jquery.dataTables.css">
+    <%--<link rel="stylesheet" type="text/css" href="../../resources/dataTables/css/dataTables.bootstrap.min.css">--%>
     <script type="text/javascript" src="../../resources/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=30"></script>
+    <%--<script type="text/javascript" src="../../resources/dataTables/js/dataTables.bootstrap.min.js"></script>--%>
+    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=33"></script>
     <script type="text/javascript">
         var rootPath = '${pageContext.request.contextPath}';
     </script>
 </head>
 <body>
-<form>
-    <span>设备编号:</span> <input type="text" placeholder="设备编号" id="deviceid-search">
-    <span>刷卡时间:</span> <input type="text" placeholder="刷卡时间" id="endTime-search">
-    <span>刷卡结果:</span> <select id="result-search">
-    <option value="">全部</option>
-    <option value="0">成功</option>
-    <option value="1">失败</option>
-</select>
-    <button type="button" id="btn_search">查询</button>
-    <!--
-    <a href="#" data-column="0">影藏编号</a>
-    <a href="#" data-column="1">影藏名称</a>
-    <a href="#" data-column="2">影藏状态</a>
-    <a href="#" data-column="3">影藏电话</a>
-    <a href="#" data-column="4">影藏网址</a>
-    <a href="#" data-column="5">影藏操作</a>
-    -->
-</form>
-<!--
-<table id="table" class="display">
-    <thead>
-    <tr>
-        <th>编号</th>
-        <th>名称</th>
-        <th>状态</th>
-        <th>电话</th>
-        <th>网址</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody></tbody>
-</table>
--->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+<div class="container-fluid">
+    <div class="row-fluid" style="padding-top: 15px">
+        <div class="col-lg-2">
+            <div class="btn btn-default" data-toggle="collapse" href="#collapseOne">查询条件</div>
+        </div>
+        <div class="col-lg-10">
+            <div id="collapseOne" class="collapse in">
+                <%--<form>--%>
+                    <%--<span>设备编号:</span> <input type="text" placeholder="设备编号" id="deviceid-search">--%>
+                    <%--<span>刷卡时间:</span> <input type="text" placeholder="刷卡时间" id="endTime-search">--%>
+                    <%--<span>刷卡结果:</span>--%>
+                    <%--<select id="result-search">--%>
+                        <%--<option value="">全部</option>--%>
+                        <%--<option value="0">成功</option>--%>
+                        <%--<option value="1">失败</option>--%>
+                    <%--</select>--%>
+                    <%--<button type="button" id="btn_search">查询</button>--%>
+                <%--</form>--%>
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="deviceid-search" class="col-lg-2 control-label">设备编号</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="deviceid-search"
+                                   placeholder="请输入设备编号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime-search" class="col-lg-2 control-label">刷卡时间</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="endTime-search"
+                                   placeholder="请输入刷卡时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="result-search" class="col-lg-2 control-label">刷卡结果</label>
+                        <div class="col-lg-10">
+                            <select id="result-search">
+                                <option value="">全部</option>
+                                <option value="0">成功</option>
+                                <option value="1">失败</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="button" class="btn btn-primary" id="btn_search">查询</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid" style="padding-top: 15px">
+        <div class="col-lg-12">
             <table id="table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <thead>
                 <tr>
