@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
     <%--<script type="text/javascript" src="../../resources/dataTables/js/dataTables.bootstrap.min.js"></script>--%>
-    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=33"></script>
+    <script type="text/javascript" src="../../resources/scripts/test_datatables.js?ver=40"></script>
     <script type="text/javascript">
         var rootPath = '${pageContext.request.contextPath}';
     </script>
@@ -50,28 +50,54 @@
 
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="deviceid-search" class="col-lg-2 control-label">设备编号</label>
-                        <div class="col-lg-10">
+                        <label for="deviceid-search" class="col-lg-2 control-label">SAM模块编号</label>
+                        <div class="col-lg-4">
                             <input type="text" class="form-control" id="deviceid-search"
-                                   placeholder="请输入设备编号">
+                                   placeholder="请输入SAM模块编号">
                         </div>
+                        <div class="col-lg-6"></div>
                     </div>
                     <div class="form-group">
-                        <label for="endTime-search" class="col-lg-2 control-label">刷卡时间</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" id="endTime-search"
-                                   placeholder="请输入刷卡时间">
+                        <label for="deviceip-search" class="col-lg-2 control-label">SAM模块IP</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="deviceip-search"
+                                   placeholder="请输入SAM模块IP">
                         </div>
+                        <div class="col-lg-6"></div>
                     </div>
+                    <div class="form-group">
+                        <label for="startTime-search" class="col-lg-2 control-label">开始时间</label>
+                        <div class="col-lg-4">
+                            <input class="laydate-icon" id="startTime-search" placeholder="请输入开始时间"
+                                   style="height:36px;border-color:#00ff00;"/>
+                        </div>
+                        <div class="col-lg-6"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime-search" class="col-lg-2 control-label">结束时间</label>
+                        <div class="col-lg-4">
+                            <input class="laydate-icon" id="endTime-search" placeholder="请输入结束时间"
+                                   style="height:36px;border-color:#0000ff;"/>
+                        </div>
+                        <div class="col-lg-6"></div>
+                    </div>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="endTime-search" class="col-lg-2 control-label">刷卡时间</label>--%>
+                        <%--<div class="col-lg-10">--%>
+                            <%--<input type="text" class="form-control" id="endTime-search"--%>
+                                   <%--placeholder="请输入刷卡时间">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="form-group">
                         <label for="result-search" class="col-lg-2 control-label">刷卡结果</label>
-                        <div class="col-lg-10">
-                            <select id="result-search">
+                        <div class="col-lg-2">
+                            <select class="form-control" id="result-search">
                                 <option value="">全部</option>
                                 <option value="0">成功</option>
                                 <option value="1">失败</option>
                             </select>
                         </div>
+                        <div class="col-lg-8"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">

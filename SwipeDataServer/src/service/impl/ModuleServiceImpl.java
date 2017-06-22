@@ -6,6 +6,7 @@ import service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -45,6 +46,11 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<DeviceStatus> listAll() {
         return deviceStatusDao.listAll();
+    }
+
+    @Override
+    public List<DeviceStatus> listAllWithStrategy(HashMap paramMap) {
+        return deviceStatusDao.listAllWithStrategy(paramMap);
     }
 
     @Override

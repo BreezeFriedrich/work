@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.model.DeviceStatus;
 import com.yishu.service.ModuleService;
 import com.yishu.util.JsonUtil;
+import com.yishu.util.PageUtil;
+import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by admin on 2017/5/11.
@@ -81,6 +84,64 @@ public class ModuleStatusController {
 //        logger.info("#CTL      ~ listAll");
 //        List<DeviceStatus> moduleList=moduleService.listAll();
 //        return jsonUtil.listToJson(moduleList);
+    }
+
+    @RequestMapping(value = "/listAllWithStrategy")
+    @ResponseBody
+    public String listAllWithStrategy(HttpServletRequest request) throws Exception{
+        HashMap paramMap= new HashMap(15);
+        //直接返回前台
+        String draw = request.getParameter("draw");
+        //数据起始位置
+        String startIndex = request.getParameter("startIndex");
+        //每页显示的条数
+        String pageSize = request.getParameter("pageSize");
+        //获取排序字段
+        String orderColumn = request.getParameter("orderColumn");
+        if(orderColumn == null){
+            orderColumn = "timestamp";
+        }
+        paramMap.put("orderColumn",orderColumn);
+        //获取排序方式
+        String orderDir = request.getParameter("orderDir");
+        if(orderDir == null){
+            orderDir = "desc";
+        }
+        paramMap.put("orderDir",orderDir);
+        //查询条件
+        String deviceid = request.getParameter("deviceid");
+        String deviceip = request.getParameter("deviceip");
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        String status = request.getParameter("status");
+        if(null != deviceid && !"".equals(deviceid)){
+            paramMap.put("deviceid",deviceid);
+        }
+        if(null != deviceip && !"".equals(deviceip)){
+            paramMap.put("deviceip",deviceip);
+        }
+        if(null != endTime && !"".equals(endTime)){
+            paramMap.put("endTime",endTime);
+        }
+        if(null != startTime && !"".equals(startTime)){
+            paramMap.put("startTime",startTime);
+        }
+        if(null != status && !"".equals(status)){
+            paramMap.put("status",status);
+        }
+        List<DeviceStatus> deviceStatuses = moduleService.listAllWithStrategy(paramMap);
+        Map<String, Object> info = new HashMap<String, Object>();
+        if(deviceStatuses==null){
+            info.put("pageData",null);
+            info.put("total",0);
+        }else{
+            PageUtil<DeviceStatus> pageUtil=new PageUtil<DeviceStatus>(deviceStatuses);
+            pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
+            info.put("pageData", pageUtil.getList());
+            info.put("total", pageUtil.getTotal());
+        }
+        info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+        return JSONObject.fromObject(info)+"";
     }
 
     @RequestMapping("/listByTimezone.do")

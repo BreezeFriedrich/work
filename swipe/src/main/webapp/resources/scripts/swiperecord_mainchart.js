@@ -2,11 +2,45 @@ var startTime;
 var endTime;
 var mode;
 var myChart;
+var myChart1;
 $(function () {
     date_plugin_init();
     myChartInit();
 });
+function date_plugin_init() {
+    var start = {
+        elem: '#swipeRecord_startTime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        min: '2010-01-01 00:00:01', //设定最小日期为当前日期
+        max: laydate.now(-1), //最大日期
+        istime: true,
+        istoday: false,
+        festival:true,
+        choose: function(time){
+            end.min = time; //开始日选好后，重置结束日的最小日期
+            end.start = time;//将结束日的初始值设定为开始日
+            startTime=time;
+        }
+    };
+    var end = {
+        elem: '#swipeRecord_endTime',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        min: '2014-01-01 00:00:01',
+        max: laydate.now(),
+        istime: true,
+        istoday: false,
+        festival:true,
+        choose: function(time){
+            start.max = time; //结束日选好后，重置开始日的最大日期
+            endTime=time;
+        }
+    };
+    laydate.skin('molv');
+    laydate(start);
+    laydate(end);
+}
 
+//chart数据加载更新
 function refreshData(){
     mode = $('input:radio[name="swipeRecord_options"]:checked').val();
     if(startTime&&endTime){
@@ -48,6 +82,35 @@ function refreshData(){
             }
         });
 
+        $.ajax({
+            type:"POST",
+            url:"/swipeRecord/listByTimezoneToMainChart1.do",
+            data:{startTime:startTime,endTime:endTime},
+            dataType:"json",
+            async:false,
+            success: function(result){
+                myChart.setOption({
+                    yAxis: {
+                        data :result.category
+                    },
+                    series: [{
+                        name:'刷卡次数',
+                        data:result.series_frequency
+                    },{
+                        name: '失败率',
+                        data:result.series_failRatio
+                    },{
+                        name:'成功率',
+                        data:result.series_successRatio
+                    }]
+                });
+            },
+            error:function(XMLHttpRequest){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+            }
+        });
+
     }
 }
 
@@ -56,7 +119,7 @@ function myChartInit(){
     // 基于准备好的dom，初始化echarts实例
     myChart = echarts.init(document.getElementById('container-chart'));
 // 指定图表的配置项和数据
-    var option = {
+    var option0 = {
         title: {
             text: '刷卡记录追踪'
         },
@@ -194,9 +257,83 @@ function myChartInit(){
         }]
     };
 // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    myChart.setOption(option0);
+
+    myChart1 = echarts.init(document.getElementById('container-chart1'));
+    var option1 = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data:['刷卡次数', '成功率', '失败率']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'value'
+            },
+            {
+                type : 'value'
+            }
+        ],
+        yAxis : [
+            {
+                type : 'category',
+                axisTick : {show: false},
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+            }
+        ],
+        series : [
+            {
+                name:'刷卡次数',
+                type:'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    }
+                },
+                xAxisIndex:1,
+                data:[0.200, 0.170, 0.240, 0.244, 0.200, 0.220, 0.210]
+            },
+            {
+                name:'失败率',
+                type:'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true
+                    }
+                },
+                data:[320, 302, 341, 374, 390, 450, 420]
+            },
+            {
+                name:'成功率',
+                type:'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'left'
+                    }
+                },
+                data:[-120, -132, -101, -134, -190, -230, -210]
+            }
+        ]
+    };
+    myChart1.setOption(option1);
+    resizeIframe();
 }
 
+// app.title = '正负条形图';
 function create_table() {
     if($("#swipeFailRecord").css("display")==='none'){
         $('#swipeFailRecord').css('display','block');
@@ -324,12 +461,8 @@ function create_table() {
                         //关闭遮罩
                         //$wrapper.spinModal(false);
                         callback(returnData);
-                        // iframe和导航高度随table元素高度变化
-                        var thisheight = $(document).height();
-                        var myIframe = $(window.parent.document).find("#iframe");
-                        var west = $(window.parent.document).find("#west");
-                        myIframe.height(thisheight);
-                        west.height(thisheight);
+                        resizeIframe();
+
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                         alert("查询失败");
@@ -354,35 +487,11 @@ function create_table() {
     } );
 }
 
-function date_plugin_init() {
-    var start = {
-        elem: '#swipeRecord_startTime',
-        format: 'YYYY-MM-DD hh:mm:ss',
-        min: '2010-01-01 00:00:01', //设定最小日期为当前日期
-        max: laydate.now(-1), //最大日期
-        istime: true,
-        istoday: false,
-        festival:true,
-        choose: function(time){
-            end.min = time; //开始日选好后，重置结束日的最小日期
-            end.start = time;//将结束日的初始值设定为开始日
-            startTime=time;
-        }
-    };
-    var end = {
-        elem: '#swipeRecord_endTime',
-        format: 'YYYY-MM-DD hh:mm:ss',
-        min: '2014-01-01 00:00:01',
-        max: laydate.now(),
-        istime: true,
-        istoday: false,
-        festival:true,
-        choose: function(time){
-            start.max = time; //结束日选好后，重置开始日的最大日期
-            endTime=time;
-        }
-    };
-    laydate.skin('molv');
-    laydate(start);
-    laydate(end);
+function resizeIframe() {
+    // iframe和导航高度随table元素高度变化
+    var thisheight = $(document).height();
+    var myIframe = $(window.parent.document).find("#iframe");
+    var west = $(window.parent.document).find("#west");
+    myIframe.height(thisheight);
+    west.height(thisheight);
 }

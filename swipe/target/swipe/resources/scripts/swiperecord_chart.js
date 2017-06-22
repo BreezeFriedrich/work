@@ -284,12 +284,7 @@ function create_table() {
                             //关闭遮罩
                             //$wrapper.spinModal(false);
                             callback(returnData);
-                            // iframe和导航高度随table元素高度变化
-                            var thisheight = $(document).height();
-                            var myIframe = $(window.parent.document).find("#iframe");
-                            var west = $(window.parent.document).find("#west");
-                            myIframe.height(thisheight);
-                            west.height(thisheight);
+                            resizeIframe();
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                         alert("查询失败");
@@ -309,7 +304,6 @@ function create_table() {
         // myTable.fnDestroy();
         // myTable.fnDraw(false);
         // myTable.fnReloadAjax();
-        alert('exist');
         tableApi=$('#table-swipeRecord').DataTable();
         tableApi.ajax.reload();
     }
@@ -317,6 +311,14 @@ function create_table() {
     $('#table-swipeRecord tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
     } );
+}
+
+function resizeIframe(){// iframe和导航高度随table元素高度变化
+    var thisheight = $(document).height();
+    var myIframe = $(window.parent.document).find("#iframe");
+    var west = $(window.parent.document).find("#west");
+    myIframe.height(thisheight);
+    west.height(thisheight);
 }
 
 //当你需要多条件查询，你可以调用此方法，动态修改参数传给服务器

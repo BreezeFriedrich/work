@@ -1,8 +1,10 @@
 package com.yishu.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.yishu.model.DeviceStatus;
 import com.yishu.service.ModuleService;
 import com.yishu.util.HttpUtil;
@@ -124,6 +126,27 @@ public class ModuleServiceImpl implements ModuleService {
         }
         if(deviceStatusList.size()>0){
 //            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
+            return deviceStatusList;
+        }
+        return null;
+    }
+
+    @Override
+    public List<DeviceStatus> listAllWithStrategy(HashMap paramMap) {
+
+        Gson gson=new Gson();
+        paramMap.put("sign",15);
+        try {
+            postdata=objectMapper.writeValueAsString(paramMap);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+//        logger.info("postdata:"+postdata);
+        getdata=HttpUtil.postData(postdata);
+//        logger.info("#DATA     ~ "+getdata);
+
+        deviceStatusList=getDataListFromJson(getdata);
+        if(deviceStatusList.size()>0){
             return deviceStatusList;
         }
         return null;

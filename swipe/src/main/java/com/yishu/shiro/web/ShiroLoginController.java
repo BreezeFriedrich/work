@@ -50,7 +50,7 @@ public class ShiroLoginController {
         }
         if(msg == null){
 //            return "redirect:/admin/user/list";
-            return "home";
+            return "main_plain";
         }
 
         model.addAttribute("msg",msg);

@@ -90,9 +90,9 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
             e.printStackTrace();
         }
 //        postdata="{\"sign\":14,\"orderColumn\":\"" + orderColumn + "\",\"orderDir\":\"" + orderDir + "\",\"strategy\":"+gson.toJson(strategy)+"}";
-        logger.info("postdata:"+postdata);
+//        logger.info("postdata:"+postdata);
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
+//        logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){

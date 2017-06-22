@@ -62,6 +62,19 @@
         ;
     </select>
 
+    <select id="listAllWithStrategy" resultType="DeviceStatus" parameterType="Map">
+        SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
+        FROM DeviceStatus
+        <where>
+            <if test="null!=deviceid and deviceid!=''"> AND deviceid=#{deviceid}</if>
+            <if test="null!=deviceip and deviceip!=''"> AND deviceip=#{deviceip}</if>
+            <if test="null!=status and status!=''"> AND `status`=#{status}</if>
+            <if test="null!=startTime and startTime!=''"> AND DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') &gt;= #{startTime}</if>
+            <if test="null!=endTime and endTime!=''"> AND DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') &lt;= #{endTime}</if>
+        </where>
+        ORDER BY ${orderColumn} ${orderDir}
+    </select>
+
     <select id="listByTimezone" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
         FROM DeviceStatus

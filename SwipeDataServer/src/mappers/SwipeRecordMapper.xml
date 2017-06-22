@@ -66,7 +66,9 @@
         FROM SwipeRecord
         <where>
             <if test="null!=deviceid and deviceid!=''"> AND deviceid=#{deviceid}</if>
+            <if test="null!=deviceip and deviceip!=''"> AND deviceip=#{deviceip}</if>
             <if test="null!=result and result!=''"> AND result=#{result}</if>
+            <if test="null!=startTime and startTime!=''"> AND DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') &gt;= #{startTime}</if>
             <if test="null!=endTime and endTime!=''"> AND DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') &lt;= #{endTime}</if>
         </where>
         ORDER BY ${orderColumn} ${orderDir}

@@ -2,7 +2,10 @@
  * Created by admin on 2017/6/14.
  */
 var param;
+var startTime;
+var endTime;
 $(function () {
+    date_plugin_init();
     var $table = $("#table");
     var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
         ajax: function (data, callback, settings) {
@@ -32,6 +35,7 @@ $(function () {
                         returnData.data={};
                     }
                     callback(returnData);
+                    resizeIframe();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("查询失败");
@@ -125,6 +129,14 @@ $(function () {
     });
 
 });
+
+function resizeIframe(){// iframe和导航高度随table元素高度变化
+    var thisheight = $(document).height();
+    var myIframe = $(window.parent.document).find("#iframe");
+    var west = $(window.parent.document).find("#west");
+    myIframe.height(thisheight);
+    west.height(thisheight);
+}
 var CONSTANT = {
     DATA_TABLES : {
         DEFAULT_OPTION : { //DataTables初始化选项
@@ -226,7 +238,10 @@ var userManage = {
             param.orderDir = data.order[0].dir;
         }
         param.deviceid = $("#deviceid-search").val();
-        param.endTime = $("#endTime-search").val();
+        param.deviceip = $("#deviceip-search").val();
+        // param.endTime = $("#endTime-search").val();
+        param.startTime=startTime;
+        param.endTime=endTime;
         param.result = $("#result-search").val();
         // param.result = $("#result-search").val()===""?-1:$("#result-search").val();
         //组装分页参数
@@ -250,3 +265,41 @@ var userManage = {
         alert("点击" + item.deviceid + "  " + item.timestamp);
     }
 };
+
+function date_plugin_init() {
+    var start = {
+        elem: '#startTime-search',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        min: '2010-01-01 00:00:01', //设定最小日期为当前日期
+        max: laydate.now(-1), //最大日期
+        istime: true,
+        istoday: false,
+        festival:true,
+        choose: function(time){
+            end.min = time; //开始日选好后，重置结束日的最小日期
+            end.start = time;//将结束日的初始值设定为开始日
+            startTime=time;
+        }
+    };
+    var end = {
+        elem: '#endTime-search',
+        format: 'YYYY-MM-DD hh:mm:ss',
+        min: '2014-01-01 00:00:01',
+        max: laydate.now(),
+        istime: true,
+        istoday: false,
+        festival:true,
+        choose: function(time){
+            start.max = time; //结束日选好后，重置开始日的最大日期
+            endTime=time;
+        },
+        clear: function (time) {
+            alert('laydate-clear');
+            start.max = time;
+            endTime=time;
+        }
+    };
+    laydate.skin('molv');
+    laydate(start);
+    laydate(end);
+}

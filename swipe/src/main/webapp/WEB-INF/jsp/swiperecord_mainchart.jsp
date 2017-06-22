@@ -19,12 +19,12 @@
     <script type="text/javascript" src="../../resources/scripts/echarts.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/swiperecord_mainchart.js?ver=21"></script>
+    <script type="text/javascript" src="../../resources/scripts/swiperecord_mainchart.js?ver=26"></script>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="col-lg-4 col-lg-offset-1">
+        <div class="col-lg-4 col-lg-offset-2">
             <div class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="swipeRecord_startTime" class="col-lg-4">开始时间：</label>
@@ -58,27 +58,36 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-info" onclick="refreshData()">查询</button>
+                        <button type="button" class="btn btn-info" onclick="refreshData()">查询</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-lg-offset-1" style="display: none" id="summary">
+        <div class="col-lg-5 col-lg-offset-1" style="display: none" id="summary">
             <dl class="dl">
                 <dt></dt>
                 <dt></dt>
                 <dt></dt>
                 <dt></dt>
-                <button type="submit" class="btn btn-info" onclick="create_table()">失败记录</button>
+                <button type="button" class="btn btn-info" onclick="create_table()">失败记录</button>
             </dl>
         </div>
     </div>
 
     <div class="row-fluid">
         <div class="col-lg-11 col-lg-offset-1">
-            <div style="width: 1030px;height:550px;margin:30px auto 50px;">
+            <div style="width: 1030px;height:480px;margin:30px auto 20px;">
                     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
                     <div id="container-chart" style="width: 1000px;height:450px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="col-lg-11 col-lg-offset-1">
+            <div style="width: 1030px;height:480px;margin:0px auto 20px;">
+                <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                <div id="container-chart1" style="width: 1000px;height:450px;"></div>
             </div>
         </div>
     </div>
@@ -88,7 +97,7 @@
             <h4>
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">失败记录</a>
             </h4>
-            <div id="collapseOne" class="collapse">
+            <div id="collapseOne" class="collapse in">
                 <table id="table-swipeRecord" cellpadding="0" cellspacing="0" border="0">
                     <thead>
                     <tr>

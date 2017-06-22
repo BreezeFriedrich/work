@@ -214,12 +214,7 @@ function ajaxData() {
                         //关闭遮罩
                         //$wrapper.spinModal(false);
                         callback(returnData);
-                        // iframe和导航高度随table元素高度变化
-                        var thisheight = $(document).height();
-                        var myIframe = $(window.parent.document).find("#iframe");
-                        var west = $(window.parent.document).find("#west");
-                        myIframe.height(thisheight);
-                        west.height(thisheight);
+                        resizeIframe();
                     },1);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -239,6 +234,13 @@ function ajaxData() {
     $('#table-swipeRecord tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
     } );
+}
+function resizeIframe(){// iframe和导航高度随table元素高度变化
+    var thisheight = $(document).height();
+    var myIframe = $(window.parent.document).find("#iframe");
+    var west = $(window.parent.document).find("#west");
+    myIframe.height(thisheight);
+    west.height(thisheight);
 }
 
 function testD() {

@@ -79,6 +79,8 @@ public class SwipeRecordController {
         paramMap.put("orderDir",orderDir);
         //查询条件
         String deviceid = request.getParameter("deviceid");
+        String deviceip = request.getParameter("deviceip");
+        String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
         String result = request.getParameter("result");
         SwipeRecordStrategy strategy = new SwipeRecordStrategy();
@@ -86,9 +88,15 @@ public class SwipeRecordController {
 //            strategy.setDeviceid(deviceid);
             paramMap.put("deviceid",deviceid);
         }
+        if(null != deviceip && !"".equals(deviceip)){
+            paramMap.put("deviceip",deviceip);
+        }
 //        strategy.setEndTime(endTime);
         if(null != endTime && !"".equals(endTime)){
             paramMap.put("endTime",endTime);
+        }
+        if(null != startTime && !"".equals(startTime)){
+            paramMap.put("startTime",startTime);
         }
         if(null != result && !"".equals(result)){
 //            strategy.setResult(result);
@@ -103,7 +111,7 @@ public class SwipeRecordController {
         }else{
             PageUtil<SwipeRecord> pageUtil=new PageUtil<SwipeRecord>(swipeRecords);
             pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
-            System.out.println(JSONObject.fromObject(pageUtil));
+//            System.out.println(JSONObject.fromObject(pageUtil));
             info.put("pageData", pageUtil.getList());
             info.put("total", pageUtil.getTotal());
         }
@@ -697,6 +705,74 @@ public class SwipeRecordController {
 //        logger.info(String.valueOf(index.length));
 //        logger.info(String.valueOf(xAxisTime.get("min")));
 //        logger.info(String.valueOf(xAxisTime.get("max")));
+        return jsonUtil.mapToJson(resultMap);
+    }
+
+    @RequestMapping("/listByTimezoneToMainChart2.do")
+    @ResponseBody
+    public String listByTimezoneToMainChart2(HttpServletRequest request) {
+        logger.info("#CTL      ~ listByTimezoneToMainChart2");
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        List<SwipeRecord> swipeRecordList = swipeRecordService.listByTimezone(startTime, endTime);
+        Map resultMap=new HashMap();
+        double[] series_failRatio=null;
+        double[] series_successRatio=null;
+        int[] series_frequency=null;
+//        List<SwipeRecord> samList=new ArrayList<>(50);
+        List<String> sams=new ArrayList<>(50);
+        String tempStr="";
+        int samQuantity=0;
+        HashMap<String,List<SwipeRecord>> swipeRecordSegs=new HashMap<>(50);
+        SwipeRecord swipeRecord=null;
+
+        for(Iterator it=swipeRecordList.iterator();it.hasNext();){//遍历集合
+            swipeRecord=(SwipeRecord)it.next();
+            tempStr=swipeRecord.getDeviceid();
+            if(swipeRecordSegs.containsKey(tempStr)){
+                swipeRecordSegs.get(tempStr).add(swipeRecord);
+            }else{
+                List<SwipeRecord> tempList=new ArrayList();
+                tempList.add(swipeRecord);
+                swipeRecordSegs.put(tempStr,tempList);
+            }
+            if(!sams.contains(tempStr)){
+                sams.add(tempStr);
+            }
+        }
+        sams.clear();
+        samQuantity=swipeRecordSegs.size();
+        series_failRatio=new double[samQuantity];
+        series_successRatio=new double[samQuantity];
+        series_frequency=new int[samQuantity];
+        //swipeRecordSegs排序
+        List arrayList = new ArrayList(swipeRecordSegs.entrySet());
+        Collections.sort(arrayList, new Comparator()
+        {
+            public int compare(Object arg1, Object arg2)
+            {
+                Map.Entry obj1 = (Map.Entry) arg1;
+                Map.Entry obj2 = (Map.Entry) arg2;
+                return (obj1.getKey()).toString().compareTo(obj2.getKey().toString());
+            }
+        });
+
+        //遍历各刷卡记录集(日)分段Hashmap swipeRecordSegs
+        Iterator entrySetIter = swipeRecordSegs.entrySet().iterator();
+        while (entrySetIter.hasNext()) {
+            Map.Entry entry = (Map.Entry) entrySetIter.next();
+            Object key = entry.getKey();
+            Object val = entry.getValue();
+
+            for(Iterator it=swipeRecordSegs.get(key).iterator();it.hasNext();){//遍历各分段的刷卡结果list
+                swipeRecord=(SwipeRecord)it.next();
+                tempStr=swipeRecord.getDeviceid();
+            }
+        }
+
+        resultMap.put("series_frequency",series_frequency);
+        resultMap.put("series_failRatio",series_failRatio);
+        resultMap.put("series_successRatio",series_successRatio);
         return jsonUtil.mapToJson(resultMap);
     }
 

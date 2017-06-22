@@ -158,7 +158,7 @@ class MyHandler implements HttpHandler{
         reqData=new String(readStr);
         String method=exchange.getRequestMethod();
         URI uri=exchange.getRequestURI();
-        logger.info("#DATA     ~ request-data:"+reqData);
+//        logger.info("#DATA     ~ request-data:"+reqData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map map=new HashMap();
@@ -185,6 +185,7 @@ class MyHandler implements HttpHandler{
         int status=0;
         String deviceid="";
         int result=0;
+        HashMap paramMap;
 
         switch (sign) {
             case 1://moduleStatus/listByStatus
@@ -232,6 +233,22 @@ class MyHandler implements HttpHandler{
                 }
                 map.put("data",deviceStatusList);
                 logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+//                map=null;
+                break;
+
+            case 15://moduleStatus/listAllWithStrategy
+                deviceStatusList=new ArrayList<>();
+                paramMap=objectMapper.readValue(reqData,HashMap.class);
+                tempDeviceStatusList=moduleService.listAllWithStrategy(paramMap);
+                it=tempDeviceStatusList.iterator();
+                map.put("result",0);
+                while (it.hasNext()){
+                    deviceStatus= (DeviceStatus) it.next();
+                    deviceStatusList.add(deviceStatus);
+                }
+                map.put("data",deviceStatusList);
+//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;
@@ -342,19 +359,19 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;
 
-            case 14://swipeRecord/listByTimezoneWhenFail
+            case 14://swipeRecord/listAllWithStrategy
                 swipeRecordList=new ArrayList<>();
 //                map=new HashMap();
 //                String orderColumn=node.get("orderColumn").asText();
 //                String orderDir=node.get("orderDir").asText();
 //                SwipeRecordStrategy strategy=objectMapper.readValue(node.get("strategy"),SwipeRecordStrategy.class);
 //                tempSwipeRecordList=swipeRecordService.listAllWithStrategy(orderColumn,orderDir,strategy);
-                HashMap paramMap=objectMapper.readValue(reqData,HashMap.class);
+                paramMap=objectMapper.readValue(reqData,HashMap.class);
                 tempSwipeRecordList=swipeRecordService.listAllWithStrategy(paramMap);
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
@@ -363,7 +380,7 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;

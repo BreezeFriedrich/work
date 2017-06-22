@@ -1,6 +1,8 @@
 package service;
 
 import model.DeviceStatus;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,6 +17,7 @@ public interface ModuleService {
     public List<DeviceStatus> listByStatus(int status);
     public List<DeviceStatus> listAllWithoutDuplicate();
     public List<DeviceStatus> listAll();
+    public List<DeviceStatus> listAllWithStrategy(HashMap paramMap);
     public List<DeviceStatus> listByTimezone(String startTime,String endTime);
     public List<DeviceStatus> listByParam(String endTime,int status,String deviceid);
     public int countByParam(String endTime,int status,String deviceid);

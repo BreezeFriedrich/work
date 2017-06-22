@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div id="west" style="width:150px;padding:0px;float: left;">
 				<div class="leftsidebar">
-					<div class="line"></div>
+					<%--<div class="line"></div>--%>
 					<dl class="custom">
 						<dt style="background-image: url(../../resources/styles/images/left/custom.png)">用户管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
 						<shiro:hasPermission name="/admin/user/list">
