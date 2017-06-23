@@ -341,7 +341,7 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;
@@ -401,7 +401,7 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
+//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;

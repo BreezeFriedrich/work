@@ -2,61 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="250ff45f-6a83-4d00-8bbd-e9c9fed663c8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rep/modulestatus_table.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rep/modulestatus_table_1.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/MyHandler.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/MyHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/DeviceStatusDao.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/dao/DeviceStatusDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/ModuleService.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/ModuleService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/service/impl/ModuleServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/controller/ModuleStatusController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/ModuleService.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/service/ModuleService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/ShiroLoginController.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/ShiroLoginController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/yishu/util/HttpUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/yishu/util/HttpUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe.war" afterPath="$PROJECT_DIR$/target/swipe.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/controller/ModuleStatusController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/controller/SwipeRecordController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/ModuleService.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/ModuleService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/ModuleServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/shiro/web/ShiroLoginController.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/shiro/web/ShiroLoginController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/util/HttpUtil.class" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/classes/com/yishu/util/HttpUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/mappers/DeviceStatusMapper.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/mappers/DeviceStatusMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/mappers/SwipeRecordMapper.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/mappers/SwipeRecordMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/DataServer.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/DataServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/dao/DeviceStatusDao.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/dao/DeviceStatusDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/mappers/DeviceStatusMapper.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/mappers/DeviceStatusMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/mappers/SwipeRecordMapper.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/mappers/SwipeRecordMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/service/ModuleService.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/service/ModuleService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/src/service/impl/ModuleServiceImpl.java" afterPath="$PROJECT_DIR$/../SwipeDataServer/src/service/impl/ModuleServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rep/modulestatus_table.js" afterPath="$PROJECT_DIR$/rep/modulestatus_table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/controller/ModuleStatusController.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/controller/ModuleStatusController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/service/ModuleService.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/service/ModuleService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/ModuleServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/ModuleServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/ShiroLoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/ShiroLoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/yishu/util/HttpUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/yishu/util/HttpUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_plain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modulestatus_table.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modulestatus_table.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/test_datatables.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/test_datatables.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/scripts/modulestatus_table.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/scripts/modulestatus_table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_chart.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_chart.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_mainchart.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_mainchart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_table.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/scripts/test_datatables.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/scripts/test_datatables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/main_plain.jsp" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/main_plain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/modulestatus_table.jsp" afterPath="$PROJECT_DIR$/target/swipe/WEB-INF/jsp/modulestatus_table.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/resources/scripts/modulestatus_table.js" afterPath="$PROJECT_DIR$/target/swipe/resources/scripts/modulestatus_table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/resources/scripts/swiperecord_chart.js" afterPath="$PROJECT_DIR$/target/swipe/resources/scripts/swiperecord_chart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/swipe/resources/scripts/swiperecord_table.js" afterPath="$PROJECT_DIR$/target/swipe/resources/scripts/swiperecord_table.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,11 +45,10 @@
       <file leaf-file-name="swiperecord_mainchart.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+            <state relative-caret-position="120">
+              <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -102,16 +59,26 @@
       <file leaf-file-name="swiperecord_mainchart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_mainchart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="52" />
+            <state relative-caret-position="60">
+              <caret line="93" column="51" lean-forward="false" selection-start-line="93" selection-start-column="51" selection-end-line="93" selection-end-column="51" />
               <folding>
-                <element signature="e#1271#2548#0" expanded="false" />
-                <element signature="e#3684#7190#0" expanded="false" />
-                <element signature="e#3701#3739#0" expanded="false" />
-                <element signature="e#3758#3939#0" expanded="false" />
-                <element signature="e#3959#4037#0" expanded="false" />
-                <element signature="e#4056#4258#0" expanded="false" />
-                <element signature="e#4736#4757#0" expanded="false" />
+                <element signature="e#103#149#0" expanded="false" />
+                <element signature="n#!!block;n#date_plugin_init#0" expanded="false" />
+                <element signature="e#1216#1237#0" expanded="false" />
+                <element signature="e#1295#2572#0" expanded="false" />
+                <element signature="e#3571#3592#0" expanded="false" />
+                <element signature="e#4139#7645#0" expanded="false" />
+                <element signature="e#4156#4194#0" expanded="false" />
+                <element signature="e#4213#4394#0" expanded="false" />
+                <element signature="e#4414#4492#0" expanded="false" />
+                <element signature="e#4511#4713#0" expanded="false" />
+                <element signature="e#5191#5212#0" expanded="false" />
+                <element signature="e#7857#8038#0" expanded="false" />
+                <element signature="e#8056#8107#0" expanded="false" />
+                <element signature="e#8123#8240#0" expanded="false" />
+                <element signature="e#8258#8388#0" expanded="false" />
+                <element signature="e#8645#9550#0" expanded="false" />
+                <element signature="n#!!block;n#create_table#0" expanded="false" />
                 <element signature="n#!!block;n#resizeIframe#0" expanded="false" />
               </folding>
             </state>
@@ -121,23 +88,30 @@
       <file leaf-file-name="SwipeRecordController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="771" column="8" lean-forward="false" selection-start-line="771" selection-start-column="8" selection-end-line="771" selection-end-column="8" />
+            <state relative-caret-position="323">
+              <caret line="775" column="27" lean-forward="true" selection-start-line="775" selection-start-column="27" selection-end-line="775" selection-end-column="27" />
               <folding>
-                <element signature="method#listAll#0;class#SwipeRecordController#0" expanded="false" />
-                <element signature="method#listAllWithStrategy#0;class#SwipeRecordController#0" expanded="false" />
                 <element signature="method#listByTimezoneWhenFail#0;class#SwipeRecordController#0" expanded="false" />
                 <element signature="method#listByTimezone#0;class#SwipeRecordController#0" expanded="false" />
                 <element signature="e#8273#8323#0" expanded="false" />
-                <element signature="method#listByDateToChart#0;class#SwipeRecordController#0" expanded="false" />
-                <element signature="method#listByTimezoneToChart#0;class#SwipeRecordController#0" expanded="false" />
-                <element signature="e#31206#31516#0" expanded="true" />
-                <element signature="e#31515#31516#0" expanded="true" />
+                <element signature="method#listByTimezoneToMainChart1#0;class#SwipeRecordController#0" expanded="false" />
+                <element signature="e#30389#30557#0" expanded="true" />
+                <element signature="e#30556#30557#0" expanded="true" />
                 <element signature="method#listByTimezoneToChartPie#0;class#SwipeRecordController#0" expanded="false" />
                 <element signature="method#countByParam#0;class#SwipeRecordController#0" expanded="false" />
                 <element signature="method#deleteByParam#0;class#SwipeRecordController#0" expanded="false" />
                 <element signature="method#listToObj#0;class#SwipeRecordController#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwipeRecordServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="151" column="46" lean-forward="false" selection-start-line="151" selection-start-column="46" selection-end-line="151" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,24 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>main_</find>
-      <find>main_p</find>
-      <find>main_pl</find>
-      <find>main_pla</find>
-      <find>main_plai</find>
-      <find>main_plain</find>
-      <find>row-fluid</find>
-      <find>h</find>
-      <find>ho</find>
-      <find>home</find>
-      <find>create_table</find>
-      <find>s</find>
-      <find>su</find>
-      <find>submi</find>
-      <find>submit</find>
-      <find>#endTime-search</find>
-      <find>resultsearch</find>
-      <find>result_search</find>
       <find>result-search</find>
       <find>r</find>
       <find>re</find>
@@ -187,6 +143,24 @@
       <find>支出</find>
       <find>利润</find>
       <find>resizeIframe</find>
+      <find>logger</find>
+      <find>logger.</find>
+      <find>logger.inf</find>
+      <find>logger.info</find>
+      <find>S</find>
+      <find>Sys</find>
+      <find>Syste</find>
+      <find>System</find>
+      <find>System.</find>
+      <find>System.o</find>
+      <find>System.ou</find>
+      <find>System.out</find>
+      <find>System.out.</find>
+      <find>System.out.p</find>
+      <find>System.out.pr</find>
+      <find>System.out.pri</find>
+      <find>System.out.prin</find>
+      <find>System.out.print</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;%--&lt;jsp:include page=&quot;inc.jsp&quot;/&gt;--%&gt;</replace>
@@ -205,10 +179,12 @@
       <replace>lg</replace>
       <replace>row</replace>
       <replace>status-search</replace>
-      <replace />
       <replace>失败率</replace>
       <replace>成功率</replace>
       <replace>刷卡次数</replace>
+      <replace />
+      <replace>//logger.info</replace>
+      <replace>//System.out.print</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -258,7 +234,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_plain.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_table.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_chart.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yishu/util/HttpUtil.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/test_datatables.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/scripts/test_datatables.js" />
@@ -267,8 +242,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/ModuleServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/scripts/modulestatus_table.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modulestatus_table.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_mainchart.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java" />
       </list>
     </option>
@@ -292,7 +268,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1612" />
+    <option name="width" value="1616" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -313,6 +289,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
@@ -397,67 +374,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -506,40 +423,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="yishu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swipe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yishu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -651,7 +534,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -665,19 +547,19 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\workspace\gitYishu\swipe\rep" />
-      <recent name="E:\workspace\gitYishu\swipe\src\main\webapp\resources\bootstrapvalidator" />
-      <recent name="G:\Workspaces\gitLap\swipe" />
-      <recent name="G:\Workspaces\gitLap\swipe\src\main\resources\spring" />
-      <recent name="G:\Workspaces\gitLap\swipe\src\main\resources" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\workspace\gitYishu\swipe\src\main\webapp\WEB-INF\jsp" />
       <recent name="E:\workspace\gitYishu\swipe\src\main\webapp\jsp" />
       <recent name="E:\workspace\gitYishu\swipe\rep" />
       <recent name="E:\workspace\gitYishu\swipe\src\main\webapp" />
       <recent name="E:\workspace\gitYishu\swipe\src\main\webapp\WEB-INF\jsp\database" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\gitYishu\swipe\rep" />
+      <recent name="E:\workspace\gitYishu\swipe\src\main\webapp\resources\bootstrapvalidator" />
+      <recent name="G:\Workspaces\gitLap\swipe" />
+      <recent name="G:\Workspaces\gitLap\swipe\src\main\resources\spring" />
+      <recent name="G:\Workspaces\gitLap\swipe\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1037,6 +919,9 @@
       <workItem from="1498007493487" duration="29583000" />
       <workItem from="1498094626719" duration="9763000" />
       <workItem from="1498108694790" duration="19406000" />
+      <workItem from="1498180989315" duration="2359000" />
+      <workItem from="1498183388568" duration="8638000" />
+      <workItem from="1498195285706" duration="12172000" />
     </task>
     <task id="LOCAL-00001" summary="2017.06.01">
       <created>1496314858706</created>
@@ -1070,7 +955,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="396765000" />
+    <option name="totallyTimeSpent" value="419934000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1082,8 +967,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1093,12 +977,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32307693" sideWeight="0.5051414" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29494712" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3216783" sideWeight="0.49485862" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2937063" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3972028" sideWeight="0.49485862" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20979021" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16817011" sideWeight="0.69573283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1651671" sideWeight="0.69573283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20244215" sideWeight="0.30426717" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32587412" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1106,7 +990,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20244215" sideWeight="0.3031359" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36223775" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48811188" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1222,28 +1106,27 @@
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java</url>
-          <line>768</line>
-          <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="24" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="series_samConcurrency" />
-        <watch expression="swipeRecordSegs" language="JAVA" />
-        <watch expression="sams" language="JAVA" />
-        <watch expression="i" />
-        <watch expression="x" />
-        <watch expression="series_samConcurrency[i]" language="JAVA" />
-        <watch expression="series_frequency[i]" />
-        <watch expression="dateDiff" />
+        <watch expression="swipeRecordList" />
+        <watch expression="resultMap" />
+        <watch expression="swipeRecordSegs" />
+        <watch expression="tempList" />
+        <watch expression="entry" />
+        <watch expression="key" />
+        <watch expression="val" />
+        <watch expression="it" />
+        <watch expression="obj1.getKey().toString().compareTo(obj2.getKey().toString())" />
+        <watch expression="obj1" />
+        <watch expression="obj2" />
+        <watch expression="obj1.getKey()" />
+        <watch expression="obj2.getKey()" />
       </configuration>
     </watches-manager>
   </component>
@@ -1252,48 +1135,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_table.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="16" column="101" lean-forward="true" selection-start-line="16" selection-start-column="101" selection-end-line="16" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/model/DeviceStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/model/LockOperate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/model/OwnerInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/model/SwipeRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/model/SwipeRecordStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1308,59 +1149,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-web/1.3.1/shiro-web-1.3.1-sources.jar!/org/apache/shiro/web/servlet/OncePerRequestFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-web/1.3.1/shiro-web-1.3.1-sources.jar!/org/apache/shiro/web/servlet/AdviceFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="977" column="0" lean-forward="false" selection-start-line="977" selection-start-column="0" selection-end-line="977" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="897" column="0" lean-forward="false" selection-start-line="897" selection-start-column="0" selection-end-line="897" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-core/1.3.1/shiro-core-1.3.1-sources.jar!/org/apache/shiro/subject/support/SubjectCallable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_show.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="70" column="7" lean-forward="true" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/4.2.6.RELEASE/spring-web-4.2.6.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1432,7 +1224,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1240">
           <caret line="62" column="68" lean-forward="false" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1464,11 +1255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="240" column="55" lean-forward="true" selection-start-line="240" selection-start-column="55" selection-end-line="240" selection-end-column="55" />
-          <folding>
-            <element signature="n#!!block;n#testC#0" expanded="false" />
-            <element signature="n#!!block;n#testA#0" expanded="false" />
-            <element signature="n#!!block;n#testB#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1488,9 +1274,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="285" column="49" lean-forward="true" selection-start-line="285" selection-start-column="49" selection-end-line="285" selection-end-column="49" />
-          <folding>
-            <element signature="e#10293#10341#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1498,7 +1281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1506,7 +1288,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1514,7 +1295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1831">
           <caret line="98" column="20" lean-forward="false" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1532,19 +1312,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-          <folding>
-            <element signature="e#1709#2473#0" expanded="false" />
-            <element signature="e#2497#2608#0" expanded="false" />
-            <element signature="e#2660#3188#0" expanded="false" />
-            <element signature="e#3248#3258#0" expanded="false" />
-            <element signature="e#3452#3482#0" expanded="false" />
-            <element signature="e#3555#3753#0" expanded="false" />
-            <element signature="e#3817#3941#0" expanded="false" />
-            <element signature="e#3979#4158#0" expanded="false" />
-            <element signature="e#4207#4551#0" expanded="false" />
-            <element signature="e#4851#7360#0" expanded="false" />
-            <element signature="e#4898#6760#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1552,7 +1319,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="37" column="37" lean-forward="true" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1568,7 +1334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1576,14 +1341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="19" column="61" lean-forward="true" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1600,19 +1357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="240" column="20" lean-forward="false" selection-start-line="240" selection-start-column="20" selection-end-line="240" selection-end-column="20" />
-          <folding>
-            <element signature="e#2401#2512#0" expanded="false" />
-            <element signature="e#2564#3092#0" expanded="false" />
-            <element signature="e#3152#3162#0" expanded="false" />
-            <element signature="e#3356#3386#0" expanded="false" />
-            <element signature="e#3459#3657#0" expanded="false" />
-            <element signature="e#3721#3845#0" expanded="false" />
-            <element signature="e#3883#4062#0" expanded="false" />
-            <element signature="e#4111#4455#0" expanded="false" />
-            <element signature="n#!!block;n#resizeIframe#0" expanded="false" />
-            <element signature="e#4775#7262#0" expanded="false" />
-            <element signature="e#4802#6664#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1632,16 +1376,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/ModuleStatusController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="129" column="42" lean-forward="true" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
-          <folding>
-            <element signature="e#5396#5410#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_plain.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1650,50 +1384,165 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-core/1.3.1/shiro-core-1.3.1-sources.jar!/org/apache/shiro/subject/support/SubjectCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-web/1.3.1/shiro-web-1.3.1-sources.jar!/org/apache/shiro/web/servlet/OncePerRequestFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-web/1.3.1/shiro-web-1.3.1-sources.jar!/org/apache/shiro/web/servlet/AbstractShiroFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="365" column="0" lean-forward="false" selection-start-line="365" selection-start-column="0" selection-end-line="365" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/4.2.6.RELEASE/spring-web-4.2.6.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="136" column="0" lean-forward="false" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="754" column="0" lean-forward="false" selection-start-line="754" selection-start-column="0" selection-end-line="754" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/AbstractHandlerMethodAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="897" column="0" lean-forward="false" selection-start-line="897" selection-start-column="0" selection-end-line="897" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="844" column="0" lean-forward="false" selection-start-line="844" selection-start-column="0" selection-end-line="844" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-web/1.3.1/shiro-web-1.3.1-sources.jar!/org/apache/shiro/web/servlet/ProxiedFilterChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/shiro/shiro-web/1.3.1/shiro-web-1.3.1-sources.jar!/org/apache/shiro/web/servlet/AdviceFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_mainchart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="93" column="51" lean-forward="false" selection-start-line="93" selection-start-column="51" selection-end-line="93" selection-end-column="51" />
+          <folding>
+            <element signature="e#103#149#0" expanded="false" />
+            <element signature="n#!!block;n#date_plugin_init#0" expanded="false" />
+            <element signature="e#1216#1237#0" expanded="false" />
+            <element signature="e#1295#2572#0" expanded="false" />
+            <element signature="e#3571#3592#0" expanded="false" />
+            <element signature="e#4139#7645#0" expanded="false" />
+            <element signature="e#4156#4194#0" expanded="false" />
+            <element signature="e#4213#4394#0" expanded="false" />
+            <element signature="e#4414#4492#0" expanded="false" />
+            <element signature="e#4511#4713#0" expanded="false" />
+            <element signature="e#5191#5212#0" expanded="false" />
+            <element signature="e#7857#8038#0" expanded="false" />
+            <element signature="e#8056#8107#0" expanded="false" />
+            <element signature="e#8123#8240#0" expanded="false" />
+            <element signature="e#8258#8388#0" expanded="false" />
+            <element signature="e#8645#9550#0" expanded="false" />
+            <element signature="n#!!block;n#create_table#0" expanded="false" />
+            <element signature="n#!!block;n#resizeIframe#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/DispatcherServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/ModuleStatusController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="177" column="8" lean-forward="false" selection-start-line="177" selection-start-column="8" selection-end-line="177" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/DatabaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="151" column="46" lean-forward="false" selection-start-line="151" selection-start-column="46" selection-end-line="151" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/swiperecord_mainchart.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+        <state relative-caret-position="120">
+          <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/scripts/swiperecord_mainchart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="52" />
-          <folding>
-            <element signature="e#1271#2548#0" expanded="false" />
-            <element signature="e#3684#7190#0" expanded="false" />
-            <element signature="e#3701#3739#0" expanded="false" />
-            <element signature="e#3758#3939#0" expanded="false" />
-            <element signature="e#3959#4037#0" expanded="false" />
-            <element signature="e#4056#4258#0" expanded="false" />
-            <element signature="e#4736#4757#0" expanded="false" />
-            <element signature="n#!!block;n#resizeIframe#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/SwipeRecordController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="771" column="8" lean-forward="false" selection-start-line="771" selection-start-column="8" selection-end-line="771" selection-end-column="8" />
+        <state relative-caret-position="323">
+          <caret line="775" column="27" lean-forward="true" selection-start-line="775" selection-start-column="27" selection-end-line="775" selection-end-column="27" />
           <folding>
-            <element signature="method#listAll#0;class#SwipeRecordController#0" expanded="false" />
-            <element signature="method#listAllWithStrategy#0;class#SwipeRecordController#0" expanded="false" />
             <element signature="method#listByTimezoneWhenFail#0;class#SwipeRecordController#0" expanded="false" />
             <element signature="method#listByTimezone#0;class#SwipeRecordController#0" expanded="false" />
             <element signature="e#8273#8323#0" expanded="false" />
-            <element signature="method#listByDateToChart#0;class#SwipeRecordController#0" expanded="false" />
-            <element signature="method#listByTimezoneToChart#0;class#SwipeRecordController#0" expanded="false" />
-            <element signature="e#31206#31516#0" expanded="true" />
-            <element signature="e#31515#31516#0" expanded="true" />
+            <element signature="method#listByTimezoneToMainChart1#0;class#SwipeRecordController#0" expanded="false" />
+            <element signature="e#30389#30557#0" expanded="true" />
+            <element signature="e#30556#30557#0" expanded="true" />
             <element signature="method#listByTimezoneToChartPie#0;class#SwipeRecordController#0" expanded="false" />
             <element signature="method#countByParam#0;class#SwipeRecordController#0" expanded="false" />
             <element signature="method#deleteByParam#0;class#SwipeRecordController#0" expanded="false" />

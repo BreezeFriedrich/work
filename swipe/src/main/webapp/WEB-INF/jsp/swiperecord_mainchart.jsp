@@ -19,7 +19,7 @@
     <script type="text/javascript" src="../../resources/scripts/echarts.js"></script>
     <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/swiperecord_mainchart.js?ver=26"></script>
+    <script type="text/javascript" src="../../resources/scripts/swiperecord_mainchart.js?ver=42"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -85,9 +85,9 @@
 
     <div class="row-fluid">
         <div class="col-lg-11 col-lg-offset-1">
-            <div style="width: 1030px;height:480px;margin:0px auto 20px;">
+            <div style="width: 1030px;margin:0px auto 20px;">
                 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-                <div id="container-chart1" style="width: 1000px;height:450px;"></div>
+                <div id="container-chart1" style="width: 1000px;height:4000px;"></div>
             </div>
         </div>
     </div>
