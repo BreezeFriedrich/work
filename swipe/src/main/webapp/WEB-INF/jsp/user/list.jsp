@@ -12,7 +12,7 @@
 <head>
     <title>用户列表</title>
     <link rel="stylesheet" href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="../../../resources/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="../../../resources/scripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
         $(function(){
             $(".status").each(function(){

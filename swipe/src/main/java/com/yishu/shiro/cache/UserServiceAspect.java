@@ -33,7 +33,7 @@ public class UserServiceAspect extends BaseCacheService {
     /**
      * target 表明只针对某个类实现 AOP 代理
      */
-    @Pointcut("target(com.yishu.shiro.service.impl.ShiroUserService)")
+    @Pointcut("target(com.yishu.shiro.service.impl.UserService)")
     public void userServicePointcut(){
     }
 

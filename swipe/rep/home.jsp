@@ -13,116 +13,99 @@
 %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>亿数刷卡管理中心</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="../../resources/styles/main_plain.css" />
-    <script type="text/javascript" src="../../resources/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/component/cookie.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/main_plain.js?ver=1"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../src/main/webapp/resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="home.css" />
+    <script type="text/javascript" src="../src/main/webapp/resources/scripts/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="../src/main/webapp/resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../src/main/webapp/resources/scripts/component/cookie.js"></script>
+    <script type="text/javascript" src="../src/main/webapp/resources/scripts/main.js?ver=1"></script>
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row-fluid">
-        <div class="col-lg-12">
-            <div class="row-fluid">
-                <div class="col-lg-4 col-lg-4">
-                    <h5>
-                        <strong>刷卡管理中心</strong>
-                    </h5>
-                </div>
-                <div class="col-lg-4">
-                    <span id="loginStatus"><shiro:principal property="nickname"/></span>
-                    <div class="btn-group">
-                        <button class="btn btn-danger" type="button" id="safetylogout"></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row-fluid">
+    <div class="row" style="background:#95b8e7;">
         <div class="col-lg-2">
-            <ul class="nav nav-list">
-                <li class="nav-header">
-                    列表标题
-                </li>
-                <li class="active">
-                    <a href="#">首页</a>
-                </li>
-                <li>
-                    <a href="#">库</a>
-                </li>
-                <li>
-                    <a href="#">应用</a>
-                </li>
-                <li class="nav-header">
-                    功能列表
-                </li>
-                <li>
-                    <a href="#">资料</a>
-                </li>
-                <li>
-                    <a href="#">设置</a>
-                </li>
-                <li class="divider">
-                </li>
-                <li>
-                    <a href="#">帮助</a>
-                </li>
-            </ul>
+            <a>
+                <img class="brand-logo" src="" alt="Logo">
+            </a>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-4 col-lg-offset-2">
+            <h2>亿数刷卡管理中心</h2>
         </div>
-        <div class="col-lg-9">
-            <div class="tabbable" id="tabs-262418">
-                <ul class="nav nav-tabs">
-                    <li>
-                        <a data-toggle="tab" href="#panel-355199">第一部分</a>
-                    </li>
-                    <li class="active">
-                        <a data-toggle="tab" href="#panel-455156">第二部</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane" id="panel-355199">
-                        <div class="alert">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <h4>
-                                提示!
-                            </h4> <strong>警告!</strong> 请注意你的个人隐私安全.
-                        </div>
-                        <form class="form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label" for="inputEmail">邮箱</label>
-                                <div class="controls">
-                                    <input id="inputEmail" type="text" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputPassword">密码</label>
-                                <div class="controls">
-                                    <input id="inputPassword" type="password" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="checkbox"><input type="checkbox" /> Remember me</label> <button type="submit" class="btn">登陆</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane active" id="panel-455156">
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-2">
+            <span id="loginStatus"><shiro:principal property="nickname"/></span>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-danger" id="safetylogout">安全退出</button>
         </div>
     </div>
-    <div class="row-fluid">
-        <div class="col-lg-12">
-            <address> <strong>南京亿数信息科技有限公司</strong><br /> <abbr title="Phone">TEL:</abbr> (123) 456-7890</address>
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="leftsidebar">
+                <%--<div class="line"></div>--%>
+                <dl class="custom">
+                    <dt style="background-image: url(../src/main/webapp/resources/styles/images/left/custom.png)">用户管理<img src="../src/main/webapp/resources/styles/images/left/select_xl01.png"></dt>
+                    <shiro:hasPermission name="/admin/user/list">
+                        <dd class="first_dd">
+                            <a onclick=iframe("admin/user/list")>用户列表</a>
+                        </dd>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="/admin/role/list">
+                        <dd>
+                            <a onclick=iframe("admin/role/list")>角色管理</a>
+                        </dd>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="/admin/resource/list">
+                        <dd>
+                            <a onclick=iframe("admin/resource/list")>资源管理</a>
+                        </dd>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="/database/**">
+                        <dd>
+                            <a onclick=iframe("database/clear")>数据清理</a>
+                        </dd>
+                    </shiro:hasPermission>
+                </dl>
+                <dl class="deviceManage">
+                    <dt style="background-image: url(../src/main/webapp/resources/styles/images/left/device_manage.png)">模块状态<img src="../src/main/webapp/resources/styles/images/left/select_xl01.png"></dt>
+                    <dd class="first_dd">
+                        <a onclick=iframe("dispatcher/modulestatus_table.jsp")>模块状态表</a>
+                    </dd>
+                </dl>
+                <dl class="statistics">
+                    <dt style="background-image: url(../src/main/webapp/resources/styles/images/left/statistics.png)">刷卡记录<img src="../src/main/webapp/resources/styles/images/left/select_xl01.png"></dt>
+                    <dd class="first_dd">
+                        <a onclick=iframe("dispatcher/swiperecord_table.jsp")>总记录表</a>
+                    </dd>
+                    <dd>
+                        <a onclick=iframe("dispatcher/swiperecord_chart.jsp")>成功率饼图</a>
+                    </dd>
+                    <dd>
+                        <a onclick=iframe("dispatcher/swiperecord_show.jsp")>成功率柱状图</a>
+                    </dd>
+                    <dd>
+                        <a onclick=iframe("dispatcher/sAnalyseByInterval.jsp")>失败率-频度-并发量</a>
+                    </dd>
+                    <dd>
+                        <a onclick=iframe("dispatcher/sAnalyseByDay.jsp")>单日分析</a>
+                    </dd>
+                </dl>
+                <dl class="statistics">
+                    <dt style="background-image: url(../src/main/webapp/resources/styles/images/left/statistics.png)">测试<img src="../src/main/webapp/resources/styles/images/left/select_xl01.png"></dt>
+                    <dd class="first_dd">
+                        <a onclick=iframe("dispatcher/test_datatables.jsp")>DataTables</a>
+                    </dd>
+                </dl>
+            </div>
         </div>
+        <div class="col-lg-10">
+            <iframe id="iframe" frameborder="0" scrolling="no" width="100%" border="0" marginwidth="0" marginheight=" 0" allowtransparency="yes" src="dispatcher/analyse_byday.jsp"></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">YISHUTECH</div>
     </div>
 </div>
 </body>

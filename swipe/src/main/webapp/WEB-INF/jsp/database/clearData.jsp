@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css"/>
     <%--<link rel="stylesheet" href="../../../resources/bootstrapvalidator/css/bootstrapValidator.css"/>--%>
-    <script type="text/javascript" src="../../../resources/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="../../../resources/scripts/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="../../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <%--<script type="text/javascript" src="../../../resources/bootstrapvalidator/js/bootstrapValidator.js"></script>--%>
     <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>

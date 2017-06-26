@@ -24,7 +24,7 @@ public class ShiroLoginController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(){
-        return "loginShiro";
+        return "login";
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -50,11 +50,11 @@ public class ShiroLoginController {
         }
         if(msg == null){
 //            return "redirect:/admin/user/list";
-            return "main_plain";
+            return "main";
         }
 
         model.addAttribute("msg",msg);
-        return "loginShiro";
+        return "login";
     }
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class ShiroLoginController {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         model.addAttribute("msg","您已经退出登录");
-        return "loginShiro";
+        return "login";
     }
 
     @RequestMapping(value = "/unAuthorization")

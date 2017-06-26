@@ -296,7 +296,7 @@
 </div>
 <script src="asset/lib/json2.js"></script>
 <!-- JQuery -->
-<script src="resources/jquery-3.1.0.min.js"></script>
+<script src="resources/scripts/jquery-3.1.0.min.js"></script>
 <!-- Bootstrap -->
 <script src="resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <!-- SpinJS-->

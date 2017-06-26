@@ -101,7 +101,8 @@ public class DataServer {
             deviceStatus = (DeviceStatus) it.next();
             logger.info("#DATA     ~ devicestatus[i]:" + deviceStatus);
             logger.info("#DETAIL   ~ {id:" + deviceStatus.getDeviceid() + ";ip:" + deviceStatus.getDeviceip() + ";timestamp:" + deviceStatus.getTimestamp()+"}");
-        }*/
+        }
+*/
         try {
             InetSocketAddress address = new InetSocketAddress(port);
             HttpServer httpServer = HttpServer.create(address, 40);//线程数量

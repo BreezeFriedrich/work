@@ -77,7 +77,7 @@
         </div>
 
         <%-- script 节点不要使用自结束 --%>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery-3.1.0.min.js"></script>
         <script type="text/javascript">
             $(function(){
                 // 先把后台传递过来的 List 数组转换为 JS 能识别的数组

@@ -40,7 +40,10 @@ public class SwipeRecordController {
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
         int start= Integer.parseInt(request.getParameter("start"));
+        long timeTag1=new Date().getTime();
         List<SwipeRecord> swipeRecordList=swipeRecordService.listAll();
+        long timeTag2=new Date().getTime();
+        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
         List<SwipeRecord> newSwipeRecordList=new ArrayList<>();
         SwipeRecord swipeRecord=null;
         int total=swipeRecordList.size();
@@ -49,6 +52,8 @@ public class SwipeRecordController {
             newSwipeRecordList.add(swipeRecord);
         }
         if (!newSwipeRecordList.isEmpty()){
+            long timeTag3=new Date().getTime();
+            logger.info("timeTag3-timeTag1="+(timeTag3-timeTag1));
             return listToObj(newSwipeRecordList,total);
         }
         return null;
@@ -103,7 +108,10 @@ public class SwipeRecordController {
             paramMap.put("result",result);
         }
 //        List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(orderColumn, orderDir, strategy);
+        long timeTag1=new Date().getTime();
         List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(paramMap);
+        long timeTag2=new Date().getTime();
+        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
         Map<String, Object> info = new HashMap<String, Object>();
         if(swipeRecords==null){
             info.put("pageData",null);
@@ -116,6 +124,8 @@ public class SwipeRecordController {
             info.put("total", pageUtil.getTotal());
         }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+        long timeTag3=new Date().getTime();
+        logger.info("timeTag3-timeTag1="+(timeTag3-timeTag1));
         return JSONObject.fromObject(info)+"";
     }
 
@@ -312,7 +322,6 @@ public class SwipeRecordController {
         isToday=(theDay.getTime()/86400000)==(new Date().getTime()/86400000);
         int pieces=86400000/interval;
 
-        //按月
         if(!isToday){
             //获取series:data[]的值index[]
             index=new double[pieces];
@@ -353,8 +362,143 @@ public class SwipeRecordController {
         }
 
         resultMap.put("data",index);
-
         logger.info(String.valueOf(index.length));
+        return jsonUtil.mapToJson(resultMap);
+    }
+
+    @RequestMapping("/listByDateToChart1.do")
+    @ResponseBody
+    public String listByDateToChart1(HttpServletRequest request){
+//        logger.info("#CTL      ~ listByDateToChart1");
+        String param_date=request.getParameter("param_date");
+        logger.info("param_date:"+param_date);
+        String param_interval=request.getParameter("param_interval");
+        int interval=Integer.parseInt(param_interval);
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.00");
+        Date theDay=null;
+        try {
+            theDay=sdf.parse(param_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        logger.info("theDay:"+theDay);
+        Date time1=null;
+        Date time2=null;
+        time1=new Date(theDay.getTime()/86400000*86400000+57600000);
+        time2=new Date((theDay.getTime()/86400000+1)*86400000+57600000);
+        String startTime=sdf.format(time1);
+        String endTime=sdf.format(time2);
+        logger.info("startTime:"+startTime);
+        logger.info("endTime:"+endTime);
+        List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
+        if (swipeRecordList==null||swipeRecordList.size()<1){
+            logger.info("swipeRecordList is empty");
+            return null;
+        }
+        Map resultMap=new HashMap();
+        Date tempTime=null;
+        double index[]=null;
+        boolean isToday=false;
+        isToday=(theDay.getTime()/86400000)==(new Date().getTime()/86400000);
+        int pieces=86400000/interval;
+
+
+        List<String> sams=new ArrayList<>();
+        int[] series_samConcurrency=null;
+        List[] swipeRecordSegs=null;
+        String tempStr="";
+        int[] series_frequency=null;
+        int sumSuccess=0;
+        int sumFail=0;
+        List samList=new ArrayList();
+        List deviceList=new ArrayList();
+        resultMap.put("sumSwipeFrequency",swipeRecordList.size());
+
+
+        //按日
+        if(!isToday){
+            index=new double[pieces];
+            Arrays.fill(index,0.00);
+            swipeRecordSegs=new ArrayList[pieces];
+            series_samConcurrency=new int[pieces];
+            series_frequency=new int[pieces];
+            for(int i=0;i<swipeRecordSegs.length;i++){
+                swipeRecordSegs[i]=new ArrayList();
+            }
+            double success[]=new double[pieces];
+            double fail[]=new double[pieces];
+
+            //遍历刷卡记录集合
+            for(SwipeRecord x:swipeRecordList){
+                try {
+                    tempTime=sdf.parse(x.getTimestamp());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                };
+                int piece= (int) ((tempTime.getTime()-time1.getTime())/interval);
+                if(0==x.getResult()){
+                    success[piece]++;
+                    sumSuccess++;
+                }else {
+                    fail[piece]++;
+                    sumFail++;
+                }
+                if(!samList.contains(x.getDeviceid())){
+                    samList.add(x.getDeviceid());
+                }
+                if(!deviceList.contains(x.getClientid())){
+                    deviceList.add(x.getClientid());
+                }
+                //将刷卡记录集合swipeRecordList按时间interval日分组
+                swipeRecordSegs[piece].add(x);
+            }
+            double sumFailRatio=0<(sumSuccess+sumFail)?sumFail*1.0/(sumSuccess+sumFail):0;
+            resultMap.put("sumFailRatio",Double.parseDouble(df.format(sumFailRatio)));
+            resultMap.put("sumSAM",samList.size());
+            resultMap.put("sumDevices",deviceList.size());
+
+            //遍历各刷卡记录集(interval)分段
+            for(int i=0;i<swipeRecordSegs.length;i++){//遍历数组[{},{},{},{},...]
+                series_frequency[i]=swipeRecordSegs[i].size();
+                for(Iterator it=swipeRecordSegs[i].iterator();it.hasNext();){//遍历集合
+                    tempStr=((SwipeRecord)it.next()).getDeviceid();
+                    if(!sams.contains(tempStr)){
+                        sams.add(tempStr);
+                    }
+                }
+                series_samConcurrency[i]=sams.size();
+                sams.clear();
+            }
+            resultMap.put("series_frequency",series_frequency);
+            resultMap.put("series_samConcurrency",series_samConcurrency);
+
+            //System.out.println("index>>>>>>>>>");
+            for(int i=0;i<pieces;i++){
+                if(success[i]+fail[i]>0){
+                    index[i]= Double.parseDouble(df.format(fail[i]*1.00/(success[i]+fail[i])));
+                }
+                //System.out.print(index[i]+",  ");
+            }
+            //System.out.println();
+            //System.out.println("index<<<<<<<<<<");
+
+            String[] xAxisData=new String[pieces];
+            int[] xAxisNum=new int[pieces];
+            //System.out.println("xAxisNum>>>>>>>>>");
+            for(int k=0;k<pieces;k++){
+                Date tempDate=new Date((time1.getTime()/interval+k)*interval);
+                xAxisData[k]=sdf.format(tempDate);
+                xAxisNum[k]=k+1;
+                //System.out.print(xAxisNum[k]+",  ");
+            }
+            //System.out.println();
+            //System.out.println("xAxisNum<<<<<<<<<");
+            resultMap.put("xAxisNum",xAxisNum);
+            resultMap.put("category",xAxisData);
+        }
+
+        resultMap.put("data",index);
         return jsonUtil.mapToJson(resultMap);
     }
 

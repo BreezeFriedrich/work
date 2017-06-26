@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-/* button
+/* button 
 ------------------------------------------------------------------------------------------------------------------------*/
 
 .button {
@@ -50,32 +50,23 @@
 	padding: .2em 1em .275em;
 }
 
-
 /*----------------------------------------------------------*/
 
 .label {
 	font-size: small;
 }
 
-
 /*----------------------------------------------------------*/
 
-.icon-filter {
-	background: url('easyui/filter.png') no-repeat center center;
-}
-
-
-/*----------------------------------------------------------*/
-
-#pagetitle
+#pagetitle 
 { width:100%;
-	display:inline-block;
-	line-height:1.5em;
-	overflow:visible;
-	font-size:22px;
-	text-shadow:#f3f3f3 1px 1px 0px, #b2b2b2 1px 2px 0;
-	text-align:center;
-	letter-spacing: 4px;
+display:inline-block;
+line-height:1.5em;
+overflow:visible;
+font-size:22px;
+text-shadow:#f3f3f3 1px 1px 0px, #b2b2b2 1px 2px 0;
+text-align:center;
+letter-spacing: 4px;
 }
 
 img {
@@ -115,7 +106,7 @@ left*/
 	/*height: auto !important;*/
 	height: 100%;
 	overflow: visible !important;
-	position: relative;
+	position: relative;	
 	background-color: #B7D2FF;
 }
 
@@ -139,7 +130,7 @@ left*/
 	cursor: pointer;
 }
 /*2级菜单*/
-.leftsidebar dd {
+.leftsidebar dd {	
 	background-color: #AAC5E7;
 	padding-left: 40px;
 }
