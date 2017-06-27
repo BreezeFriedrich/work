@@ -1,5 +1,10 @@
 package shiro.service.impl;
 
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.sun.deploy.net.HttpUtils;
 import shiro.dao.RoleDao;
 import shiro.dao.UserDao;
 import shiro.kit.ShiroKit;
@@ -15,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -51,6 +58,7 @@ public class UserService implements IUserService {
         // 使用用户名作为盐值，MD5 算法加密
         user.setPassword(ShiroKit.md5(user.getPassword(),user.getUsername()));
         userDao.add(user);
+
         return user;
     }
 

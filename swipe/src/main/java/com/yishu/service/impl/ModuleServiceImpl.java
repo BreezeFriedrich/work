@@ -89,7 +89,7 @@ public class ModuleServiceImpl implements ModuleService {
 //        int diff= (int) (time2.getTime()-time1.getTime())/10;
 //        logger.info("DIFF -Time:"+diff);
 
-        postdata="{\"sign\":1,\"status\":0}";
+        postdata="{\"sign\":0,\"status\":0}";
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
@@ -103,7 +103,7 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<DeviceStatus> listAllWithoutDuplicate() {
 
-        postdata="{\"sign\":2}";
+        postdata="{\"sign\":1}";
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
@@ -117,7 +117,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<DeviceStatus> listAll() {
-        postdata="{\"sign\":5}";
+        postdata="{\"sign\":2}";
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
@@ -135,7 +135,7 @@ public class ModuleServiceImpl implements ModuleService {
     public List<DeviceStatus> listAllWithStrategy(HashMap paramMap) {
 
         Gson gson=new Gson();
-        paramMap.put("sign",15);
+        paramMap.put("sign",3);
         try {
             postdata=objectMapper.writeValueAsString(paramMap);
         } catch (JsonProcessingException e) {
@@ -154,7 +154,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<DeviceStatus> listByTimezone(String startTime, String endTime) {
-        postdata="{\"sign\":11,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
+        postdata="{\"sign\":4,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
 //        logger.info("#request-DATA     ~ "+postdata);
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
@@ -169,7 +169,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<DeviceStatus> listByParam(String endTime, int status, String deviceid) {
-        postdata="{\"sign\":6,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
+        postdata="{\"sign\":5,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
@@ -185,7 +185,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public int countByParam(String endTime, int status, String deviceid) {
-        postdata="{\"sign\":7,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
+        postdata="{\"sign\":6,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 
@@ -201,7 +201,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public int deleteByParam(String endTime, int status, String deviceid) {
-        postdata="{\"sign\":8,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
+        postdata="{\"sign\":7,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
         logger.info("#DATA     ~ "+getdata);
 

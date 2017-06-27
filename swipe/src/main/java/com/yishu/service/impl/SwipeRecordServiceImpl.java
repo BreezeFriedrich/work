@@ -67,7 +67,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     @Override
     public List<SwipeRecord> listAll() {
-        postdata="{\"sign\":3}";
+        postdata="{\"sign\":20}";
         getdata=HttpUtil.postData(postdata);
         //logger.info("#DATA     ~ "+getdata);
 
@@ -80,10 +80,23 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     }
 
     @Override
+    public List<SwipeRecord> listByTimezoneWhenFail(String startTime, String endTime) {
+        postdata="{\"sign\":21,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
+        getdata=HttpUtil.postData(postdata);
+        //logger.info("#DATA     ~ "+getdata);
+
+        swipeRecordList=getDataListFromJson(getdata);
+        if(swipeRecordList.size()>0){
+            return swipeRecordList;
+        }
+        return null;
+    }
+
+    @Override
     public List<SwipeRecord> listAllWithStrategy(HashMap paramMap) {
 
         Gson gson=new Gson();
-        paramMap.put("sign",14);
+        paramMap.put("sign",22);
         try {
             postdata=objectMapper.writeValueAsString(paramMap);
         } catch (JsonProcessingException e) {
@@ -102,21 +115,8 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     }
 
     @Override
-    public List<SwipeRecord> listByTimezoneWhenFail(String startTime, String endTime) {
-        postdata="{\"sign\":13,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
-        getdata=HttpUtil.postData(postdata);
-        //logger.info("#DATA     ~ "+getdata);
-
-        swipeRecordList=getDataListFromJson(getdata);
-        if(swipeRecordList.size()>0){
-            return swipeRecordList;
-        }
-        return null;
-    }
-
-    @Override
     public List<SwipeRecord> listByTimezone(String startTime, String endTime) {
-        postdata="{\"sign\":4,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
+        postdata="{\"sign\":23,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
 //        logger.info("#request-DATA     ~ "+postdata);
         getdata=HttpUtil.postData(postdata);
         //logger.info("#DATA     ~ "+getdata);
@@ -131,7 +131,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     @Override
     public int countByParam(String endTime, int result, String deviceid) {
-        postdata="{\"sign\":9,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
+        postdata="{\"sign\":24,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
         //logger.info("#DATA     ~ "+getdata);
 
@@ -147,7 +147,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     @Override
     public int deleteByParam(String endTime, int result, String deviceid) {
-        postdata="{\"sign\":10,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
+        postdata="{\"sign\":25,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
         //logger.info("#DATA     ~ "+getdata);
 

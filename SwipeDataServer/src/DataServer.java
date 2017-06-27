@@ -1,14 +1,17 @@
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.*;
 import model.DeviceStatus;
 import model.SwipeRecord;
-import model.SwipeRecordStrategy;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import service.ModuleService;
 import service.SwipeRecordService;
 import service.impl.ModuleServiceImpl;
+import shiro.dao.ResourceDao;
+import shiro.dao.RoleDao;
+import shiro.dao.UserDao;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -120,6 +123,12 @@ class MyHandler implements HttpHandler{
     private static  final Logger logger = LoggerFactory.getLogger(HttpHandler.class);
     private ModuleService moduleService=null;
     private SwipeRecordService swipeRecordService=null;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private RoleDao roleDao;
+    @Autowired
+    private ResourceDao resourceDao;
 
     MyHandler() throws SQLException {
         this.moduleService = (ModuleServiceImpl) ContextLoader.getBean("moduleService");
@@ -167,6 +176,7 @@ class MyHandler implements HttpHandler{
         int sign=node.get("sign").asInt();
 //        logger.info("sign:"+String.valueOf(sign));
 
+
         Iterator it=null;
         int countNum=0;
         int affectedNum=0;
@@ -189,7 +199,7 @@ class MyHandler implements HttpHandler{
         HashMap paramMap;
 
         switch (sign) {
-            case 1://moduleStatus/listByStatus
+            case 0://moduleStatus/listByStatus
                 status=node.get("status").asInt();
                 deviceStatusList=new ArrayList();
 //                map=new HashMap();
@@ -206,7 +216,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 2://moduleStatus/listAllWithoutDuplicate
+            case 1://moduleStatus/listAllWithoutDuplicate
                 deviceStatusList=new ArrayList();
 //                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAllWithoutDuplicate();
@@ -222,7 +232,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 5://moduleStatus/listAll
+            case 2://moduleStatus/listAll
                 deviceStatusList=new ArrayList();
 //                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAll();
@@ -238,7 +248,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 15://moduleStatus/listAllWithStrategy
+            case 3://moduleStatus/listAllWithStrategy
                 deviceStatusList=new ArrayList<>();
                 paramMap=objectMapper.readValue(reqData,HashMap.class);
                 tempDeviceStatusList=moduleService.listAllWithStrategy(paramMap);
@@ -254,7 +264,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 11://moduleStatus/listByTimezone
+            case 4://moduleStatus/listByTimezone
                 startTime=node.get("startTime").asText();
                 endTime=node.get("endTime").asText();
                 deviceStatusList=new ArrayList<>();
@@ -273,7 +283,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 6://moduleStatus/listByParam
+            case 5://moduleStatus/listByParam
                 status=node.get("status").asInt();
                 endTime=node.get("endTime").asText();
                 deviceid=node.get("deviceid").asText();
@@ -292,7 +302,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 7://moduleStatus/countByParam
+            case 6://moduleStatus/countByParam
                 status=node.get("status").asInt();
                 endTime=node.get("endTime").asText();
                 try {
@@ -312,7 +322,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 8://moduleStatus/deleteByParam
+            case 7://moduleStatus/deleteByParam
                 status=node.get("status").asInt();
                 endTime=node.get("endTime").asText();
                 try {
@@ -331,7 +341,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 3://swipeRecord/listAll
+            case 20://swipeRecord/listAll
                 swipeRecordList=new ArrayList<>();
 //                map=new HashMap();
                 tempSwipeRecordList=swipeRecordService.listAll();
@@ -347,7 +357,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 13://swipeRecord/listByTimezoneWhenFail
+            case 21://swipeRecord/listByTimezoneWhenFail
                 swipeRecordList=new ArrayList<>();
 //                map=new HashMap();
                 startTime=node.get("startTime").asText();
@@ -365,7 +375,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 14://swipeRecord/listAllWithStrategy
+            case 22://swipeRecord/listAllWithStrategy
                 swipeRecordList=new ArrayList<>();
 //                map=new HashMap();
 //                String orderColumn=node.get("orderColumn").asText();
@@ -386,7 +396,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 4://swipeRecord/listByTimezone
+            case 23://swipeRecord/listByTimezone
                 swipeRecordList=new ArrayList<>();
 //                map=new HashMap();
                 startTime=node.get("startTime").asText();
@@ -407,7 +417,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 9://swipeRecord/countByParam
+            case 24://swipeRecord/countByParam
                 result=node.get("result").asInt();
                 endTime=node.get("endTime").asText();
                 try {
@@ -427,7 +437,7 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
-            case 10://swipeRecord/deleteByParam
+            case 25://swipeRecord/deleteByParam
                 result=node.get("result").asInt();
                 endTime=node.get("endTime").asText();
                 try {
@@ -475,6 +485,21 @@ class MyHandler implements HttpHandler{
 //                map=null;
                 break;
 
+                //连接shiro/service/impl与shiro/dao
+            case 50://shiro/userDao/add
+                break;
+//shiro/dao/userDao
+//            Integer add(User user);
+//            Integer update(User user);
+//            Integer delete(Integer id);
+//            Integer batchDelete(@Param("ids") List<Integer> ids);
+//            User load(Integer id);
+//            User loadByUserName(String username);
+//            List<User> listUser();
+//            List<User> listByRole(Integer rid);
+//            List<Role> listUserRole(Integer uid);
+//            List<Resource> listAllResources(Integer uid);
+//            List<String> listRoleSnByUser(Integer uid);
             default:break;
             }
             bufferedReader.close();
