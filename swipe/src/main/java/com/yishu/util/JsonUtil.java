@@ -5,9 +5,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -16,6 +19,7 @@ import java.util.*;
  */
 public class JsonUtil {
 
+    private static final Logger logger= LoggerFactory.getLogger(JsonUtil.class);
     private ObjectMapper objectMapper=new ObjectMapper();
     private JsonGenerator jsonGenerator=null;
     public ObjectNode rootNode=objectMapper.createObjectNode();
@@ -24,9 +28,14 @@ public class JsonUtil {
     JsonNode resultNode=null;
     JsonNode dataNode=null;
     int result=-100;
+    StringWriter stringWriter=new StringWriter();
+    String str=null;
 
     //将Map转换为Json字符串{sign:xx,xx:xx,xx:xx,...}格式.
-    public void writeTreeToString(HashMap map,String str){
+    public String writeTreeToString(HashMap map){
+        logger.info("map",map.toString());
+        stringWriter.flush();
+        str=null;
         Iterator it=map.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry entry = (Map.Entry) it.next();
@@ -45,12 +54,19 @@ public class JsonUtil {
                 rootNode.putPOJO(key,val);
             }
         }
+        map.clear();
         try {
-            jsonGenerator=objectMapper.getFactory().createGenerator(new PrintWriter(str));
+//            jsonGenerator=objectMapper.getFactory().createGenerator(new PrintWriter(str));
+            jsonGenerator=objectMapper.getFactory().createGenerator(stringWriter);
             objectMapper.writeTree(jsonGenerator,rootNode);
+            str=stringWriter.toString();
+            stringWriter.flush();
+            stringWriter.close();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+        logger.info("str:",str);
+        return str;
     }
 
     public JsonNode getDataNode(String str){
@@ -59,7 +75,7 @@ public class JsonUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        resultNode=readRoot.path("sign");
+        resultNode=readRoot.path("result");
         result=resultNode.asInt();
         if(0>result){
             return null;

@@ -10,6 +10,8 @@ import com.yishu.shiro.model.Role;
 import com.yishu.shiro.model.User;
 import com.yishu.util.HttpUtil;
 import com.yishu.util.JsonUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import java.util.List;
  * Created by admin on 2017/6/27.
  */
 public class UserDaoImpl implements UserDao {
+    private static final Logger logger= LoggerFactory.getLogger(UserDaoImpl.class);
 
     JsonUtil jsonUtil=new JsonUtil();
     HashMap map=new HashMap();
@@ -28,7 +31,10 @@ public class UserDaoImpl implements UserDao {
     int result=0;
     int num=0;
     User user=null;
-    List<User> list=null;
+    List<User> userList =null;
+    List<Role> roleList =null;
+    List<Resource> resourceList =null;
+    List<String> stringList =null;
     String data="";
     JsonNode dataNode=null;
 
@@ -70,10 +76,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Integer add(User user) {
         map.put("sign",50);
-        map.put("User",user);
-        jsonUtil.writeTreeToString(map,postdata);
+        map.put("user",user);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.postData(postdata);postdata=null;
         if(null!=getdata&&""!=getdata){
             num=getIntFromData(getdata);
         }
@@ -83,10 +89,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Integer update(User user) {
         map.put("sign",51);
-        map.put("User",user);
-        jsonUtil.writeTreeToString(map,postdata);
+        map.put("user",user);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.postData(postdata);postdata=null;
         if(null!=getdata&&""!=getdata){
             num=getIntFromData(getdata);
         }
@@ -96,10 +102,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Integer delete(Integer id) {
         map.put("sign",52);
-        map.put("id",id);
-        jsonUtil.writeTreeToString(map,postdata);
+        map.put("userId",id);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.postData(postdata);postdata=null;
         if(null!=getdata&&""!=getdata){
             num=getIntFromData(getdata);
         }
@@ -109,10 +115,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Integer batchDelete(List<Integer> ids) {
         map.put("sign",53);
-        map.put("ids",ids);
-        jsonUtil.writeTreeToString(map,postdata);
+        map.put("userIds",ids);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.postData(postdata);postdata=null;
         if(null!=getdata&&""!=getdata){
             num=getIntFromData(getdata);
         }
@@ -122,10 +128,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User load(Integer id) {
         map.put("sign",54);
-        map.put("id",id);
-        jsonUtil.writeTreeToString(map,postdata);
+        map.put("userId",id);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.postData(postdata);postdata=null;
         dataNode=jsonUtil.getDataNode(getdata);
         try {
             user=objectMapper.treeToValue(dataNode,User.class);
@@ -139,9 +145,9 @@ public class UserDaoImpl implements UserDao {
     public User loadByUserName(String username) {
         map.put("sign",55);
         map.put("username",username);
-        jsonUtil.writeTreeToString(map,postdata);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.postData(postdata);postdata=null;
         dataNode=jsonUtil.getDataNode(getdata);
         try {
             user=objectMapper.treeToValue(dataNode,User.class);
@@ -154,41 +160,88 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> listUser() {
         map.put("sign",56);
-        jsonUtil.writeTreeToString(map,postdata);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.postData(postdata);postdata=null;
         dataNode=jsonUtil.getDataNode(getdata);
 //        try {
-//            list=objectMapper.treeToValue(dataNode,List.class);
+//            userList=objectMapper.treeToValue(dataNode,List.class);
 //        } catch (JsonProcessingException e) {
 //            e.printStackTrace();
 //        }
 
         try {
-            list=objectMapper.readValue(dataNode.traverse(), new TypeReference<List<User>>(){});
+            userList =objectMapper.readValue(dataNode.traverse(), new TypeReference<List<User>>(){});
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return list;
+        return userList;
     }
 
     @Override
     public List<User> listByRole(Integer rid) {
-        return null;
+        map.put("sign",57);
+        map.put("roleId",rid);
+        postdata=jsonUtil.writeTreeToString(map);
+        map.clear();
+        getdata=HttpUtil.postData(postdata);postdata=null;
+        dataNode=jsonUtil.getDataNode(getdata);
+        try {
+            userList =objectMapper.readValue(dataNode.traverse(), new TypeReference<List<User>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 
     @Override
     public List<Role> listUserRole(Integer uid) {
-        return null;
+        map.put("sign",58);
+        map.put("userId",uid);
+        postdata=jsonUtil.writeTreeToString(map);
+        map.clear();
+        getdata=HttpUtil.postData(postdata);postdata=null;
+        dataNode=jsonUtil.getDataNode(getdata);
+        try {
+            roleList =objectMapper.readValue(dataNode.traverse(), new TypeReference<List<Role>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return roleList;
     }
 
     @Override
     public List<Resource> listAllResources(Integer uid) {
-        return null;
+        map.clear();
+        postdata=null;
+        map.put("sign",59);
+        map.put("userId",uid);
+        logger.info("map",map.toString());
+        postdata=jsonUtil.writeTreeToString(map);
+        map.clear();
+        getdata=HttpUtil.postData(postdata);postdata=null;
+        dataNode=jsonUtil.getDataNode(getdata);
+        try {
+            resourceList =objectMapper.readValue(dataNode.traverse(), new TypeReference<List<Resource>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return resourceList;
     }
 
     @Override
     public List<String> listRoleSnByUser(Integer uid) {
-        return null;
+        map.put("sign",60);
+        map.put("userId",uid);
+        postdata=jsonUtil.writeTreeToString(map);
+        map.clear();
+        getdata=HttpUtil.postData(postdata);postdata=null;
+        dataNode=jsonUtil.getDataNode(getdata);
+        try {
+            stringList =objectMapper.readValue(dataNode.traverse(), new TypeReference<List<String>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringList;
     }
 }

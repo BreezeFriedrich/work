@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.*;
@@ -12,6 +13,12 @@ import service.impl.ModuleServiceImpl;
 import shiro.dao.ResourceDao;
 import shiro.dao.RoleDao;
 import shiro.dao.UserDao;
+import shiro.model.Resource;
+import shiro.model.Role;
+import shiro.model.User;
+import shiro.service.IResourceService;
+import shiro.service.IRoleService;
+import shiro.service.IUserService;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -123,16 +130,34 @@ class MyHandler implements HttpHandler{
     private static  final Logger logger = LoggerFactory.getLogger(HttpHandler.class);
     private ModuleService moduleService=null;
     private SwipeRecordService swipeRecordService=null;
-    @Autowired
-    private UserDao userDao;
-    @Autowired
-    private RoleDao roleDao;
-    @Autowired
-    private ResourceDao resourceDao;
+//    @Autowired
+//    private UserDao userDao;
+//    @Autowired
+//    private RoleDao roleDao;
+//    @Autowired
+//    private ResourceDao resourceDao;
+    private IUserService userService=null;
+    private IRoleService roleService=null;
+    private IResourceService resourceService=null;
+
+    User user=null;
+    Role role=null;
+    Resource resource=null;
+    List<User> userList=null;
+    List<Role> roleList=null;
+    List<Resource> resourceList=null;
+    List<String> stringList=null;
+    List<Integer> ids=null;
+    int id=0;
+    String username=null;
+    int affactedNum=0;
 
     MyHandler() throws SQLException {
         this.moduleService = (ModuleServiceImpl) ContextLoader.getBean("moduleService");
         this.swipeRecordService = (SwipeRecordService) ContextLoader.getBean("swipeRecordService");
+        this.userService= (IUserService) ContextLoader.getBean("userService");
+        this.roleService= (IRoleService) ContextLoader.getBean("roleService");
+        this.resourceService= (IResourceService) ContextLoader.getBean("resourceService");
     }
 
     @Override
@@ -168,13 +193,13 @@ class MyHandler implements HttpHandler{
         reqData=new String(readStr);
         String method=exchange.getRequestMethod();
         URI uri=exchange.getRequestURI();
-//        logger.info("#DATA     ~ request-data:"+reqData);
+        logger.info("#DATA     ~ request-data:"+reqData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map map=new HashMap();
         JsonNode node=objectMapper.readTree(reqData);
         int sign=node.get("sign").asInt();
-//        logger.info("sign:"+String.valueOf(sign));
+        logger.info("sign:"+String.valueOf(sign));
 
 
         Iterator it=null;
@@ -487,6 +512,90 @@ class MyHandler implements HttpHandler{
 
                 //连接shiro/service/impl与shiro/dao
             case 50://shiro/userDao/add
+                user=objectMapper.treeToValue(node.path("user"),User.class);
+                affactedNum=userService.add(user);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 51://shiro/userDao/update
+                user=objectMapper.treeToValue(node.path("user"),User.class);
+                affactedNum=userService.update(user);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 52://shiro/userDao/delete
+                id=node.path("userId").asInt();
+                affactedNum=userService.delete(id);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 53://shiro/userDao/batchDelete
+                ids=objectMapper.readValue(node.path("userIds").traverse(), new TypeReference<List<Integer>>(){});
+                affactedNum=userService.batchDelete(ids);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 54://shiro/userDao/load
+                id=node.path("userId").asInt();
+                user=userService.load(id);
+                map.put("result",0);
+                map.put("data",user);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 55://shiro/userDao/loadByUserName
+                username=node.path("username").asText();
+                user=userService.loadByUserName(username);
+                map.put("result",0);
+                map.put("data",user);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 56://shiro/userDao/listUser
+                userList=userService.listUser();
+                map.put("result",0);
+                map.put("data",userList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 57://shiro/userDao/listByRole
+                id=node.path("roleId").asInt();
+                userList=userService.listByRole(id);
+                map.put("result",0);
+                map.put("data",userList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 58://shiro/userDao/listUserRole
+                id=node.path("userId").asInt();
+                roleList=userService.listUserRole(id);
+                map.put("result",0);
+                map.put("data",roleList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 59://shiro/userDao/listAllResources
+                id=node.path("userId").asInt();
+                resourceList=userService.listAllResources(id);
+                map.put("result",0);
+                map.put("data",resourceList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 60://shiro/userDao/listRoleSnByUser
+                id=node.path("userId").asInt();
+                stringList=userService.listRoleSnByUser(id);
+                map.put("result",0);
+                map.put("data",stringList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 //shiro/dao/userDao
 //            Integer add(User user);

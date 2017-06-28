@@ -83,10 +83,10 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public Integer addUserRoles(int userId, List<Integer> roleIds) {
-        map.put("sign",51);
+        map.put("sign",78);
         map.put("userid",userId);
         map.put("roleIds",roleIds);
-        jsonUtil.writeTreeToString(map,postdata);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
         getdata=HttpUtil.postData(postdata);
         if(null!=getdata&&""!=getdata){
@@ -102,9 +102,9 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public Integer deleteUserRoles(int uid) {
-        map.put("sign",50);
+        map.put("sign",80);
         map.put("userIds",uid);
-        jsonUtil.writeTreeToString(map,postdata);
+        postdata=jsonUtil.writeTreeToString(map);
         map.clear();
         getdata=HttpUtil.postData(postdata);
         if(null!=getdata&&""!=getdata){

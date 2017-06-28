@@ -2,6 +2,7 @@ package com.yishu.shiro.service.impl;
 
 import com.yishu.shiro.dao.RoleDao;
 import com.yishu.shiro.dao.UserDao;
+import com.yishu.shiro.dao.impl.UserDaoImpl;
 import com.yishu.shiro.kit.ShiroKit;
 import com.yishu.shiro.model.Resource;
 import com.yishu.shiro.model.Role;
@@ -23,8 +24,9 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
     private static final Logger logger= LoggerFactory.getLogger(UserService.class);
-    @Autowired
-    private UserDao userDao;
+//    @Autowired
+//    private UserDao userDao;
+    private UserDao userDao=new UserDaoImpl();
     @Autowired
     private RoleDao roleDao;
 

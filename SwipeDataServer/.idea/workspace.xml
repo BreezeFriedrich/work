@@ -2,33 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jackson/jackson-annotations-2.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jackson/jackson-core-2.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jackson/jackson-core-asl-1.8.8.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jackson/jackson-databind-2.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jackson/jackson-mapper-asl-1.8.8.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jackson/jackson-module-jaxb-annotations-2.2.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/mappers/ResourceMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/mappers/RoleMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/mappers/UserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/RoleDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/UserDaoImpl.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/druid.properties" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/logback.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/mappers/DeviceStatusMapper.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/mappers/SwipeRecordMapper.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SwipeDataServer/spring-mybatis.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwipeDataServer.iml" afterPath="$PROJECT_DIR$/SwipeDataServer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/mappers/ResourceMapper.xml" afterPath="$PROJECT_DIR$/resources/mappers/ResourceMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/mappers/RoleMapper.xml" afterPath="$PROJECT_DIR$/resources/mappers/RoleMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/mappers/UserMapper.xml" afterPath="$PROJECT_DIR$/resources/mappers/UserMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/spring-mybatis.xml" afterPath="$PROJECT_DIR$/resources/spring-mybatis.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataServer.java" afterPath="$PROJECT_DIR$/src/DataServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shiro/service/IUserService.java" afterPath="$PROJECT_DIR$/src/shiro/service/IUserService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shiro/service/impl/UserService.java" afterPath="$PROJECT_DIR$/src/shiro/service/impl/UserService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/ModuleServiceImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/ModuleServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/service/impl/SwipeRecordServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/RoleDaoImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/RoleDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/UserDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/UserService.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/UserService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/util/JsonUtil.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/util/JsonUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.13.jar" afterPath="$PROJECT_DIR$/rep/jackson-core-asl-1.9.13.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.13.jar" afterPath="$PROJECT_DIR$/rep/jackson-mapper-asl-1.9.13.jar" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -85,17 +76,72 @@
     <fileColor scope="All" color="2d2b34" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DataServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="486" column="0" lean-forward="true" selection-start-line="486" selection-start-column="0" selection-end-line="486" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="581" column="71" lean-forward="false" selection-start-line="581" selection-start-column="71" selection-end-line="581" selection-end-column="71" />
+              <folding>
+                <element signature="e#1064#1089#0" expanded="false" />
+                <element signature="e#2639#2673#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/shiro/service/impl/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="709">
+              <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#822#847#0" expanded="false" />
-                <element signature="e#2397#2431#0" expanded="false" />
+                <element signature="e#711#712#0" expanded="true" />
+                <element signature="e#751#752#0" expanded="true" />
+                <element signature="e#805#806#0" expanded="true" />
+                <element signature="e#848#849#0" expanded="true" />
+                <element signature="e#903#904#0" expanded="true" />
+                <element signature="e#944#945#0" expanded="true" />
+                <element signature="e#1011#1012#0" expanded="true" />
+                <element signature="e#1058#1059#0" expanded="true" />
+                <element signature="e#1108#1109#0" expanded="true" />
+                <element signature="e#1147#1148#0" expanded="true" />
+                <element signature="e#1212#1213#0" expanded="true" />
+                <element signature="e#1267#1268#0" expanded="true" />
+                <element signature="e#1317#1318#0" expanded="true" />
+                <element signature="e#1358#1359#0" expanded="true" />
+                <element signature="e#1421#1422#0" expanded="true" />
+                <element signature="e#1467#1468#0" expanded="true" />
+                <element signature="e#1532#1533#0" expanded="true" />
+                <element signature="e#1580#1581#0" expanded="true" />
+                <element signature="e#1653#1654#0" expanded="true" />
+                <element signature="e#1705#1706#0" expanded="true" />
+                <element signature="e#1776#1777#0" expanded="true" />
+                <element signature="e#1828#1829#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IUserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/shiro/service/IUserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="49">
+              <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="69" column="60" lean-forward="true" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -112,20 +158,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>beginTime</find>
-      <find>status</find>
-      <find>endTime</find>
-      <find>reqStr</find>
-      <find>r</find>
-      <find>re</find>
-      <find>res</find>
-      <find>resu</find>
-      <find>resul</find>
-      <find>result</find>
-      <find>-</find>
-      <find>-10</find>
       <find>-100</find>
-      <find>s</find>
       <find>sdf</find>
       <find>84600000</find>
       <find>8400000</find>
@@ -141,7 +174,20 @@
       <find>com.yishu.shiro.</find>
       <find>shiro</find>
       <find>JsonGenerator</find>
-      <find>JsonGenerator</find>
+      <find>affactedNum</find>
+      <find>s</find>
+      <find>sp</find>
+      <find>spr</find>
+      <find>spri</find>
+      <find>spring</find>
+      <find>springT</find>
+      <find>springTol</find>
+      <find>springTo</find>
+      <find>springToo</find>
+      <find>springTool</find>
+      <find>pringTool</find>
+      <find>SpringTool</find>
+      <find>userDao</find>
     </findStrings>
     <replaceStrings>
       <replace>swipeRecordResultMap</replace>
@@ -158,6 +204,7 @@
       <replace>reqData</replace>
       <replace>shiro.</replace>
       <replace />
+      <replace>userService</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -167,10 +214,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ConnectionPool.java" />
-        <option value="$PROJECT_DIR$/src/service/impl/SwipeSerImpl.java" />
-        <option value="$PROJECT_DIR$/src/mappers/SwipeRecord.xml" />
-        <option value="$PROJECT_DIR$/src/service/impl/DeviceServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/util/DeviceUtil.java" />
         <option value="$PROJECT_DIR$/src/service/DeviceService.java" />
         <option value="$PROJECT_DIR$/src/SpringTool.java" />
@@ -208,16 +251,20 @@
         <option value="$PROJECT_DIR$/src/shiro/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/shiro/service/IResourceService.java" />
         <option value="$PROJECT_DIR$/src/shiro/service/IRoleService.java" />
-        <option value="$PROJECT_DIR$/src/shiro/service/IUserService.java" />
-        <option value="$PROJECT_DIR$/src/shiro/service/impl/ResourceService.java" />
-        <option value="$PROJECT_DIR$/src/shiro/service/impl/RoleService.java" />
         <option value="$PROJECT_DIR$/src/shiro/kit/ShiroKit.java" />
         <option value="$PROJECT_DIR$/src/shiro/web/UserController.java" />
-        <option value="$PROJECT_DIR$/resources/spring-mybatis.xml" />
         <option value="$PROJECT_DIR$/src/shiro/web/ResourceController.java" />
         <option value="$PROJECT_DIR$/src/shiro/web/RoleController.java" />
-        <option value="$PROJECT_DIR$/src/DataServer.java" />
+        <option value="$PROJECT_DIR$/src/dao/RoleDao.java" />
+        <option value="$PROJECT_DIR$/src/shiro/service/impl/RoleService.java" />
+        <option value="$PROJECT_DIR$/src/shiro/service/impl/ResourceService.java" />
+        <option value="$PROJECT_DIR$/resources/spring-mybatis.xml" />
+        <option value="$PROJECT_DIR$/src/shiro/service/IUserService.java" />
         <option value="$PROJECT_DIR$/src/shiro/service/impl/UserService.java" />
+        <option value="$PROJECT_DIR$/resources/mappers/UserMapper.xml" />
+        <option value="$PROJECT_DIR$/resources/mappers/RoleMapper.xml" />
+        <option value="$PROJECT_DIR$/resources/mappers/ResourceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/DataServer.java" />
       </list>
     </option>
   </component>
@@ -277,8 +324,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -539,7 +587,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -551,34 +598,34 @@
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/JSONUtil" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\rep" />
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\backup" />
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\src" />
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="util" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\lib" />
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\src\shiro\web" />
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\resources" />
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\lib\shiro" />
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\src\shiro" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="shiro.kit" />
       <recent name="model" />
       <recent name="util" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\rep" />
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\backup" />
-      <recent name="E:\workspace\gitYishu\SwipeDataServer\src" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\src\dao" />
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\lib" />
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\src\shiro\web" />
       <recent name="E:\workspace\gitYishu\SwipeDataServer\resources" />
+      <recent name="E:\workspace\gitYishu\SwipeDataServer\lib\shiro" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -887,7 +934,9 @@
       <workItem from="1498439611112" duration="2386000" />
       <workItem from="1498453819411" duration="4888000" />
       <workItem from="1498526493803" duration="12600000" />
-      <workItem from="1498551328273" duration="1160000" />
+      <workItem from="1498551328273" duration="1723000" />
+      <workItem from="1498612325821" duration="268000" />
+      <workItem from="1498613745269" duration="24735000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -994,11 +1043,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498474137659</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="2017.06.27-work">
+      <created>1498560774415</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1498560774415</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="516666000" />
+    <option name="totallyTimeSpent" value="542232000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1011,7 +1067,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1019,17 +1074,18 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29090908" sideWeight="0.095115684" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23356643" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24055944" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26086956" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21398601" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20179948" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19023137" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17416452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46433565" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26853147" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28277636" sideWeight="0.5246548" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1042,7 +1098,6 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1129,83 +1184,35 @@
     <MESSAGE value="2017.06.22-work" />
     <MESSAGE value="2017.06.23-work" />
     <MESSAGE value="2017.06.26-work" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017.06.26-work" />
+    <MESSAGE value="2017.06.27-work" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017.06.27-work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>142</line>
+          <line>586</line>
           <properties />
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>170</line>
+          <line>558</line>
           <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>176</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>213</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>141</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>140</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>385</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>393</line>
-          <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DataServer.java</url>
-          <line>372</line>
-          <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/dao/SwipeRecordDao.java</url>
-          <line>20</line>
-          <properties class="dao.SwipeRecordDao" method="listAllWithStrategy">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="24" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="32" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="reqData" language="JAVA" />
-        <watch expression="sign" language="JAVA" />
-        <watch expression="paramMap" language="JAVA" />
-        <watch expression="swipeRecord" language="JAVA" />
-        <watch expression="orderColumn" language="JAVA" />
+        <watch expression="reqData" />
+        <watch expression="sign" />
+        <watch expression="map" />
       </configuration>
     </watches-manager>
   </component>
@@ -1214,33 +1221,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backup/ConThreadPool.java" />
-    <entry file="file://$PROJECT_DIR$/src/Context.java" />
-    <entry file="file://$PROJECT_DIR$/backup/DbPoolConnection.java" />
-    <entry file="file://$PROJECT_DIR$/backup/HttpConServer.java" />
-    <entry file="file://$PROJECT_DIR$/backup/HttpServerTest.java" />
-    <entry file="file://$PROJECT_DIR$/backup/ServerMain.java" />
-    <entry file="file://$PROJECT_DIR$/src/ContextLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/24ba2f77/bbdde03b-61db-4e06-b412-c4b2ebd6578e/swipe.swiperecord" />
-    <entry file="dbDummy://dbtable:/24ba2f77/bbdde03b-61db-4e06-b412-c4b2ebd6578e/swipe.devicestatus" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bbdde03b-61db-4e06-b412-c4b2ebd6578e/console.sql" />
     <entry file="file://$PROJECT_DIR$/SwipeDataServer.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/druid.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1262,13 +1247,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/mybatis-3.3.0.jar!/org/apache/ibatis/binding/MapperProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1332,30 +1310,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="e#3532#3536#0" expanded="false" />
-            <element signature="e#3660#3664#0" expanded="false" />
-            <marker date="1498103160043" expanded="true" signature="263:440" ph="INSERT INTO SwipeRecord... " />
-            <marker date="1498103160043" expanded="true" signature="517:923" ph="UPDATE Swipe... " />
-            <marker date="1498103160043" expanded="true" signature="1001:1075" ph="DELETE FROM " />
-            <marker date="1498103160043" expanded="true" signature="1161:1219" ph="DELETE FROM " />
-            <marker date="1498103160043" expanded="true" signature="1294:1390" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="1488:2149" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="2300:2452" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="3012:3157" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="3012:3742" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="3832:4153" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="4260:4391" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="4473:4780" ph="SELECT `devi... SwipeRecord" />
-            <marker date="1498103160043" expanded="true" signature="5302:5431" ph="SELECT `devi... SwipeRecord" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/swipe_database.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-998">
@@ -1384,13 +1338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/SpringTool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shiro/dao/ResourceDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1399,37 +1346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/SwipeRecordDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/mappers/RoleMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1496195433615" expanded="true" signature="265:325" ph="INSERT INTO t_role... " />
-            <marker date="1496195433615" expanded="true" signature="394:437" ph="DELETE FROM " />
-            <marker date="1496195433615" expanded="true" signature="750:848" ph="SELECT id, `... t_role" />
-            <marker date="1496195433615" expanded="true" signature="918:1161" ph="UPDATE t_rol... " />
-            <marker date="1496195433615" expanded="true" signature="1230:1303" ph="SELECT id, `... t_role" />
-            <marker date="1496195433615" expanded="true" signature="1400:1550" ph="SELECT id, u... t_user_role" />
-            <marker date="1496195433615" expanded="true" signature="1624:1706" ph="INSERT INTO `t_user_role`... " />
-            <marker date="1496195433615" expanded="true" signature="2068:2157" ph="DELETE FROM " />
-            <marker date="1496195433615" expanded="true" signature="2240:2305" ph="DELETE FROM " />
-            <marker date="1496195433615" expanded="true" signature="2443:2667" ph="SELECT tr.`i... t_resource" />
-            <marker date="1496195433615" expanded="true" signature="2745:2833" ph="INSERT INTO t_role_resource... " />
-            <marker date="1496195433615" expanded="true" signature="2914:3015" ph="DELETE FROM " />
-            <marker date="1496195433615" expanded="true" signature="3120:3286" ph="SELECT id, r... t_role_resource" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/spring-mybatis.xml" />
     <entry file="file://$PROJECT_DIR$/src/shiro/service/IRoleService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1500">
@@ -1447,27 +1363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shiro/service/impl/RoleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#739#753#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shiro/service/IUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="99" column="43" lean-forward="false" selection-start-line="99" selection-start-column="43" selection-end-line="99" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/SwipeRecordService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1475,19 +1370,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="69" column="60" lean-forward="true" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/impl/ModuleServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="52" column="61" lean-forward="true" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1500,74 +1386,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/jackson/jar.txt" />
     <entry file="file://$PROJECT_DIR$/lib/jackson/file.bat" />
-    <entry file="file://$PROJECT_DIR$/src/shiro/service/impl/ResourceService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shiro/web/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shiro/web/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-760">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shiro/service/impl/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-          <folding>
-            <element signature="e#1160#1175#0" expanded="false" />
-            <element signature="docComment;method#add#1;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#delete#0;class#UserService#0" expanded="false" />
-            <element signature="e#2438#2447#0" expanded="false" />
-            <element signature="docComment;method#update#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#update#1;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#load#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#loadByUsername#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#login#0;class#UserService#0" expanded="false" />
-            <element signature="method#login#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#list#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#listByRole#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#listAllResource#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#listRoleSnByUser#0;class#UserService#0" expanded="false" />
-            <element signature="docComment;method#listUserRole#0;class#UserService#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shiro/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="19" column="41" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shiro/web/ResourceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shiro/web/RoleController.java" />
+    <entry file="file://$PROJECT_DIR$/src/shiro/web/UserController.java" />
+    <entry file="file://$PROJECT_DIR$/src/shiro/web/ResourceController.java" />
     <entry file="file://$PROJECT_DIR$/src/shiro/dao/RoleDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1576,14 +1397,264 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataServer.java">
+    <entry file="file://$PROJECT_DIR$/resources/druid.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="486" column="0" lean-forward="true" selection-start-line="486" selection-start-column="0" selection-end-line="486" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <marker date="1498103160043" expanded="true" signature="263:440" ph="INSERT INTO SwipeRecord... " />
+            <marker date="1498103160043" expanded="true" signature="517:923" ph="UPDATE Swipe... " />
+            <marker date="1498103160043" expanded="true" signature="1001:1075" ph="DELETE FROM " />
+            <marker date="1498103160043" expanded="true" signature="1161:1219" ph="DELETE FROM " />
+            <marker date="1498103160043" expanded="true" signature="1294:1390" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="1488:2149" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="2300:2452" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="3012:3157" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="3012:3742" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="3832:4153" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="4260:4391" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="4473:4780" ph="SELECT `devi... SwipeRecord" />
+            <marker date="1498103160043" expanded="true" signature="5302:5431" ph="SELECT `devi... SwipeRecord" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/dao/SwipeRecordDao.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#1074#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/shiro/dao/UserDao.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/druid.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/spring-mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/SpringTool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="22" column="63" lean-forward="true" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContextLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/ResourceDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/RoleDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shiro/service/impl/RoleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#739#753#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shiro/service/impl/ResourceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shiro/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/mappers/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <marker date="1498635188583" expanded="true" signature="296:415" ph="INSERT INTO t_user... " />
+            <marker date="1498635188583" expanded="true" signature="509:977" ph="UPDATE t_use... " />
+            <marker date="1498635188583" expanded="true" signature="1046:1089" ph="DELETE FROM " />
+            <marker date="1498635188583" expanded="true" signature="1421:1573" ph="SELECT id, u... t_user" />
+            <marker date="1498635188583" expanded="true" signature="1642:1761" ph="SELECT id, u... t_user" />
+            <marker date="1498635188583" expanded="true" signature="1859:2023" ph="SELECT id, u... t_user" />
+            <marker date="1498635188583" expanded="true" signature="2114:2387" ph="SELECT tu.id... t_user" />
+            <marker date="1498635188583" expanded="true" signature="2535:2786" ph="SELECT tr.`i... t_resource" />
+            <marker date="1498635188583" expanded="true" signature="2922:3114" ph="SELECT tr.sn... t_role" />
+            <marker date="1498635188583" expanded="true" signature="3243:3473" ph="SELECT tr.`i... t_role" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/mappers/RoleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding>
+            <marker date="1498635201137" expanded="true" signature="255:315" ph="INSERT INTO t_role... " />
+            <marker date="1498635201137" expanded="true" signature="384:427" ph="DELETE FROM " />
+            <marker date="1498635201137" expanded="true" signature="740:838" ph="SELECT id, `... t_role" />
+            <marker date="1498635201137" expanded="true" signature="908:1151" ph="UPDATE t_rol... " />
+            <marker date="1498635201137" expanded="true" signature="1220:1293" ph="SELECT id, `... t_role" />
+            <marker date="1498635201137" expanded="true" signature="1390:1540" ph="SELECT id, u... t_user_role" />
+            <marker date="1498635201137" expanded="true" signature="1614:1696" ph="INSERT INTO `t_user_role`... " />
+            <marker date="1498635201137" expanded="true" signature="2058:2147" ph="DELETE FROM " />
+            <marker date="1498635201137" expanded="true" signature="2230:2295" ph="DELETE FROM " />
+            <marker date="1498635201137" expanded="true" signature="2433:2657" ph="SELECT tr.`i... t_resource" />
+            <marker date="1498635201137" expanded="true" signature="2735:2823" ph="INSERT INTO t_role_resource... " />
+            <marker date="1498635201137" expanded="true" signature="2904:3005" ph="DELETE FROM " />
+            <marker date="1498635201137" expanded="true" signature="3110:3276" ph="SELECT id, r... t_role_resource" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/mappers/ResourceMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="42" lean-forward="true" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding>
+            <marker date="1498635211826" expanded="true" signature="269:375" ph="SELECT `id`,... t_resource" />
+            <marker date="1498635211826" expanded="true" signature="446:535" ph="insert into t_resource... " />
+            <marker date="1498635211826" expanded="true" signature="609:956" ph="update t_res... " />
+            <marker date="1498635211826" expanded="true" signature="1025:1072" ph="DELETE FROM " />
+            <marker date="1498635211826" expanded="true" signature="1161:1292" ph="SELECT `id`,... t_resource" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="69" column="60" lean-forward="true" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/mybatis-3.3.0.jar!/org/apache/ibatis/binding/MapperProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/SwipeRecordDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shiro/service/IUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#822#847#0" expanded="false" />
-            <element signature="e#2397#2431#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shiro/service/impl/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#711#712#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
+            <element signature="e#903#904#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#1011#1012#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+            <element signature="e#1212#1213#0" expanded="true" />
+            <element signature="e#1267#1268#0" expanded="true" />
+            <element signature="e#1317#1318#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+            <element signature="e#1421#1422#0" expanded="true" />
+            <element signature="e#1467#1468#0" expanded="true" />
+            <element signature="e#1532#1533#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1653#1654#0" expanded="true" />
+            <element signature="e#1705#1706#0" expanded="true" />
+            <element signature="e#1776#1777#0" expanded="true" />
+            <element signature="e#1828#1829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="581" column="71" lean-forward="false" selection-start-line="581" selection-start-column="71" selection-end-line="581" selection-end-column="71" />
+          <folding>
+            <element signature="e#1064#1089#0" expanded="false" />
+            <element signature="e#2639#2673#0" expanded="false" />
           </folding>
         </state>
       </provider>
