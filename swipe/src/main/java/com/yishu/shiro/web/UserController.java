@@ -61,6 +61,11 @@ public class UserController {
         logger.debug(user.toString());
         List<Integer> roleIdList = new ArrayList<>();
         String[] roldIds = request.getParameterValues("roleId");
+        //添加用户操作时,如果没有选中角色，则默认添加普通用户user角色.
+        if(null==roldIds){
+            roldIds=new String[1];
+            roldIds[0]="5";//普通用户"user"角色的id为5
+        }
         for(String roleId:roldIds){
             roleIdList.add(Integer.parseInt(roleId));
         }

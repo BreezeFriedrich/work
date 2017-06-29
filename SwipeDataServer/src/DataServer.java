@@ -13,9 +13,7 @@ import service.impl.ModuleServiceImpl;
 import shiro.dao.ResourceDao;
 import shiro.dao.RoleDao;
 import shiro.dao.UserDao;
-import shiro.model.Resource;
-import shiro.model.Role;
-import shiro.model.User;
+import shiro.model.*;
 import shiro.service.IResourceService;
 import shiro.service.IRoleService;
 import shiro.service.IUserService;
@@ -143,12 +141,17 @@ class MyHandler implements HttpHandler{
     User user=null;
     Role role=null;
     Resource resource=null;
+    UserRole userRole=null;
+    RoleResource roleResource=null;
     List<User> userList=null;
     List<Role> roleList=null;
     List<Resource> resourceList=null;
     List<String> stringList=null;
     List<Integer> ids=null;
     int id=0;
+    int userId=0;
+    int roleId=0;
+    int resourceId=0;
     String username=null;
     int affactedNum=0;
 
@@ -528,8 +531,8 @@ class MyHandler implements HttpHandler{
                 break;
 
             case 52://shiro/userDao/delete
-                id=node.path("userId").asInt();
-                affactedNum=userService.delete(id);
+                userId=node.path("userId").asInt();
+                affactedNum=userService.delete(userId);
                 map.put("result",0);
                 map.put("data",affectedNum);
                 responseBody.write(objectMapper.writeValueAsBytes(map));
@@ -544,8 +547,8 @@ class MyHandler implements HttpHandler{
                 break;
 
             case 54://shiro/userDao/load
-                id=node.path("userId").asInt();
-                user=userService.load(id);
+                userId=node.path("userId").asInt();
+                user=userService.load(userId);
                 map.put("result",0);
                 map.put("data",user);
                 responseBody.write(objectMapper.writeValueAsBytes(map));
@@ -567,48 +570,217 @@ class MyHandler implements HttpHandler{
                 break;
 
             case 57://shiro/userDao/listByRole
-                id=node.path("roleId").asInt();
-                userList=userService.listByRole(id);
+                roleId=node.path("roleId").asInt();
+                userList=userService.listByRole(roleId);
                 map.put("result",0);
                 map.put("data",userList);
                 responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 
             case 58://shiro/userDao/listUserRole
-                id=node.path("userId").asInt();
-                roleList=userService.listUserRole(id);
+                userId=node.path("userId").asInt();
+                roleList=userService.listUserRole(userId);
                 map.put("result",0);
                 map.put("data",roleList);
                 responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 
             case 59://shiro/userDao/listAllResources
-                id=node.path("userId").asInt();
-                resourceList=userService.listAllResources(id);
+                userId=node.path("userId").asInt();
+                resourceList=userService.listAllResources(userId);
                 map.put("result",0);
                 map.put("data",resourceList);
                 responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 
             case 60://shiro/userDao/listRoleSnByUser
-                id=node.path("userId").asInt();
-                stringList=userService.listRoleSnByUser(id);
+                userId=node.path("userId").asInt();
+                stringList=userService.listRoleSnByUser(userId);
                 map.put("result",0);
                 map.put("data",stringList);
                 responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
-//shiro/dao/userDao
-//            Integer add(User user);
-//            Integer update(User user);
-//            Integer delete(Integer id);
-//            Integer batchDelete(@Param("ids") List<Integer> ids);
-//            User load(Integer id);
-//            User loadByUserName(String username);
-//            List<User> listUser();
-//            List<User> listByRole(Integer rid);
-//            List<Role> listUserRole(Integer uid);
-//            List<Resource> listAllResources(Integer uid);
-//            List<String> listRoleSnByUser(Integer uid);
+
+            case 70://shiro/RoleDao/add
+                role=objectMapper.treeToValue(node.path("role"),Role.class);
+                affactedNum=roleService.add(role);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 71://shiro/RoleDao/delete
+                roleId=node.path("id").asInt();
+                affactedNum=roleService.delete(roleId);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 72://shiro/RoleDao/batchDelete
+                ids=objectMapper.readValue(node.path("ids").traverse(), new TypeReference<List<Integer>>(){});
+                affactedNum=roleService.batchDelete(ids);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 73://shiro/RoleDao/update
+                role=objectMapper.treeToValue(node.path("role"),Role.class);
+                affactedNum=roleService.add(role);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 74://shiro/RoleDao/listRole
+                roleList=roleService.listRole();
+                map.put("result",0);
+                map.put("data",roleList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 75://shiro/RoleDao/load
+                roleId=node.path("id").asInt();
+                role=roleService.load(roleId);
+                map.put("result",0);
+                map.put("data",role);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 76://shiro/RoleDao/loadUserRole
+                userId=node.path("userId").asInt();
+                roleId=node.path("roleId").asInt();
+                userRole=roleService.loadUserRole(userId,roleId);
+                map.put("result",0);
+                map.put("data",userRole);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 77://shiro/RoleDao/addUserRole
+                userId=node.path("userId").asInt();
+                roleId=node.path("roleId").asInt();
+                affactedNum=roleService.addUserRole(userId,roleId);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 78://shiro/RoleDao/addUserRoles
+                userId=node.path("userId").asInt();
+                ids=objectMapper.readValue(node.path("roleIds").traverse(), new TypeReference<List<Integer>>(){});
+                affactedNum=roleService.addUserRoles(userId,ids);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 79://shiro/RoleDao/deleteUserRole
+                userId=node.path("userId").asInt();
+                roleId=node.path("roleId").asInt();
+                affactedNum=roleService.deleteUserRole(userId,roleId);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 80://shiro/RoleDao/deleteUserRoles
+                userId=node.path("userId").asInt();
+                affactedNum=roleService.deleteUserRoles(userId);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 81://shiro/RoleDao/batchDeleteRoleResource
+                ids=objectMapper.readValue(node.path("roleIds").traverse(), new TypeReference<List<Integer>>(){});
+                affactedNum=roleService.batchDeleteRoleResource(ids);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 82://shiro/RoleDao/listRoleResource
+                id=node.path("roleId").asInt();
+                resourceList=roleService.listRoleResource(id);
+                map.put("result",0);
+                map.put("data",resourceList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 83://shiro/RoleDao/addRoleResource
+                roleId=node.path("roleId").asInt();
+                resourceId=node.path("resourceId").asInt();
+                affactedNum=roleService.addRoleResource(roleId,resourceId);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 84://shiro/RoleDao/deleteRoleResource
+                roleId=node.path("roleId").asInt();
+                resourceId=node.path("resourceId").asInt();
+                affactedNum=roleService.deleteRoleResource(roleId,resourceId);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 85://shiro/RoleDao/loadResourceRole
+                roleId=node.path("roleId").asInt();
+                resourceId=node.path("resourceId").asInt();
+                roleResource=roleService.loadResourceRole(roleId,resourceId);
+                map.put("result",0);
+                map.put("data",roleResource);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 86://shiro/RoleDao/deleteRoleAndUser
+                ids=objectMapper.readValue(node.path("ids").traverse(), new TypeReference<List<Integer>>(){});
+                affactedNum=roleService.deleteRoleAndUser(ids);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 90://shiro/ResourceDao/add
+                resource=objectMapper.treeToValue(node.path("resource"),Resource.class);
+                affactedNum=resourceService.add(resource);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 91://shiro/ResourceDao/delete
+                resourceId=node.path("id").asInt();
+                affactedNum=resourceService.delete(resourceId);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 92://shiro/ResourceDao/update
+                resource=objectMapper.treeToValue(node.path("resource"),Resource.class);
+                affactedNum=resourceService.update(resource);
+                map.put("result",0);
+                map.put("data",affectedNum);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
+            case 93://shiro/ResourceDao/listResource
+                resourceList=resourceService.listResource();
+                map.put("result",0);
+                map.put("data",resourceList);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+            case 94://shiro/ResourceDao/load
+                resourceId=node.path("id").asInt();
+                resource=resourceService.load(resourceId);
+                map.put("result",0);
+                map.put("data",resource);
+                responseBody.write(objectMapper.writeValueAsBytes(map));
+                break;
+
             default:break;
             }
             bufferedReader.close();

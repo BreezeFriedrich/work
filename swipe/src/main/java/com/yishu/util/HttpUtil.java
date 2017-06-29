@@ -37,6 +37,7 @@ public class HttpUtil {
             httpURLConnection.setDoInput(true);
             httpURLConnection.setConnectTimeout(5000);
             httpURLConnection.setRequestProperty("Content-Type","text/json");
+            httpURLConnection.setRequestProperty("Accept-Charset", "utf-8");
 //            logger.info("#TAG      ~ "+"connect:..");
             httpURLConnection.connect();
 //            logger.info("#TAG      ~ "+"connect:sucesses");

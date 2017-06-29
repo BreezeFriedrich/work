@@ -23,6 +23,8 @@ public interface IRoleService {
      */
     Integer delete(int id);
 
+    Integer batchDelete(List<Integer> ids);
+
     /**
      *
      * @param ids
@@ -68,20 +70,22 @@ public interface IRoleService {
      * @param uid
      * @param roleId
      */
-    void addUserRole(int uid, int roleId);
+    Integer addUserRole(int uid, int roleId);
+
+    Integer addUserRoles(int uid, List<Integer> ids);
 
     /**
      *
      * @param uid
      * @param roleId
      */
-    void deleteUserRole(int uid, int roleId);
+    Integer deleteUserRole(int uid, int roleId);
 
     /**
      *
      * @param uid
      */
-    void deleteUserRoles(int uid);
+    Integer deleteUserRoles(int uid);
     /**
      *
      * @param roleId
@@ -94,14 +98,16 @@ public interface IRoleService {
      * @param roleId
      * @param resId
      */
-    void addRoleResource(int roleId, int resId);
+    Integer addRoleResource(int roleId, int resId);
 
     /**
      *
      * @param roleId
      * @param resId
      */
-    void deleteRoleResource(int roleId, int resId);
+    Integer deleteRoleResource(int roleId, int resId);
+
+    Integer batchDeleteRoleResource(List<Integer> ids);
 
     /**
      *

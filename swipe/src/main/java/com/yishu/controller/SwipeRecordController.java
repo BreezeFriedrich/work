@@ -206,7 +206,7 @@ public class SwipeRecordController {
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
-        return jsonUtil.listToJson(swipeRecordList);
+        return jsonUtil.writeObject(swipeRecordList);
     }
 
 //    @RequestMapping("/listByTimezoneToChart.do")
@@ -282,7 +282,7 @@ public class SwipeRecordController {
 //        Map resultMap=new HashMap();
 //        resultMap.put("xAxisTime",xAxisTime);
 //        resultMap.put("data",index);
-//        return jsonUtil.mapToJson(resultMap);
+//        return jsonUtil.writeObject(resultMap);
 //    }
 
     @RequestMapping("/listByDateToChart.do")
@@ -363,7 +363,7 @@ public class SwipeRecordController {
 
         resultMap.put("data",index);
         logger.info(String.valueOf(index.length));
-        return jsonUtil.mapToJson(resultMap);
+        return jsonUtil.writeObject(resultMap);
     }
 
     @RequestMapping("/listByDateToChart1.do")
@@ -499,7 +499,7 @@ public class SwipeRecordController {
         }
 
         resultMap.put("data",index);
-        return jsonUtil.mapToJson(resultMap);
+        return jsonUtil.writeObject(resultMap);
     }
 
     @RequestMapping("/listByTimezoneToChart.do")
@@ -629,7 +629,7 @@ public class SwipeRecordController {
 //        logger.info(String.valueOf(index.length));
 //        logger.info(String.valueOf(xAxisTime.get("min")));
 //        logger.info(String.valueOf(xAxisTime.get("max")));
-        return jsonUtil.mapToJson(resultMap);
+        return jsonUtil.writeObject(resultMap);
     }
 
     @RequestMapping("/listByTimezoneToMainChart1.do")
@@ -849,7 +849,7 @@ public class SwipeRecordController {
 //        logger.info(String.valueOf(index.length));
 //        logger.info(String.valueOf(xAxisTime.get("min")));
 //        logger.info(String.valueOf(xAxisTime.get("max")));
-        return jsonUtil.mapToJson(resultMap);
+        return jsonUtil.writeObject(resultMap);
     }
 
     @RequestMapping("/listByTimezoneToMainChart2.do")
@@ -936,7 +936,7 @@ public class SwipeRecordController {
         resultMap.put("series_frequency",series_frequency);
         resultMap.put("series_failRatio",series_failRatio);
         resultMap.put("series_successRatio",series_successRatio);
-        return jsonUtil.mapToJson(resultMap);
+        return jsonUtil.writeObject(resultMap);
     }
 
     @RequestMapping("/listByTimezoneToChartPie.do")
@@ -956,16 +956,16 @@ public class SwipeRecordController {
                 failNum++;
             }
         }
-        List result=new ArrayList();
+        List resultList=new ArrayList();
         HashMap resultMap1=new HashMap();
         resultMap1.put("value",successNum);
         resultMap1.put("name","成功");
         HashMap resultMap2=new HashMap();
         resultMap2.put("value",failNum);
         resultMap2.put("name","失败");
-        result.add(resultMap1);
-        result.add(resultMap2);
-        return jsonUtil.listToJson(result);
+        resultList.add(resultMap1);
+        resultList.add(resultMap2);
+        return jsonUtil.writeObject(resultList);
     }
 
     @RequestMapping("/countByParam.do")

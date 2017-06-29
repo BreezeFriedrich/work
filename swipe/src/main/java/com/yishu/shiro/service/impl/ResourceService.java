@@ -1,6 +1,7 @@
 package com.yishu.shiro.service.impl;
 
 import com.yishu.shiro.dao.ResourceDao;
+import com.yishu.shiro.dao.impl.ResourceDaoImpl;
 import com.yishu.shiro.model.Resource;
 import com.yishu.shiro.service.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,9 @@ import java.util.List;
  */
 @Service
 public class ResourceService implements IResourceService {
-    @Autowired
-    private ResourceDao resourceDao;
-
+//    @Autowired
+//    private ResourceDao resourceDao;
+    private ResourceDao resourceDao=new ResourceDaoImpl();
 
     @Override
     public Integer add(Resource res) {

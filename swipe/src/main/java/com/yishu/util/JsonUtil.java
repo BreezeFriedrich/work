@@ -29,13 +29,100 @@ public class JsonUtil {
     JsonNode dataNode=null;
     int result=-100;
     StringWriter stringWriter=new StringWriter();
-    String str=null;
+    String data=null;
+    int dataInt;
 
-    //将Map转换为Json字符串{sign:xx,xx:xx,xx:xx,...}格式.
+    public String writeObject(Object obj){
+        try {
+            data=objectMapper.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        if(null==data){data="";}
+        logger.info("data:"+data);
+        return data;
+    }
+
+    public int getResult(String str){
+        try {
+            readRoot=objectMapper.readTree(str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        resultNode=readRoot.path("result");
+        result=resultNode.asInt();
+        return result;
+    }
+
+    public JsonNode getDataNode(String str){
+        try {
+            readRoot=objectMapper.readTree(str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        resultNode=readRoot.path("result");
+        result=resultNode.asInt();
+        if(0>result){
+            return null;
+        }
+        dataNode=readRoot.path("data");
+        return dataNode;
+    }
+
+    public int getIntFromDataNode(String str){
+        result=getResult(str);
+        dataNode=getDataNode(str);
+        if(0==result){
+            dataInt=dataNode.asInt();
+            return dataInt;
+        }
+        return -100;
+//        try {
+//            JsonNode node=objectMapper.readTree(param);
+//            result=node.get("result").asInt();
+//            if(0==result){
+//                num=node.get("data").asInt();
+//            }
+//            return num;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return -100;
+    }
+
+    /*
+    //List<t_object>---->>JSON
+    public String listToJson(List list){
+        ObjectMapper objectMapper = new ObjectMapper();
+        String data=null;
+        try {
+            data=objectMapper.writeValueAsString(list);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public String mapToJson(Map map){
+        ObjectMapper objectMapper = new ObjectMapper();
+        String data=null;
+        try {
+            data=objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+ */
+    //采用树模型JsonNode,将Map转换为Json字符串{sign:xx,xx:xx,xx:xx,...}格式.
+    //问题：objectMapper.writeTree(jsonGenerator,rootNode);
+        //jsonGenerator=objectMapper.getFactory().createGenerator(stringWriter);
+        //即writeTree最终将JSON输出到流,由流StringWriter输出为String对象却存在数据叠加问题.
+
     public String writeTreeToString(HashMap map){
         logger.info("map",map.toString());
         stringWriter.flush();
-        str=null;
+        data=null;
         Iterator it=map.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry entry = (Map.Entry) it.next();
@@ -56,59 +143,22 @@ public class JsonUtil {
         }
         map.clear();
         try {
-//            jsonGenerator=objectMapper.getFactory().createGenerator(new PrintWriter(str));
             jsonGenerator=objectMapper.getFactory().createGenerator(stringWriter);
+
+            if (jsonGenerator== null){
+                stringWriter.close();
+            }
             objectMapper.writeTree(jsonGenerator,rootNode);
-            str=stringWriter.toString();
+            data=stringWriter.toString();
             stringWriter.flush();
             stringWriter.close();
+            jsonGenerator.flush();
+            jsonGenerator.close();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        logger.info("str:",str);
-        return str;
-    }
-
-    public JsonNode getDataNode(String str){
-        try {
-            readRoot=objectMapper.readTree(str);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        resultNode=readRoot.path("result");
-        result=resultNode.asInt();
-        if(0>result){
-            return null;
-        }
-        dataNode=readRoot.path("data");
-        return dataNode;
-    }
-
-    //List<t_object>---->>JSON
-    public String listToJson(List list){
-        ObjectMapper objectMapper = new ObjectMapper();
-
-//        Iterator it =list.iterator();
-//        while (it.hasNext()){
-//            it.next();
-//        }
-        String data=null;
-        try {
-            data=objectMapper.writeValueAsString(list);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        logger.info("data:",data);
         return data;
     }
 
-    public String mapToJson(Map map){
-        ObjectMapper objectMapper = new ObjectMapper();
-        String data=null;
-        try {
-            data=objectMapper.writeValueAsString(map);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return data;
-    }
 }

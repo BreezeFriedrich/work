@@ -2,6 +2,7 @@ package com.yishu.shiro.service.impl;
 
 import com.yishu.shiro.dao.RoleDao;
 import com.yishu.shiro.dao.UserDao;
+import com.yishu.shiro.dao.impl.RoleDaoImpl;
 import com.yishu.shiro.dao.impl.UserDaoImpl;
 import com.yishu.shiro.kit.ShiroKit;
 import com.yishu.shiro.model.Resource;
@@ -26,9 +27,10 @@ public class UserService implements IUserService {
     private static final Logger logger= LoggerFactory.getLogger(UserService.class);
 //    @Autowired
 //    private UserDao userDao;
+//    @Autowired
+//    private RoleDao roleDao;
     private UserDao userDao=new UserDaoImpl();
-    @Autowired
-    private RoleDao roleDao;
+    private RoleDao roleDao=new RoleDaoImpl();
 
 //    @Override
 //    public User login(String username, String password) {
@@ -48,11 +50,27 @@ public class UserService implements IUserService {
      * @param user
      * @return
      */
+    /*原方法存在的问题：return user ,该user是用户输入而不是数据库中取出的，其id为null.
     @Override
     public User add(User user) {
         // 使用用户名作为盐值，MD5 算法加密
         user.setPassword(ShiroKit.md5(user.getPassword(),user.getUsername()));
         userDao.add(user);
+        return user;
+    }
+    */
+
+    @Override
+    public User add(User user) {
+        // 使用用户名作为盐值，MD5 算法加密
+        user.setPassword(ShiroKit.md5(user.getPassword(),user.getUsername()));
+        //如果数据库中已有相同用户名，添加失败返回已存在的用户.
+        User existUser=this.loadByUsername(user.getUsername());
+        if(null!=existUser){
+            return existUser;
+        }
+        userDao.add(user);
+        user=this.loadByUsername(user.getUsername());//取出添加到数据库中的user ,其id自增非null.
         return user;
     }
 
@@ -65,7 +83,7 @@ public class UserService implements IUserService {
     @Override
     public User add(User user, List<Integer> rids) {
         Integer userId = this.add(user).getId();
-        roleDao.addUserRoles(userId,rids);
+        roleDao.addUserRoles(userId,rids);//对于已存在的用户名，添加用户的操作只改变了已存在的用户角色.
         return user;
     }
 

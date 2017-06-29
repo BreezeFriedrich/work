@@ -5,7 +5,7 @@
     <head>
         <title>资源查看列表</title>
         <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
-        <script type="text/javascript" src="../../resources/easyui/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../resources/scripts/jquery-3.1.0.min.js"></script>
         <script type="text/javascript">
             window.onload=function () {
                 // iframe和导航高度随table元素高度变化

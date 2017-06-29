@@ -1,6 +1,7 @@
 package com.yishu.shiro.service.impl;
 
 import com.yishu.shiro.dao.RoleDao;
+import com.yishu.shiro.dao.impl.RoleDaoImpl;
 import com.yishu.shiro.model.Resource;
 import com.yishu.shiro.model.Role;
 import com.yishu.shiro.model.RoleResource;
@@ -17,8 +18,10 @@ import java.util.List;
  */
 @Service
 public class RoleService implements IRoleService {
-    @Autowired
-    private RoleDao roleDao;
+//    @Autowired
+//    private RoleDao roleDao;
+    private RoleDao roleDao=new RoleDaoImpl();
+
     @Override
     public Integer add(Role role) {
         return roleDao.add(role);

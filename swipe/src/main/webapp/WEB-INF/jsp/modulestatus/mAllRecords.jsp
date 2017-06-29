@@ -15,13 +15,13 @@
     <meta charset="utf-8">
     <title>modulestatus</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../../resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="../../resources/dataTables/css/jquery.dataTables.css">
-    <script type="text/javascript" src="../../resources/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/component/laydate/laydate.js"></script>
-    <script type="text/javascript" charset="utf8" src="../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../resources/scripts/mAllRecords.js?ver=15"></script>
+    <link rel="stylesheet" href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../../../resources/dataTables/css/jquery.dataTables.css">
+    <script type="text/javascript" src="../../../resources/scripts/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="../../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
+    <script type="text/javascript" charset="utf8" src="../../../resources/dataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="../../../resources/scripts/mAllRecords.js?ver=15"></script>
 </head>
 <body>
 <div class="container-fluid">

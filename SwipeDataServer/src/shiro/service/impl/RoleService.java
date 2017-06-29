@@ -29,6 +29,11 @@ public class RoleService implements IRoleService {
         return roleDao.delete(id);
     }
 
+    @Override
+    public Integer batchDelete(List<Integer> ids) {
+        return roleDao.batchDelete(ids);
+    }
+
     @Transactional
     @Override
     public void deleteRoleAndResource(List<Integer> ids) {
@@ -62,18 +67,23 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public void addUserRole(int uid, int roleId) {
-        roleDao.addUserRole(uid, roleId);
+    public Integer addUserRole(int uid, int roleId) {
+        return roleDao.addUserRole(uid, roleId);
     }
 
     @Override
-    public void deleteUserRole(int uid, int roleId) {
-        roleDao.deleteUserRole(uid, roleId);
+    public Integer addUserRoles(int uid, List<Integer> ids) {
+        return roleDao.addUserRoles(uid,ids);
     }
 
     @Override
-    public void deleteUserRoles(int uid) {
-        roleDao.deleteUserRoles(uid);
+    public Integer deleteUserRole(int uid, int roleId) {
+        return roleDao.deleteUserRole(uid, roleId);
+    }
+
+    @Override
+    public Integer deleteUserRoles(int uid) {
+        return roleDao.deleteUserRoles(uid);
     }
 
     @Override
@@ -82,13 +92,18 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public void addRoleResource(int roleId, int resId) {
-        roleDao.addRoleResource(roleId, resId);
+    public Integer addRoleResource(int roleId, int resId) {
+        return roleDao.addRoleResource(roleId, resId);
     }
 
     @Override
-    public void deleteRoleResource(int roleId, int resId) {
-        roleDao.deleteRoleResource(roleId, resId);
+    public Integer deleteRoleResource(int roleId, int resId) {
+        return roleDao.deleteRoleResource(roleId, resId);
+    }
+
+    @Override
+    public Integer batchDeleteRoleResource(List<Integer> ids) {
+        return roleDao.batchDeleteRoleResource(ids);
     }
 
     @Override
