@@ -57,29 +57,32 @@ function refreshData(){
             dataType:"json",
             async:false,
             success: function(result){
-                myChart.setOption({
-                    xAxis: {
-                        data :result.category
-                    },
-                    series: [{
-                        name: '刷卡失败率',
-                        data:result.data
-                    },{
-                        name:'刷卡频度',
-                        data:result.series_frequency
-                    },{
-                        name:'SAM模块并发量',
-                        data:result.series_samConcurrency
-                    }]
-                });
-                $("#summary dl dt").eq(0).text('总失败率      :'+result.sumFailRatio);
-                $("#summary dl dt").eq(1).text('刷卡总次数    :'+result.sumSwipeFrequency);
-                $("#summary dl dt").eq(2).text('所用SAM数量   :'+result.sumSAM);
-                $("#summary dl dt").eq(3).text('刷卡设备的数量 :'+result.sumDevices);
+                if(null!=result){
+                    myChart.setOption({
+                        xAxis: {
+                            data :result.category
+                        },
+                        series: [{
+                            name: '刷卡失败率',
+                            data:result.data
+                        },{
+                            name:'刷卡频度',
+                            data:result.series_frequency
+                        },{
+                            name:'SAM模块并发量',
+                            data:result.series_samConcurrency
+                        }]
+                    });
+                    $("#summary dl dt").eq(0).text('总失败率      :'+result.sumFailRatio);
+                    $("#summary dl dt").eq(1).text('刷卡总次数    :'+result.sumSwipeFrequency);
+                    $("#summary dl dt").eq(2).text('所用SAM数量   :'+result.sumSAM);
+                    $("#summary dl dt").eq(3).text('刷卡设备的数量 :'+result.sumDevices);
+                }
             },
             error:function(XMLHttpRequest){
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
+                // alert(XMLHttpRequest.status);
+                // alert(XMLHttpRequest.readyState);
+                alert('请求失败');
             }
         });
 
@@ -90,35 +93,32 @@ function refreshData(){
             dataType:"json",
             async:false,
             success: function(result){
-                //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
-                container_myChart1.style.height = 50*result.category.length+'px';
-                myChart1.resize();
-                resizeIframe();
-                myChart1.setOption({
-                    yAxis: {
-                        data :result.category
-                    },
-                    series: [{
-                        name:'刷卡次数',
-                        data:result.series_frequency
-                    },{
-                        name: '失败率',
-                        data:result.series_failRatio
-                    },{
-                        name:'成功率',
-                        data:result.series_successRatio
-                    }]
-                });
-                // //用于使chart自适应高度和宽度
-                // window.onresize = function () {
-                //     //重置容器高宽
-                //     resizeChart1Container();
-                //     myChart1.resize();
-                // };
+                if(null!=result){
+                    //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+                    container_myChart1.style.height = 50*result.category.length+'px';
+                    myChart1.resize();
+                    resizeIframe();
+                    myChart1.setOption({
+                        yAxis: {
+                            data :result.category
+                        },
+                        series: [{
+                            name:'刷卡次数',
+                            data:result.series_frequency
+                        },{
+                            name: '失败率',
+                            data:result.series_failRatio
+                        },{
+                            name:'成功率',
+                            data:result.series_successRatio
+                        }]
+                    });
+                }
             },
             error:function(XMLHttpRequest){
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
+                // alert(XMLHttpRequest.status);
+                // alert(XMLHttpRequest.readyState);
+                alert('请求失败');
             }
         });
 
@@ -271,7 +271,6 @@ function myChartInit(){
     myChart.setOption(option0);
 
     container_myChart1=document.getElementById('container-chart1');
-
     myChart1 = echarts.init(container_myChart1);
     var option1 = {
         tooltip : {
@@ -346,7 +345,6 @@ function myChartInit(){
         ]
     };
     myChart1.setOption(option1);
-
     resizeIframe();
 }
 
@@ -511,49 +509,3 @@ function resizeIframe() {
     myIframe.height(thisheight);
     west.height(thisheight);
 }
-
-/*
-var worldMapContainer = document.getElementById('WorldMap');
-
- //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
- var resizeWorldMapContainer = function () {
- worldMapContainer.style.width = window.innerWidth+'px';
- worldMapContainer.style.height = window.innerHeight+'px';
- };
- //设置容器高宽
- resizeWorldMapContainer();
- // 基于准备好的dom，初始化echarts实例
- var myChart = echarts.init(worldMapContainer);
-
- // 指定图表的配置项和数据
- var option = {
- title: {
- text: 'ECharts 入门示例'
- },
- tooltip: {},
- legend: {
- data:['销量'],
- height: worldMapContainer.style.height,
- width: worldMapContainer.style.width
- },
- xAxis: {
- data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
- },
- yAxis: {},
- series: [{
- name: '销量',
- type: 'bar',
- data: [5, 20, 36, 10, 10, 20]
- }]
- };
-
- // 使用刚指定的配置项和数据显示图表。
- myChart.setOption(option);
-
- //用于使chart自适应高度和宽度
- window.onresize = function () {
- //重置容器高宽
- resizeWorldMapContainer();
- myChart.resize();
- };
-*/

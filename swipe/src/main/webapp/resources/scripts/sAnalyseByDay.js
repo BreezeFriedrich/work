@@ -18,29 +18,32 @@ function refreshData(){
             dataType:"json",
             async:false,
             success: function(result){
-                myChart.setOption({
-                    xAxis: {
-                        data :result.category
-                    },
-                    series: [{
-                        name: '刷卡失败率',
-                        data:result.data
-                    },{
-                        name:'刷卡频度',
-                        data:result.series_frequency
-                    },{
-                        name:'SAM模块并发量',
-                        data:result.series_samConcurrency
-                    }]
-                });
-                $("#summary dl dt").eq(0).text('总失败率      :'+result.sumFailRatio);
-                $("#summary dl dt").eq(1).text('刷卡总次数    :'+result.sumSwipeFrequency);
-                $("#summary dl dt").eq(2).text('所用SAM数量   :'+result.sumSAM);
-                $("#summary dl dt").eq(3).text('刷卡设备的数量 :'+result.sumDevices);
+                if(null!=result){
+                    myChart.setOption({
+                        xAxis: {
+                            data :result.category
+                        },
+                        series: [{
+                            name: '刷卡失败率',
+                            data:result.data
+                        },{
+                            name:'刷卡频度',
+                            data:result.series_frequency
+                        },{
+                            name:'SAM模块并发量',
+                            data:result.series_samConcurrency
+                        }]
+                    });
+                    $("#summary dl dt").eq(0).text('总失败率      :'+result.sumFailRatio);
+                    $("#summary dl dt").eq(1).text('刷卡总次数    :'+result.sumSwipeFrequency);
+                    $("#summary dl dt").eq(2).text('所用SAM数量   :'+result.sumSAM);
+                    $("#summary dl dt").eq(3).text('刷卡设备的数量 :'+result.sumDevices);
+                }
             },
             error:function(XMLHttpRequest){
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
+                // alert(XMLHttpRequest.status);
+                // alert(XMLHttpRequest.readyState);
+                alert('请求失败');
             }
         });
 
@@ -53,35 +56,32 @@ function refreshData(){
             dataType:"json",
             async:false,
             success: function(result){
-                //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
-                container_myChart1.style.height = 50*result.category.length+'px';
-                myChart1.resize();
-                resizeIframe();
-                myChart1.setOption({
-                    yAxis: {
-                        data :result.category
-                    },
-                    series: [{
-                        name:'刷卡次数',
-                        data:result.series_frequency
-                    },{
-                        name: '失败率',
-                        data:result.series_failRatio
-                    },{
-                        name:'成功率',
-                        data:result.series_successRatio
-                    }]
-                });
-                // //用于使chart自适应高度和宽度
-                // window.onresize = function () {
-                //     //重置容器高宽
-                //     resizeChart1Container();
-                //     myChart1.resize();
-                // };
+                if(null!=result){
+                    //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+                    container_myChart1.style.height = 50*result.category.length+'px';
+                    myChart1.resize();
+                    resizeIframe();
+                    myChart1.setOption({
+                        yAxis: {
+                            data :result.category
+                        },
+                        series: [{
+                            name:'刷卡次数',
+                            data:result.series_frequency
+                        },{
+                            name: '失败率',
+                            data:result.series_failRatio
+                        },{
+                            name:'成功率',
+                            data:result.series_successRatio
+                        }]
+                    });
+                }
             },
             error:function(XMLHttpRequest){
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
+                // alert(XMLHttpRequest.status);
+                // alert(XMLHttpRequest.readyState);
+                alert('请求失败');
             }
         });
 
@@ -225,8 +225,6 @@ function myChartInit(){
                 name:'并发量',
                 type: 'value',
                 min:0,
-                // name:'温度 C',
-                // type: 'value',
                 position:'right',
                 offset:50,
                 boundaryGap: [0, '50%'],
@@ -472,7 +470,6 @@ function create_table() {
                         //$wrapper.spinModal(false);
                         callback(returnData);
                         resizeIframe();
-
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                         alert("查询失败");

@@ -27,14 +27,13 @@ public class DatabaseController {
     @RequestMapping(value = "/clear",method = RequestMethod.GET)
 //    @ResponseBody
     public String data_clear() {
-        logger.info("#CTL      ~ database/clear");
         return "database/clearData";
     }
 
     @RequestMapping("/clearSwipeRecord")
     @ResponseBody
     public String clearSwipeRecord(HttpServletRequest request) {
-        logger.info("#CTL      ~ database/clearSwipeRecord");
+//        logger.info("#CTL      ~ database/clearSwipeRecord");
         String str=request.getParameter("rows");
         List<DeviceStatus> deviceStatusList = null;
         ObjectMapper objectMapper=new ObjectMapper();

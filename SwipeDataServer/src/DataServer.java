@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import service.ModuleService;
 import service.SwipeRecordService;
 import service.impl.ModuleServiceImpl;
-import shiro.dao.ResourceDao;
-import shiro.dao.RoleDao;
-import shiro.dao.UserDao;
 import shiro.model.*;
 import shiro.service.IResourceService;
 import shiro.service.IRoleService;
@@ -21,7 +18,6 @@ import shiro.service.IUserService;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.URI;
-import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -168,7 +164,6 @@ class MyHandler implements HttpHandler{
 
 //        logger.info(Thread.currentThread().getName());
 //        logger.info("#THREAD   ~ "+String.valueOf(Thread.activeCount()));
-//        logger.info("#OBJ      ~ moduleService:"+moduleService);
 
         StringBuffer readStr=null;
         readStr=new StringBuffer();//要放到handle里面
@@ -196,7 +191,7 @@ class MyHandler implements HttpHandler{
         reqData=new String(readStr);
         String method=exchange.getRequestMethod();
         URI uri=exchange.getRequestURI();
-        logger.info("#DATA     ~ request-data:"+reqData);
+//        logger.info("#DATA     ~ request-data:"+reqData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map map=new HashMap();
@@ -230,7 +225,6 @@ class MyHandler implements HttpHandler{
             case 0://moduleStatus/listByStatus
                 status=node.get("status").asInt();
                 deviceStatusList=new ArrayList();
-//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listByStatus(status);
                 it=tempDeviceStatusList.iterator();
                 map.put("result",0);//0--获取数据成功
@@ -239,16 +233,14 @@ class MyHandler implements HttpHandler{
                     deviceStatusList.add(deviceStatus);
                 }
                 map.put("data",deviceStatusList);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 1://moduleStatus/listAllWithoutDuplicate
                 deviceStatusList=new ArrayList();
-//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAllWithoutDuplicate();
                 it=tempDeviceStatusList.iterator();
+//                map=new HashMap();
                 map.put("result",0);//0--获取数据成功
                 while(it.hasNext()){
                     deviceStatus= (DeviceStatus) it.next();
@@ -262,7 +254,6 @@ class MyHandler implements HttpHandler{
 
             case 2://moduleStatus/listAll
                 deviceStatusList=new ArrayList();
-//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listAll();
                 it=tempDeviceStatusList.iterator();
                 map.put("result",0);//0--获取数据成功
@@ -271,9 +262,7 @@ class MyHandler implements HttpHandler{
                     deviceStatusList.add(deviceStatus);
                 }
                 map.put("data",deviceStatusList);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 3://moduleStatus/listAllWithStrategy
@@ -287,17 +276,14 @@ class MyHandler implements HttpHandler{
                     deviceStatusList.add(deviceStatus);
                 }
                 map.put("data",deviceStatusList);
-//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 4://moduleStatus/listByTimezone
                 startTime=node.get("startTime").asText();
                 endTime=node.get("endTime").asText();
                 deviceStatusList=new ArrayList<>();
-//                map=new HashMap();
-                logger.info("tag - startTime.date="+startTime+"; endTime.date"+endTime);
+//                logger.info("tag - startTime.date="+startTime+"; endTime.date"+endTime);
                 tempDeviceStatusList=moduleService.listByTimezone(startTime.toString(),endTime.toString());
                 it=tempDeviceStatusList.iterator();
                 map.put("result",0);
@@ -306,9 +292,7 @@ class MyHandler implements HttpHandler{
                     deviceStatusList.add(deviceStatus);
                 }
                 map.put("data",deviceStatusList);
-                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 5://moduleStatus/listByParam
@@ -316,7 +300,6 @@ class MyHandler implements HttpHandler{
                 endTime=node.get("endTime").asText();
                 deviceid=node.get("deviceid").asText();
                 deviceStatusList=new ArrayList();
-//                map=new HashMap();
                 tempDeviceStatusList=moduleService.listByParam(endTime,status,deviceid);
                 it=tempDeviceStatusList.iterator();
                 map.put("result",0);//0--获取数据成功
@@ -325,9 +308,7 @@ class MyHandler implements HttpHandler{
                     deviceStatusList.add(deviceStatus);
                 }
                 map.put("data",deviceStatusList);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 6://moduleStatus/countByParam
@@ -339,15 +320,12 @@ class MyHandler implements HttpHandler{
                     e.printStackTrace();
                 }
                 endTime=sdf2.format(date);
-                logger.info("endTime:"+endTime);
+//                logger.info("endTime:"+endTime);
                 deviceid=node.get("deviceid").asText();
-//                map=new HashMap();
                 countNum=moduleService.countByParam(endTime,status,deviceid);
                 map.put("result",0);//0--获取数据成功
                 map.put("data",countNum);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(countNum));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 7://moduleStatus/deleteByParam
@@ -360,18 +338,14 @@ class MyHandler implements HttpHandler{
                 }
                 endTime=sdf2.format(date);
                 deviceid=node.get("deviceid").asText();
-//                map=new HashMap();
                 affectedNum=moduleService.deleteByParam(endTime,status,deviceid);
                 map.put("result",0);//0--获取数据成功
                 map.put("data",affectedNum);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(affectedNum));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 20://swipeRecord/listAll
                 swipeRecordList=new ArrayList<>();
-//                map=new HashMap();
                 tempSwipeRecordList=swipeRecordService.listAll();
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
@@ -380,14 +354,11 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 21://swipeRecord/listByTimezoneWhenFail
                 swipeRecordList=new ArrayList<>();
-//                map=new HashMap();
                 startTime=node.get("startTime").asText();
                 endTime=node.get("endTime").asText();
                 tempSwipeRecordList=swipeRecordService.listByTimezoneWhenFail(startTime.toString(),endTime.toString());
@@ -398,14 +369,11 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 22://swipeRecord/listAllWithStrategy
                 swipeRecordList=new ArrayList<>();
-//                map=new HashMap();
 //                String orderColumn=node.get("orderColumn").asText();
 //                String orderDir=node.get("orderDir").asText();
 //                SwipeRecordStrategy strategy=objectMapper.readValue(node.get("strategy"),SwipeRecordStrategy.class);
@@ -419,19 +387,13 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 23://swipeRecord/listByTimezone
                 swipeRecordList=new ArrayList<>();
-//                map=new HashMap();
                 startTime=node.get("startTime").asText();
                 endTime=node.get("endTime").asText();
-//                logger.info("tag2 - startTime.date="+startTime+"; endTime.date"+endTime);
-//                String startTime=node.get("startTime").asText();
-//                String endTime=node.get("endTime").asText();
                 tempSwipeRecordList=swipeRecordService.listByTimezone(startTime.toString(),endTime.toString());
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
@@ -440,9 +402,7 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-//                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 24://swipeRecord/countByParam
@@ -454,15 +414,12 @@ class MyHandler implements HttpHandler{
                     e.printStackTrace();
                 }
                 endTime=sdf2.format(date);
-                logger.info("endTime:"+endTime);
+//                logger.info("endTime:"+endTime);
                 deviceid=node.get("deviceid").asText();
-//                map=new HashMap();
                 countNum=swipeRecordService.countByParam(endTime,result,deviceid);
                 map.put("result",0);//0--获取数据成功
                 map.put("data",countNum);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(countNum));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 25://swipeRecord/deleteByParam
@@ -475,18 +432,14 @@ class MyHandler implements HttpHandler{
                 }
                 endTime=sdf2.format(date);
                 deviceid=node.get("deviceid").asText();
-//                map=new HashMap();
                 affectedNum=swipeRecordService.deleteByParam(endTime,result,deviceid);
                 map.put("result",0);//0--获取数据成功
                 map.put("data",affectedNum);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(affectedNum));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
             case 12://swipeRecord/listByDate
                 swipeRecordList=new ArrayList<>();
-//                map=new HashMap();
                 String param_date=node.get("date").asText();
                 Date theDay=null;
                 try {
@@ -498,8 +451,6 @@ class MyHandler implements HttpHandler{
                 Date date2=null;
                 date1=new Date(theDay.getTime()/86400000*86400000);
                 date2=new Date((theDay.getTime()/86400000+1)*86400000);
-                logger.info("date1:"+date1);
-                logger.info("date2:"+date2);
                 tempSwipeRecordList=swipeRecordService.listByTimezone(date1.toString(),date2.toString());
                 it=tempSwipeRecordList.iterator();
                 map.put("result",0);
@@ -508,9 +459,7 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-                logger.info("#DATA     ~ response-data:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
-//                map=null;
                 break;
 
                 //连接shiro/service/impl与shiro/dao

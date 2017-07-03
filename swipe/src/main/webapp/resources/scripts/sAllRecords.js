@@ -61,15 +61,15 @@ $(function () {
             {
                 data: "result",
                 render: function (data, type, row, meta) {
-                    return (data == 0 ? "刷卡成功" : data == 1 ? "刷卡失败" : "刷卡结果奇异");
+                    return (data == 0 ? "刷卡成功" : data == 1 ? "刷卡失败" : "刷卡结果未定义");
                 }
             },
             {
                 data: "timestamp",
                 render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
-            },{
-                data: "edit",
-                orderable: false
+            // },{
+            //     data: "edit",
+            //     orderable: false
             }
         ],
         "columnDefs": [
@@ -78,14 +78,14 @@ $(function () {
                 "targets": "_all"
             }
         ],
-        "createdRow": function (row, data, index) {
-            //添加编辑行的2种方法： 1.render方式 "columnDefs":[{"render": function(data, type, row) {} }] 2.用jquery DOM操作呈现单元格createdRow.
-            // var $btnEdit = $('<button type="button" class="btn-edit">修改</button>');
-            // var $btnDel = $('<button type="button" class="btn-del">删除</button>');
-            var $btnEdit = $('<a type="button" class="btn-edit">修改</a>');
-            var $btnDel = $('<a class="delete btn btn-default btn-sm">删除</a>');
-            $('td', row).eq(6).append($btnEdit).append($btnDel);
-        },
+        // "createdRow": function (row, data, index) {
+        //     //添加编辑行的2种方法： 1.render方式 "columnDefs":[{"render": function(data, type, row) {} }] 2.用jquery DOM操作呈现单元格createdRow.
+        //     // var $btnEdit = $('<button type="button" class="btn-edit">修改</button>');
+        //     // var $btnDel = $('<button type="button" class="btn-del">删除</button>');
+        //     var $btnEdit = $('<a type="button" class="btn-edit">修改</a>');
+        //     var $btnDel = $('<a class="delete btn btn-default btn-sm">删除</a>');
+        //     $('td', row).eq(6).append($btnEdit).append($btnDel);
+        // },
         "drawCallback": function (settings) {
             //渲染完毕后的回调
             //默认选中第一行

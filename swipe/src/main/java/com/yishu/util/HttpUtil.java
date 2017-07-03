@@ -38,12 +38,10 @@ public class HttpUtil {
             httpURLConnection.setConnectTimeout(5000);
             httpURLConnection.setRequestProperty("Content-Type","text/json");
             httpURLConnection.setRequestProperty("Accept-Charset", "utf-8");
-//            logger.info("#TAG      ~ "+"connect:..");
             httpURLConnection.connect();
-//            logger.info("#TAG      ~ "+"connect:sucesses");
             outputStream=httpURLConnection.getOutputStream();
             dataOutputStream=new DataOutputStream(outputStream);
-            logger.info("postdata:"+data);
+//            logger.info("postdata:"+data);
             dataOutputStream.write(data.getBytes());
             inputStream=httpURLConnection.getInputStream();
             inputStreamReader=new InputStreamReader(inputStream,"UTF-8");
@@ -52,7 +50,7 @@ public class HttpUtil {
                 strBuffer.append(line+"\n");
             }
             result=new String(strBuffer);
-            logger.info("getData:"+result);
+//            logger.info("getData:"+result);
             return result;
         } catch (MalformedURLException e) {
             e.printStackTrace();

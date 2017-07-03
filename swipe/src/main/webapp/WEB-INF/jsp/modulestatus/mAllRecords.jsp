@@ -21,7 +21,7 @@
     <script type="text/javascript" src="../../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" charset="utf8" src="../../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/mAllRecords.js?ver=15"></script>
+    <script type="text/javascript" src="../../../resources/scripts/mAllRecords.js?ver=1"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -96,7 +96,7 @@
                     <th width="250px">timestamp</th>
                     <th width="100px">info</th>
                     <th width="150px">reserved</th>
-                    <th width="200px">edit</th>
+                    <%--<th width="200px">edit</th>--%>
                 </tr>
                 </thead>
             </table>

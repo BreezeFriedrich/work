@@ -17,7 +17,7 @@
     <script type="text/javascript" src="../../../resources/scripts/echarts.js"></script>
     <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/sChart.js?ver=38"></script>
+    <script type="text/javascript" src="../../../resources/scripts/sChart.js?ver=1"></script>
 </head>
 <body>
 <div class="container">

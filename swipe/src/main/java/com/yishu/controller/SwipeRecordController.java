@@ -7,7 +7,6 @@ import com.yishu.model.SwipeRecordStrategy;
 import com.yishu.service.SwipeRecordService;
 import com.yishu.util.JsonUtil;
 import com.yishu.util.PageUtil;
-import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,11 +38,9 @@ public class SwipeRecordController {
         logger.info("#CTL      ~ listAll");
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
-        int start= Integer.parseInt(request.getParameter("start"));
+//        int start= Integer.parseInt(request.getParameter("start"));
         long timeTag1=new Date().getTime();
         List<SwipeRecord> swipeRecordList=swipeRecordService.listAll();
-        long timeTag2=new Date().getTime();
-        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
         List<SwipeRecord> newSwipeRecordList=new ArrayList<>();
         SwipeRecord swipeRecord=null;
         int total=swipeRecordList.size();
@@ -52,8 +49,8 @@ public class SwipeRecordController {
             newSwipeRecordList.add(swipeRecord);
         }
         if (!newSwipeRecordList.isEmpty()){
-            long timeTag3=new Date().getTime();
-            logger.info("timeTag3-timeTag1="+(timeTag3-timeTag1));
+            long timeTag2=new Date().getTime();
+            logger.info("timeTag3-timeTag1="+(timeTag2-timeTag1));
             return listToObj(newSwipeRecordList,total);
         }
         return null;
@@ -88,7 +85,7 @@ public class SwipeRecordController {
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
         String result = request.getParameter("result");
-        SwipeRecordStrategy strategy = new SwipeRecordStrategy();
+//        SwipeRecordStrategy strategy = new SwipeRecordStrategy();
         if(null != deviceid && !"".equals(deviceid)){
 //            strategy.setDeviceid(deviceid);
             paramMap.put("deviceid",deviceid);
@@ -126,7 +123,8 @@ public class SwipeRecordController {
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
         long timeTag3=new Date().getTime();
         logger.info("timeTag3-timeTag1="+(timeTag3-timeTag1));
-        return JSONObject.fromObject(info)+"";
+//        return JSONObject.fromObject(info)+"";
+        return jsonUtil.writeObject(info);
     }
 
 /*
@@ -176,7 +174,7 @@ public class SwipeRecordController {
     @RequestMapping("/listByTimezoneWhenFail.do")
     @ResponseBody
     public String listByTimezoneWhenFail(HttpServletRequest request){
-        logger.info("#CTL      ~ listByTimezoneWhenFail");
+//        logger.info("#CTL      ~ listByTimezoneWhenFail");
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
         int start= Integer.parseInt(request.getParameter("start"));
@@ -202,7 +200,7 @@ public class SwipeRecordController {
     @RequestMapping("/listByTimezone.do")
     @ResponseBody
     public String listByTimezone(HttpServletRequest request){
-        logger.info("#CTL      ~ listByTimezone");
+//        logger.info("#CTL      ~ listByTimezone");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
@@ -288,9 +286,8 @@ public class SwipeRecordController {
     @RequestMapping("/listByDateToChart.do")
     @ResponseBody
     public String listByDateToChart(HttpServletRequest request){
-        logger.info("#CTL      ~ listByDateToChart");
+//        logger.info("#CTL      ~ listByDateToChart");
         String param_date=request.getParameter("param_date");
-        logger.info("param_date:"+param_date);
         String param_interval=request.getParameter("param_interval");
         int interval=Integer.parseInt(param_interval);
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -301,15 +298,15 @@ public class SwipeRecordController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        logger.info("theDay:"+theDay);
+//        logger.info("theDay:"+theDay);
         Date time1=null;
         Date time2=null;
         time1=new Date(theDay.getTime()/86400000*86400000+57600000);
         time2=new Date((theDay.getTime()/86400000+1)*86400000+57600000);
         String startTime=sdf.format(time1);
         String endTime=sdf.format(time2);
-        logger.info("startTime:"+startTime);
-        logger.info("endTime:"+endTime);
+//        logger.info("startTime:"+startTime);
+//        logger.info("endTime:"+endTime);
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
         if (swipeRecordList==null||swipeRecordList.size()<1){
             logger.info("swipeRecordList is empty");
@@ -362,7 +359,6 @@ public class SwipeRecordController {
         }
 
         resultMap.put("data",index);
-        logger.info(String.valueOf(index.length));
         return jsonUtil.writeObject(resultMap);
     }
 
@@ -382,15 +378,14 @@ public class SwipeRecordController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        logger.info("theDay:"+theDay);
         Date time1=null;
         Date time2=null;
         time1=new Date(theDay.getTime()/86400000*86400000+57600000);
         time2=new Date((theDay.getTime()/86400000+1)*86400000+57600000);
         String startTime=sdf.format(time1);
         String endTime=sdf.format(time2);
-        logger.info("startTime:"+startTime);
-        logger.info("endTime:"+endTime);
+//        logger.info("startTime:"+startTime);
+//        logger.info("endTime:"+endTime);
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
         if (swipeRecordList==null||swipeRecordList.size()<1){
             logger.info("swipeRecordList is empty");
@@ -505,7 +500,7 @@ public class SwipeRecordController {
     @RequestMapping("/listByTimezoneToChart.do")
     @ResponseBody
     public String listByTimezoneToChart(HttpServletRequest request){
-        logger.info("#CTL      ~ listByTimezoneToChart");
+//        logger.info("#CTL      ~ listByTimezoneToChart");
         int mode= Integer.parseInt(request.getParameter("mode"));
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
@@ -675,9 +670,6 @@ public class SwipeRecordController {
         int[] series_frequency=null;
         int sumSuccess=0;
         int sumFail=0;
-        int sumSwipeFrequency=0;
-        int sumSAM=0;
-        int sumDevices=0;
         List samList=new ArrayList();
         List deviceList=new ArrayList();
         resultMap.put("sumSwipeFrequency",swipeRecordList.size());
@@ -760,7 +752,7 @@ public class SwipeRecordController {
         }
 
         //按周
-        if(1==mode){};
+        if(1==mode){}
 
         //按日
         if(0==mode){
@@ -919,7 +911,6 @@ public class SwipeRecordController {
                 }else if(1==swipeRecord.getResult()){
                     fail++;
                 }else {
-//                    return null;
                     fail++;
                 }
             }
@@ -942,7 +933,7 @@ public class SwipeRecordController {
     @RequestMapping("/listByTimezoneToChartPie.do")
     @ResponseBody
     public String listByTimezoneToChartPie(HttpServletRequest request) {
-        logger.info("#CTL      ~ listByTimezoneToChart");
+//        logger.info("#CTL      ~ listByTimezoneToChart");
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
         List<SwipeRecord> swipeRecordList = swipeRecordService.listByTimezone(startTime, endTime);
@@ -971,7 +962,7 @@ public class SwipeRecordController {
     @RequestMapping("/countByParam.do")
     @ResponseBody
     public int countByParam(HttpServletRequest request){
-        logger.info("#CTL      ~ countByParam.do");
+//        logger.info("#CTL      ~ countByParam.do");
         String deviceid="";
         if(request.getParameter("deviceid")!=null){
             deviceid=request.getParameter("deviceid");
@@ -992,7 +983,7 @@ public class SwipeRecordController {
     @RequestMapping("/deleteByParam.do")
     @ResponseBody
     public int deleteByParam(HttpServletRequest request){
-        logger.info("#CTL      ~ deleteByParam.do");
+//        logger.info("#CTL      ~ deleteByParam.do");
         String deviceid="";
         if(request.getParameter("deviceid")!=null){
             deviceid=request.getParameter("deviceid");

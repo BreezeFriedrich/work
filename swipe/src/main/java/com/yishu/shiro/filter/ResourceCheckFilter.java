@@ -53,12 +53,25 @@ public class ResourceCheckFilter extends AccessControlFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        logger.debug("当 isAccessAllowed 返回 false 的时候，才会执行 method onAccessDenied ");
+//        logger.debug("当 isAccessAllowed 返回 false 的时候，才会执行 method onAccessDenied ");
+//
+//        HttpServletRequest request=(HttpServletRequest) servletRequest;
+//        HttpServletResponse response=(HttpServletResponse) servletResponse;
+//        response.sendRedirect(request.getContextPath() +this.errorUrl);
+//        // 返回 false 表示已经处理，例如页面跳转啥的，表示不在走以下的拦截器了（如果还有配置的话）
+//        return false;
 
         HttpServletRequest request=(HttpServletRequest) servletRequest;
         HttpServletResponse response=(HttpServletResponse) servletResponse;
-        response.sendRedirect(request.getContextPath() +this.errorUrl);
-        // 返回 false 表示已经处理，例如页面跳转啥的，表示不在走以下的拦截器了（如果还有配置的话）
+        logger.info("getRequestURI():"+request.getRequestURI());
+        String str=request.getRequestURI();
+        int beginIndex=str.indexOf("/",9)+1;
+        String str2=str.substring(beginIndex);
+        String str3=request.getContextPath()+"/"+"WEB-INF"+"/"+"jsp"+"/"+str2;
+        String str4=request.getContextPath()+"/"+"WEB-INF"+"/"+"jsp"+"/"+this.errorUrl;
+        logger.info("str3:"+str3);
+        logger.info("RequestDispatcher--->>"+str4);
+        response.sendRedirect(str4);
         return false;
     }
 }

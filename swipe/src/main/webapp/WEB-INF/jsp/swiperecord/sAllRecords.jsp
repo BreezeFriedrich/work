@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../../resources/dataTables/js/jquery.dataTables.js"></script>
     <%--<script type="text/javascript" src="../../resources/dataTables/js/dataTables.bootstrap.min.js"></script>--%>
-    <script type="text/javascript" src="../../../resources/scripts/sAllRecords.js?ver=40"></script>
+    <script type="text/javascript" src="../../../resources/scripts/sAllRecords.js?ver=1"></script>
     <script type="text/javascript">
         var rootPath = '${pageContext.request.contextPath}';
     </script>
@@ -120,7 +120,7 @@
                     <th width="150px">clientip</th>
                     <th width="100px">result</th>
                     <th width="250px">timestamp</th>
-                    <th width="200px">edit</th>
+                    <%--<th width="200px">edit</th>--%>
                 </tr>
                 </thead>
             </table>

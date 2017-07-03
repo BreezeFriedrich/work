@@ -19,7 +19,7 @@
     <script type="text/javascript" src="../../../resources/scripts/echarts.js"></script>
     <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="../../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/sAnalyseByInterval.js?ver=42"></script>
+    <script type="text/javascript" src="../../../resources/scripts/sAnalyseByInterval.js?ver=1"></script>
 </head>
 <body>
 <div class="container-fluid">

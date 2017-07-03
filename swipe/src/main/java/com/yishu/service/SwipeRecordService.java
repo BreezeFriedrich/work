@@ -21,7 +21,7 @@ public interface SwipeRecordService {
     List<SwipeRecord> listByTimezoneWhenFail(String startTime, String endTime);
 //    List<SwipeRecord> listByDeivceid(String deviceid);
     List<SwipeRecord> listByTimezone(String startTime,String endTime);
-    public int countByParam(String endTime,int result,String deviceid);
-    public int deleteByParam(String endTime,int result,String deviceid);
+    int countByParam(String endTime,int result,String deviceid);
+    int deleteByParam(String endTime,int result,String deviceid);
 //    List<SwipeRecord> listByResult(int result);
 }

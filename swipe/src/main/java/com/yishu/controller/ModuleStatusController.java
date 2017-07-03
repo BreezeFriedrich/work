@@ -6,7 +6,6 @@ import com.yishu.model.DeviceStatus;
 import com.yishu.service.ModuleService;
 import com.yishu.util.JsonUtil;
 import com.yishu.util.PageUtil;
-import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,7 +45,7 @@ public class ModuleStatusController {
     @RequestMapping("/listByStatus.do")
     @ResponseBody
     public String listByStatus(HttpServletRequest request){
-        logger.info("#CTL      ~ listByStatus");
+//        logger.info("#CTL      ~ listByStatus");
         int status=Integer.valueOf(request.getParameter("status"));
         List<DeviceStatus> moduleList=moduleService.listByStatus(status);
         return jsonUtil.writeObject(moduleList);
@@ -55,7 +54,7 @@ public class ModuleStatusController {
     @RequestMapping("/listAllWithoutDuplicate.do")
     @ResponseBody
     public String listAllWithoutDuplicate(HttpServletRequest request){
-        logger.info("#CTL      ~ listAllWithoutDuplicate");
+//        logger.info("#CTL      ~ listAllWithoutDuplicate");
         List<DeviceStatus> moduleList=moduleService.listAllWithoutDuplicate();
         return jsonUtil.writeObject(moduleList);
     }
@@ -63,7 +62,7 @@ public class ModuleStatusController {
     @RequestMapping("/listAll.do")
     @ResponseBody
     public String listAll(HttpServletRequest request){
-        logger.info("#CTL      ~ listAll");
+//        logger.info("#CTL      ~ listAll");
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
         int start= Integer.parseInt(request.getParameter("start"));
@@ -141,16 +140,17 @@ public class ModuleStatusController {
             info.put("total", pageUtil.getTotal());
         }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
-        return JSONObject.fromObject(info)+"";
+//        return JSONObject.fromObject(info)+"";
+        return jsonUtil.writeObject(info);
     }
 
     @RequestMapping("/listByTimezone.do")
     @ResponseBody
     public String listByTimezone(HttpServletRequest request){
-        logger.info("#CTL      ~ listByTimezone");
+//        logger.info("#CTL      ~ listByTimezone");
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
-        int start= Integer.parseInt(request.getParameter("start"));
+//        int start= Integer.parseInt(request.getParameter("start"));
         String startTime= request.getParameter("startTime");
         String endTime= request.getParameter("endTime");
         List<DeviceStatus> moduleStatusList=moduleService.listByTimezone(startTime,endTime);
@@ -175,7 +175,7 @@ public class ModuleStatusController {
     @RequestMapping("/listByParam.do")
     @ResponseBody
     public int listByParam(HttpServletRequest request){
-        logger.info("#CTL      ~ listByParam.do");
+//        logger.info("#CTL      ~ listByParam.do");
         String deviceid="";
         if(request.getParameter("deviceid")!=null){
             deviceid=request.getParameter("deviceid");
@@ -187,7 +187,7 @@ public class ModuleStatusController {
         String endTime=request.getParameter("endTime");
         List<DeviceStatus> deviceStatusList=moduleService.listByParam(endTime,status,deviceid);
         if (deviceStatusList!=null&&!deviceStatusList.isEmpty()){
-            logger.info("deviceStatusList:"+deviceStatusList.toString());
+//            logger.info("deviceStatusList:"+deviceStatusList.toString());
             return deviceStatusList.size();
         }
         return 0;
@@ -196,7 +196,7 @@ public class ModuleStatusController {
     @RequestMapping("/countByParam.do")
     @ResponseBody
     public int countByParam(HttpServletRequest request){
-        logger.info("#CTL      ~ countByParam.do");
+//        logger.info("#CTL      ~ countByParam.do");
         String deviceid="";
         if(request.getParameter("deviceid")!=null){
             deviceid=request.getParameter("deviceid");
@@ -217,7 +217,7 @@ public class ModuleStatusController {
     @RequestMapping("/deleteByParam.do")
     @ResponseBody
     public int deleteByParam(HttpServletRequest request){
-        logger.info("#CTL      ~ deleteByParam.do");
+//        logger.info("#CTL      ~ deleteByParam.do");
         String deviceid="";
         if(request.getParameter("deviceid")!=null){
             deviceid=request.getParameter("deviceid");

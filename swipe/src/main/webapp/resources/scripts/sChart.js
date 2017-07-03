@@ -18,20 +18,23 @@ function getPie(){
             dataType:"json",
             async:false,
             success: function(result){
-                myChart.setOption({
-                    // title : {
-                    //     text: '时间:'+startTime+"--"+endTime
-                    // },
-                    series: [{
-                        name: '刷卡',
-                        data:result
-                    }]
-                });
-                pieAction();
+                if(null!=result){
+                    myChart.setOption({
+                        // title : {
+                        //     text: '时间:'+startTime+"--"+endTime
+                        // },
+                        series: [{
+                            name: '刷卡',
+                            data:result
+                        }]
+                    });
+                    pieAction();
+                }
             },
             error:function(XMLHttpRequest){
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
+                // alert(XMLHttpRequest.status);
+                // alert(XMLHttpRequest.readyState);
+                alert('请求失败');
             }
         });
     }
@@ -120,7 +123,6 @@ function myChartInit() {
 }
 
 function pieAction() {
-    alert('pieAction');
     myChart.on('click', function (param){
         if('失败'==param.name){
             create_table();
@@ -300,10 +302,6 @@ function create_table() {
             }
         });
     }else {
-        // myTable.fnClearTable();
-        // myTable.fnDestroy();
-        // myTable.fnDraw(false);
-        // myTable.fnReloadAjax();
         tableApi=$('#table-swipeRecord').DataTable();
         tableApi.ajax.reload();
     }
@@ -321,6 +319,7 @@ function resizeIframe(){// iframe和导航高度随table元素高度变化
     west.height(thisheight);
 }
 
+/*
 //当你需要多条件查询，你可以调用此方法，动态修改参数传给服务器
 function reloadTable() {
     var name = $("#seName").val();
@@ -332,3 +331,4 @@ function reloadTable() {
     tableApi.settings()[0].ajax.data = param;
     tableApi.ajax.reload();
 }
+*/

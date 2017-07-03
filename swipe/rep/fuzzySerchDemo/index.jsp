@@ -3,12 +3,12 @@
 <head>
     <title>Datatable-serverSide 自行封装请求参数和返回数据例子</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../../src/main/webapp/resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="resources/bootstrap-3.3.0/css/bootstrap-responsive.min.css" media="screen">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="asset/lib/font-awesome-4.2.0/css/font-awesome.min.css">
     <!-- DataTables CSS start-->
-    <link rel="stylesheet" href="resources/dataTables/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="../../src/main/webapp/resources/dataTables/css/dataTables.bootstrap.css">
     <link rel="stylesheet" href="resources/dataTables/plugins/integration/font-awesome/dataTables.fontAwesome.css">
     <!-- DataTables CSS end-->
     <link rel="stylesheet" href="asset/css/user-manage.css">
@@ -296,18 +296,18 @@
 </div>
 <script src="asset/lib/json2.js"></script>
 <!-- JQuery -->
-<script src="resources/scripts/jquery-3.1.0.min.js"></script>
+<script src="../../src/main/webapp/resources/scripts/jquery-3.1.0.min.js"></script>
 <!-- Bootstrap -->
-<script src="resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script src="../../src/main/webapp/resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <!-- SpinJS-->
 <script src="asset/lib/spin-2.1.0/jquery.spin.merge.js"></script>
 <!-- lhgdialog -->
 <script src="asset/lib/lhgdialog-4.2.0/lhgdialog.js?skin=bootstrap2"></script>
 <!-- DataTables JS-->
-<script src="resources/dataTables/js/jquery.dataTables.js"></script>
-<script src="resources/dataTables/js/dataTables.bootstrap.js"></script>
+<script src="../../src/main/webapp/resources/dataTables/js/jquery.dataTables.js"></script>
+<script src="../../src/main/webapp/resources/dataTables/js/dataTables.bootstrap.js"></script>
 <!-- DataTables JS end-->
-<script src="resources/scripts/component/constant.js"></script>
-<script src="resources/scripts/component/user-manage.js"></script>
+<script src="constant.js"></script>
+<script src="user-manage.js"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <%--<script type="text/javascript" src="../../../resources/bootstrapvalidator/js/bootstrapValidator.js"></script>--%>
     <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/clearData.js?ver=5"></script>
+    <script type="text/javascript" src="../../../resources/scripts/clearData.js?ver=1"></script>
 </head>
 <body>
     <div class="panel panel-danger"style="width: 800px;margin: 60px auto 50px;">

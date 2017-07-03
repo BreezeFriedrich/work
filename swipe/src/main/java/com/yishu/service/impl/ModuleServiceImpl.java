@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.yishu.model.DeviceStatus;
 import com.yishu.service.ModuleService;
 import com.yishu.util.HttpUtil;
@@ -25,9 +24,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     String postdata=null;
     String getdata=null;
-    String data=null;
     int result=0;
-    Iterator it=null;
     List<DeviceStatus> deviceStatusList=null;
     int countNum=0;
     int affectedNum=0;
@@ -91,7 +88,6 @@ public class ModuleServiceImpl implements ModuleService {
 
         postdata="{\"sign\":0,\"status\":0}";
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
 
         deviceStatusList=getDataListFromJson(getdata);
         if(deviceStatusList.size()>0){
@@ -102,10 +98,8 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<DeviceStatus> listAllWithoutDuplicate() {
-
         postdata="{\"sign\":1}";
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
 
         deviceStatusList=getDataListFromJson(getdata);
         if(deviceStatusList.size()>0){
@@ -119,7 +113,6 @@ public class ModuleServiceImpl implements ModuleService {
     public List<DeviceStatus> listAll() {
         postdata="{\"sign\":2}";
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
 
         if(null!=getdata&&""!=getdata){
             deviceStatusList=getDataListFromJson(getdata);
@@ -134,7 +127,6 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<DeviceStatus> listAllWithStrategy(HashMap paramMap) {
 
-        Gson gson=new Gson();
         paramMap.put("sign",3);
         try {
             postdata=objectMapper.writeValueAsString(paramMap);
@@ -155,9 +147,7 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<DeviceStatus> listByTimezone(String startTime, String endTime) {
         postdata="{\"sign\":4,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
-//        logger.info("#request-DATA     ~ "+postdata);
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
 
         deviceStatusList=getDataListFromJson(getdata);
         if(deviceStatusList.size()>0){
@@ -171,7 +161,6 @@ public class ModuleServiceImpl implements ModuleService {
     public List<DeviceStatus> listByParam(String endTime, int status, String deviceid) {
         postdata="{\"sign\":5,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
 
         if(null!=getdata&&""!=getdata){
             deviceStatusList=getDataListFromJson(getdata);
@@ -187,7 +176,6 @@ public class ModuleServiceImpl implements ModuleService {
     public int countByParam(String endTime, int status, String deviceid) {
         postdata="{\"sign\":6,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
 
         if(null!=getdata&&""!=getdata){
             countNum=getDataIntFromJson(getdata);
@@ -203,7 +191,6 @@ public class ModuleServiceImpl implements ModuleService {
     public int deleteByParam(String endTime, int status, String deviceid) {
         postdata="{\"sign\":7,\"endTime\":\""+endTime+"\",\"status\":\""+status+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
-        logger.info("#DATA     ~ "+getdata);
 
         affectedNum=0;
         if(null!=getdata&&""!=getdata){

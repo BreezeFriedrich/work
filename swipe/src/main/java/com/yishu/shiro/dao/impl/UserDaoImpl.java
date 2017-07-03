@@ -35,7 +35,6 @@ public class UserDaoImpl implements UserDao {
     List<Role> roleList =null;
     List<Resource> resourceList =null;
     List<String> stringList =null;
-    String data="";
     JsonNode dataNode=null;
 
     public JsonNode getDataNode(String str){
@@ -136,7 +135,6 @@ public class UserDaoImpl implements UserDao {
     public User loadByUserName(String username) {
         map.put("sign",55);
         map.put("username",username);
-//        postdata=jsonUtil.writeTreeToString(map);
         postdata=jsonUtil.writeObject(map);
         map.clear();
         getdata=HttpUtil.postData(postdata);
@@ -158,11 +156,6 @@ public class UserDaoImpl implements UserDao {
         getdata=HttpUtil.postData(postdata);
         postdata=null;
         dataNode=jsonUtil.getDataNode(getdata);
-//        try {
-//            userList=objectMapper.treeToValue(dataNode,List.class);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
         try {
             userList =objectMapper.readValue(dataNode.traverse(), new TypeReference<List<User>>(){});
         } catch (IOException e) {
@@ -211,8 +204,6 @@ public class UserDaoImpl implements UserDao {
         postdata=null;
         map.put("sign",59);
         map.put("userId",uid);
-        logger.info("map"+map.toString());
-//        postdata=jsonUtil.writeTreeToString(map);
         postdata=jsonUtil.writeObject(map);
         map.clear();
         getdata=HttpUtil.postData(postdata);
@@ -230,7 +221,6 @@ public class UserDaoImpl implements UserDao {
     public List<String> listRoleSnByUser(Integer uid) {
         map.put("sign",60);
         map.put("userId",uid);
-//        postdata=jsonUtil.writeTreeToString(map);
         postdata=jsonUtil.writeObject(map);
         map.clear();
         getdata=HttpUtil.postData(postdata);

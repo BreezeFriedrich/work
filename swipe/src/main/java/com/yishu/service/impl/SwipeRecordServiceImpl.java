@@ -13,10 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by admin on 2017/5/22.
@@ -38,11 +35,13 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
 
     public List<SwipeRecord> getDataListFromJson(String param){
         try {
-//            //logger.info("param:"+param);
             JsonNode node=objectMapper.readTree(param);
             result=node.get("result").asInt();
             if(0==result){
+                long timeTag1=new Date().getTime();
                 swipeRecordList=objectMapper.readValue(String.valueOf(node.get("data")), new TypeReference<ArrayList<SwipeRecord>>() { });
+                long timeTag2=new Date().getTime();
+                logger.info("TIME{swipeRecordList=objectMapper.readValue(String.valueOf(node.get(\"data\"))}:"+(timeTag2-timeTag1));
             }
             return swipeRecordList;
         } catch (IOException e) {
@@ -69,7 +68,6 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     public List<SwipeRecord> listAll() {
         postdata="{\"sign\":20}";
         getdata=HttpUtil.postData(postdata);
-        //logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
@@ -83,7 +81,6 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     public List<SwipeRecord> listByTimezoneWhenFail(String startTime, String endTime) {
         postdata="{\"sign\":21,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
         getdata=HttpUtil.postData(postdata);
-        //logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
@@ -95,7 +92,6 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     @Override
     public List<SwipeRecord> listAllWithStrategy(HashMap paramMap) {
 
-        Gson gson=new Gson();
         paramMap.put("sign",22);
         try {
             postdata=objectMapper.writeValueAsString(paramMap);
@@ -103,9 +99,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
             e.printStackTrace();
         }
 //        postdata="{\"sign\":14,\"orderColumn\":\"" + orderColumn + "\",\"orderDir\":\"" + orderDir + "\",\"strategy\":"+gson.toJson(strategy)+"}";
-//        logger.info("postdata:"+postdata);
         getdata=HttpUtil.postData(postdata);
-//        logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
@@ -117,9 +111,7 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     @Override
     public List<SwipeRecord> listByTimezone(String startTime, String endTime) {
         postdata="{\"sign\":23,\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
-//        logger.info("#request-DATA     ~ "+postdata);
         getdata=HttpUtil.postData(postdata);
-        //logger.info("#DATA     ~ "+getdata);
 
         swipeRecordList=getDataListFromJson(getdata);
         if(swipeRecordList.size()>0){
@@ -133,7 +125,6 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     public int countByParam(String endTime, int result, String deviceid) {
         postdata="{\"sign\":24,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
-        //logger.info("#DATA     ~ "+getdata);
 
         if(null!=getdata&&""!=getdata){
             countNum=getDataIntFromJson(getdata);
@@ -149,7 +140,6 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     public int deleteByParam(String endTime, int result, String deviceid) {
         postdata="{\"sign\":25,\"endTime\":\""+endTime+"\",\"result\":\""+result+"\",\"deviceid\":\""+deviceid+"\"}";
         getdata=HttpUtil.postData(postdata);
-        //logger.info("#DATA     ~ "+getdata);
 
         affectedNum=0;
         if(null!=getdata&&""!=getdata){

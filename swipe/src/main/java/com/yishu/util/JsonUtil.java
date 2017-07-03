@@ -9,9 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -39,7 +37,6 @@ public class JsonUtil {
             e.printStackTrace();
         }
         if(null==data){data="";}
-        logger.info("data:"+data);
         return data;
     }
 
@@ -69,25 +66,14 @@ public class JsonUtil {
         return dataNode;
     }
 
-    public int getIntFromDataNode(String str){
-        result=getResult(str);
+    public int getIntFromDataNode(String str){//{result:xx;data:{...}}
+//        result=getResult(str);//获取result
         dataNode=getDataNode(str);
         if(0==result){
             dataInt=dataNode.asInt();
             return dataInt;
         }
         return -100;
-//        try {
-//            JsonNode node=objectMapper.readTree(param);
-//            result=node.get("result").asInt();
-//            if(0==result){
-//                num=node.get("data").asInt();
-//            }
-//            return num;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return -100;
     }
 
     /*
