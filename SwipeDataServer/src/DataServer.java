@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -220,6 +221,7 @@ class MyHandler implements HttpHandler{
         String deviceid="";
         int result=0;
         HashMap paramMap;
+        long timeTag1=new Date().getTime();
 
         switch (sign) {
             case 0://moduleStatus/listByStatus
@@ -387,7 +389,8 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-                responseBody.write(objectMapper.writeValueAsBytes(map));
+                responseBody.write(JSON.toJSONBytes(map));
+//                responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 
             case 23://swipeRecord/listByTimezone
@@ -402,7 +405,8 @@ class MyHandler implements HttpHandler{
                     swipeRecordList.add(swipeRecord);
                 }
                 map.put("data",swipeRecordList);
-                responseBody.write(objectMapper.writeValueAsBytes(map));
+                responseBody.write(JSON.toJSONBytes(map));
+//                responseBody.write(objectMapper.writeValueAsBytes(map));
                 break;
 
             case 24://swipeRecord/countByParam
@@ -737,6 +741,8 @@ class MyHandler implements HttpHandler{
             requestBody.close();
             responseBody.close();
             requestBody.close();
+        long timeTag2=new Date().getTime();
+        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
     }
 
 }

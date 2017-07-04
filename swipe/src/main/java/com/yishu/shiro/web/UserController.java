@@ -26,13 +26,13 @@ import java.util.Map;
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
-    private IUserService shiroUserService;
+    private IUserService userService;
     @Autowired
     private IRoleService roleService;
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(Model model){
-        model.addAttribute("list",shiroUserService.list());
+        model.addAttribute("list",userService.list());
         return "user/list";
     }
 
@@ -69,7 +69,7 @@ public class UserController {
         for(String roleId:roldIds){
             roleIdList.add(Integer.parseInt(roleId));
         }
-        shiroUserService.add(user,roleIdList);
+        userService.add(user,roleIdList);
 
         return "redirect:list";
     }
@@ -77,7 +77,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/updateStatus",method = RequestMethod.POST)
     public Map<String,Object> updateStatus(User user){
-        User u = shiroUserService.update(user);
+        User u = userService.update(user);
         Map<String,Object> result = new HashMap<>();
         if(u != null){
             result.put("success",true);
@@ -97,7 +97,7 @@ public class UserController {
     @RequestMapping(value = "/update/{id}",method = RequestMethod.GET)
     public String update(@PathVariable("id") Integer id, Model model){
 
-        User user = shiroUserService.load(id);
+        User user = userService.load(id);
         model.addAttribute("user",user);
 
         model.addAttribute("roles",roleService.list());
@@ -105,7 +105,7 @@ public class UserController {
         /**
          *
          */
-        List<Role> hasRoles = shiroUserService.listUserRole(id);
+        List<Role> hasRoles = userService.listUserRole(id);
         /**
          *
          */
@@ -132,7 +132,7 @@ public class UserController {
         for(String roleId:roleIds){
             roleIdList.add(Integer.valueOf(roleId));
         }
-        shiroUserService.update(user,roleIdList);
+        userService.update(user,roleIdList);
         return "redirect:/admin/user/list";
     }
 
@@ -142,8 +142,8 @@ public class UserController {
      */
     @RequestMapping(value = "/resources/{id}",method = RequestMethod.GET)
     public String listResources(@PathVariable("id") Integer userId,Model model){
-        List<Resource> resourceList = shiroUserService.listAllResource(userId);
-        User user = shiroUserService.load(userId);
+        List<Resource> resourceList = userService.listAllResource(userId);
+        User user = userService.load(userId);
         model.addAttribute("resources",resourceList);
         model.addAttribute("user",user);
         return "user/resources";
@@ -162,7 +162,7 @@ public class UserController {
             @RequestParam("userIds[]") List<Integer> userIds){
         Map<String,Object> result = new HashMap<>();
         try{
-            shiroUserService.deleteUserAndRole(userIds);
+            userService.deleteUserAndRole(userIds);
             result.put("success",true);
         }catch (RuntimeException e){
             e.printStackTrace();

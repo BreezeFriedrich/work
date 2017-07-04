@@ -5,3 +5,8 @@
 /*.iml
 /.idea
 .idea
+
+/.classpath
+/.DS_Store
+*.iml
+/bin/

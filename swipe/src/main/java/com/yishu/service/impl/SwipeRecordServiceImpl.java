@@ -1,5 +1,6 @@
 package com.yishu.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -33,22 +34,48 @@ public class SwipeRecordServiceImpl implements SwipeRecordService {
     int affectedNum=0;
     ObjectMapper objectMapper=new ObjectMapper();
 
-    public List<SwipeRecord> getDataListFromJson(String param){
-        try {
-            JsonNode node=objectMapper.readTree(param);
-            result=node.get("result").asInt();
+    //Jackson
+//    public List<SwipeRecord> getDataListFromJson(String param){
+//        try {
+//            JsonNode node=objectMapper.readTree(param);
+//            result=node.get("result").asInt();
+//            if(0==result){
+//                long timeTag1=new Date().getTime();
+//                swipeRecordList=objectMapper.readValue(String.valueOf(node.get("data")), new TypeReference<ArrayList<SwipeRecord>>() { });
+//                long timeTag2=new Date().getTime();
+//                logger.info("TIME{swipeRecordList=objectMapper.readValue(String.valueOf(node.get(\"data\"))}:"+(timeTag2-timeTag1));
+//            }
+//            return swipeRecordList;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+    //fastjson
+public List<SwipeRecord> getDataListFromJson(String str){
+    if(null!=str&&str.contains("\"result\":")&&str.contains("\"data\":")){
+//        str=str.substring(str.indexOf("{"),str.lastIndexOf("}"));
+        int resultIndex=str.indexOf("\"result\":")+8;
+        int dataIndex=str.indexOf("\"data\":")+6;
+        if(resultIndex<dataIndex){
+            result= Integer.parseInt(str.substring(resultIndex+1,str.indexOf(",")));
             if(0==result){
-                long timeTag1=new Date().getTime();
-                swipeRecordList=objectMapper.readValue(String.valueOf(node.get("data")), new TypeReference<ArrayList<SwipeRecord>>() { });
-                long timeTag2=new Date().getTime();
-                logger.info("TIME{swipeRecordList=objectMapper.readValue(String.valueOf(node.get(\"data\"))}:"+(timeTag2-timeTag1));
+//                data="{"+str.substring(dataIndex+1);
+                data=str.substring(dataIndex+1,str.lastIndexOf("}"));
+                swipeRecordList=JSON.parseArray(data,SwipeRecord.class);
+                return swipeRecordList;
             }
-            return swipeRecordList;
-        } catch (IOException e) {
-            e.printStackTrace();
+        }else{
+            data=str.substring(dataIndex+1,str.lastIndexOf(","));
+            result= Integer.parseInt(str.substring(resultIndex+1,str.lastIndexOf("}")).trim());
+            if(0==result){
+                swipeRecordList=JSON.parseArray(data,SwipeRecord.class);
+                return swipeRecordList;
+            }
         }
-        return null;
     }
+    return null;
+}
 
     public int getDataIntFromJson(String param){
         try {

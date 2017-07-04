@@ -1,5 +1,6 @@
 package com.yishu.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.model.SwipeRecord;
@@ -108,7 +109,6 @@ public class SwipeRecordController {
         long timeTag1=new Date().getTime();
         List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(paramMap);
         long timeTag2=new Date().getTime();
-        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
         Map<String, Object> info = new HashMap<String, Object>();
         if(swipeRecords==null){
             info.put("pageData",null);
@@ -122,9 +122,11 @@ public class SwipeRecordController {
         }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
         long timeTag3=new Date().getTime();
+        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
         logger.info("timeTag3-timeTag1="+(timeTag3-timeTag1));
-//        return JSONObject.fromObject(info)+"";
-        return jsonUtil.writeObject(info);
+//        return JSONObject.fromObject(info)+"";//JSON-lib
+//        return jsonUtil.writeObject(info);//Jackson
+        return JSON.toJSONString(info);
     }
 
 /*
@@ -204,7 +206,8 @@ public class SwipeRecordController {
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
-        return jsonUtil.writeObject(swipeRecordList);
+//        return jsonUtil.writeObject(swipeRecordList);//Jackson
+        return JSON.toJSONString(swipeRecordList);
     }
 
 //    @RequestMapping("/listByTimezoneToChart.do")
@@ -359,7 +362,8 @@ public class SwipeRecordController {
         }
 
         resultMap.put("data",index);
-        return jsonUtil.writeObject(resultMap);
+//        return jsonUtil.writeObject(resultMap);//Jackson
+        return JSON.toJSONString(resultMap);
     }
 
     @RequestMapping("/listByDateToChart1.do")
@@ -494,7 +498,8 @@ public class SwipeRecordController {
         }
 
         resultMap.put("data",index);
-        return jsonUtil.writeObject(resultMap);
+//        return jsonUtil.writeObject(resultMap);//Jackson
+        return JSON.toJSONString(resultMap);
     }
 
     @RequestMapping("/listByTimezoneToChart.do")
@@ -624,7 +629,8 @@ public class SwipeRecordController {
 //        logger.info(String.valueOf(index.length));
 //        logger.info(String.valueOf(xAxisTime.get("min")));
 //        logger.info(String.valueOf(xAxisTime.get("max")));
-        return jsonUtil.writeObject(resultMap);
+//        return jsonUtil.writeObject(resultMap);//Jackson
+        return JSON.toJSONString(resultMap);
     }
 
     @RequestMapping("/listByTimezoneToMainChart1.do")
@@ -841,7 +847,9 @@ public class SwipeRecordController {
 //        logger.info(String.valueOf(index.length));
 //        logger.info(String.valueOf(xAxisTime.get("min")));
 //        logger.info(String.valueOf(xAxisTime.get("max")));
-        return jsonUtil.writeObject(resultMap);
+
+//        return jsonUtil.writeObject(resultMap);//Jackson
+        return JSON.toJSONString(resultMap);
     }
 
     @RequestMapping("/listByTimezoneToMainChart2.do")
@@ -927,7 +935,8 @@ public class SwipeRecordController {
         resultMap.put("series_frequency",series_frequency);
         resultMap.put("series_failRatio",series_failRatio);
         resultMap.put("series_successRatio",series_successRatio);
-        return jsonUtil.writeObject(resultMap);
+//        return jsonUtil.writeObject(resultMap);//Jackson
+        return JSON.toJSONString(resultMap);//fastjson
     }
 
     @RequestMapping("/listByTimezoneToChartPie.do")
@@ -956,7 +965,8 @@ public class SwipeRecordController {
         resultMap2.put("name","失败");
         resultList.add(resultMap1);
         resultList.add(resultMap2);
-        return jsonUtil.writeObject(resultList);
+//        return jsonUtil.writeObject(resultList);//Jackson
+        return JSON.toJSONString(resultList);//fastjson
     }
 
     @RequestMapping("/countByParam.do")
