@@ -16,6 +16,15 @@
 	<!--&lt;!&ndash; 激活自动代理功能 &ndash;&gt;-->
 	<!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
 
+	<!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+	<!--<bean id="myAspect" class="aop.Aspect"/>-->
+	<!--<aop:config>-->
+		<!--<aop:pointcut id="pointCut" expression="execution(* service.impl.*.*(..))"/>-->
+		<!--<aop:aspect ref="myAspect">-->
+			<!--<aop:around method="around" pointcut-ref="pointCut"/>-->
+		<!--</aop:aspect>-->
+	<!--</aop:config>-->
+
 	<context:component-scan base-package="service.impl;shiro.service.impl"/>
 	<context:property-placeholder location="druid.properties"/>
 
