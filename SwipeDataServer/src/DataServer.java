@@ -249,7 +249,6 @@ class MyHandler implements HttpHandler{
                     deviceStatusList.add(deviceStatus);
                 }
                 map.put("data",deviceStatusList);
-                logger.info("sign:"+sign+"  #DATA:"+String.valueOf(map));
                 responseBody.write(objectMapper.writeValueAsBytes(map));
 //                map=null;
                 break;
@@ -742,7 +741,7 @@ class MyHandler implements HttpHandler{
             responseBody.close();
             requestBody.close();
         long timeTag2=new Date().getTime();
-        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
+        logger.info("处理该请求用时: "+(timeTag2-timeTag1)+" ms");
     }
 
 }

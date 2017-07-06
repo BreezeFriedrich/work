@@ -77,5 +77,4 @@ public class Aspect {
         }
         return result;
     }
-    //对controller层扫描，只需要在advice上添加如:@Around("within(com.yishu.controller.*+) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
 }

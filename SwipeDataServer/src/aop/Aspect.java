@@ -19,7 +19,7 @@ public class Aspect {
     private final static Logger log = LoggerFactory.getLogger(Aspect.class);
 
     //配置切入点,该方法无方法体,主要为方便同类中其他方法使用此处配置的切入点
-    @Pointcut("execution(* service.impl.SwipeRecordServiceImpl.*(..))")
+    @Pointcut("execution(* service.impl.*.*(..))")
     public void aspect(){	}
 
 //    /*
@@ -59,10 +59,11 @@ public class Aspect {
 
     //配置环绕通知,使用在方法aspect()上注册的切入点
     @Around("aspect()")
-    public void around(JoinPoint joinPoint){
+    public Object around(JoinPoint joinPoint){
         long start = System.currentTimeMillis();
+        Object result=null;
         try {
-            ((ProceedingJoinPoint) joinPoint).proceed();
+            result=((ProceedingJoinPoint) joinPoint).proceed();
             long end = System.currentTimeMillis();
             if(log.isInfoEnabled()){
                 log.info("around " + joinPoint + "\tUse time : " + (end - start) + " ms!");
@@ -73,5 +74,6 @@ public class Aspect {
                 log.info("around " + joinPoint + "\tUse time : " + (end - start) + " ms with exception : " + e.getMessage());
             }
         }
+        return result;
     }
 }
