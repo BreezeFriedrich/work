@@ -1,6 +1,8 @@
 /**
  * Created by admin on 2017/6/14.
  */
+var pathName=window.document.location.pathname;
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var param;
 var startTime;
 var endTime;
@@ -13,7 +15,7 @@ $(function () {
             param = userManage.getQueryCondition(data);
             $.ajax({
                 type: "POST",
-                url: '/swipeRecord/listAllWithStrategy.do',
+                url: projectName+'/swipeRecord/listAllWithStrategy.do',
                 cache: false,  //禁用缓存
                 data: param,  //传入组装的参数
                 dataType: "json",

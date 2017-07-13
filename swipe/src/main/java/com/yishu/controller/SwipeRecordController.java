@@ -40,7 +40,7 @@ public class SwipeRecordController {
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
 //        int start= Integer.parseInt(request.getParameter("start"));
-        long timeTag1=new Date().getTime();
+//        long timeTag1=new Date().getTime();
         List<SwipeRecord> swipeRecordList=swipeRecordService.listAll();
         List<SwipeRecord> newSwipeRecordList=new ArrayList<>();
         SwipeRecord swipeRecord=null;
@@ -50,8 +50,8 @@ public class SwipeRecordController {
             newSwipeRecordList.add(swipeRecord);
         }
         if (!newSwipeRecordList.isEmpty()){
-            long timeTag2=new Date().getTime();
-            logger.info("timeTag3-timeTag1="+(timeTag2-timeTag1));
+//            long timeTag2=new Date().getTime();
+//            logger.info("timeTag3-timeTag1="+(timeTag2-timeTag1));
             return listToObj(newSwipeRecordList,total);
         }
         return null;
@@ -106,12 +106,12 @@ public class SwipeRecordController {
             paramMap.put("result",result);
         }
 //        List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(orderColumn, orderDir, strategy);
-        long timeTag1=new Date().getTime();
+//        long timeTag1=new Date().getTime();
         List<SwipeRecord> swipeRecords = swipeRecordService.listAllWithStrategy(paramMap);
-        long timeTag2=new Date().getTime();
+//        long timeTag2=new Date().getTime();
         Map<String, Object> info = new HashMap<String, Object>();
         if(swipeRecords==null){
-            info.put("pageData",null);
+            info.put("pageData",new ArrayList(0));
             info.put("total",0);
         }else{
             PageUtil<SwipeRecord> pageUtil=new PageUtil<SwipeRecord>(swipeRecords);
@@ -122,8 +122,8 @@ public class SwipeRecordController {
         }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
         long timeTag3=new Date().getTime();
-        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
-        logger.info("timeTag3-timeTag1="+(timeTag3-timeTag1));
+//        logger.info("timeTag2-timeTag1="+(timeTag2-timeTag1));
+//        logger.info("timeTag3-timeTag1="+(timeTag3-timeTag1));
 //        return JSONObject.fromObject(info)+"";//JSON-lib
 //        return jsonUtil.writeObject(info);//Jackson
         return JSON.toJSONString(info);

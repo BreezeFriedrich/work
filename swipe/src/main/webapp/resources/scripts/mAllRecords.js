@@ -1,6 +1,8 @@
 var param;
 var startTime;
 var endTime;
+var pathName=window.document.location.pathname;
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 $(function () {
     date_plugin_init();
     var $table = $("#table-moduleStatus");
@@ -10,7 +12,7 @@ $(function () {
             param = userManage.getQueryCondition(data);
             $.ajax({
                 type: "POST",
-                url: '/moduleStatus/listAllWithStrategy.do',
+                url: projectName+'/moduleStatus/listAllWithStrategy.do',
                 cache: false,  //禁用缓存
                 data: param,  //传入组装的参数
                 dataType: "json",

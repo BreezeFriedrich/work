@@ -15,15 +15,15 @@
     <meta charset="utf-8">
     <title>学习测试DataTables</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="../../../resources/dataTables/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/css/bootstrap.min.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/dataTables/css/jquery.dataTables.css">
     <%--<link rel="stylesheet" type="text/css" href="../../resources/dataTables/css/dataTables.bootstrap.min.css">--%>
-    <script type="text/javascript" src="../../../resources/scripts/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="../../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
-    <script type="text/javascript" src="../../../resources/dataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/dataTables/js/jquery.dataTables.js"></script>
     <%--<script type="text/javascript" src="../../resources/dataTables/js/dataTables.bootstrap.min.js"></script>--%>
-    <script type="text/javascript" src="../../../resources/scripts/sAllRecords.js?ver=1"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/sAllRecords.js?ver=9"></script>
     <script type="text/javascript">
         var rootPath = '${pageContext.request.contextPath}';
     </script>

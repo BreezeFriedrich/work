@@ -33,7 +33,7 @@ public class DataServer {
 //    public void test(){
 //
 //        Properties pro = new Properties();
-//        try (FileInputStream in = new FileInputStream("druid.properties")){
+//        try (FileInputStream in = new FileInputStream("default.properties")){
 //            pro.load(in);
 //            in.close();
 //        } catch (FileNotFoundException e1) {
@@ -75,11 +75,29 @@ public class DataServer {
 //        con.close();
 //    }
 
+    static{
+        String filePath = System.getProperty("user.dir")+ "/conf/default.properties";
+        InputStream in = null;
+        try {
+            in = new BufferedInputStream(new FileInputStream(filePath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Properties pro=new Properties();
+        try {
+            pro.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        port= Integer.parseInt(pro.getProperty("httpServer.port"));
+    }
     private static  final Logger logger = LoggerFactory.getLogger(DataServer.class);
 
-    private static final int port=2017;
+    private static final int port;
 
     public static void main(String[] args) throws IOException, SQLException {
+
+
 
 //        String encodingStr="生态";
 //        String str1=new String(encodingStr.getBytes("utf-8"),"gbk");

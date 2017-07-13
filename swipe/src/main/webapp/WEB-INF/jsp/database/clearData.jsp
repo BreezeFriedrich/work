@@ -10,13 +10,13 @@
 <head>
     <title>clearData</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/css/bootstrap.min.css"/>
     <%--<link rel="stylesheet" href="../../../resources/bootstrapvalidator/css/bootstrapValidator.css"/>--%>
-    <script type="text/javascript" src="../../../resources/scripts/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="../../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <%--<script type="text/javascript" src="../../../resources/bootstrapvalidator/js/bootstrapValidator.js"></script>--%>
-    <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/clearData.js?ver=1"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/clearData.js?ver=9"></script>
 </head>
 <body>
     <div class="panel panel-danger"style="width: 800px;margin: 60px auto 50px;">
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="panel panel-danger"style="width: 800px;margin:30px auto;">
+    <div class="panel panel-danger" style="width: 800px;margin:30px auto;">
         <div class="panel-heading">删除记录:刷卡记录</div>
         <div class="panel-body">
             <form class="form-horizontal" role="form">

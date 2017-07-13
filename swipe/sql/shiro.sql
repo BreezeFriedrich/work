@@ -80,7 +80,7 @@ VALUES('系统管理','admin:*','/admin/**'),
 ('资源增加','resource:add','/admin/resource/add'),
 ('资源删除','resource:delete','/admin/resource/delete'),
 ('资源修改','resource:update','/admin/resource/update'),
-('资源查询','resource:list','/admin/resource/list');
+('资源查询','resource:list','/admin/resource/list'),
 ('数据管理','database:*','/database/**');
 
 

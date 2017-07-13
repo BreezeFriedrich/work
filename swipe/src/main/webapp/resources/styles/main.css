@@ -110,12 +110,14 @@ left*/
 	background-color: #B7D2FF;
 }
 
-.line {
-	height: 2px;
-	width: 100%;
-	background-image: url(../../resources/styles/images/left/line_bg.png);
-	background-repeat: repeat-x;
-}
+/*.line {*/
+	/*height: 2px;*/
+	/*width: 100%;*/
+	/*!*background-image: url(../../resources/styles/images/left/line_bg.png);*!*/
+	/*!*background-image: url(/resources/styles/images/left/line_bg.png);*!*/
+	/*background-image: url(swipe/resources/styles/images/left/line_bg.png);*/
+	/*background-repeat: repeat-x;*/
+/*}*/
 
 /*1级菜单*/
 .leftsidebar dt {

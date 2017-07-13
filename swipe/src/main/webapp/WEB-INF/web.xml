@@ -39,16 +39,16 @@
   </servlet-mapping>
 
   <!--用自定义servlet访问WEB-INF下jsp资源-->
-  <servlet>
-    <servlet-name>dispatcherServlet</servlet-name>
-    <servlet-class>com.yishu.controller.DispatcherServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-    <async-supported>true</async-supported>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>dispatcherServlet</servlet-name>
-    <url-pattern>/dispatcher/*</url-pattern>
-  </servlet-mapping>
+  <!--<servlet>-->
+    <!--<servlet-name>dispatcherServlet</servlet-name>-->
+    <!--<servlet-class>com.yishu.controller.DispatcherServlet</servlet-class>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+    <!--<async-supported>true</async-supported>-->
+  <!--</servlet>-->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>dispatcherServlet</servlet-name>-->
+    <!--<url-pattern>/dispatcher/*</url-pattern>-->
+  <!--</servlet-mapping>-->
 
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>

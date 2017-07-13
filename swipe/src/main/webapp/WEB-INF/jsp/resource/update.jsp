@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>更改权限页面</title>
-        <link href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/css/bootstrap.min.css"/>
     </head>
     <body>
         <div class="container">

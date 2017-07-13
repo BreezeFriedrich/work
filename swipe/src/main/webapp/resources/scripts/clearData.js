@@ -1,3 +1,6 @@
+var pathName=window.document.location.pathname;
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
 var startTime;
 var moduleStatus_endTime;
 var swipeRecord_endTime;
@@ -18,7 +21,7 @@ function retrieveModuleStatus() {
     }else{
         $.ajax({
             type: "POST",
-            url: "/moduleStatus/countByParam.do",
+            url: projectName+"/moduleStatus/countByParam.do",
             data: {"deviceid":moduleStatus_deviceid,"status":status,"endTime":moduleStatus_endTime},
             dataType: "json",
             async: false,
@@ -27,7 +30,7 @@ function retrieveModuleStatus() {
                 if(data1>0 && confirm("您确定删除吗？")){
                     $.ajax({
                         type: "POST",
-                        url: "/moduleStatus/deleteByParam.do",
+                        url: projectName+"/moduleStatus/deleteByParam.do",
                         data: {"deviceid": moduleStatus_deviceid,"status":status,"endTime":moduleStatus_endTime},
                         dataType: "json",
                         async: false,
@@ -57,7 +60,7 @@ function retrieveSwipeRecord() {
     }else{
         $.ajax({
             type: "POST",
-            url: "/swipeRecord/countByParam.do",
+            url: projectName+"/swipeRecord/countByParam.do",
             data: {"deviceid":swipeRecord_deviceid,"result":result,"endTime":swipeRecord_endTime},
             dataType: "json",
             async: false,
@@ -66,7 +69,7 @@ function retrieveSwipeRecord() {
                 if(data1>0 && confirm("您确定删除吗？")){
                     $.ajax({
                         type: "POST",
-                        url: "/swipeRecord/deleteByParam.do",
+                        url: projectName+"/swipeRecord/deleteByParam.do",
                         data: {"deviceid":swipeRecord_deviceid,"result":result,"endTime":swipeRecord_endTime},
                         dataType: "json",
                         async: false,

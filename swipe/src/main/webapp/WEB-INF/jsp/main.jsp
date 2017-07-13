@@ -9,11 +9,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="utf-8">
 		<title>亿数刷卡管理中心</title>
-		<%--<link rel="icon" type="image/x-icon" href="../../resources/styles/images/intellilock.png" />--%>
-		<link rel="stylesheet" type="text/css" href="../../resources/styles/main.css" />
-		<script type="text/javascript" src="../../resources/scripts/component/cookie.js"></script>
-		<script type="text/javascript" src="../../resources/scripts/jquery-3.1.0.min.js"></script>
-		<script type="text/javascript" src="../../resources/scripts/main.js?ver=1"></script>
+		<%--<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/styles/images/intellilock.png" />--%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/main.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/cookie.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery-3.1.0.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/main.js?ver=9"></script>
 		<!-- <script type="text/javascript">
 			//客户端登陆信息检查
 			var user = getCookie("userId");
@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="north" style="height:60px;background:#95b8e7;padding:10px;border: none;clear: both;position: relative;">
 				<div class="header-brand" style="float:left;">
 					<a>
-						<img class="brand-logo" src="" alt="Logo">
+						<%--<img class="brand-logo" src="/resources/styles/images/intellilock.png" alt="Logo">--%>
 					</a>
 				</div>
 				<div id="pagetitle" style="display:inline-block;float:left;width:238px;height:34px;position:absolute;top:50%;left:50%;margin-left:-118px;margin-top:-17px;">亿数刷卡管理中心</div>
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="leftsidebar">
 					<%--<div class="line"></div>--%>
 					<dl class="custom">
-						<dt style="background-image: url(../../resources/styles/images/left/custom.png)">用户管理<img src="../../resources/styles/images/left/select_xl01.png"></dt>
+						<dt style="background-image: url(${pageContext.request.contextPath}/resources/styles/images/left/custom.png)">用户管理<img src="${pageContext.request.contextPath}/resources/styles/images/left/select_xl01.png"></dt>
 						<shiro:hasPermission name="/admin/user/list">
 							<dd class="first_dd">
 								<a onclick=iframe("admin/user/list")>用户列表</a>
@@ -67,24 +67,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</shiro:hasPermission>
 					</dl>
 					<dl class="deviceManage">
-						<dt style="background-image: url(../../resources/styles/images/left/device_manage.png)">模块状态<img src="../../resources/styles/images/left/select_xl01.png"></dt>
+						<dt style="background-image: url(${pageContext.request.contextPath}/resources/styles/images/left/device_manage.png)">模块状态<img src="${pageContext.request.contextPath}/resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("dispatcher/modulestatus/mAllRecords.jsp")>SAM模块状态表</a>
+							<%--<a onclick=iframe("dispatcher/modulestatus/mAllRecords.jsp")>SAM模块状态表</a>--%>
+							<a onclick=iframe("dispatcher/modulestatus/mAllRecords")>SAM模块状态表</a>
 						</dd>
 					</dl>
 					<dl class="statistics">
-						<dt style="background-image: url(../../resources/styles/images/left/statistics.png)">刷卡记录<img src="../../resources/styles/images/left/select_xl01.png"></dt>
+						<dt style="background-image: url(${pageContext.request.contextPath}/resources/styles/images/left/statistics.png)">刷卡记录<img src="${pageContext.request.contextPath}/resources/styles/images/left/select_xl01.png"></dt>
 						<dd class="first_dd">
-							<a onclick=iframe("dispatcher/swiperecord/sAllRecords.jsp")>刷卡记录表</a>
+							<%--<a onclick=iframe("dispatcher/swiperecord/sAllRecords.jsp")>刷卡记录表</a>--%>
+							<a onclick=iframe("dispatcher/swiperecord/sAllRecords")>刷卡记录表</a>
 						</dd>
 						<dd>
-							<a onclick=iframe("dispatcher/swiperecord/sAnalyseByInterval.jsp")>时间段分析</a>
+							<%--<a onclick=iframe("dispatcher/swiperecord/sAnalyseByInterval.jsp")>时间段分析</a>--%>
+							<a onclick=iframe("dispatcher/swiperecord/sAnalyseByInterval")>时间段分析</a>
 						</dd>
 						<dd>
-							<a onclick=iframe("dispatcher/swiperecord/sAnalyseByDay.jsp")>单日分析</a>
+							<%--<a onclick=iframe("dispatcher/swiperecord/sAnalyseByDay.jsp")>单日分析</a>--%>
+							<a onclick=iframe("dispatcher/swiperecord/sAnalyseByDay")>单日分析</a>
 						</dd>
 						<dd>
-							<a onclick=iframe("dispatcher/swiperecord/sChart.jsp")>成功率饼图</a>
+							<%--<a onclick=iframe("dispatcher/swiperecord/sChart.jsp")>成功率饼图</a>--%>
+							<a onclick=iframe("dispatcher/swiperecord/sChart")>成功率饼图</a>
 						</dd>
 					</dl>
 				</div>

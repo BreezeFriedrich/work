@@ -1,7 +1,13 @@
+var pathName=window.document.location.pathname;
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
 $(".leftsidebar dt ").css({
 	"background-color": "rgb(178.197.258)"
 });
-$(".leftsidebar dt img").attr("src", "../../resources/styles/images/left/select_xl01.png");
+
+// $(".leftsidebar dt img").attr("src", "${pageContext.request.contextPath}/resources/styles/images/left/select_xl01.png");
+//!!!该处src路径正确,是因为JSP加载时处理了该EL表达式;而后面js函数中的EL表达式,在JSP初始化时并没用触发处理.
+$(".leftsidebar dt img").attr("src", projectName+"/resources/styles/images/left/select_xl01.png");
 
 $(function () {
 	leftsideBarInit();
@@ -34,8 +40,9 @@ function leftsideBarInit() {
 			"background-color": "rgb(178.197.255)"
 		});
 		$(this).parent().find('dd').removeClass("menu_option");
-		$(".leftsidebar dt img").attr("src", "../../resources/styles/images/left/select_xl01.png");
-		$(this).parent().find('img').attr("src", "../../resources/styles/images/left/select_xl.png");
+		// $(".leftsidebar dt img").attr("src", "../../resources/styles/images/left/select_xl01.png");
+        $(".leftsidebar dt img").attr("src", projectName+"/resources/styles/images/left/select_xl01.png");
+		$(this).parent().find('img').attr("src", projectName+"/resources/styles/images/left/select_xl.png");
 		$(".menu_option").slideUp();
 		$(this).parent().find('dd').slideToggle();
 		$(this).parent().find('dd').addClass("menu_option");

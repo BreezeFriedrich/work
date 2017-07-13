@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 
 /**
  * Created by admin on 2017/5/17.
@@ -16,8 +17,10 @@ public class HttpUtil {
 
     public static String postData(String data){
         String ip="127.0.0.1";
+
 //        logger.info(ip);
-        URL url;
+        URL url=null;
+
         HttpURLConnection httpURLConnection=null;
         OutputStream outputStream=null;
         DataOutputStream dataOutputStream=null;
@@ -29,7 +32,7 @@ public class HttpUtil {
         StringBuffer strBuffer=new StringBuffer();
         try {
             url=new URL("http://"+ip+":2017/?characterEncoding=utf8&useSSL=false");
-//            logger.info("#CON      ~ "+String.valueOf(url));
+            logger.info("#CON      ~ "+String.valueOf(url));
 //            logger.info("Https");
             httpURLConnection= (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");

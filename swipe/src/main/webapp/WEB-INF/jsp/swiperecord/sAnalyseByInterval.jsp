@@ -11,15 +11,15 @@
     <title>Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="../../../resources/bootstrap-3.3.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../resources/dataTables/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="../../../resources/styles/common.css"/>
-    <script type="text/javascript" src="../../../resources/scripts/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="../../../resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/echarts.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/component/laydate/laydate.js"></script>
-    <script type="text/javascript" src="../../../resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="../../../resources/scripts/sAnalyseByInterval.js?ver=1"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/dataTables/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/common.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/echarts.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/laydate/laydate.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/dataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/sAnalyseByInterval.js?ver=9"></script>
 </head>
 <body>
 <div class="container-fluid">

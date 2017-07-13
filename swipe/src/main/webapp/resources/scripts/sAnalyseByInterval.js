@@ -1,3 +1,6 @@
+var pathName=window.document.location.pathname;
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
 var startTime;
 var endTime;
 var mode;
@@ -52,7 +55,7 @@ function refreshData(){
 
         $.ajax({
             type:"POST",
-            url:"/swipeRecord/listByTimezoneToMainChart1.do",
+            url:projectName+"/swipeRecord/listByTimezoneToMainChart1.do",
             data:{mode:mode,startTime:startTime,endTime:endTime},
             dataType:"json",
             async:false,
@@ -88,7 +91,7 @@ function refreshData(){
 
         $.ajax({
             type:"POST",
-            url:"/swipeRecord/listByTimezoneToMainChart2.do",
+            url:projectName+"/swipeRecord/listByTimezoneToMainChart2.do",
             data:{startTime:startTime,endTime:endTime},
             dataType:"json",
             async:false,
@@ -460,7 +463,7 @@ function create_table() {
                 //console.log(param);
                 $.ajax({
                     type: "POST",
-                    url: '/swipeRecord/listByTimezoneWhenFail.do',
+                    url: projectName+'/swipeRecord/listByTimezoneWhenFail.do',
                     cache: false,  //禁用缓存
                     data: param,  //传入组装的参数
                     dataType: "json",
