@@ -49,12 +49,14 @@
       <version>${org.slf4j-version}</version>
     </dependency>
     <dependency>
+      <!--log4j1转slf4j-->
       <groupId>org.slf4j</groupId>
       <artifactId>log4j-over-slf4j</artifactId>
       <version>${org.slf4j-version}</version>
     </dependency>
     <dependency>
       <!-- JUL需要额外执行一行初始化代码SLF4JBridgeHandler.install();// jul to slf4j -->
+      <!--jdk-logging转slf4j-->
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
       <version>${org.slf4j-version}</version>

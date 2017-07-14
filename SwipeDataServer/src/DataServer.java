@@ -76,10 +76,11 @@ public class DataServer {
 //    }
 
     static{
-        String filePath = System.getProperty("user.dir")+ "/conf/default.properties";
+        String jarPath=System.getProperty("java.class.path");
+        String propertiesPath = jarPath.substring(0,jarPath.indexOf("/SwipeDataServer/")+17)+ "conf/default.properties";
         InputStream in = null;
         try {
-            in = new BufferedInputStream(new FileInputStream(filePath));
+            in = new BufferedInputStream(new FileInputStream(propertiesPath));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -217,7 +218,6 @@ class MyHandler implements HttpHandler{
         JsonNode node=objectMapper.readTree(reqData);
         int sign=node.get("sign").asInt();
         logger.info("sign:"+String.valueOf(sign));
-
 
         Iterator it=null;
         int countNum=0;

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.DeviceStatusDao">
 
     <insert id="add" parameterType="DeviceStatus">
@@ -120,12 +118,3 @@
     </delete>
 
 </mapper>
-        <!--Integer add(DeviceStatus deviceStatus);-->
-        <!--Integer update(DeviceStatus deviceStatus);-->
-        <!--Integer deleteByTime(String endTime);-->
-        <!--Integer deleteByDeiviceid(String deviceid);-->
-        <!--List<DeviceStatus> listByDeviceid(String deviceid);-->
-        <!--List<DeviceStatus> listByStatus(int status);-->
-
-        <!--List<DeviceStatus> listAllWithoutDuplicate();-->
-        <!--Integer discardDuplicate();-->
