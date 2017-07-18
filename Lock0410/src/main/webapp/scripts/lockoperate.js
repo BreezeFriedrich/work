@@ -7,7 +7,7 @@ $(function(){
 	}else{
 		ownerPhoneNumber="18255683932"
 	}
-})
+});
 //function loadCombotree(){
 //	$('#lockoperate_combotree').combotree({
 //		url:'lockoperate/findDeviceTree.do?ownerPhoneNumber='+ownerPhoneNumber,
@@ -71,8 +71,8 @@ function doSearch(){
 				varUrl='lockoperate/findByTimeOnPage.do';
 				doPagi(data,varUrl)
 			}
-		});		
-	}	
+		});
+	}
 }
 
 //函数doPagi的arguments[0]为data，arguments[1]为varUrl
@@ -98,72 +98,3 @@ function dateLongFormat(f){
 	var now=y+(m<10?('0'+m):m)+(d<10?('0'+d):d);
 	return now;	
 }
-//验证规则---------------------------------------------------------------------------------------------------------------------
-$.extend($.fn.validatebox.defaults.rules, {
-//    lockPwd : {
-//        validator : function(value, param) {
-//            return value == $(param[0]).val();
-//        },
-//        message : '密码格式不正确'
-//    },
-    lockPwd : {
-        validator : function(value, param) {
-            return /^([A-Za-z\d_]{4,11})?$/i.test(trim(value));
-        },
-        message : '密码格式不正确'
-    },
-    cardNumb : {// 验证身份证
-        validator : function(value) {
-            return /^\d{15}(\d{2}[A-Za-z0-9])?$/i.test(trim(value));//trim()自定义的
-        },
-        message : '身份证号码格式不正确'
-    },
-    minLength: {
-        validator: function(value, param){
-            return value.length >= param[0];
-        },
-        message: '请输入至少（2）个字符.'
-    },
-    length:{validator:function(value,param){
-        var len=$.trim(value).length;
-            return len>=param[0]&&len<=param[1];
-        },
-        message:"输入内容长度必须介于{0}和{1}之间."
-    },
-    mobile : {// 验证手机号码
-        validator : function(value) {
-            return /^(13|15|18)\d{9}$/i.test(value);
-        },
-        message : '手机号码格式不正确'
-    },
-    intOrFloat : {// 验证整数或小数
-        validator : function(value) {
-            return /^\d+(\.\d+)?$/i.test(value);
-        },
-        message : '请输入数字，并确保格式正确'
-    },
-    integer : {// 验证整数
-        validator : function(value) {
-            return /^[-]?[1-9]+\d*$/i.test(value);//[+]--->[-]
-        },
-        message : '请输入整数'
-    },
-    chinese : {// 验证中文
-        validator : function(value) {
-            return /^[\Α-\￥]+$/i.test(value);
-        },
-        message : '请输入中文'
-    },
-    english : {// 验证英语
-        validator : function(value) {
-            return /^[A-Za-z]+$/i.test(value);
-        },
-        message : '请输入英文'
-    },
-    unnormal : {// 验证是否包含空格和非法字符
-        validator : function(value) {
-            return /.+/i.test(value);
-        },
-        message : '输入值不能为空和包含其他非法字符'
-    }
-});

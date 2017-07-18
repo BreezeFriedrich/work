@@ -44,10 +44,10 @@ $(function () {
 			    	if(text=='开锁授权'){
 //			    		alert(text+' is selected');
 			    		showDevices();
-			    	}			        
+			    	}
 			    }
 			});
-		} else {			
+		} else {
 			$('#tabs').tabs('add', {
 				title : text,
 				closable : true,

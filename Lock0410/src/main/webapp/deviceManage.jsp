@@ -59,14 +59,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="float:left;width:400px;height:250px;position:relative;">
 					<div style="width:200px;height:250px;position:absolute;top:50%;left:50%;margin-top:-100px;margin-left:-100px;cursor:pointer;border:2px;" onclick="javascript:certiUnlockAuthBt()">
 						<!-- <input class="button" type="button" value="添加开锁身份证" style="background: #95b8e7;width:160px;height:100px;position:absolute;top:50%;left:50%;margin-left:-80px;margin-top:-50px;" onclick="javascript:certiUnlockAuthBt()"> -->
-						<div style="padding:15px 25px;background-color:ffda9c;width:200px;height:200px">
+						<div style="padding:15px 25px;background-color:#ffda9c;width:200px;height:200px">
 							<input type="image" name="imageBtn" src="styles/images/certiAuthBtn2.png" />
-						</div>						
-						<div class="imgBtnDesc" style="width:200px;height:50px;font-size:15px;text-align:middle;vertical-align:center">添加身份证开锁</div>
+						</div>
+						<div class="imgBtnDesc" style="width:200px;height:50px;font-size:15px;text-align:center;vertical-align:center">添加身份证开锁</div>
 					</div>
 				</div>
 				<div style="float:left;width:400px;height:250px;position:relative;">
-					<div style="width:200px;height:200px;position:absolute;top:50%;left:50%;margin-top:-100px;margin-left:-100px;cursor:pointer;border:2px;" onclick="javascript:pwdUnlockAuthBt()">						
+					<div style="width:200px;height:200px;position:absolute;top:50%;left:50%;margin-top:-100px;margin-left:-100px;cursor:pointer;border:2px;" onclick="javascript:pwdUnlockAuthBt()">
 						<!-- <input class="button" type="button" value="添加开锁密码" style="background: #95b8e7;width:160px;height:100px;position:absolute;top:50%;left:50%;margin-left:-80px;margin-top:-50px;" onclick="javascript:pwdUnlockAuthBt()"> -->
 						<input type="image" name="imageBtn" src="styles/images/pwdAuthBtn.png" />
 						<div class="imgBtnDesc" style="width:200px;height:30px;font-size:25px;">添加密码开锁</div>
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="certiUnlockAuth" style="border:#95b8e7 2px;width:200px;height:280px;display:none;position:absolute;top:50%;left:50%;margin-left:-100px;margin-top:-140px;">
 				<table style="margin:8px auto;">
 					<tr><td><label>添加姓名:</label></td></tr>
-					<tr><td><input class="easyui-textbox" id="LockAuthName" style="width:170px;height:30px;" data-options="required:true,prompt:'请输入开锁人姓名',validType:['chinese','length[1,10]'],invalidMessage:'姓名输入错误'"></td></tr>
+					<tr><td><input class="easyui-textbox" id="LockAuthName" style="width:170px;height:30px;" data-options="required:true,prompt:'请输入开锁人姓名',validType:['chineseName'],invalidMessage:'姓名输入错误(仅中文和·)'"></td></tr>
 					<tr><td><label>添加开锁身份证:</label></td></tr>
 					<!-- background-color: rgb(255,​ 243,​ 243);border: 1px solid rgb(255,​ 168,​ 168);border-radius: 5px;margin: 0;overflow: hidden;padding: 0;vertical-align: middle;white-space: nowrap;" -->
 					<tr><td><input class="easyui-textbox" id="CertAuthTxt" 	style="width:170px;height:30px;" data-options="required:true,prompt:'请输入开锁身份证',validType:['cardNumb'],invalidMessage:'身份证输入错误'"></td></tr>
@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="pwdUnlockAuth" style="border:#95b8e7 2px;width:200px;height:280px;display:none;position:absolute;top:50%;left:50%;margin-left:-100px;margin-top:-140px;">
 				<table style="margin:40px auto;">
 					<tr><td><label>添加开锁密码:</label></td></tr>
-					<tr><td><input class="easyui-textbox" id="PwdAuthTxt" style="width:170px;height:30px" data-options="required:true,prompt:'请输入开锁密码',validType:['lockPwd'],invalidMessage:'密码输入错误'"></td></tr>
+					<tr><td><input class="easyui-textbox" id="PwdAuthTxt" style="width:170px;height:30px" data-options="required:true,prompt:'请输入开锁密码',validType:['lockPwd'],invalidMessage:'密码输入错误(4~11位字母、数字、下划线)'"></td></tr>
 					<tr><td><label>生效时间:</label></td></tr>
 					<tr><td><input class="easyui-datetimebox" id="pwdAuthDialogST" sharedCalendar="#sc" data-options="required:true,showSeconds:false" style="width:170px"></td></tr>
 					<tr><td><label>失效时间:</label></td></tr>

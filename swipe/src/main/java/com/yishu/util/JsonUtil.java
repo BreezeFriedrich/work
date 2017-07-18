@@ -106,7 +106,7 @@ public class JsonUtil {
         //即writeTree最终将JSON输出到流,由流StringWriter输出为String对象却存在数据叠加问题.
 
     public String writeTreeToString(HashMap map){
-        logger.info("map",map.toString());
+//        logger.info("map",map.toString());
         stringWriter.flush();
         data=null;
         Iterator it=map.entrySet().iterator();
@@ -143,7 +143,7 @@ public class JsonUtil {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        logger.info("data:",data);
+//        logger.info("data:",data);
         return data;
     }
 

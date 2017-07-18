@@ -6,11 +6,11 @@ var cardNumb;
 var unlockData;
 var today;
 var newDate;
-$(function(){	
+$(function(){
 	validOwnerPhoneNumber();
 })
 function showDevices(){
-	var jsonResult=null;	
+	var jsonResult=null;
 	$.ajax({
 		type:"POST",
 		url:"deviceManage/getDeviceInfo.do",
@@ -57,12 +57,12 @@ function showDevices(){
 //         gateway.text = data[i].text;
 		gateway.appendChild(lockUl);
 		j=0;
-		while(j<data[i].lockLists.length){			
+		while(j<data[i].lockLists.length){
 			lockData=data[i].lockLists[j];
-			lock=document.createElement("li");        	 
+			lock=document.createElement("li");
 			lock.style.cssText="list-style:outside url('styles/images/doorlock.png')";
 			lockEntity=document.createElement("p");
-			lockEntity.innerText=lockData.lockName+','+lockData.lockCode;			
+			lockEntity.innerText=lockData.lockName+','+lockData.lockCode;
 			lockEntity.setAttribute("class","lock");
 			lockEntity.style.cssText="line-height:30px;font-size:26px;cursor:pointer";
 			lock.appendChild(lockEntity);
@@ -105,12 +105,12 @@ function open(){
             				alert('find!'+theGateway.gatewayName+';'+theLock.lockName);
             			}
             		}
-            	};            	
+            	};
             	unlockData=getAuthInfo(theGateway.gatewayCode,theLock.lockCode,unlockData);
             	document.getElementById("LockInfo").innerHTML="<p>网关: "+theGateway.gatewayName+","+theGateway.gatewayCode+"<br/>门锁: "+theLock.lockName+","+theLock.lockCode+"<br/>"+"<br/>"+unlockData+"</p>";
             	
             	$('#dd').dialog("open");
-            };            	
+            };
 		})(k)
     }
 */	
@@ -136,7 +136,7 @@ function open(){
 //            	document.getElementById("LockInfo").innerHTML="<p>网关: "+theGateway.gatewayName+","+theGateway.gatewayCode+"<br/>门锁: "+theLock.lockName+","+theLock.lockCode+"<br/>"+"<br/>"+unlockData+"</p>";
             	initAuth();
             	
-            };            	
+            };
 		})(k)
     }
 }
@@ -252,7 +252,6 @@ function pwdUnlockAuthBt(){
 }
 function certiUnlockAuthor(){
 	getQueryParam(true);
-	alert('validName:'+validName());
 //	alert('LockAuthName.getValue:'+($('#LockAuthName').textbox('getValue')));
 //	alert('LockAuthName!=null:'+($('#LockAuthName').textbox('getValue')!=null));
 //	alert('LockAuthName为空值=:'+($('#LockAuthName').textbox('getValue')==''));
@@ -301,7 +300,7 @@ function pwdUnlockAuthor(){
 	}else{
 		$.messager.alert('输入错误','输入信息未通过验证!','error');
 	}
-	destroyParam(false);	
+	destroyParam(false);
 }
 function initAuth(){
 	today = new Date();
@@ -315,7 +314,7 @@ function initAuth(){
         	document.getElementById("theGateway").innerText='网关:'+theGateway.gatewayCode;
         	document.getElementById("theLock").innerText='门锁:'+theLock.lockCode;
         	document.getElementById("lockLoc").innerText='位置:'+theLock.lockLocation;
-        },
+        }
 	});
 }
 function cancelAuth(){
@@ -356,7 +355,7 @@ function cancelAuth(){
 		});
 	}
 	$('#cancelAuthdg').datagrid('clearSelections');
-};
+}
 function getQueryParam(flag){
 	if(flag){//flag==true-->certiAuthDiagTime;flag==false-->pwdAuthDiagTime
 		startTime=dateFormat($('#certiAuthDialogST').datetimebox('getValue'));
@@ -368,7 +367,7 @@ function getQueryParam(flag){
 }
 function destroyParam(flag){
 	if(flag){//flag==true-->certiAuthDiagTime;flag==false-->pwdAuthDiagTime
-		dateFormat($('#certiAuthDialogST').datetimebox('setValue',dateFormat(today)));//setText,setVal		
+		dateFormat($('#certiAuthDialogST').datetimebox('setValue',dateFormat(today)));//setText,setVal
 		dateFormat($('#certiAuthDialogET').datetimebox('setValue',dateFormat(newDate)));
 //		$('#CertAuthTxt').val('');
 		$('#CertAuthTxt').textbox('setValue','');
@@ -418,26 +417,43 @@ function validPassword(){
 	}
 }
 function validName(){
+    name=null;
+    if(($('#LockAuthName').textbox('getValue'))){
+        tempName=trim($('#LockAuthName').textbox('getValue'));
+        if(isLegalName(tempName)){
+            name=tempName;
+            return true;
+        }else return false;
+    }else {return false;}
+}
+function isLegalName(name){
+    if (name.indexOf("·")>0 || name.indexOf("•")>0){
+        if (name.match("^[\\u4e00-\\u9fa5]+[·•][\\u4e00-\\u9fa5]+$")){
+            return true;
+        }else {
+            return false;
+        }
+    }else {
+        if (name.match("^[\\u4e00-\\u9fa5]+$")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+}
+/*
+function validName(){
 	name=null;
-//	regName=/^[\u4e00-\u9fa5]{1,10}$/;//1~10个中文字符.
-	var regName = new RegExp("[\\u4E00-\\u9FFF]+","g");
-	alert('LockAuthName:'+$('#LockAuthName').textbox('getValue'));
-	if(!($('#LockAuthName').textbox('getValue'))){
+	var regName = new RegExp("[\\u4E00-\\u9FFF]+");
+	if(($('#LockAuthName').textbox('getValue'))){
 		tempName=trim($('#LockAuthName').textbox('getValue'));
 		if(regName.test(tempName)){
 			name=tempName;
-			alert('regName.test(tempName):'+regName.test(tempName));
 			return true;
 		}else return false;
 	}else {return false;}
-	alert('name:'+name);
-//	if(typeof name==null){
-//		alert('name:'+name);
-//		return true;
-//	}else{
-//		return false;
-//	}
 }
+*/
 function validOwnerPhoneNumber(){
 	ownerPhoneNumber=null;
 	regPhone=/^(13|15|18)\d{9}$/;
@@ -447,7 +463,7 @@ function validOwnerPhoneNumber(){
 			ownerPhoneNumber=tempNum;
 		}
 	}
-	if(ownerPhoneNumber){		
+	if(ownerPhoneNumber){
 		return true;
 	}else{
 		ownerPhoneNumber='18255683932';
@@ -457,7 +473,8 @@ function validOwnerPhoneNumber(){
 function validCardNumb(){
 	tempId=$('#CertAuthTxt').textbox('getValue');
 	//15位和18位身份证号码的正则表达式
-	var regCardNumb=/(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)/;
+	// var regCardNumb=/(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)/;
+    var regCardNumb=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
 	//如果通过该验证，说明身份证格式正确，但准确性还需计算
 	if(regCardNumb.test(tempId)){
 //		if(tempId.length==18){
@@ -493,3 +510,79 @@ function validCardNumb(){
 		return false;
 	}
 }
+
+//验证规则---------------------------------------------------------------------------------------------------------------------
+$.extend($.fn.validatebox.defaults.rules, {
+//    lockPwd : {
+//        validator : function(value, param) {
+//            return value == $(param[0]).val();
+//        },
+//        message : '密码格式不正确'
+//    },
+    lockPwd : {
+        validator : function(value, param) {
+            return /^([A-Za-z\d_]{4,11})?$/i.test(trim(value));
+        },
+        message : '密码格式不正确(仅字母、数字、下划线)'
+    },
+    cardNumb : {// 验证身份证
+        validator : function(value) {
+            return /^\d{15}(\d{2}[A-Za-z0-9])?$/i.test(trim(value));//trim()自定义的
+        },
+        message : '身份证号码格式不正确'
+    },
+    chineseName : {// 验证中文
+        validator : function(value) {
+            return isLegalName(value);
+        },
+        message : '姓名输入错误(仅中文和·)'
+    },
+    minLength: {
+        validator: function(value, param){
+            return value.length >= param[0];
+        },
+        message: '请输入至少（2）个字符.'
+    },
+    length:{validator:function(value,param){
+        var len=$.trim(value).length;
+        return len>=param[0]&&len<=param[1];
+    },
+        message:"输入内容长度必须介于{0}和{1}之间."
+    },
+    mobile : {// 验证手机号码
+        validator : function(value) {
+            return /^(13|15|18)\d{9}$/i.test(value);
+        },
+        message : '手机号码格式不正确'
+    },
+    intOrFloat : {// 验证整数或小数
+        validator : function(value) {
+            return /^\d+(\.\d+)?$/i.test(value);
+        },
+        message : '请输入数字，并确保格式正确'
+    },
+    integer : {// 验证整数
+        validator : function(value) {
+            return /^[-]?[1-9]+\d*$/i.test(value);//[+]--->[-]
+        },
+        message : '请输入整数'
+    },
+    chinese : {// 验证中文
+        validator : function(value) {
+            return /^[\Α-\￥]+$/i.test(value);
+        },
+        message : '请输入中文'
+    },
+    english : {// 验证英语
+        validator : function(value) {
+            return /^[A-Za-z]+$/i.test(value);
+        },
+        message : '请输入英文'
+    },
+    unnormal : {// 验证是否包含空格和非法字符
+        validator : function(value) {
+            return /.+/i.test(value);
+        },
+        message : '输入值不能为空和包含其他非法字符'
+    }
+});

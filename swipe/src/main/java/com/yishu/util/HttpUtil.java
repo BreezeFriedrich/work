@@ -15,8 +15,26 @@ import java.util.Properties;
 public class HttpUtil {
     private static final Logger logger= LoggerFactory.getLogger(HttpUtil.class);
 
+    private static final String urlStr;
+    static{
+        String propertiesPath = "/home/qixu/prods/swipe/swipe.properties";
+        InputStream in = null;
+        try {
+            in = new BufferedInputStream(new FileInputStream(propertiesPath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Properties pro=new Properties();
+        try {
+            pro.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        urlStr=pro.getProperty("httpServer.url");
+    }
+
     public static String postData(String data){
-        String ip="127.0.0.1";
+//        String ip="127.0.0.1";
 
 //        logger.info(ip);
         URL url=null;
@@ -31,8 +49,9 @@ public class HttpUtil {
         String line=null;
         StringBuffer strBuffer=new StringBuffer();
         try {
-            url=new URL("http://"+ip+":2017/?characterEncoding=utf8&useSSL=false");
-            logger.info("#CON      ~ "+String.valueOf(url));
+//            url=new URL("http://"+ip+":2017/?characterEncoding=utf8&useSSL=false");
+            url=new URL(urlStr);
+//            logger.info("#CON      ~ "+String.valueOf(url));
 //            logger.info("Https");
             httpURLConnection= (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");

@@ -36,7 +36,7 @@ public class SwipeRecordController {
     @RequestMapping("/listAll.do")
     @ResponseBody
     public String listAll(HttpServletRequest request){
-        logger.info("#CTL      ~ listAll");
+//        logger.info("#CTL      ~ listAll");
         int limit= Integer.parseInt(request.getParameter("limit"));
         int page= Integer.parseInt(request.getParameter("page"));
 //        int start= Integer.parseInt(request.getParameter("start"));

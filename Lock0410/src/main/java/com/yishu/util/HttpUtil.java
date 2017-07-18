@@ -56,6 +56,7 @@ public class HttpUtil {
 
     public static String postData(String data){
     	String ip=HttpUtil.getIp();
+    	logger.info("postdata:"+data);
     	String infos=HttpUtil.postData(data, ip);
         logger.info(ip);
         logger.info(infos);

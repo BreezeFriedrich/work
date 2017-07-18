@@ -103,7 +103,7 @@ public class ModuleServiceImpl implements ModuleService {
 
         deviceStatusList=getDataListFromJson(getdata);
         if(deviceStatusList.size()>0){
-            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
+//            logger.info("deviceStatusList:"+String.valueOf(deviceStatusList));
             return deviceStatusList;
         }
         return null;

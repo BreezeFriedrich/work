@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
         <meta charset="utf-8">
         <title>亿数漫行智能锁</title>
-		<link rel='icon' href='styles/images/intellilock.png ' type=‘image/x-icon’ />
+		<%--<link rel='icon' href='styles/images/intellilock.png ' type=‘image/x-icon’ />--%>
 		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
 		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
 		<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css"/>
@@ -19,8 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 		<script type="text/javascript" src="scripts/cookie_util.js"></script>
 		<script type="text/javascript" src="scripts/main.js"></script>
-		<script type="text/javascript" src="scripts/lockoperate.js"></script>
-		<script type="text/javascript" src="scripts/device-manage.js"></script>
+		<script type="text/javascript" src="scripts/lockoperate.js?ver=1"></script>
+		<script type="text/javascript" src="scripts/device-manage.js?ver=18"></script>
 		<!-- <script type="text/javascript">
 			//客户端登陆信息检查
 			var user = getCookie("userId");
@@ -50,9 +50,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div data-options="region:'north',border:false" style="height:60px;background:#95b8e7;padding:10px">
 			<div class="header-brand" style="float:left;">
-                <a>
+                <!--<a>
                 	<img class="brand-logo" src="" alt="Logo">
-                </a>
+                </a>-->
             </div>
             <div id="pagetitle" style="display:inline-block;float:left;width:238px;height:34px;position:absolute;top:50%;left:50%;margin-left:-118px;margin-top:-17px;">漫行智能锁管理系统</div>
             <div class="header-menu" style="float:right;display:inline-block;">
@@ -70,9 +70,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
-		<div data-options="region:'east',split:true,collapsed:true,title:'帮助'" style="width:100px;padding:10px;">
-			<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>
-		</div>
+		<%--<div data-options="region:'east',split:true,collapsed:true,title:'帮助'" style="width:100px;padding:10px;">--%>
+			<%--<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>--%>
+		<%--</div>--%>
 		<div data-options="region:'south',border:false" style="height:50px;background:#95b8e7;padding:10px;color:#7F93AD;font-size:14px;">©2015-2016 南京亿数信息科技有限公司 版权所有</div>
 		<div data-options="region:'center',title:'详情'">
 			<div class="easyui-tabs" data-options="fit:true,border:false,plain:true" id="tabs">

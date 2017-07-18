@@ -13,14 +13,18 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DeviceUtil {
+	private static final Logger logger= LoggerFactory.getLogger(DeviceUtil.class);
+
 	public static String getDeviceInfo(String ownerPhoneNumber) {
 //		String ip="112.25.233.122";
 		int sign=16;
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
 		String result=HttpUtil.postData(data);
-		System.out.print("util-DeviceInfo"+result);
+		logger.info("util-DeviceInfo"+result);
 	//覆盖数据，测试用
 		return result;
 	}
@@ -33,7 +37,7 @@ public class DeviceUtil {
 		String pwdPostData=" {\"sign\":\""+20+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
 		String certiResult=HttpUtil.postData(certiPostData);
 		String pwdResult=HttpUtil.postData(pwdPostData);
-		System.out.print("Util-UnlockAccount:"+certiResult+';'+pwdResult);
+		logger.info("Util-UnlockAccount:"+certiResult+';'+pwdResult);
 		
 		JsonGenerator jsonGenerator=null;
 		ObjectMapper objectMapper=new ObjectMapper();
@@ -93,7 +97,6 @@ public class DeviceUtil {
 				authList.add(newPwdMap);
 			}
 		}
-		System.out.println(authList.size());
 		LinkedHashMap authMap=new LinkedHashMap();
 		authMap.put("totals", authList.size());
 		authMap.put("rows", authList);
@@ -139,19 +142,13 @@ public class DeviceUtil {
 	}
 	
 	public static String doCertiAuth(String ownerPhoneNumber,String gatewayCode, String lockCode,String name,String cardNumb,String startTime,String endTime) {
-		String GBKname="";
-		try {
-			GBKname = new String(name.getBytes("utf-8"),"GBK");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 //		String ip="112.25.233.122";
 		int sign=18;
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
 		String timetag=simpleDateFormat.format(new Date());
 		long num=(long) Math.floor(Math.random()*10000000);
 		String serviceNumb=timetag+ownerPhoneNumber+String.valueOf(num);
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"name\":\""+GBKname+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"timetag\":\""+timetag+"\"}";
 		System.out.println("util-doCertiAuth-data:"+data);
 		String result=HttpUtil.postData(data);
 		return result;
@@ -165,7 +162,7 @@ public class DeviceUtil {
 		long num=(long) Math.floor(Math.random()*10000000);
 		String serviceNumb=timetag+ownerPhoneNumber+String.valueOf(num);
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"password\":\""+password+"\",\"dnCode\":\"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"timetag\":\""+timetag+"\"}";
-		System.out.println("util-doCertiAuth-data:"+data);
+		logger.info("util-doCertiAuth-data:"+data);
 		String result=HttpUtil.postData(data);
 		return result;
 	}
@@ -177,9 +174,9 @@ public class DeviceUtil {
 		String timetag=simpleDateFormat.format(new Date());
 		long num=(long) Math.floor(Math.random()*10000000);
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"cardNumb\":\""+cardNumb+"\",\"timetag\":\""+timetag+"\"}";
-		System.out.println("util-doCertiCancelAuth-data:"+data);
+		logger.info("util-doCertiCancelAuth-data:"+data);
 		String result=HttpUtil.postData(data);
-		System.out.println("util-doCertiCancelAuth-result:"+result);
+		logger.info("util-doCertiCancelAuth-result:"+result);
 		return result;
 	}
 	
@@ -189,7 +186,7 @@ public class DeviceUtil {
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
 		String timetag=simpleDateFormat.format(new Date());
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"gatewayCode\":\""+gatewayCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-		System.out.println("util-doPwdCancelAuth-data:"+data);
+		logger.info("util-doPwdCancelAuth-data:"+data);
 		String result=HttpUtil.postData(data);
 		return result;
 	}

@@ -92,7 +92,8 @@
                     </table>
                     --%>
                     <span>©2015-2016 南京亿数信息科技有限公司 版权所有</span>
-                    <span>Contact us：<a href="https://www.yishutech.com">https://www.yishutech.com</a> </span>
+                    <%--<span>Contact us：<a href="https://www.yishutech.com">https://www.yishutech.com</a> </span>--%>
+                    <span>欢迎反馈软件问题,email：<a>geysererupt@163.com</a> </span>
                 </div>
             </div>
         </div>

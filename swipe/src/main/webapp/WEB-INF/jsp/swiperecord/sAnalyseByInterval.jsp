@@ -47,9 +47,9 @@
                                 <input type="radio" name="swipeRecord_options" id="swipeRecord_option1" value="0"
                                        checked/>日
                             </label>
-                            <label class="checkbox-inline">
-                                <input type="radio" name="swipeRecord_options" id="swipeRecord_option2" value="1"/>周
-                            </label>
+                            <%--<label class="checkbox-inline">--%>
+                                <%--<input type="radio" name="swipeRecord_options" id="swipeRecord_option2" value="1"/>周--%>
+                            <%--</label>--%>
                             <label class="checkbox-inline">
                                 <input type="radio" name="swipeRecord_options" id="swipeRecord_option3" value="2"/>月
                             </label>

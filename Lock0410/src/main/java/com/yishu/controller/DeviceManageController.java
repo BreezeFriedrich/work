@@ -71,12 +71,6 @@ public class DeviceManageController {
 		String gatewayCode=request.getParameter("gatewayCode");
 		String lockCode=request.getParameter("lockCode");
 		String name=request.getParameter("name");
-		try {
-			name=new String(name.getBytes(),"GBK");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		String cardNumb=request.getParameter("cardNumb");
 		String startTime=request.getParameter("startTime");
 		String endTime=request.getParameter("endTime");

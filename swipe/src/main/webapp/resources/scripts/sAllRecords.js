@@ -98,6 +98,8 @@ $(function () {
     $("#btn_search").click(function () {
         _table.draw();
     });
+
+    /*
     //行点击事件
     $("tbody", $table).on("click", "tr", function (event) {
         $(this).addClass("active").siblings().removeClass("active");
@@ -129,6 +131,7 @@ $(function () {
         var column = _table.column($(this).attr('data-column'));
         column.visible(!column.visible());
     });
+    */
 
 });
 
