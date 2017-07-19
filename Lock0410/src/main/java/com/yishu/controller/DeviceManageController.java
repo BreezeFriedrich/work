@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yishu.service.DeviceService;
-@ContextConfiguration(locations = { "/spring.xml" })
+@ContextConfiguration(locations = {"/spring.xml"})
 @Controller
 @RequestMapping("/deviceManage")
 public class DeviceManageController {
@@ -24,6 +24,15 @@ public class DeviceManageController {
 	public String getDeviceTreeNode(HttpServletRequest request){
 		String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
 		String data=deviceService.getDeviceInfo(ownerPhoneNumber);
+		System.out.println("data:"+data);
+		return data;
+	}
+
+	@RequestMapping("/getDeviceTree.do")
+	@ResponseBody
+	public String getDeviceTree(HttpServletRequest request){
+		String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
+		String data=deviceService.getDeviceTree(ownerPhoneNumber);
 		System.out.println("data:"+data);
 		return data;
 	}

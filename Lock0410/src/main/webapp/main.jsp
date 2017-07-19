@@ -11,16 +11,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
 		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
 		<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="zTree/css/zTreeStyle/zTreeStyle.css"/>
 		<link rel="stylesheet" type="text/css" href="styles/main.css"/>
 		<link rel="stylesheet" type="text/css" href="styles/UserManage.css"/>
 		<link rel="stylesheet" type="text/css" href="styles/deviceManage.css"/>
 		<script type="text/javascript" src="easyui/jquery.min.js"></script>
 		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+		<%--<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>--%>
+		<script type="text/javascript" src="zTree/js/jquery.ztree.all.min.js"></script>
 		<script type="text/javascript" src="scripts/cookie_util.js"></script>
 		<script type="text/javascript" src="scripts/main.js"></script>
 		<script type="text/javascript" src="scripts/lockoperate.js?ver=1"></script>
 		<script type="text/javascript" src="scripts/device-manage.js?ver=18"></script>
+		<script type="text/javascript" src="scripts/tree.js?ver=3"></script>
 		<!-- <script type="text/javascript">
 			//客户端登陆信息检查
 			var user = getCookie("userId");

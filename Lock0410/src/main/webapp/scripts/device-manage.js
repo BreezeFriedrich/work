@@ -8,7 +8,7 @@ var today;
 var newDate;
 $(function(){
 	validOwnerPhoneNumber();
-})
+});
 function showDevices(){
 	var jsonResult=null;
 	$.ajax({

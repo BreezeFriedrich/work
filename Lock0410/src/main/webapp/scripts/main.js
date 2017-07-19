@@ -2,7 +2,7 @@
 	var unlockTreeData =[{
 				text : "开锁授权",
 				attributes : {
-				url : "deviceManage.jsp"
+				url : "tree.jsp"
 				}
 			}];
 	

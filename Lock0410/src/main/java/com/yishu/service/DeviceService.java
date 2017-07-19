@@ -2,6 +2,7 @@ package com.yishu.service;
 
 public interface DeviceService{
 	public String getDeviceInfo(String ownerPhoneNumber);
+	public String getDeviceTree(String ownerPhoneNumber);
 	public String getUnlockAccountInfo(String ownerPhoneNumber,String gatewayCode,String lockCode);
 	public String getCertiAuthInfo(String ownerPhoneNumber,String gatewayCode,String lockCode);
 	public String getPwdAuthInfo(String ownerPhoneNumber,String gatewayCode,String lockCode);

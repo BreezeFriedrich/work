@@ -12,7 +12,12 @@ public class DeviceServiceImpl implements DeviceService{
 		JsonData=DeviceUtil.getDeviceInfo(ownerPhoneNumber);
 		return JsonData;
 	}
-	
+
+	@Override
+	public String getDeviceTree(String ownerPhoneNumber) {
+		return null;
+	}
+
 	@Override
 	public String getUnlockAccountInfo(String ownerPhoneNumber, String gatewayCode,String lockCode) {
 		String JsonData=null;
