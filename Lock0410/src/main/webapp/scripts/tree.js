@@ -1,6 +1,14 @@
+var data=new Array();
+var ownerPhoneNumber;
+var theGateway;var theLock;var lockList;
+var name;
+var cardNumb;
+var unlockData;
+var today;
+var newDate;
+
 function treeInit() {
     $.fn.zTree.init($("#tree_device"), setting);
-    // $.fn.zTree.init($("#treeDemo2"), setting, zNodes);
 }
 var setting = {
     view: {
@@ -53,49 +61,66 @@ var setting = {
         enable:true,
         type:"post",
         url:"deviceManage/getDeviceTree.do",
-        contentType:"application/json",
+        // contentType:"application/json",
         autoParam:[],
-        otherParam:[],
+        otherParam:{"ownerPhoneNumber":"18255683932"},
         dataType:"text",
         dataFilter:null
     },
     callback:{
-        onCheck:zTreeOnCheck,
         onAsyncSuccess:zTreeOnAsyncSuccess,
         onAsyncError:zTreeOnAsyncError,
+        onDblClick:zTreeOnDblClick,
+        onCheck:zTreeOnCheck,
         onRightClick:null
     }
 };
+
 var zNodes = [
-    { id: 1, pId: 0, name: "父节点1", open: true },
-    { id: 11, pId: 1, name: "父节点11" },
-    { id: 111, pId: 11, name: "叶子节点111" },
-    { id: 112, pId: 11, name: "叶子节点112" },
-    { id: 113, pId: 11, name: "叶子节点113" },
-    { id: 114, pId: 11, name: "叶子节点114" },
-    { id: 12, pId: 1, name: "父节点12" },
-    { id: 121, pId: 12, name: "叶子节点121" },
-    { id: 122, pId: 12, name: "叶子节点122" },
-    { id: 123, pId: 12, name: "叶子节点123" },
-    { id: 124, pId: 12, name: "叶子节点124" },
-    { id: 13, pId: 1, name: "父节点13", isParent: true },
-    { id: 2, pId: 0, name: "父节点2" },
-    { id: 21, pId: 2, name: "父节点21", open: true },
-    { id: 211, pId: 21, name: "叶子节点211" },
-    { id: 212, pId: 21, name: "叶子节点212" },
-    { id: 213, pId: 21, name: "叶子节点213" },
-    { id: 214, pId: 21, name: "叶子节点214" },
-    { id: 22, pId: 2, name: "父节点22" },
-    { id: 221, pId: 22, name: "叶子节点221" },
-    { id: 222, pId: 22, name: "叶子节点222" },
-    { id: 223, pId: 22, name: "叶子节点223" },
-    { id: 224, pId: 22, name: "叶子节点224" },
-    { id: 23, pId: 2, name: "父节点23" },
-    { id: 231, pId: 23, name: "叶子节点231" },
-    { id: 232, pId: 23, name: "叶子节点232" },
-    { id: 233, pId: 23, name: "叶子节点233" },
-    { id: 234, pId: 23, name: "叶子节点234" },
-    { id: 3, pId: 0, name: "父节点3", isParent: true }
+    {"id":1,"name":"天字号","pId":0,"title":"888888","isParent":true,"isHidden":false,"open":true,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/gateway.png"},
+    {"id":23,"name":"大紫明宫","pId":1,"title":"001007","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":24,"name":"九重天","pId":1,"title":"001005","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":5,"name":"狐狸洞","pId":1,"title":"001006","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":6,"name":"昆仑墟","pId":1,"title":"001003","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":7,"name":"十里桃林","pId":1,"title":"001004","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":8,"name":"盘丝洞","pId":1,"title":"001002","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":9,"name":"水帘洞","pId":1,"title":"001001","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":10,"name":"301","pId":1,"title":"001008","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":11,"name":"生态","pId":1,"title":"851153","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":2,"name":"地字号","pId":0,"title":"777777","isParent":true,"isHidden":false,"open":true,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/gateway.png"},
+    {"id":12,"name":"中山陵","pId":2,"title":"002010","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":13,"name":"清凉山","pId":2,"title":"002009","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":14,"name":"明孝陵","pId":2,"title":"002008","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":15,"name":"夫子庙","pId":2,"title":"002007","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":16,"name":"燕子矶","pId":2,"title":"002006","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":17,"name":"美龄宫","pId":2,"title":"002005","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":18,"name":"大报恩寺","pId":2,"title":"002003","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":19,"name":"阅江楼","pId":2,"title":"002004","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":20,"name":"瞻园","pId":2,"title":"002002","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":21,"name":"灵谷寺","pId":2,"title":"002001","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":22,"name":"404","pId":2,"title":"002011","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":3,"name":"天字号","pId":0,"title":"888888","isParent":true,"isHidden":false,"open":true,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/gateway.png"},
+    {"id":44,"name":"大紫明宫","pId":3,"title":"001007","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":43,"name":"九重天","pId":3,"title":"001005","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":25,"name":"狐狸洞","pId":3,"title":"001006","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":26,"name":"昆仑墟","pId":3,"title":"001003","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":27,"name":"十里桃林","pId":3,"title":"001004","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":28,"name":"盘丝洞","pId":3,"title":"001002","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":29,"name":"水帘洞","pId":3,"title":"001001","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":30,"name":"301","pId":3,"title":"001008","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":31,"name":"生态","pId":3,"title":"851153","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":4,"name":"地字号","pId":0,"title":"777777","isParent":true,"isHidden":false,"open":true,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/gateway.png"},
+    {"id":32,"name":"中山陵","pId":4,"title":"002010","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":33,"name":"清凉山","pId":4,"title":"002009","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":34,"name":"明孝陵","pId":4,"title":"002008","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":35,"name":"夫子庙","pId":4,"title":"002007","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":36,"name":"燕子矶","pId":4,"title":"002006","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":37,"name":"美龄宫","pId":4,"title":"002005","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":38,"name":"大报恩寺","pId":4,"title":"002003","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":39,"name":"阅江楼","pId":4,"title":"002004","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":40,"name":"瞻园","pId":4,"title":"002002","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":41,"name":"灵谷寺","pId":4,"title":"002001","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"},
+    {"id":42,"name":"404","pId":4,"title":"002011","isParent":false,"isHidden":false,"open":false,"nocheck":false,"target":"_blank","icon":"./zTree/css/zTreeStyle/img/diy/doorlock.png"}
 ];
 
 //view
@@ -106,21 +131,21 @@ function removeHoverDom(treeId,treeNode) {
 
 }
 function setFontCss(treeId,treeNode) {
-    return treeNode.level == 0 ? {color:"red"} : {};
+    // return treeNode.level == 0 ? {color:"red"} : {};
 }
 function showTitle(treeId, treeNode) {
-    return treeNode.level != 2;
+    // return treeNode.level != 2;
 }
 
 //callback
 //节点选择事件
 function zTreeOnCheck(event, treeId, treeNode) {
-    alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+    // alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
 }
 function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
     // alert(msg);
-    var treeObj = $.fn.zTree.getZTreeObj("tree_device");
-    treeObj.expandAll(true);
+    // var treeObj = $.fn.zTree.getZTreeObj("tree_device");
+    // treeObj.expandAll(true);
     //隐藏节点
 }
 
@@ -128,6 +153,33 @@ function zTreeOnAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, 
     alert(XMLHttpRequest);
 }
 
+function zTreeOnDblClick(event, treeId, treeNode) {
+    alert('event:'+event+' ,treeId:'+treeId+' ,treeNode:'+treeNode);
+    lockCode=treeNode.title;
+    var parentNode=treeNode.getParentNode();
+    gatewayCode=parentNode.title;
+    alert('gatewayCode:'+gatewayCode+' ,lockCode:'+lockCode);
+    open();
+}
+
+function open() {
+    initAuth();
+}
+function initAuth(){
+    today = new Date();
+    newDate = new Date(today.valueOf()+24*60*60*1000);
+    $('#cancelAuthdg').datagrid({
+        url:'deviceManage/getUnlockAccountInfo.do',
+        method:'post',
+        queryParams:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":theGateway.gatewayCode,"lockCode":theLock.lockCode},
+        onLoadSuccess:function(data){
+            $('#dd').dialog("open");
+            document.getElementById("theGateway").innerText='网关:'+theGateway.gatewayCode;
+            document.getElementById("theLock").innerText='门锁:'+theLock.lockCode;
+            document.getElementById("lockLoc").innerText='位置:'+theLock.lockLocation;
+        }
+    });
+}
 /*
 function addHoverDom(treeId, treeNode) {
     var sObj = $("#" + treeNode.tId + "_span");

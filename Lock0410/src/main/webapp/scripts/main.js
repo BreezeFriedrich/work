@@ -43,7 +43,7 @@ $(function () {
 			    onSelect:function(title){
 			    	if(text=='开锁授权'){
 //			    		alert(text+' is selected');
-			    		showDevices();
+// 			    		showDevices();
 			    	}
 			    }
 			});
@@ -55,7 +55,7 @@ $(function () {
 				cache:true
 				});
 			if(text==='开锁授权'){
-				showDevices();
+				// showDevices();
 			}
 //!解决问题：tabs-open即点击查询菜单而打开详情页面后，希望用combotree加载远程网关和门锁信息时携带参数ownerPhoneNumber，而用JSP初始化combotree和js初始化combotree都不能生效
 			if(text=='查询记录'){
@@ -115,7 +115,7 @@ function CloseTab(menu, type) {
 	if (type === "close") {
 		tabs.tabs("close", curTabTitle);
 		return;
-	}		
+	}
 	var allTabs = tabs.tabs("tabs");
 	var closeTabsTitle = [];		
 	$.each(allTabs, function () {
@@ -125,10 +125,10 @@ function CloseTab(menu, type) {
 		} else if (opt.closable && type === "All") {
 			closeTabsTitle.push(opt.title);
 		}
-	});		
+	});
 	for (var i = 0; i < closeTabsTitle.length; i++) {
 		tabs.tabs("close", closeTabsTitle[i]);
-	}	
+	}
 }
 
 function getNowFormat() {

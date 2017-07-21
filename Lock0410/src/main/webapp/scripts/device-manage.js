@@ -72,7 +72,6 @@ function showDevices(){
 		if(devices&&devices.childNodes.length<data.length){
 			devices.appendChild(gateway);
 		}
-		
 	}
 	open();
 }

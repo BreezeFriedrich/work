@@ -1,8 +1,11 @@
 package com.yishu.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.yishu.model.json.TreeNode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,9 +33,9 @@ public class DeviceManageController {
 
 	@RequestMapping("/getDeviceTree.do")
 	@ResponseBody
-	public String getDeviceTree(HttpServletRequest request){
+	public List<TreeNode> getDeviceTree(HttpServletRequest request){
 		String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
-		String data=deviceService.getDeviceTree(ownerPhoneNumber);
+		List<TreeNode> data=deviceService.getDeviceTree(ownerPhoneNumber);
 		System.out.println("data:"+data);
 		return data;
 	}

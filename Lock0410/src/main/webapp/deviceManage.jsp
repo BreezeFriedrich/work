@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:closeDialog()">退出</a>
 	</div>
 	<div style="width:200px;height:70px;zoom:1;position:fixed;top:117px;left:44%;color: #acf3e3;opacity:0.9;border:3px solid #b2cef3;border-radius:3px;background-color:#c4d8f3;">
-		<input type="image" id='refresh' src="styles/images/refresh.png" style="margin-left:68px;" onclick="showDevices()"></a>
+		<input type="image" id='refresh' src="styles/images/refresh.png" style="margin-left:68px;" onclick="showDevices()"/>
 	</div>
   </body>
 </html>
