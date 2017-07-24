@@ -45,8 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	 -->
 	
-	<div id="dd" class="easyui-dialog" style="padding:0px;width:829px;height:500px;border:5px #95b8e7"
-			title="开锁授权" iconCls="icon-ok" buttons="#dlg-buttons" closed="true">
+	<div id="dd" class="easyui-dialog" style="padding:0px;width:829px;height:500px;border:5px #95b8e7" title="开锁授权" iconCls="icon-ok" buttons="#dlg-buttons" closed="true">
 		<div id="unlockAuthBar" style="width:800px;height:40px;background: #c2cfef;">
 			<span id='theGateway' style="display:inline-block;width:210px;height:40px;line-height:40px;vertical-align:middle;font-size:30px;overflow:hidden;">网关:${cookie.gatewayCode.value}</span>
 			<span id='theLock' style="display:inline-block;width:210px;height:40px;line-height:40px;vertical-align:middle;font-size:30px;overflow:hidden;">门锁:${cookie.lockCode.value}</span>

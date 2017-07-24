@@ -17,7 +17,8 @@ public class HttpUtil {
 
     private static final String urlStr;
     static{
-        String propertiesPath = "/home/qixu/prods/swipe/swipe.properties";
+//        String propertiesPath = "/home/qixu/prods/swipe/swipe.properties";
+        String propertiesPath = "e:/swipe/swipe.properties";
         InputStream in = null;
         try {
             in = new BufferedInputStream(new FileInputStream(propertiesPath));

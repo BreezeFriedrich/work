@@ -11,7 +11,7 @@ public class ShiroKit {
         return new Md5Hash(originPassword,salt).toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(md5("123456","admin"));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(md5("123456","admin"));
+//    }
 }

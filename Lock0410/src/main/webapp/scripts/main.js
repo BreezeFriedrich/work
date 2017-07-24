@@ -22,6 +22,7 @@ $(function () {
 		onClick : function (node) {
 			if (node.attributes) {
 				Open(node.text, node.attributes.url);
+                treeInit();
 			}
 		}
 	});
@@ -111,13 +112,13 @@ $(function () {
 //几个关闭事件的实现
 function CloseTab(menu, type) {
 	var curTabTitle = $(menu).data("tabTitle");
-	var tabs = $("#tabs");		
+	var tabs = $("#tabs");
 	if (type === "close") {
 		tabs.tabs("close", curTabTitle);
 		return;
 	}
 	var allTabs = tabs.tabs("tabs");
-	var closeTabsTitle = [];		
+	var closeTabsTitle = [];
 	$.each(allTabs, function () {
 		var opt = $(this).panel("options");
 		if (opt.closable && opt.title != curTabTitle && type === "Other") {

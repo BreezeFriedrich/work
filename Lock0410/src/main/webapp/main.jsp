@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="zTree/js/jquery.ztree.exhide.min.js"></script>
 		<script type="text/javascript" src="scripts/cookie_util.js"></script>
 		<script type="text/javascript" src="scripts/bindEvent_util.js?ver=1"></script>
-		<script type="text/javascript" src="scripts/main.js?ver=5"></script>
+		<script type="text/javascript" src="scripts/main.js?ver=7"></script>
 		<script type="text/javascript" src="scripts/lockoperate.js?ver=1"></script>
 		<%--<script type="text/javascript" src="scripts/device-manage.js?ver=18"></script>--%>
 		<script type="text/javascript" src="scripts/tree.js?ver=21"></script>
