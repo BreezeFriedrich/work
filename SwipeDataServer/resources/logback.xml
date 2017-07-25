@@ -6,9 +6,9 @@ scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没�
 debug：当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
 -->
     <!-- 定义日志的根目录 -->
-    <property name="LOG_HOME" value="/home/qixu/logs" />
+    <property name="LOG_HOME" value="/home/qixu/logs/swipe" />
     <!-- 定义日志文件名称 -->
-    <property name="appName" value="swipe"/>
+    <property name="appName" value="SwipeDataServer"/>
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
@@ -50,7 +50,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
                 <driverClass>com.mysql.jdbc.Driver</driverClass>
                 <url>jdbc:mysql://127.0.0.1:3306/log</url>
                 <user>root</user>
-                <password>tiger</password>
+                <password>2015@qxidc</password>
             </dataSource>
         </connectionSource>
     </appender>

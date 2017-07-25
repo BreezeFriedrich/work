@@ -78,7 +78,6 @@ public class DataServer {
     static{
         String jarPath=System.getProperty("java.class.path");
         String propertiesPath = jarPath.substring(0,jarPath.indexOf("/SwipeDataServer/")+17)+ "conf/default.properties";
-        propertiesPath="e:/SwipeDataServer/conf/default.properties";
         InputStream in = null;
         try {
             in = new BufferedInputStream(new FileInputStream(propertiesPath));

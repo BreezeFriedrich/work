@@ -1,15 +1,17 @@
 Manifest-Version: 1.0
-Class-Path: gson-2.6.2.jar druid-1.0.18.jar log4j-1.2.17.jar mybatis-3
- .4.0.jar aopalliance-1.0.jar aspectjrt-1.8.9.jar fastjson-1.2.34.jar 
- shiro-web-1.2.2.jar shiro-core-1.2.2.jar slf4j-api-1.7.21.jar jackson
- -core-2.2.1.jar logback-core-1.1.7.jar shiro-spring-1.2.2.jar aspectj
- weaver-1.8.9.jar commons-logging-1.2.jar shiro-ehcache-1.2.2.jar myba
- tis-spring-1.3.0.jar logback-classic-1.1.7.jar jackson-databind-2.2.1
- .jar spring-tx-4.2.6.RELEASE.jar spring-aop-4.2.6.RELEASE.jar spring-
- web-4.2.6.RELEASE.jar jackson-annotations-2.2.1.jar spring-core-4.2.6
- .RELEASE.jar spring-jdbc-4.2.6.RELEASE.jar spring-beans-4.2.6.RELEASE
- .jar mysql-connector-java-5.1.38.jar spring-webmvc-4.2.6.RELEASE.jar 
- spring-context-4.2.6.RELEASE.jar spring-expression-4.2.6.RELEASE.jar 
- spring-context-support-4.2.6.RELEASE.jar
+Class-Path: lib/gson-2.6.2.jar lib/druid-1.0.18.jar lib/log4j-1.2.17.j
+ ar lib/mybatis-3.4.0.jar lib/aopalliance-1.0.jar lib/aspectjrt-1.8.9.
+ jar lib/fastjson-1.2.34.jar lib/shiro-web-1.2.2.jar lib/shiro-core-1.
+ 2.2.jar lib/slf4j-api-1.7.21.jar lib/jackson-core-2.2.1.jar lib/logba
+ ck-core-1.1.7.jar lib/shiro-spring-1.2.2.jar lib/aspectjweaver-1.8.9.
+ jar lib/commons-logging-1.2.jar lib/shiro-ehcache-1.2.2.jar lib/mybat
+ is-spring-1.3.0.jar lib/logback-classic-1.1.7.jar lib/jackson-databin
+ d-2.2.1.jar lib/spring-tx-4.2.6.RELEASE.jar lib/spring-aop-4.2.6.RELE
+ ASE.jar lib/spring-web-4.2.6.RELEASE.jar lib/jackson-annotations-2.2.
+ 1.jar lib/spring-core-4.2.6.RELEASE.jar lib/spring-jdbc-4.2.6.RELEASE
+ .jar lib/spring-beans-4.2.6.RELEASE.jar lib/mysql-connector-java-5.1.
+ 38.jar lib/spring-webmvc-4.2.6.RELEASE.jar lib/spring-context-4.2.6.R
+ ELEASE.jar lib/spring-expression-4.2.6.RELEASE.jar lib/spring-context
+ -support-4.2.6.RELEASE.jar
 Main-Class: DataServer
 
