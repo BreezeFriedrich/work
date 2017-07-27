@@ -1,8 +1,5 @@
-drop database log;
-# 创建数据库 log
-CREATE DATABASE log DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-# 使用数据库 log
-USE log;
+# 使用数据库 SAMRECORD
+USE SAMRECORD;
 
 drop table if EXISTS logging_event_exception;
 drop table if EXISTS logging_event_property;

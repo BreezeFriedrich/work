@@ -98,8 +98,6 @@ public class DataServer {
 
     public static void main(String[] args) throws IOException, SQLException {
 
-
-
 //        String encodingStr="生态";
 //        String str1=new String(encodingStr.getBytes("utf-8"),"gbk");
 //        String str2=new String(str1.getBytes("gbk"),"utf-8");
@@ -118,13 +116,10 @@ public class DataServer {
         ModuleService moduleService=null;
         moduleService=(ModuleServiceImpl) (ContextLoader.getBean("moduleService"));
         list = moduleService.listByStatus(0);
-        logger.info("#OBJ      ~ moduleService:"+moduleService);
         Iterator it = list.iterator();
         DeviceStatus deviceStatus = null;
         while (it.hasNext()) {
             deviceStatus = (DeviceStatus) it.next();
-            logger.info("#DATA     ~ devicestatus[i]:" + deviceStatus);
-            logger.info("#DETAIL   ~ {id:" + deviceStatus.getDeviceid() + ";ip:" + deviceStatus.getDeviceip() + ";timestamp:" + deviceStatus.getTimestamp()+"}");
         }
 */
         try {
@@ -133,7 +128,7 @@ public class DataServer {
             httpServer.createContext("/", new MyHandler());
             httpServer.setExecutor(Executors.newCachedThreadPool());
             httpServer.start();
-            logger.info("#CON      ~ Server is listening on port" +httpServer.getAddress()+"|||"+address.getPort());
+            logger.info("HttpConnectionServer is listening on port " +httpServer.getAddress()+" , "+address.getPort());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -758,8 +753,8 @@ class MyHandler implements HttpHandler{
             requestBody.close();
             responseBody.close();
             requestBody.close();
-        long timeTag2=new Date().getTime();
-        logger.info("处理该请求用时: "+(timeTag2-timeTag1)+" ms");
+            long timeTag2=new Date().getTime();
+//            logger.info("处理该请求用时: "+(timeTag2-timeTag1)+" ms");
     }
 
 }

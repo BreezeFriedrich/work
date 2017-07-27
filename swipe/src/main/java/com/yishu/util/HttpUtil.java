@@ -18,8 +18,7 @@ public class HttpUtil {
     private static final String urlStr;
     static{
 //        String propertiesPath = "/home/qixu/prods/swipe/swipe.properties";
-//        String propertiesPath = "/usr/local/tomcat/appConf/swipe/swipe.properties";
-        String propertiesPath = "appConf/swipe/swipe.properties";
+        String propertiesPath = "/usr/local/tomcat/appConf/swipe/swipe.properties";
         InputStream in = null;
         try {
             in = new BufferedInputStream(new FileInputStream(propertiesPath));
@@ -53,8 +52,8 @@ public class HttpUtil {
         try {
 //            url=new URL("http://"+ip+":2017/?characterEncoding=utf8&useSSL=false");
             url=new URL(urlStr);
-//            logger.info("#CON      ~ "+String.valueOf(url));
-//            logger.info("Https");
+            logger.info("Http Connection url: "+String.valueOf(url));
+//            logger.info("Http");
             httpURLConnection= (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);

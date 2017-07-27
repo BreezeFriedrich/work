@@ -17,12 +17,12 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>junit</groupId>-->
+      <!--<artifactId>junit</artifactId>-->
+      <!--<version>3.8.1</version>-->
+      <!--<scope>test</scope>-->
+    <!--</dependency>-->
 
     <!--Log 用slf4j统一，默认logback.注意excludes掉 commons-logging、log4j等-->
     <!--log接口 -->
@@ -42,52 +42,52 @@
       <version>1.0.13</version>
     </dependency>
     <!-- 旧日志转到slf4j的适配器 -->
-    <dependency>
-      <!--apache commons-logging转slf4j-->
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>${org.slf4j-version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--&lt;!&ndash;apache commons-logging转slf4j&ndash;&gt;-->
+      <!--<groupId>org.slf4j</groupId>-->
+      <!--<artifactId>jcl-over-slf4j</artifactId>-->
+      <!--<version>${org.slf4j-version}</version>-->
+    <!--</dependency>-->
     <dependency>
       <!--log4j1转slf4j-->
       <groupId>org.slf4j</groupId>
       <artifactId>log4j-over-slf4j</artifactId>
       <version>${org.slf4j-version}</version>
     </dependency>
-    <dependency>
-      <!-- JUL需要额外执行一行初始化代码SLF4JBridgeHandler.install();// jul to slf4j -->
-      <!--jdk-logging转slf4j-->
-      <groupId>org.slf4j</groupId>
-      <artifactId>jul-to-slf4j</artifactId>
-      <version>${org.slf4j-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.logging</groupId>
-      <artifactId>jboss-logging</artifactId>
-      <version>3.1.4.GA</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--&lt;!&ndash; JUL需要额外执行一行初始化代码SLF4JBridgeHandler.install();// jul to slf4j &ndash;&gt;-->
+      <!--&lt;!&ndash;jdk-logging转slf4j&ndash;&gt;-->
+      <!--<groupId>org.slf4j</groupId>-->
+      <!--<artifactId>jul-to-slf4j</artifactId>-->
+      <!--<version>${org.slf4j-version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.jboss.logging</groupId>-->
+      <!--<artifactId>jboss-logging</artifactId>-->
+      <!--<version>3.1.4.GA</version>-->
+    <!--</dependency>-->
 
     <!-- DB -->
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-      <version>3.4.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-spring</artifactId>
-      <version>1.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.38</version>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>druid</artifactId>
-      <version>1.0.18</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.mybatis</groupId>-->
+      <!--<artifactId>mybatis</artifactId>-->
+      <!--<version>3.4.0</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.mybatis</groupId>-->
+      <!--<artifactId>mybatis-spring</artifactId>-->
+      <!--<version>1.3.0</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>mysql</groupId>-->
+      <!--<artifactId>mysql-connector-java</artifactId>-->
+      <!--<version>5.1.38</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>com.alibaba</groupId>-->
+      <!--<artifactId>druid</artifactId>-->
+      <!--<version>1.0.18</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -136,21 +136,21 @@
       <artifactId>spring-beans</artifactId>
       <version>${spring-version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>${spring-version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-jdbc</artifactId>-->
+      <!--<version>${spring-version}</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
       <version>${spring-version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${spring-version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-test</artifactId>-->
+      <!--<version>${spring-version}</version>-->
+    <!--</dependency>-->
     <!-- spring web -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -233,12 +233,12 @@
       <version>1.2.34</version>
     </dependency>
     <!--json-lib-->
-    <dependency>
-      <groupId>net.sf.json-lib</groupId>
-      <artifactId>json-lib</artifactId>
-      <version>2.4</version>
-      <classifier>jdk15</classifier>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>net.sf.json-lib</groupId>-->
+      <!--<artifactId>json-lib</artifactId>-->
+      <!--<version>2.4</version>-->
+      <!--<classifier>jdk15</classifier>-->
+    <!--</dependency>-->
 
   </dependencies>
 
@@ -256,7 +256,7 @@
       <id>test</id>
       <properties>
         <profiles.active>test</profiles.active>
-        <deploy.url>http://host:port/manager/text</deploy.url>
+        <deploy.url>http://112.25.233.122:8000/swipe</deploy.url>
       </properties>
     </profile>
     <!-- 生产环境 -->
@@ -264,7 +264,7 @@
       <id>production</id>
       <properties>
         <profiles.active>production</profiles.active>
-        <deploy.url>http://localhost:8080/swipe/index.jsp</deploy.url>
+        <deploy.url>http://RemoteServer:port/swipe</deploy.url>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>

@@ -1,7 +1,6 @@
 package dao;
 
 import model.SwipeRecord;
-import model.SwipeRecordStrategy;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;

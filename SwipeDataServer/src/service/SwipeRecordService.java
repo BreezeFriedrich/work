@@ -1,7 +1,6 @@
 package service;
 
 import model.SwipeRecord;
-import model.SwipeRecordStrategy;
 
 import java.util.HashMap;
 import java.util.List;

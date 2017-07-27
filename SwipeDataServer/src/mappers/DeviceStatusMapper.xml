@@ -3,12 +3,12 @@
 <mapper namespace="dao.DeviceStatusDao">
 
     <insert id="add" parameterType="DeviceStatus">
-        INSERT INTO DeviceStatus(`deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`)
+        INSERT INTO TABLE_SAMLIST(`deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`)
         VALUES (#{deviceid},#{deviceip},#{status},#{timestamp},#{info},#{reserved});
     </insert>
 
     <update id="update" parameterType="DeviceStatus">
-        UPDATE DeviceStatus
+        UPDATE TABLE_SAMLIST
         <set>
             <if test="deviceip !=null">deviceip=#{deviceip}</if>
             <if test="status !=null">`status`=#{status}</if>
@@ -20,26 +20,26 @@
     </update>
 
     <delete id="deleteByTime" parameterType="String">
-        DELETE FROM DeviceStatus
+        DELETE FROM TABLE_SAMLIST
         WHERE <![CDATA[`timestamp` <= #{endTime} ]]>;
         <!--WHERE `timestamp` &lt;= #{timestamp}-->
     </delete>
 
     <delete id="deleteByDeviceid" parameterType="String">
-        DELETE FROM DeviceStatus
+        DELETE FROM TABLE_SAMLIST
         WHERE deviceid=#{deviceid};
     </delete>
 
     <select id="listByDeviceid" parameterType="String" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
         WHERE deviceid=#{deviceid}
         ORDER BY `deviceid` DESC,`timestamp` DESC;
     </select>
 
     <select id="listByStatus" parameterType="int" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,`timestamp`,`info`,`reserved`
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
         WHERE `status`=#{status}
         ORDER BY `deviceid` DESC,`timestamp` DESC
         ;
@@ -47,7 +47,7 @@
 
     <select id="listAllWithoutDuplicate" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
 #         GROUP BY deviceid HAVING `timestamp`=max(`newTime`)
         ORDER BY `deviceid` DESC,`timestamp` DESC
         ;
@@ -55,14 +55,14 @@
 
     <select id="listAll" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
         ORDER BY `timestamp` DESC,`deviceid` DESC
         ;
     </select>
 
     <select id="listAllWithStrategy" resultType="DeviceStatus" parameterType="Map">
         SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
         <where>
             <if test="null!=deviceid and deviceid!=''"> AND deviceid=#{deviceid}</if>
             <if test="null!=deviceip and deviceip!=''"> AND deviceip=#{deviceip}</if>
@@ -75,14 +75,14 @@
 
     <select id="listByTimezone" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
         WHERE `timestamp` BETWEEN DATE_FORMAT(#{startTime},'%Y/%m/%d %H:%i:%S') AND DATE_FORMAT(#{endTime},'%Y/%m/%d %H:%i:%S')
         ORDER BY `timestamp` DESC ;
     </select>
 
     <select id="listByParam" resultType="DeviceStatus">
         SELECT `deviceid`,`deviceip`,`status`,DATE_FORMAT(`timestamp`, '%Y-%m-%d %H:%i:%S') AS `timestamp`,`info`,`reserved`
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
         <where>
             <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
             <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
@@ -92,7 +92,7 @@
 
     <select id="countByParams" resultType="java.lang.Integer">
         SELECT COUNT(*)
-        FROM DeviceStatus
+        FROM TABLE_SAMLIST
         <where>
             <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
             <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
@@ -102,7 +102,7 @@
     </select>
 
     <delete id="deleteByParam">
-        DELETE FROM DeviceStatus
+        DELETE FROM TABLE_SAMLIST
         <where>
             <if test="endTime !=null and endTime !=''">and #{endTime} >= `timestamp`</if>
             <if test="status !=null and status !='' and status >=0">and `status` = #{status}</if>
@@ -112,9 +112,9 @@
     </delete>
 
     <delete id="discardDuplicate">
-        DELETE FROM DeviceStatus
+        DELETE FROM TABLE_SAMLIST
         WHERE SEQ NOT IN
-              (SELECT SEQ,MAX(`timestamp`) FROM DeviceStatus GROUP BY deviceid);
+              (SELECT SEQ,MAX(`timestamp`) FROM TABLE_SAMLIST GROUP BY deviceid);
     </delete>
 
 </mapper>

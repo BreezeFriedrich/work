@@ -2,7 +2,6 @@ package service.impl;
 
 import dao.SwipeRecordDao;
 import model.SwipeRecord;
-import model.SwipeRecordStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

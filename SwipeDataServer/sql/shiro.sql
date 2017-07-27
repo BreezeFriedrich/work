@@ -1,5 +1,5 @@
-# 使用数据库 swipe
-USE swipe;
+# 使用数据库 SAMRECORD
+USE SAMRECORD;
 
 
 drop table if EXISTS t_user;
@@ -93,7 +93,7 @@ CREATE TABLE t_role_resource(
 
 # 创建数据用于测试
 INSERT INTO t_role_resource(role_id,resource_id)
-VALUES(1,1),
+VALUES(1,1),(1,19),
 (2,3),(2,5),(2,6),(2,7),(2,9),(2,11),(2,12),(2,13),(2,15),(2,17),(2,18),
 (3,6),(3,7),(3,8),(3,14),
 (4,6),(4,7),(4,12),(4,18);

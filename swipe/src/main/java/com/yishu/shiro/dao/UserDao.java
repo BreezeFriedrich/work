@@ -3,7 +3,6 @@ package com.yishu.shiro.dao;
 import com.yishu.shiro.model.Resource;
 import com.yishu.shiro.model.Role;
 import com.yishu.shiro.model.User;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface UserDao {
     Integer add(User user);
     Integer update(User user);
     Integer delete(Integer id);
-    Integer batchDelete(@Param("ids") List<Integer> ids);
+    Integer batchDelete(List<Integer> ids);
     User load(Integer id);
     User loadByUserName(String username);
     List<User> listUser();

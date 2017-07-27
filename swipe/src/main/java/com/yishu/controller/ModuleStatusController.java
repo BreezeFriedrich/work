@@ -165,7 +165,6 @@ public class ModuleStatusController {
             return listToObj(newModuleStatusList,total);
         }
         return null;
-        //{total:23,(page:2,limit:10,)data:[...]}
 
 //        logger.info("#CTL      ~ listAll");
 //        List<DeviceStatus> moduleList=moduleService.listAll();

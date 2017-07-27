@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.model.SwipeRecord;
-import com.yishu.model.SwipeRecordStrategy;
 import com.yishu.service.SwipeRecordService;
 import com.yishu.util.JsonUtil;
 import com.yishu.util.PageUtil;
@@ -55,7 +54,6 @@ public class SwipeRecordController {
             return listToObj(newSwipeRecordList,total);
         }
         return null;
-        //{total:23,(page:2,limit:10,)data:[...]}
     }
 
     @RequestMapping(value = "/listAllWithStrategy")
@@ -312,7 +310,7 @@ public class SwipeRecordController {
 //        logger.info("endTime:"+endTime);
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
         if (swipeRecordList==null||swipeRecordList.size()<1){
-            logger.info("swipeRecordList is empty");
+            logger.info("listByDateToChart.do - swipeRecordList is empty");
             return null;
         }
         Map resultMap=new HashMap();
@@ -371,7 +369,7 @@ public class SwipeRecordController {
     public String listByDateToChart1(HttpServletRequest request){
 //        logger.info("#CTL      ~ listByDateToChart1");
         String param_date=request.getParameter("param_date");
-        logger.info("param_date:"+param_date);
+//        logger.info("param_date:"+param_date);
         String param_interval=request.getParameter("param_interval");
         int interval=Integer.parseInt(param_interval);
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -392,7 +390,7 @@ public class SwipeRecordController {
 //        logger.info("endTime:"+endTime);
         List<SwipeRecord> swipeRecordList=swipeRecordService.listByTimezone(startTime,endTime);
         if (swipeRecordList==null||swipeRecordList.size()<1){
-            logger.info("swipeRecordList is empty");
+            logger.info("listByDateToChart1.do - swipeRecordList is empty");
             return null;
         }
         Map resultMap=new HashMap();
@@ -401,7 +399,6 @@ public class SwipeRecordController {
         boolean isToday=false;
         isToday=(theDay.getTime()/86400000)==(new Date().getTime()/86400000);
         int pieces=86400000/interval;
-
 
         List<String> sams=new ArrayList<>();
         int[] series_samConcurrency=null;
@@ -413,7 +410,6 @@ public class SwipeRecordController {
         List samList=new ArrayList();
         List deviceList=new ArrayList();
         resultMap.put("sumSwipeFrequency",swipeRecordList.size());
-
 
         //按日
         if(!isToday){
@@ -578,7 +574,7 @@ public class SwipeRecordController {
         }
 
         //按周
-        if(1==mode){};
+        if(1==mode){}
 
         //按日
         if(0==mode){
@@ -623,12 +619,8 @@ public class SwipeRecordController {
             resultMap.put("xAxisNum",xAxisNum);
             resultMap.put("category",xAxisData);
         }
-
         resultMap.put("data",index);
 
-//        logger.info(String.valueOf(index.length));
-//        logger.info(String.valueOf(xAxisTime.get("min")));
-//        logger.info(String.valueOf(xAxisTime.get("max")));
 //        return jsonUtil.writeObject(resultMap);//Jackson
         return JSON.toJSONString(resultMap);
     }
@@ -779,7 +771,7 @@ public class SwipeRecordController {
                     tempTime=sdf.parse(x.getTimestamp());
                 } catch (ParseException e) {
                     e.printStackTrace();
-                };
+                }
                 int tempDateDiff= (int) ((tempTime.getTime()-time1.getTime())/86400000);
                 if(0==x.getResult()){
                     success[tempDateDiff]++;
@@ -841,12 +833,7 @@ public class SwipeRecordController {
             resultMap.put("xAxisNum",xAxisNum);
             resultMap.put("category",xAxisData);
         }
-
         resultMap.put("data",index);
-
-//        logger.info(String.valueOf(index.length));
-//        logger.info(String.valueOf(xAxisTime.get("min")));
-//        logger.info(String.valueOf(xAxisTime.get("max")));
 
 //        return jsonUtil.writeObject(resultMap);//Jackson
         return JSON.toJSONString(resultMap);

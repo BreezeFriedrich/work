@@ -4,7 +4,6 @@ import com.yishu.shiro.model.Resource;
 import com.yishu.shiro.model.Role;
 import com.yishu.shiro.model.RoleResource;
 import com.yishu.shiro.model.UserRole;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,11 +14,11 @@ public interface RoleDao {
 
     Integer add(Role role);
     Integer delete(Integer id);
-    Integer batchDelete(@Param("ids") List<Integer> ids);
+    Integer batchDelete(List<Integer> ids);
     Integer update(Role role);
     List<Role> listRole();
     Role load(Integer id);
-    UserRole loadUserRole(@Param("userId") int userId, @Param("roleId") int roleId);
+    UserRole loadUserRole(int userId,int roleId);
 
     /**
      * 为单个用户设置单个角色
@@ -27,7 +26,7 @@ public interface RoleDao {
      * @param roleId
      * @return
      */
-    Integer addUserRole(@Param("userId") int userId, @Param("roleId") int roleId);
+    Integer addUserRole(int userId,int roleId);
 
     /**
      * 为单个用户设置多个角色
@@ -35,9 +34,9 @@ public interface RoleDao {
      * @param roleIds
      * @return
      */
-    Integer addUserRoles(@Param("userId") int userId, @Param("roleIds") List<Integer> roleIds);
+    Integer addUserRoles(int userId,List<Integer> roleIds);
 
-    Integer deleteUserRole(@Param("userId") int userId, @Param("roleId") int roleId);
+    Integer deleteUserRole(int userId,int roleId);
 
     /**
      * 删除某个用户的所有角色
@@ -45,7 +44,7 @@ public interface RoleDao {
      */
     Integer deleteUserRoles(int uid);
 
-    Integer batchDeleteRoleResource(@Param("roleIds") List<Integer> roleIds);
+    Integer batchDeleteRoleResource(List<Integer> roleIds);
 
     /**
      * 根据角色id获取可以访问的所有资源
@@ -54,13 +53,13 @@ public interface RoleDao {
      */
     List<Resource> listRoleResource(int roleId);
 
-    Integer addRoleResource(@Param("roleId") int roleId, @Param("resourceId") int resourceId);
+    Integer addRoleResource(int roleId,int resourceId);
 
-    Integer deleteRoleResource(@Param("roleId") int roleId, @Param("resourceId") int resorceId);
+    Integer deleteRoleResource(int roleId,int resorceId);
 
-    RoleResource loadResourceRole(@Param("roleId") int roleId, @Param("resourceId") int resorceId);
+    RoleResource loadResourceRole(int roleId,int resorceId);
 
-    Integer deleteRoleAndUser(@Param("ids") List<Integer> ids);
+    Integer deleteRoleAndUser(List<Integer> ids);
 
 
 }

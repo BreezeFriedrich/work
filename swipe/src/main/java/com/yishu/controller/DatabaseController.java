@@ -30,6 +30,11 @@ public class DatabaseController {
         return "database/clearData";
     }
 
+    /**
+     * (预留,)在table SwipeRecord 中,点击表格的行删除对应此controller.
+     * @param request
+     * @return
+     */
     @RequestMapping("/clearSwipeRecord")
     @ResponseBody
     public String clearSwipeRecord(HttpServletRequest request) {
@@ -42,9 +47,9 @@ public class DatabaseController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (DeviceStatus deviceStatus:deviceStatusList){
-            System.out.print(deviceStatus);
-        }
+//        for (DeviceStatus deviceStatus:deviceStatusList){
+//            System.out.print(deviceStatus);
+//        }
         return null;
     }
 }
