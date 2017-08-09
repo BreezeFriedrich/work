@@ -2,11 +2,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.yishu</groupId>
-  <artifactId>swipe</artifactId>
+  <artifactId>lockWOA</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>swipe Maven Webapp</name>
-  <url>http://www.yishutech.com</url>
+  <name>Wechat official accounts for lock management</name>
+  <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <projet.reporting.outputEncoding>UTF-8</projet.reporting.outputEncoding>
@@ -17,12 +17,36 @@
   </properties>
 
   <dependencies>
-    <!--<dependency>-->
-      <!--<groupId>junit</groupId>-->
-      <!--<artifactId>junit</artifactId>-->
-      <!--<version>3.8.1</version>-->
-      <!--<scope>test</scope>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- joda time 日期时间处理库 -->
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.9</version>
+    </dependency>
+
+    <!-- struts2 -->
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts2-core</artifactId>
+      <version>2.5.12</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.struts.xwork</groupId>
+      <artifactId>xwork-core</artifactId>
+      <version>2.3.33</version>
+    </dependency>
+    <dependency>
+      <groupId>javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>3.12.0.GA</version>
+    </dependency>
 
     <!--Log 用slf4j统一，默认logback.注意excludes掉 commons-logging、log4j等-->
     <!--log接口 -->
@@ -43,10 +67,10 @@
     </dependency>
     <!-- 旧日志转到slf4j的适配器 -->
     <!--<dependency>-->
-      <!--&lt;!&ndash;apache commons-logging转slf4j&ndash;&gt;-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>jcl-over-slf4j</artifactId>-->
-      <!--<version>${org.slf4j-version}</version>-->
+    <!--&lt;!&ndash;apache commons-logging转slf4j&ndash;&gt;-->
+    <!--<groupId>org.slf4j</groupId>-->
+    <!--<artifactId>jcl-over-slf4j</artifactId>-->
+    <!--<version>${org.slf4j-version}</version>-->
     <!--</dependency>-->
     <dependency>
       <!--log4j1转slf4j-->
@@ -55,38 +79,38 @@
       <version>${org.slf4j-version}</version>
     </dependency>
     <!--<dependency>-->
-      <!--&lt;!&ndash; JUL需要额外执行一行初始化代码SLF4JBridgeHandler.install();// jul to slf4j &ndash;&gt;-->
-      <!--&lt;!&ndash;jdk-logging转slf4j&ndash;&gt;-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>jul-to-slf4j</artifactId>-->
-      <!--<version>${org.slf4j-version}</version>-->
+    <!--&lt;!&ndash; JUL需要额外执行一行初始化代码SLF4JBridgeHandler.install();// jul to slf4j &ndash;&gt;-->
+    <!--&lt;!&ndash;jdk-logging转slf4j&ndash;&gt;-->
+    <!--<groupId>org.slf4j</groupId>-->
+    <!--<artifactId>jul-to-slf4j</artifactId>-->
+    <!--<version>${org.slf4j-version}</version>-->
     <!--</dependency>-->
     <!--<dependency>-->
-      <!--<groupId>org.jboss.logging</groupId>-->
-      <!--<artifactId>jboss-logging</artifactId>-->
-      <!--<version>3.1.4.GA</version>-->
+    <!--<groupId>org.jboss.logging</groupId>-->
+    <!--<artifactId>jboss-logging</artifactId>-->
+    <!--<version>3.1.4.GA</version>-->
     <!--</dependency>-->
 
     <!-- DB -->
     <!--<dependency>-->
-      <!--<groupId>org.mybatis</groupId>-->
-      <!--<artifactId>mybatis</artifactId>-->
-      <!--<version>3.4.0</version>-->
+    <!--<groupId>org.mybatis</groupId>-->
+    <!--<artifactId>mybatis</artifactId>-->
+    <!--<version>3.4.0</version>-->
     <!--</dependency>-->
     <!--<dependency>-->
-      <!--<groupId>org.mybatis</groupId>-->
-      <!--<artifactId>mybatis-spring</artifactId>-->
-      <!--<version>1.3.0</version>-->
+    <!--<groupId>org.mybatis</groupId>-->
+    <!--<artifactId>mybatis-spring</artifactId>-->
+    <!--<version>1.3.0</version>-->
     <!--</dependency>-->
     <!--<dependency>-->
-      <!--<groupId>mysql</groupId>-->
-      <!--<artifactId>mysql-connector-java</artifactId>-->
-      <!--<version>5.1.38</version>-->
+    <!--<groupId>mysql</groupId>-->
+    <!--<artifactId>mysql-connector-java</artifactId>-->
+    <!--<version>5.1.38</version>-->
     <!--</dependency>-->
     <!--<dependency>-->
-      <!--<groupId>com.alibaba</groupId>-->
-      <!--<artifactId>druid</artifactId>-->
-      <!--<version>1.0.18</version>-->
+    <!--<groupId>com.alibaba</groupId>-->
+    <!--<artifactId>druid</artifactId>-->
+    <!--<version>1.0.18</version>-->
     <!--</dependency>-->
 
     <dependency>
@@ -137,9 +161,9 @@
       <version>${spring-version}</version>
     </dependency>
     <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-jdbc</artifactId>-->
-      <!--<version>${spring-version}</version>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-jdbc</artifactId>-->
+    <!--<version>${spring-version}</version>-->
     <!--</dependency>-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -147,9 +171,9 @@
       <version>${spring-version}</version>
     </dependency>
     <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-test</artifactId>-->
-      <!--<version>${spring-version}</version>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-test</artifactId>-->
+    <!--<version>${spring-version}</version>-->
     <!--</dependency>-->
     <!-- spring web -->
     <dependency>
@@ -180,33 +204,33 @@
     </dependency>
 
     <!-- shiro -->
-    <dependency>
-      <groupId>org.apache.shiro</groupId>
-      <artifactId>shiro-core</artifactId>
-      <version>${shiro-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.shiro</groupId>
-      <artifactId>shiro-spring</artifactId>
-      <version>${shiro-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.shiro</groupId>
-      <artifactId>shiro-web</artifactId>
-      <version>${shiro-version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.apache.shiro</groupId>-->
+      <!--<artifactId>shiro-core</artifactId>-->
+      <!--<version>${shiro-version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.apache.shiro</groupId>-->
+      <!--<artifactId>shiro-spring</artifactId>-->
+      <!--<version>${shiro-version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.apache.shiro</groupId>-->
+      <!--<artifactId>shiro-web</artifactId>-->
+      <!--<version>${shiro-version}</version>-->
+    <!--</dependency>-->
     <!-- ehcache的实现 -->
-    <dependency>
-      <groupId>net.sf.ehcache</groupId>
-      <artifactId>ehcache</artifactId>
-      <version>2.10.2.2.21</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>net.sf.ehcache</groupId>-->
+      <!--<artifactId>ehcache</artifactId>-->
+      <!--<version>2.10.2.2.21</version>-->
+    <!--</dependency>-->
     <!-- shiro-ehcache接口 -->
-    <dependency>
-      <groupId>org.apache.shiro</groupId>
-      <artifactId>shiro-ehcache</artifactId>
-      <version>${shiro-version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.apache.shiro</groupId>-->
+      <!--<artifactId>shiro-ehcache</artifactId>-->
+      <!--<version>${shiro-version}</version>-->
+    <!--</dependency>-->
 
     <!-- Apache Commons Codec Base64 -->
     <dependency>
@@ -234,10 +258,10 @@
     </dependency>
     <!--json-lib-->
     <!--<dependency>-->
-      <!--<groupId>net.sf.json-lib</groupId>-->
-      <!--<artifactId>json-lib</artifactId>-->
-      <!--<version>2.4</version>-->
-      <!--<classifier>jdk15</classifier>-->
+    <!--<groupId>net.sf.json-lib</groupId>-->
+    <!--<artifactId>json-lib</artifactId>-->
+    <!--<version>2.4</version>-->
+    <!--<classifier>jdk15</classifier>-->
     <!--</dependency>-->
 
   </dependencies>
@@ -273,7 +297,7 @@
   </profiles>
 
   <build>
-    <finalName>swipe</finalName>
+    <finalName>lockWOA</finalName>
 
     <resources>
       <resource>
