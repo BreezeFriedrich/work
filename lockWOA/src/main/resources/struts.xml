@@ -8,14 +8,14 @@
 	<include file="conf/struts/struts-sys.xml" />
 	<include file="conf/struts/struts-comm.xml" />
 	<include file="conf/struts/struts-search.xml" />
-	<include file="conf/struts/struts-nearbyhouse.xml"></include>
-	<include file="conf/struts/struts-week.xml"></include>
-	<include file="conf/struts/struts-choiceness.xml"></include>
-	<include file="conf/struts/struts-feature.xml"></include>
-	<include file="conf/struts/struts-wx.xml"></include>
-	<include file="conf/struts/struts-folk.xml"></include>
-	<include file="conf/struts/struts-hotel.xml"></include>
-	<include file="conf/struts/struts-url.xml"></include>
+	<include file="conf/struts/struts-nearbyhouse.xml" />
+	<include file="conf/struts/struts-week.xml" />
+	<include file="conf/struts/struts-choiceness.xml" />
+	<include file="conf/struts/struts-feature.xml" />
+	<include file="conf/struts/struts-wx.xml" />
+	<include file="conf/struts/struts-folk.xml" />
+	<include file="conf/struts/struts-hotel.xml" />
+	<include file="conf/struts/struts-url.xml" />
 
 	<!-- javamelody和struts2集成 -->
 	<package name="default" extends="struts-default,json-default">
