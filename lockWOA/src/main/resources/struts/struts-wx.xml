@@ -4,8 +4,8 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<package name="wx" namespace="/wx" extends="struts-default,json-default">
-		<action name="wx_*" class="com.hysm.action.WXaction">
+	<package name="Wechat" namespace="/wx" extends="struts-default,json-default">
+		<action name="wx_*" class="com.yishu.action.WXaction">
 			<interceptor-ref name="defaultStack">
 				<param name="exception.logEnabled">true</param>
 				<param name="exception.logLevel">error</param>

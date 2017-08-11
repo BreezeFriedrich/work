@@ -4,18 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<include file="conf/struts/struts-house.xml" />
-	<include file="conf/struts/struts-sys.xml" />
-	<include file="conf/struts/struts-comm.xml" />
-	<include file="conf/struts/struts-search.xml" />
-	<include file="conf/struts/struts-nearbyhouse.xml" />
-	<include file="conf/struts/struts-week.xml" />
-	<include file="conf/struts/struts-choiceness.xml" />
-	<include file="conf/struts/struts-feature.xml" />
 	<include file="conf/struts/struts-wx.xml" />
-	<include file="conf/struts/struts-folk.xml" />
-	<include file="conf/struts/struts-hotel.xml" />
-	<include file="conf/struts/struts-url.xml" />
 
 	<!-- javamelody和struts2集成 -->
 	<package name="default" extends="struts-default,json-default">
@@ -27,5 +16,9 @@
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="myStack" />
+		
+		<action name="index">
+			<result>index.jsp</result>
+		</action>
 	</package>
 </struts>
