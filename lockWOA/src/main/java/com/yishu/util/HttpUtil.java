@@ -25,12 +25,15 @@ import java.util.Map;
 
 public class HttpUtil
 {
-    // get请求
+    /**
+     * 发起get请求并获取结果
+     * @param url
+     * @return
+     */
     public static String getUrl(String url)
     {
         String result = null;
-        try
-        {
+        try{
             // 根据地址获取请求
             HttpGet request = new HttpGet(url);
             // 获取当前客户端对象
@@ -59,13 +62,11 @@ public class HttpUtil
      * @param json
      *            请求json数据
      * 
-     * 
      */
     public static String getPostUrl(String url, String json)
     {
         String responseContent = null; // 响应内容
-        try
-        {
+        try{
             HttpPost request = new HttpPost(url); // 根据地址获取请求
             StringEntity myEntity = new StringEntity(json, ContentType.APPLICATION_JSON);// 构造请求数据
             request.setEntity(myEntity);
@@ -100,8 +101,7 @@ public class HttpUtil
     public static String httpRequest(String requestUrl, String requestMethod, String outputStr)
     {
         StringBuffer buffer = new StringBuffer();
-        try
-        {
+        try{
             // 创建SSLContext对象，并使用我们指定的信任管理器初始化
             TrustManager[] tm ={ new MyTrustManager() };
             SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
@@ -146,7 +146,7 @@ public class HttpUtil
         }
         catch (Exception e)
         {
-            System.out.println("HttpConnectException");
+            System.out.println("HttpsConnectException");
             e.printStackTrace();
         }
         return null;
@@ -161,6 +161,9 @@ public class HttpUtil
 
 }
 
+/**
+ * 证书信任管理器,用于https请求
+ */
 class MyTrustManager implements X509TrustManager
 {
     public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException
@@ -176,12 +179,5 @@ class MyTrustManager implements X509TrustManager
     public X509Certificate[] getAcceptedIssuers()
     {
         return null;
-    }
-
-    public static void main(String[] args)
-    {
-        Map<String, String> button1 = new HashMap<String, String>();
-        Map<String, String> button2 = new HashMap<String, String>();
-        Map<String, String> button3 = new HashMap<String, String>();
     }
 }

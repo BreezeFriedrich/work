@@ -20,7 +20,8 @@ import java.util.*;
  */
 public class MessageUtil {
     public static final String MESSAGE_TEXT="text";
-    public static final String MESSAGE_IMAGE="image";
+    public static final String MESSAGE_NEWS="news";//图文消息类型
+    public static final String MESSAGE_IMAGE="image";//图片消息类型
     public static final String MESSAGE_VOICE="voice";
     public static final String MESSAGE_VIDEO="video";
     public static final String MESSAGE_LINK="link";
@@ -118,7 +119,7 @@ public class MessageUtil {
     }
 
     /**
-     * 组装图文消息(MsgType="image")NewsMessage,再转XML
+     * 组装图文消息(MsgType="news")NewsMessage,再转XML
      * @param toUserName
      * @param fromUserName
      * @return
@@ -136,7 +137,7 @@ public class MessageUtil {
         newsMessage.setFromUserName(fromUserName);
         newsMessage.setToUserName(toUserName);
         newsMessage.setCreateTime(new Date().getTime());
-        newsMessage.setMsgType(MessageUtil.MESSAGE_IMAGE);
+        newsMessage.setMsgType(MessageUtil.MESSAGE_NEWS);
         newsMessage.setArticles(newsList);
         newsMessage.setArticleCount(newsList.size());
         message=newsMessageToXml(newsMessage);

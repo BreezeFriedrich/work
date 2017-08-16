@@ -17,7 +17,7 @@ public class GetToken
 
     private static String gettoken()
     {
-        JSONObject js = null;
+        JSONObject jsonObject = null;
         String access_token = null;
         String json = null;
         String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret=" + secret;
@@ -31,8 +31,8 @@ public class GetToken
         {
             e.printStackTrace();
         }
-        js = JSONObject.fromObject(json);
-        access_token = js.getString("access_token");
+        jsonObject = JSONObject.fromObject(json);
+        access_token = jsonObject.getString("access_token");
         System.out.println("access_token==============" + access_token);
         return access_token;
     }
@@ -41,23 +41,23 @@ public class GetToken
     {
         WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         ServletContext servletContext = webApplicationContext.getServletContext();
-        WxtokenAndTicket wat=(WxtokenAndTicket)servletContext.getAttribute(TOKEN);
+        WxtokenAndTicket tokenAndTicket=(WxtokenAndTicket)servletContext.getAttribute(TOKEN);
         String access_token=null;
         long create_time=0;
 
-        if(wat!=null){
-            access_token=wat.getToken();
-            create_time=wat.getToken_ctime();
+        if(tokenAndTicket!=null){
+            access_token=tokenAndTicket.getToken();
+            create_time=tokenAndTicket.getToken_ctime();
         }else{
-            wat=new WxtokenAndTicket();
+            tokenAndTicket=new WxtokenAndTicket();
         }
         if (access_token == null)
         {
             access_token = GetToken.gettoken();
             create_time = System.currentTimeMillis();
-            wat.setToken(access_token);
-            wat.setToken_ctime(create_time);
-            servletContext.setAttribute(TOKEN, wat);
+            tokenAndTicket.setToken(access_token);
+            tokenAndTicket.setToken_ctime(create_time);
+            servletContext.setAttribute(TOKEN, tokenAndTicket);
             return access_token;
         }
         // 判断是否有效
@@ -69,9 +69,9 @@ public class GetToken
         {
             access_token = GetToken.gettoken();
             create_time = System.currentTimeMillis();
-            wat.setToken(access_token);
-            wat.setToken_ctime(create_time);
-            servletContext.setAttribute(TOKEN, wat);
+            tokenAndTicket.setToken(access_token);
+            tokenAndTicket.setToken_ctime(create_time);
+            servletContext.setAttribute(TOKEN, tokenAndTicket);
             return access_token;
         }
     }

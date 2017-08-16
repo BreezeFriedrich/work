@@ -4,6 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+/**
+ * @author <a href="http://www.yishutech.com">yishu</a>
+ * @author <a href="mailto:geysererupt@163.com">admin</a>
+ *
+ * @since 2017-08-15
+ */
 public class CheckUtil {
     private static final String token = "yishutech";
     public static boolean checkSignature(String signature,String timestamp,String nonce){
