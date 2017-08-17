@@ -8,13 +8,21 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.ServletContext;
 import java.io.UnsupportedEncodingException;
 
-//获取token的
+/**
+ * 管理 access_token
+ *
+ * @author unascribed
+ */
 public class GetToken
 {
     private static String appid = "wx6234fc4a502ef625";// 微信公众号下的AppID
     private static String secret = "897c9b5b60804e4c9f4609cd00dd875c";// 微信公众号下的secret
     public static String TOKEN="wxtoken";
 
+    /**
+     * 从微信获取新 access_token.
+     * @return
+     */
     private static String gettoken()
     {
         JSONObject jsonObject = null;
@@ -37,6 +45,10 @@ public class GetToken
         return access_token;
     }
 
+    /**
+     * 在spring的 ServletContext 中维护 access_token.
+     * @return
+     */
     public static String getAccessToken()
     {
         WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();

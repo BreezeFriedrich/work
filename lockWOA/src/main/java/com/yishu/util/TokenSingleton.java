@@ -4,9 +4,14 @@ import com.yishu.pojo.WechatTokenAndTicket;
 import net.sf.json.JSONObject;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * 管理 access_token 和 jsapi_token
+ * 获取 access_token 和 jsapi_token 方式: WechatTokenAndTicket tokenAndTicket = TokenSingleton.getTokenAndTicket();
+ *
+ * @author admin
+ * @since 2017-08-17
+ */
 public class TokenSingleton {
 
     private TokenSingleton() {
@@ -52,10 +57,10 @@ public class TokenSingleton {
 
     public WechatTokenAndTicket getTokenAndTicket(){
         Long now=new Date().getTime();
-        if( null!=tokenAndTicket.getAccess_token() && now+60000<tokenAndTicket.getToken_expiresIn() ){
-            //now-Long.parseLong(tokenAndTicket.getTicket_ctime()) < 7200 * 1000-60000
+        if( null!=tokenAndTicket.getAccess_token() && now-tokenAndTicket.getToken_ctime()-60000 < tokenAndTicket.getToken_expiresIn() ){
             //access_token 未超时，依然有效
         }else {
+            //access_token 超时,重新获取
             setAccessToken();
             setJsapiToken();
         }
