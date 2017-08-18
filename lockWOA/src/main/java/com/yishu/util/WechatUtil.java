@@ -94,7 +94,10 @@ public class WechatUtil {
         }
 
         JSONObject jsonObject = JSONObject.fromObject(result);
-        String media_id = jsonObject.getString("media_id");
-        return media_id;
+        if(jsonObject.containsKey("media_id")){
+            String media_id = jsonObject.getString("media_id");
+            return media_id;
+        }
+        return null;
     }
 }

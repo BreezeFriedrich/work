@@ -4,11 +4,11 @@
 package com.yishu.mapper;
 
 import com.yishu.domain.User;
-import com.yishu.mapper.sqlpro.WXPro;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.UpdateProvider;
+//import com.yishu.mapper.sqlpro.WXPro;
+//import org.apache.ibatis.annotations.InsertProvider;
+//import org.apache.ibatis.annotations.Param;
+//import org.apache.ibatis.annotations.SelectProvider;
+//import org.apache.ibatis.annotations.UpdateProvider;
 
 /**
  * @author
