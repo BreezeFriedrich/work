@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:background="@drawable/textview_lightgray_click"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_alertGatewayInfo"
+        android:text="修改网关信息"
+        android:textColor="@color/deepGray"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="15dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+    <TextView
+        android:background="@drawable/textview_lightgray_click"
+        android:id="@+id/textView_deleteGateway"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除网关"
+        android:textColor="@color/deepGray"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="15dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+    <TextView
+        android:background="@drawable/textview_lightgray_click"
+        android:id="@+id/textView_cancelGatewaySetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:textColor="@color/deepGray"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="15dp"/>
+
+</LinearLayout>

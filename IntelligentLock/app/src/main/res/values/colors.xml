@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="darkBrown">#482e12</color>
+    <color name="brown">#a4631d</color>
+    <color name="lightBrown">#f7a449</color>
+    <color name="cyan">#f4168bf9</color>
+    <color name="transparency">#00ffffff</color>
+    <color name="red">#ddff0000</color>
+    <color name="redWhite">#f56262</color>
+    <color name="darkBlue">#0a0a60</color>
+    <color name="blue">#ff0000ff</color>
+    <color name="lightBlue">#450000ff</color>
+    <color name="darkGray">#888</color>
+    <color name="gray">#aaa</color>
+    <color name="lightGray">#99aaaaaa</color>
+    <color name="slightGray">#ede7e7</color>
+    <color name="white">#ffffff</color>
+    <color name="darkTitle">#e10614</color>
+    <color name="darkRed">#8c0c18</color>
+    <color name="black">#ff000000</color>
+    <color name="deepGray">#ff444444</color>
+    <color name="lightBlack">#cc000000</color>
+    <color name="purple">#9b1699</color>
+    <color name="green">#009600</color>
+    <color name="lightGreen">#4f00ff00</color>
+    <color name="darkGreen">#044504</color>
+    <color name="result_view">#b0000000</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+
+    <color name="grey_b2b2b2">#B2B2B2</color>
+    <color name="blue_78d2f6">#78D2F6</color>
+    <color name="blue_01aaee">#01AAEE</color>
+    <color name="blue_00aaee">#00AAEE</color>
+    <color name="red_f3323b">#F3323B</color>
+
+    <color name="grey_f6f6f6">#f6f6f6</color>
+    <color name="grey_a5a5a5">#A5A5A5</color>
+    <color name="grey_dde1e7">#DDE1E7</color>
+    <color name="red_f4333c">#F4333C</color>
+
+</resources>

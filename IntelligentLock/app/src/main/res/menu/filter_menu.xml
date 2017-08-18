@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/allRecord"
+        android:title="全部开锁记录"
+        app:showAsAction="never" >
+    </item>
+    <item
+        android:id="@+id/gatewayRecord"
+        app:showAsAction="never"
+        android:title="按网关分类">
+    </item>
+    <item
+        android:id="@+id/lockRecord"
+        app:showAsAction="never"
+        android:title="按门锁分类">
+    </item>
+    <item
+        android:id="@+id/userRecord"
+        app:showAsAction="never"
+        android:title="按开锁人分类">
+    </item>
+</menu>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/brown">
+        <ImageButton
+            android:id="@+id/backOnLockDetail"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/image_click"
+            android:src="@drawable/back"
+            android:scaleType="fitXY"
+            android:layout_gravity="left|center_vertical"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="门  锁 详 情"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/imageButton_lockSetting"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/image_click"
+            android:src="@drawable/setting_upper"
+            android:scaleType="fitXY"
+            android:layout_gravity="right|center_vertical"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"/>
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门锁名称"
+                    style="@style/textViewStyle"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/textView_detailLockName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textViewStyle" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门锁地址"
+                    style="@style/textViewStyle"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/textView_detailLockLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textViewStyle" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门锁备注"
+                    style="@style/textViewStyle"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/textView_detailLockComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textViewStyle" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门锁条码"
+                    style="@style/textViewStyle"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/textView_detailLockCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textViewStyle" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所属网关"
+                    style="@style/textViewStyle"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/textView_bindGatewayName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textViewStyle" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/lightGray"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_addAuthorizedUser"
+                android:background="@drawable/textview_click"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/users"
+                    android:background="@color/transparency"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="增加授权用户"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/down_arrow"
+                    android:background="@color/transparency"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/lightGray"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_passwordSetting"
+                android:background="@drawable/textview_click"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/password_red"
+                    android:background="@color/transparency"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门锁密码设置"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/down_arrow"
+                    android:background="@color/transparency"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/lightGray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="已授权用户"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGray"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/slightGray"
+                android:id="@+id/userRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/cancel_startTime"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/cancel"
+            android:scaleType="fitXY"
+            android:background="@drawable/image_button_back"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/timePickerTitle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="选择起始时间"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+/>
+
+        <ImageButton
+            android:id="@+id/confirm_startTime"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/confirm"
+            android:scaleType="fitXY"
+            android:background="@drawable/image_button_back"
+            android:padding="7dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.ys.intelligentlock.CustomizedView.WheelView
+            android:id="@+id/startYear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:itemNumber="5"
+            app:lineColor="#ff5789DC"
+            app:maskHeight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="@android:color/holo_green_light"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="@android:color/holo_blue_dark"
+            app:selectedTextSize="22sp"
+            app:unitHeight="50dp" />
+
+        <com.ys.intelligentlock.CustomizedView.WheelView
+            android:id="@+id/startMonth"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:itemNumber="5"
+            app:lineColor="#ff5789DC"
+            app:maskHeight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="@android:color/holo_green_light"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="@android:color/holo_blue_dark"
+            app:selectedTextSize="22sp"
+            app:unitHeight="50dp" />
+        <com.ys.intelligentlock.CustomizedView.WheelView
+            android:id="@+id/startDay"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:itemNumber="5"
+            app:lineColor="#ff5789DC"
+            app:maskHeight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="@android:color/holo_green_light"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="@android:color/holo_blue_dark"
+            app:selectedTextSize="22sp"
+            app:unitHeight="50dp" />
+        <com.ys.intelligentlock.CustomizedView.WheelView
+            android:id="@+id/startHour"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:itemNumber="5"
+            app:lineColor="#ff5789DC"
+            app:maskHeight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="@android:color/holo_green_light"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="@android:color/holo_blue_dark"
+            app:selectedTextSize="22sp"
+            app:unitHeight="50dp" />
+        <com.ys.intelligentlock.CustomizedView.WheelView
+            android:id="@+id/startMinute"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:itemNumber="5"
+            app:lineColor="#ff5789DC"
+            app:maskHeight="32dp"
+            app:noEmpty="true"
+            app:normalTextColor="@android:color/holo_green_light"
+            app:normalTextSize="14sp"
+            app:selectedTextColor="@android:color/holo_blue_dark"
+            app:selectedTextSize="22sp"
+            app:unitHeight="50dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

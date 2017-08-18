@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/brown">
+        <ImageButton
+            android:id="@+id/backOnSupport"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/image_click"
+            android:src="@drawable/back"
+            android:scaleType="fitXY"
+            android:layout_gravity="left|center_vertical"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="技术支持与服务"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:src="@drawable/icon400"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="亿数智能门锁"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="@color/deepGray"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="客服电话："
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/textView_phone1"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="13333333333"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView_phone2"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="18888888888"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_height="0dp"
+        android:lineSpacingExtra="8dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Copyright@2017 All Rights Reserved \n南京亿数信息技术有限公司"
+        android:textSize="16sp"
+        android:gravity="center"/>
+</LinearLayout>
