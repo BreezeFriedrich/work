@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="folk" namespace="/folk" extends="default">
+
+		<action name="folk_*" class="com.hysm.action.FolkAction">
+			<interceptor-ref name="myStack" />
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
+
+			<!--返回添加民居 -->
+			<result name="addhouse">/jsp/house/addhouse.jsp</result>
+			<!-- 民居列表 -->
+			<result name="houselist">/jsp/house/houselist.jsp</result>
+			<!-- 民居价格 -->
+			<result name="houseprice">/jsp/house/houseprice.jsp</result>
+			<!-- 修改民居的信息 -->
+			<result name="alerthousetype">/jsp/house/alerthousetype.jsp</result>
+			<result name="addhousepage">/jsp/house/ahouse.jsp</result>
+			<!-- -->
+			<result name="house">/jsp/house/house.jsp</result>
+			<!-- 修改房间 -->
+			<result name="alerthouse">/jsp/house/alerthouse.jsp</result>
+			<!-- 宾馆所有房间 -->
+			<result name="hotelhouse">/jsp/house/hotelhouse.jsp</result>
+			<result name="schedulelist">/jsp/house/shedulelist.jsp</result>
+		</action>
+
+	</package>
+</struts>

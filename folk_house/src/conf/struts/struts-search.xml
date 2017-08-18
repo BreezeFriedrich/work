@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="search" namespace="/search" extends="struts-default,json-default">
+
+		<interceptors>
+			<interceptor name="OpenIdInterceptor" class="com.hysm.filter.intercept.OpenIdInterceptor" />
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="OpenIdInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="error">/jsp/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error" />
+		</global-exception-mappings>
+
+		<action name="search_*" class="com.hysm.action.SearchAction">
+			<result name="index">/jsp/folk/index.jsp</result>
+			<result name="country_house">/jsp/folk/country_house.jsp</result>
+			<result name="house_load">/jsp/folk/house_load.jsp</result>
+			<result name="house_detail">/jsp/folk/house_detail.jsp</result>
+			<result name="order_write">/jsp/folk/order_write.jsp</result>
+			<result name="confirm_order">/jsp/folk/confirm_order.jsp</result>
+			<result name="order_list">/jsp/folk/order_list.jsp</result>
+			<result name="order_detail">/jsp/folk/order_detail.jsp</result>
+			<result name="collect">/jsp/folk/collect.jsp</result>
+			<result name="load_coll">/jsp/folk/load_coll.jsp</result>
+			<result name="nohouse">/jsp/folk/index.jsp</result>
+			<result name="order">/jsp/folk/order_list.jsp</result>
+			<!-- <result name="order" type="redirectAction"> <param name="actionName">search_**</param> 
+				<param name="method">get_order_info</param> </result> -->
+			<!-- <interceptor-ref name="mydefault"> <param name="exception.logEnabled">true</param> 
+				<param name="exception.logLevel">error</param> </interceptor-ref> -->
+		</action>
+
+	</package>
+</struts>

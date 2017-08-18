@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="choic" namespace="/choic" extends="struts-default,json-default">
+		<action name="choic_*" class="com.hysm.action.ChoicenessAction">
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
+			<result name="choicenessindex">/jsp/folk/choiceness.jsp</result>
+			<result name="nextpage">/jsp/folk/choicepublic.jsp</result>
+		</action>
+	</package>
+</struts>

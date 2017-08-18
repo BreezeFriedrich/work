@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<include file="conf/struts/struts-house.xml" />
+	<include file="conf/struts/struts-sys.xml" />
+	<include file="conf/struts/struts-comm.xml" />
+	<include file="conf/struts/struts-search.xml" />
+	<include file="conf/struts/struts-nearbyhouse.xml"></include>
+	<include file="conf/struts/struts-week.xml"></include>
+	<include file="conf/struts/struts-choiceness.xml"></include>
+	<include file="conf/struts/struts-feature.xml"></include>
+	<include file="conf/struts/struts-wx.xml"></include>
+	<include file="conf/struts/struts-folk.xml"></include>
+	<include file="conf/struts/struts-hotel.xml"></include>
+	<include file="conf/struts/struts-url.xml"></include>
+
+	<!-- javamelody和struts2集成 -->
+	<package name="default" extends="struts-default,json-default">
+		<interceptors>
+			<interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="monitoring" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+	</package>
+</struts>
