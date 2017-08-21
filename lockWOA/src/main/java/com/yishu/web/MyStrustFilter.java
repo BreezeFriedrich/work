@@ -1,4 +1,4 @@
-package com.yishu.filter;
+package com.yishu.web;
 
 import org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter;
 

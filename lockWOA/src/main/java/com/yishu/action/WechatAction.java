@@ -6,6 +6,7 @@ import com.yishu.util.*;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.bson.BasicBSONObject;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -17,7 +18,8 @@ import java.util.Map;
 
 public class WechatAction extends BaseAction{
 
-    private Logger logger = Logger.getLogger(WechatAction.class);
+    private org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+//    private Logger logger = Logger.getLogger(WechatAction.class);
     private String signature;// 微信加密签名
     private String timestamp;// 时间戳
     private String nonce;// 随机数

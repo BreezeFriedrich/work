@@ -1,6 +1,5 @@
-package com.yishu.filter;
+package com.yishu.web;
 
-import com.yishu.domain.TextMessage;
 import com.yishu.util.CheckUtil;
 import com.yishu.util.MessageUtil;
 import org.dom4j.DocumentException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.Map;
 
 public class WechatServlet extends HttpServlet{

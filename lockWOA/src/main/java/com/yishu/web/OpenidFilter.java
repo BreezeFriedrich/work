@@ -1,4 +1,4 @@
-package com.yishu.filter;
+package com.yishu.web;
 
 import com.yishu.domain.User;
 import com.yishu.service.IWXService;

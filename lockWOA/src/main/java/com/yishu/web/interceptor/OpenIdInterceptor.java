@@ -1,4 +1,4 @@
-package com.yishu.filter.interceptor;
+package com.yishu.web.interceptor;
 
 import com.yishu.domain.User;
 import com.yishu.service.IWXService;

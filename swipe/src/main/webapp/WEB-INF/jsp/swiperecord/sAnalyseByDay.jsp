@@ -29,12 +29,11 @@
                     <div class="form-group">
                         <label for="laydate_day" class="col-lg-4">查询日期：</label>
                         <div class="col-lg-8">
-                            <input class="laydate-icon" id="laydate_day" placeholder="(必要)请输入日期"
-                                   style="height:36px;border-color:#00ff00;"/>
+                            <input class="laydate-icon" id="laydate_day" placeholder="(必要)请输入日期" style="height:36px;border-color:#00ff00;"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
+                        <div class="col-lg-offset-4 col-lg-8">
                             <button type="button" class="btn btn-info" onclick="refreshData()">查询</button>
                         </div>
                     </div>
