@@ -38,7 +38,7 @@
             <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4" style="padding-left: 6px;padding-right: 6px;padding-top: 6px;background-color: #fff;">
 
             </div>
-            <form class="form-horizontal" role="form" method="post" action="${pageContext.request.contextPath}/login">
+            <form class="form-horizontal" role="form" method="post" action="${pageContext.request.contextPath}/account/login.action">
                 <div class="form-group">
                     <label for="inputUserName" class="col-xs-2 control-label">用户名</label>
                     <div class="col-xs-10">
