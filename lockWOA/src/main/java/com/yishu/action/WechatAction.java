@@ -34,27 +34,23 @@ public class WechatAction extends BaseAction{
      */
     public void authdev()
     {
-        try
-        {
+        try{
             // 设置发送文件类型 及编码方式 charset 不能省略 防止乱码
             response.setContentType("text/html; charset=utf-8");
             out = response.getWriter();
         }
-        catch (IOException e1)
-        {
+        catch (IOException e1){
             e1.printStackTrace();
         }
         logger.debug("******signature********" + signature);
         logger.debug("******timestamp********" + timestamp);
         logger.debug("******nonce********" + nonce);
         logger.debug("******echostr********" + echostr);
-        if (signature == null || timestamp == null || nonce == null)
-        {
+        if (signature == null || timestamp == null || nonce == null){
             return;
         }
         // 开发者校验
-        if (echostr != null && SHA1.authWXDEV(signature, timestamp, nonce, token))
-        {
+        if (echostr != null && SHA1.authWXDEV(signature, timestamp, nonce, token)){
             out.print(echostr);
             return;
         }
@@ -63,19 +59,16 @@ public class WechatAction extends BaseAction{
         int length = request.getContentLength();
         String encoding = request.getContentType();
         System.out.println(encoding + "encoding");
-        if (length > 0)
-        {
+        if (length > 0){
             buff = new byte[length];
         }
-        else
-        {
+        else{
             buff = new byte[1024 * 1024 * 2];
         }
         int temp = 0, readedLen = 0;
         InputStream in = null;
         String reqStr; // xml数据
-        try
-        {
+        try{
             in = request.getInputStream();
             while ((temp = in.read(buff, readedLen, buff.length - readedLen)) > 0)
             {
@@ -85,16 +78,14 @@ public class WechatAction extends BaseAction{
             // 处理用户消息
             this.handleMassage(reqStr, out);
         }
-        catch (IOException e)
-        {
+        catch (IOException e){
             e.printStackTrace();
         }
 
     }
 
     // 解析 xml数据
-    private void handleMassage(String reqStr, PrintWriter out)
-    {
+    private void handleMassage(String reqStr, PrintWriter out){
         BasicBSONObject reqBSON = DOM4JTool.decodeXML(reqStr);
 
         logger.debug("消息为" + reqBSON.toString());
@@ -104,12 +95,10 @@ public class WechatAction extends BaseAction{
         PushMassage pu = new PushMassage();
         // 根据消息类型处理
         // 处理事件
-        if (MsgType.equalsIgnoreCase("event"))
-        {
+        if (MsgType.equalsIgnoreCase("event")){
             // 事件类型
             String Event = reqBSON.getString("Event");
-            if (Event == null)
-            {
+            if (Event == null){
                 return;
             }
 
@@ -136,35 +125,29 @@ public class WechatAction extends BaseAction{
             }
         }
         // 用户普通文本消息
-        else if (MsgType.equalsIgnoreCase("text"))
-        {
+        else if (MsgType.equalsIgnoreCase("text")){
             out.print(pu.pushTextMess(openid, to, "亲！\n你说的话太高深，小漫一时无法理解！"));
         }
         // 用户普通图片消息
-        else if (MsgType.equalsIgnoreCase("image"))
-        {
+        else if (MsgType.equalsIgnoreCase("image")){
             out.print(pu.pushTextMess(openid, to, "亲！\n你发的是图片奥！"));
         }
         // 用户普通语音消息
-        else if (MsgType.equalsIgnoreCase("voice"))
-        {
+        else if (MsgType.equalsIgnoreCase("voice")){
             out.print(pu.pushTextMess(openid, to, "亲！\n你发的是语音奥！"));
         }
         // 用户普通视频消息
-        else if (MsgType.equalsIgnoreCase("video"))
-        {
+        else if (MsgType.equalsIgnoreCase("video")){
             out.print(pu.pushTextMess(openid, to, "亲！\n你发的是视频奥！"));
         }
         // 用户地理位置消息
-        else if (MsgType.equalsIgnoreCase("location"))
-        {
+        else if (MsgType.equalsIgnoreCase("location")){
             out.print(pu.pushTextMess(openid, to, "亲！\n你发的是位置奥，一定要找到你！"));
         }
     }
 
     // 用户关注处理
-    private void HandelSubscribe(String openid, PrintWriter out, String ouropenid)
-    {
+    private void HandelSubscribe(String openid, PrintWriter out, String ouropenid){
         PushMassage pu = new PushMassage();
         out.print(pu.pushTextMess(openid, ouropenid, "终于等到你了 ，亲！\n欢迎关注漫行网！"));
         User user=wxservice.findUserByopenid(openid);
@@ -179,8 +162,7 @@ public class WechatAction extends BaseAction{
             user.setCreatetime(DataUtil.fromDate24H());
             // 保存用户
             int val = wxservice.addSubscribe(user);
-            if (val == 1)
-            {
+            if (val == 1){
                 logger.debug("保存用户信息成功" + openid);
             }
         }else{
@@ -188,16 +170,14 @@ public class WechatAction extends BaseAction{
             user.setNickname(mm.get("nickname"));
             user.setImgurl(mm.get("headimgurl"));
             int val = wxservice.UnSubscribe2(user);
-            if (val == 1)
-            {
+            if (val == 1){
                 logger.debug("修改用户信息成功" + openid);
             }
         }
     }
 
     // 取消关注处理
-    private void HandelUnSubscribe(String openid)
-    {
+    private void HandelUnSubscribe(String openid){
         User user = new User();
         user.setOpenid(openid);
         user.setUntime(DataUtil.fromDate24H());
@@ -205,8 +185,7 @@ public class WechatAction extends BaseAction{
     }
 
     // 获取用户昵称
-    private Map<String,String> HandelNickName(String openid)
-    {
+    private Map<String,String> HandelNickName(String openid){
         String access_token = GetToken.getAccessToken();
         String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="
                 + access_token + "&openid=" + openid + "&lang=zh_CN";
@@ -224,8 +203,7 @@ public class WechatAction extends BaseAction{
             mm.put("nickname", nickname);
             mm.put("headimgurl", headimgurl);
         }
-        catch (UnsupportedEncodingException e)
-        {
+        catch (UnsupportedEncodingException e){
             logger.error("获取用户昵称异常");
             e.printStackTrace();
         }
