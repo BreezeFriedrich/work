@@ -40,13 +40,13 @@ $(function () {
 		if ($("#tabs").tabs('exists', text)) {
 			$('#tabs').tabs('select', text);
 			$('#tabs').tabs({
-			    border:false,
-			    onSelect:function(title){
-			    	if(text=='开锁授权'){
-//			    		alert(text+' is selected');
-// 			    		showDevices();
-			    	}
-			    }
+				border:false,
+				onSelect:function(title){
+					if(text=='开锁授权'){
+//						alert(text+' is selected');
+// 						showDevices();
+					}
+				}
 			});
 		} else {
 			$('#tabs').tabs('add', {
