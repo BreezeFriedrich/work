@@ -1,0 +1,213 @@
+{
+	"id": "faddbce7-765b-0292-d295-256aa8501ec8",
+	"name": "jjwt",
+	"allTests": [],
+	"timestamp": 1503629867693,
+	"collection_id": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+		"name": "jjwt",
+		"description": "",
+		"order": [
+			"4e1515d6-db44-7ae1-c5ec-57bf29996963",
+			"ec9489ef-627c-d5fc-8a6f-1bb0da94f7ba"
+		],
+		"folders": [],
+		"folders_order": [],
+		"requests": [
+			{
+				"id": "4e1515d6-db44-7ae1-c5ec-57bf29996963",
+				"headers": "",
+				"headerData": [],
+				"url": "http://localhost:8080/greeting",
+				"queryParams": [],
+				"pathVariables": {},
+				"pathVariableData": [],
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+				"data": null,
+				"dataMode": "params",
+				"name": "http://localhost:8080/greeting",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1503561318823,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "ec9489ef-627c-d5fc-8a6f-1bb0da94f7ba",
+				"headers": "Content-Type: application/json;charset=UTF-8\nAuthorization: Basic dGVzdDp0ZXN0\n",
+				"headerData": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8",
+						"description": "",
+						"enabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0",
+						"description": "",
+						"enabled": true
+					}
+				],
+				"url": "http://localhost:8080/user/adduser",
+				"queryParams": [],
+				"pathVariables": {},
+				"pathVariableData": [],
+				"preRequestScript": null,
+				"method": "POST",
+				"collectionId": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+				"data": "{\n\"id\":\"2\",\n\"name\":\"ikd\",\n\"password\":\"123456\",\n\"salt\":\"test\",\n\"role\":\"guest\"\n}",
+				"dataMode": "raw",
+				"name": "http://localhost:8080/user/adduser",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1503629818185,
+				"version": 2,
+				"responses": [],
+				"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			}
+		],
+		"timestamp": 0,
+		"synced": true,
+		"syncedFilename": "",
+		"remote_id": "0",
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"owner": "2639887",
+		"subscribed": false,
+		"createdAt": "2017-08-24T07:33:09.000Z",
+		"updatedAt": 1503629818283,
+		"write": true,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {},
+		"sharedWithTeam": false
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"id": "4e1515d6-db44-7ae1-c5ec-57bf29996963",
+			"name": "http://localhost:8080/greeting",
+			"url": "http://localhost:8080/greeting",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				57
+			],
+			"allTests": [
+				{}
+			],
+			"time": 57,
+			"totalRequestTime": 57,
+			"iterationResults": {}
+		},
+		{
+			"id": "ec9489ef-627c-d5fc-8a6f-1bb0da94f7ba",
+			"name": "http://localhost:8080/user/adduser",
+			"url": "http://localhost:8080/user/adduser",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": 33,
+			"totalRequestTime": 33,
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 1,
+	"totalFail": 0,
+	"totalTime": 90,
+	"lifecycle": "done",
+	"willStop": false,
+	"requests": [
+		{
+			"name": "http://localhost:8080/greeting",
+			"id": "4e1515d6-db44-7ae1-c5ec-57bf29996963",
+			"url": "http://localhost:8080/greeting",
+			"time": 57,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "http://localhost:8080/user/adduser",
+			"id": "ec9489ef-627c-d5fc-8a6f-1bb0da94f7ba",
+			"url": "http://localhost:8080/user/adduser",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Status code is 200"
+			],
+			"gridData": [
+				[
+					true
+				]
+			],
+			"tests": {
+				"Status code is 200": true
+			}
+		}
+	],
+	"synced": false
+}

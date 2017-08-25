@@ -1,0 +1,253 @@
+{
+	"id": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+	"name": "jjwt",
+	"description": "",
+	"order": [
+		"4e1515d6-db44-7ae1-c5ec-57bf29996963",
+		"8852739f-a87b-3d10-73ca-d9b9e2eae396",
+		"9baa0f78-c9d8-f793-03de-4138f4326a3a",
+		"ae722a36-19f5-84e6-3115-4cd9ca2fc13b",
+		"5fd62c8f-3e61-e50a-f713-348974524848"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 0,
+	"owner": "2639887",
+	"public": false,
+	"requests": [
+		{
+			"id": "4e1515d6-db44-7ae1-c5ec-57bf29996963",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/greeting",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:8080/greeting",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1503561318823,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "5fd62c8f-3e61-e50a-f713-348974524848",
+			"headers": "Content-Type: application/json;charset=UTF-8\nAuthorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiZ3Vlc3QiLCJ1bmlxdWVfbmFtZSI6ImhhaGEiLCJ1c2VyaWQiOiIxIiwiaXNzIjoicmVzdGFwaXVzZXIiLCJhdWQiOiIwOThmNmJjZDQ2MjFkMzczY2FkZTRlODMyNjI3YjRmNiIsImV4cCI6MTUwMzgyMjc2NywibmJmIjoxNTAzNjQ5OTY3fQ.sv0NDkDtIKHBFbQ2UHZ3g0ha-X1UVV0RnJ3ggnffJuM\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json;charset=UTF-8",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiZ3Vlc3QiLCJ1bmlxdWVfbmFtZSI6ImhhaGEiLCJ1c2VyaWQiOiIxIiwiaXNzIjoicmVzdGFwaXVzZXIiLCJhdWQiOiIwOThmNmJjZDQ2MjFkMzczY2FkZTRlODMyNjI3YjRmNiIsImV4cCI6MTUwMzgyMjc2NywibmJmIjoxNTAzNjQ5OTY3fQ.sv0NDkDtIKHBFbQ2UHZ3g0ha-X1UVV0RnJ3ggnffJuM",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/user/getusers?role=Guest",
+			"queryParams": [
+				{
+					"key": "role",
+					"value": "Guest",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:8080/user/getusers?role=Guest",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1503651207589,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "8852739f-a87b-3d10-73ca-d9b9e2eae396",
+			"headers": "Content-Type: application/json ;charset=UTF-8\nAuthorization: Basic dGVzdDp0ZXN0\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json ;charset=UTF-8",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic dGVzdDp0ZXN0",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/getaudience",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/getaudience",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1503630977965,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\"id\":\"3\",\n\"name\":\"scala\",\n\"password\":\"123456\",\n\"salt\":\"test\",\n\"role\":\"guest\"\n}"
+		},
+		{
+			"id": "9baa0f78-c9d8-f793-03de-4138f4326a3a",
+			"headers": "Content-Type: application/json ;charset=UTF-8\nAuthorization: Basic dGVzdDp0ZXN0\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json ;charset=UTF-8",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Basic dGVzdDp0ZXN0",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/user/adduser",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/user/adduser",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1503631017781,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\"id\":\"3\",\n\"name\":\"scala\",\n\"password\":\"123456\",\n\"salt\":\"test\",\n\"role\":\"guest\"\n}"
+		},
+		{
+			"id": "ae722a36-19f5-84e6-3115-4cd9ca2fc13b",
+			"headers": "Content-Type: application/json ;charset=UTF-8\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json ;charset=UTF-8",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/oauth/token",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "98e39869-d1e4-f591-fa58-e3fd916ce5ad",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/oauth/token",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1503648424789,
+			"version": 2,
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 729,
+					"headers": [
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json;charset=UTF-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Fri, 25 Aug 2017 08:03:30 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "transfer-encoding",
+							"key": "transfer-encoding",
+							"value": "chunked",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"errcode\":0,\"errmsg\":\"OK\",\"p2pdata\":{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiZ3Vlc3QiLCJ1bmlxdWVfbmFtZSI6ImhhaGEiLCJ1c2VyaWQiOiIxIiwiaXNzIjoicmVzdGFwaXVzZXIiLCJhdWQiOiIwOThmNmJjZDQ2MjFkMzczY2FkZTRlODMyNjI3YjRmNiIsImV4cCI6MTUwMzgyMTAwOSwibmJmIjoxNTAzNjQ4MjA5fQ.aTaXsbK78zRE4kqW0bklr62x5L_mldZE4ZdSWLYGJ9w\",\"token_type\":\"bearer\",\"expires_in\":172800}}",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "jjwt-ouath/token",
+					"id": "986149f2-6fb9-5921-24f4-715d522f38b5",
+					"request": {
+						"url": "http://localhost:8080/oauth/token",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [
+							{
+								"key": "Content-Type",
+								"value": "application/json ;charset=UTF-8",
+								"description": "",
+								"enabled": true,
+								"warning": ""
+							}
+						],
+						"headers": "Content-Type: application/json ;charset=UTF-8\n",
+						"data": "{\n\"clientId\":\"098f6bcd4621d373cade4e832627b4f6\",\n\"userName\":\"haha\",\n\"password\":\"123456\"\n}",
+						"method": "POST",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\"clientId\":\"098f6bcd4621d373cade4e832627b4f6\",\n\"userName\":\"haha\",\n\"password\":\"123456\"\n}"
+		}
+	]
+}

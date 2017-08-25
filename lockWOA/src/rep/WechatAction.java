@@ -6,13 +6,9 @@ import com.yishu.util.*;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.bson.BasicBSONObject;
-import org.dom4j.DocumentException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -23,11 +19,11 @@ import java.util.Map;
 public class WechatAction extends BaseAction{
 
     private org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
-
+//    private Logger logger = Logger.getLogger(WechatAction.class);
     private String signature;// 微信加密签名
     private String timestamp;// 时间戳
     private String nonce;// 随机数
-//    private String token = "yishutech";// 自定义token
+    private String token = "aaren0125ITREN";// 自定义token
     private String echostr;// 随机字符串
     PrintWriter out = null;// response.getWriter();;
     @Autowired
@@ -36,7 +32,8 @@ public class WechatAction extends BaseAction{
     /**
      * 微信请求链接
      */
-    public void authdev() throws IOException, ServletException {
+    public void authdev()
+    {
         try{
             // 设置发送文件类型 及编码方式 charset 不能省略 防止乱码
             response.setContentType("text/html; charset=utf-8");
@@ -52,55 +49,41 @@ public class WechatAction extends BaseAction{
         if (signature == null || timestamp == null || nonce == null){
             return;
         }
-        if(null!=echostr && CheckUtil.checkSignature(signature,timestamp,nonce)){
+        // 开发者校验
+        if (echostr != null && SHA1.authWXDEV(signature, timestamp, nonce, token)){
             out.print(echostr);
             return;
         }
         // 处理其余请求
+        byte[] buff = null;
+        int length = request.getContentLength();
         String encoding = request.getContentType();
         System.out.println(encoding + "encoding");
-//        request.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding(encoding);
-        this.handleMassage(request, out);
-    }
-
-    protected void handleMassage(HttpServletRequest req, PrintWriter out) throws ServletException, IOException {
-        try {
-            Map<String,String> map= MessageUtil.xmlToMap(req);
-            String fromUserName=map.get("FromUserName"); //发送方帐号（关注公众号用户的OpenID）
-            String toUserName=map.get("ToUserName"); //开发者微信号
-            String msgType=map.get("MsgType");
-            String content=map.get("Content");
-            String message=null;
-            if(MessageUtil.MESSAGE_TEXT.equals(msgType)){
-                if       (content.equals("0")){
-                    message=MessageUtil.initNewsMessage(toUserName,fromUserName);
-                }else if (content.equals("1")){
-                    message=MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());
-                }else if (content.equals("2")){
-                    message=MessageUtil.initText(toUserName,fromUserName,MessageUtil.secondMenu());
-                }else if (content.equals("3")){
-                    message=MessageUtil.initImageMessage(toUserName,fromUserName);
-                }else if (content.equals("?")||content.equals("？")){
-                    message=MessageUtil.initText(toUserName,fromUserName,MessageUtil.menuText());
-                }
-            }else if(MessageUtil.MESSAGE_EVENT.equals(msgType)){
-                String eventType=map.get("Event");
-                if(MessageUtil.MESSAGE_SUBSCRIBE.equals(eventType)){
-                    message=MessageUtil.initText(toUserName,fromUserName,MessageUtil.menuText());
-                }
+        if (length > 0){
+            buff = new byte[length];
+        }
+        else{
+            buff = new byte[1024 * 1024 * 2];
+        }
+        int temp = 0, readedLen = 0;
+        InputStream in = null;
+        String reqStr; // xml数据
+        try{
+            in = request.getInputStream();
+            while ((temp = in.read(buff, readedLen, buff.length - readedLen)) > 0)
+            {
+                readedLen += temp;
             }
-            System.out.println(message);
-            out.print(message);
-        } catch (DocumentException e) {
+            reqStr = new String(buff, 0, readedLen, "UTF-8");
+            // 处理用户消息
+            this.handleMassage(reqStr, out);
+        }
+        catch (IOException e){
             e.printStackTrace();
-        }finally {
-            out.close();
         }
 
     }
 
-    /*
     // 解析 xml数据
     private void handleMassage(String reqStr, PrintWriter out){
         BasicBSONObject reqBSON = DOM4JTool.decodeXML(reqStr);
@@ -226,7 +209,6 @@ public class WechatAction extends BaseAction{
         }
         return mm;
     }
-    */
 
     public String getSignature()
     {
