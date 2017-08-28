@@ -1,23 +1,15 @@
 package com.yishu.action;
 
-import com.yishu.domain.User;
 import com.yishu.service.IWXService;
 import com.yishu.util.*;
-import net.sf.json.JSONObject;
-import org.apache.log4j.Logger;
-import org.bson.BasicBSONObject;
 import org.dom4j.DocumentException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class WechatAction extends BaseAction{
@@ -52,7 +44,7 @@ public class WechatAction extends BaseAction{
         if (signature == null || timestamp == null || nonce == null){
             return;
         }
-        if(null!=echostr && CheckUtil.checkSignature(signature,timestamp,nonce)){
+        if(null!=echostr && WechatCheckSignature.checkSignature(signature,timestamp,nonce)){
             out.print(echostr);
             return;
         }

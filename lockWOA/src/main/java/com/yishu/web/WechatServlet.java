@@ -1,6 +1,6 @@
 package com.yishu.web;
 
-import com.yishu.util.CheckUtil;
+import com.yishu.util.WechatCheckSignature;
 import com.yishu.util.MessageUtil;
 import org.dom4j.DocumentException;
 
@@ -20,7 +20,7 @@ public class WechatServlet extends HttpServlet{
         String nonce=req.getParameter("nonce");
         String echostr=req.getParameter("echostr");
         PrintWriter out=resp.getWriter();
-        if(CheckUtil.checkSignature(signature,timestamp,nonce)){
+        if(WechatCheckSignature.checkSignature(signature,timestamp,nonce)){
             out.print(echostr);
         }
     }

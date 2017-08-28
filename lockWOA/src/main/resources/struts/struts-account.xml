@@ -6,6 +6,7 @@
 <struts>
     <package name="Wechat" namespace="/account" extends="struts-default,json-default">
         <action name="login" class="com.yishu.action.AccountAction" method="login">
+            <param name="salt">yishutech</param>
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>

@@ -10,7 +10,7 @@ import java.util.Arrays;
  *
  * @since 2017-08-15
  */
-public class CheckUtil {
+public class WechatCheckSignature {
     private static final String token = "yishutech";
     public static boolean checkSignature(String signature,String timestamp,String nonce){
         String[] arr = new String[]{token,timestamp,nonce};

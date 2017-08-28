@@ -1,6 +1,6 @@
 package com.yishu.util;
 
-import com.yishu.pojo.WechatTokenAndTicket;
+import com.yishu.domain.WechatTokenAndTicket;
 import net.sf.json.JSONObject;
 
 import java.util.Date;

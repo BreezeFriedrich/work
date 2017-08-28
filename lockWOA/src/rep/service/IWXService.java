@@ -1,6 +1,9 @@
+/**
+ * 
+ */
 package com.yishu.service;
 
-import com.yishu.pojo.User;
+import com.yishu.domain.User;
 
 /**
  * 微信处理类

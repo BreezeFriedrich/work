@@ -3,7 +3,7 @@
  */
 package com.yishu.service.impl;
 
-import com.yishu.pojo.User;
+import com.yishu.domain.User;
 import com.yishu.mapper.WXMapper;
 import com.yishu.service.IWXService;
 import org.springframework.beans.factory.annotation.Autowired;

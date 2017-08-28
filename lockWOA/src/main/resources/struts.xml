@@ -11,8 +11,10 @@
 	<package name="default" extends="struts-default,json-default">
 		<interceptors>
 			<interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
+			<interceptor name="authenticationInterceptor" class="com.yishu.action.AuthenticationInterceptor" />
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="monitoring" />
+				<interceptor-ref name="authenticationInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -20,6 +22,12 @@
 
 		<!-- 当action请求不匹配时，struts2导向的默认action处理 -->
 		<default-action-ref name="error_struts"/>
+
+		<global-results>
+			<result name="error">/jsp/error_struts.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
+		</global-results>
+
 		<action name="error_struts">
 			<result>/jsp/error_struts.jsp</result>
 		</action>

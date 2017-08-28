@@ -1,4 +1,4 @@
-package com.yishu.pojo;
+package com.yishu.domain;
 
 /**
  * Entity for: Wechat access_token & jsapi_token
