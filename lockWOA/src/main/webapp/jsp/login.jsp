@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -51,6 +52,7 @@
                         <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码" name="password">
                     </div>
                 </div>
+                <div><s:property value="authenticateErrMsg" /> </div>
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
                         <button type="submit" class="btn btn-default">提交</button>

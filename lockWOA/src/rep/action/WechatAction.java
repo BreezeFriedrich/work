@@ -1,7 +1,6 @@
 package com.yishu.action;
 
 import com.yishu.domain.User;
-import com.yishu.service.IWXService;
 import com.yishu.util.*;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;

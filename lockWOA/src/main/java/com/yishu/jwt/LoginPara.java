@@ -1,23 +1,23 @@
 package com.yishu.jwt;
 
 public class LoginPara {
-    private String clientId;
-    private String userName;
+//    private String clientId;
+    private String username;
     private String password;
     private String captchaCode;
     private String captchaValue;
 
-    public String getClientId() {
-        return clientId;
+//    public String getClientId() {
+//        return clientId;
+//    }
+//    public void setClientId(String clientId) {
+//        this.clientId = clientId;
+//    }
+    public String getUsername() {
+        return username;
     }
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-    public String getUserName() {
-        return userName;
-    }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getPassword() {
         return password;

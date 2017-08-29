@@ -3,12 +3,12 @@ package com.yishu.jwt;
 public class ResultMsg {
     private int errcode;
     private String errmsg;
-    private Object p2pdata;
+    private Object jwtAccessToken;
 
-    public ResultMsg(int errcode, String errmsg, Object p2pdata) {
+    public ResultMsg(int errcode, String errmsg, Object jwtAccessToken) {
         this.errcode = errcode;
         this.errmsg = errmsg;
-        this.p2pdata = p2pdata;
+        this.jwtAccessToken = jwtAccessToken;
     }
 
     public int getErrcode() {
@@ -27,11 +27,11 @@ public class ResultMsg {
         this.errmsg = errmsg;
     }
 
-    public Object getP2pdata() {
-        return p2pdata;
+    public Object getJwtAccessToken() {
+        return jwtAccessToken;
     }
 
-    public void setP2pdata(Object p2pdata) {
-        this.p2pdata = p2pdata;
+    public void setJwtAccessToken(Object jwtAccessToken) {
+        this.jwtAccessToken = jwtAccessToken;
     }
 }

@@ -1,10 +1,8 @@
 package com.yishu.action;
 
-import com.yishu.service.IWXService;
 import com.yishu.util.*;
 import org.dom4j.DocumentException;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +20,6 @@ public class WechatAction extends BaseAction{
 //    private String token = "yishutech";// 自定义token
     private String echostr;// 随机字符串
     PrintWriter out = null;// response.getWriter();;
-    @Autowired
-    private IWXService wxservice;
 
     /**
      * 微信请求链接

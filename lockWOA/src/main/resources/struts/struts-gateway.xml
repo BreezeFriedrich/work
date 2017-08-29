@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="gateway" namespace="/gateway" extends="struts-default,json-default">
+
+        <interceptors>
+            <interceptor name="authenticationInterceptor" class="com.yishu.action.AuthenticationInterceptor" />
+            <interceptor-stack name="authenticationStack">
+                <interceptor-ref name="authenticationInterceptor" />
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <action name="gateway" class="com.yishu.action.GatewayAction" method="addLock">
+            <interceptor-ref name="authenticationStack" />
+            <result name="success">/WEB-INF/jsp/main.jsp</result>
+            <result name="login">/jsp/login.jsp</result>
+        </action>
+
+        <action name="*" class="com.yishu.action.AccountAction" method="{1}">
+            <interceptor-ref name="authenticationStack" />
+            <result name="{1}">/WEB-INF/jsp/${1}.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,26 +1,23 @@
 package com.yishu.action;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
+import com.yishu.jwt.Audience;
 import com.yishu.jwt.JwtAccessToken;
-import com.yishu.pojo.Struts2PortfolioConstants;
+import com.yishu.jwt.ResultStatusCode;
+import com.yishu.util.JwtHelper;
 import org.apache.struts2.ServletActionContext;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 
 public class AuthenticationInterceptor implements Interceptor{
+    @Autowired
+    Audience audience;
+
     @Override
     public void destroy() {
     }
@@ -40,51 +37,41 @@ public class AuthenticationInterceptor implements Interceptor{
         //Map sessionMap = (Map)ActionContext.getContext().get(ActionContext.SESSION);
         //HttpSession session = ServletActionContext.getRequest().getSession();
 
-        JwtAccessToken jwtAccessToken = (JwtAccessToken) sessionMap.get(Struts2PortfolioConstants.getJwtAccessToken());
-        if(null!=jwtAccessToken) {
+//        JwtAccessToken jwtAccessToken = (JwtAccessToken) sessionMap.get(Struts2PortfolioConstants.getJwtAccessToken());
+        JwtAccessToken jwtAccessToken = null;
+        if (sessionMap.containsKey("jwtAccessToken")){
+            jwtAccessToken = (JwtAccessToken) sessionMap.get("jwtAccessToken");
+        }
+        if( null!=jwtAccessToken && jwtAccessToken.getExpiration()>=new Date().getTime() ) {
 //            Action action = (Action) actionInvocation.getAction();
 //            if(action instanceof UserAware){
 //                ((UserAware)action).setUser(user);
 //            }
-            return actionInvocation.invoke();
+
+            if (isAuthenticated(request,jwtAccessToken)) {
+                sessionMap.remove("authenticateErrMsg");
+                return actionInvocation.invoke();
+            }else{
+                sessionMap.put("authenticateErrMsg", ResultStatusCode.INVALID_TOKEN.getErrmsg());
+                sessionMap.remove("jwtAccessToken");
+            }
         }
         return Action.LOGIN;
     }
 
-    public isJwtAccessTokenExpired(JwtAccessToken jwtAccessToken){
-        if (new Date().getTime()<jwtAccessToken.getExpires_in()){
-
-        }
-    }
-
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-        ResultMsg resultMsg;
-        HttpServletRequest httpRequest = (HttpServletRequest)request;
-        String auth = httpRequest.getHeader("Authorization");
-        if ((auth != null) && (auth.length() > 7))
-        {
-            String HeadStr = auth.substring(0, 6).toLowerCase();
-            if (HeadStr.compareTo("bearer") == 0)
-            {
-                auth = auth.substring(7, auth.length());
-                if (JwtHelper.parseJWT(auth, audienceEntity.getBase64Secret()) != null)
-                {
-                    chain.doFilter(request, response);
-                    return;
+    public boolean isAuthenticated(HttpServletRequest request,JwtAccessToken token) {
+        String reqHeaderAuth=request.getHeader("Authorization");
+        if (null != reqHeaderAuth && reqHeaderAuth.length() > 4) {
+            String tokenType = reqHeaderAuth.substring(0,3).toLowerCase();
+            if (0 == tokenType.compareTo("jwt")) {
+                String tokenStr = reqHeaderAuth.substring(4,reqHeaderAuth.length());
+                if ( null != JwtHelper.parseJWT(token.getAccess_token(),audience.getBase64Secret()) ) {
+                    return true;
                 }
             }
         }
 
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.setCharacterEncoding("UTF-8");
-        httpResponse.setContentType("application/json; charset=utf-8");
-        httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-
-        resultMsg = new ResultMsg(ResultStatusCode.INVALID_TOKEN.getErrcode(), ResultStatusCode.INVALID_TOKEN.getErrmsg(), null);
-        ObjectMapper mapper = new ObjectMapper();
-        httpResponse.getWriter().write(mapper.writeValueAsString(resultMsg));
-        return;
+        return false;
     }
 
 }

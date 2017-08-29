@@ -4,6 +4,7 @@ public class JwtAccessToken {
     private String access_token;
     private String token_type;
     private long expiration;
+
     public String getAccess_token() {
         return access_token;
     }
@@ -16,10 +17,10 @@ public class JwtAccessToken {
     public void setToken_type(String token_type) {
         this.token_type = token_type;
     }
-    public long getExpires_in() {
+    public long getExpiration() {
         return expiration;
     }
-    public void setExpires_in(long expires_in) {
-        this.expiration = expires_in;
+    public void setExpiration(long expiration) {
+        this.expiration = expiration;
     }
 }

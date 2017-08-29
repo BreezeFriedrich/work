@@ -4,7 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="Wechat" namespace="/account" extends="struts-default,json-default">
+    <package name="Account" namespace="/account" extends="struts-default,json-default">
         <action name="login" class="com.yishu.action.AccountAction" method="login">
             <param name="salt">yishutech</param>
             <interceptor-ref name="defaultStack">

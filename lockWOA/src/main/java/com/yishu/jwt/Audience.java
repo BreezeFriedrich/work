@@ -1,17 +1,32 @@
 package com.yishu.jwt;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-@Component("audienceEntity")
-@PropertySource("classpath:jwt.properties")
-@ConfigurationProperties(prefix = "audience")
+@Component("audience")
+@Configuration
+@PropertySource(value = "classpath:jwt.properties",ignoreResourceNotFound = false)
 public class Audience {
+    //注册到相应的环境(jdk\spring\servlet)对象env中.可用env.getProperty("key")获取.
+//    @Autowired
+//    Environment env;
+
+    @Value("${audience.clientId}")
     private String clientId;
+
+    @Value("${audience.base64Secret}")
     private String base64Secret;
+
+    @Value("${audience.name}")
     private String name;
+
+    @Value("${audience.expiresSecond:300000}")
     private int expiresSecond;
+
     public String getClientId() {
         return clientId;
     }

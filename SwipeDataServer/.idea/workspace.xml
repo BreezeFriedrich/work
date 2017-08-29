@@ -7,9 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/src/main/webapp/scripts/main.js" afterPath="$PROJECT_DIR$/../Lock0410/src/main/webapp/scripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/spring-mybatis.xml" afterPath="$PROJECT_DIR$/resources/spring-mybatis.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/dao/UserDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/mapper/UserMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/jwt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/properties/jdbc.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-gateway.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/IWXService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/impl/WXServiceImpl.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/pom.xml" afterPath="$PROJECT_DIR$/../lockWOA/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AccountAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AccountAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AuthenticationInterceptor.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AuthenticationInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/BaseAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/BaseAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/WechatAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/WechatAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/Audience.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/Audience.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/JwtAccessToken.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/JwtAccessToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/LoginPara.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/LoginPara.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/ResultMsg.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/ResultMsg.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/impl/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/spring/spring.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/spring/spring.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-account.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-account.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-wx.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-wx.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/webapp/jsp/login.jsp" afterPath="$PROJECT_DIR$/../lockWOA/src/main/webapp/jsp/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/action/WechatAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/action/WechatAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/service/impl/WXServiceImpl.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/service/impl/WXServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/web/OpenidFilter.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/web/OpenidFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/web/interceptor/OpenIdInterceptor.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/web/interceptor/OpenIdInterceptor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,7 +93,7 @@
       <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DataServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13608">
+            <state relative-caret-position="0">
               <caret line="756" column="65" lean-forward="false" selection-start-line="756" selection-start-column="65" selection-end-line="756" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -88,34 +112,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SwipeRecordDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/SwipeRecordDao.java">
+      <file leaf-file-name="ModuleServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/impl/ModuleServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+            <state relative-caret-position="540">
+              <caret line="52" column="61" lean-forward="false" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="36" column="72" lean-forward="true" selection-start-line="36" selection-start-column="72" selection-end-line="36" selection-end-column="72" />
-              <folding>
-                <element signature="n#bean#2;n#beans#0;n#!!top" expanded="false" />
-                <element signature="n#bean#3;n#beans#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/default.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="77" lean-forward="true" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="77" />
+            <state relative-caret-position="1054">
+              <caret line="114" column="11" lean-forward="false" selection-start-line="114" selection-start-column="11" selection-end-line="114" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -243,7 +254,6 @@
         <option value="$PROJECT_DIR$/sql/logback.sql" />
         <option value="$PROJECT_DIR$/out/artifacts/SwipeDataServer_jar/conf/default.properties" />
         <option value="$PROJECT_DIR$/out/artifacts/SwipeDataServer/conf/default.properties" />
-        <option value="$PROJECT_DIR$/resources/default.properties" />
         <option value="$PROJECT_DIR$/src/mappers/SwipeRecordMapper.xml" />
         <option value="$PROJECT_DIR$/src/mappers/DeviceStatusMapper.xml" />
         <option value="$PROJECT_DIR$/src/dao/SwipeRecordDao.java" />
@@ -253,6 +263,7 @@
         <option value="$PROJECT_DIR$/resources/logback.xml" />
         <option value="$PROJECT_DIR$/sql/SAMRECORD.sql" />
         <option value="$PROJECT_DIR$/resources/spring-mybatis.xml" />
+        <option value="$PROJECT_DIR$/resources/default.properties" />
       </list>
     </option>
   </component>
@@ -268,11 +279,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="125" />
-    <option name="y" value="171" />
-    <option name="width" value="1156" />
-    <option name="height" value="768" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="706" />
+    <option name="y" value="69" />
+    <option name="width" value="885" />
+    <option name="height" value="855" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -316,6 +327,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -345,11 +357,35 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mappers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shiro" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -961,6 +997,7 @@
       <workItem from="1501204580111" duration="147000" />
       <workItem from="1501637719627" duration="234000" />
       <workItem from="1503543559993" duration="433000" />
+      <workItem from="1503995132394" duration="3639000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -1127,7 +1164,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="725319000" />
+    <option name="totallyTimeSpent" value="728958000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1139,8 +1176,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="125" y="171" width="1156" height="768" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1151,7 +1187,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35104895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3470696" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1746134" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17416452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1380,13 +1416,6 @@
     <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/MyHandler.class" />
     <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/service/SwipeRecordService.class" />
     <entry file="file://$PROJECT_DIR$/out/production/SwipeDataServer/service/impl/SwipeRecordServiceImpl.class" />
-    <entry file="file://$PROJECT_DIR$/src/service/impl/ModuleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="52" column="61" lean-forward="true" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rep/log4j.properties" />
     <entry file="file://$PROJECT_DIR$/rep/illustration" />
     <entry file="file://$PROJECT_DIR$/rep/META-INF/MANIFEST.MF" />
@@ -1405,13 +1434,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/DeviceStatusDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1434,13 +1456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1510,8 +1525,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DataServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13608">
+        <state relative-caret-position="0">
           <caret line="756" column="65" lean-forward="false" selection-start-line="756" selection-start-column="65" selection-end-line="756" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContextLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="24" column="71" lean-forward="false" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/default.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/SwipeRecordDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/impl/SwipeRecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/DeviceStatusDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1526,37 +1585,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContextLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/service/impl/ModuleServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="24" column="71" lean-forward="false" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/SwipeRecordDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        <state relative-caret-position="540">
+          <caret line="52" column="61" lean-forward="false" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="36" column="72" lean-forward="true" selection-start-line="36" selection-start-column="72" selection-end-line="36" selection-end-column="72" />
-          <folding>
-            <element signature="n#bean#2;n#beans#0;n#!!top" expanded="false" />
-            <element signature="n#bean#3;n#beans#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/default.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="77" lean-forward="true" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="77" />
+        <state relative-caret-position="1054">
+          <caret line="114" column="11" lean-forward="false" selection-start-line="114" selection-start-column="11" selection-end-line="114" selection-end-column="11" />
           <folding />
         </state>
       </provider>

@@ -1,5 +1,6 @@
 package com.yishu.action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.jwt.*;
 import com.yishu.service.IUserService;
@@ -9,11 +10,10 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 
 import com.opensymphony.xwork2.config.entities.Parameterizable;
 
-import javax.security.auth.Subject;
+import java.util.Date;
 import java.util.Map;
 
 public class AccountAction extends ActionSupport implements Parameterizable,SessionAware {
@@ -24,7 +24,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     private IUserService userService;
 
     @Autowired
-    private Audience audienceEntity;
+    private Audience audience;
 
     private LoginPara loginPara;
 
@@ -36,6 +36,19 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         this.loginPara = loginPara;
     }
 
+
+    public String login (LoginPara loginPara) {
+        ResultMsg resultMsg=getJwtAccessToken(loginPara);
+        if (0==resultMsg.getErrcode()) {
+            sessionMap.put("jwtAccessToken",resultMsg.getJwtAccessToken());
+            sessionMap.remove("authenticateErrMsg");
+            return Action.SUCCESS;
+        } else {
+            sessionMap.put("authenticateErrMsg",resultMsg.getErrmsg());
+            sessionMap.remove("jwtAccessToken");
+        }
+        return Action.LOGIN;
+    }
     /**
      * 验证account(username+password),若通过验证则授权JwtAccessToken
      * 流程:1.比对request body 中的 LoginPara.clientId & 配置 jwt.properties 中的 audience.clientId;
@@ -46,24 +59,25 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
      * @param loginPara
      * @return
      */
-    public Object getAccessToken(LoginPara loginPara)
-    {
+    public ResultMsg getJwtAccessToken (LoginPara loginPara) {
         ResultMsg resultMsg;
         try{
-            if(null == loginPara.getClientId() || 0 != (loginPara.getClientId().compareTo(audienceEntity.getClientId()) )){
+            /*
+            //验证clientId
+            if(null == loginPara.getClientId() || 0 != (loginPara.getClientId().compareTo(audience.getClientId()) )){
                 resultMsg = new ResultMsg(ResultStatusCode.INVALID_CLIENTID.getErrcode(), ResultStatusCode.INVALID_CLIENTID.getErrmsg(), null);
                 return resultMsg;
-            }System.out.println("!clientid verified");
+            }
+            */
 
             //验证用户名密码
-            User user = userService.findUserByName(loginPara.getUserName());
+            User user = userService.findUserByName(loginPara.getUsername());
             System.out.println("user = "+user+": {"+"'name'"+" : "+user.getName()+","+"'password'"+" : "+user.getPassword()+"}");
             if (user == null){
                 resultMsg = new ResultMsg(ResultStatusCode.INVALID_PASSWORD.getErrcode(),
                         ResultStatusCode.INVALID_PASSWORD.getErrmsg(), null);
                 return resultMsg;
-            }
-            else{
+            } else {
                 String md5Password = MD5.getMD5(loginPara.getPassword()+user.getSalt());
                 System.out.println("md5Password : "+md5Password);
                 System.out.println("md5Password : "+user.getPassword());
@@ -71,22 +85,22 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
                     resultMsg = new ResultMsg(ResultStatusCode.INVALID_PASSWORD.getErrcode(), ResultStatusCode.INVALID_PASSWORD.getErrmsg(), null);
                     return resultMsg;
                 }
-            }System.out.println("!start to create JwtAccessToken");
+            }
+            System.out.println("!start to create JwtAccessToken");
 
             //拼装accessToken
-            String accessToken = JwtHelper.createJWT(loginPara.getUserName(), String.valueOf(user.getId()),
-                    user.getRole(), audienceEntity.getClientId(), audienceEntity.getName(),
-                    audienceEntity.getExpiresSecond() * 1000, audienceEntity.getBase64Secret());
+            String accessToken = JwtHelper.createJWT(loginPara.getUsername(), String.valueOf(user.getId()),
+                    user.getRole(), audience.getClientId(), audience.getName(),
+                    audience.getExpiresSecond() * 1000, audience.getBase64Secret());
 
             //返回accessToken
-            JwtAccessToken accessTokenEntity = new JwtAccessToken();
-            accessTokenEntity.setAccess_token(accessToken);
-            accessTokenEntity.setExpires_in(audienceEntity.getExpiresSecond());
-            accessTokenEntity.setToken_type("bearer");
-            resultMsg = new ResultMsg(ResultStatusCode.OK.getErrcode(), ResultStatusCode.OK.getErrmsg(), accessTokenEntity);
+            JwtAccessToken jwtAccessToken = new JwtAccessToken();
+            jwtAccessToken.setAccess_token(accessToken);
+            jwtAccessToken.setExpiration(new Date().getTime()+audience.getExpiresSecond());
+            jwtAccessToken.setToken_type("jwt");
+            resultMsg = new ResultMsg(ResultStatusCode.OK.getErrcode(), ResultStatusCode.OK.getErrmsg(), jwtAccessToken);
             return resultMsg;
-        }
-        catch(Exception ex){
+        } catch(Exception ex) {
             System.out.println("!exception");
             resultMsg = new ResultMsg(ResultStatusCode.SYSTEM_ERR.getErrcode(), ResultStatusCode.SYSTEM_ERR.getErrmsg(), null);
             return resultMsg;
@@ -94,46 +108,6 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     }
 
     //********************************************************************************************************
-    private User user;
-
-    public String login(){
-        String username = user.getUsername();
-        String password = user.getPassword();
-        logger.debug("username => " + username);
-        logger.debug("password => " + password);
-        loginService.login(user);
-        jwtAccessToken=new JwtAccessToken();
-        jwtAccessToken.getAccess_token()
-        return "login";
-    }
-    public String login(User user, Model model){
-        String username = user.getUsername();
-        String password = user.getPassword();
-        logger.debug("username => " + username);
-        logger.debug("password => " + password);
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-        Subject subject = SecurityUtils.getSubject();
-        String msg = null;
-        try {
-            subject.login(token);
-        } catch (UnknownAccountException e) {
-            e.printStackTrace();
-            msg = e.getMessage();
-        } catch (IncorrectCredentialsException e){
-            e.printStackTrace();
-            msg = "用户名和密码的组合不正确";
-        } catch (LockedAccountException e){
-            e.printStackTrace();
-            msg = e.getMessage();
-        }
-        if(msg == null){
-//            return "redirect:/admin/user/list";
-            return "main";
-        }
-
-        model.addAttribute("msg",msg);
-        return "login";
-    }
 
     private JwtAccessToken jwtAccessToken;
     public JwtAccessToken getJwtAccessToken() {
@@ -151,18 +125,18 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         this.salt = salt;
     }
 
-    //    Map<String, String> paramsMap;
+    Map<String, String> paramsMap;
     @Override
     public void addParam(String s, String s1) {
 
     }
     @Override
     public void setParams(Map<String, String> map) {
-//        paramsMap=map;
+        this.paramsMap=map;
     }
     @Override
     public Map<String, String> getParams() {
-        return null;
+        return this.paramsMap;
     }
 
     private Map sessionMap;

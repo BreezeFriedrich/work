@@ -11,10 +11,8 @@
 	<package name="default" extends="struts-default,json-default">
 		<interceptors>
 			<interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
-			<interceptor name="authenticationInterceptor" class="com.yishu.action.AuthenticationInterceptor" />
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="monitoring" />
-				<interceptor-ref name="authenticationInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>

@@ -7,8 +7,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5895efde-7c02-4038-865b-a65d0724b4df" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/scripts/main.js" afterPath="$PROJECT_DIR$/src/main/webapp/scripts/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/dao/UserDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/mapper/UserMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/jwt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/properties/jdbc.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-gateway.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/IWXService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/impl/WXServiceImpl.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/pom.xml" afterPath="$PROJECT_DIR$/../lockWOA/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AccountAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AccountAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AuthenticationInterceptor.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/AuthenticationInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/BaseAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/BaseAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/WechatAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/action/WechatAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/Audience.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/Audience.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/JwtAccessToken.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/JwtAccessToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/LoginPara.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/LoginPara.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/ResultMsg.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/jwt/ResultMsg.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/../lockWOA/src/main/java/com/yishu/service/impl/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/spring/spring.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/spring/spring.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-account.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-account.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-wx.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/resources/struts/struts-wx.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../lockWOA/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/main/webapp/jsp/login.jsp" afterPath="$PROJECT_DIR$/../lockWOA/src/main/webapp/jsp/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/action/WechatAction.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/action/WechatAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/service/impl/WXServiceImpl.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/service/impl/WXServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/web/OpenidFilter.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/web/OpenidFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWOA/src/rep/web/interceptor/OpenIdInterceptor.java" afterPath="$PROJECT_DIR$/../lockWOA/src/rep/web/interceptor/OpenIdInterceptor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,7 +66,7 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
+            <state relative-caret-position="2412">
               <caret line="134" column="25" lean-forward="false" selection-start-line="134" selection-start-column="25" selection-end-line="134" selection-end-column="25" />
               <folding />
             </state>
@@ -234,8 +260,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,7 +312,18 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="yishu" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lock0410" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lock0410" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="yishu" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Lock0410" type="b2602c69:ProjectViewProjectNode" />
@@ -334,6 +371,32 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="zTree" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lock0410" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lock0410" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lock0410" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lock0410" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lock0410" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lock0410" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lock0410" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lock0410" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="yishu" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -707,6 +770,7 @@
       <workItem from="1503484657071" duration="52000" />
       <workItem from="1503537219654" duration="116000" />
       <workItem from="1503543513260" duration="40000" />
+      <workItem from="1504002260538" duration="38000" />
     </task>
     <task id="LOCAL-00001" summary="2017.07.19-work">
       <created>1500461910764</created>
@@ -733,7 +797,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112563000" />
+    <option name="totallyTimeSpent" value="112601000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -746,7 +810,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32676056" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -759,7 +822,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32816902" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32816902" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21649484" sideWeight="0.48686868" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21971649" sideWeight="0.48686868" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22429305" sideWeight="0.5131313" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1058,14 +1121,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/impl/DeviceServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/bootstrap-3.3.0/js/npm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1165,7 +1220,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
+        <state relative-caret-position="2412">
           <caret line="134" column="25" lean-forward="false" selection-start-line="134" selection-start-column="25" selection-end-line="134" selection-end-column="25" />
           <folding />
         </state>
@@ -1175,6 +1230,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/service/impl/DeviceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>

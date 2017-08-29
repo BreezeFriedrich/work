@@ -1,7 +1,6 @@
 package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.yishu.service.IWXService;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,11 +26,11 @@ public class BaseAction extends ActionSupport {
         response.getWriter().write(xa);
     }
 
-    public String getSessionUser(){
-        String openid=(String)session.getAttribute(IWXService.SESSION_USER);
-        if(openid==null){
-            openid="123";
-        }
-        return openid;
-    }
+//    public String getSessionUser(){
+//        String openid=(String)session.getAttribute(IWXService.SESSION_USER);
+//        if(openid==null){
+//            openid="123";
+//        }
+//        return openid;
+//    }
 }

@@ -1,7 +1,6 @@
 package com.yishu.web;
 
 import com.yishu.domain.User;
-import com.yishu.service.IWXService;
 import com.yishu.util.DataUtil;
 import com.yishu.util.GetOpenid;
 import com.yishu.util.StringUtil;
