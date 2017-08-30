@@ -4,7 +4,7 @@
 package com.yishu.service.impl;
 
 import com.yishu.domain.User;
-import com.yishu.mapper.WXMapper;
+import mapper.WXMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

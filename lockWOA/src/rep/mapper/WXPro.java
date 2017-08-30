@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yishu.mapper;
+package mapper;
 
 /**
  * 微信处理类

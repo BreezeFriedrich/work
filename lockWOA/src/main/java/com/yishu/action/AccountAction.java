@@ -7,8 +7,6 @@ import com.yishu.service.IUserService;
 import com.yishu.util.JwtHelper;
 import com.yishu.util.MD5;
 import org.apache.struts2.interceptor.SessionAware;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.config.entities.Parameterizable;
@@ -18,7 +16,7 @@ import java.util.Map;
 
 public class AccountAction extends ActionSupport implements Parameterizable,SessionAware {
 
-    private Logger logger= LoggerFactory.getLogger(this.getClass());
+//    private Logger logger= LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private IUserService userService;
@@ -40,12 +38,12 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     public String login (LoginPara loginPara) {
         ResultMsg resultMsg=getJwtAccessToken(loginPara);
         if (0==resultMsg.getErrcode()) {
-            sessionMap.put("jwtAccessToken",resultMsg.getJwtAccessToken());
-            sessionMap.remove("authenticateErrMsg");
+            session.put("jwtAccessToken",resultMsg.getJwtAccessToken());
+            session.remove("authenticateErrMsg");
             return Action.SUCCESS;
         } else {
-            sessionMap.put("authenticateErrMsg",resultMsg.getErrmsg());
-            sessionMap.remove("jwtAccessToken");
+            session.put("authenticateErrMsg",resultMsg.getErrmsg());
+            session.remove("jwtAccessToken");
         }
         return Action.LOGIN;
     }
@@ -125,23 +123,23 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         this.salt = salt;
     }
 
-    Map<String, String> paramsMap;
+    Map<String, String> params;
     @Override
     public void addParam(String s, String s1) {
 
     }
     @Override
     public void setParams(Map<String, String> map) {
-        this.paramsMap=map;
+        this.params =map;
     }
     @Override
     public Map<String, String> getParams() {
-        return this.paramsMap;
+        return this.params;
     }
 
-    private Map sessionMap;
+    private Map session;
     @Override
     public void setSession(Map<String, Object> map) {
-        this.sessionMap=map;
+        this.session =map;
     }
 }
