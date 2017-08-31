@@ -1,16 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
 		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
 		"http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+	<include file="struts/struts-wx.xml" />
+	<include file="struts/struts-account.xml" />
 
-	<constant name="struts.devMode" value="true" />
+	<!-- javamelody和struts2集成 -->
+	<package name="default" extends="struts-default,json-default">
+		<interceptors>
+			<interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="monitoring" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
 
-	<package name="basicstruts2" extends="struts-default">
-		<action name="index">
-			<result>/index.jsp</result>
+		<!-- 当action请求不匹配时，struts2导向的默认action处理 -->
+		<default-action-ref name="error_struts"/>
+
+		<global-results>
+			<result name="error">/jsp/error_struts.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
+		</global-results>
+
+		<action name="error_struts">
+			<result>/jsp/error_struts.jsp</result>
 		</action>
 	</package>
-
 </struts>

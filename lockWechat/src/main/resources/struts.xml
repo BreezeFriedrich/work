@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <!-- 所有匹配*.action的请求都由struts2处理 -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- 是否启用开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- struts配置文件改动后，是否重新加载 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- 设置浏览器是否缓存静态内容 -->
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <!-- 请求参数的编码方式 -->
+    <constant name="struts.i18n.encoding" value="utf-8" />
+    <!-- 每次HTTP请求系统都重新加载资源文件，有助于开发 -->
+    <constant name="struts.i18n.reload" value="true" />
+    <!-- 文件上传最大值 -->
+    <constant name="struts.multipart.maxSize" value="104857600" />
+    <!-- 让struts2支持动态方法调用 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!-- Action名称中是否还是用斜线 -->
+    <constant name="struts.enable.SlashesInActionNames" value="false" />
+    <!-- 允许标签中使用表达式语法 -->
+    <constant name="struts.tag.altSyntax" value="true" />
+    <!-- 对于WebLogic,Orion,OC4J此属性应该设置成true -->
+    <constant name="struts.dispatcher.parametersWorkaround" value="false" />
+
+    <!-- include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中 然后用include节点引用 -->
+    <include file="struts/struts-account.xml" />
+
+    <package name="default" extends="struts-default,json-default">
+        <!-- javamelody和struts2集成 -->
+        <interceptors>
+            <!-- 定义拦截器 -->
+            <interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
+            <!-- 定义拦截器栈 -->
+            <interceptor-stack name="monitor_Stack">
+                <!-- 引用拦截器 name:拦截器名称或拦截器栈名称 -->
+                <interceptor-ref name="monitoring" />
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+            </interceptor-stack>
+            <interceptor-stack name="monitor_authenticate_Stack">
+                <!-- 引用拦截器 name:拦截器名称或拦截器栈名称 -->
+                <interceptor-ref name="monitoring" />
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <!-- 定义默认的拦截器 每个Action都会自动引用如果Action中引用了其它的拦截器 默认的拦截器将无效 -->
+        <default-interceptor-ref name="monitor_Stack" />
+
+        <!-- 当action请求不匹配时，struts2导向的默认action处理 -->
+        <default-action-ref name="error_struts"/>
+
+        <!-- 全局results配置 -->
+        <global-results>
+            <result name="error">/jsp/error_struts.jsp</result>
+            <result name="login">/jsp/login.jsp</result>
+        </global-results>
+
+        <action name="error_struts">
+            <result>/jsp/error_struts.jsp</result>
+        </action>
+    </package>
+</struts>
