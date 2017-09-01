@@ -1,8 +1,8 @@
 package com.yishu.action;
 
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
+import com.yishu.domain.User;
 import com.yishu.jwt.*;
 import com.yishu.service.IUserService;
 import com.yishu.util.JwtHelper;
@@ -11,13 +11,16 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @bottom Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
  */
 public class AccountAction extends ActionSupport implements Parameterizable,SessionAware {
-
+    public AccountAction() {
+        System.out.println(">>>Initialization AccountAction......................................");
+    }
 //    private Logger logger= LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -25,7 +28,12 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     @Autowired
     private Audience audience;
 
-    private LoginPara loginPara;
+    private Map<String,Object> jsonMap;
+    public Map<String, Object> getJsonMap() {
+        return jsonMap;
+    }
+
+    private LoginPara loginPara=new LoginPara();
     public LoginPara getLoginPara() {
         return loginPara;
     }
@@ -33,18 +41,39 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         this.loginPara = loginPara;
     }
 
+    /*
+    private String company;
 
-    public String login (LoginPara loginPara) {
+    public void setCompany(String company) {
+        System.out.println("Setting the company");
+        this.company = company;
+    }
+    */
+
+    public String login () {
+        /*
+        System.out.println(">>>action method login..................................................");
+        jsonMap=new HashMap<String,Object>();
+        jsonMap.put("LoginPara",loginPara);
+        jsonMap.put("JwtAccessToken",jwtAccessToken);
+        return "JSON_RESULT";
+        */
+        jsonMap=new HashMap<String,Object>();
+        jsonMap.put("LoginPara",loginPara);
         ResultMsg resultMsg=getJwtAccessToken(loginPara);
-        if (0==resultMsg.getErrcode()) {
-            session.put("jwtAccessToken",resultMsg.getJwtAccessToken());
-            session.remove("authenticateErrMsg");
-            return Action.SUCCESS;
-        } else {
-            session.put("authenticateErrMsg",resultMsg.getErrmsg());
-            session.remove("jwtAccessToken");
-        }
-        return Action.LOGIN;
+        sessionMap.put("jwtAccessToken",resultMsg.getJwtAccessToken());
+        jsonMap.put("JwtAccessToken",jwtAccessToken);
+//        if (0==resultMsg.getErrcode()) {
+//            session.put("jwtAccessToken",resultMsg.getJwtAccessToken());
+//            session.remove("authenticateErrMsg");
+//            return "JSON_RESULT";
+//        } else {
+//            session.put("authenticateErrMsg",resultMsg.getErrmsg());
+//            session.remove("jwtAccessToken");
+//        }
+        return "JSON_RESULT";
+//        return Action.LOGIN;
+
     }
     /**
      * 验证account(username+password),若通过验证则授权JwtAccessToken
@@ -68,6 +97,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
             */
 
             //验证用户名密码
+            System.out.println("LoginPara = "+loginPara+": {"+"'username'"+" : "+loginPara.getUsername()+" , "+"'password'"+" : "+loginPara.getPassword()+"}");
             User user = userService.findUserByName(loginPara.getUsername());
             System.out.println("user = "+user+": {"+"'name'"+" : "+user.getName()+","+"'password'"+" : "+user.getPassword()+"}");
             if (user == null){
@@ -91,7 +121,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
                     audience.getExpiresSecond() * 1000, audience.getBase64Secret());
 
             //返回accessToken
-            JwtAccessToken jwtAccessToken = new JwtAccessToken();
+            jwtAccessToken = new JwtAccessToken();
             jwtAccessToken.setAccess_token(accessToken);
             jwtAccessToken.setExpiration(new Date().getTime()+audience.getExpiresSecond());
             jwtAccessToken.setToken_type("jwt");
@@ -136,9 +166,9 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         return this.params;
     }
 
-    private Map session;
+    private Map sessionMap;
     @Override
     public void setSession(Map<String, Object> map) {
-        this.session =map;
+        this.sessionMap =map;
     }
 }

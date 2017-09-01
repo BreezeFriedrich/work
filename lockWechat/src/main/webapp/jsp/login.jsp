@@ -1,4 +1,3 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -6,7 +5,8 @@
   Time: 9:19
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -39,17 +39,37 @@
             <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4" style="padding-left: 6px;padding-right: 6px;padding-top: 6px;background-color: #fff;">
 
             </div>
-            <form class="form-horizontal" role="form" method="post" action="<%=basePath%>account/account!login.action">
+            <!--
+            <div class="col-xs-offset-2 col-xs-2 col-xs-offset-2">
+                <a href="lang.action?request_locale=zh_CN">中文</a>&nbsp
+                <a href="lang.action?request_locale=en_US">英文</a>
+            </div>
+            -->
+            <div class="col-xs-offset-3 col-xs-6 col-xs-offset-3">
+                <form action="account/loginAccount.action" method="post">
+
+                    用户名：<input type="text" name="loginPara.username"/><br>
+                    密&nbsp;&nbsp;码:<input type="password" name="loginPara.password"/><br>
+                    <table>
+                        <tr>
+                            <td><input type="submit" value="注册"/></td>
+                            <td><input type="reset" value="重置" ></td>
+                        </tr>
+                    </table>
+                </form>
+                <s:fielderror />
+            </div>
+            <form class="form-horizontal" role="form" method="post" action="<%=basePath%>account/loginAccount/login.action">
                 <div class="form-group">
                     <label for="inputUserName" class="col-xs-2 control-label">用户名</label>
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" id="inputUserName" placeholder="请输入用户名" name="username">
+                        <input type="text" class="form-control" id="inputUserName" placeholder="请输入用户名" name="loginPara.username">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-xs-2 control-label">密码</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码" name="password">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码" name="loginPara.password">
                     </div>
                 </div>
                 <div><s:property value="authenticateErrMsg" /> </div>

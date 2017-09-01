@@ -1,4 +1,4 @@
-package com.yishu.jwt;
+package com.yishu.domain;
 
 public class User {
     private int id;
