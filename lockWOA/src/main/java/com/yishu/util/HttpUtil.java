@@ -30,7 +30,7 @@ public class HttpUtil
      * @param url
      * @return
      */
-    public static String getUrl(String url)
+    public static String doGet(String url)
     {
         String result = null;
         try{
@@ -63,7 +63,7 @@ public class HttpUtil
      *            请求json数据
      * 
      */
-    public static String getPostUrl(String url, String json)
+    public static String doPost(String url, String json)
     {
         String responseContent = null; // 响应内容
         try{
@@ -98,7 +98,7 @@ public class HttpUtil
      *            提交的数据
      * 
      */
-    public static String httpRequest(String requestUrl, String requestMethod, String outputStr)
+    public static String doHttps(String requestUrl, String requestMethod, String outputStr)
     {
         StringBuffer buffer = new StringBuffer();
         try{

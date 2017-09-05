@@ -1,4 +1,4 @@
-package com.yishu.domain;
+package com.yishu.pojo;
 
 public class User {
     private int id;

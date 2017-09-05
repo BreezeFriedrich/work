@@ -16,6 +16,7 @@
     <title>Title</title>
 </head>
 <body>
+<p>success.jsp</p>
 <s:property value="#session.user.userName"/>
 <s:property value="#session.loginPara.userName"/>
 <s:property value="#session.jwtAccessToken"/>s

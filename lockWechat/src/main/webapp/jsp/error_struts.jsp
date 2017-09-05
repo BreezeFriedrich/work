@@ -11,6 +11,7 @@
     <title>error for Struts</title>
 </head>
 <body>
+<p>error_struts.jsp</p>
     struts2出现错误，可能是action映射或处理错误.
 </body>
 </html>

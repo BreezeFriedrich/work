@@ -19,8 +19,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <body style="background-image:url(<%=basePath%>images/123.jpg); background-repeat:no-repeat;">
   <div style="width: 210px;height: 181px;margin: 170px auto;">
-      <img src="<%=basePath%>/images/img001.png">
-      <p>内部服务器错误</p>
+    <p>500.jsp</p>
+    <img src="<%=basePath%>/images/img001.png">
+    <p>内部服务器错误</p>
   </div>
   </body>
 </html>

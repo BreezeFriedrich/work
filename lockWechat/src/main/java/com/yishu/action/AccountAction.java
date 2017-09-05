@@ -1,8 +1,9 @@
 package com.yishu.action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
-import com.yishu.domain.User;
+import com.yishu.pojo.User;
 import com.yishu.jwt.*;
 import com.yishu.service.IUserService;
 import com.yishu.util.JwtHelper;
@@ -11,7 +12,6 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -49,31 +49,33 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         this.company = company;
     }
     */
+    private String authenticateErrMsg;
+    public String getAuthenticateErrMsg() {
+        return authenticateErrMsg;
+    }
+    public void setAuthenticateErrMsg(String authenticateErrMsg) {
+        this.authenticateErrMsg = authenticateErrMsg;
+    }
 
     public String login () {
-        /*
         System.out.println(">>>action method login..................................................");
-        jsonMap=new HashMap<String,Object>();
-        jsonMap.put("LoginPara",loginPara);
-        jsonMap.put("JwtAccessToken",jwtAccessToken);
-        return "JSON_RESULT";
-        */
-        jsonMap=new HashMap<String,Object>();
-        jsonMap.put("LoginPara",loginPara);
-        ResultMsg resultMsg=getJwtAccessToken(loginPara);
-        sessionMap.put("jwtAccessToken",resultMsg.getJwtAccessToken());
-        jsonMap.put("JwtAccessToken",jwtAccessToken);
-//        if (0==resultMsg.getErrcode()) {
-//            session.put("jwtAccessToken",resultMsg.getJwtAccessToken());
-//            session.remove("authenticateErrMsg");
-//            return "JSON_RESULT";
-//        } else {
-//            session.put("authenticateErrMsg",resultMsg.getErrmsg());
-//            session.remove("jwtAccessToken");
-//        }
-        return "JSON_RESULT";
-//        return Action.LOGIN;
 
+        ResultMsg resultMsg=getJwtAccessToken(loginPara);
+//        sessionMap.put("jwtAccessToken",resultMsg.getJwtAccessToken());
+//        jsonMap=new HashMap<String,Object>();
+//        jsonMap.put("LoginPara",loginPara);
+//        jsonMap.put("JwtAccessToken",jwtAccessToken);
+//        return "JSON_RESULT";
+        if (0==resultMsg.getErrcode()) {
+            sessionMap.put("jwtAccessToken",jwtAccessToken);
+            sessionMap.remove("authenticateErrMsg");
+//            return "JSON_RESULT";
+            return Action.SUCCESS;
+        } else {
+            sessionMap.put("authenticateErrMsg",resultMsg.getErrmsg());
+            sessionMap.remove("jwtAccessToken");
+        }
+        return Action.LOGIN;
     }
     /**
      * 验证account(username+password),若通过验证则授权JwtAccessToken

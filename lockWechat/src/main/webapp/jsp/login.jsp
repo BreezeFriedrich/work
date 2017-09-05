@@ -33,23 +33,17 @@
     <div class="container-fluid">
 
         <div class="row" style="background-color: #fff;min-height: 50px; margin-top: 10px;">
-            <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4" style="padding-left: 6px;padding-right: 6px;padding-top: 6px;background-color: #fff;">
+            <div class="col-xs-offset-4 col-xs-8" style="padding-left: 6px;padding-right: 6px;padding-top: 6px;background-color: #fff;">
                 亿数门锁管理
             </div>
-            <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4" style="padding-left: 6px;padding-right: 6px;padding-top: 6px;background-color: #fff;">
-
-            </div>
-            <!--
-            <div class="col-xs-offset-2 col-xs-2 col-xs-offset-2">
+            <div class="col-xs-offset-2 col-xs-10">
                 <a href="lang.action?request_locale=zh_CN">中文</a>&nbsp
                 <a href="lang.action?request_locale=en_US">英文</a>
             </div>
-            -->
-            <div class="col-xs-offset-3 col-xs-6 col-xs-offset-3">
+            <div class="col-xs-offset-2 col-xs-9">
                 <form action="account/loginAccount.action" method="post">
-
                     用户名：<input type="text" name="loginPara.username"/><br>
-                    密&nbsp;&nbsp;码:<input type="password" name="loginPara.password"/><br>
+                    密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="loginPara.password"/><br>
                     <table>
                         <tr>
                             <td><input type="submit" value="注册"/></td>
@@ -59,7 +53,7 @@
                 </form>
                 <s:fielderror />
             </div>
-            <form class="form-horizontal" role="form" method="post" action="<%=basePath%>account/loginAccount/login.action">
+            <form class="form-horizontal" role="form" method="post" action="<%=basePath%>account/loginAccount.action">
                 <div class="form-group">
                     <label for="inputUserName" class="col-xs-2 control-label">用户名</label>
                     <div class="col-xs-10">

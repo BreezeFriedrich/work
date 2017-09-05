@@ -25,6 +25,7 @@
 <body style="background-image:url(<%=basePath%>images/123.jpg); background-repeat:no-repeat;">
 <div style="width: 210px;height: 181px;margin: 170px auto;">
     <img src="<%=basePath%>/images/img001.png">
+    <p>Exception.jsp</p>
     <p>哎呀……您访问的页面不存在</p>
 </div>
 </body>

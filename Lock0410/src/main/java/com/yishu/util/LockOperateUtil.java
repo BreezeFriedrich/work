@@ -50,7 +50,7 @@ public class LockOperateUtil {
 		}else{
 			LockOperateJson lockOperateJson=new LockOperateJson();
 			lockOperateJson.rows=new ArrayList();
-			List<RecordInfo> list = new ArrayList();			
+			List<RecordInfo> list = new ArrayList();
 			list.addAll(lockOperateData.recordList);
 			lockOperateJson.totals=list.size();
 			Iterator it=list.iterator();

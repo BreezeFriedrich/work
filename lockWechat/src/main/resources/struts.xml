@@ -31,6 +31,7 @@
 
     <!-- include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中 然后用include节点引用 -->
     <include file="struts/struts-account.xml" />
+    <include file="struts/struts-device.xml" />
 
     <package name="default" extends="struts-default,json-default">
         <!-- javamelody和struts2集成 -->
