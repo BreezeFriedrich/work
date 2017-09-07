@@ -24,7 +24,7 @@ public class DeviceAction extends ActionSupport {
     }
 
     public String getAllGatewayIp(){
-        List<Map> allGatewayIp=deviceService.getAllGatewayIp(ownerPhoneNumber);
+        List allGatewayIp=deviceService.getAllGatewayIp(ownerPhoneNumber);System.err.println(allGatewayIp.size());
         Map jsonMap=new HashMap<String,Object>();
         jsonMap.put("allGatewayIp",allGatewayIp);
         return "json";

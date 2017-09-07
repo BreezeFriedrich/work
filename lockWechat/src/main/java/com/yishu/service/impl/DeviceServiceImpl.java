@@ -20,6 +20,7 @@ public class DeviceServiceImpl implements IDeviceService{
         int reqSign=15;
         String reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         String rawData= HttpUtil.doPostToQixu(reqData);
+        System.err.println(rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map gatewayIpMap;

@@ -17,11 +17,18 @@
     <spring-version>4.2.6.RELEASE</spring-version>
     <struts2-version>2.5.12</struts2-version>
     <slf4j-version>1.7.12</slf4j-version>
-    <log4j-version>2.8.2</log4j-version>
+    <log4j2-version>2.8.2</log4j2-version>
     <httpcomponents-version>4.2.5</httpcomponents-version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+    <!-- 测试 -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -31,7 +38,8 @@
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-junit-plugin</artifactId>
-      <version>2.3.29</version>
+      <version>${struts2-version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.easymock</groupId>
@@ -60,8 +68,6 @@
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>${httpcomponents-version}</version>
-      <exclusions>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -118,30 +124,78 @@
       <version>${struts2-version}</version>
     </dependency>
 
-
-    <!-- log4j ver2+ -->
-    <!-- [in : log4j-api] -->
+    <!-- 旧日志转到slf4j的适配器 -->
     <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>${log4j-version}</version>
+      <!-- JUL需要额外执行一行初始化代码SLF4JBridgeHandler.install();// jul to slf4j -->
+      <!--JDK(java.util.logging简写JUL)生成的日志 转slf4j-->
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>${org.slf4j-version}</version>
+    </dependency>
+    <dependency>
+      <!--apache Jakarta Commons Logging API (JCL)转slf4j,spring-core使用的是JCL-->
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${org.slf4j-version}</version>
+    </dependency>
+    <dependency>
+      <!--log4j1转slf4j-->
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>${slf4j-version}</version>
     </dependency>
 
+    <!-- log总接口(编程转换接口) -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j-version}</version>
     </dependency>
+
+    <!-- 从slf4j-api到log实现需要的转接 -->
+    <!-- slf4j到log4j1的桥梁 -->
+    <!--<dependency>-->
+      <!--<groupId>org.slf4j</groupId>-->
+      <!--<artifactId>slf4j-log4j12</artifactId>-->
+      <!--<version>1.7.16</version>-->
+    <!--</dependency>-->
+    <!-- slf4j到log4j2的桥梁 -->
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
-      <version>1.1.2</version>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j2-version}</version>
+    </dependency>
+
+    <!-- log最终输出的实现 -->
+    <!-- logback -->
+    <!--<dependency>-->
+      <!--<groupId>ch.qos.logback</groupId>-->
+      <!--<artifactId>logback-core</artifactId>-->
+      <!--<version>1.1.2</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--&lt;!&ndash; logback实现了slf4j的API,从slf4j到logback-classic不需要再转接 &ndash;&gt;-->
+      <!--<groupId>ch.qos.logback</groupId>-->
+      <!--<artifactId>logback-classic</artifactId>-->
+      <!--<version>1.1.2</version>-->
+    <!--</dependency>-->
+    <!-- log4j2 -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2-version}</version>
     </dependency>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.1.2</version>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2-version}</version>
     </dependency>
+    <!-- log4j1 -->
+    <!--<dependency>-->
+      <!--<groupId>log4j</groupId>-->
+      <!--<artifactId>log4j</artifactId>-->
+      <!--<version>1.2.17</version>-->
+    <!--</dependency>-->
 
     <!-- DB -->
     <dependency>
@@ -216,18 +270,30 @@
       <version>1.69.0</version>
     </dependency>
 
+    <!-- struts2-junit-plugin ver2.5.12 要求 servlet-api版本至少3.1.0+(实测3.0.1也行,没发现问题) -->
+    <!-- servlet-api自3.0-alpha-1之后的版本artifactId由servlet-api变为javax.servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>3.0-alpha-1</version>
-      <!--<scope>provided</scope>-->
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
     </dependency>
+    <!-- struts2-junit-plugin ver2.5.12 要求 jsp-api版本至少2.0+ -->
+    <!-- jsp-api自2.0之后的版本groupId由javax.servlet变为javax.servlet.jsp -->
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>jsp-api</artifactId>
       <version>2.2</version>
-      <!--<scope>provided</scope>-->
+      <scope>provided</scope>
     </dependency>
+    <!--
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
+    -->
     <dependency>
       <groupId>taglibs</groupId>
       <artifactId>standard</artifactId>

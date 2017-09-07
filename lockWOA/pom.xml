@@ -335,11 +335,6 @@
       <version>2.8.2</version>
     </dependency>
     <!--<dependency>-->
-      <!--<groupId>org.apache.logging.log4j</groupId>-->
-      <!--<artifactId>log4j-api</artifactId>-->
-      <!--<version>2.0-beta9</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
       <!--<groupId>log4j</groupId>-->
       <!--<artifactId>log4j</artifactId>-->
       <!--<version>1.2.17</version>-->
@@ -383,7 +378,7 @@
     </dependency>
     <!-- 旧日志转到slf4j的适配器 -->
     <!--<dependency>-->
-    <!--&lt;!&ndash;apache commons-logging转slf4j&ndash;&gt;-->
+    <!--apache Jakarta Commons Logging API (JCL)转slf4j-->
     <!--<groupId>org.slf4j</groupId>-->
     <!--<artifactId>jcl-over-slf4j</artifactId>-->
     <!--<version>${org.slf4j-version}</version>-->
@@ -402,7 +397,7 @@
     </dependency>
     <!--<dependency>-->
     <!--&lt;!&ndash; JUL需要额外执行一行初始化代码SLF4JBridgeHandler.install();// jul to slf4j &ndash;&gt;-->
-    <!--&lt;!&ndash;jdk-logging转slf4j&ndash;&gt;-->
+    <!--JDK(java.util.logging简写JUL)生成的日志 转slf4j-->
     <!--<groupId>org.slf4j</groupId>-->
     <!--<artifactId>jul-to-slf4j</artifactId>-->
     <!--<version>${org.slf4j-version}</version>-->
