@@ -7,7 +7,7 @@
 
     <package name="device" namespace="/device" extends="default">
 
-        <action name="getAllGatewayIp" class="com.yishu.action.DeviceAction" method="getAllGatewayIp">
+        <action name="getUserGatewayIp" class="com.yishu.action.DeviceAction" method="getUserGatewayIp">
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
@@ -21,8 +21,20 @@
             <result name="json" type="json">
                 <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
                 <!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->
-                <param name="root">jsonMap</param>
+                <param name="root">jsonList</param>
                 <!-- 指定是否序列化空的属性 -->
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="error" type="dispatcher">/jsp/exception.jsp</result>
+        </action>
+
+        <action name="getDeviceInfo" class="com.yishu.action.DeviceAction" method="getDeviceInfo">
+            <interceptor-ref name="defaultStack">
+                <param name="exception.logEnabled">true</param>
+                <param name="exception.logLevel">error</param>
+            </interceptor-ref>
+            <result name="json" type="json">
+                <param name="root">jsonList</param>
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="error" type="dispatcher">/jsp/exception.jsp</result>

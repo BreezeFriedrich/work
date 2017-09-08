@@ -23,10 +23,22 @@ public class DeviceAction extends ActionSupport {
         this.ownerPhoneNumber = ownerPhoneNumber;
     }
 
-    public String getAllGatewayIp(){
-        List allGatewayIp=deviceService.getAllGatewayIp(ownerPhoneNumber);System.err.println(allGatewayIp.size());
-        Map jsonMap=new HashMap<String,Object>();
-        jsonMap.put("allGatewayIp",allGatewayIp);
+    private List jsonList;
+    public List getJsonList() {
+        return jsonList;
+    }
+
+    public String getUserGatewayIp(){
+        jsonList.clear();
+        List userGatewayIp=deviceService.getUserGatewayIp(ownerPhoneNumber);System.err.println(userGatewayIp.size());
+        jsonList.addAll(userGatewayIp);
+        return "json";
+    }
+
+    public String getDeviceInfo(){
+        jsonList.clear();
+        List unlockAccountDeviceList=deviceService.getDeviceInfo(ownerPhoneNumber);System.err.println(unlockAccountDeviceList.size());
+        jsonList.addAll(unlockAccountDeviceList);
         return "json";
     }
 }
