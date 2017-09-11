@@ -32,6 +32,8 @@
     <!-- include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中 然后用include节点引用 -->
     <include file="struts/struts-account.xml" />
     <include file="struts/struts-device.xml" />
+    <include file="struts/struts-unlock.xml" />
+    <include file="struts/struts-gateway.xml" />
 
     <package name="default" extends="struts-default,json-default">
         <!-- javamelody和struts2集成 -->
@@ -69,7 +71,11 @@
             <result name="login">/jsp/login.jsp</result>
         </global-results>
 
-        <global-allowed-methods>login</global-allowed-methods>
+        <!--<global-allowed-methods>login</global-allowed-methods>-->
+
+        <!-- 为了通配符匹配方法 -->
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
         <action name="error_struts">
             <result>/jsp/error_struts.jsp</result>
         </action>

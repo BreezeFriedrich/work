@@ -5,9 +5,14 @@
 
 package com.yishu.action;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.service.IUnlockService;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,12 +20,17 @@ import java.util.List;
  * @version 1.0.0.0 2017-09-08 15:34 admin
  * @since JDK1.7
  */
-public class UnlockAction {
+public class UnlockAction extends ActionSupport {
     public UnlockAction() {
         System.out.println(">>>Initialization UnlockAction......................................");
     }
     @Autowired
     private IUnlockService unlockService;
+
+    private Object jsonObject;
+    public Object getJsonObject() {
+        return jsonObject;
+    }
 
     private String ownerPhoneNumber;
     private String gatewayCode;
@@ -31,6 +41,7 @@ public class UnlockAction {
     private String password;
     private String startTime;
     private String endTime;
+    private String serviceNumb;
 
     public IUnlockService getUnlockService() {
         return unlockService;
@@ -112,37 +123,96 @@ public class UnlockAction {
         this.endTime = endTime;
     }
 
-    private List jsonList;
-    public List getJsonList() {
-        return jsonList;
-    }
-    private Object jsonObject;
-    public Object getJsonObject() {
-        return jsonObject;
+    public String getServiceNumb() {
+        return serviceNumb;
     }
 
+    public void setServiceNumb(String serviceNumb) {
+        this.serviceNumb = serviceNumb;
+    }
+
+    /**
+     * 获取(当期帐户、当前网关、当前门锁)已授权的开锁身份证信息
+     *
+     * @return
+     */
     public String getUnlockId (){
-        jsonList.clear();
+//        jsonList.clear();
         List unlockIdList=unlockService.getUnlockId(ownerPhoneNumber,gatewayCode,lockCode);
-        jsonList.addAll(unlockIdList);
+//        jsonList.addAll(unlockIdList);
+        jsonObject=unlockIdList;
+//        System.err.println("jsonObject :"+jsonObject);
         return "json";
     }
 
+    /**
+     * 添加身份证开锁授权
+     *
+     * @return
+     */
     public String authUnlockById (){
         boolean isSuccess=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
         jsonObject=isSuccess;
         return "json";
     }
 
+    /**
+     * 删除开锁身份证
+     * serviceNumb为授权时产生的操作序列号
+     *
+     * @return
+     */
     public String prohibitUnlockById (){
+        boolean isSuccess=unlockService.prohibitUnlockById(ownerPhoneNumber,lockCode,cardNumb,serviceNumb);
+        jsonObject=isSuccess;
+        return "json";
     }
 
+    /**
+     * 获取(当期帐户、当前网关、当前门锁)已授权的开锁密码信息
+     *
+     * @return
+     */
     public String getUnlockPwd (){
+        jsonObject=unlockService.getUnlockPwd(ownerPhoneNumber,gatewayCode,lockCode);
+        return "json";
     }
 
+    /**
+     * 开锁密码授权
+     *
+     * @return
+     */
     public String authUnlockByPwd (){
+        boolean isSuccess=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
+        jsonObject=isSuccess;
+        return "json";
     }
 
+    /**
+     * 删除开锁密码
+     * serviceNumb为授权时产生的操作序列号
+     *
+     * @return
+     */
     public String prohibitUnlockByPwd (){
+        boolean isSuccess=unlockService.prohibitUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,serviceNumb);
+        jsonObject=isSuccess;
+        return "json";
     }
+
+    /*另一种方式返回Model(实测,成功).有无<result>都能成功.
+    public void prohibitUnlockByPwd () {
+        boolean isSuccess=unlockService.prohibitUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,serviceNumb);
+        PrintWriter out= ServletActionContext.getResponse().getWriter();
+        try {
+            out = getResp();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.print(isSuccess);
+        out.flush();
+        out.close();
+    }
+    */
 }

@@ -5,15 +5,15 @@
 
 <struts>
 
-    <package name="unlock" namespace="/unlock" extends="default">
+    <package name="gateway" namespace="/gateway" extends="default">
 
-        <action name="*" class="com.yishu.action.UnlockAction" method="{0}">
+        <action name="*" class="com.yishu.action.GatewayAction" method="{0}">
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
             <result name="json" type="json">
-                <param name="root">jsonObject</param>
+                <param name="root">jsonResult</param>
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="error" type="dispatcher">/jsp/exception.jsp</result>

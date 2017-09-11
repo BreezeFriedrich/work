@@ -57,6 +57,11 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         this.authenticateErrMsg = authenticateErrMsg;
     }
 
+    /**
+     * 应用帐户登录.再(由jjwt包)产生JSON web token,存于session域、ValueStack
+     *
+     * @return
+     */
     public String login () {
         System.out.println(">>>action method login..................................................");
 

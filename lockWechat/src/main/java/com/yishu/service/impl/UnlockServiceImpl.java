@@ -14,6 +14,7 @@ import com.yishu.pojo.UnlockPwds;
 import com.yishu.service.IUnlockService;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import java.util.List;
  * @version 1.0.0.0 2017-09-08 15:43 admin
  * @since JDK1.7
  */
+@Service("unlockService")
 public class UnlockServiceImpl implements IUnlockService {
     org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
 
@@ -47,8 +49,13 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     int respSign;
 
-    private String getServiceNumb(String timetag){
-        return "";
+    private String getServiceNumb(String ownerPhoneNumber,String timetag){
+        StringBuffer stringBuffer=new StringBuffer();
+        int randomNum= (int) (Math.random()*10000000);
+        stringBuffer.append(timetag)
+                    .append(ownerPhoneNumber)
+                    .append(randomNum);
+        return new String(stringBuffer);
     }
 
     private boolean respFail(){
@@ -104,7 +111,7 @@ public class UnlockServiceImpl implements IUnlockService {
     public boolean authUnlockById(String ownerPhoneNumber, String gatewayCode, String lockCode, String name, String cardNumb, String dnCode, String startTime, String endTime) {
         reqSign=18;
         timetag= String.valueOf(new Date().getTime());
-        serviceNumb=getServiceNumb(timetag);
+        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.doPostToQixu(reqData);
         System.err.println(rawData);
@@ -122,10 +129,10 @@ public class UnlockServiceImpl implements IUnlockService {
      * @return 操作结果
      */
     @Override
-    public boolean prohibitUnlockById(String ownerPhoneNumber, String lockCode, String cardNumb) {
+    public boolean prohibitUnlockById(String ownerPhoneNumber, String lockCode, String cardNumb,String serviceNumb) {
         reqSign=19;
         timetag= String.valueOf(new Date().getTime());
-        serviceNumb=getServiceNumb(timetag);
+//        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"cardNumb\":\""+cardNumb+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.doPostToQixu(reqData);
         System.err.println(rawData);
@@ -178,7 +185,7 @@ public class UnlockServiceImpl implements IUnlockService {
     public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime) {
         reqSign=21;
         timetag= String.valueOf(new Date().getTime());
-        serviceNumb=getServiceNumb(timetag);
+        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"password\":\""+password+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.doPostToQixu(reqData);
         System.err.println(rawData);
@@ -197,10 +204,10 @@ public class UnlockServiceImpl implements IUnlockService {
      * @return
      */
     @Override
-    public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode) {
+    public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode,String serviceNumb) {
         reqSign=22;
         timetag= String.valueOf(new Date().getTime());
-        serviceNumb=getServiceNumb(timetag);
+//        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"gatewayCode\":\""+gatewayCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.doPostToQixu(reqData);
         System.err.println(rawData);

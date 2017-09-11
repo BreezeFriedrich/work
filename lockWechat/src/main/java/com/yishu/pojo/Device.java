@@ -13,19 +13,19 @@ import java.util.List;
  * @since JDK1.7
  */
 public class Device {
-    private List<Lock> lockList;
+    private List<Lock> lockLists;
     private String gatewayName;
     private String gatewayCode;
     private String gatewayLocation;
     private String gatewayComment;
     private String gatewayStatus;
 
-    public List<Lock> getLockList() {
-        return lockList;
+    public List<Lock> getLockLists() {
+        return lockLists;
     }
 
-    public void setLockList(List<Lock> lockList) {
-        this.lockList = lockList;
+    public void setLockLists(List<Lock> lockLists) {
+        this.lockLists = lockLists;
     }
 
     public String getGatewayName() {
