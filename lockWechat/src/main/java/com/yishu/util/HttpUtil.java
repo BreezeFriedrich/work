@@ -39,7 +39,7 @@ public class HttpUtil
         return null;
     }
 
-    public static String doPostToQixu(String data){
+    public static String httpsPostToQixu(String data){
         String qixuIp=HttpUtil.getQixuIp();
         URL url = null;
         try {
@@ -48,7 +48,7 @@ public class HttpUtil
             e.printStackTrace();
         }
 //        return HttpUtil.doPost(url.toString(),data);
-        return HttpUtil.postData(qixuIp,data);
+        return HttpUtil.httpsPostToIp(qixuIp,data);
     }
 
     /**
@@ -187,7 +187,7 @@ public class HttpUtil
     // }
 
     //ChengXinLang
-    public static String postData(String ip,String data){
+    public static String httpsPostToIp(String ip,String data){
         System.out.println(ip);
         URL url;
         HttpsURLConnection httpsURLConnection=null;

@@ -21,7 +21,7 @@ public class GatewayAction extends ActionSupport {
         System.out.println(">>>Initialization GatewayAction......................................");
     }
     @Autowired
-    IGatewayService gatewayService;
+    private IGatewayService gatewayService;
 
     /**
      * Object jsonResult——返回的JSON格式的Model
@@ -87,8 +87,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String getGatewayIp(){
-        Map resultMap=gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
-        jsonResult=resultMap;
+        jsonResult=gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
         return "json";
     }
 

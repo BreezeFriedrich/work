@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service("userService")
 public class UserServiceImpl implements IUserService {
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
 
     @Override
     public User findUserByName(String username) {

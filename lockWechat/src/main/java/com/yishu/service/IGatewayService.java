@@ -13,7 +13,7 @@ import java.util.Map;
  * @since JDK1.7
  */
 public interface IGatewayService {
-    public Map getGatewayIp(String ownerPhoneNumber,String gatewayCode);
+    public String getGatewayIp(String ownerPhoneNumber,String gatewayCode);
     public Map hasGatewayAdded(String ownerPhoneNumber,String gatewayCode);
     public int isCorrectGatewayVerificationCode(String ownerPhoneNumber,String gatewayCode,String opCode);
     public boolean addGateway(String ownerPhoneNumber,String gatewayCode,String gatewayName,String gatewayLocation,String gatewayComment,String opCode);

@@ -16,11 +16,21 @@ import java.util.*;
 public class DeviceServiceImpl implements IDeviceService{
     org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
 
+    int reqSign;
+    String reqData;
+    String rawData;
+
+    /**
+     * 获取当前帐户ownerPhoneNumber所有的网关数据服务器的IP (request addr: lock.qixutech.com)
+     *
+     * @return type=Map structure: { "result": int(0成功,1失败) , "gatewayIpList" : [ { "gatewayCode" : String , "gatewayIp" : String(网关数据所在IP) } ] }
+     */
     @Override
     public List getUserGatewayIp(String ownerPhoneNumber) {
-        int reqSign=15;
-        String reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        String rawData= HttpUtil.doPostToQixu(reqData);
+        reqSign=15;
+        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+        rawData=null;
+        rawData= HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -57,11 +67,17 @@ public class DeviceServiceImpl implements IDeviceService{
         return gatewayIpList;
     }
 
+    /**
+     * 获取当前帐户ownerPhoneNumber所有的设备信息accountDeviceList (request addr: gatewayIp)
+     *
+     * @return
+     */
     @Override
     public List getDeviceInfo(String ownerPhoneNumber) {
-        int reqSign=16;
-        String reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        String rawData= HttpUtil.doPostToQixu(reqData);
+        reqSign=16;
+        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+        rawData=null;
+        rawData= HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();

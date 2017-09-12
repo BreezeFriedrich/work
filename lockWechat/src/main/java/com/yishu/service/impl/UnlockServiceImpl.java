@@ -11,9 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.IdentityCard;
 import com.yishu.pojo.UnlockPwd;
 import com.yishu.pojo.UnlockPwds;
+import com.yishu.service.IGatewayService;
+import com.yishu.service.ILockService;
 import com.yishu.service.IUnlockService;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -29,6 +32,13 @@ import java.util.List;
 @Service("unlockService")
 public class UnlockServiceImpl implements IUnlockService {
     org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private IGatewayService gatewayService;
+    @Autowired
+    private ILockService lockService;
+
+    String gatewayIp=null;
 
     String timetag;
     /**
@@ -79,10 +89,15 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public List getUnlockId(String ownerPhoneNumber, String gatewayCode, String lockCode) {
+        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return null;
+        }
+
         reqSign=17;
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){//请求数据失败
@@ -109,11 +124,16 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public boolean authUnlockById(String ownerPhoneNumber, String gatewayCode, String lockCode, String name, String cardNumb, String dnCode, String startTime, String endTime) {
+        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return false;
+        }
+
         reqSign=18;
         timetag= String.valueOf(new Date().getTime());
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){
@@ -130,11 +150,15 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public boolean prohibitUnlockById(String ownerPhoneNumber, String lockCode, String cardNumb,String serviceNumb) {
+        gatewayIp = lockService.getLockIp(ownerPhoneNumber,lockCode);
+        if (null == gatewayIp) {
+            return false;
+        }
+
         reqSign=19;
         timetag= String.valueOf(new Date().getTime());
-//        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"cardNumb\":\""+cardNumb+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){
@@ -151,10 +175,15 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public UnlockPwds getUnlockPwd(String ownerPhoneNumber, String gatewayCode, String lockCode) {
+        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return null;
+        }
+
         reqSign=20;
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){//请求数据失败
@@ -183,11 +212,16 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime) {
+        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return false;
+        }
+
         reqSign=21;
         timetag= String.valueOf(new Date().getTime());
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"password\":\""+password+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){
@@ -205,11 +239,16 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode,String serviceNumb) {
+        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return false;
+        }
+
         reqSign=22;
         timetag= String.valueOf(new Date().getTime());
 //        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"gatewayCode\":\""+gatewayCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){

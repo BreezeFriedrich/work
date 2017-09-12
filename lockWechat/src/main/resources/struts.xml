@@ -34,6 +34,7 @@
     <include file="struts/struts-device.xml" />
     <include file="struts/struts-unlock.xml" />
     <include file="struts/struts-gateway.xml" />
+    <include file="struts/struts-lock.xml" />
 
     <package name="default" extends="struts-default,json-default">
         <!-- javamelody和struts2集成 -->

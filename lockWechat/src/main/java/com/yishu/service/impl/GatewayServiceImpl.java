@@ -26,6 +26,7 @@ import java.util.Map;
 public class GatewayServiceImpl implements IGatewayService {
     org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
 
+    String gatewayIp=null;
     String timetag;
 
     int reqSign;
@@ -66,13 +67,20 @@ public class GatewayServiceImpl implements IGatewayService {
         return respSign;
     }
 
+    /**
+     * 获取 当前帐号ownerPhoneNumber指定网关gatewayCode的数据服务器ip
+     * 添加网关前，先获取网关所在服务器的IP (lock.qixutech.com).进行网关、门锁、开锁相关动作都需要gatewayIp.
+     *
+     * @return //( type=Map structure: { "result" : int(0成功,1失败) , "gatewayIp" : String(网关数据所在IP) } )
+     */
     @Override
-    public Map getGatewayIp(String ownerPhoneNumber, String gatewayCode) {
+    public String getGatewayIp(String ownerPhoneNumber, String gatewayCode) {
         reqSign=5;
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
 
+        /*@deprecated: getGatewayIp()返回值 type=Map structure: { "result" : int(0成功,1失败) , "gatewayIp" : String(网关数据所在IP) }.
         Map resultMap=new HashMap();
         if (respFail()){
             resultMap.put("result",1);
@@ -81,24 +89,46 @@ public class GatewayServiceImpl implements IGatewayService {
             resultMap.put("result",0);
             resultMap.put("gatewayIp",rootNode.path("gatewayIp").asText());
         }
-
         return resultMap;
+        */
+
+        if (respFail()){
+            return null;
+        }
+        String gatewayIp = rootNode.path("gatewayIp").asText();
+        return gatewayIp;
     }
 
     @Override
     public Map hasGatewayAdded(String ownerPhoneNumber, String gatewayCode) {
+
+        /* !!弃用httpsPostToIp(gatewayIp,reqData).逻辑错误:向还未存在的gatewayIp发送请求.
+        Map resultMap=new HashMap();
+        gatewayIp = getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            // 此处不能return null.因为未找到gatewayCode的gatewayIp,说明此网关gatewayCode未被添加过.
+            resultMap.put("result",0);
+            resultMap.put("alreadyPhoneNumber","");
+        }
+        reqData=null;
         reqSign=6;
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
+        */
+
+        reqSign=6;
+        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        Map resultMap=new HashMap();
+        rawData = HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
 
-        Map resultMap=new HashMap();
-        if (respFail()){
-            resultMap.put("result",1);
-            resultMap.put("gatewayIp","");
-        }else {
-            resultMap.put("result",0);
-            resultMap.put("gatewayIp",rootNode.path("alreadyPhoneNumber").asText());
+        respSign();
+        resultMap.put("result",respSign);
+        if (0==respSign){
+            resultMap.put("alreadyPhoneNumber","");
+        }
+        if (1==respSign){
+            resultMap.put("alreadyPhoneNumber",rootNode.path("alreadyPhoneNumber").asText());
         }
 
         return resultMap;
@@ -106,19 +136,31 @@ public class GatewayServiceImpl implements IGatewayService {
 
     @Override
     public int isCorrectGatewayVerificationCode(String ownerPhoneNumber, String gatewayCode, String opCode) {
+        gatewayIp = getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return -1;
+        }
+        reqData=null;
+
         reqSign=7;
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"opCode\":\""+opCode+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
         return respSign();
     }
 
     @Override
     public boolean addGateway(String ownerPhoneNumber, String gatewayCode, String gatewayName, String gatewayLocation, String gatewayComment, String opCode) {
+        gatewayIp = getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return false;
+        }
+        reqData=null;
+
         reqSign=8;
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){
@@ -130,10 +172,16 @@ public class GatewayServiceImpl implements IGatewayService {
 
     @Override
     public boolean modifyGatewayInfo(String ownerPhoneNumber, String gatewayCode, String gatewayName, String gatewayLocation, String gatewayComment) {
+        gatewayIp = getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return false;
+        }
+        reqData=null;
+
         reqSign=9;
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){
@@ -145,10 +193,16 @@ public class GatewayServiceImpl implements IGatewayService {
 
     @Override
     public boolean deleteGateway(String ownerPhoneNumber, String gatewayCode) {
+        gatewayIp = getGatewayIp(ownerPhoneNumber,gatewayCode);
+        if (null == gatewayIp) {
+            return false;
+        }
+        reqData=null;
+
         reqSign=10;
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.doPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
 
         if (respFail()){
