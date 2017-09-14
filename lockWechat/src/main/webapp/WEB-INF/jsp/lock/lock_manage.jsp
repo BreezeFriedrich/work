@@ -6,7 +6,7 @@
 <%--
   User: admin
   Date: 2017/9/14
-  Time: 11:41
+  Time: 11:43
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -17,7 +17,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>查询统计</title>
+    <title>锁管理</title>
 </head>
 <body>
 

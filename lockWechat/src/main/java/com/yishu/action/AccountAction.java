@@ -9,6 +9,7 @@ import com.yishu.service.IUserService;
 import com.yishu.util.JwtHelper;
 import com.yishu.util.MD5;
 import org.apache.struts2.interceptor.SessionAware;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -21,7 +22,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     public AccountAction() {
         System.out.println(">>>Initialization AccountAction......................................");
     }
-//    private Logger logger= LoggerFactory.getLogger(this.getClass());
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("AccountAction");
 
     @Autowired
     private IUserService userService;

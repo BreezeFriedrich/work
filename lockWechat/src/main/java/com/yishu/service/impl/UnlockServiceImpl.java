@@ -31,7 +31,7 @@ import java.util.List;
  */
 @Service("unlockService")
 public class UnlockServiceImpl implements IUnlockService {
-    org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("UnlockServiceImpl");
 
     @Autowired
     private IGatewayService gatewayService;

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Service("gatewayService")
 public class GatewayServiceImpl implements IGatewayService {
-    org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("GatewayServiceImpl");
 
     String gatewayIp=null;
     String timetag;
@@ -121,6 +121,9 @@ public class GatewayServiceImpl implements IGatewayService {
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
+//        if ("".equals(rawData)) {
+//            return null;
+//        }
 
         respSign();
         resultMap.put("result",respSign);
@@ -128,6 +131,31 @@ public class GatewayServiceImpl implements IGatewayService {
             resultMap.put("alreadyPhoneNumber","");
         }
         if (1==respSign){
+            resultMap.put("alreadyPhoneNumber",rootNode.path("alreadyPhoneNumber").asText());
+        }
+
+        return resultMap;
+    }
+
+    @Override
+    public Map getGatewayLANIp(String ownerPhoneNumber, String gatewayCode) {
+        reqSign=30;
+        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        Map resultMap=new HashMap();
+        rawData = HttpUtil.httpsPostToQixu(reqData);
+        System.err.println(rawData);
+//        if ("".equals(rawData)) {
+//            return null;
+//        }
+
+        respSign();
+        resultMap.put("result",respSign);
+        if (0==respSign){
+            resultMap.put("ip",rootNode.path("ip").asText());
+            resultMap.put("alreadyPhoneNumber","");
+        }
+        if (1==respSign){
+            resultMap.put("ip","");
             resultMap.put("alreadyPhoneNumber",rootNode.path("alreadyPhoneNumber").asText());
         }
 

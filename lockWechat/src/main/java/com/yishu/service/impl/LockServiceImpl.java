@@ -27,7 +27,7 @@ import java.util.*;
  */
 @Service("lockService")
 public class LockServiceImpl implements ILockService {
-    org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("LockServiceImpl");
 
     @Autowired
     private IDeviceService deviceService;
@@ -91,6 +91,9 @@ public class LockServiceImpl implements ILockService {
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
+//        if ("".equals(rawData)) {
+//            return null;
+//        }
 
         respSign();
         resultMap.put("result",respSign);

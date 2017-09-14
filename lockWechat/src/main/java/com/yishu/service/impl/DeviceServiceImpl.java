@@ -14,7 +14,7 @@ import java.util.*;
 
 @Service("deviceService")
 public class DeviceServiceImpl implements IDeviceService{
-    org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("DeviceServiceImpl");
 
     int reqSign;
     String reqData;

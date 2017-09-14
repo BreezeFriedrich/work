@@ -12,6 +12,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.*;
 import java.io.*;
@@ -26,6 +27,8 @@ import java.security.cert.X509Certificate;
 
 public class HttpUtil
 {
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("HttpUtil");
+
     public final static String hostName="lock.qixutech.com";
 
     public static String getQixuIp(){
@@ -283,6 +286,14 @@ public class HttpUtil
             }
             if(httpsURLConnection!=null){
                 httpsURLConnection.disconnect();
+            }
+            if ("".equals(result)) {
+                try {
+                    throw new Exception("https连接返回空串");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                }
             }
         }
         return null;

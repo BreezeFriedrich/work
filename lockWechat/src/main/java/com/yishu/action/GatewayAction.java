@@ -97,6 +97,12 @@ public class GatewayAction extends ActionSupport {
         return "json";
     }
 
+    public String getGatewayLANIp(){
+        Map resultMap=gatewayService.getGatewayLANIp(ownerPhoneNumber,gatewayCode);
+        jsonResult=resultMap;
+        return "json";
+    }
+
     public String isCorrectGatewayVerificationCode(){
         int resultInt=gatewayService.isCorrectGatewayVerificationCode(ownerPhoneNumber,gatewayCode,opCode);
         jsonResult=resultInt;
