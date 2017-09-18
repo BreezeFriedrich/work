@@ -5,8 +5,8 @@
 
 <%--
   User: admin
-  Date: 2017/9/14
-  Time: 18:21
+  Date: 2017/9/18
+  Time: 16:05
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -18,18 +18,163 @@
 <head>
     <base href="<%=basePath%>">
     <title>Title</title>
-    <!-- head 中 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
+    <!--<link rel="stylesheet" href="css/picSrc.css"/>-->
+    <style>
+        img.auto-zoom-1 {
+            width: 1rem;
+            height: 1rem;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        img.auto-zoom-3 {
+            width: 4rem;
+            height: 4rem;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .row.pad-left {
+            padding-left: 1rem;
+        }
+    </style>
 </head>
 <body>
 
-<!-- body 最后 -->
-<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+<div class="page-group">
+    <!-- 单个page ,第一个.page默认被展示,page-current指定第一次进入展示-->
+    <div class="page page-current">
+        <!-- 标题栏 -->
+        <header class="bar bar-nav">
+            <a class="icon icon-menu pull-left open-panel" data-panel='#panel-left-menu'></a>
+            <h1 class="title">亿数智能锁</h1>
+            <a class="icon icon-me pull-right" href="jsp/account.jsp"></a>
+        </header>
 
-<!-- 如果使用了某些拓展插件还需要额外的JS -->
-<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/swiper.min.js"></script>
-<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/city-picker.min.js"></script>
+        <!-- 工具栏 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="#">
+                <span class="icon icon-home"></span>
+                <span class="tab-label">首页</span>
+            </a>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-star"></span>
+                <span class="tab-label">收藏</span>
+            </a>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-settings"></span>
+                <span class="tab-label">设置</span>
+            </a>
+        </nav>
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <div class="content-block">这里是content</div>
+        </div>
+    </div>
+
+    <!-- 其他的单个page内联页（如果有） -->
+    <div class="page" id="account">
+        <!-- 标题栏 -->
+        <header class="bar bar-nav">
+            <h1 class="title">帐户操作</h1>
+        </header>
+
+        <!-- 工具栏 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="#">
+                <span class="icon icon-edit"></span>
+                <span class="tab-label">修改密码</span>
+            </a>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-star"></span>
+                <span class="tab-label">收藏</span>
+            </a>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-settings"></span>
+                <span class="tab-label">设置</span>
+            </a>
+        </nav>
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <div class="content-block">
+                这是ajax 加载的新页面，点击左上角的 <a href="#" class='back'>返回</a> 按钮返回上一页。
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Left Panel with Reveal effect -->
+<div class="panel panel-left panel-reveal" id="panel-left-menu">
+    <div class="content-block content-padded grid-demo">
+        <div style="height: 1rem;"></div>
+        <div class="row">
+            <div class="col-50">
+                <img class="auto-zoom-3" src="resources/img/username.png"/>
+            </div>
+            <div class="col-50">
+                <p><span>北极星</span></p>
+                <p><span>18255683932</span></p>
+            </div>
+        </div>
+        <div style="height: 2rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/add_gateway.png"/>
+            </div>
+            <div class="col-80">
+                添加网关
+            </div>
+        </div>
+        <div style="height: 0.7rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/statistics.png"/>
+            </div>
+            <div class="col-80">
+                查询统计
+            </div>
+        </div>
+        <div style="height: 0.7rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/alert.png"/>
+            </div>
+            <div class="col-80">
+                异常警示
+            </div>
+        </div>
+        <div style="height: 0.7rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/system_configure.png"/>
+            </div>
+            <div class="col-80">
+                系统设置
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
+<%--<script>$.init()</script>--%>
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
+<%--<script>--%>
+    <%--$(function(){--%>
+        <%--$.init();--%>
+    <%--});--%>
+<%--</script>--%>
 </body>
 </html>
