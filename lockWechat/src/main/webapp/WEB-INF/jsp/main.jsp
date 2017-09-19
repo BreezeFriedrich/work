@@ -35,9 +35,9 @@
             max-width: 100%;
             max-height: 100%;
         }
-        img.auto-zoom-3 {
-            width: 4rem;
-            height: 4rem;
+        img.auto-zoom-5 {
+            width: 5rem;
+            height: 5rem;
             max-width: 100%;
             max-height: 100%;
         }
@@ -76,7 +76,44 @@
 
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <div class="content-block">这里是content</div>
+            <%--<div class="content-block">这里是content</div>--%>
+            <div class="list-block cards-list">
+                <ul>
+                    <li class="card">
+                        <div class="card-header" style="background-color: #FAF1FC;">天字号</div>
+                        <div class="card-content" style="background-color: #EEFFFF;">
+                            <div class="card-content-inner">
+                                <img class="auto-zoom-5" src="resources/img/gateway.png" />
+                            </div>
+                        </div>
+                        <div class="card-footer" style="background-color: #F3FAF3;">
+                            <p style="color: #00B83F;">工作正常</p><a href="#" class="icon icon-down"></a>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card-header" style="background-color: #FAF1FC;">地字号</div>
+                        <div class="card-content" style="background-color: #EEFFFF;">
+                            <div class="card-content-inner">
+                                <img class="auto-zoom-5" src="resources/img/gateway.png" />
+                            </div>
+                        </div>
+                        <div class="card-footer" style="background-color: #FAF1FC;">
+                            <p style="color: #00B83F;">工作正常</p><a href="#" class="icon icon-down"></a>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card-header" style="background-color: #FAF1FC;">玄字号</div>
+                        <div class="card-content" style="background-color: #FFEEEE;">
+                            <div class="card-content-inner">
+                                <img class="auto-zoom-5" src="resources/img/gateway.png" />
+                            </div>
+                        </div>
+                        <div class="card-footer" style="background-color: #FAF1FC;">
+                            <p style="color: lightcoral;">异常</p><a href="#" class="icon icon-down"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -118,7 +155,7 @@
         <div style="height: 1rem;"></div>
         <div class="row">
             <div class="col-50">
-                <img class="auto-zoom-3" src="resources/img/username.png"/>
+                <img class="auto-zoom-5" src="resources/img/username.png"/>
             </div>
             <div class="col-50">
                 <p><span>北极星</span></p>
@@ -170,11 +207,12 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/main.js' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
-<%--<script>--%>
-    <%--$(function(){--%>
-        <%--$.init();--%>
-    <%--});--%>
-<%--</script>--%>
+<script>
+    $(function(){
+        $.init();
+    });
+</script>
 </body>
 </html>
