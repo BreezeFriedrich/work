@@ -25,6 +25,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+    <!--
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    -->
+
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
     <!--<link rel="stylesheet" href="css/picSrc.css"/>-->
@@ -44,6 +50,10 @@
         .row.pad-left {
             padding-left: 1rem;
         }
+        .card .card-footer {
+            /*上下 ,左右*/
+            padding: 0 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +65,7 @@
         <header class="bar bar-nav">
             <a class="icon icon-menu pull-left open-panel" data-panel='#panel-left-menu'></a>
             <h1 class="title">亿数智能锁</h1>
-            <a class="icon icon-me pull-right" href="jsp/account.jsp"></a>
+            <a class="icon icon-me pull-right" href="#account"></a>
         </header>
 
         <!-- 工具栏 -->
@@ -76,48 +86,52 @@
 
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <%--<div class="content-block">这里是content</div>--%>
-            <div class="list-block cards-list">
-                <ul>
-                    <li class="card">
-                        <div class="card-header" style="background-color: #FAF1FC;">天字号</div>
-                        <div class="card-content" style="background-color: #EEFFFF;">
-                            <div class="card-content-inner">
-                                <img class="auto-zoom-5" src="resources/img/gateway.png" />
-                            </div>
-                        </div>
-                        <div class="card-footer" style="background-color: #F3FAF3;">
-                            <p style="color: #00B83F;">工作正常</p><a href="#" class="icon icon-down"></a>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div class="card-header" style="background-color: #FAF1FC;">地字号</div>
-                        <div class="card-content" style="background-color: #EEFFFF;">
-                            <div class="card-content-inner">
-                                <img class="auto-zoom-5" src="resources/img/gateway.png" />
-                            </div>
-                        </div>
-                        <div class="card-footer" style="background-color: #FAF1FC;">
-                            <p style="color: #00B83F;">工作正常</p><a href="#" class="icon icon-down"></a>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div class="card-header" style="background-color: #FAF1FC;">玄字号</div>
-                        <div class="card-content" style="background-color: #FFEEEE;">
-                            <div class="card-content-inner">
-                                <img class="auto-zoom-5" src="resources/img/gateway.png" />
-                            </div>
-                        </div>
-                        <div class="card-footer" style="background-color: #FAF1FC;">
-                            <p style="color: lightcoral;">异常</p><a href="#" class="icon icon-down"></a>
-                        </div>
-                    </li>
+            <div class="list-block cards-list" id="cardList">
+                <!--<ul id="UL_gateway"></ul>-->
+                <!--
+                <ul id="devices">
+                  <li class="card">
+                    <div class="card-header" style="background-color: #FAF1FC;">天字号</div>
+                    <div class="card-content" style="background-color: #EEFFFF;">
+                      <div class="card-content-inner">
+                          <img class="auto-zoom-5" src="img/gateway.png" />
+                      </div>
+                    </div>
+                    <div class="card-footer" style="background-color: #F3FAF3;">
+                      <p style="color: #00B83F;">工作正常</p><a href="#" class="icon icon-down"></a>
+                    </div>
+                  </li>
+                  <li class="card">
+                    <div class="card-header" style="background-color: #FAF1FC;">地字号</div>
+                    <div class="card-content" style="background-color: #EEFFFF;">
+                      <div class="card-content-inner">
+                          <img class="auto-zoom-5" src="img/gateway.png" />
+                      </div>
+                    </div>
+                    <div class="card-footer" style="background-color: #FAF1FC;">
+                      <p style="color: #00B83F;">工作正常</p><a href="#" class="icon icon-down"></a>
+                    </div>
+                  </li>
+                  <li class="card">
+                    <div class="card-header" style="background-color: #FAF1FC;">玄字号</div>
+                    <div class="card-content" style="background-color: #FFEEEE;">
+                      <div class="card-content-inner">
+                          <img class="auto-zoom-5" src="img/gateway.png" />
+                      </div>
+                    </div>
+                    <div class="card-footer" style="background-color: #FAF1FC;">
+                      <p style="color: lightcoral;">异常</p><a href="#" class="icon icon-down"></a>
+                    </div>
+                  </li>
                 </ul>
+               -->
             </div>
         </div>
     </div>
 
     <!-- 其他的单个page内联页（如果有） -->
+    <div class="page">...</div>
+
     <div class="page" id="account">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
@@ -142,9 +156,7 @@
 
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <div class="content-block">
-                这是ajax 加载的新页面，点击左上角的 <a href="#" class='back'>返回</a> 按钮返回上一页。
-            </div>
+            <div class="content-block">这里是content</div>
         </div>
     </div>
 </div>
@@ -155,7 +167,7 @@
         <div style="height: 1rem;"></div>
         <div class="row">
             <div class="col-50">
-                <img class="auto-zoom-5" src="resources/img/username.png"/>
+                <img class="auto-zoom-5" src="img/username.png"/>
             </div>
             <div class="col-50">
                 <p><span>北极星</span></p>
@@ -165,7 +177,7 @@
         <div style="height: 2rem;"></div>
         <div class="row pad-left">
             <div class="col-20">
-                <img class='auto-zoom-1' src="resources/img/add_gateway.png"/>
+                <img class='auto-zoom-1' src="img/add_gateway.png"/>
             </div>
             <div class="col-80">
                 添加网关
@@ -174,7 +186,7 @@
         <div style="height: 0.7rem;"></div>
         <div class="row pad-left">
             <div class="col-20">
-                <img class='auto-zoom-1' src="resources/img/statistics.png"/>
+                <img class='auto-zoom-1' src="img/statistics.png"/>
             </div>
             <div class="col-80">
                 查询统计
@@ -183,7 +195,7 @@
         <div style="height: 0.7rem;"></div>
         <div class="row pad-left">
             <div class="col-20">
-                <img class='auto-zoom-1' src="resources/img/alert.png"/>
+                <img class='auto-zoom-1' src="img/alert.png"/>
             </div>
             <div class="col-80">
                 异常警示
@@ -192,7 +204,7 @@
         <div style="height: 0.7rem;"></div>
         <div class="row pad-left">
             <div class="col-20">
-                <img class='auto-zoom-1' src="resources/img/system_configure.png"/>
+                <img class='auto-zoom-1' src="img/system_configure.png"/>
             </div>
             <div class="col-80">
                 系统设置
@@ -201,8 +213,6 @@
     </div>
 </div>
 
-<!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
-<%--<script>$.init()</script>--%>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>

@@ -51,7 +51,9 @@ public class HttpUtil
             e.printStackTrace();
         }
 //        return HttpUtil.doPost(url.toString(),data);
-        return HttpUtil.httpsPostToIp(qixuIp,data);
+        String result=HttpUtil.httpsPostToIp(qixuIp,data);
+        logger.info("HTTPS RESPONSE : "+result);
+        return result;
     }
 
     /**
