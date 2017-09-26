@@ -21,7 +21,7 @@ public class DeviceServiceImpl implements IDeviceService{
     String rawData;
 
     /**
-     * 获取当前帐户ownerPhoneNumber所有的网关数据服务器的IP (request addr: lock.qixutech.com)
+     * 获取当前帐户ownerPhoneNumber所有的网关数据服务器的IP (request URL: lock.qixutech.com)
      *
      * @return type=Map structure: { "result": int(0成功,1失败) , "gatewayIpList" : [ { "gatewayCode" : String , "gatewayIp" : String(网关数据所在IP) } ] }
      */
@@ -68,7 +68,7 @@ public class DeviceServiceImpl implements IDeviceService{
     }
 
     /**
-     * 获取当前帐户ownerPhoneNumber所有的设备信息accountDeviceList (request addr: gatewayIp)
+     * 获取当前帐户ownerPhoneNumber所有的设备信息accountDeviceList (request URL: gatewayIp)
      *
      * @return
      */
