@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
+ * Nanjing yishu information technology co., LTD. All Rights Reserved.
+ */
+
 package com.yishu.util;
 
 import java.security.MessageDigest;
@@ -7,10 +12,9 @@ import java.util.Arrays;
 /**
  * 处理来自微信的接口认证请求,检验signature,取出echostr返回给微信.
  *
- * @author <a href="http://www.yishutech.com">yishu</a>
- * @author <a href="mailto:geysererupt@163.com">admin</a>
- *
- * @since 2017-08-15
+ * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
+ * @version 1.0.0.0 2017-09-28 11:32 admin
+ * @since JDK1.7
  */
 public class WechatCheckSignature {
     private static final String token = "yishutech";//与微信开发者基本配置服务器配置token一致,参考https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1472017492_58YV5

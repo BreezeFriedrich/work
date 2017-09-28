@@ -3,39 +3,44 @@
  * Nanjing yishu information technology co., LTD. All Rights Reserved.
  */
 
+var pathName=window.document.location.pathname;
+var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var json;
+var ownerPhoneNumber=18255683932;
 $(function(){
+//	ownerPhoneNumber = document.getElementById("INPUT-hiddden_ownerPhoneNumber").value;
     $.ajax({
         type:"POST",
-        url:"http://localhost:80/lockWechat/device/getDeviceInfo.action",
+        // url:"http://localhost:80/lockWechat/device/getDeviceInfo.action",
+        url:projectPath+"/device/getDeviceInfo.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-//	headers:{"Access-Control-Allow-Origin":"*"},
-        data:{"ownerPhoneNumber":"18255683932"},
-//	timeout:3000,
+        // headers:{"Access-Control-Allow-Origin":"*"},
+        data:{"ownerPhoneNumber":ownerPhoneNumber},
+        // timeout:3000,
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
 
         success:function(data,status,xhr){
             json = data;
         },
         error:function(xhr,errorType,error){
-            console.log('错误')
-            console.log(xhr)
-            console.log(errorType)
+            console.log('错误');
+            console.log(xhr);
+            console.log(errorType);
             console.log(error)
-        },
-//  beforeSend:function(xhr,settins){
-//      console.log(xhr)
-//      console.log('发送前')
-//  },
-//  complete:function(xhr,status){
-//      console.log('结束')
-//  }
+        }
+        // beforeSend:function(xhr,settins){
+        //     console.log(xhr)
+        //     console.log('发送前')
+        // },
+        // complete:function(xhr,status){
+        //     console.log('结束')
+        // }
     });
     showDevices();
-})
+});
 
 function showDevices(){
-//	alert('json : '+json);
+    // alert('json : '+json);
     var UL_gateway=document.createElement('ul');
     UL_gateway.id="UL_gateway";
     document.getElementById('cardList').appendChild(UL_gateway);
@@ -45,35 +50,41 @@ function showDevices(){
     UL_lockList.style.paddingLeft='0';
     UL_lockList.style.marginTop='0.5rem';
     UL_lockList.style.background='rgba(0,0,0,0.3)';
-//	document.getElementById('cardList').appendChild(UL_lockList);
+    // document.getElementById('cardList').appendChild(UL_lockList);
 
-    UL_gateway.innerHTML += createGatewayNode();
+    UL_gateway.innerHTML = createGatewayNode();
     //事件代理
     UL_gateway.addEventListener('click',function(ev){
         var target = ev.target || window.event.srcElement;
         while(target !== UL_gateway){
             if(target.getAttribute('class')==='card-content' && target.parentNode.className==='card gateway'){
                 //href内联页面,网关操作
-//      		alert('card-content');
-//      		window.location.href="addGateway.jsp";
-                $.router.load('addGateway.jsp',true);
+                // alert('card-content');
+                //页面跳转并传递参数
+                var gatewayCode=target.parentNode.id;
+                //window.location.href URL 相对路径也可以是否与 jsp中的<base href="<%=basePath%>">有关?
+                window.location.href="jsp/gateway/gateway_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode;
+                //@deprecated 未启用：经struts action跳转
+                // window.location.href="http://localhost:80/lockWehat/redirect/specificGateway?ownerPhoneNumber=18255683932&gatewayCode=777777";
+                //@deprecated 路由跳转无法加载js
+                // $.router.load('addGateway.jsp',true);
                 break;
             }
             if(target.className==='card-footer' && target.parentNode.className==='card gateway'){
                 //向下扩展DOM,门锁card
-//      		alert('card-footer');
+                // alert('card-footer');
                 selectedGateway=target.parentNode;
-//      		alert(selectedGateway.id);
-//      		$(target).parent('li').siblings('li').remove();
+                // alert(selectedGateway.id);
+                // $(target).parent('li').siblings('li').remove();
 
                 /*
-                                //门锁节点是网关节点子节点.
-                                if(selectedGateway.contains(UL_lockList)){
-                                    selectedGateway.removeChild(UL_lockList);
-                                }else{
-                                    UL_lockList.innerHTML = createLockNode(selectedGateway.id);
-                                    selectedGateway.appendChild(UL_lockList);
-                                }
+                //门锁节点是网关节点子节点.
+                if(selectedGateway.contains(UL_lockList)){
+                    selectedGateway.removeChild(UL_lockList);
+                }else{
+                    UL_lockList.innerHTML = createLockNode(selectedGateway.id);
+                    selectedGateway.appendChild(UL_lockList);
+                }
                 */
                 //门锁节点与网关节点同级.
                 if(UL_lockList===selectedGateway.nextSibling){
@@ -99,7 +110,8 @@ function createGatewayNode(){
         LI_gateway += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+json[x].gatewayName+"</div>";
         LI_gateway += 	"<div class='card-content' style='background-color: #EEFFFF;'>";
         LI_gateway += 		"<div class='card-content-inner'>";
-        LI_gateway += 			"<img class='auto-zoom-5' src='img/gateway.png' />";
+        // LI_gateway += 			"<img class='auto-zoom-4' src='${pageContext.request.contextPath}/resources/img/gateway.png' />";
+        LI_gateway += 			"<img class='auto-zoom-4' src='resources/img/gateway.png' />";
         LI_gateway += 		"</div>";
         LI_gateway += 	"</div>";
         LI_gateway += 	"<div class='card-footer' style='background-color: #F3FAF3;'>";
@@ -120,12 +132,12 @@ function createLockNode(gatewayCode){
 //				</div>
 //			</div>
 //			<div class="card-footer" style="background-color: #F3FAF3;">
-//				<p style="color: #00B83F;">工作正常</p><a href="#" class="icon icon-down"></a>
+//				<p style="color: #00B83F;">工作正常</p>
 //			</div>
 //		</li>
 //		";
     var LI_lock="";
-    var lockLists="";
+    var lockLists=null;
     for(x in json){
         if(json[x].gatewayCode===gatewayCode){
             lockLists=json[x].lockLists;
@@ -137,14 +149,13 @@ function createLockNode(gatewayCode){
         LI_lock += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+lockLists[x].lockName+"</div>";
         LI_lock += 	"<div class='card-content' style='background-color: #EEFFFF;'>";
         LI_lock += 		"<div class='card-content-inner'>";
-        LI_lock += 			"<img class='auto-zoom-5' src='img/lock.png' />";
+        LI_lock += 			"<img class='auto-zoom-3' src='resources/img/lock.png' />";
         LI_lock += 		"</div>";
         LI_lock += 	"</div>";
         LI_lock += 	"<div class='card-footer' style='background-color: #F3FAF3;'>";
-        LI_lock += 		"<p style='color: #00B83F;'>"+lockLists[x].lockStatus+"</p><a href='#' class='icon icon-down'></a>";
+        LI_lock += 		"<p style='color: #00B83F;'>"+lockLists[x].lockStatus+"</p>";
         LI_lock += 	"</div>";
         LI_lock += "</li>";
-
 
 //		LI_lock +=	"<li class='lock' id='"+lockLists[x].lockCode+"' style='border: 0.2rem outset green;'>";
 //		LI_lock +=	"<div class='row no-gutter'>";
@@ -157,8 +168,6 @@ function createLockNode(gatewayCode){
 //		LI_lock +=		"</div>";
 //		LI_lock +=	"</div>";
 //		LI_lock +=	"</li>"+"<br/>";
-
-//		"++" <p>lockLists[x].lockComment</p><p>lockLists[x].lockLocation</p><p>lockLists[x].lockStatus</p>
     }
     return LI_lock;
 }
@@ -173,8 +182,8 @@ function removeElementsByClass(className){
 /*
 	//为了解决: Zepto.js touch模块与手机自带的滑动效果冲突
 	document.addEventListener('touchmove', function (event) {
-				event.preventDefault();
-			}, false);
+		event.preventDefault();
+	}, false);
 */
 /*
 //	json=eval("("+json+")");

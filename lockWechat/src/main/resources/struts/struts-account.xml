@@ -18,7 +18,7 @@
              method: 调用Action中的方法名
         -->
         <global-allowed-methods>login</global-allowed-methods>
-        <action name="loginAccount" class="com.yishu.action.AccountAction" method="login">
+        <action name="loginAccount" class="com.yishu.action.AccountAction" method="loginTest">
             <!-- 参数设置 name：对应Action中的get/set方法 -->
             <!--<param name="salt">yishutech</param>-->
 
@@ -45,7 +45,8 @@
                 <!-- 这里指定将要从dataMap中排除那些属性，这些排除的属性将不被序列化，一般不与上边的参数配置同时出现 -->
                 <!--<param name="excludeProperties">SUCCESS</param>-->
             </result>
-            <result name="success">/WEB-INF/jsp/main.jsp</result>
+            <!--<result name="success">/WEB-INF/jsp/main.jsp</result>-->
+            <result name="success">/jsp/main.jsp</result>
             <result name="login" type="dispatcher">/jsp/login.jsp</result>
         </action>
     </package>

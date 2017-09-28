@@ -24,8 +24,8 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     }
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("AccountAction");
 
-//    @Autowired
-//    private IUserService userService;
+    @Autowired
+    private IUserService userService;
     @Autowired
     private Audience audience;
 
@@ -73,7 +73,6 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
      *
      * @return
      */
-/*
     public String login () {
         System.out.println(">>>action method login..................................................");
 
@@ -94,7 +93,6 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         }
         return Action.LOGIN;
     }
-*/
     /**
      * 验证account(username+password),若通过验证则授权JwtAccessToken
      * 流程:1.比对request body 中的 LoginPara.clientId & 配置 jwt.properties 中的 audience.clientId;
@@ -105,7 +103,6 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
      * @param loginPara
      * @return
      */
-/*
     public ResultMsg getJwtAccessToken (LoginPara loginPara) {
         ResultMsg resultMsg;
         try{
@@ -116,7 +113,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
                 return resultMsg;
             }
             */
-/*
+
             //验证用户名密码
             System.out.println("LoginPara = "+loginPara+": {"+"'username'"+" : "+loginPara.getUsername()+" , "+"'password'"+" : "+loginPara.getPassword()+"}");
             User user = userService.findUserByName(loginPara.getUsername());
@@ -154,7 +151,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
             return resultMsg;
         }
     }
-*/
+
     //********************************************************************************************************
     private JwtAccessToken jwtAccessToken;
     /*jwtAccessToken设置了getXXX，json插件将jwtAccessToken转为json*/

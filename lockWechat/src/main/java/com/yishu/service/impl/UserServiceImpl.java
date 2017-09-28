@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("userService")
+//@Service("userService")
 public class UserServiceImpl implements IUserService {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("UserServiceImpl");
     @Autowired

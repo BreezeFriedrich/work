@@ -5,8 +5,8 @@
 
 <%--
   User: admin
-  Date: 2017/9/14
-  Time: 11:45
+  Date: 2017/9/27
+  Time: 14:07
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -18,7 +18,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>gateway-addGateway</title>
+    <title>gateway_manage</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -27,8 +27,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
-    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
-    <!--<link rel="stylesheet" href="css/picSrc.css"/>-->
     <style>
         img.auto-zoom-1 {
             width: 1rem;
@@ -70,34 +68,27 @@
     </style>
 </head>
 <body>
+<!--
 <div style="display: none;">
     <s:property value=""></s:property>
 </div>
+-->
 
 <div class="page-group">
     <!-- 单个page ,第一个.page默认被展示,page-current指定第一次进入展示-->
     <div class="page page-current">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
-            <a class="icon icon-home pull-left" href="javascript:window.location.href='main.jsp';"></a>
+            <!--如果用SUI组件直接href='main.jsp',不会加载main.js-->
+            <!--
+            关于window.location.href的URL路径
+            ${pageContext.request.contextPath}会访问jsp的内置对象pageContext 本例中pageContext.request.contextPath代表'lockWechat/',即绝对路径指向webapp目录.
+            -->
+            <a class="icon icon-home pull-left" href="javascript:window.location.href='${pageContext.request.contextPath}/jsp/main.jsp';"></a>
             <h1 class="title">网关管理</h1>
+            <!-- 直接用相对路径也可以,是否与<base href="<%=basePath%>">有关? -->
+            <a class="icon icon-edit pull-right" href="javascript:void(0);" onclick="javascript:window.location.href='jsp/gateway/gateway_property.jsp?ownerPhoneNumber='+ownerPhoneNumber+'&specificGatewayCode='+specificGatewayCode;"></a>
         </header>
-
-        <!-- 工具栏 -->
-        <nav class="bar bar-tab">
-            <a class="tab-item external active" href="#">
-                <span class="icon icon-home"></span>
-                <span class="tab-label">首页</span>
-            </a>
-            <a class="tab-item external" href="#">
-                <span class="icon icon-edit"></span>
-                <span class="tab-label">修改网关</span>
-            </a>
-            <a class="tab-item external" href="#">
-                <span class="icon icon-settings"></span>
-                <span class="tab-label">设置</span>
-            </a>
-        </nav>
 
         <!-- 这里是页面内容区 -->
         <div class="content">
@@ -138,7 +129,7 @@
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
                             <div class="item-title">
-                                <img class="auto-zoom-1" src="img/connectLock.png" alt=""/>
+                                <img class="auto-zoom-1" src="resources/img/connectLock.png" alt=""/>
                                 增加关联门锁
                             </div>
                             <div class="item-after"></div>
@@ -154,7 +145,7 @@
                             <div class='card-header' style='background-color: #FAF1FC;'>lockLists[x].lockName</div>
                             <div class='card-content' style='background-color: #EEFFFF;'>
                                 <div class='card-content-inner'>
-                                    <img class='auto-zoom-3' src='img/lock.png' />
+                                    <img class='auto-zoom-3' src='resources/img/lock.png' />
                                 </div>
                             </div>
                             <div class='card-footer' style='background-color: #F3FAF3;'>
@@ -165,7 +156,7 @@
                             <div class='card-header' style='background-color: #FAF1FC;'>lockLists[x].lockName</div>
                             <div class='card-content' style='background-color: #EEFFFF;'>
                                 <div class='card-content-inner'>
-                                    <img class='auto-zoom-3' src='img/lock.png' />
+                                    <img class='auto-zoom-3' src='resources/img/lock.png' />
                                 </div>
                             </div>
                             <div class='card-footer' style='background-color: #F3FAF3;'>
@@ -176,7 +167,7 @@
                             <div class='card-header' style='background-color: #FAF1FC;'>lockLists[x].lockName</div>
                             <div class='card-content' style='background-color: #EEFFFF;'>
                                 <div class='card-content-inner'>
-                                    <img class='auto-zoom-3' src='img/lock.png' />
+                                    <img class='auto-zoom-3' src='resources/img/lock.png' />
                                 </div>
                             </div>
                             <div class='card-footer' style='background-color: #F3FAF3;'>
@@ -189,15 +180,11 @@
         </div>
     </div>
 </div>
-
-<!-- 其他的单个page内联页（如果有） -->
-<div class="page">...</div>
 </div>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='resources/js/gateway_add.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_manage.js' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>
     $(function(){

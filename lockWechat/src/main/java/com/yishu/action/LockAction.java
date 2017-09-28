@@ -6,9 +6,14 @@
 package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.yishu.pojo.Device;
+import com.yishu.pojo.Lock;
+import com.yishu.service.IDeviceService;
 import com.yishu.service.ILockService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +27,8 @@ public class LockAction extends ActionSupport {
     }
     @Autowired
     private ILockService lockService;
+    @Autowired
+    private IDeviceService deviceService;
 
     /**
      * Object jsonResult——返回的JSON格式的Model
@@ -37,6 +44,11 @@ public class LockAction extends ActionSupport {
     private String lockName;
     private String lockLocation;
     private String lockComment;
+
+    private Lock lock;
+    public Lock getLock() {
+        return lock;
+    }
 
     public String getOwnerPhoneNumber() {
         return ownerPhoneNumber;
@@ -107,6 +119,32 @@ public class LockAction extends ActionSupport {
     public String deleteLock(){
         boolean resultBoolean=lockService.deleteLock(ownerPhoneNumber,lockCode);
         jsonResult=resultBoolean;
+        return "json";
+    }
+
+    public String getSpecificLock(){
+        List jsonList=deviceService.getDeviceInfo(ownerPhoneNumber);
+        Device device=null;
+        Iterator iter;
+        //遍历网关,找到对应gatewayCode的网关信息
+        iter=jsonList.iterator();
+        while (iter.hasNext()) {
+            device=(Device)(iter.next());
+            String specificGatewayCode = device.getGatewayCode();
+            if (gatewayCode.equals(specificGatewayCode)) {//gatewayCode来自于struts2 拦截器栈 参数拦截器传递类request.getParameter()
+                break;
+            }
+        }
+        //遍历门锁,找到对应lockCode的门锁信息
+        iter=device.getLockLists().iterator();
+        while (iter.hasNext()) {
+            lock=(Lock)(iter.next());
+            String specificLockCode = lock.getLockCode();
+            if (lockCode.equals(specificLockCode)) {//gatewayCode来自于struts2 拦截器栈 参数拦截器传递类request.getParameter()
+                break;
+            }
+        }
+        jsonResult=lock;
         return "json";
     }
 }

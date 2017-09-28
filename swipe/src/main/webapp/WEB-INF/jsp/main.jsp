@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			window.location.href="login.jsp";
 			}
 		</script>
-		-->		
+		-->
 	</head>
 
 	<body style="min-width:1400px;">

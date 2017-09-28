@@ -32,10 +32,12 @@
 <body style="background-color: #f9f9f9;">
     <div class="container-fluid">
 
-        <div class="row" style="background-color: #fff;min-height: 50px; margin-top: 10px;">
-            <div class="col-xs-offset-4 col-xs-8" style="padding-left: 6px;padding-right: 6px;padding-top: 6px;background-color: #fff;">
+        <div class="row" style="background-color: #fff;min-height: 50px; margin-top: 50px;">
+            <div class="col-sm-offset-4 col-sm-8" style="padding-left: 6px;padding-right: 6px;padding-top: 6px;background-color: #fff;">
                 亿数门锁管理
             </div>
+            <div class="col-sm-12" style="height: 80px;"></div>
+            <!--
             <div class="col-xs-offset-2 col-xs-10">
                 <a href="lang.action?request_locale=zh_CN">中文</a>&nbsp
                 <a href="lang.action?request_locale=en_US">英文</a>
@@ -53,22 +55,23 @@
                 </form>
                 <s:fielderror />
             </div>
+            -->
             <form class="form-horizontal" role="form" method="post" action="<%=basePath%>account/loginAccount.action">
                 <div class="form-group">
-                    <label for="inputUserName" class="col-xs-2 control-label">用户名</label>
-                    <div class="col-xs-10">
+                    <label for="inputUserName" class="col-sm-4 control-label">用户名</label>
+                    <div class="col-sm-8">
                         <input type="text" class="form-control" id="inputUserName" placeholder="请输入用户名" name="loginPara.username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-xs-2 control-label">密码</label>
-                    <div class="col-xs-10">
+                    <label for="inputPassword" class="col-sm-4 control-label">密码</label>
+                    <div class="col-sm-8">
                         <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码" name="loginPara.password">
                     </div>
                 </div>
                 <div><s:property value="authenticateErrMsg" /> </div>
                 <div class="form-group">
-                    <div class="col-xs-offset-2 col-xs-10">
+                    <div class="col-sm-offset-4 col-sm-8">
                         <button type="submit" class="btn btn-default">提交</button>
                     </div>
                 </div>

@@ -3,32 +3,45 @@
  * Nanjing yishu information technology co., LTD. All Rights Reserved.
  */
 
+var pathName=window.document.location.pathname;
+var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+var ownerPhoneNumber;
 var specificGatewayCode;
+var specificLockCode;
 var json_theGateway;
 $(function(){
-    specificGatewayCode=getQueryString("gatewayCode");
+    ownerPhoneNumber=getQueryString("ownerPhoneNumber");
+    specificGatewayCode=getQueryString("specificGatewayCode");
     $.ajax({
         type:"POST",
-        url:"http://localhost:80/lockWechat/gateway/getSpecificGateway.action",
+        url:projectPath+"/gateway/getSpecificGateway.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-//	headers:{"Access-Control-Allow-Origin":"*"},
-        data:{"ownerPhoneNumber":"18255683932","gatewayCode":specificGatewayCode},
-//	timeout:3000,
+        data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode},
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
 
         success:function(data,status,xhr){
             json_theGateway = data;
         },
         error:function(xhr,errorType,error){
-            console.log('错误')
-            console.log(xhr)
-            console.log(errorType)
-            console.log(error)
+            console.log('错误');
         }
     });
     UL_gatewayProperty.innerHTML += getGatewayDetails();
     UL_theSpecificGateway=document.getElementById("UL_theSpecificGateway");
     UL_theSpecificGateway.innerHTML = createLockNode();
+
+    UL_theSpecificGateway.addEventListener('click',function(ev){
+        var target = ev.target || window.event.srcElement;
+        while(target !== UL_theSpecificGateway){
+            if(target.getAttribute('class')==='card-content' && target.parentNode.className==='card lock'){
+                //页面跳转并传递参数
+                specificLockCode=target.parentNode.id;
+                window.location.href="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode+"&specificLockCode="+specificLockCode;
+                break;
+            }
+            target = target.parentNode;
+        }
+    })
 })
 
 //获取链接参数
@@ -81,14 +94,13 @@ function createLockNode(){
         LI_lock += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+lockLists[x].lockName+"</div>";
         LI_lock += 	"<div class='card-content' style='background-color: #EEFFFF;'>";
         LI_lock += 		"<div class='card-content-inner'>";
-        LI_lock += 			"<img class='auto-zoom-3' src='img/lock.png' />";
+        LI_lock += 			"<img class='auto-zoom-3' src='resources/img/lock.png' />";
         LI_lock += 		"</div>";
         LI_lock += 	"</div>";
         LI_lock += 	"<div class='card-footer' style='background-color: #F3FAF3;'>";
-        LI_lock += 		"<p style='color: #00B83F;'>"+lockLists[x].lockStatus+"</p><a href='#' class='icon icon-down'></a>";
+        LI_lock += 		"<p style='color: #00B83F;'>"+lockLists[x].lockStatus+"</p>";
         LI_lock += 	"</div>";
         LI_lock += "</li>";
     }
     return LI_lock;
 }
-
