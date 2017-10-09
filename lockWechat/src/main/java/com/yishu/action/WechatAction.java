@@ -31,11 +31,11 @@ public class WechatAction extends BaseAction {
     private String echostr;// 随机字符串
     PrintWriter out = null;// response.getWriter();;
 
-    /**
+    /**wx/authdev.action
      * 微信为了认证开发者服务器,发送认证请求.
      * 处理该请求,加工token和请求参数timestamp、nonce与signature比对,判断该请求是否来自微信.如果是,返回echostr.
      */
-    public void authdev() throws IOException, ServletException {
+    public void authdev() throws IOException, ServletException, DocumentException {
         try{
             // 设置发送文件类型 及编码方式 charset 不能省略 防止乱码
             response.setContentType("text/html; charset=utf-8");
@@ -44,10 +44,11 @@ public class WechatAction extends BaseAction {
         catch (IOException e1){
             e1.printStackTrace();
         }
-        logger.debug("******signature********" + signature);
-        logger.debug("******timestamp********" + timestamp);
-        logger.debug("******nonce********" + nonce);
-        logger.debug("******echostr********" + echostr);
+//        logger.debug("******signature********" + signature);
+//        logger.debug("******timestamp********" + timestamp);
+//        logger.debug("******nonce********" + nonce);
+//        logger.debug("******echostr********" + echostr);
+        /*
         if (signature == null || timestamp == null || nonce == null){
             return;
         }
@@ -55,17 +56,21 @@ public class WechatAction extends BaseAction {
             out.print(echostr);
             return;
         }
+        */
+        if(null!=echostr){
+            out.print(echostr);
+            return;
+        }
         // 处理其余请求
-        String encoding = request.getContentType();
-        System.out.println(encoding + "encoding");
+//        String encoding = request.getContentType();
+//        System.out.println(encoding + "encoding");
 //        request.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding(encoding);
-        this.handleMassage(request, out);
+//        request.setCharacterEncoding(encoding);
+        Map<String,String> map= MessageUtil.xmlToMap(request);
+        this.handleMessage(map, out);
     }
 
-    protected void handleMassage(HttpServletRequest req, PrintWriter out) throws ServletException, IOException {
-        try {
-            Map<String,String> map= MessageUtil.xmlToMap(req);
+    protected void handleMessage(Map<String,String> map, PrintWriter out) {
             String fromUserName=map.get("FromUserName"); //发送方帐号（关注公众号用户的OpenID）
             String toUserName=map.get("ToUserName"); //开发者微信号
             String msgType=map.get("MsgType");
@@ -91,12 +96,7 @@ public class WechatAction extends BaseAction {
             }
             System.out.println(message);
             out.print(message);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }finally {
             out.close();
-        }
-
     }
 
     /*
