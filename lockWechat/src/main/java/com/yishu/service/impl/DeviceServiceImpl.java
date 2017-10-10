@@ -28,6 +28,7 @@ public class DeviceServiceImpl implements IDeviceService{
     @Override
     public List getUserGatewayIp(String ownerPhoneNumber) {
         reqSign=15;
+        System.err.println("sign:"+reqSign+" operation:getUserGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);
@@ -75,6 +76,7 @@ public class DeviceServiceImpl implements IDeviceService{
     @Override
     public List getDeviceInfo(String ownerPhoneNumber) {
         reqSign=16;
+        System.err.println("sign:"+reqSign+" operation:getDeviceInfo");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);

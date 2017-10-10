@@ -5,7 +5,9 @@
 
 package com.assist;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.domain.WechatTokenAndTicket;
+import com.yishu.pojo.OperationalError;
 import com.yishu.util.TokenSingleton;
 import net.sf.json.JSONObject;
 
@@ -16,17 +18,22 @@ import net.sf.json.JSONObject;
  */
 public class WechatTest {
     public static void main(String[] args){
+        //创建微信公众号自定义菜单(个人订阅号不能通过接口创建自定义菜单,可通过后台创建也可升级订阅号为企业服务号)
         try {
-            WechatTokenAndTicket tokenAndTicket= TokenSingleton.getInstance().getTokenAndTicket();
+            WechatTokenAndTicket tokenAndTicket= TokenSingleton.getSingleton().getTokenAndTicket();
             System.out.println("access_token: "+tokenAndTicket.getAccess_token());
             System.out.println("有效时间: "+tokenAndTicket.getToken_expiresIn());
 
-            String menu = JSONObject.fromObject(WechatUtil.initMenu()).toString();
-            int result = WechatUtil.createMenu(tokenAndTicket.getAccess_token(),menu);
-            if (0==result){
+            ObjectMapper objectMapper=new ObjectMapper();
+            String menu=objectMapper.writeValueAsString(WechatUtil.initMenu());
+//            String menu = JSONObject.fromObject(WechatUtil.initMenu()).toString();
+            OperationalError error = WechatUtil.createMenu(tokenAndTicket.getAccess_token(),menu);
+            int errorCode=error.getErrcode();
+            if (0==errorCode){
                 System.out.println("创建菜单成功");
             }else {
-                System.out.println("错误码: "+result);
+                System.out.println("错误码: "+errorCode);
+                System.out.println("错误提示: "+error.getErrmsg());
             }
         } catch (Exception e) {
             e.printStackTrace();

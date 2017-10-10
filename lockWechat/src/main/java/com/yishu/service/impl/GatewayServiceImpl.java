@@ -76,6 +76,7 @@ public class GatewayServiceImpl implements IGatewayService {
     @Override
     public String getGatewayIp(String ownerPhoneNumber, String gatewayCode) {
         reqSign=5;
+        System.err.println("sign:"+reqSign+" operation:getGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         rawData= HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
@@ -117,6 +118,7 @@ public class GatewayServiceImpl implements IGatewayService {
         */
 
         reqSign=6;
+        System.err.println("sign:"+reqSign+" operation:hasGatewayAdded");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
@@ -140,6 +142,7 @@ public class GatewayServiceImpl implements IGatewayService {
     @Override
     public Map getGatewayLANIp(String ownerPhoneNumber, String gatewayCode) {
         reqSign=30;
+        System.err.println("sign:"+reqSign+" operation:getGatewayLANIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
@@ -171,6 +174,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=7;
+        System.err.println("sign:"+reqSign+" operation:isCorrectGatewayVerificationCode");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"opCode\":\""+opCode+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -186,6 +190,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=8;
+        System.err.println("sign:"+reqSign+" operation:addGateway");
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
@@ -207,6 +212,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=9;
+        System.err.println("sign:"+reqSign+" operation:modifyGatewayInfo");
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
@@ -228,6 +234,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=10;
+        System.err.println("sign:"+reqSign+" operation:deleteGateway");
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);

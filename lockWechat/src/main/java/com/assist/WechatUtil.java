@@ -3,10 +3,12 @@
  * Nanjing yishu information technology co., LTD. All Rights Reserved.
  */
 
-package com.assist;import com.yishu.domain.Button;
+package com.assist;
+import com.yishu.domain.Button;
 import com.yishu.domain.ClickButton;
 import com.yishu.domain.Menu;
 import com.yishu.domain.ViewButton;
+import com.yishu.pojo.OperationalError;
 import com.yishu.util.HttpComponent;
 import net.sf.json.JSONObject;
 
@@ -33,7 +35,7 @@ public class WechatUtil {
         ViewButton button21=new ViewButton();
         button21.setName("view菜单");
         button21.setType("view");
-        button21.setUrl("https://112.25.233.122:8443/lockWechat/jsp/login.jsp");
+        button21.setUrl("https://112.25.233.122/lockWechat/jsp/login.jsp");
 
         ClickButton button31=new ClickButton();
         button31.setName("扫码事件");
@@ -53,13 +55,14 @@ public class WechatUtil {
         return menu;
     }
 
-    public static int createMenu(String token,String menu){
-        int result=0;
+    public static OperationalError createMenu(String token,String menu){
         String url=CREATE_MENU_URL.replace("ACCESS_TOKEN",token);
         JSONObject jsonObject = HttpComponent.doPostStr(url,menu);
+        OperationalError error=new OperationalError();
         if (null != jsonObject){
-            result=jsonObject.getInt("errcode");
+            error.setErrcode(jsonObject.getInt("errcode"));
+            error.setErrmsg(jsonObject.getString("errmsg"));
         }
-        return result;
+        return error;
     }
 }

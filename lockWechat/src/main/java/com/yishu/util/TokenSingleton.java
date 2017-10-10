@@ -18,20 +18,23 @@ import java.util.Date;
  * @since 2017-08-17
  */
 public class TokenSingleton {
-
-    private TokenSingleton() {
-    }
-    private static TokenSingleton tokenSingleton=null;
-    public static TokenSingleton getInstance(){
+    private TokenSingleton() {}
+    private static volatile TokenSingleton tokenSingleton=null;
+    //单例-双重检查锁
+    public static TokenSingleton getSingleton(){
         if(null==tokenSingleton){
-            tokenSingleton=new TokenSingleton();
+            synchronized (TokenSingleton.class){
+                if (null==tokenSingleton){
+                    tokenSingleton=new TokenSingleton();
+                }
+            }
         }
         return tokenSingleton;
     }
 
 //
-    private static final String APPID="wx6eo2v3fd4af3";
-    private static final String APPSECRET="c7058bjh8g97m87cf8a2a7632f800a1";
+    private static final String APPID="wxb7b8f059e2522f3b";
+    private static final String APPSECRET="3db80f620e8dcfebd920f859bf1a7302";
     private static final String ACCESS_TOKEN_URL="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
     private static final String JSAPI_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
 
@@ -43,6 +46,7 @@ public class TokenSingleton {
     public static void setAccessToken(){
         String url=ACCESS_TOKEN_URL.replace("APPID",APPID).replace("APPSECRET",APPSECRET);
         JSONObject jsonObject=HttpComponent.doGetStr(url);
+        System.out.println("从微信服务器获取access_token,返回的操作结果: "+jsonObject);
         if(null!=jsonObject){
             tokenAndTicket.setAccess_token(jsonObject.getString("access_token"));
             tokenAndTicket.setToken_expiresIn(jsonObject.getLong("expires_in"));

@@ -8,6 +8,7 @@ package com.yishu.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.TreeSet;
 
 /**
  * 处理来自微信的接口认证请求,检验signature,取出echostr返回给微信.
@@ -31,6 +32,7 @@ public class WechatCheckSignature {
      * @return
      */
     public static boolean checkSignature(String signature,String timestamp,String nonce){
+        /*
         String[] arr = new String[]{token,timestamp,nonce};
         //排序
         Arrays.sort(arr);
@@ -42,6 +44,24 @@ public class WechatCheckSignature {
         //sha1加密,获取SHA1值
         String temp=digest(stringBuffer.toString());
         return temp.equals(signature);
+        */
+
+        TreeSet<String> set = new TreeSet<String>();
+        set.add(token);
+        set.add(timestamp);
+        set.add(nonce);
+
+        StringBuilder sb = new StringBuilder();
+        for (String str : set) {
+            sb.append(str);
+        }
+        String sha = digest(sb.toString());
+        System.out.println("sha :"+sha+" || signature :"+signature);
+
+        if (sha.equals(signature) || signature.indexOf(sha) == 2) {
+            return true;
+        }
+        return false;
     }
 
     public static String digest(String inStr) {
