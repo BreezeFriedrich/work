@@ -45,6 +45,16 @@ public class WechatCheckSignature {
         String temp=digest(stringBuffer.toString());
         return temp.equals(signature);
         */
+        /*
+        String[] str={token,timestamp,nonce};
+        Arrays.sort(str);
+        String bigStr=str[0]+str[1]+str[2];
+        String digest=digest(bigStr);
+        if (digest.equals(signature)){
+            return true;
+        }
+        return false;
+        */
 
         TreeSet<String> set = new TreeSet<String>();
         set.add(token);

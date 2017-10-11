@@ -127,9 +127,9 @@ public class MessageUtil {
         News news=new News();
         news.setTitle("门锁管理");
         news.setDescription("图文消息:门锁管理webapp入口");
-        news.setPicUrl("https://112.25.233.122:443/lockWechat/resources/media/webapp_entrance.png");
+        news.setPicUrl("https://www.qixu.site/lockWechat/resources/media/webapp_entrance.png");
 //        news.setUrl("www.yishutech.com");
-        news.setUrl("https://112.25.233.122:443/lockWechat/jsp/login.jsp"); //点击用户点击该图片,即访问门锁管理页面
+        news.setUrl("https://www.qixu.site/lockWechat/jsp/login.jsp"); //点击用户点击该图片,即访问门锁管理页面
         NewsMessage newsMessage=new NewsMessage();
         List<News> newsList=new ArrayList<News>();
         newsList.add(news);
@@ -165,8 +165,8 @@ public class MessageUtil {
         music.setThumbMediaId("er54d90il86j"); //上传音乐文件后获得的ThumbMediaId
         music.setTitle("Love Story meets Viva La Vida");
         music.setDescription("纯音乐 <<假如爱有天意>>");
-        music.setMusicUrl("https://112.25.233.122:443/lockWechat/resources/media/Love Story meets Viva La Vida.mp3");
-        music.setHQMusicUrl("https://112.25.233.122:443/lockWechat/resources/media/Love Story meets Viva La Vida.mp3");
+        music.setMusicUrl("https://www.qixu.site/lockWechat/resources/media/Love Story meets Viva La Vida.mp3");
+        music.setHQMusicUrl("https://www.qixu.site/lockWechat/resources/media/Love Story meets Viva La Vida.mp3");
         MusicMessage musicMessage=new MusicMessage();
         musicMessage.setMusic(music);
         musicMessage.setFromUserName(toUserName);
