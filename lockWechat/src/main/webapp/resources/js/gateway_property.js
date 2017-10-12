@@ -13,6 +13,8 @@ var gatewayLocation;
 var gatewayComment;
 
 $(function(){
+    FastClick.attach(document.body);
+
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
     $.ajax({

@@ -17,7 +17,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>gateway_property</title>
+    <title>亿数智能门锁</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -128,6 +128,7 @@
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/fastclick.js'></script>
 <script type='text/javascript' src='resources/js/gateway_property.js' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>

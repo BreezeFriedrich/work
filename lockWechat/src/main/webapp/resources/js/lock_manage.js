@@ -11,6 +11,8 @@ var specificLockCode;
 var json_theLock;
 
 $(function(){
+    FastClick.attach(document.body);
+
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
     specificLockCode=getQueryString("specificLockCode");
@@ -27,11 +29,11 @@ $(function(){
             console.log('错误')
         }
     });
-    document.getElementsByTagName('p')[0].innerText=json_theLock.lockName;
-    document.getElementsByTagName('p')[1].innerText=json_theLock.lockLocation;
-    document.getElementsByTagName('p')[2].innerText=json_theLock.lockComment;
-    document.getElementsByTagName('p')[3].innerText=specificLockCode;
-    document.getElementsByTagName('p')[4].innerText=specificGatewayCode;
+    document.getElementsByClassName('property')[0].innerText=json_theLock.lockName;
+    document.getElementsByClassName('property')[1].innerText=json_theLock.lockLocation;
+    document.getElementsByClassName('property')[2].innerText=json_theLock.lockComment;
+    document.getElementsByClassName('property')[3].innerText=specificLockCode;
+    document.getElementsByClassName('property')[4].innerText=specificGatewayCode;
     // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
 });
 

@@ -8,10 +8,13 @@
     <package name="unlock" namespace="/unlock" extends="default">
 
         <action name="*" class="com.yishu.action.UnlockAction" method="{0}">
+            <!--
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
+            -->
+            <interceptor-ref name="openidStack"/>
             <result name="json" type="json">
                 <param name="root">jsonObject</param>
                 <param name="excludeNullProperties">false</param>

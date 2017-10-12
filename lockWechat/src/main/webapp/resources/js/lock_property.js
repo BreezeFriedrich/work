@@ -14,6 +14,8 @@ var lockLocation;
 var lockComment;
 
 $(function(){
+    FastClick.attach(document.body);
+
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
     specificLockCode=getQueryString('specificLockCode');

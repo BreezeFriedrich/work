@@ -14,7 +14,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>门锁管理微信客户端登录</title>
+    <title>亿数智能门锁微信客户端登录</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 
     <link rel="stylesheet" href="<%=basePath%>/resources/bootstrap-3.3.0/css/bootstrap.min.css" type="text/css" />

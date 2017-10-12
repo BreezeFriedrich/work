@@ -17,7 +17,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>主页</title>
+    <title>亿数智能门锁</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -85,7 +85,7 @@
         <!-- 标题栏 -->
         <header class="bar bar-nav">
             <a class="icon icon-menu pull-left open-panel" data-panel='#panel-left-menu'></a>
-            <h1 class="title">亿数智能锁</h1>
+            <h1 class="title">主页</h1>
             <a class="icon icon-me pull-right" href="#account"></a>
         </header>
 

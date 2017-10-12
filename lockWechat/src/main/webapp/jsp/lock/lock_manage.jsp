@@ -17,7 +17,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>lock_manage</title>
+    <title>亿数智能门锁</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -111,7 +111,7 @@
                                 </div>
                                 -->
                                 <div class="item-after">
-                                    <p class="property"></p>
+                                    <span class="property"></span>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">门锁地址</div>
                                 <div class="item-after">
-                                    <p></p>
+                                    <span class="property"></span>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">门锁备注</div>
                                 <div class="item-after">
-                                    <p></p>
+                                    <span class="property"></span>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">门锁条码</div>
                                 <div class="item-after">
-                                    <p></p>
+                                    <span class="property"></span>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">所属网关</div>
                                 <div class="item-after">
-                                    <p></p>
+                                    <span class="property"></span>
                                 </div>
                             </div>
                         </div>
@@ -163,29 +163,46 @@
                 </ul>
             </div>
             <div class="list-block">
-                <div style="padding: 0.1rem 0.5rem;background-color: #FFFFFF;line-height: 2.2rem;font-size: 1.0rem;">
-                    <img class="auto-zoom-2_2" src="resources/img/user_authorize.png" alt="" align="left" style="vertical-align: middle;"/>
-                    增加授权用户
-                    <img class="auto-zoom-2_2" src="resources/img/down_arrow.png" alt="" align="right" style="vertical-align: middle;"/>
-                </div>
-                <!--<ul>
+                <ul>
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
                             <div class="item-title">
-                                <img class="auto-zoom-1" src="resources/img/user_authorize.png" alt=""/>
+                                <img class="auto-zoom-1" src="resources/img/user_authorize.png" alt="用户授权"/>
                                 增加授权用户
                             </div>
                             <div class="item-after"></div>
                         </div>
                     </li>
-                </ul>-->
+                </ul>
+                <!--
+                <div style="padding: 0.1rem 0.5rem;background-color: #FFFFFF;line-height: 2.2rem;font-size: 1.0rem;">
+                    <img class="auto-zoom-2_2" src="resources/img/user_authorize.png" alt="" align="left" style="vertical-align: middle;"/>
+                    增加授权用户
+                    <img class="auto-zoom-2_2" src="resources/img/down_arrow.png" alt="" align="right" style="vertical-align: middle;"/>
+                </div>
+
                 <div style="height: 2rem;"></div>
                 <div style="padding: 0.1rem 0.5rem;background-color: #FFFFFF;line-height: 2.2rem;font-size: 1.0rem;">
                     <img class="auto-zoom-2_2" src="resources/img/password_set.png" alt="" align="left" style="vertical-align: middle;"/>
                     门锁密码设置
                     <img class="auto-zoom-2_2" src="resources/img/down_arrow.png" alt="" align="right" style="vertical-align: middle;"/>
                 </div>
+                -->
+            </div>
+            <div class="list-block">
+                <ul>
+                    <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                <img class="auto-zoom-1" src="resources/img/password_set.png" alt="门锁密码"/>
+                                门锁密码设置
+                            </div>
+                            <div class="item-after"></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="content-block-title">已授权用户</div>
         </div>
@@ -194,6 +211,7 @@
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/fastclick.js'></script>
 <script type='text/javascript' src='resources/js/lock_manage.js' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>

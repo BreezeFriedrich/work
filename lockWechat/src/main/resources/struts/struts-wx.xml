@@ -8,10 +8,12 @@
     <package name="wx" namespace="/wx" extends="default">
 
         <action name="authdev" class="com.yishu.action.WechatAction" method="authdev">
+            <!--
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
+            -->
         </action>
 
     </package>

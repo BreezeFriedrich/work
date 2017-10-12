@@ -10,6 +10,8 @@ var specificGatewayCode;
 var specificLockCode;
 var json_theGateway;
 $(function(){
+    FastClick.attach(document.body);
+
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
     $.ajax({

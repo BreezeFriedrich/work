@@ -8,10 +8,13 @@
     <package name="device" namespace="/device" extends="default">
 
         <action name="getUserGatewayIp" class="com.yishu.action.DeviceAction" method="getUserGatewayIp">
+            <!--
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
+            -->
+            <interceptor-ref name="openidStack"/>
 
             <!-- 节点配置
                 name : result名称 和Action中返回的值相同

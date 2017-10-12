@@ -184,14 +184,9 @@ public class HttpUtil
         return null;
     }
 
-    // public static void main(String[] args) {
-    // HttpUtil util = new HttpUtil();
-    // String str = util
-    // .getUrl("https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code");
-    // System.out.println(str);
-    // }
-
-    //ChengXinLang
+    /**
+     * 向指定ip地址发起https连接. By ChengXinLang
+     */
     public static String httpsPostToIp(String ip,String data){
         System.out.println(ip);
         URL url;
@@ -323,81 +318,3 @@ class MyTrustManager implements X509TrustManager
         return null;
     }
 }
-
-/*
-//
- public static String postData(String data,String ip){
- URL url;
- HttpURLConnection httpURLConnection=null;
- OutputStream outputStream=null;
- DataOutputStream dataOutputStream=null;
- InputStream inputStream=null;
- InputStreamReader inputStreamReader;
- BufferedReader bufferedReader=null;
- String result="";
- String line;
- try {
- url=new URL("http://"+ip+":2016/");
- httpURLConnection=(HttpURLConnection)url.openConnection();
- httpURLConnection.setRequestMethod("POST");
- httpURLConnection.setConnectTimeout(3000);
- httpURLConnection.setDoOutput(true);
- httpURLConnection.setDoInput(true);
- httpURLConnection.setRequestProperty("Content-Type","text/json");
- httpURLConnection.connect();
- outputStream=httpURLConnection.getOutputStream();
- dataOutputStream=new DataOutputStream(outputStream);
- dataOutputStream.write(data.getBytes());
- inputStream=httpURLConnection.getInputStream();
- inputStreamReader=new InputStreamReader(inputStream,"GBK");
- bufferedReader=new BufferedReader(inputStreamReader);
- while((line=bufferedReader.readLine())!=null){
- result+=line+"\n";
- }
- return result;
- } catch (MalformedURLException e) {
- e.printStackTrace();
- }
- catch (IOException e) {
- e.printStackTrace();
- }
- finally {
- if(outputStream!=null){
- try {
- outputStream.flush();
- outputStream.close();
- } catch (IOException e) {
- e.printStackTrace();
- }
- }
- if(inputStream!=null){
- try{
- inputStream.close();
- }
- catch (IOException e){
- e.printStackTrace();
- }
- }
- if(bufferedReader!=null){
- try {
- bufferedReader.close();
- }
- catch (IOException e){
- e.printStackTrace();
- }
- }
- if(dataOutputStream!=null){
- try{
- dataOutputStream.close();
- }
- catch (IOException e){
- e.printStackTrace();
- }
- }
- if(httpURLConnection!=null){
- httpURLConnection.disconnect();
- }
- }
- return null;
- }
- **/

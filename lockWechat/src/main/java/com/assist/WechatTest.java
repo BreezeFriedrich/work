@@ -8,6 +8,7 @@ package com.assist;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.domain.WechatTokenAndTicket;
 import com.yishu.pojo.OperationalError;
+import com.yishu.util.HttpUtil;
 import com.yishu.util.TokenSingleton;
 import net.sf.json.JSONObject;
 
@@ -38,5 +39,11 @@ public class WechatTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //通过code换取网页授权access_token及用户标识openid. 参考https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115
+        String url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+        url.replace("APPID","").replace("SECRET","");
+        String str= HttpUtil.doGet(url);
+        System.out.println(str);
     }
 }
