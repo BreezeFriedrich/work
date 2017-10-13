@@ -40,6 +40,6 @@
 		</property>
 	</bean>
 
-	<!-- 引入jdbc配置文件 -->
-	<context:property-placeholder location="classpath:jwt.properties" />
+	<!-- 引入jjwt配置文件 -->
+	<context:property-placeholder location="classpath:jwt.properties,properties/wechat.properties"  ignore-unresolvable="true"/>
 </beans>

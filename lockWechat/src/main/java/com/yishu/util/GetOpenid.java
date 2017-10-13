@@ -13,14 +13,14 @@ import java.io.UnsupportedEncodingException;
 public class GetOpenid
 {
     private static String APPID = "wx6234fc4a502ef625";// 微信公众号下的AppID
-    private static String SECRIET = "897c9b5b60804e4c9f4609cd00dd875c";// 微信公众号下的secret
+    private static String SECRET = "897c9b5b60804e4c9f4609cd00dd875c";// 微信公众号下的secret
 
     public static String getOpenid(String code)
     {
         String get_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="
                 + APPID
                 + "&secret="
-                + SECRIET
+                + SECRET
                 + "&code="
                 + code
                 + "&grant_type=authorization_code";

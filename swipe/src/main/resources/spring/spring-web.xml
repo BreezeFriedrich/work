@@ -17,6 +17,13 @@
     <context:component-scan base-package="com.yishu.shiro.web"/>
     <context:component-scan base-package="com.yishu.controller"/>
 
+    <!--取消默认扫描过滤器,并只扫描生成指定目录下@Controller注解的bean,跳过@Component\@Service\@Repository\@Resource-->
+    <!--
+    <context:component-scan base-package="com.yishu" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    -->
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>

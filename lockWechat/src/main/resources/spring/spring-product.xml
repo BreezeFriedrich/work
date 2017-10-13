@@ -53,7 +53,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 引入jdbc配置文件 -->
+	<!-- 引入配置文件 -->
 	<context:property-placeholder location="classpath:properties/jdbc.properties,classpath:jwt.properties" />
 
 	<!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
