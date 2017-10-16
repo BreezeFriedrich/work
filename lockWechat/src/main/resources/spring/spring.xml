@@ -30,6 +30,7 @@
 	<context:component-scan base-package="com.yishu.jwt" />
 	<context:component-scan base-package="com.yishu.service" />
 	<context:component-scan base-package="com.yishu.mytask" />
+	<context:component-scan base-package="com.yishu.util" />
 
 	<!--javamelody与Spring集成-->
 	<bean id= "facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor" >
@@ -40,6 +41,20 @@
 		</property>
 	</bean>
 
-	<!-- 引入jjwt配置文件 -->
-	<context:property-placeholder location="classpath:jwt.properties,properties/wechat.properties"  ignore-unresolvable="true"/>
+	<!-- 引入.properties配置文件 -->
+	<context:property-placeholder location="classpath:jwt.properties,classpath:properties/wechat.properties"  ignore-unresolvable="true"/>
+
+	<!--
+	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:jwt.properties</value>
+				<value>classpath:properties/wechat.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="properties" ref="configProperties" />
+	</bean>
+	-->
 </beans>

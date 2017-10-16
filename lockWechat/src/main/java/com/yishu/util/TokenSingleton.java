@@ -19,7 +19,7 @@ import java.util.Date;
  */
 public class TokenSingleton {
     private TokenSingleton() {}
-    private static volatile TokenSingleton tokenSingleton=null;
+    private static TokenSingleton tokenSingleton=null;
     //单例-双重检查锁
     public static TokenSingleton getSingleton(){
         if(null==tokenSingleton){
@@ -49,6 +49,7 @@ public class TokenSingleton {
         System.out.println("从微信服务器获取access_token,返回的操作结果: "+jsonObject);
         if(null!=jsonObject){
             tokenAndTicket.setAccess_token(jsonObject.getString("access_token"));
+            tokenAndTicket.setToken_ctime(new Date().getTime());
             tokenAndTicket.setToken_expiresIn(jsonObject.getLong("expires_in"));
         }
     }
@@ -61,14 +62,17 @@ public class TokenSingleton {
         JSONObject jsonObject=HttpComponent.doGetStr(url);
         if(null!=jsonObject){
             tokenAndTicket.setJsapi_ticket(jsonObject.getString("ticket"));
+            tokenAndTicket.setTicket_ctime(new Date().getTime());
         }
     }
 
     public WechatTokenAndTicket getTokenAndTicket(){
         Long now=new Date().getTime();
-        if( null!=tokenAndTicket.getAccess_token() && now-tokenAndTicket.getToken_ctime()-60000 < tokenAndTicket.getToken_expiresIn() ){
+        if(null != tokenAndTicket.getAccess_token() && now-tokenAndTicket.getToken_ctime() < tokenAndTicket.getToken_expiresIn()*1000/2 ){
             //access_token 未超时，依然有效
+            System.out.println("!!!access_token 未超时，依然有效");
         }else {
+            System.out.println("access_token 超时，重新获取");
             //access_token 超时,重新获取
             setAccessToken();
             setJsapiToken();

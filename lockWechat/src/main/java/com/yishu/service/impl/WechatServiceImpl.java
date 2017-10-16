@@ -5,8 +5,11 @@
 
 package com.yishu.service.impl;
 
+import com.yishu.dao.WechatDao;
 import com.yishu.domain.User;
 import com.yishu.service.IWechatService;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,23 +19,27 @@ import org.springframework.stereotype.Service;
  */
 @Service("wechatService")
 public class WechatServiceImpl implements IWechatService {
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("WechatServiceImpl");
+    @Autowired
+    private WechatDao wechatDao;
+
     @Override
     public int addSubscribe(User user) {
-        return 0;
+        return wechatDao.addSubscribe(user);
     }
 
     @Override
     public int UnSubscribe(User user) {
-        return 0;
+        return wechatDao.unSubscribe(user);
     }
 
     @Override
     public User findUserByopenid(String openid) {
-        return null;
+        return wechatDao.findUserByopenid(openid);
     }
 
     @Override
     public int UnSubscribe2(User user) {
-        return 0;
+        return wechatDao.unSubscribe2(user);
     }
 }

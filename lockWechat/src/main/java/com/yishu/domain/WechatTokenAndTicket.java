@@ -4,6 +4,7 @@ package com.yishu.domain;
  * Entity for: Wechat access_token & jsapi_token
  */
 public class WechatTokenAndTicket {
+
     private String access_token; //获取到的凭证
     private long token_ctime; //access_token 创建时间
     private long token_expiresIn; //access_token 凭证有效时间,单位：秒

@@ -13,8 +13,9 @@ package com.yishu.domain;
  * @since JDK1.7
  */
 public class User {
+
     private int user_id;
-    private String openid,createtime,nickname,untime;
+    private String openid,createtime,nickname,untime,imgurl;
 
     public int getUser_id() {
         return user_id;
@@ -54,5 +55,13 @@ public class User {
 
     public void setUntime(String untime) {
         this.untime = untime;
+    }
+
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
     }
 }

@@ -35,7 +35,7 @@ public class WechatUtil {
         ViewButton button21=new ViewButton();
         button21.setName("view菜单");
         button21.setType("view");
-        button21.setUrl("https://www.qixu.site/lockWechat/jsp/login.jsp");
+        button21.setUrl("https://lockwx.qixu.com/lockWechat/jsp/login.jsp");
 
         ClickButton button31=new ClickButton();
         button31.setName("扫码事件");

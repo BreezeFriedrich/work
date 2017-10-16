@@ -13,7 +13,9 @@ import com.yishu.domain.User;
  * @since JDK1.7
  */
 public interface IWechatService {
-    public static String SESSION_USER="USERSESSION";
+//    public static String SESSION_USER="USERSESSION";
+    public static String OPENID="OPENID";
+    public static String ACCESS_TOKEN="ACCESS_TOKEN";
 
     public int addSubscribe(User user);
 

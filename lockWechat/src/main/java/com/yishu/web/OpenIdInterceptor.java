@@ -37,13 +37,13 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         String stime = DataUtil.fromDate24H();
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
-        String u_openid = (String) session.getAttribute(IWechatService.SESSION_USER);
+        String openid = (String) session.getAttribute(IWechatService.OPENID);
 /*
         if (u_openid == null) {
             if (StringUtil.bIsNotNull(code)) {
                 GetOpenid go = new GetOpenid();
                 // String openId=CommonUtil.getOpenId(code);
-                String openId = go.getOpenid(code);
+                String openId = go.getOpenidByCode(code);
                 if (openId != null && !openId.equals("")) {
                     User user = wechatService.findUserByopenid(openId);
                     if (user != null) {
@@ -77,23 +77,22 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         }
         */
 
-        if (u_openid == null) {
+        if (openid == null) {
             if (StringUtil.bIsNotNull(code)) {
                 GetOpenid go = new GetOpenid();
-                // String openId=CommonUtil.getOpenId(code);
-                String openId = go.getOpenid(code);
+                String openId = go.getOpenidByCode(code);
                 if (openId != null && !openId.equals("")) {
                     User user = wechatService.findUserByopenid(openId);
                     if (user != null) {
                         // 将登录时间录入
                         // userService.updateUserLogintime(stime,user.getOpenid());
-                        session.setAttribute(IWechatService.SESSION_USER, openId);
+                        session.setAttribute(IWechatService.OPENID, openId);
                     } else {
                         user = new User();
                         user.setOpenid(openId);
                         user.setCreatetime(stime);
                         wechatService.addSubscribe(user);
-                        session.setAttribute(IWechatService.SESSION_USER, openId);
+                        session.setAttribute(IWechatService.OPENID, openId);
                         System.out.println("--------------------生成用户3");
                     }
                 } else {

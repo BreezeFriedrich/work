@@ -6,16 +6,26 @@
 package com.yishu.util;
 
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 
 //根据code 获取 openid
+@Component("getOpenid")
 public class GetOpenid
 {
-    private static String APPID = "wx6234fc4a502ef625";// 微信公众号下的AppID
-    private static String SECRET = "897c9b5b60804e4c9f4609cd00dd875c";// 微信公众号下的secret
+    @Value("${APPID}")
+    private String APPID;// 微信公众号下的AppID
+    @Value("${APPSECRET}")
+    private String SECRET;// 微信公众号下的secret
 
-    public static String getOpenid(String code)
+    public void printConfig(){
+        //@Value("${}")搭配component-scan 、@Component读取配置.
+        System.out.println("APPSECRET : "+SECRET);
+    }
+
+    public String getOpenidByCode(String code)
     {
         String get_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="
                 + APPID

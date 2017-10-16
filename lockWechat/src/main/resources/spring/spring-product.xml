@@ -25,6 +25,7 @@
 	<context:component-scan base-package="com.yishu.jwt" />
 	<context:component-scan base-package="com.yishu.service" />
 	<context:component-scan base-package="com.yishu.mytask" />
+	<context:component-scan base-package="com.yishu.util" />
 
 	<!--javamelody与Spring集成-->
 	<bean id= "facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor" >
@@ -44,7 +45,7 @@
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean  id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage" value="com.yishu.pojo" />
+		<property name="typeAliasesPackage" value="com.yishu.domain" />
 		<property name="mapperLocations" value="classpath:mapper/*.xml" />
 	</bean>
 
@@ -54,7 +55,7 @@
 	</bean>
 
 	<!-- 引入配置文件 -->
-	<context:property-placeholder location="classpath:properties/jdbc.properties,classpath:jwt.properties" />
+	<context:property-placeholder location="classpath:properties/jdbc.properties,classpath:jwt.properties,classpath:properties/wechat.properties" />
 
 	<!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
 		<!--<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>-->

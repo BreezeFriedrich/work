@@ -8,6 +8,22 @@
         WHERE `openid`=#{openid}
     </select>
 
+    <insert id="addSubscribe" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
+        INSERT INTO h_user(`openid`,`createtime`,`nickname`,`IMGURL`)
+          VALUES (#{openid},#{createtime},#{nickname},#{imgurl});
+    </insert>
+
+    <update id="UnSubscribe" parameterType="User">
+        UPDATE h_user
+          SET untime=#{untime}
+        WHERE openid=#{openid};
+    </update>
+
+    <update id="UnSubscribe2" parameterType="User">
+        UPDATE h_user
+          SET IMGURL=#{imgurl},nickname=#{nickname}
+        WHERE openid=#{openid};
+    </update>
 </mapper>
 <!--参:
     public String addSubscribe()
