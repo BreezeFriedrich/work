@@ -87,7 +87,7 @@
             <a class="icon icon-home pull-left" href="javascript:window.location.href='${pageContext.request.contextPath}/jsp/main.jsp';"></a>
             <h1 class="title">网关管理</h1>
             <!-- 直接用相对路径也可以,是否与<base href="<%=basePath%>">有关? -->
-            <a class="icon icon-edit pull-right" href="javascript:void(0);" onclick="javascript:window.location.href='jsp/gateway/gateway_property.jsp?ownerPhoneNumber='+ownerPhoneNumber+'&specificGatewayCode='+specificGatewayCode;"></a>
+            <a class="icon icon-edit pull-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('jsp/gateway/gateway_property.jsp?ownerPhoneNumber='+ownerPhoneNumber+'&specificGatewayCode='+specificGatewayCode);"></a>
         </header>
 
         <!-- 这里是页面内容区 -->
@@ -128,7 +128,7 @@
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
-                            <div class="item-title">
+                            <div class="item-title" id="link_addLock">
                                 <img class="auto-zoom-1" src="resources/img/connectLock.png" alt=""/>
                                 增加关联门锁
                             </div>
@@ -185,7 +185,7 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_manage.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_manage.js?ver=4' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>
     $(function(){

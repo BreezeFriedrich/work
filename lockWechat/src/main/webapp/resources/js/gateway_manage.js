@@ -9,8 +9,9 @@ var ownerPhoneNumber;
 var specificGatewayCode;
 var specificLockCode;
 var json_theGateway;
+var url;
 $(function(){
-    FastClick.attach(document.body);
+    // FastClick.attach(document.body);
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
@@ -28,6 +29,7 @@ $(function(){
             console.log('错误');
         }
     });
+    //动态显示门锁列表
     UL_gatewayProperty.innerHTML += getGatewayDetails();
     UL_theSpecificGateway=document.getElementById("UL_theSpecificGateway");
     UL_theSpecificGateway.innerHTML = createLockNode();
@@ -38,21 +40,29 @@ $(function(){
             if(target.getAttribute('class')==='card-content' && target.parentNode.className==='card lock'){
                 //页面跳转并传递参数
                 specificLockCode=target.parentNode.id;
-                window.location.href="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode+"&specificLockCode="+specificLockCode;
+                url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode+"&specificLockCode="+specificLockCode;
+                window.location.href=encodeURI(url);
                 break;
             }
             target = target.parentNode;
         }
-    })
-})
+    });
+    //添加关联门锁
+    var div_addLock=document.getElementById("link_addLock");
+    div_addLock.addEventListener('click',function(ev){
+        // var target = ev.target || window.event.srcElement;
+        url="jsp/gateway/gateway_addLock.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode;
+        window.location.href=encodeURI(url);
+    });
+});
 
 //获取链接参数
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
+    var r = decodeURI(window.location.search).substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
-};
+}
 
 function getGatewayDetails(){
     var LI_gatewayProperty='';
@@ -92,6 +102,10 @@ function createLockNode(){
     var lockLists;
     lockLists=json_theGateway.lockLists;
     for(x in lockLists){
+        if(1==lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
+        if(2==lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
+        if(3==lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
+
         LI_lock += "<li class='card lock' id='"+lockLists[x].lockCode+"' style='margin: 0 0.5rem;border: 0.3rem outset rgba(100,100,0,0.5);border-top-width:'0.2rem';'>";
         LI_lock += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+lockLists[x].lockName+"</div>";
         LI_lock += 	"<div class='card-content' style='background-color: #EEFFFF;'>";

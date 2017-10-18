@@ -82,7 +82,7 @@
             <!--如果直接href='main.jsp',不会加载main.js-->
             <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
             <h1 class="title">门锁管理</h1>
-            <a class="icon icon-edit pull-right" href="javascript:void(0);" onclick="javascript:window.location.href='${pageContext.request.contextPath}/jsp/lock/lock_property.jsp?ownerPhoneNumber='+ownerPhoneNumber+'&specificGatewayCode='+specificGatewayCode+'&specificLockCode='+specificLockCode;"></a>
+            <a class="icon icon-edit pull-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/lock/lock_property.jsp?ownerPhoneNumber='+ownerPhoneNumber+'&specificGatewayCode='+specificGatewayCode+'&specificLockCode='+specificLockCode);"></a>
         </header>
 
         <!-- 工具栏 -->
@@ -118,7 +118,7 @@
                     </li>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-email"></i></div>
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">门锁地址</div>
                                 <div class="item-after">
@@ -129,7 +129,7 @@
                     </li>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">门锁备注</div>
                                 <div class="item-after">
@@ -140,7 +140,7 @@
                     </li>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">门锁条码</div>
                                 <div class="item-after">
@@ -151,7 +151,7 @@
                     </li>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">所属网关</div>
                                 <div class="item-after">
@@ -212,7 +212,7 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/lock_manage.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/lock_manage.js?ver=3'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>
     $(function(){

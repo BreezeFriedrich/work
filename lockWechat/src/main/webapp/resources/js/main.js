@@ -7,6 +7,7 @@ var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var json;
 var ownerPhoneNumber=18255683932;
+var url;
 $(function(){
 //	ownerPhoneNumber = document.getElementById("INPUT-hiddden_ownerPhoneNumber").value;
     $.ajax({
@@ -37,6 +38,13 @@ $(function(){
         // }
     });
     showDevices();
+
+    //给左边栏绑定事件
+    var div_addGateway=document.getElementById("div_addGateway");
+    div_addGateway.addEventListener('click',function(ev){
+        url="jsp/gateway/gateway_addGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+        window.location.href=encodeURI(url);
+    });
 });
 
 function showDevices(){
@@ -62,8 +70,9 @@ function showDevices(){
                 // alert('card-content');
                 //页面跳转并传递参数
                 var gatewayCode=target.parentNode.id;
+                url="jsp/gateway/gateway_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode;
                 //window.location.href URL 相对路径也可以是否与 jsp中的<base href="<%=basePath%>">有关?
-                window.location.href="jsp/gateway/gateway_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode;
+                window.location.href=encodeURI(url);
                 //@deprecated 未启用：经struts action跳转
                 // window.location.href="http://localhost:80/lockWehat/redirect/specificGateway?ownerPhoneNumber=18255683932&gatewayCode=777777";
                 //@deprecated 路由跳转无法加载js
@@ -106,6 +115,10 @@ function showDevices(){
 function createGatewayNode(){
     var LI_gateway="";
     for(x in json){
+        if('4'===json[x].gatewayStatus){json[x].gatewayStatus==="正常"}
+        if('5'===json[x].gatewayStatus){json[x].gatewayStatus==="异常"}
+        if('6'===json[x].gatewayStatus){json[x].gatewayStatus==="连接失败"}
+
         LI_gateway += "<li class='card gateway' id='"+json[x].gatewayCode+"' style='border: 0.3rem outset rgba(100,100,0,0.5);'>";
         LI_gateway += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+json[x].gatewayName+"</div>";
         LI_gateway += 	"<div class='card-content' style='background-color: #EEFFFF;'>";
@@ -145,6 +158,10 @@ function createLockNode(gatewayCode){
         }
     }
     for(x in lockLists){
+        if('1'==lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
+        if('2'==lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
+        if('3'==lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
+
         LI_lock += "<li class='card lock' id='"+lockLists[x].lockCode+"' style='margin: 0 0.5rem;border: 0.3rem outset rgba(100,100,0,0.5);border-top-width:'0.2rem';'>";
         LI_lock += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+lockLists[x].lockName+"</div>";
         LI_lock += 	"<div class='card-content' style='background-color: #EEFFFF;'>";

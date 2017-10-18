@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DeviceAction extends ActionSupport {
     public DeviceAction() {
-        System.out.println(">>>Initialization AccountAction......................................");
+        System.out.println(">>>Initialization DeviceAction......................................");
     }
     @Autowired
     private IDeviceService deviceService;

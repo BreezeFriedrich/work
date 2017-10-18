@@ -188,6 +188,7 @@
 <div class="panel panel-left panel-reveal" id="panel-left-menu">
     <div class="content-block content-padded grid-demo">
         <div style="height: 1rem;"></div>
+        <!--
         <div class="row">
             <div class="col-50">
                 <img class="auto-zoom-5" src="resources/img/username.png"/>
@@ -197,12 +198,19 @@
                 <p><span>18255683932</span></p>
             </div>
         </div>
+        -->
+        <div>
+            <img class="auto-zoom-5" src="resources/img/username.png" alt="用户图像"/>
+        </div>
+        <div>
+            <p><span>18255683932</span></p>
+        </div>
         <div style="height: 2rem;"></div>
         <div class="row pad-left">
             <div class="col-20">
                 <img class='auto-zoom-1' src="resources/img/add_gateway.png"/>
             </div>
-            <div class="col-80">
+            <div class="col-80" id="div_addGateway">
                 添加网关
             </div>
         </div>
@@ -240,7 +248,7 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='resources/js/main.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/main.js?ver=2' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>
     $(function(){

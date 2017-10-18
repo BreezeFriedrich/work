@@ -5,8 +5,8 @@
 
 <%--
   User: admin
-  Date: 2017/9/27
-  Time: 14:14
+  Date: 2017/10/17
+  Time: 11:16
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -14,6 +14,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
     <base href="<%=basePath%>">
@@ -64,30 +65,36 @@
             /*上下 ,左右*/
             padding: 0 0.75rem;
         }
-        .button-big {margin: 0 0.9rem;}
+        .list-block {
+            margin: 1.5rem 0;
+            min-height: 2.0rem;
+            line-height: 2.0rem;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
+
 <div class="page-group">
     <!-- 单个page ,第一个.page默认被展示,page-current指定第一次进入展示-->
     <div class="page page-current">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
             <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
-            <h1 class="title">网关设置</h1>
+            <h1 class="title">增加门锁</h1>
         </header>
 
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
+            <div class="list-block">
                 <ul>
                     <li>
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">网关名称</div>
+                                <div class="item-title label">门锁条码</div>
                                 <div class="item-input">
-                                    <input type="text" id="INPUT_gatewayName"/>
+                                    <input type="text"/>
                                 </div>
                             </div>
                         </div>
@@ -96,9 +103,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">网关地址</div>
+                                <div class="item-title label">门锁名称</div>
                                 <div class="item-input">
-                                    <input type="text" id="INPUT_gatewayLocation"/>
+                                    <input type="text"/>
                                 </div>
                             </div>
                         </div>
@@ -107,9 +114,20 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">网关备注</div>
+                                <div class="item-title label">门锁地址</div>
                                 <div class="item-input">
-                                    <input type="text" id="INPUT_gatewayComment"/>
+                                    <input type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">门锁备注</div>
+                                <div class="item-input">
+                                    <input type="text"/>
                                 </div>
                             </div>
                         </div>
@@ -117,19 +135,17 @@
                 </ul>
             </div>
             <div class="content-block">
-                <a href="javascript:void(0);" onclick="modifyGatewayInfo()" class="button button-big button-fill button-success">修改网关</a>
-            </div>
-            <div class="content-block">
-                <a href="javascript:void(0);" onclick="deleteGateway()" class="button button-big button-fill button-danger">删除网关</a>
+                <a href="javascript:void(0);" onclick="addLock()" class="button button-big button-fill button-success">添加门锁</a>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_property.js?ver=1' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_addLock.js?ver=5' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>
     $(function(){

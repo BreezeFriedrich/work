@@ -8,13 +8,13 @@
     <package name="gateway" namespace="/gateway" extends="default">
 
         <action name="*" class="com.yishu.action.GatewayAction" method="{0}">
-            <!--
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
-            -->
+            <!--
             <interceptor-ref name="openidStack"/>
+            -->
             <result name="json" type="json">
                 <param name="root">jsonResult</param>
                 <param name="excludeNullProperties">false</param>

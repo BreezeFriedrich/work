@@ -13,7 +13,7 @@ var gatewayLocation;
 var gatewayComment;
 
 $(function(){
-    FastClick.attach(document.body);
+    // FastClick.attach(document.body);
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
@@ -42,10 +42,10 @@ $(function(){
 //获取链接参数
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
+    var r = decodeURI(window.location.search).substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
-};
+}
 
 function getINPUT_gatewayProperty(){
     //	var gatewayName=document.getElementById("INPUT_gatewayName").value

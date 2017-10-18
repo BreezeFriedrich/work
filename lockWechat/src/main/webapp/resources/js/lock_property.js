@@ -14,7 +14,7 @@ var lockLocation;
 var lockComment;
 
 $(function(){
-    FastClick.attach(document.body);
+    // FastClick.attach(document.body);
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
@@ -43,7 +43,7 @@ $(function(){
 //获取链接参数
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
+    var r = decodeURI(window.location.search).substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
 }
@@ -93,15 +93,16 @@ function deleteLock(){
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
             "ownerPhoneNumber":ownerPhoneNumber,
-            "gatewayCode":specificGatewayCode
+            "lockCode":specificLockCode
         },
         dataType:'json',
         success:function(data,status,xhr){
-            alert('ajax-result : '+data)
+            // alert('ajax-result : '+data)
         },
         error:function(xhr,errorType,error){
             console.log('错误')
         }
     });
-    window.location.href="jsp/main.jsp";
+    // window.location.href="jsp/main.jsp";
+    window.history.go(-2);
 }
