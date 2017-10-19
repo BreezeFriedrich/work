@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.*;
 import java.io.*;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -30,6 +27,55 @@ public class HttpUtil
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("HttpUtil");
 
     public final static String hostName="lock.qixutech.com";
+
+    public static void captureHtml(String urlStr) throws Exception {
+//        URL url = new URL(urlStr);
+//        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+//        InputStreamReader input = new InputStreamReader(httpConn
+//                .getInputStream(), "utf-8");
+//        BufferedReader bufReader = new BufferedReader(input);
+//        String line = "";
+//        StringBuilder stringBuilder = new StringBuilder();
+//        while ((line = bufReader.readLine()) != null) {
+//            stringBuilder.append(line);
+//        }
+//        String result = stringBuilder.toString();
+//        System.out.println("captureHtml()的结果：\n" + result);
+//        return result;
+
+        URL url = new URL(urlStr);
+        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+        httpConn.setDoOutput(true);
+        httpConn.setDoInput(true);
+//        httpConn.setRequestProperty("Content-Type", "text/html; charset=UTF-8");
+        System.out.println(httpConn.getOutputStream().toString());
+        System.out.println(httpConn.getResponseMessage());
+        System.out.println(httpConn.getResponseCode());
+        System.out.println(httpConn.getContentType());
+//        System.out.println(httpConn.getContent().toString());
+//        return String.valueOf(httpConn.getOutputStream());
+    }
+
+    public static void httpURLConectionGET(String urlStr) {
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+            connection.setRequestProperty("Content-Type", "text/html; charset=UTF-8");
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
+            String line;
+            StringBuilder sb = new StringBuilder();
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+            connection.disconnect();
+            System.out.println(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("失败!");
+        }
+    }
 
     public static String getQixuIp(){
         //return "192.168.1.54";

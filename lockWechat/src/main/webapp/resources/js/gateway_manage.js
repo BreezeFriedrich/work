@@ -102,9 +102,9 @@ function createLockNode(){
     var lockLists;
     lockLists=json_theGateway.lockLists;
     for(x in lockLists){
-        if(1==lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
-        if(2==lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
-        if(3==lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
+        if('1'===lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
+        if('2'===lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
+        if('3'===lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
 
         LI_lock += "<li class='card lock' id='"+lockLists[x].lockCode+"' style='margin: 0 0.5rem;border: 0.3rem outset rgba(100,100,0,0.5);border-top-width:'0.2rem';'>";
         LI_lock += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+lockLists[x].lockName+"</div>";

@@ -34,7 +34,32 @@ function getGatewayIp() {
                     dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
                     success:function(data,status,xhr){
                         alert('Action-getGatewayLANIp ajax-result : '+data);
-                        LANip=data.ip;
+                        LANip='http://'+data.ip+':9018';
+                        // window.location.href=LANip;
+
+                        // var div_iframe=document.createElement('div').className='content-block';
+                        // div_iframe.innerHTML=createIframeCard();
+
+                        // document.frames[0].location.href =LANip;
+                        // $.config = {router: false}
+                        // document.getElementById('div_iframe').src=LANip;
+                        // document.getElementById('div_iframe').setAttribute('src',LANip);
+
+                        /*
+                        var iframeParent=document.getElementById('expande_iframe');
+                        iframeParent.remove(iframeParent.childNodes);
+                        var iframe_opCode=iframeParent.createElement('iframe');
+                        iframe_opCode.src = LANip;
+                        iframeParent.appendChild(iframe_opCode);
+                        */
+
+
+                        var $iframe = document.createElement('iframe');
+                        $iframe.src = LANip;
+                        $iframe.style.height = 200;
+                        $iframe.addEventListener('load', 'HEIHEI');
+                        document.getElementById('expande_iframe').appendChild($iframe);
+
                     },
                     error:function(xhr,errorType,error){
                         console.log('错误');
@@ -79,6 +104,20 @@ function getGatewayIp() {
         }
     });
 
+}
+
+function createIframeCard() {
+    var div_iframe='';
+    div_iframe += "<div class='content-block-title'>网关内网ip</div>";
+    div_iframe += "<div class='card'>";
+    div_iframe +=     "<div class='card-content'>";
+    div_iframe +=         "<div class='card-content-inner'>";
+    // div_iframe +=             "<iframe src='LANip' frameborder='0' scrolling='no'></iframe>";
+    div_iframe +=             "<iframe src="+LANip+" frameborder='0' scrolling='no'></iframe>";
+    div_iframe +=         "</div>";
+    div_iframe +=     "</div>";
+    div_iframe += "</div>";
+    return div_iframe;
 }
 
 //获取链接参数

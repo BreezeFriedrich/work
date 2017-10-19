@@ -167,7 +167,7 @@
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
-                            <div class="item-title">
+                            <div class="item-title" id="link_addAuth">
                                 <img class="auto-zoom-1" src="resources/img/user_authorize.png" alt="用户授权"/>
                                 增加授权用户
                             </div>

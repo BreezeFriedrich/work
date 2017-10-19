@@ -35,6 +35,14 @@ $(function(){
     document.getElementsByClassName('property')[3].innerText=specificLockCode;
     document.getElementsByClassName('property')[4].innerText=specificGatewayCode;
     // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
+
+    //添加关联门锁
+    var div_addAuth=document.getElementById("link_addAuth");
+    div_addAuth.addEventListener('click',function(ev){
+        // var target = ev.target || window.event.srcElement;
+        url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
+        window.location.href=encodeURI(url);
+    });
 });
 
 //获取链接参数

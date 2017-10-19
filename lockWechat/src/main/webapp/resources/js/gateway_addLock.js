@@ -3,11 +3,6 @@
  * Nanjing yishu information technology co., LTD. All Rights Reserved.
  */
 
-/*
- * Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
- * Nanjing yishu information technology co., LTD. All Rights Reserved.
- */
-
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var ownerPhoneNumber;
