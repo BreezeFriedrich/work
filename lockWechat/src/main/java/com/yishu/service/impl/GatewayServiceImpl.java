@@ -182,7 +182,7 @@ public class GatewayServiceImpl implements IGatewayService {
     }
 
     @Override
-    public boolean addGateway(String ownerPhoneNumber, String gatewayCode, String gatewayName, String gatewayLocation, String gatewayComment, String opCode) {
+    public boolean registerGatewayInfo(String ownerPhoneNumber, String gatewayCode, String gatewayName, String gatewayLocation, String gatewayComment, String opCode) {
         gatewayIp = getGatewayIp(ownerPhoneNumber,gatewayCode);
         if (null == gatewayIp) {
             return false;
@@ -190,7 +190,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=8;
-        System.err.println("sign:"+reqSign+" operation:addGateway");
+        System.err.println("sign:"+reqSign+" operation:registerGatewayInfo");
         timetag= String.valueOf(new Date().getTime());
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);

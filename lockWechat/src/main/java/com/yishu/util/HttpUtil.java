@@ -19,42 +19,16 @@ import java.io.*;
 import java.net.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.security.Permission;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Map;
 
 public class HttpUtil
 {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("HttpUtil");
 
     public final static String hostName="lock.qixutech.com";
-
-    public static void captureHtml(String urlStr) throws Exception {
-//        URL url = new URL(urlStr);
-//        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-//        InputStreamReader input = new InputStreamReader(httpConn
-//                .getInputStream(), "utf-8");
-//        BufferedReader bufReader = new BufferedReader(input);
-//        String line = "";
-//        StringBuilder stringBuilder = new StringBuilder();
-//        while ((line = bufReader.readLine()) != null) {
-//            stringBuilder.append(line);
-//        }
-//        String result = stringBuilder.toString();
-//        System.out.println("captureHtml()的结果：\n" + result);
-//        return result;
-
-        URL url = new URL(urlStr);
-        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-        httpConn.setDoOutput(true);
-        httpConn.setDoInput(true);
-//        httpConn.setRequestProperty("Content-Type", "text/html; charset=UTF-8");
-        System.out.println(httpConn.getOutputStream().toString());
-        System.out.println(httpConn.getResponseMessage());
-        System.out.println(httpConn.getResponseCode());
-        System.out.println(httpConn.getContentType());
-//        System.out.println(httpConn.getContent().toString());
-//        return String.valueOf(httpConn.getOutputStream());
-    }
 
     public static void httpURLConectionGET(String urlStr) {
         try {
@@ -74,6 +48,65 @@ public class HttpUtil
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("失败!");
+        }
+    }
+
+    public static String httpToGateway(String urlStr){
+        HttpURLConnection connection;
+        BufferedReader in=null;
+        StringBuffer stringBuffer = new StringBuffer();
+        try {
+            String result;
+            URL url = new URL(urlStr);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept","Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+//            connection.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko");
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+
+            System.err.println("ContentType : "+connection.getContentType());
+            System.err.println("permission : "+connection.getPermission());
+            System.err.println("ResponseMessage : "+connection.getResponseMessage());
+            int responseCode = connection.getResponseCode();
+            System.err.println("HTTP连接 responseCode : " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                System.out.println("responseCode=200,HTTP连接正常");
+                in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine = null;
+                while ((inputLine = in.readLine()) != null)
+                {
+                    stringBuffer.append(inputLine);
+                }
+            } else {
+                System.out.println("Can not access the website");
+                System.err.println("responseCode="+responseCode+",HTTP连接异常");
+                Map map=connection.getHeaderFields();
+                for (Object key : map.keySet()) {
+                    System.out.println("key= "+ key + " and value= " + map.get(key));
+                }
+
+                in = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                String inputLine = null;
+                while ((inputLine = in.readLine()) != null)
+                {
+                    stringBuffer.append(inputLine);
+                }
+            }
+        } catch (MalformedURLException e) {
+            System.out.println("Wrong URL");
+        } catch (IOException e) {
+            System.out.println("Can not connect");
+        }finally {
+            if (null!=in){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return stringBuffer.toString();
         }
     }
 

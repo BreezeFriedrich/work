@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.pojo.Device;
 import com.yishu.service.IDeviceService;
 import com.yishu.service.IGatewayService;
+import com.yishu.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Iterator;
@@ -43,6 +44,15 @@ public class GatewayAction extends ActionSupport {
     private String gatewayLocation;
     private String gatewayComment;
     private String opCode;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getOwnerPhoneNumber() {
         return ownerPhoneNumber;
@@ -115,8 +125,8 @@ public class GatewayAction extends ActionSupport {
         return "json";
     }
 
-    public String addGateway(){
-        boolean resultBoolean=gatewayService.addGateway(ownerPhoneNumber,gatewayCode,gatewayName,gatewayLocation,gatewayComment,opCode);
+    public String registerGatewayInfo(){
+        boolean resultBoolean=gatewayService.registerGatewayInfo(ownerPhoneNumber,gatewayCode,gatewayName,gatewayLocation,gatewayComment,opCode);
         jsonResult=resultBoolean;
         return "json";
     }
@@ -149,5 +159,9 @@ public class GatewayAction extends ActionSupport {
 //        }
         jsonResult=device;
         return "json";
+    }
+
+    public String getVerificationCode(){
+        return HttpUtil.httpToGateway(url);
     }
 }

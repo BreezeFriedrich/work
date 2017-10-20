@@ -17,7 +17,7 @@ public interface IGatewayService {
     public Map hasGatewayAdded(String ownerPhoneNumber,String gatewayCode);
     public Map getGatewayLANIp(String ownerPhoneNumber,String gatewayCode);
     public int isCorrectGatewayVerificationCode(String ownerPhoneNumber,String gatewayCode,String opCode);
-    public boolean addGateway(String ownerPhoneNumber,String gatewayCode,String gatewayName,String gatewayLocation,String gatewayComment,String opCode);
+    public boolean registerGatewayInfo(String ownerPhoneNumber,String gatewayCode,String gatewayName,String gatewayLocation,String gatewayComment,String opCode);
     public boolean modifyGatewayInfo(String ownerPhoneNumber,String gatewayCode,String gatewayName,String gatewayLocation,String gatewayComment);
     public boolean deleteGateway(String ownerPhoneNumber,String gatewayCode);
 }
