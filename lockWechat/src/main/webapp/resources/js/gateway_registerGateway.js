@@ -16,13 +16,15 @@ $(function () {
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     gatewayCode=getQueryString('gatewayCode');
     opCode=getQueryString('opCode');
+    document.getElementsByClassName('property')[0].innerText=gatewayCode;
+    document.getElementsByClassName('property')[1].innerText=opCode;
 });
 
 function registerGateway() {
     getINPUT_gatewayProperty();
     $.ajax({
         type:"POST",
-        url:projectPath+"/gateway/addGateway.action",
+        url:projectPath+"/gateway/registerGatewayInfo.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
             "ownerPhoneNumber":ownerPhoneNumber,
@@ -34,7 +36,7 @@ function registerGateway() {
         },
         dataType:'json',
         success:function(data,status,xhr){
-            alert('Action-addGateway ajax-result : '+data);
+            // alert('Action-addGateway ajax-result : '+data);
             $.toast('操作成功,正在返回上一页...',1500);
             window.setTimeout("refreshPage()",2000);
         },

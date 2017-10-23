@@ -167,7 +167,7 @@
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
-                            <div class="item-title" id="link_addAuth">
+                            <div class="item-title" id="link_addAuthById">
                                 <img class="auto-zoom-1" src="resources/img/user_authorize.png" alt="用户授权"/>
                                 增加授权用户
                             </div>
@@ -195,7 +195,7 @@
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
-                            <div class="item-title">
+                            <div class="item-title" id="link_addAuthByPwd">
                                 <img class="auto-zoom-1" src="resources/img/password_set.png" alt="门锁密码"/>
                                 门锁密码设置
                             </div>
@@ -205,6 +205,34 @@
                 </ul>
             </div>
             <div class="content-block-title">已授权用户</div>
+            <div class="list-block">
+                <ul id="UL_authInfo">
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">姓名</div>
+                            <div class="item-after">李克用</div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">身份证号码</div>
+                            <div class="item-after">340987993883</div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">授权起始时间</div>
+                            <div class="item-after">2017-11-15 09:01:20</div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">授权结束时间</div>
+                            <div class="item-after">2017-11-16 09:01:20</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -212,12 +240,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/lock_manage.js?ver=3'></script>
-<!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
-<script>
-    $(function(){
-        $.init();
-    });
-</script>
+<script type='text/javascript' src='resources/js/lock_manage.js?ver=4'></script>
 </body>
 </html>

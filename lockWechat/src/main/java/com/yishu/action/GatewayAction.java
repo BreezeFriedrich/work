@@ -162,6 +162,8 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String getVerificationCode(){
-        return HttpUtil.httpToGateway(url);
+        String result=HttpUtil.httpToGateway(url);
+        jsonResult=result.substring(result.indexOf("<h1>")+4,result.indexOf("</h1>"));
+        return "json";
     }
 }

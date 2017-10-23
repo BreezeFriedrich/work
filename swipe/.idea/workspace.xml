@@ -2,34 +2,98 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="swipe:war exploded" />
+      <artifact name="swipe" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250ff45f-6a83-4d00-8bbd-e9c9fed663c8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_addGateway.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_addLock.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_registerGateway.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_addGateway.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_addLock.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_registerGateway.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../wechatoa/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/DeviceAction.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/DeviceAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/resources/properties/wechat.properties" afterPath="$PROJECT_DIR$/../lockWechat/src/main/resources/properties/wechat.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-device.xml" afterPath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-device.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-gateway.xml" afterPath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-gateway.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-lock.xml" afterPath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-lock.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-unlock.xml" afterPath="$PROJECT_DIR$/../lockWechat/src/main/resources/struts/struts-unlock.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_manage.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_manage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_property.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_property.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/rep/date-picker" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/rep/date-picker.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/rep/picker.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/swipe_war_exploded.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/artifacts/swipe.war" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/aspect/Aspect.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/DatabaseController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/DispatcherController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/ModuleStatusController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/SwipeRecordController$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/controller/SwipeRecordController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/model/DeviceStatus.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/model/SwipeRecord.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/model/SwipeRecordStrategy.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/ModuleService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/SwipeRecordService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/ModuleServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/ModuleServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/service/impl/SwipeRecordServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/cache/BaseCacheService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/cache/UserServiceAspect.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/ResourceDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/RoleDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/UserDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/ResourceDaoImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/ResourceDaoImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/RoleDaoImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/RoleDaoImpl$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/RoleDaoImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/UserDaoImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/UserDaoImpl$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/UserDaoImpl$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/UserDaoImpl$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/UserDaoImpl$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/dao/impl/UserDaoImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/filter/ResourceCheckFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/kit/ShiroKit.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/Resource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/Role.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/RoleResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/User.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/model/UserRole.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/permission/UrlPermission.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/permission/UrlPermissionResolver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/realm/MyRealm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/IResourceService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/IRoleService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/IUserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/impl/ResourceService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/impl/RoleService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/service/impl/UserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/InitServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/ResourceController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/RoleController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/ShiroLoginController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/shiro/web/UserController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/util/HttpUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/util/JsonUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/yishu/util/PageUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/db.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ehcache.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mappers/ResourceMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mappers/RoleMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mappers/UserMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-dao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-service.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-shiro.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spring/spring-web.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/spring-mybatis.xml" afterPath="$PROJECT_DIR$/../SwipeDataServer/out/production/SwipeDataServer/spring-mybatis.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/GatewayAction.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/GatewayAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/util/HttpUtil.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/util/HttpUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_addGateway.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_addGateway.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_registerGateway.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/gateway/gateway_registerGateway.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_manage.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_manage.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_property.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_property.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/main.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_manage.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_manage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_property.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_property.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/unlock/unlock_authById.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/unlock/unlock_authById.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_addGateway.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_addGateway.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_registerGateway.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/gateway_registerGateway.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/lock_manage.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/lock_manage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/lock_property.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/lock_property.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/main.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/unlock_authById.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/unlock_authById.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/util/date.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/util/date.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,21 +120,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="spring-shiro.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="spring-shiro.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-shiro.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="60" lean-forward="false" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
+            <state relative-caret-position="425">
+              <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -79,7 +143,7 @@
       <file leaf-file-name="spring-web.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
+            <state relative-caret-position="391">
               <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
               <folding />
             </state>
@@ -250,9 +314,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="412" />
-    <option name="y" value="55" />
-    <option name="width" value="1083" />
+    <option name="x" value="153" />
+    <option name="y" value="66" />
+    <option name="width" value="1217" />
     <option name="height" value="761" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -273,9 +337,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -397,6 +458,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -898,17 +962,17 @@
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="swipe:war exploded">
+        <artifact name="swipe">
           <settings>
-            <option name="CONTEXT_PATH" value="" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="Unnamed_swipe_2" />
       </server-settings>
-      <predefined_log_file id="Tomcat" enabled="false" />
-      <predefined_log_file id="Tomcat Catalina" enabled="false" />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
       <predefined_log_file id="Tomcat Manager" enabled="false" />
       <predefined_log_file id="Tomcat Host Manager" enabled="false" />
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
@@ -963,7 +1027,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="swipe:war exploded" />
+          <artifact name="swipe" />
         </option>
       </method>
     </configuration>
@@ -1082,6 +1146,7 @@
       <workItem from="1506562305937" duration="617000" />
       <workItem from="1507882787107" duration="3504000" />
       <workItem from="1508320201692" duration="1454000" />
+      <workItem from="1508755291380" duration="1182000" />
     </task>
     <task id="LOCAL-00001" summary="2017.06.01">
       <created>1496314858706</created>
@@ -1150,7 +1215,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="727660000" />
+    <option name="totallyTimeSpent" value="728842000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1163,26 +1228,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.03380282" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1943662" sideWeight="0.507732" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28732395" sideWeight="0.24548969" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21830986" sideWeight="0.49226806" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32816902" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22164948" sideWeight="0.69573283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22487113" sideWeight="0.69573283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20244215" sideWeight="0.30426717" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20244215" sideWeight="0.3031359" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43521127" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1190,12 +1257,9 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43521127" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.03380282" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17605634" sideWeight="0.49226806" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26619717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1333,13 +1397,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/kit/ShiroKit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/database/clearData.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1482,13 +1539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="40" column="26" lean-forward="false" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/shiro/web/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -1514,13 +1564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="33" column="48" lean-forward="false" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -1654,14 +1697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-shiro.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="60" lean-forward="false" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yishu/controller/DispatcherController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1672,16 +1707,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="391">
           <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/artifacts/swipe_war_exploded/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="289">
+          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1400">
+          <caret line="97" column="18" lean-forward="true" selection-start-line="97" selection-start-column="18" selection-end-line="97" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-shiro.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1692,7 +1759,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>swipe</last-edited>
+          <last-edited>swipe:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

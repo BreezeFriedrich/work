@@ -102,8 +102,9 @@
                 </ul>
             </div>
             <div class="content-block" id="getopCode">
-                <a href="javascript:void(0);" onclick="getGatewayIp()" class="button button-big button-fill button-success">获取网关数据IP地址</a>
+                <a href="javascript:void(0);" onclick="addGateway()" class="button button-big button-fill button-success">添加网关</a>
             </div>
+            <!--
             <div class="content-block" id="div_iframe">
                 <div class="content-block-title">网关内网ip</div>
                 <div class="card">
@@ -114,6 +115,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </div>
 </div>
@@ -122,7 +124,7 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=18' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=24' charset='utf-8'></script>
 <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
 <script>
     $(function(){

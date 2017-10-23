@@ -94,7 +94,7 @@
                     </li>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-email"></i></div>
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">门锁地址</div>
                                 <div class="item-input">
@@ -105,7 +105,7 @@
                     </li>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">门锁备注</div>
                                 <div class="item-input">

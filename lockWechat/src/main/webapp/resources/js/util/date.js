@@ -4,10 +4,10 @@
 function MonthAndDay(){
 	var temp = new Date();
 	var year=temp.getFullYear();
-	var mouth=temp.getMonth()+1;
+	var month=temp.getMonth()+1;
 	var day=temp.getDate();
 	
-	return year+"-"+ mouth+"-"+day;
+	return year+"-"+ month+"-"+day;
 	
 }
 
@@ -18,10 +18,10 @@ function  MouthAndNextDay(){
 	var temp = new Date();
 	temp.setDate(temp.getDate()+1);
 	var year=temp.getFullYear();
-	var mouth=temp.getMonth()+1;
+	var month=temp.getMonth()+1;
 	var day=temp.getDate();
 	
-	return year+"-"+mouth+"-"+day;
+	return year+"-"+month+"-"+day;
 	
 	
 }
