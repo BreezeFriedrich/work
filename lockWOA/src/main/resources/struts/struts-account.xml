@@ -5,13 +5,14 @@
 
 <struts>
     <package name="account" namespace="/account" extends="default">
-        <action name="*" class="com.yishu.action.AccountAction" method="{1}">
-            <interceptor-ref name="myStack" />
+        <action name="login" class="com.yishu.action.AccountAction" method="login">
+            <param name="salt">yishutech</param>
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
-            <result name="login">/jsp/{1}.jsp</result>
+            <result name="success">/WEB-INF/jsp/main.jsp</result>
+            <result name="login">/jsp/login.jsp</result>
         </action>
     </package>
 </struts>

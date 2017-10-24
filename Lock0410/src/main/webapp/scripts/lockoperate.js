@@ -7,15 +7,16 @@ $(function(){
 	}else{
 		ownerPhoneNumber="18255683932"
 	}
+    $.ajax({
+        url:'lockoperate/findDeviceTree.do',
+        type:'POST',
+        data:{ownerPhoneNumber:'18255683932'},
+        dataType: "json",
+        success: function(data){
+            loadCombotree(data);
+        }
+    });
 });
-//function loadCombotree(){
-//	$('#lockoperate_combotree').combotree({
-//		url:'lockoperate/findDeviceTree.do?ownerPhoneNumber='+ownerPhoneNumber,
-//	    multiple:true,
-//	    checkbox:true,
-//	    prompt:'按网关门锁查询'
-//	});
-//}
 function loadCombotree(data){
 	$('#lockoperate_combotree').combotree({
 		multiple:true,
@@ -98,3 +99,16 @@ function dateLongFormat(f){
 	var now=y+(m<10?('0'+m):m)+(d<10?('0'+d):d);
 	return now;
 }
+
+//载入遮罩
+function show(){
+    $("#loading").fadeOut("normal", function(){
+        $(this).remove();
+    });
+}
+var delayTime;
+$.parser.onComplete = function(){
+    if(delayTime)
+        clearTimeout(delayTime);
+    delayTime = setTimeout(show,400);
+};

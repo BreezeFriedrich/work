@@ -7,6 +7,9 @@ var unlockData;
 var today;
 var newDate;
 
+$(function () {
+    $.fn.zTree.init($("#tree_device"), setting);
+});
 function treeInit() {
     $.fn.zTree.init($("#tree_device"), setting);
 }

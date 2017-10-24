@@ -21,7 +21,6 @@ $(function () {
 		onClick : function (node) {
 			if (node.attributes) {
 				Open(node.text, node.attributes.url);
-				showDevices();
 			}
 		}
 	});
@@ -38,6 +37,7 @@ $(function () {
 	function Open(text, url) {
 		if ($("#tabs").tabs('exists', text)) {
 			$('#tabs').tabs('select', text);
+			/*
 			$('#tabs').tabs({
 				border:false,
 				onSelect:function(title){
@@ -47,27 +47,15 @@ $(function () {
 					}
 				}
 			});
+			*/
 		} else {
 			$('#tabs').tabs('add', {
 				title : text,
 				closable : true,
-				href :url,
-				cache:true
+                cache:true,
+				// href :url,
+				content:'<iframe scrolling="yes" frameborder="0" src="'+url+'" style="width: 100%;height: 100%;"></iframe>'
 				});
-			if(text==='开锁授权'){
-				// showDevices();
-			}
-			if(text=='查询记录'){
-				$.ajax({
-					url:'lockoperate/findDeviceTree.do',
-					type:'POST',
-					data:{ownerPhoneNumber:'18255683932'},
-					dataType: "json",
-					success: function(data){
-						loadCombotree(data);
-					}
-				})
-			}
 		}
 	}
 	
@@ -96,7 +84,7 @@ $(function () {
 	document.getElementById("loginStatus").style.cssText="line-height:15px;font-size:14px;color:#7f93ad";
 	//安全退出
 	document.getElementById("safetylogout").onclick=function(){
-		clearCookie();
+		// clearCookie();
 		window.location.href="login.jsp";
 	};
 });
@@ -141,3 +129,16 @@ function getNowFormat() {
             + seperator2 + date.getSeconds();
     return currentdate;
 }
+
+//载入遮罩
+function show(){
+    $("#loading").fadeOut("normal", function(){
+        $(this).remove();
+    });
+}
+var delayTime;
+$.parser.onComplete = function(){
+    if(delayTime)
+        clearTimeout(delayTime);
+    delayTime = setTimeout(show,500);
+};

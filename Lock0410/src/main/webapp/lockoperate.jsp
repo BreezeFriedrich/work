@@ -12,24 +12,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
+
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css"/>
+
+	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/UserManage.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/deviceManage.css"/>
+	<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="scripts/cookie_util.js"></script>
+	<script type="text/javascript" src="scripts/lockoperate.js?ver=103"></script>
   </head>
   
 	<body>
-		<div title="DataGrid" style="padding:0px ;width:1400px;height:567px;">
+		<div id="loading" style="position: absolute; z-index: 1000; top: 0px; left: 0px; width: 100%; height: 100%; background: #ffffff; text-align: center; padding-top: 20%;"></div>
+
+		<div id="dg" title="DataGrid" style="padding:0px ;margin:0px;width:100%;height:515px;">
 			<table class="easyui-datagrid" id="lockoperateDg" data-options="singleSelect:true,fit:true,fitColumns:true,rownumbers:'true',loadMsg:'正在使用洪荒之力。。。',showFooter:'true',toolbar:'#lockoperateTb'," >
 				<thead frozen="true">
 					<tr>
-						<th data-options="field:'lockCode'" width="160" sortable="true">lockCode</th>
-						<th data-options="field:'gatewayCode'" width="160">gatewayCode</th>
+						<th data-options="field:'lockCode'" width="140" sortable="true">lockCode</th>
+						<th data-options="field:'gatewayCode'" width="130">gatewayCode</th>
 						<th data-options="field:'openMode',align:'center'" width="70" sortable="true">openMode</th>
-						<th data-options="field:'timetag',align:'center'" width="70" sortable="true">timetag</th>
+						<th data-options="field:'timetag',align:'center'" width="160" sortable="true">timetag</th>
 					</tr>
 				</thead>
 				<thead>
 					<tr>
 						<th data-options="field:'cardNumb'" width="80" sortable="true">cardNumb</th>
-						<th data-options="field:'name'" width="80">name</th>
-						<th data-options="field:'password',align:'left'" width="80">password</th>
+						<th data-options="field:'name'" width="60">name</th>
+						<th data-options="field:'password',align:'left'" width="60">password</th>
 					</tr>
 				</thead>
 			</table>
@@ -46,9 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<!-- <div id="lockoperatePag" style="background:#efefef;border:1px solid #ccc;"></div> -->
 		</div>
-		<div class="easyui-panel" style="width:1400px">
-				<div id="pagi" class="easyui-pagination" data-options="layout:['list','sep','first','prev','links','next','last','sep','refresh']">
-				</div>
+		<div class="easyui-panel" style="width:100%">
+			<div id="pagi" class="easyui-pagination" data-options="layout:['list','sep','first','prev','links','next','last','sep','refresh']"></div>
 		</div>
 	</body>
 </html>

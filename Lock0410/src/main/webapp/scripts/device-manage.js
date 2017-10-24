@@ -12,8 +12,8 @@ $(function(){
     }else{
         ownerPhoneNumber="18255683932"
     }
-	// validOwnerPhoneNumber();
 	showDevices();
+
 });
 function showDevices(){
 	var jsonResult=null;
@@ -433,3 +433,16 @@ $.extend($.fn.validatebox.defaults.rules, {
         message : '输入值不能为空和包含其他非法字符'
     }
 });
+
+//载入遮罩
+function show(){
+    $("#loading").fadeOut("normal", function(){
+        $(this).remove();
+    });
+}
+var delayTime;
+$.parser.onComplete = function(){
+    if(delayTime)
+        clearTimeout(delayTime);
+    delayTime = setTimeout(show,400);
+};

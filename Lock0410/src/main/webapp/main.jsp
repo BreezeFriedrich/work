@@ -1,8 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,32 +12,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
 		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
 		<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css"/>
-		<%--<link rel="stylesheet" type="text/css" href="zTree/css/metroStyle/metroStyle.css"/>--%>
-		<%--<link rel="stylesheet" type="text/css" href="zTree/css/zTreeStyle/zTreeStyle.css"/>--%>
+
 		<link rel="stylesheet" type="text/css" href="styles/main.css"/>
 		<link rel="stylesheet" type="text/css" href="styles/UserManage.css"/>
 		<link rel="stylesheet" type="text/css" href="styles/deviceManage.css"/>
 		<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
-		<%--<script type="text/javascript" src="zTree/js/jquery-1.4.4.min.js"></script>--%>
-		<%--<script type="text/javascript" src="easyui/jquery.min.js"></script>--%>
 		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 		<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
-		<%--<script type="text/javascript" src="zTree/js/jquery.ztree.core.min.js"></script>--%>
-		<%--<script type="text/javascript" src="zTree/js/jquery.ztree.excheck.min.js"></script>--%>
-		<%--<script type="text/javascript" src="zTree/js/jquery.ztree.exedit.min.js"></script>--%>
-		<%--<script type="text/javascript" src="zTree/js/jquery.ztree.exhide.min.js"></script>--%>
 		<script type="text/javascript" src="scripts/cookie_util.js"></script>
-		<%--<script type="text/javascript" src="scripts/bindEvent_util.js?ver=1"></script>--%>
-		<script type="text/javascript" src="scripts/main.js?ver=2"></script>
-		<script type="text/javascript" src="scripts/lockoperate.js?ver=2"></script>
-		<script type="text/javascript" src="scripts/device-manage.js?ver=6"></script>
-		<%--<script type="text/javascript" src="bootstrap-3.3.0/js/bootstrap.min.js"></script>--%>
+		<script type="text/javascript" src="scripts/main.js?ver=104"></script>
+		<script type="text/javascript" src="scripts/lockoperate.js?ver=101"></script>
+		<script type="text/javascript" src="scripts/device-manage.js?ver=103"></script>
+		<%--
+		<link rel="stylesheet" type="text/css" href="zTree/css/metroStyle/metroStyle.css"/>
+		<link rel="stylesheet" type="text/css" href="zTree/css/zTreeStyle/zTreeStyle.css"/>
+		<script type="text/javascript" src="zTree/js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="zTree/js/jquery.ztree.core.min.js"></script>
+		<script type="text/javascript" src="zTree/js/jquery.ztree.excheck.min.js"></script>
+		<script type="text/javascript" src="zTree/js/jquery.ztree.exedit.min.js"></script>
+		<script type="text/javascript" src="zTree/js/jquery.ztree.exhide.min.js"></script>
+		--%>
     </head>
 	
 	<body class="easyui-layout" style="min-width:900px;">
-		<div id='Loading' style="position:absolute;top: 50%; left: 50%;margin-left: -150px;margin-top: -150px;width:100%;height:100%;">
-			<image src='styles/images/loading.svg'/>
-		</div>
+		<div id="loading" style="position: absolute; z-index: 1000; top: 0px; left: 0px; width: 100%; height: 100%; background: #ffffff; text-align: center; padding-top: 20%;"></div>
+
 		<div data-options="region:'north',border:false" style="height:60px;background:#95b8e7;padding:10px">
             <div id="pagetitle" style="display:inline-block;float:left;width:238px;height:34px;position:absolute;top:50%;left:50%;margin-left:-118px;margin-top:-17px;">漫行智能锁管理系统</div>
             <div class="header-menu" style="float:right;display:inline-block;">

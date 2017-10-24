@@ -8,13 +8,28 @@
 <html>
   <head>
 	<meta charset="utf-8">
-	<title>My JSP 'deviceManage.jsp' starting page</title>
+	<title>设备管理</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">	
+	<meta http-equiv="expires" content="0">
+
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css"/>
+
+	<link rel="stylesheet" type="text/css" href="styles/main.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/UserManage.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/deviceManage.css"/>
+	<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="scripts/cookie_util.js"></script>
+	<script type="text/javascript" src="scripts/device-manage.js?ver=103"></script>
   </head>
   
   <body>
+	<div id="loading" style="position: absolute; z-index: 1000; top: 0px; left: 0px; width: 100%; height: 100%; background: #ffffff; text-align: center; padding-top: 20%;"></div>
+
 	<ul id='devices'></ul>
 	
 	<div id="dd" class="easyui-dialog" style="padding:0px;width:829px;height:500px;border:5px #95b8e7" title="开锁授权" iconCls="icon-ok" buttons="#dlg-buttons" closed="true">
@@ -93,9 +108,6 @@
 	 
 	<div id="dlg-buttons">
 		<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:closeDialog()">退出</a>
-	</div>
-	<div style="width:200px;height:70px;zoom:1;position:fixed;top:117px;left:44%;color: #acf3e3;opacity:0.9;border:3px solid #b2cef3;border-radius:3px;background-color:#c4d8f3;">
-		<input type="image" id='refresh' src="styles/images/refresh.png" style="margin-left:68px;" onclick="showDevices()"/>
 	</div>
   </body>
 </html>

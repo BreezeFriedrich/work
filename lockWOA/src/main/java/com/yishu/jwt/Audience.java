@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 @Component("audience")
 @Configuration
-@PropertySource(value = "classpath:jwt.properties",ignoreResourceNotFound = false)
+@PropertySource(value = "classpath:jwt.properties",ignoreResourceNotFound = ture)
 public class Audience {
     //注册到相应的环境(jdk\spring\servlet)对象env中.可用env.getProperty("key")获取.
 //    @Autowired
 //    Environment env;
 
-    @Value("${audience.clientId}")
+    @Value("${audience.clientId:dtnsge}")
     private String clientId;
 
     @Value("${audience.base64Secret}")

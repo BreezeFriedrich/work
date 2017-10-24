@@ -36,6 +36,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
 
 
     public String login (LoginPara loginPara) {
+        System.out.println("AccountAction!login.do");
         ResultMsg resultMsg=getJwtAccessToken(loginPara);
         if (0==resultMsg.getErrcode()) {
             session.put("jwtAccessToken",resultMsg.getJwtAccessToken());
