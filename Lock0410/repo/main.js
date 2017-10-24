@@ -10,7 +10,8 @@
 		text : "查询记录",
 		attributes : {
 		url : "lockoperate.jsp"
-		}
+		},
+//		iconCls:"styles/images/querryDatagrid.png",
 	}];
 
 $(function () {
@@ -21,7 +22,7 @@ $(function () {
 		onClick : function (node) {
 			if (node.attributes) {
 				Open(node.text, node.attributes.url);
-				showDevices();
+				// treeInit();
 			}
 		}
 	});
@@ -42,8 +43,8 @@ $(function () {
 				border:false,
 				onSelect:function(title){
 					if(text=='开锁授权'){
-						validOwnerPhoneNumber();
-						showDevices();
+//						alert(text+' is selected');
+// 						showDevices();
 					}
 				}
 			});
@@ -57,6 +58,7 @@ $(function () {
 			if(text==='开锁授权'){
 				// showDevices();
 			}
+//!解决问题：tabs-open即点击查询菜单而打开详情页面后，希望用combotree加载远程网关和门锁信息时携带参数ownerPhoneNumber，而用JSP初始化combotree和js初始化combotree都不能生效
 			if(text=='查询记录'){
 				$.ajax({
 					url:'lockoperate/findDeviceTree.do',
@@ -67,6 +69,11 @@ $(function () {
 						loadCombotree(data);
 					}
 				})
+/*
+				//2017-03-23.让main.js等待lockoperate.js中的loadCombotree()先运行，main.js等待lockoperate.js先加载
+					//——————>>！！第一次服务端访问客户端该combotree的请求不生效，之后生效。所以摒弃这种方式，改由ajax请求数据，再用combotree的loadData()加载ajax获取的data.
+//				window.setTimeout("loadCombotree();$.parser.parse($('#lockoperate_combotree').parent())", 30);
+*/
 			}
 		}
 	}
@@ -97,6 +104,7 @@ $(function () {
 	//安全退出
 	document.getElementById("safetylogout").onclick=function(){
 		clearCookie();
+//		window.history.forward(1);
 		window.location.href="login.jsp";
 	};
 });

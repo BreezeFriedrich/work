@@ -7,12 +7,7 @@ var unlockData;
 var today;
 var newDate;
 $(function(){
-    if(getCookie('ownerPhoneNumber')){
-        ownerPhoneNumber=getCookie('ownerPhoneNumber')
-    }else{
-        ownerPhoneNumber="18255683932"
-    }
-	// validOwnerPhoneNumber();
+	validOwnerPhoneNumber();
 	showDevices();
 });
 function showDevices(){
@@ -30,30 +25,36 @@ function showDevices(){
 			}
 		},
 		error:function(XMLHttpRequest, textStatus, errorThrown) {
-			$.ajax({
-				type:"POST",
-				url:"deviceManage/getDeviceInfo.do",
-				data:{"ownerPhoneNumber":ownerPhoneNumber},
-				dataType:"json",
-				async:false,
-				success:function(jsonData){
-					jsonResult=eval(jsonData);
-					if(jsonResult.result==0){
-						data=jsonResult.devices;
+				$.ajax({
+					type:"POST",
+					url:"deviceManage/getDeviceInfo.do",
+					data:{"ownerPhoneNumber":ownerPhoneNumber},
+					dataType:"json",
+					async:false,
+					success:function(jsonData){
+						jsonResult=eval(jsonData);
+						if(jsonResult.result==0){
+							data=jsonResult.devices;
+						}
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrown){
+						alert(XMLHttpRequest.status);
+						 alert(XMLHttpRequest.readyState);
+						 alert(textStatus);
 					}
-				},
-				error:function(XMLHttpRequest, textStatus, errorThrown){
-					alert('操作失败');
-				}
-			})
+				})
 		}
 	});
 	var devices= document.getElementById("devices");
 	for(i = 0; i < data.length; i++){
 		gateway=document.createElement("li");
+//		gateway.style.cssText="margin-bottom:50px";
 		gateway.style.cssText="list-style:inside url('styles/images/gateway.png');width:300px;float:left;border:2px #95b8e7;";
 		lockUl=document.createElement("ul");
 		gateway.innerText=data[i].gatewayName;
+//         gateway.setAttribute("","");
+//         gateway.value = data[i].id;
+//         gateway.text = data[i].text;
 		gateway.appendChild(lockUl);
 		j=0;
 		while(j<data[i].lockLists.length){
@@ -77,6 +78,41 @@ function showDevices(){
 function open(){
 	var locks=new Array();
 	locks=document.getElementsByTagName("p");
+	/*easyui-dialog中不用datagrid,而是手动innerHTML。
+	for(i=0;i<locks.length-2;i++){
+	var theLock=locks[i];
+		alert('theLock:'+theLock);alert('theLock.innerText:'+theLock.innerText);
+		locks[i].setAttribute('onclick','onClick');
+		locks[i].onClick=function(){
+			alert('?'+locks[i].innerText);
+//			document.getElementById("LockInfo").setAttribute("display", "block");
+			document.getElementById("LockInfo").innerText='开锁身份证'+'开锁密码';
+			$('#dd').dialog("open");
+		}
+	};
+	for(var k=0;k<locks.length-2;k++){
+		(function(k){
+			locks[k].onclick=function(){
+            	gatewayNode=locks[k].parentNode.parentNode;
+            	lockTxt=locks[k].innerText.split(',');
+            	alert('lockName:'+lockTxt[0]+';'+'lockCode:'+lockTxt[1]);
+            	for(i=0;i<data.length;i++){
+            		lockList=data[i].lockLists;
+            		for(j=0;j<lockList.length;j++){
+            			if(lockList[j].lockName==lockTxt[0]&&lockList[j].lockCode==lockTxt[1]){
+            				theGateway=data[i];theLock=lockList[j];
+            				alert('find!'+theGateway.gatewayName+';'+theLock.lockName);
+            			}
+            		}
+            	};
+            	unlockData=getAuthInfo(theGateway.gatewayCode,theLock.lockCode,unlockData);
+            	document.getElementById("LockInfo").innerHTML="<p>网关: "+theGateway.gatewayName+","+theGateway.gatewayCode+"<br/>门锁: "+theLock.lockName+","+theLock.lockCode+"<br/>"+"<br/>"+unlockData+"</p>";
+            	
+            	$('#dd').dialog("open");
+            };
+		})(k)
+    }
+*/	
 	for(var k=0;k<locks.length;k++){
 		(function(k){//k与作用域。
 			locks[k].onclick=function(){
@@ -92,14 +128,114 @@ function open(){
 							addCookie("lockLocation",theLock.lockLocation,0.1);
 						}
 					}
-				}
+				};
+//            	alert('lockCode:'+getCookie('lockCode')+";"+'gatewayCode:'+getCookie('gatewayCode')+";"+'lockLocation:'+getCookie('lockLocation'));
+//            	unlockData=getAuthInfo(theGateway.gatewayCode,theLock.lockCode,unlockData);
+//            	document.getElementById("LockInfo").innerHTML="<p>网关: "+theGateway.gatewayName+","+theGateway.gatewayCode+"<br/>门锁: "+theLock.lockName+","+theLock.lockCode+"<br/>"+"<br/>"+unlockData+"</p>";
 				initAuth();
 			};
 		})(k)
 	}
 }
 
+/*
+function getAuthInfo(gatewayCode,lockCode,unlockData){
+//	gatewayCode=$('#gatewayCodeTxt').textbox('getValue');
+//	lockCode=$('#lockCodeTxt').textbox('getValue');
+	$.ajax({
+		type:"POST",
+		url:"deviceManage/getCertiAuthInfo.do",
+		data: {"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode,"lockCode":lockCode},
+		dataType:"json",
+		async:false,
+		success:function(info){
+//			alert('js-info:'+info);
+			CertiUnlockdata=eval(info);
+			alert('CertiUnlockdata:'+CertiUnlockdata.userList.length+','+CertiUnlockdata.userList[0].serviceNumb);
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 alert(XMLHttpRequest.status);
+			 alert(XMLHttpRequest.readyState);
+			 alert(textStatus);
+		}
+	});
+	$.ajax({
+		type:"POST",
+		url:"deviceManage/getPwdAuthInfo.do",
+		data: {"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode,"lockCode":lockCode},
+		dataType:"json",
+		async:false,
+		success:function(info){
+			PwdUnlockdata=eval(info);
+			alert('PwdUnlockdata:'+PwdUnlockdata.passwordList.length+','+PwdUnlockdata.passwordList[0].password);
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 alert(XMLHttpRequest.status);
+			 alert(XMLHttpRequest.readyState);
+			 alert(textStatus);
+		}
+	});
+	unlockData='';
+	certis=CertiUnlockdata.userList;
+	for(i=0;i<CertiUnlockdata.userList.length;i++){
+		unlockData=unlockData.concat('身份证开锁账户 ',i+1,':<br/>','姓名 ',certis[i].name,';身份证号码 ',certis[i].cardNumb,';起始时间 ',certis[i].startTime,':截止时间 ',certis[i].endTime,'<br/>');
+	};
+	pwds=PwdUnlockdata.passwordList;
+	for(i=0;i<PwdUnlockdata.passwordList.length;i++){
+		unlockData=unlockData.concat('密码开锁账户 ',i+1,':<br/>','密码 ',pwds[i].password,';起始时间 ',pwds[i].startTime,':截止时间 ',pwds[i].endTime,'<br/>');
+	};
+	alert('unlockData:'+unlockData);
+	return unlockData;
+}
+*/
+/*
+function author(){
+	alert('author');
+	getQueryParam();
+	if($('#LockAuthName').textbox('getValue')&&$('#CertAuthTxt').val()){
+		name=$('#LockAuthName').textbox('getValue');
+		cardNumb=$('#CertAuthTxt').val();
+		alert('js-name:'+name+';'+'js-cardNumb:'+cardNumb);
+		$.ajax({
+			type:"POST",
+			url:"deviceManage/doCertiAuth.do",
+			data: {"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":theGateway.gatewayCode,"lockCode":theLock.lockCode,"name":name,"cardNumb":cardNumb,"startTime":startTime,"endTime":endTime},
+			dataType:"json",
+			async:false,
+			success:function(result){
+				alert('certiAuth-result:'+result);
+				$('#cancelAuthdg').datagrid('reload');
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				 alert(XMLHttpRequest.status);
+				 alert(XMLHttpRequest.readyState);
+				 alert(textStatus);
+			}
+		});
+	}else if($('#PwdAuthTxt').textbox('getValue')){
+		password=$('#PwdAuthTxt').textbox('getValue');
+		alert('js-password:'+password);
+		$.ajax({
+			type:"POST",
+			url:"deviceManage/doPwdAuth.do",
+			data: {"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":theGateway.gatewayCode,"lockCode":theLock.lockCode,"password":password,"startTime":startTime,"endTime":endTime},
+			dataType:"json",
+			async:false,
+			success:function(result){
+				alert('PwdAuth-result:'+result);
+				$('#cancelAuthdg').datagrid('reload');
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				 alert(XMLHttpRequest.status);
+				 alert(XMLHttpRequest.readyState);
+				 alert(textStatus);
+			}
+		});
+	}	
+}
+*/
 function certiUnlockAuthBt(){
+//	var el = document.getElementById("unlockAuthBt");	el.parentNode.removeChild(el);
 	$("#unlockAuthBt").css("display","none");
 	$("#certiUnlockAuth").css("display","block");
 	$('#certiAuthDialogST').datetimebox('setValue',dateFormat(today));
@@ -126,6 +262,7 @@ function certiUnlockAuthor(){
 			async:false,
 			success:function(result){
 				alert('操作成功');
+				// alert('js-certiAuthor-result:'+result);
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -148,10 +285,11 @@ function pwdUnlockAuthor(){
 			async:false,
 			success:function(result){
 				alert('操作成功');
+				// alert('js-pwdAuthor-result:'+result);
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert('操作失败');
+                alert('操作失败');
 			}
 		});
 	}else{
@@ -185,10 +323,11 @@ function cancelAuth(){
 			async:false,
 			success:function(result){
 				alert('操作成功');
+				// alert('CertiCancelAuth-result:'+result);
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert('操作失败');
+                alert('操作失败');
 			}
 		});
 	}else{
@@ -200,10 +339,11 @@ function cancelAuth(){
 			async:false,
 			success:function(result){
 				alert('操作成功');
+				// alert('PwdCancelAuth-result:'+result);
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert('操作失败');
+                alert('操作失败');
 			}
 		});
 	}
@@ -250,7 +390,7 @@ function closeDialog(){
 	$('#PwdAuthTxt').textbox('setValue','');
 	theGateway=0;
 	theLock=0;
-	$('#dd').dialog('close');
+	$('#dd').dialog('close')
 }
 
 //-----------------------------------------------------------------------------------------------------------------依据Regex规则取参数并验证，符合规则则赋值并return true,否则为null并return false.
@@ -366,6 +506,12 @@ function validCardNumb(){
 
 //验证规则---------------------------------------------------------------------------------------------------------------------
 $.extend($.fn.validatebox.defaults.rules, {
+//    lockPwd : {
+//        validator : function(value, param) {
+//            return value == $(param[0]).val();
+//        },
+//        message : '密码格式不正确'
+//    },
     lockPwd : {
         validator : function(value, param) {
             return /^([A-Za-z\d_]{4,11})?$/i.test(trim(value));

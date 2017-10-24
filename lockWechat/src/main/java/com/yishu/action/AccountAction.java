@@ -102,7 +102,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
      *     3.将request body 中 LoginPara.password 做加盐MD5处理: MD5.getMD5(loginPara.getPassword()+user.getSalt());
      *     4.比对 2 和 3 中的password值,若成功则执行 5 ;
      *     5.根据 LoginPara 产生 jwt 认证所需的JwtAccessToken ;
-     * @param loginPara
+//     * @param loginPara
      * @return
      */
 /*
@@ -155,6 +155,10 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         }
     }
 */
+
+    public String wxLogin () {
+        return "main";
+    }
     //********************************************************************************************************
     private JwtAccessToken jwtAccessToken;
     /*jwtAccessToken设置了getXXX，json插件将jwtAccessToken转为json*/

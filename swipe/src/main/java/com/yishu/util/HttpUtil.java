@@ -17,6 +17,7 @@ public class HttpUtil {
 
     private static final String urlStr;
     static{
+        //本地测试 String propertiesPath = "E:\\install\\Apache\\Tomcat 7.0\\appConf\\swipe\\swipe.properties";
 //        String propertiesPath = "/home/qixu/prods/swipe/swipe.properties";
         String propertiesPath = "/usr/local/tomcat/appConf/swipe/swipe.properties";
         InputStream in = null;

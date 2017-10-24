@@ -49,6 +49,11 @@
             <result name="success">/jsp/main.jsp</result>
             <result name="login" type="dispatcher">/jsp/login.jsp</result>
         </action>
+        <action name="wxLogin" class="com.yishu.action.AccountAction" method="wxLogin">
+            <interceptor-ref name="openidStack"/>
+            <result name="main">/jsp/main.jsp</result>
+            <result name="error" type="dispatcher">/jsp/exception.jsp</result>
+        </action>
     </package>
 
 </struts>

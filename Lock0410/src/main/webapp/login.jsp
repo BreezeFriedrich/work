@@ -5,6 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <html>
 <head>
+<base href="<%=basePath%>">
 <meta charset="utf-8">
 <link rel="stylesheet" href="styles/login.css"/>
 <script type="text/javascript" src="easyui/jquery.min.js">

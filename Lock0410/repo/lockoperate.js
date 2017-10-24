@@ -18,9 +18,9 @@ $(function(){
 //}
 function loadCombotree(data){
 	$('#lockoperate_combotree').combotree({
-		multiple:true,
-		checkbox:true,
-		prompt:'按网关门锁查询'
+	    multiple:true,
+	    checkbox:true,
+	    prompt:'按网关门锁查询'
 	});
 	$('#lockoperate_combotree').combotree('loadData',data);
 }
@@ -29,17 +29,17 @@ function doSearch(){
 	var idText=$('#cardNumbText').textbox('getValue');
 	var pwdText=$('#pwdText').textbox('getValue');
 	var nodes = tree.tree('getChecked');
-	var nodesArr=new Array();
+    var nodesArr=new Array();
 	
 	if(nodes.length>0){
-		function getChecked(){
-			for (var i = 0; i < nodes.length; i++) {
-				if (nodes[i].children==null){
-					nodesArr.push(nodes[i]);
-				}
-			}
-			return nodesArr
-		};
+		function getChecked(){	        
+	        for (var i = 0; i < nodes.length; i++) {
+	            if (nodes[i].children==null){
+	            	nodesArr.push(nodes[i]);
+	            };
+	        }
+	        return nodesArr
+	    };
 		$('#lockoperateDg').datagrid({
 			url:'lockoperate/findByNodes.do',
 			method:'post',
@@ -87,7 +87,7 @@ function doPagi(data,varUrl){
 		    $('#lockoperateDg').datagrid('options').url=varUrl;
 		    $('#lockoperateDg').datagrid('options').method='post';
 		    $('#lockoperateDg').datagrid('reload'); //重新加载表格
-		}
+		},
 	})
 }
 function dateLongFormat(f){
@@ -96,5 +96,5 @@ function dateLongFormat(f){
 	var m = date.getMonth()+1;
 	var d = date.getDate();
 	var now=y+(m<10?('0'+m):m)+(d<10?('0'+d):d);
-	return now;
+	return now;	
 }
