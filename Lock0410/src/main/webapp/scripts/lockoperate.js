@@ -5,12 +5,12 @@ $(function(){
 	if(getCookie('ownerPhoneNumber')){
 		ownerPhoneNumber=getCookie('ownerPhoneNumber')
 	}else{
-		ownerPhoneNumber="18255683932"
+		ownerPhoneNumber="13905169824"
 	}
     $.ajax({
         url:'lockoperate/findDeviceTree.do',
         type:'POST',
-        data:{ownerPhoneNumber:'18255683932'},
+        data:{ownerPhoneNumber:'13905169824'},
         dataType: "json",
         success: function(data){
             loadCombotree(data);
@@ -31,7 +31,11 @@ function doSearch(){
 	var pwdText=$('#pwdText').textbox('getValue');
 	var nodes = tree.tree('getChecked');
 	var nodesArr=new Array();
-	
+
+	if(''===$('#startTime').datebox('getValue') || ''===$('#startTime').datebox('getValue')){
+		showMsg('操作失败','必须输入开始时间和结束时间');
+		return null;
+	}
 	if(nodes.length>0){
 		function getChecked(){
 			for (var i = 0; i < nodes.length; i++) {
@@ -96,8 +100,21 @@ function dateLongFormat(f){
 	var y = date.getFullYear();
 	var m = date.getMonth()+1;
 	var d = date.getDate();
-	var now=y+(m<10?('0'+m):m)+(d<10?('0'+d):d);
+	var now=y+''+(m<10?('0'+m):m)+''+(d<10?('0'+d):d);
 	return now;
+}
+
+//easyui 消息弹窗
+function showMsg(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        showType:'fade',
+        style:{
+            right:'',
+            bottom:''
+        }
+    });
 }
 
 //载入遮罩

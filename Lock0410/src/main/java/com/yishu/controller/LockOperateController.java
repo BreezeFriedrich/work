@@ -71,7 +71,7 @@ public class LockOperateController {
 
 /*		
 //公司数据库，拼接Json字串
-		String str=LockOperateUtil.getLockOperate();
+		String str=LockOperateUtil.getUserAllLockOperate();
 		String strJson = null;
 		boolean result=str.contains("\"result\":0");
 		if(result){

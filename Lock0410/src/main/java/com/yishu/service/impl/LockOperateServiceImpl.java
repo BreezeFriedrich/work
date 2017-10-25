@@ -89,11 +89,10 @@ public class LockOperateServiceImpl implements LockOperateService{
 				LockOperateRecord lockOperateRecord=list.get(i);System.out.println("list.get(i).gatewayCode:"+list.get(i).gatewayCode);
 				if(treeNodeId==lockOperateRecord.gatewayCode){
 					newlockOperateJson.rows.add(list.get(i));
-				}else if(Integer.parseInt(treeNodeId)==Integer.parseInt(list.get(i).lockCode)){
-					System.out.println("----------------");
-					System.out.println(Integer.parseInt(treeNodeId)==Integer.parseInt(list.get(i).lockCode));
-					System.out.println("lockOperateRecord.lockCode:"+lockOperateRecord.lockCode);
-					System.out.println("treeNodeId:"+treeNodeId);
+				}else if(treeNodeId.equals(list.get(i).lockCode)){
+//					System.out.println(Integer.parseInt(treeNodeId)==Integer.parseInt(list.get(i).lockCode));
+//					System.out.println("lockOperateRecord.lockCode:"+lockOperateRecord.lockCode);
+//					System.out.println("treeNodeId:"+treeNodeId);
 					newlockOperateJson.rows.add(list.get(i));
 					System.out.println("!!!!!!!!!!!newlockOperateJson.rows.size:"+newlockOperateJson.rows.size());
 				}
@@ -119,11 +118,10 @@ public class LockOperateServiceImpl implements LockOperateService{
 				LockOperateRecord lockOperateRecord=list.get(i);System.out.println("list.get(i).gatewayCode:"+list.get(i).gatewayCode);
 				if(treeNodeId==lockOperateRecord.gatewayCode){
 					newlockOperateJson.rows.add(list.get(i));
-				}else if(Integer.parseInt(treeNodeId)==Integer.parseInt(list.get(i).lockCode)){
-					System.out.println("----------------");
-					System.out.println(Integer.parseInt(treeNodeId)==Integer.parseInt(list.get(i).lockCode));
-					System.out.println("lockOperateRecord.lockCode:"+lockOperateRecord.lockCode);
-					System.out.println("treeNodeId:"+treeNodeId);
+				}else if(treeNodeId.equals(list.get(i).lockCode)){
+//					System.out.println(Integer.parseInt(treeNodeId)==Integer.parseInt(list.get(i).lockCode));
+//					System.out.println("lockOperateRecord.lockCode:"+lockOperateRecord.lockCode);
+//					System.out.println("treeNodeId:"+treeNodeId);
 					newlockOperateJson.rows.add(list.get(i));
 					System.out.println("!!!!!!!!!!!newlockOperateJson.rows.size:"+newlockOperateJson.rows.size());
 				}

@@ -24,7 +24,7 @@
 	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="scripts/cookie_util.js"></script>
-	<script type="text/javascript" src="scripts/device-manage.js?ver=103"></script>
+	<script type="text/javascript" src="scripts/device-manage.js?ver=105"></script>
   </head>
   
   <body>

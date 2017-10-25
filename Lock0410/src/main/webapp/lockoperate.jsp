@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="scripts/cookie_util.js"></script>
-	<script type="text/javascript" src="scripts/lockoperate.js?ver=103"></script>
+	<script type="text/javascript" src="scripts/lockoperate.js?ver=110"></script>
   </head>
   
 	<body>
@@ -50,8 +50,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</table>
 			<div id="lockoperateTb" style="padding:5px;height:auto">
 				<div>
-					Date From: <input id="startTime" class="easyui-datebox" style="width:80px,margin-left:40px" required="true">
-					To: <input id="endTime" class="easyui-datebox" style="width:80px,margin-left:40px" required="required">
+					Date From: <input id="startTime" class="easyui-datebox" style="width:120px;margin-left:40px;" required="true">
+					To: <input id="endTime" class="easyui-datebox" style="width:120px;margin-left:40px;" required="required">
 					<!-- <select id="lockoperate_combotree" class="easyui-combotree" style="width:200px;" data-options="url:'lockoperate/findDeviceTree.do?ownerPhoneNumber=18255683932',multiple:'true',prompt:'网关门锁查询'" checkbox="true"></select> -->
 					<input id="lockoperate_combotree" style="width:200px;">
 					<input id="cardNumbText" class="easyui-textbox" data-options="prompt:'按身份证查询',validType:'cardNumb'" style="width:150px;height:26px">

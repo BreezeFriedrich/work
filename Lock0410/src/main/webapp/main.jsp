@@ -21,8 +21,8 @@
 		<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 		<script type="text/javascript" src="scripts/cookie_util.js"></script>
 		<script type="text/javascript" src="scripts/main.js?ver=104"></script>
-		<script type="text/javascript" src="scripts/lockoperate.js?ver=101"></script>
-		<script type="text/javascript" src="scripts/device-manage.js?ver=103"></script>
+		<%--<script type="text/javascript" src="scripts/lockoperate.js?ver=101"></script>--%>
+		<%--<script type="text/javascript" src="scripts/device-manage.js?ver=103"></script>--%>
 		<%--
 		<link rel="stylesheet" type="text/css" href="zTree/css/metroStyle/metroStyle.css"/>
 		<link rel="stylesheet" type="text/css" href="zTree/css/zTreeStyle/zTreeStyle.css"/>

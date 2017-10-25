@@ -10,7 +10,7 @@ $(function(){
     if(getCookie('ownerPhoneNumber')){
         ownerPhoneNumber=getCookie('ownerPhoneNumber')
     }else{
-        ownerPhoneNumber="18255683932"
+        ownerPhoneNumber="13905169824"
     }
 	showDevices();
 
@@ -125,7 +125,7 @@ function certiUnlockAuthor(){
 			dataType:"json",
 			async:false,
 			success:function(result){
-				alert('操作成功');
+				showMsg('操作成功','已添加身份证开锁授权');
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -133,7 +133,8 @@ function certiUnlockAuthor(){
 			}
 		});
 	}else{
-		$.messager.alert('输入错误','输入信息未通过验证!','error');
+		// $.messager.alert('输入错误','输入信息未通过验证!','error');
+		showMsg('操作失败','输入的信息未通过验证');
 	}
 	destroyParam(true);
 }
@@ -147,7 +148,7 @@ function pwdUnlockAuthor(){
 			dataType:"json",
 			async:false,
 			success:function(result){
-				alert('操作成功');
+				showMsg('操作成功','已添加密码开锁授权');
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -155,7 +156,8 @@ function pwdUnlockAuthor(){
 			}
 		});
 	}else{
-		$.messager.alert('输入错误','输入信息未通过验证!','error');
+		// $.messager.alert('输入错误','输入信息未通过验证!','error');
+		showMsg('操作失败','输入的信息未通过验证');
 	}
 	destroyParam(false);
 }
@@ -184,7 +186,7 @@ function cancelAuth(){
 			dataType:"json",
 			async:false,
 			success:function(result){
-				alert('操作成功');
+				showMsg('操作成功','已取消开锁授权');
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -199,7 +201,7 @@ function cancelAuth(){
 			dataType:"json",
 			async:false,
 			success:function(result){
-				alert('操作成功');
+				showMsg('操作成功','已取消开锁授权');
 				$('#cancelAuthdg').datagrid('reload');
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -433,6 +435,19 @@ $.extend($.fn.validatebox.defaults.rules, {
         message : '输入值不能为空和包含其他非法字符'
     }
 });
+
+//easyui 消息弹窗
+function showMsg(title,msg){
+    $.messager.show({
+        title:title,
+        msg:msg,
+        showType:'fade',
+        style:{
+            right:'',
+            bottom:''
+        }
+    });
+}
 
 //载入遮罩
 function show(){

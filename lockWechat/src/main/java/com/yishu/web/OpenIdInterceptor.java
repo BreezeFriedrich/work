@@ -13,6 +13,7 @@ import com.yishu.util.DataUtil;
 import com.yishu.util.GetOpenid;
 import com.yishu.util.StringUtil;
 import org.apache.struts2.ServletActionContext;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,13 +26,22 @@ import javax.servlet.http.HttpSession;
  * @since JDK1.7
  */
 public class OpenIdInterceptor extends AbstractInterceptor{
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("OpenIdInterceptor");
+
+    public OpenIdInterceptor() {
+        System.out.println(">>>Initialization OpenIdInterceptor......................................");
+    }
+
     @Autowired
     IWechatService wechatService;
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
+
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
-        String url = request.getScheme() + "://" + request.getServerName() + request.getRequestURI();
+        String url= "https://manxing1798.com";
+//        String url = request.getScheme() + "://" + request.getServerName() + request.getRequestURI();
+        System.err.println("网页授权请求发起url: "+url);
         // String actionName =
         // actionInvocation.getInvocationContext().getName();
         String stime = DataUtil.fromDate24H();
@@ -96,11 +106,12 @@ public class OpenIdInterceptor extends AbstractInterceptor{
                         System.out.println("--------------------生成用户3");
                     }
                 } else {
+                    //携带code返回redirect_uri
+                    //网页授权回调域名url写顶级域名即可不要带上wwww等前缀.redirect_uri参数将会自动urlEncode.
                     response.sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6234fc4a502ef625&redirect_uri="
                             + url + "&response_type=code&scope=snsapi_base#wechat_redirect");
                 }
             } else {
-                // 无公众号测试 暂时屏蔽
                 response.sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6234fc4a502ef625&redirect_uri="
                         + url + "&response_type=code&scope=snsapi_base#wechat_redirect");
             }

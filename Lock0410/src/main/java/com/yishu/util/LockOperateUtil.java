@@ -25,10 +25,12 @@ import com.yishu.model.json.ServerTreeNode;
 public class LockOperateUtil {
 
 	//用于findAll.do的json的String操作
-	public static String getLockOperate(){
+	public static String getUserAllLockOperate(String ownerPhoneNumber){
 
 		int sign=26;
-		String ownerPhoneNumber="18255683932";
+		if(null==ownerPhoneNumber||"".equals(ownerPhoneNumber)){
+			ownerPhoneNumber="18255683932";
+		}
 		String startTime="201001010000";
 		String endTime="201801010000";
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
