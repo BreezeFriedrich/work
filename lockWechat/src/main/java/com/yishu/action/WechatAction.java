@@ -22,7 +22,7 @@ import java.util.Map;
  * @since JDK1.7
  */
 public class WechatAction extends BaseAction {
-    private org.slf4j.Logger logger= LoggerFactory.getLogger(this.getClass());
+    private org.slf4j.Logger logger= LoggerFactory.getLogger("WechatAction");
 
     private String signature;// 微信加密签名
     private String timestamp;// 时间戳

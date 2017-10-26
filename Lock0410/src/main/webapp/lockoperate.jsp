@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <meta charset="utf-8">
-    <title>lockoperate.jsp</title>    
+    <title>lockoperate.jsp</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="scripts/cookie_util.js"></script>
 	<script type="text/javascript" src="scripts/lockoperate.js?ver=110"></script>
   </head>
-  
+
 	<body>
 		<div id="loading" style="position: absolute; z-index: 1000; top: 0px; left: 0px; width: 100%; height: 100%; background: #ffffff; text-align: center; padding-top: 20%;"></div>
 

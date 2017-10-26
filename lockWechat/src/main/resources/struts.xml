@@ -53,7 +53,7 @@
                 </interceptor-ref>
             </interceptor-stack>
             <interceptor-stack name="openidStack">
-                <interceptor-ref name="monitoring" />
+                <!--<interceptor-ref name="monitoring" />-->
                 <interceptor-ref name="OpenIdInterceptor"/>
                 <interceptor-ref name="defaultStack">
                     <param name="exception.logEnabled">true</param>

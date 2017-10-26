@@ -204,35 +204,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="content-block-title">已授权用户</div>
-            <div class="list-block">
-                <ul id="UL_authInfo">
-                    <li class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title">姓名</div>
-                            <div class="item-after">李克用</div>
-                        </div>
-                    </li>
-                    <li class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title">身份证号码</div>
-                            <div class="item-after">340987993883</div>
-                        </div>
-                    </li>
-                    <li class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title">授权起始时间</div>
-                            <div class="item-after">2017-11-15 09:01:20</div>
-                        </div>
-                    </li>
-                    <li class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title">授权结束时间</div>
-                            <div class="item-after">2017-11-16 09:01:20</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <div class="list-block" id="div_authInfo"></div>
         </div>
     </div>
 </div>
@@ -240,6 +212,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/lock_manage.js?ver=4'></script>
+<script type='text/javascript' src='resources/js/lock_manage.js?ver=20'></script>
 </body>
 </html>

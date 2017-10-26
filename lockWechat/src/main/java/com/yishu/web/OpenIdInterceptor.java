@@ -48,7 +48,8 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
         String openid = (String) session.getAttribute(IWechatService.OPENID);
-/*
+
+        /*
         if (u_openid == null) {
             if (StringUtil.bIsNotNull(code)) {
                 GetOpenid go = new GetOpenid();
@@ -89,9 +90,13 @@ public class OpenIdInterceptor extends AbstractInterceptor{
 
         if (openid == null) {
             if (StringUtil.bIsNotNull(code)) {
+                logger.error("网页授权code: "+code);
                 GetOpenid go = new GetOpenid();
                 String openId = go.getOpenidByCode(code);
-                if (openId != null && !openId.equals("")) {
+                if (StringUtil.bIsNotNull(openId)) {
+                    logger.error("网页授权openId: "+openId);
+                    session.setAttribute(IWechatService.OPENID, openId);
+                    /*
                     User user = wechatService.findUserByopenid(openId);
                     if (user != null) {
                         // 将登录时间录入
@@ -105,6 +110,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
                         session.setAttribute(IWechatService.OPENID, openId);
                         System.out.println("--------------------生成用户3");
                     }
+                    */
                 } else {
                     //携带code返回redirect_uri
                     //网页授权回调域名url写顶级域名即可不要带上wwww等前缀.redirect_uri参数将会自动urlEncode.

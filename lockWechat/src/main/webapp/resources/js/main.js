@@ -48,11 +48,10 @@ $(function(){
 });
 
 function showDevices(){
-    // alert('json : '+json);
     var UL_gateway=document.createElement('ul');
     UL_gateway.id="UL_gateway";
     document.getElementById('cardList').appendChild(UL_gateway);
-    var UL_gateway=document.getElementById('UL_gateway');
+    // UL_gateway=document.getElementById('UL_gateway');
     var UL_lockList=document.createElement('ul');
     UL_lockList.id="UL_lockList";
     UL_lockList.style.paddingLeft='0';
@@ -67,7 +66,6 @@ function showDevices(){
         while(target !== UL_gateway){
             if(target.getAttribute('class')==='card-content' && target.parentNode.className==='card gateway'){
                 //href内联页面,网关操作
-                // alert('card-content');
                 //页面跳转并传递参数
                 var gatewayCode=target.parentNode.id;
                 url="jsp/gateway/gateway_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode;
@@ -104,10 +102,6 @@ function showDevices(){
                 }
                 break;
             }
-//          if(target.tagName.toLowerCase() == 'li'){
-//              console.log('li click~');
-//              break;
-//          }
             target = target.parentNode;
         }
     })

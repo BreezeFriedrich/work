@@ -9,6 +9,7 @@ var ownerPhoneNumber;
 var specificGatewayCode;
 var specificLockCode;
 var json_theLock;
+var ul_authInfo;
 
 $(function(){
     // FastClick.attach(document.body);
@@ -36,13 +37,24 @@ $(function(){
     document.getElementsByClassName('property')[4].innerText=specificGatewayCode;
     // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
 
-    //添加关联门锁
-    var div_addAuth=document.getElementById("link_addAuthById");
-    div_addAuth.addEventListener('click',function(ev){
+    //添加开锁身份证授权
+    var div_addAuthById=document.getElementById("link_addAuthById");
+    div_addAuthById.addEventListener('click',function(ev){
         // var target = ev.target || window.event.srcElement;
         url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
         window.location.href=encodeURI(url);
     });
+
+    //添加开锁密码授权
+    var div_addAuthById=document.getElementById("link_addAuthByPwd");
+    div_addAuthById.addEventListener('click',function(ev){
+        // var target = ev.target || window.event.srcElement;
+        url="jsp/unlock/unlock_authByPwd.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
+        window.location.href=encodeURI(url);
+    });
+
+    //取消开锁授权
+    prohibitUnlockAuth();
 
     $.init();
 });
@@ -54,46 +66,105 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
+function prohibitUnlockAuth() {
 
+    var div_authInfo=document.getElementById('div_authInfo');
+    div_authInfo.innerHTML = getAuthInfo();
+
+    div_authInfo.addEventListener('click',function (ev) {
+        var target = ev.target || window.event.srcElement;
+        while(target !== div_authInfo){
+            if(target.getAttribute('class')==='ul_authById'){
+                $.confirm('删除该项开锁授权',
+                    function () {
+                        $.ajax({
+                            type:"POST",
+                            url:projectPath+"/unlock/prohibitUnlockById.action",
+                            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+                            data:{"ownerPhoneNumber":ownerPhoneNumber,"lockCode":specificLockCode,"cardNumb":target.getAttribute('id').split('-')[0],"serviceNumb":target.getAttribute('id').split('-')[1]},
+                            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+
+                            success:function(data,status,xhr){
+                                $.toast('操作成功,正在刷新页面...',1500);
+                                window.setTimeout("window.location.reload();",2000);
+                            },
+                            error:function(xhr,errorType,error){
+                                console.log('错误');
+                            }
+                        });
+                });
+                break;
+            }
+            if(target.getAttribute('class')==='ul_authByPwd'){
+                $.confirm('删除该项开锁授权',
+                    function () {
+                        $.ajax({
+                            type:"POST",
+                            url:projectPath+"/unlock/prohibitUnlockByPwd.action",
+                            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+                            data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode,"serviceNumb":target.getAttribute('id')},
+                            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+
+                            success:function(data,status,xhr){
+                                $.toast('操作成功,正在刷新页面...',1500);
+                                window.setTimeout("window.location.reload();",2000);
+                            },
+                            error:function(xhr,errorType,error){
+                                console.log('错误');
+                            }
+                        });
+                });
+                break;
+            }
+            target=target.parentNode;
+        }
+    });
+}
 function getAuthInfo() {
+    ul_authInfo='';
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockId.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
             "ownerPhoneNumber":ownerPhoneNumber,
-            "gatewayCode":gatewayCode,
-            "lockCode":lockCode
+            "gatewayCode":specificGatewayCode,
+            "lockCode":specificLockCode
         },
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data,status,xhr){
-            ajaxResult = data;
-            var UL_authInfo=document.getElementById('UL_authInfo');
+            if(data.length>0){
+                ul_authInfo += "<div class='content-block-title'>已授权开锁身份证</div>";
+            }
             for(x in data){
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>姓名</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.name+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>身份证号码</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.cardNumb+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>授权起始时间</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.startTime+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>授权结束时间</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.endTime+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
+                ul_authInfo += "<div class='list-block'>";
+                ul_authInfo += "<ul class='ul_authById' id='"+data[x].cardNumb+'-'+data[x].serviceNumb+"'>";
+                ul_authInfo += "<li class='item-content'>";
+                ul_authInfo +=    "<div class='item-inner'>";
+                ul_authInfo +=        "<div class='item-title'>姓名</div>";
+                ul_authInfo +=        "<div class='item-after'>"+data[x].name+"</div>";
+                ul_authInfo +=    "</div>";
+                ul_authInfo += "</li>";
+                ul_authInfo += "<li class='item-content'>";
+                ul_authInfo +=    "<div class='item-inner'>";
+                ul_authInfo +=        "<div class='item-title'>身份证号码</div>";
+                ul_authInfo +=        "<div class='item-after'>"+data[x].cardNumb+"</div>";
+                ul_authInfo +=    "</div>";
+                ul_authInfo += "</li>";
+                ul_authInfo += "<li class='item-content'>";
+                ul_authInfo +=    "<div class='item-inner'>";
+                ul_authInfo +=        "<div class='item-title'>授权起始时间</div>";
+                ul_authInfo +=        "<div class='item-after'>"+data[x].startTime+"</div>";
+                ul_authInfo +=    "</div>";
+                ul_authInfo += "</li>";
+                ul_authInfo += "<li class='item-content'>";
+                ul_authInfo +=    "<div class='item-inner'>";
+                ul_authInfo +=        "<div class='item-title'>授权结束时间</div>";
+                ul_authInfo +=        "<div class='item-after'>"+data[x].endTime+"</div>";
+                ul_authInfo +=    "</div>";
+                ul_authInfo += "</li>";
+                ul_authInfo += "</ul>";
+                ul_authInfo += "</div>";
             }
         },
         error:function(xhr,errorType,error){
@@ -107,42 +178,61 @@ function getAuthInfo() {
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
             "ownerPhoneNumber":ownerPhoneNumber,
-            "gatewayCode":gatewayCode,
-            "lockCode":lockCode
+            "gatewayCode":specificGatewayCode,
+            "lockCode":specificLockCode
         },
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data,status,xhr){
-            ajaxResult = data;
-            var pwdList=data.passwordList;
-            var UL_authInfo=document.getElementById('UL_authInfo');
-            if('null'!=data.defaultPassword1){
-
+            if('null'!=data.defaultPassword1 || 'null'!=data.defaultPassword2){
+                ul_authInfo += "<div class='content-block-title'>默认密码</div>";
+                ul_authInfo += "<div class='list-block'>";
+                ul_authInfo += "<ul>";
+                if('null'!=data.defaultPassword1){
+                    ul_authInfo += "<li class='item-content'>";
+                    ul_authInfo +=    "<div class='item-inner'>";
+                    ul_authInfo +=        "<div class='item-title'>默认密码1</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+data.defaultPassword1+"</div>";
+                    ul_authInfo +=    "</div>";
+                    ul_authInfo += "</li>";
+                }
+                if('null'!=data.defaultPassword2){
+                    ul_authInfo += "<li class='item-content'>";
+                    ul_authInfo +=    "<div class='item-inner'>";
+                    ul_authInfo +=        "<div class='item-title'>默认密码2</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+data.defaultPassword2+"</div>";
+                    ul_authInfo +=    "</div>";
+                    ul_authInfo += "</li>";
+                }
+                ul_authInfo += "</ul>";
+                ul_authInfo += "</div>";
             }
-            for(x in data){
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>姓名</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.name+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>身份证号码</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.cardNumb+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>授权起始时间</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.startTime+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
-                UL_authInfo.innerHTML += "<li class='item-content'>";
-                UL_authInfo.innerHTML +=    "<div class='item-inner'>";
-                UL_authInfo.innerHTML +=        "<div class='item-title'>授权结束时间</div>";
-                UL_authInfo.innerHTML +=        "<div class='item-after'>"+data.endTime+"</div>";
-                UL_authInfo.innerHTML +=    "</div>";
-                UL_authInfo.innerHTML += "</li>";
+            var pwdList=data.passwordList;
+            if(pwdList.length>0){
+                ul_authInfo += "<div class='content-block-title'>已授权开锁密码</div>";
+            }
+            for(x in pwdList){
+                ul_authInfo += "<div class='list-block'>";
+                ul_authInfo += "<ul class='ul_authByPwd' id='"+pwdList[x].serviceNumb+"'>";
+                ul_authInfo += "<li class='item-content'>";
+                ul_authInfo +=    "<div class='item-inner'>";
+                ul_authInfo +=        "<div class='item-title'>密码</div>";
+                ul_authInfo +=        "<div class='item-after'>"+pwdList[x].password+"</div>";
+                ul_authInfo +=    "</div>";
+                ul_authInfo += "</li>";
+                ul_authInfo += "<li class='item-content'>";
+                ul_authInfo +=    "<div class='item-inner'>";
+                ul_authInfo +=        "<div class='item-title'>授权起始时间</div>";
+                ul_authInfo +=        "<div class='item-after'>"+pwdList[x].startTime+"</div>";
+                ul_authInfo +=    "</div>";
+                ul_authInfo += "</li>";
+                ul_authInfo += "<li class='item-content'>";
+                ul_authInfo +=    "<div class='item-inner'>";
+                ul_authInfo +=        "<div class='item-title'>授权结束时间</div>";
+                ul_authInfo +=        "<div class='item-after'>"+pwdList[x].endTime+"</div>";
+                ul_authInfo +=    "</div>";
+                ul_authInfo += "</li>";
+                ul_authInfo += "</ul>";
+                ul_authInfo += "</div>";
             }
         },
         error:function(xhr,errorType,error){
@@ -150,7 +240,9 @@ function getAuthInfo() {
             $.toast('获取开锁授权信息失败');
         }
     });
+    return ul_authInfo;
 }
+
 /*
 "
 <li class='item-content'>
