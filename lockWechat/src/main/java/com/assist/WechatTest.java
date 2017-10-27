@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 public class WechatTest {
 
     public static void main(String[] args){
-        /*
+
         //创建微信公众号自定义菜单(个人订阅号不能通过接口创建自定义菜单,可通过后台创建也可升级订阅号为企业服务号)
         TokenSingleton tokenSingleton=null;
         try {
@@ -63,7 +63,7 @@ public class WechatTest {
         WechatTokenAndTicket tokenAndTicket2= tokenSingleton.getTokenAndTicket();
         System.out.println("access_token: "+tokenAndTicket2.getAccess_token());
         System.out.println("有效时间: "+tokenAndTicket2.getToken_expiresIn());
-        */
+
 
 
         /*

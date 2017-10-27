@@ -45,8 +45,14 @@
         </RollingFile>
     </appenders>
     <loggers>
-        <logger name="com.opensymphony.xwork2" level="INFO"/>
-        <logger name="org.apache.struts2" level="INFO"/>
+        <logger name="com.opensymphony.xwork2" level="INFO">
+            <appender-ref ref="log"/>
+            <appender-ref ref="RollingFileInfo"/>
+        </logger>
+        <logger name="org.apache.struts2" level="INFO">
+            <appender-ref ref="log"/>
+            <appender-ref ref="RollingFileInfo"/>
+        </logger>
         <root level="all">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>

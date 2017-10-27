@@ -42,14 +42,6 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         this.loginPara = loginPara;
     }
 
-    /*
-    private String company;
-
-    public void setCompany(String company) {
-        System.out.println("Setting the company");
-        this.company = company;
-    }
-    */
     private String authenticateErrMsg;
     public String getAuthenticateErrMsg() {
         return authenticateErrMsg;

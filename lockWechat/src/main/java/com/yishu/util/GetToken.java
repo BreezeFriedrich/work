@@ -18,10 +18,15 @@ import java.io.UnsupportedEncodingException;
 //获取token的
 @Component("getToken")
 public class GetToken {
+    /*
     @Value("${APPID}")
     private static String APPID;// 微信公众号下的AppID
     @Value("${APPSECRET}")
     private static String APPSECRET;// 微信公众号下的secret
+    */
+
+    private static String APPID = "wx6234fc4a502ef625";
+    private static String APPSECRET = "897c9b5b60804e4c9f4609cd00dd875c";
 
     public static String TOKEN="WechatTokenAndTicket";
 

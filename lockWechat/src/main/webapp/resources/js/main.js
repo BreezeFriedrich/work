@@ -45,6 +45,8 @@ $(function(){
         url="jsp/gateway/gateway_addGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
+
+    $.init();
 });
 
 function showDevices(){
@@ -79,7 +81,6 @@ function showDevices(){
             }
             if(target.className==='card-footer' && target.parentNode.className==='card gateway'){
                 //向下扩展DOM,门锁card
-                // alert('card-footer');
                 selectedGateway=target.parentNode;
                 // alert(selectedGateway.id);
                 // $(target).parent('li').siblings('li').remove();

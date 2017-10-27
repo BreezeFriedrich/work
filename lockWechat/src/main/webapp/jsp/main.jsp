@@ -25,12 +25,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <!--
-    <meta http-equiv="Expires" CONTENT="0">
-    <meta http-equiv="Cache-Control" CONTENT="no-cache">
-    <meta http-equiv="Pragma" CONTENT="no-cache">
-    -->
-
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
     <!--<link rel="stylesheet" href="resources/css/picSrc.css"/>-->
@@ -75,9 +69,6 @@
     </style>
 </head>
 <body>
-<!--
-    <input type="hidden" id="INPUT-hiddden_ownerPhoneNumber" value="<s:propety value="ownerPhoneNumber"/>"/>
--->
 
 <div class="page-group">
     <!-- 单个page ,第一个.page默认被展示,page-current指定第一次进入展示-->
@@ -248,13 +239,7 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='resources/js/main.js?ver=5' charset='utf-8'></script>
-<!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
-<script>
-    $(function(){
-        $.init();
-    });
-</script>
+<script type='text/javascript' src='resources/js/main.js' charset='utf-8'></script>
 </body>
 </html>
 
