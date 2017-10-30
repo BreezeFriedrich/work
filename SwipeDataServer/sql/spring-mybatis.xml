@@ -16,7 +16,17 @@
 	<!-- 激活自动代理功能 -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 
+	<!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+	<!--<bean id="myAspect" class="aop.Aspect"/>-->
+	<!--<aop:config>-->
+		<!--<aop:pointcut id="pointCut" expression="execution(* service.impl.*.*(..))"/>-->
+		<!--<aop:aspect ref="myAspect">-->
+			<!--<aop:around method="around" pointcut-ref="pointCut"/>-->
+		<!--</aop:aspect>-->
+	<!--</aop:config>-->
+
 	<context:component-scan base-package="service.impl;shiro.service.impl"/>
+	<!--<context:property-placeholder location="default.properties"/>-->
 
 	<!--从jvm参数中获取配置.
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -28,6 +38,7 @@
 		<property name="location" value="classpath:default.properties"/>
 	</bean>
 
+	<!-- 数据源 org.apache.commons.dbcp.BasicDataSource com.alibaba.druid.pool.DruidDataSource -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 
 		<property name="driverClassName" value="${driverClassName}" />
@@ -60,6 +71,10 @@
 		<property name="removeAbandonedTimeout" value="1800" />
 		<!-- 关闭abanded连接时输出错误日志 -->
 		<property name="logAbandoned" value="true" />
+
+		<!-- 监控数据库 -->
+		<!-- <property name="filters" value="stat" /> -->
+		<!--<property name="filters" value="mergeStat" />-->
 	</bean>
 
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
@@ -69,10 +84,36 @@
 		<property name="mapperLocations" value="classpath:mappers/*.xml" />
 	</bean>
 
+	<!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+	<!--<property name="dataSource" ref="dataSource" />-->
+	<!--<property name="configLocation" value="classpath:mybatis-config.xml"></property>-->
+	<!--</bean>-->
+
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 		<property name="basePackage" value="dao;shiro.dao"/>
 	</bean>
+
+	<!--&lt;!&ndash; 注册Mapper方式二：也可不指定特定mapper，而使用自动扫描包的方式来注册各种Mapper ，配置如下： &ndash;&gt;-->
+	<!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+		<!--<property name="annotationClass" value="org.springframework.stereotype.Repository" />-->
+		<!--<property name="basePackage" value="com.hi.test.mapper" />-->
+		<!--<property name="sqlSessionFactory" ref="sqlSessionFactory" />-->
+	<!--</bean>-->
+
+	<!-- 配置druid监控spring jdbc -->
+	<!--<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"/>-->
+	<!--<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">-->
+		<!--<property name="patterns">-->
+			<!--<list>-->
+				<!--<value>service.*</value>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!--<aop:config>-->
+		<!--<aop:advisor advice-ref="druid-stat-interceptor"-->
+			<!--pointcut-ref="druid-stat-pointcut" />-->
+	<!--</aop:config>-->
 
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />

@@ -7,7 +7,6 @@ import model.DeviceStatus;
 import model.SwipeRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import service.ModuleService;
 import service.SwipeRecordService;
 import service.impl.ModuleServiceImpl;
@@ -54,6 +53,7 @@ public class DataServer {
     }
     */
 
+    /*只适合Win,不适合Linux
     static {
         Properties prop = new Properties();
         try {
@@ -61,6 +61,7 @@ public class DataServer {
             //以URL形式获取工程的资源文件 classpath 路径, 得到以file:/为开头的URL
             //例如返回: file:/D:/workspace/myproject01/WEB-INF/classes/
             URL classPath = Thread.currentThread().getContextClassLoader().getResource("");
+            System.err.println("'classPath.getPath(): "+classPath.getPath());
             String proFilePath = classPath.toString();
 
             //移除开通的file:/六个字符
@@ -73,9 +74,6 @@ public class DataServer {
 
             //以properties对象形式读取文件流
             prop.load(ins);
-
-            //...其它操作...
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,29 +81,13 @@ public class DataServer {
         port= Integer.parseInt(prop.getProperty("httpServer.port"));
         prop = null;
     }
+    */
 
-/*
+
     static {
-
-        Properties pro = new Properties();
-        try (FileInputStream in = new FileInputStream("default.properties")){
-            pro.load(in);
-            in.close();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }catch (IOException e2) {
-            e2.printStackTrace();
-        }
-        port= Integer.parseInt(pro.getProperty("httpServer.port"));
-
         String propertiesPath="default.properties";
-        URL url = Main.class.getClassLoader().getResource(propertiesPath);
         InputStream in = null;
-        try {
-            in = new BufferedInputStream(new FileInputStream(url.getFile()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        in = DataServer.class.getClassLoader().getResourceAsStream(propertiesPath);
         Properties pro=new Properties();
         try {
             pro.load(in);
@@ -114,7 +96,7 @@ public class DataServer {
         }
         port= Integer.parseInt(pro.getProperty("httpServer.port"));
     }
-*/
+
 
     private static  final Logger logger = LoggerFactory.getLogger(DataServer.class);
 
@@ -122,17 +104,6 @@ public class DataServer {
 
     public static void main(String[] args) throws IOException, SQLException {
 
-//        String encodingStr="生态";
-//        String str1=new String(encodingStr.getBytes("utf-8"),"gbk");
-//        String str2=new String(str1.getBytes("gbk"),"utf-8");
-//        String str3=new String(encodingStr.getBytes("utf-8"),"utf-8");
-//        String str4=new String(encodingStr.getBytes("ISO-8859-1"),"utf-8");
-//        String str5=new String(encodingStr.getBytes("utf-8"),"ISO-8859-1");
-//        System.out.println(str1);
-//        System.out.println(str2);
-//        System.out.println(str3);
-//        System.out.println(str4);
-//        System.out.println(str5);
 
 //        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis.xml");
 //        List<DeviceStatus> list = ((ModuleServiceImpl) (context.getBean("moduleService"))).listByStatus(0);
@@ -146,6 +117,9 @@ public class DataServer {
             deviceStatus = (DeviceStatus) it.next();
         }
 */
+        ModuleService moduleService1 = (ModuleServiceImpl) ContextLoader.getBean("moduleService");
+        SwipeRecordService swipeRecordService1 = (SwipeRecordService) ContextLoader.getBean("swipeRecordService");
+
         try {
             InetSocketAddress address = new InetSocketAddress(port);
             HttpServer httpServer = HttpServer.create(address, 40);//线程数量
@@ -191,7 +165,7 @@ class MyHandler implements HttpHandler{
     int affactedNum=0;
 
     MyHandler() throws SQLException {
-        this.moduleService = (ModuleServiceImpl) ContextLoader.getBean("moduleService");
+        this.moduleService = (ModuleService) ContextLoader.getBean("moduleService");
         this.swipeRecordService = (SwipeRecordService) ContextLoader.getBean("swipeRecordService");
         this.userService= (IUserService) ContextLoader.getBean("userService");
         this.roleService= (IRoleService) ContextLoader.getBean("roleService");

@@ -7,7 +7,7 @@
     <package name="gateway" namespace="/gateway" extends="struts-default,json-default">
 
         <interceptors>
-            <interceptor name="authenticationInterceptor" class="com.yishu.web.AuthenticationInterceptor" />
+            <interceptor name="authenticationInterceptor" class="com.yishu.action.AuthenticationInterceptor" />
             <interceptor-stack name="authenticationStack">
                 <interceptor-ref name="authenticationInterceptor" />
                 <interceptor-ref name="defaultStack">

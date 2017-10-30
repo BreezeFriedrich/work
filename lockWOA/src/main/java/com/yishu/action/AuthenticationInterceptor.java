@@ -1,4 +1,4 @@
-package com.yishu.web;
+package com.yishu.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
