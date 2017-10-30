@@ -19,6 +19,7 @@ import shiro.service.IUserService;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,58 +30,17 @@ import java.util.concurrent.Executors;
  * Created by admin on 2017/5/15.
  */
 public class DataServer {
-
-//    public void test(){
-//
-//        Properties pro = new Properties();
-//        try (FileInputStream in = new FileInputStream("default.properties")){
-//            pro.load(in);
-//            in.close();
-//        } catch (FileNotFoundException e1) {
-//            e1.printStackTrace();
-//        }catch (IOException e2) {
-//            e2.printStackTrace();
-//        }
-//        Connection con;
-//        String sql="SELECT * FROM DeviceStatus";
-//        try {
-//            DruidDataSource druidDataSource= (DruidDataSource) DruidDataSourceFactory.createDataSource(pro);
-//            con=druidDataSource.getConnection();
-//            Statement ps=con.createStatement();
-//            ps.execute(sql);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }finally {
-//
-//        }
-//
-//    }
-
-//    public void doSql(String sql) throws SQLException {
-//
-//        DbPoolConnection dbp = DbPoolConnection.getInstance();
-//        DruidPooledConnection con = dbp.getConnection();
-//        PreparedStatement ps = null;
-//        ResultSet rs=null;
-//
-////        String sql = "SELECT * FROM DeviceStatus";
-//
-//        ps = con.prepareStatement(sql);
-//        rs=ps.executeQuery();
-//        while (rs.next()){
-//            rs.getString("status");
-//        }
-//        rs.close();
-//        ps.close();
-//        con.close();
-//    }
-
+    /*读取jar包之外的配置文件
     static{
-        String jarPath=System.getProperty("java.class.path");
-        String propertiesPath = jarPath.substring(0,jarPath.indexOf("/SwipeDataServer/")+17)+ "conf/default.properties";
+//        String jarPath=System.getProperty("java.class.path");
+//        String propertiesPath = jarPath.substring(0,jarPath.indexOf("/SwipeDataServer/")+17)+ "conf/default.properties";
+
+        String propertiesPath="SwipeDataServer/default.properties";
+//        System.err.println("'default.properties' AbsolutePath: "+new File(propertiesPath).getAbsolutePath());
         InputStream in = null;
         try {
             in = new BufferedInputStream(new FileInputStream(propertiesPath));
+//            in = this.getClass().getClassLoader().getResourceAsStream("resource.properties");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -92,6 +52,70 @@ public class DataServer {
         }
         port= Integer.parseInt(pro.getProperty("httpServer.port"));
     }
+    */
+
+    static {
+        Properties prop = new Properties();
+        try {
+            String configFile = "default.properties";
+            //以URL形式获取工程的资源文件 classpath 路径, 得到以file:/为开头的URL
+            //例如返回: file:/D:/workspace/myproject01/WEB-INF/classes/
+            URL classPath = Thread.currentThread().getContextClassLoader().getResource("");
+            String proFilePath = classPath.toString();
+
+            //移除开通的file:/六个字符
+            proFilePath = proFilePath.substring(6);
+            File file=new File(proFilePath+configFile);
+            System.err.println("'default.properties' AbsolutePath: "+file.getAbsolutePath());
+
+            //以文件流形式读取指定路径的配置文件 config.properties
+            FileInputStream ins = new FileInputStream(file);
+
+            //以properties对象形式读取文件流
+            prop.load(ins);
+
+            //...其它操作...
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        port= Integer.parseInt(prop.getProperty("httpServer.port"));
+        prop = null;
+    }
+
+/*
+    static {
+
+        Properties pro = new Properties();
+        try (FileInputStream in = new FileInputStream("default.properties")){
+            pro.load(in);
+            in.close();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }catch (IOException e2) {
+            e2.printStackTrace();
+        }
+        port= Integer.parseInt(pro.getProperty("httpServer.port"));
+
+        String propertiesPath="default.properties";
+        URL url = Main.class.getClassLoader().getResource(propertiesPath);
+        InputStream in = null;
+        try {
+            in = new BufferedInputStream(new FileInputStream(url.getFile()));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Properties pro=new Properties();
+        try {
+            pro.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        port= Integer.parseInt(pro.getProperty("httpServer.port"));
+    }
+*/
+
     private static  final Logger logger = LoggerFactory.getLogger(DataServer.class);
 
     private static final int port;

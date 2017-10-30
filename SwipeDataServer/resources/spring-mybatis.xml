@@ -30,7 +30,8 @@
 
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
-		<property name="location" value="file:${APP_HOME}/conf/default.properties"/>
+		<!--<property name="location" value="file:${APP_HOME}/conf/default.properties"/>-->
+		<property name="location" value="classpath:default.properties"/>
 	</bean>
 
 	<!-- 数据源 org.apache.commons.dbcp.BasicDataSource com.alibaba.druid.pool.DruidDataSource -->
