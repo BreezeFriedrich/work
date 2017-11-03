@@ -5,7 +5,7 @@
 
 package com.assist;
 
-import com.yishu.util.GetOpenid;
+import com.yishu.util.GetWechatWebAccessToken;
 import com.yishu.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -54,8 +54,8 @@ public class Main {
         */
 
 //        ApplicationContext context=new ClassPathXmlApplicationContext("spring/spring.xml");
-////        System.out.println("APPSECRET : "+((GetOpenid)(context.getBean("getOpenidByCode"))).SECRET);
-//        ((GetOpenid)(context.getBean("getOpenid"))).printConfig();
+////        System.out.println("APPSECRET : "+((GetWechatWebAccessToken)(context.getBean("getOpenidByCode"))).SECRET);
+//        ((GetWechatWebAccessToken)(context.getBean("getOpenid"))).printConfig();
 
         String urlStr = "http://192.168.1.47:9018";
         System.err.println(urlStr);

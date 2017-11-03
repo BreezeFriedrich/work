@@ -6,7 +6,7 @@
 package com.assist;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yishu.domain.WechatTokenAndTicket;
+import com.yishu.domain.WechatApiTokenAndTicket;
 import com.yishu.pojo.OperationalError;
 import com.yishu.util.HttpUtil;
 import com.yishu.util.TokenSingleton;
@@ -33,7 +33,7 @@ public class WechatTest {
         try {
             tokenSingleton=TokenSingleton.getSingleton();
             System.out.println("tokenSingleton : "+tokenSingleton);
-            WechatTokenAndTicket tokenAndTicket= tokenSingleton.getTokenAndTicket();
+            WechatApiTokenAndTicket tokenAndTicket= tokenSingleton.getTokenAndTicket();
             System.out.println("access_token: "+tokenAndTicket.getAccess_token());
             System.out.println("有效时间: "+tokenAndTicket.getToken_expiresIn());
 
@@ -60,7 +60,7 @@ public class WechatTest {
 
         tokenSingleton=TokenSingleton.getSingleton();
         System.out.println("tokenSingleton : "+tokenSingleton);
-        WechatTokenAndTicket tokenAndTicket2= tokenSingleton.getTokenAndTicket();
+        WechatApiTokenAndTicket tokenAndTicket2= tokenSingleton.getTokenAndTicket();
         System.out.println("access_token: "+tokenAndTicket2.getAccess_token());
         System.out.println("有效时间: "+tokenAndTicket2.getToken_expiresIn());
 

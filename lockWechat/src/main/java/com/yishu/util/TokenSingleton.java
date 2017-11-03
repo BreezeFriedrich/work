@@ -5,14 +5,14 @@
 
 package com.yishu.util;
 
-import com.yishu.domain.WechatTokenAndTicket;
+import com.yishu.domain.WechatApiTokenAndTicket;
 import net.sf.json.JSONObject;
 
 import java.util.Date;
 
 /**
  * 管理 access_token 和 jsapi_token
- * 获取 access_token 和 jsapi_token 方式: WechatTokenAndTicket tokenAndTicket = TokenSingleton.getTokenAndTicket();
+ * 获取 access_token 和 jsapi_token 方式: WechatApiTokenAndTicket tokenAndTicket = TokenSingleton.getTokenAndTicket();
  *
  * @author admin
  * @since 2017-08-17
@@ -38,7 +38,7 @@ public class TokenSingleton {
     private static final String ACCESS_TOKEN_URL="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
     private static final String JSAPI_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
 
-    private static WechatTokenAndTicket tokenAndTicket=new WechatTokenAndTicket();
+    private static WechatApiTokenAndTicket tokenAndTicket=new WechatApiTokenAndTicket();
     /**
      * 获取access_token
      * @return
@@ -66,7 +66,7 @@ public class TokenSingleton {
         }
     }
 
-    public WechatTokenAndTicket getTokenAndTicket(){
+    public WechatApiTokenAndTicket getTokenAndTicket(){
         Long now=new Date().getTime();
         if(null != tokenAndTicket.getAccess_token() && now-tokenAndTicket.getToken_ctime() < tokenAndTicket.getToken_expiresIn()*1000/2 ){
             //access_token 未超时，依然有效

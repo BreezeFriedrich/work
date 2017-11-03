@@ -5,7 +5,7 @@
 
 package com.yishu.service;
 
-import com.yishu.domain.User;
+import com.yishu.domain.WechatUser;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -17,11 +17,11 @@ public interface IWechatService {
     public static String OPENID="OPENID";
     public static String ACCESS_TOKEN="ACCESS_TOKEN";
 
-    public int addSubscribe(User user);
+    public int addSubscribe(WechatUser wechatUser);
 
-    public int UnSubscribe(User user);
+    public int UnSubscribe(WechatUser wechatUser);
 
-    public User findUserByopenid(String openid);
+    public WechatUser findWechatUserByopenid(String openid);
 
-    public int UnSubscribe2(User user);
+    public int UnSubscribe2(WechatUser wechatUser);
 }

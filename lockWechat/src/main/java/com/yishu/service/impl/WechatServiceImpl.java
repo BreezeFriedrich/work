@@ -6,7 +6,7 @@
 package com.yishu.service.impl;
 
 import com.yishu.dao.WechatDao;
-import com.yishu.domain.User;
+import com.yishu.domain.WechatUser;
 import com.yishu.service.IWechatService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +24,22 @@ public class WechatServiceImpl implements IWechatService {
     private WechatDao wechatDao;
 
     @Override
-    public int addSubscribe(User user) {
-        return wechatDao.addSubscribe(user);
+    public int addSubscribe(WechatUser wechatUser) {
+        return wechatDao.addSubscribe(wechatUser);
     }
 
     @Override
-    public int UnSubscribe(User user) {
-        return wechatDao.unSubscribe(user);
+    public int UnSubscribe(WechatUser wechatUser) {
+        return wechatDao.unSubscribe(wechatUser);
     }
 
     @Override
-    public User findUserByopenid(String openid) {
-        return wechatDao.findUserByopenid(openid);
+    public WechatUser findWechatUserByopenid(String openid) {
+        return wechatDao.findWechatUserByopenid(openid);
     }
 
     @Override
-    public int UnSubscribe2(User user) {
-        return wechatDao.unSubscribe2(user);
+    public int UnSubscribe2(WechatUser wechatUser) {
+        return wechatDao.unSubscribe2(wechatUser);
     }
 }

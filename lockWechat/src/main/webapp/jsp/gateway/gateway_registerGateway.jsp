@@ -4,7 +4,7 @@
   --%>
 
 <%--
-  User: admin
+  WechatUser: admin
   Date: 2017/10/18
   Time: 16:17
 --%>

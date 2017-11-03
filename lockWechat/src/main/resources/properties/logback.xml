@@ -48,7 +48,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
             <dataSource class="com.alibaba.druid.pool.DruidDataSource">
                 <driverClass>com.mysql.jdbc.Driver</driverClass>
                 <url>jdbc:mysql://127.0.0.1:3306/log</url>
-                <user>root</user>
+                <wechatUser>root</wechatUser>
                 <password>2015@qxidc</password>
             </dataSource>
         </connectionSource>

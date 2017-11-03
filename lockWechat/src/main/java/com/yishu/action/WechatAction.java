@@ -166,9 +166,9 @@ public class WechatAction extends BaseAction {
     private void HandelSubscribe(String openid, PrintWriter out, String ouropenid){
         PushMassage pu = new PushMassage();
         out.print(pu.pushTextMess(openid, ouropenid, "终于等到你了 ，亲！\n欢迎关注漫行网！"));
-        User user=wxservice.findUserByopenid(openid);
+        WechatUser user=wxservice.findWechatUserByopenid(openid);
         if(user==null){
-            user = new User();
+            user = new WechatUser();
             user.setOpenid(openid);
             Map<String,String> mm= this.HandelNickName(openid);
             String nickname =mm.get("nickname");
@@ -194,7 +194,7 @@ public class WechatAction extends BaseAction {
 
     // 取消关注处理
     private void HandelUnSubscribe(String openid){
-        User user = new User();
+        WechatUser user = new WechatUser();
         user.setOpenid(openid);
         user.setUntime(DataUtil.fromDate24H());
         wxservice.UnSubscribe(user);

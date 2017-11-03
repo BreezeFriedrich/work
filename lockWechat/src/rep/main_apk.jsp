@@ -15,7 +15,7 @@
 <head>
     <base href="<%=basePath%>">
     <title>门锁管理微信客户端-管理主页(仿apk)</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,wechatUser-scalable=no" />
 
     <link rel="stylesheet" href="<%=basePath%>/resources/bootstrap-3.3.0/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="<%=basePath%>/resources/css/common.css" type="text/css" />
@@ -44,8 +44,8 @@
                 <img src="<%=basePath%>/resources/img/usericon.png" alt="用户头像" style="max-height: 65px">
             </span>
             <span>
-                <p style="padding-top: 15px;color: #dddddd;font-size: 15px;text-align: center;">${user.nickname}</p>
-                <p style="padding-top: 5px;color: #dddddd;font-size: 12px;text-align: center;">${user.username}</p>
+                <p style="padding-top: 15px;color: #dddddd;font-size: 15px;text-align: center;">${wechatUser.nickname}</p>
+                <p style="padding-top: 5px;color: #dddddd;font-size: 12px;text-align: center;">${wechatUser.username}</p>
             </span>
         </div>
         <div href="javascript:window.location.href('gateway_add.jsp')" style="height: 33px;overflow: hidden;">

@@ -5,7 +5,7 @@
 
 package com.yishu.dao;
 
-import com.yishu.domain.User;
+import com.yishu.domain.WechatUser;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -13,8 +13,8 @@ import com.yishu.domain.User;
  * @since JDK1.7
  */
 public interface WechatDao {
-    public int addSubscribe(User user);
-    public int unSubscribe(User user);
-    public int unSubscribe2(User user);
-    public User findUserByopenid(String openid);
+    public int addSubscribe(WechatUser wechatUser);
+    public int unSubscribe(WechatUser wechatUser);
+    public int unSubscribe2(WechatUser wechatUser);
+    public WechatUser findWechatUserByopenid(String openid);
 }

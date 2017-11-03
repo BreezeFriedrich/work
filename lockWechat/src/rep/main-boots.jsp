@@ -4,7 +4,7 @@
   --%>
 
 <%--
-  User: admin
+  WechatUser: admin
   Date: 2017/9/14
   Time: 11:52
 --%>
@@ -18,7 +18,7 @@
 <head>
     <base href="<%=basePath%>">
     <title>门锁管理微信客户端-管理主页</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,wechatUser-scalable=no" />
 
     <link rel="stylesheet" href="<%=basePath%>/resources/bootstrap-3.3.0/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="<%=basePath%>/resources/css/common.css" type="text/css" />

@@ -5,7 +5,7 @@
 
 package com.yishu.util;
 
-import com.yishu.domain.WechatTokenAndTicket;
+import com.yishu.domain.WechatApiTokenAndTicket;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class GetToken {
     private static String APPID = "wx6234fc4a502ef625";
     private static String APPSECRET = "897c9b5b60804e4c9f4609cd00dd875c";
 
-    public static String TOKEN="WechatTokenAndTicket";
+    public static String TOKEN="WechatApiTokenAndTicket";
 
     private static String gettoken() {
         JSONObject jsonObject = null;
@@ -53,7 +53,7 @@ public class GetToken {
     public static String getAccessToken() {
         WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         ServletContext servletContext = webApplicationContext.getServletContext();
-        WechatTokenAndTicket wat=(WechatTokenAndTicket) servletContext.getAttribute(TOKEN);
+        WechatApiTokenAndTicket wat=(WechatApiTokenAndTicket) servletContext.getAttribute(TOKEN);
         String access_token=null;
         long create_time=0;
 
@@ -61,7 +61,7 @@ public class GetToken {
             access_token=wat.getAccess_token();
             create_time=wat.getToken_ctime();
         }else{
-            wat=new WechatTokenAndTicket();
+            wat=new WechatApiTokenAndTicket();
         }
 
         if (access_token == null) {

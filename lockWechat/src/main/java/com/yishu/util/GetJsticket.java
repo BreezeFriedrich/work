@@ -5,7 +5,7 @@
 
 package com.yishu.util;
 
-import com.yishu.domain.WechatTokenAndTicket;
+import com.yishu.domain.WechatApiTokenAndTicket;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import org.springframework.web.context.ContextLoader;
@@ -43,14 +43,14 @@ public class GetJsticket {
 	public static String getJSApiTicket(){
 		WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
 		ServletContext servletContext = webApplicationContext.getServletContext();
-		WechatTokenAndTicket wat=(WechatTokenAndTicket) servletContext.getAttribute(TOKEN);
+		WechatApiTokenAndTicket wat=(WechatApiTokenAndTicket) servletContext.getAttribute(TOKEN);
 		String jsticket=null;
 		long create_time=0;
 		if(wat!=null){
 			jsticket=wat.getJsapi_ticket();
 			create_time=wat.getTicket_ctime();
 		}else{
-			wat=new WechatTokenAndTicket();
+			wat=new WechatApiTokenAndTicket();
 		}
 		if(jsticket==null){
 			jsticket=getJS_Ticket();

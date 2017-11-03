@@ -1,27 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yishu.dao.WechatDao">
-
-    <select id="findUserByopenid" resultType="User">
-        SELECT `user_id`,`openid`,`createtime`,`nickname`,`IMGURL`.`untime`
-        FROM h_user
-        WHERE `openid`=#{openid}
-    </select>
-
-    <insert id="addSubscribe" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
-        INSERT INTO h_user(`openid`,`createtime`,`nickname`,`IMGURL`)
-          VALUES (#{openid},#{createtime},#{nickname},#{imgurl});
+    <!--
+    id,openid,unionid,createtime,untime,nickname,headimgurl;
+    country,province,city;sex;lockUser;
+    -->
+    <insert id="addSubscribe2" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="SEQ">
+        INSERT INTO wechatUser(`openid`,`createtime`,`nickname`,`headimgurl`)
+          VALUES (#{openid},#{createtime},#{nickname},#{headimgurl});
     </insert>
 
-    <update id="UnSubscribe" parameterType="User">
-        UPDATE h_user
+    <insert id="addSubscribe" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="SEQ">
+        INSERT INTO wechatUser(`openid`,`createtime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`fk_wechatUser_ownerinfo`)
+        VALUES (#{openid},#{createtime},#{nickname},#{headimgurl},#{sex},#{country},#{province},#{city},#{lockUser.id});
+    </insert>
+    <resultMap id="WechatUserResultMap" type="com.yishu.domain.WechatUser">
+        <id property="id" column="SEQ"/>
+        <association property="lockUser" javaType="com.yishu.pojo.LockUser">
+            <id property="id" column="SEQ"/>
+        </association>
+    </resultMap>
+
+    <update id="UnSubscribe" parameterType="WechatUser">
+        UPDATE wechatUser
           SET untime=#{untime}
         WHERE openid=#{openid};
     </update>
 
-    <update id="UnSubscribe2" parameterType="User">
-        UPDATE h_user
-          SET IMGURL=#{imgurl},nickname=#{nickname}
+    <update id="UnSubscribe2" parameterType="WechatUser">
+        UPDATE wechatUser
+          SET headimgurl=#{headimgurl},nickname=#{nickname}
         WHERE openid=#{openid};
     </update>
+
+    <!--关联查询-->
+    <!--
+        根据openid查询用户信息WechatUser类包含LockUser
+        ##1. 联表查询
+        SELECT * FROM wechatUser w,ownerinfo o WHERE w.fk_wechatUser_ownerinfo=o.SEQ AND w.openid=#{openid};
+        ##2. 执行两次查询
+        SELECT * FROM wechatUser WHERE openid=#{openid};  //ownerinfo SEQ=9
+        SELECT * FROM ownerinfo WHERE SEQ=9;//使用上面得到的ownerinfo SEQ=X
+    -->
+    <!--
+        方式一：嵌套结果：使用嵌套结果映射来处理重复的联合结果的子集
+            封装联表查询的数据(去除重复的数据)
+            select * from class c, teacher t where c.teacher_id=t.t_id and c.c_id=1
+    -->
+    <select id="findWechatUserByopenid" parameterType="int" resultMap="WechatUserResultMap">
+        SELECT `SEQ`,`openid`,`unionid`,`createtime`,`untime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`fk_wechatUser_ownerinfo`
+        FROM wechatUser w, ownerinfo o
+        WHERE w.fk_wechatUser_ownerinfo=o.SEQ AND w.openid=#{openid};
+    </select>
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap id="WechatUserResultMap" type="com.yishu.domain.WechatUser">
+        <id property="id" column="SEQ"/>
+        <association property="lockUser" javaType="com.yishu.pojo.LockUser">
+            <id property="id" column="SEQ"/>
+        </association>
+    </resultMap>
+
+    <!--
+        方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型
+            SELECT * FROM class WHERE c_id=1;
+            SELECT * FROM teacher WHERE t_id=1   //1 是上一个查询得到的teacher_id的值
+    <select id="getWechatUserByopenid" parameterType="int" resultMap="WechatUserResultMap2">
+        SELECT *
+        FROM wechatUser
+        WHERE openid=#{openid}
+    </select>
+    <resultMap id="WechatUserResultMap2" type="com.yishu.domain.WechatUser">
+        <id property="id" column="SEQ"/>
+        <association property="lockUser" column="fk_wechatUser_ownerinfo" select="getLockUser"/>
+    </resultMap>
+    <select id="getLockUser" parameterType="int" resultMap="com.yishu.pojo.LockUser">
+        SELECT *
+        FROM ownerinfo
+        WHERE SEQ=#{id}
+    </select>
+    -->
 </mapper>

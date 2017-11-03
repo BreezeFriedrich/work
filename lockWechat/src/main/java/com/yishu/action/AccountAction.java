@@ -111,7 +111,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
 /*
             //验证用户名密码
             System.out.println("LoginPara = "+loginPara+": {"+"'username'"+" : "+loginPara.getUsername()+" , "+"'password'"+" : "+loginPara.getPassword()+"}");
-            User user = userService.findUserByName(loginPara.getUsername());
+            WechatUser user = userService.findUserByName(loginPara.getUsername());
             System.out.println("user = "+user+": {"+"'name'"+" : "+user.getName()+","+"'password'"+" : "+user.getPassword()+"}");
             if (user == null){
                 resultMsg = new ResultMsg(ResultStatusCode.INVALID_PASSWORD.getErrcode(),
