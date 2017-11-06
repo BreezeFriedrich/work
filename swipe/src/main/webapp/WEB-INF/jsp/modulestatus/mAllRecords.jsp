@@ -21,7 +21,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap-3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/mAllRecords.js?ver=10"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/mAllRecords.js"></script>
 </head>
 <body>
 <div class="container-fluid">

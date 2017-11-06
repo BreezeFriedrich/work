@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/main.css" />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/cookie.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery-3.1.0.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/main.js?ver=9"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/main.js"></script>
 		<!-- <script type="text/javascript">
 			//客户端登陆信息检查
 			var user = getCookie("userId");

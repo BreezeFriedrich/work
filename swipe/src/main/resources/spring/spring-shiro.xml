@@ -22,7 +22,9 @@
             <value>
                 /admin/**=authc,resourceCheckFilter
                 /login=anon
-                /database/**=authc,roles[admin]
+                <!-- 既可以用角色组roles[]控制访问,也可以resourceCheckFilter控制访问 -->
+                <!--/database/**=authc,roles[admin]-->
+                /database/**=authc,resourceCheckFilter
                 /moduleStatus/**=anon
                 /swipeRecord/**=anon
             </value>

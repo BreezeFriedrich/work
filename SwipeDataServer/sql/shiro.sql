@@ -1,15 +1,13 @@
+set names utf8; set names utf8;
+
 # 使用数据库 SAMRECORD
 USE SAMRECORD;
-
 
 drop table if EXISTS t_user;
 drop table if EXISTS t_role;
 drop table if EXISTS t_user_role;
 drop table if EXISTS t_resource;
 drop table if EXISTS t_role_resource;
-
-
-
 
 # 创建数据表 t_user
 CREATE TABLE t_user(

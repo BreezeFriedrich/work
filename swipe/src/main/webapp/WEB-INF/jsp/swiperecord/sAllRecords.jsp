@@ -23,7 +23,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/dataTables/js/jquery.dataTables.js"></script>
     <%--<script type="text/javascript" src="../../resources/dataTables/js/dataTables.bootstrap.min.js"></script>--%>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/sAllRecords.js?ver=10"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/sAllRecords.js"></script>
     <script type="text/javascript">
         var rootPath = '${pageContext.request.contextPath}';
     </script>

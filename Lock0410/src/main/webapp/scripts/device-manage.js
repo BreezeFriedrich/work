@@ -78,7 +78,7 @@ function open(){
 	var locks=new Array();
 	locks=document.getElementsByTagName("p");
 	for(var k=0;k<locks.length;k++){
-		(function(k){//k与作用域。
+		(function(k){//用闭包实现块级作用域.
 			locks[k].onclick=function(){
 				gatewayNode=locks[k].parentNode.parentNode;
 				lockTxt=locks[k].innerText.split(',');

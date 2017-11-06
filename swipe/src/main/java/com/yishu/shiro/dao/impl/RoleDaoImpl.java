@@ -159,7 +159,7 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public Integer addUserRoles(int userId, List<Integer> roleIds) {
         map.put("sign",78);
-        map.put("userid",userId);
+        map.put("userId",userId);
         map.put("roleIds",roleIds);
         postdata=jsonUtil.writeObject(map);
         map.clear();

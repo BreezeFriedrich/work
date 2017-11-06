@@ -19,7 +19,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/echarts.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/component/laydate/laydate.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/sAnalyseByDay.js?ver=9"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/sAnalyseByDay.js"></script>
 </head>
 <body>
     <div class="container-fluid">

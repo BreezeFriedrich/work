@@ -1,3 +1,5 @@
+set names utf8; set names utf8;
+
 -- MySQL dump 10.13  Distrib 5.1.73, for redhat-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: SAMRECORD

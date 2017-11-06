@@ -68,7 +68,7 @@ public class HttpUtil {
 //            String ip="43.254.149.29";
 //            url=new URL("http://"+ip+":2017/?characterEncoding=utf8&useSSL=false");
             url=new URL(urlStr);
-            logger.info("Http Connection url: "+String.valueOf(url));
+//            logger.info("Http Connection url: "+String.valueOf(url));
 //            logger.info("Http");
             httpURLConnection= (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -89,7 +89,7 @@ public class HttpUtil {
                 strBuffer.append(line+"\n");
             }
             result=new String(strBuffer);
-            logger.info("getData:"+result);
+//            logger.info("getData:"+result);
             return result;
         } catch (MalformedURLException e) {
             e.printStackTrace();

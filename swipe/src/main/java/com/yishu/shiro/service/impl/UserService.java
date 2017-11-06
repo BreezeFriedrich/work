@@ -64,6 +64,7 @@ public class UserService implements IUserService {
     public User add(User user) {
         // 使用用户名作为盐值，MD5 算法加密
         user.setPassword(ShiroKit.md5(user.getPassword(),user.getUsername()));
+        /*
         //如果数据库中已有相同用户名，添加失败返回已存在的用户.
         User existUser=this.loadByUsername(user.getUsername());
         if(null!=existUser){
@@ -71,7 +72,13 @@ public class UserService implements IUserService {
         }
         userDao.add(user);
         user=this.loadByUsername(user.getUsername());//取出添加到数据库中的user ,其id自增非null.
-        return user;
+        */
+        User existUser=this.loadByUsername(user.getUsername());
+        if(null==existUser){
+            userDao.add(user);
+        }
+        existUser=this.loadByUsername(user.getUsername());
+        return existUser;
     }
 
     /**
