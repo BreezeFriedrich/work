@@ -28,7 +28,7 @@
                 <!-- 指定是否序列化空的属性 -->
                 <param name="excludeNullProperties">false</param>
             </result>
-            <result name="error" type="dispatcher">/jsp/exception.jsp</result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
         <action name="getDeviceInfo" class="com.yishu.action.DeviceAction" method="getDeviceInfo">
@@ -40,7 +40,7 @@
                 <param name="root">jsonList</param>
                 <param name="excludeNullProperties">false</param>
             </result>
-            <result name="error" type="dispatcher">/jsp/exception.jsp</result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
     </package>
 

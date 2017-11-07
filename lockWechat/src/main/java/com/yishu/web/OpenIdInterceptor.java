@@ -7,11 +7,10 @@ package com.yishu.web;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-import com.yishu.domain.WechatUser;
 import com.yishu.domain.WechatWebAccessToken;
 import com.yishu.service.IWechatService;
 import com.yishu.util.DataUtil;
-import com.yishu.util.GetWechatWebAccessToken;
+import com.yishu.util.WechatWebAccessTokenUtil;
 import com.yishu.util.StringUtil;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
@@ -54,7 +53,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         /*参考源
         if (u_openid == null) {
             if (StringUtil.bIsNotNull(code)) {
-                GetWechatWebAccessToken go = new GetWechatWebAccessToken();
+                WechatWebAccessTokenUtil go = new WechatWebAccessTokenUtil();
                 // String openId=CommonUtil.getOpenId(code);
                 String openId = go.getOpenidByCode(code);
                 if (openId != null && !openId.equals("")) {
@@ -94,7 +93,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         if (openid == null) {
             if (StringUtil.bIsNotNull(code)) {
                 logger.error("网页授权code: "+code);
-                GetWechatWebAccessToken go = new GetWechatWebAccessToken();
+                WechatWebAccessTokenUtil go = new WechatWebAccessTokenUtil();
                 String openId = go.getOpenidByCode(code);
                 if (StringUtil.bIsNotNull(openId)) {
                     logger.error("网页授权openId: "+openId);
@@ -132,31 +131,20 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         */
 
 
-        if (openid == null) {
+        String openId = null;
+        if (null==openid) {
             if (StringUtil.bIsNotNull(code)) {
                 //有code,无openid,获取openid
 //                logger.error("网页授权code: "+code);
-                GetWechatWebAccessToken go = new GetWechatWebAccessToken();
+                WechatWebAccessTokenUtil go = new WechatWebAccessTokenUtil();
                 WechatWebAccessToken wechatWebAccessToken=go.getWechatWebAccessTokenByCode(code);
-                String openId=wechatWebAccessToken.getOpenid();
+                openId=wechatWebAccessToken.getOpenid();
                 String access_token=wechatWebAccessToken.getAccess_token();
                 if (StringUtil.bIsNotNull(openId)) {
-//                    logger.error("网页授权openId: "+openId);
-                    session.setAttribute(IWechatService.OPENID, openId);
-
-                    WechatUser wechatUser = wechatService.findWechatUserByopenid(openId);
-                    if (wechatUser != null) {
-                        // 将登录时间录入
-                        // userService.updateUserLogintime(stime,wechatUser.getOpenid());
-                        ownerPhoneNumber=wechatUser.getLockUser().getOwnername();
-                    } else {
-                        wechatUser = new WechatUser();
-                        wechatUser.setOpenid(openId);
-                        wechatUser.setCreatetime(stime);
-                        wechatService.addSubscribe(wechatUser);
-//                        System.out.println("--------------------生成用户3");
-                    }
-                }else{
+                    logger.error("网页授权openId: "+openId);
+                    session.setAttribute(IWechatService.OPENID,openId);
+                    openid=openId;
+                }else {
                     throw new Exception(this.getClass()+":已获取code为"+code+",但是获取的openId为空");
                 }
             }else {
@@ -165,8 +153,9 @@ public class OpenIdInterceptor extends AbstractInterceptor{
                         + url + "&response_type=code&scope=snsapi_base#wechat_redirect");
             }
         }
-//        logger.error("网页授权code: "+code);
-//        logger.error("网页授权openid: "+openid);
+
+        logger.error("网页授权code: "+code);
+        logger.error("网页授权openid: "+openid);
         return actionInvocation.invoke();
     }
 }

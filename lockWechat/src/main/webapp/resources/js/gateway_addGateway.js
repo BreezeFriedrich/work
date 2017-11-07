@@ -15,6 +15,8 @@ var isCorrectGatewayVerificationCode;
 var url;
 $(function () {
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
+
+    $.init();
 });
 
 function addGateway() {

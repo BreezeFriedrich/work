@@ -26,7 +26,7 @@ public class VerifyCodeUtils {
     //使用到Algerian字体，系统里没有的话需要安装字体，字体只显示大写，去掉了1,0,i,o几个容易混淆的字符
     public static final String VERIFY_CODES = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
     private static Random random = new Random();
-
+    public static final String PHONE_VERIFY_CODES = "0123456789";
 
     /**
      * 使用系统默认字符源生成验证码
@@ -263,9 +263,11 @@ public class VerifyCodeUtils {
     }
 
     public static String generateVerifyCodeNum(int verifySize){
+        Random rand = new Random(System.currentTimeMillis());
         StringBuilder verifyCode = new StringBuilder(verifySize);
         for(int i = 0; i < verifySize; i++){
-            verifyCode.append((Math.random()*verifySize));
+            verifyCode.append(PHONE_VERIFY_CODES.charAt(rand.nextInt(PHONE_VERIFY_CODES.length()-1)));
+            // new Random.nextInt(n) 伪随机地生成并返回指定范围中的一个int值。所有可能的n个int值的生成概率（大致）相同。
         }
         return verifyCode.toString();
     }
@@ -280,7 +282,7 @@ public class VerifyCodeUtils {
         }
         */
         //6位数字验证码
-        int verifyCode = (int)(Math.random()*6);
-        System.out.println("verifyCode: "+verifyCode);
+//        int verifyCode = (int)(Math.random()*6);
+//        System.out.println("verifyCode: "+verifyCode);
     }
 }

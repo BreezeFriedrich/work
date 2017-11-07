@@ -54,6 +54,8 @@ $(function(){
         url="jsp/gateway/gateway_addLock.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode;
         window.location.href=encodeURI(url);
     });
+
+    $.init();
 });
 
 //获取链接参数

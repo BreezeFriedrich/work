@@ -19,7 +19,7 @@
                 <param name="root">jsonObject</param>
                 <param name="excludeNullProperties">false</param>
             </result>
-            <result name="error" type="dispatcher">/jsp/exception.jsp</result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
     </package>

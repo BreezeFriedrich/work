@@ -17,6 +17,8 @@ $(function(){
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
+
+    $.init();
 });
 
 //获取链接参数

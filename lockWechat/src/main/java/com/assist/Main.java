@@ -5,26 +5,8 @@
 
 package com.assist;
 
-import com.yishu.util.GetWechatWebAccessToken;
-import com.yishu.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.security.Permission;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
 @Component("main")
 public class Main {
@@ -54,8 +36,8 @@ public class Main {
         */
 
 //        ApplicationContext context=new ClassPathXmlApplicationContext("spring/spring.xml");
-////        System.out.println("APPSECRET : "+((GetWechatWebAccessToken)(context.getBean("getOpenidByCode"))).SECRET);
-//        ((GetWechatWebAccessToken)(context.getBean("getOpenid"))).printConfig();
+////        System.out.println("APPSECRET : "+((WechatWebAccessTokenUtil)(context.getBean("getOpenidByCode"))).SECRET);
+//        ((WechatWebAccessTokenUtil)(context.getBean("getOpenid"))).printConfig();
 
         String urlStr = "http://192.168.1.47:9018";
         System.err.println(urlStr);

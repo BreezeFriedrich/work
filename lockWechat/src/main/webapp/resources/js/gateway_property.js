@@ -37,7 +37,9 @@ $(function(){
 //另一种JS设置placeholder的方法	document.getElementsByTagName('input')[1].placeholder=json_theGateway.gatewayLocation;
     document.getElementsByTagName('input')[1].setAttribute('placeholder',json_theGateway.gatewayLocation);
     document.getElementsByTagName('input')[2].setAttribute('placeholder',json_theGateway.gatewayComment);
-})
+
+    $.init();
+});
 
 //获取链接参数
 function getQueryString(name) {

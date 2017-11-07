@@ -1,17 +1,29 @@
 package com.yishu.action;
 
+import com.aliyuncs.dysmsapi.model.v20170525.QuerySendDetailsResponse;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.aliyuncs.exceptions.ClientException;
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
+import com.yishu.domain.WechatUser;
+import com.yishu.pojo.LockUser;
 import com.yishu.pojo.User;
 import com.yishu.jwt.*;
 import com.yishu.service.IUserService;
-import com.yishu.util.JwtHelper;
-import com.yishu.util.MD5;
+import com.yishu.service.IWechatService;
+import com.yishu.util.*;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -28,27 +40,6 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
 //    private IUserService userService;
     @Autowired
     private Audience audience;
-
-    private Map<String,Object> jsonMap;
-    public Map<String, Object> getJsonMap() {
-        return jsonMap;
-    }
-
-    private LoginPara loginPara=new LoginPara();
-    public LoginPara getLoginPara() {
-        return loginPara;
-    }
-    public void setLoginPara(LoginPara loginPara) {
-        this.loginPara = loginPara;
-    }
-
-    private String authenticateErrMsg;
-    public String getAuthenticateErrMsg() {
-        return authenticateErrMsg;
-    }
-    public void setAuthenticateErrMsg(String authenticateErrMsg) {
-        this.authenticateErrMsg = authenticateErrMsg;
-    }
 
     public String loginTest(){
         String userName=loginPara.getUsername();
@@ -148,10 +139,155 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     }
 */
 
+    @Autowired
+    IWechatService wechatService;
+
+    private String ownerPhoneNumber;
+    private String openid;
+
+    public String getOwnerPhoneNumber() {
+        return ownerPhoneNumber;
+    }
+
+    public void setOwnerPhoneNumber(String ownerPhoneNumber) {
+        this.ownerPhoneNumber = ownerPhoneNumber;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    /*
+    获得ActionContext实例，以便访问Servlet API
+    ActionContext ctx = ActionContext.getContext();
+    // 存入application
+    ctx.getApplication().put("msg", "application信息");
+    // 保存session
+    ctx.getSession().put("msg", "seesion信息");
+    // 保存request信息
+    HttpServletRequest request = ServletActionContext.getRequest();
+    request.setAttribute("msg", "request信息");
+    ActionContext ctx = ActionContext.getContext();
+    Map<String,Object> sessionMap=ctx.getSession();
+    */
+
+    HttpServletRequest request = ServletActionContext.getRequest();
+    HttpSession session = request.getSession();
+
     public String wxLogin () {
+        ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        if (null==ownerPhoneNumber){
+            openid= (String) session.getAttribute(IWechatService.OPENID);
+            //有openid无ownerPhoneNumber
+            WechatUser wechatUser = wechatService.findWechatUserByopenid(openid);
+            if (wechatUser != null) {
+                ownerPhoneNumber=wechatUser.getLockUser().getPhonenumber();
+                session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
+                setOwnerPhoneNumber(ownerPhoneNumber);
+            }
+            return "register";
+        }
         return "main";
     }
+
+    private String registerPhoneNumber;
+    public String getRegisterPhoneNumber() {
+        return registerPhoneNumber;
+    }
+    public void setRegisterPhoneNumber(String registerPhoneNumber) {
+        this.registerPhoneNumber = registerPhoneNumber;
+    }
+
+    public String register() throws Exception {
+        String verifyCodeStr=VerifyCodeUtils.generateVerifyCodeNum(6);
+        SendSmsResponse smsResponse=null;
+        String sms_BizId=null;
+        smsResponse=SmsUtil.sendVerifyCode(registerPhoneNumber,verifyCodeStr);
+        session.setAttribute("verifyCode",verifyCodeStr);
+        sms_BizId=smsResponse.getBizId();
+        session.setAttribute("sms_BizId",sms_BizId);
+        if(smsResponse.getCode() == null || ! smsResponse.getCode().equals("OK")){
+            throw new Exception("发送短信验证码失败");
+        }
+        return "register2";
+    }
+
+    private String verifyCode;
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
+    }
+
+    public String register2() throws ClientException, ParseException {
+        String sms_BizId=null;
+        sms_BizId= (String) session.getAttribute("sms_BizId");
+        SendSmsResponse smsResponse=null;
+//        QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(sms_BizId);
+//        querySendDetailsResponse.getCode();
+        QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(sms_BizId);
+        System.out.println("短信明细查询接口返回数据----------------");
+        System.out.println("Code=" + querySendDetailsResponse.getCode());
+        System.out.println("Message=" + querySendDetailsResponse.getMessage());
+        String phoneNum=null;
+        String sendDateStr=null;
+        int i = 0;
+        for (QuerySendDetailsResponse.SmsSendDetailDTO smsSendDetailDTO : querySendDetailsResponse.getSmsSendDetailDTOs()) {
+            System.out.println("SmsSendDetailDTO["+i+"]:");
+            System.out.println("Content=" + smsSendDetailDTO.getContent());
+            System.out.println("ErrCode=" + smsSendDetailDTO.getErrCode());
+            System.out.println("PhoneNum=" + smsSendDetailDTO.getPhoneNum());
+            phoneNum=smsSendDetailDTO.getPhoneNum();
+            System.out.println("SendDate=" + smsSendDetailDTO.getSendDate());
+            sendDateStr=smsSendDetailDTO.getSendDate();
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long timeLag= new Date().getTime()- (dateFormat.parse(sendDateStr).getTime());
+        WechatUser wechatUser=null;
+        LockUser lockUser=null;
+        if(timeLag < 5*60*1000){
+            if (verifyCode.equals(session.getAttribute("verifyCode"))){
+                wechatUser = new WechatUser();
+                wechatUser.setOpenid(openid);
+                wechatUser.setCreatetime(DataUtil.fromDate24H());
+                lockUser=new LockUser();
+                lockUser.setPhonenumber(phoneNum);
+                wechatUser.setLockUser(lockUser);
+                wechatService.addSubscribe(wechatUser);
+            }
+        }else {
+            session.setAttribute("errMsg","验证码超时，请重新获取验证码。");
+            return "error";
+        }
+        System.out.println("TotalCount=" + querySendDetailsResponse.getTotalCount());
+    }
     //********************************************************************************************************
+    private Map<String,Object> jsonMap;
+    public Map<String, Object> getJsonMap() {
+        return jsonMap;
+    }
+
+    private LoginPara loginPara=new LoginPara();
+    public LoginPara getLoginPara() {
+        return loginPara;
+    }
+    public void setLoginPara(LoginPara loginPara) {
+        this.loginPara = loginPara;
+    }
+
+    private String authenticateErrMsg;
+    public String getAuthenticateErrMsg() {
+        return authenticateErrMsg;
+    }
+    public void setAuthenticateErrMsg(String authenticateErrMsg) {
+        this.authenticateErrMsg = authenticateErrMsg;
+    }
+
     private JwtAccessToken jwtAccessToken;
     /*jwtAccessToken设置了getXXX，json插件将jwtAccessToken转为json*/
     public JwtAccessToken getJwtAccessToken() {
@@ -172,7 +308,6 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     Map<String, String> params;
     @Override
     public void addParam(String s, String s1) {
-
     }
     @Override
     public void setParams(Map<String, String> map) {

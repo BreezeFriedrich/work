@@ -12,6 +12,6 @@
 </head>
 <body>
 <p>error_struts.jsp</p>
-    struts2出现错误，可能是action映射或处理错误.
+    struts2 action请求不匹配.
 </body>
 </html>

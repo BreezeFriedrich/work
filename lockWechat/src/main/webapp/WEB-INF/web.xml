@@ -114,7 +114,7 @@
   </error-page>
   <error-page>
     <exception-type>java.lang.Exception</exception-type>
-    <location>/jsp/exception.jsp</location>
+    <location>/jsp/error.jsp</location>
   </error-page>
 
   <!-- icon?,display-name?,description?,distributable?,context-param*,filter*,filter-mapping*,listener*,servlet*,servlet-mapping*,

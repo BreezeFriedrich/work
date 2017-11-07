@@ -28,43 +28,6 @@
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <style>
-        img.auto-zoom-1 {
-            width: 1rem;
-            height: 1rem;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        img.auto-zoom-2 {
-            width: 2rem;
-            height: 2rem;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        img.auto-zoom-3 {
-            width: 3rem;
-            height: 3rem;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        img.auto-zoom-4 {
-            width: 4rem;
-            height: 4rem;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        img.auto-zoom-5 {
-            width: 5rem;
-            height: 5rem;
-            max-width: 100%;
-            max-height: 100%;
-        }
-        .row.pad-left {
-            padding-left: 1rem;
-        }
-        .card .card-footer {
-            /*上下 ,左右*/
-            padding: 0 0.75rem;
-        }
         .list-block {
             margin: 1.5rem 0;
             min-height: 2.0rem;
@@ -145,12 +108,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_addLock.js?ver=5' charset='utf-8'></script>
-<!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
-<script>
-    $(function(){
-        $.init();
-    });
-</script>
+<script type='text/javascript' src='resources/js/gateway_addLock.js?ver=1' charset='utf-8'></script>
 </body>
 </html>

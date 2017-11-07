@@ -7,30 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sql/DataServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/welcome.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/src/main/webapp/scripts/device-manage.js" afterPath="$PROJECT_DIR$/../Lock0410/src/main/webapp/scripts/device-manage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/mappers/UserMapper.xml" afterPath="$PROJECT_DIR$/resources/mappers/UserMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/SAMRECORD.sql" afterPath="$PROJECT_DIR$/sql/SAMRECORD.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/shiro.sql" afterPath="$PROJECT_DIR$/sql/shiro.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataServer.java" afterPath="$PROJECT_DIR$/src/DataServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/assist/Test.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/assist/Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/RoleDaoImpl.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/dao/impl/RoleDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/UserService.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/service/impl/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/UserController.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/shiro/web/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/util/HttpUtil.java" afterPath="$PROJECT_DIR$/../swipe/src/main/java/com/yishu/util/HttpUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-shiro.xml" afterPath="$PROJECT_DIR$/../swipe/src/main/resources/spring/spring-shiro.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/database/clearData.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/database/clearData.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/login.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/main.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/modulestatus/mAllRecords.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/modulestatus/mAllRecords.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sAllRecords.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sAllRecords.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sAnalyseByDay.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sAnalyseByDay.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sAnalyseByInterval.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sAnalyseByInterval.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sChart.jsp" afterPath="$PROJECT_DIR$/../swipe/src/main/webapp/WEB-INF/jsp/swiperecord/sChart.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,8 +67,8 @@
       <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DataServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="50" column="5" lean-forward="false" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+            <state relative-caret-position="165">
+              <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -282,7 +259,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -315,7 +292,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -903,7 +880,8 @@
       <workItem from="1509426958572" duration="2680000" />
       <workItem from="1509934551099" duration="59000" />
       <workItem from="1509934659151" duration="15009000" />
-      <workItem from="1509963563365" duration="1607000" />
+      <workItem from="1509963563365" duration="1681000" />
+      <workItem from="1510017736630" duration="366000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -1066,11 +1044,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500029236421</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="2017.11.06-work">
+      <created>1509965578933</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1509965578933</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="785440000" />
+    <option name="totallyTimeSpent" value="785880000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1083,10 +1068,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2859155" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29090908" sideWeight="0.095115684" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925257" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1094,7 +1079,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35070422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23389176" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2371134" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17416452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1109,6 +1094,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3547486" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44084507" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2859155" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1183,7 +1169,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="2017.05.26" />
     <MESSAGE value="2017.06.02" />
     <MESSAGE value="2017.06.05" />
     <MESSAGE value="2017.06.06" />
@@ -1208,7 +1193,8 @@
     <MESSAGE value="2017.07.04-work" />
     <MESSAGE value="2017.07.13-work" />
     <MESSAGE value="2017.07.14-work" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017.07.14-work" />
+    <MESSAGE value="2017.11.06-work" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017.11.06-work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1382,18 +1368,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1564">
           <caret line="92" column="13" lean-forward="true" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
-          <folding>
-            <marker date="1501124240193" expanded="true" signature="247:425" ph="INSERT INTO TABLE_RECORD... " />
-            <marker date="1501124240193" expanded="true" signature="502:909" ph="UPDATE TABLE... " />
-            <marker date="1501124240193" expanded="true" signature="987:1062" ph="DELETE FROM " />
-            <marker date="1501124240193" expanded="true" signature="1148:1207" ph="DELETE FROM " />
-            <marker date="1501124240193" expanded="true" signature="1282:1379" ph="SELECT `devi... TABLE_RECORD" />
-            <marker date="1501124240193" expanded="true" signature="3003:3734" ph="SELECT `devi... TABLE_RECORD" />
-            <marker date="1501124240193" expanded="true" signature="3824:4146" ph="SELECT `devi... TABLE_RECORD" />
-            <marker date="1501124240193" expanded="true" signature="4253:4385" ph="SELECT `devi... TABLE_RECORD" />
-            <marker date="1501124240193" expanded="true" signature="4467:4775" ph="SELECT `devi... TABLE_RECORD" />
-            <marker date="1501124240193" expanded="true" signature="5298:5428" ph="SELECT `devi... TABLE_RECORD" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1445,21 +1419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-          <folding>
-            <marker date="1499327357103" expanded="true" signature="255:315" ph="INSERT INTO t_role... " />
-            <marker date="1499327357103" expanded="true" signature="384:427" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="740:838" ph="SELECT id, `... t_role" />
-            <marker date="1499327357103" expanded="true" signature="908:1151" ph="UPDATE t_rol... " />
-            <marker date="1499327357103" expanded="true" signature="1220:1293" ph="SELECT id, `... t_role" />
-            <marker date="1499327357103" expanded="true" signature="1390:1540" ph="SELECT id, u... t_user_role" />
-            <marker date="1499327357103" expanded="true" signature="1614:1696" ph="INSERT INTO `t_user_role`... " />
-            <marker date="1499327357103" expanded="true" signature="2058:2147" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="2230:2295" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="2433:2657" ph="SELECT tr.`i... t_resource" />
-            <marker date="1499327357103" expanded="true" signature="2735:2823" ph="INSERT INTO t_role_resource... " />
-            <marker date="1499327357103" expanded="true" signature="2904:3005" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="3110:3276" ph="SELECT id, r... t_role_resource" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1467,7 +1426,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="28" column="7" lean-forward="false" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1475,7 +1433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="54" column="37" lean-forward="false" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1483,7 +1440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1491,33 +1447,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1258">
           <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-          <folding>
-            <marker date="1509947703507" expanded="true" signature="296:419" ph="INSERT INTO t_user... " />
-            <marker date="1509947703507" expanded="true" signature="513:981" ph="UPDATE t_use... " />
-            <marker date="1509947703507" expanded="true" signature="1050:1093" ph="DELETE FROM " />
-            <marker date="1509947703507" expanded="true" signature="1425:1577" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="1646:1765" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="1863:2027" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="2118:2391" ph="SELECT tu.id... t_user" />
-            <marker date="1509947703507" expanded="true" signature="2539:2790" ph="SELECT tr.`i... t_resource" />
-            <marker date="1509947703507" expanded="true" signature="2926:3118" ph="SELECT tr.sn... t_role" />
-            <marker date="1509947703507" expanded="true" signature="3247:3477" ph="SELECT tr.`i... t_role" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql/DataServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/DataServer.java" />
     <entry file="file://$PROJECT_DIR$/src/DataServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="50" column="5" lean-forward="false" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+        <state relative-caret-position="165">
+          <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

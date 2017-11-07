@@ -38,6 +38,8 @@ $(function(){
     document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
     document.getElementsByTagName('input')[1].setAttribute('placeholder',json_theLock.lockLocation);
     document.getElementsByTagName('input')[2].setAttribute('placeholder',json_theLock.lockComment);
+
+    $.init();
 });
 
 //获取链接参数

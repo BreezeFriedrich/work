@@ -66,7 +66,7 @@
         <default-interceptor-ref name="monitor_Stack" />
 
         <!-- 当action请求不匹配时，struts2导向的默认action处理 -->
-        <!--<default-action-ref name="error_struts"/>-->
+        <default-action-ref name="error_struts"/>
 
         <!-- 全局results配置 -->
         <global-results>

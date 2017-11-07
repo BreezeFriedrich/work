@@ -18,6 +18,8 @@ $(function () {
     opCode=getQueryString('opCode');
     document.getElementsByClassName('property')[0].innerText=gatewayCode;
     document.getElementsByClassName('property')[1].innerText=opCode;
+
+    $.init();
 });
 
 function registerGateway() {
