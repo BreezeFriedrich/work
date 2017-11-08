@@ -15,7 +15,7 @@ function registerPhoneByVerifyCode(){
     if(''!==verifyCode){
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/register2.action",
+            url:projectPath+"/account/checkVerifyCodeThenRegister.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "verifyCode":verifyCode

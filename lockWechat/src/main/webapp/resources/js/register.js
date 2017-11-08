@@ -10,12 +10,13 @@ $(function () {
     $.init();
 });
 
+//请求短信验证码
 function getVerifyCode(){
     registerPhoneNumber=document.getElementsByTagName('input')[0].value;
     if(''!==registerPhoneNumber){
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/register.action",
+            url:projectPath+"/account/sendVerifyCode.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "registerPhoneNumber":registerPhoneNumber

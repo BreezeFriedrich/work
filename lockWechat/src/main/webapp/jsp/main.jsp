@@ -14,6 +14,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
     <base href="<%=basePath%>">
@@ -194,7 +195,15 @@
             <img class="auto-zoom-5" src="resources/img/username.png" alt="用户图像"/>
         </div>
         <div>
-            <p><span>18255683932</span></p>
+            <p>
+                <%--<span>18255683932</span>--%>
+                <s:if test="#attr.ownerPhoneNumber!=null">
+                    <s:property value="#attr.ownerPhoneNumber" />
+                </s:if>
+                <s:else>
+                    获取手机号码失败
+                </s:else>
+            </p>
         </div>
         <div style="height: 2rem;"></div>
         <div class="row pad-left">
@@ -234,6 +243,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="INPUT_hidden" value="${ownerPhoneNumber}" />
 
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>

@@ -18,24 +18,26 @@
              method: 调用Action中的方法名
         -->
         <global-allowed-methods>login</global-allowed-methods>
-
-        <action name="wxLogin" class="com.yishu.action.AccountAction" method="wxLogin">
+        <action name="loginAccount" class="com.yishu.action.AccountAction" method="loginTest">
             <!-- 参数设置 name：对应Action中的get/set方法 -->
             <!--<param name="salt">yishutech</param>-->
 
             <!-- 引用拦截器 name:拦截器名称或拦截器栈名称 -->
             <!--<interceptor-ref name="monitor_Stack"/>-->
-            <interceptor-ref name="openidStack"/>
+            <interceptor-ref name="defaultStack">
+                <param name="exception.logEnabled">true</param>
+                <param name="exception.logLevel">error</param>
+            </interceptor-ref>
 
             <!-- 节点配置
                 name : result名称 和Action中返回的值相同
                 type : result类型 不写则选用superpackage的type struts-default.xml中的默认为dispatcher
              -->
             <!--<result name="JSON_RESULT" type="json"/>--><!-- 不配置param,将返回整个ValueStack 的json串-->
-            <result name="json" type="json">
+            <result name="JSON_RESULT" type="json">
                 <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
                 <!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->
-                <param name="root">jsonResult</param>
+                <param name="root">jsonMap</param>
                 <!-- 指定是否序列化空的属性 -->
                 <param name="excludeNullProperties">false</param>
                 <!-- 这里指定将序列化dataMap中的那些属性 -->
@@ -43,19 +45,11 @@
                 <!-- 这里指定将要从dataMap中排除那些属性，这些排除的属性将不被序列化，一般不与上边的参数配置同时出现 -->
                 <!--<param name="excludeProperties">SUCCESS</param>-->
             </result>
-            <result name="main">/jsp/main.jsp</result>
-            <result name="register">/jsp/register.jsp</result>
-            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+            <!--<result name="success">/WEB-INF/jsp/main.jsp</result>-->
+            <result name="success">/jsp/main.jsp</result>
+            <result name="login" type="dispatcher">/jsp/login.jsp</result>
         </action>
-
-        <action name="sendVerifyCode" class="com.yishu.action.AccountAction" method="sendVerifyCode">
-            <interceptor-ref name="openidStack"/>
-            <result name="register">/jsp/register.jsp</result>
-            <result name="register2">/jsp/register2.jsp</result>
-            <result name="error" type="dispatcher">/jsp/error.jsp</result>
-        </action>
-
-        <action name="checkVerifyCodeThenRegister" class="com.yishu.action.AccountAction" method="checkVerifyCodeThenRegister">
+        <action name="wxLogin" class="com.yishu.action.AccountAction" method="wxLogin">
             <interceptor-ref name="openidStack"/>
             <result name="main">/jsp/main.jsp</result>
             <result name="register">/jsp/register.jsp</result>

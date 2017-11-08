@@ -14,12 +14,6 @@
         INSERT INTO wechatUser(`openid`,`createtime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`fk_wechatUser_ownerinfo`)
         VALUES (#{openid},#{createtime},#{nickname},#{headimgurl},#{sex},#{country},#{province},#{city},#{lockUser.id});
     </insert>
-    <resultMap id="WechatUserResultMap" type="com.yishu.domain.WechatUser">
-        <id property="id" column="SEQ"/>
-        <association property="lockUser" javaType="com.yishu.pojo.LockUser">
-            <id property="id" column="SEQ"/>
-        </association>
-    </resultMap>
 
     <update id="UnSubscribe" parameterType="WechatUser">
         UPDATE wechatUser

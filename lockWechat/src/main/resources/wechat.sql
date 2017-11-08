@@ -1,3 +1,7 @@
+set names utf8; set names utf8;
+
+# 使用数据库 SAMRECORD
+USE SAMRECORD;
 -- ----------------------------
 -- Table structure for ownerinfo
 -- ----------------------------

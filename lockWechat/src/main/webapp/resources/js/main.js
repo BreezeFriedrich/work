@@ -6,10 +6,16 @@
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var json;
-var ownerPhoneNumber=18255683932;
+var ownerPhoneNumber;
 var url;
 $(function(){
-//	ownerPhoneNumber = document.getElementById("INPUT-hiddden_ownerPhoneNumber").value;
+    ownerPhoneNumber = document.getElementById("INPUT_hidden").value;
+    if (""!==ownerPhoneNumber){
+        $.toast('通过隐藏输入框获取手机号码:'+ownerPhoneNumber,3000);
+    }else {
+        $.toast('无法通过隐藏输入框获取手机号码');
+        ownerPhoneNumber=18255683932
+    }
     $.ajax({
         type:"POST",
         // url:"http://localhost:80/lockWechat/device/getDeviceInfo.action",
