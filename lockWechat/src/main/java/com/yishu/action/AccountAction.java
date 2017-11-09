@@ -68,14 +68,15 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         if (null==ownerPhoneNumber){
             openid= (String) session.getAttribute(IWechatService.OPENID);
             logger.info("openid :"+openid);
-            setOpenid(openid);
+//            setOpenid(openid);
             //有openid无ownerPhoneNumber
             WechatUser wechatUser = wechatService.findWechatUserByopenid(openid);
+            logger.info("wechatUser : "+wechatUser);
             if (wechatUser != null) {
                 ownerPhoneNumber=wechatUser.getLockUser().getPhonenumber();
                 logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
                 session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
-                setOwnerPhoneNumber(ownerPhoneNumber);
+//                setOwnerPhoneNumber(ownerPhoneNumber);
             }else{
                 //已获得openid,无ownerPhoneNumber.交由register.jsp获取短信验证码.
                 return "register";

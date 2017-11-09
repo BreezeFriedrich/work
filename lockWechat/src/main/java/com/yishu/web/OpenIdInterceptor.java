@@ -56,7 +56,6 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         if (null==openid) {
             if (StringUtil.bIsNotNull(code)) {
                 //有code,无openid,获取openid
-//                logger.info("网页授权code: "+code);
                 WechatWebAccessTokenUtil go = new WechatWebAccessTokenUtil();
                 WechatWebAccessToken wechatWebAccessToken=go.getWechatWebAccessTokenByCode(code);
                 String openId=wechatWebAccessToken.getOpenid();

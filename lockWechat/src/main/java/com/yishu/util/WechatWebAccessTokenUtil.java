@@ -19,13 +19,29 @@ import java.io.UnsupportedEncodingException;
 public class WechatWebAccessTokenUtil {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("WechatWebAccessTokenUtil");
 
-    @Value("${APPID}")
-    private String APPID;// 微信公众号下的AppID
-    @Value("${APPSECRET}")
-    private String SECRET;// 微信公众号下的secret
+//    @Value("${APPID}")
+    private String APPID="wx6234fc4a502ef625";// 微信公众号下的AppID
+//    @Value("${APPSECRET}")
+    private String SECRET="897c9b5b60804e4c9f4609cd00dd875c";// 微信公众号下的secret
+
+    public String getAPPID() {
+        return APPID;
+    }
+
+    public void setAPPID(String APPID) {
+        this.APPID = APPID;
+    }
+
+    public String getSECRET() {
+        return SECRET;
+    }
+
+    public void setSECRET(String SECRET) {
+        this.SECRET = SECRET;
+    }
 
     public void printConfig(){
-        //@Value("${}")搭配component-scan 、@Component读取配置.
+        //@Value("${}")搭配setters、component-scan 、@Component读取配置.
         System.out.println("APPSECRET : "+SECRET);
     }
 
@@ -40,7 +56,7 @@ public class WechatWebAccessTokenUtil {
      * @return
      */
     public WechatWebAccessToken getWechatWebAccessTokenByCode(String code) {
-//        logger.error("APPID : "+APPID);
+        logger.info("APPID : "+APPID);
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="
                 + APPID
                 + "&secret="
@@ -55,7 +71,7 @@ public class WechatWebAccessTokenUtil {
         } catch (UnsupportedEncodingException e){
             e.printStackTrace();
         }
-//        logger.error(jsonStr);
+        logger.info("获取网页授权openid & access_token,微信返回 : "+jsonStr);
         JSONObject jsonObject = null;
         String openid = null;
         WechatWebAccessToken wechatWebAccessToken=new WechatWebAccessToken();

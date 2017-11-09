@@ -49,14 +49,20 @@
         </action>
 
         <action name="sendVerifyCode" class="com.yishu.action.AccountAction" method="sendVerifyCode">
-            <interceptor-ref name="openidStack"/>
+            <interceptor-ref name="defaultStack">
+                <param name="exception.logEnabled">true</param>
+                <param name="exception.logLevel">error</param>
+            </interceptor-ref>
             <result name="register">/jsp/register.jsp</result>
             <result name="register2">/jsp/register2.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
         <action name="checkVerifyCodeThenRegister" class="com.yishu.action.AccountAction" method="checkVerifyCodeThenRegister">
-            <interceptor-ref name="openidStack"/>
+            <interceptor-ref name="defaultStack">
+                <param name="exception.logEnabled">true</param>
+                <param name="exception.logLevel">error</param>
+            </interceptor-ref>
             <result name="main">/jsp/main.jsp</result>
             <result name="register">/jsp/register.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>

@@ -25,6 +25,7 @@ public class WechatServiceImpl implements IWechatService {
 
     @Override
     public int addSubscribe(WechatUser wechatUser) {
+        logger.info("wechatUser : "+wechatUser);
         return wechatDao.addSubscribe(wechatUser);
     }
 

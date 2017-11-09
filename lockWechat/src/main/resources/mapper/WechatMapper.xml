@@ -10,7 +10,7 @@
           VALUES (#{openid},#{createtime},#{nickname},#{headimgurl});
     </insert>
 
-    <insert id="addSubscribe" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="SEQ">
+    <insert id="addSubscribe" parameterType="WechatUserResultMap" useGeneratedKeys="true" keyProperty="SEQ">
         INSERT INTO wechatUser(`openid`,`createtime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`fk_wechatUser_ownerinfo`)
         VALUES (#{openid},#{createtime},#{nickname},#{headimgurl},#{sex},#{country},#{province},#{city},#{lockUser.id});
     </insert>
@@ -41,36 +41,38 @@
             封装联表查询的数据(去除重复的数据)
             select * from class c, teacher t where c.teacher_id=t.t_id and c.c_id=1
     -->
-    <select id="findWechatUserByopenid" parameterType="int" resultMap="WechatUserResultMap">
+    <!--
+    <select id="findWechatUserByopenid" parameterType="String" resultMap="WechatUserResultMap2">
         SELECT `SEQ`,`openid`,`unionid`,`createtime`,`untime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`fk_wechatUser_ownerinfo`
         FROM wechatUser w, ownerinfo o
         WHERE w.fk_wechatUser_ownerinfo=o.SEQ AND w.openid=#{openid};
     </select>
-    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
-    <resultMap id="WechatUserResultMap" type="com.yishu.domain.WechatUser">
+    <resultMap id="WechatUserResultMap2" type="com.yishu.domain.WechatUser">
         <id property="id" column="SEQ"/>
         <association property="lockUser" javaType="com.yishu.pojo.LockUser">
             <id property="id" column="SEQ"/>
         </association>
     </resultMap>
+    -->
 
     <!--
         方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型
             SELECT * FROM class WHERE c_id=1;
             SELECT * FROM teacher WHERE t_id=1   //1 是上一个查询得到的teacher_id的值
-    <select id="getWechatUserByopenid" parameterType="int" resultMap="WechatUserResultMap2">
+    -->
+    <select id="findWechatUserByopenid" parameterType="String" resultMap="WechatUserResultMap">
         SELECT *
         FROM wechatUser
         WHERE openid=#{openid}
     </select>
-    <resultMap id="WechatUserResultMap2" type="com.yishu.domain.WechatUser">
+    <resultMap id="WechatUserResultMap" type="com.yishu.domain.WechatUser">
         <id property="id" column="SEQ"/>
         <association property="lockUser" column="fk_wechatUser_ownerinfo" select="getLockUser"/>
     </resultMap>
-    <select id="getLockUser" parameterType="int" resultMap="com.yishu.pojo.LockUser">
+    <select id="getLockUser" parameterType="int" resultType="com.yishu.pojo.LockUser">
         SELECT *
         FROM ownerinfo
         WHERE SEQ=#{id}
     </select>
-    -->
+
 </mapper>

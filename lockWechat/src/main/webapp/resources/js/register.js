@@ -14,6 +14,7 @@ $(function () {
 function getVerifyCode(){
     registerPhoneNumber=document.getElementsByTagName('input')[0].value;
     if(''!==registerPhoneNumber){
+        /*
         $.ajax({
             type:"POST",
             url:projectPath+"/account/sendVerifyCode.action",
@@ -29,6 +30,9 @@ function getVerifyCode(){
                 console.log('错误')
             }
         });
+        */
+        var url=projectPath+"/account/sendVerifyCode.action?registerPhoneNumber="+registerPhoneNumber;
+        window.location.href=encodeURI(url);
     }else {
         $.toast('手机号码为空，无法获取验证码',1500);
     }
