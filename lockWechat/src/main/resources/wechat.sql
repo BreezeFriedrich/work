@@ -5,6 +5,7 @@ USE SAMRECORD;
 -- ----------------------------
 -- Table structure for ownerinfo
 -- ----------------------------
+DROP TABLE IF EXISTS `wechatUser`;
 DROP TABLE IF EXISTS `ownerinfo`;
 CREATE TABLE `ownerinfo` (
   `SEQ` int(11) NOT NULL AUTO_INCREMENT,
@@ -26,26 +27,25 @@ CREATE TABLE `ownerinfo` (
 # Structure for table "wechatUser"
 #
 
-DROP TABLE IF EXISTS `wechatUser`;
 CREATE TABLE `wechatUser` (
   `SEQ` int(11) NOT NULL AUTO_INCREMENT,
   `openid` varchar(64) DEFAULT NULL COMMENT '微信用户的唯一标识',
-  `unionid` VARCHAR(64) DEFAULT NULL COMMENT '微信平台帐号唯一标识',
+  `unionid` varchar(64) DEFAULT NULL COMMENT '微信平台帐号唯一标识',
   `createtime` varchar(32) DEFAULT NULL COMMENT '关注时间',
   `untime` varchar(32) DEFAULT NULL COMMENT '取消关注时间',
-  `nickname` varchar(128) DEFAULT NULL COMMENT '微信昵称',
+  `nickname` varchar(128) DEFAULT NULL COMMENT '微信用户昵称',
   `headimgurl` varchar(128) DEFAULT NULL COMMENT '用户头像',
 
-  `sex` int(8) DEFAULT 0,
-  `country` VARCHAR(32) DEFAULT NULL COMMENT '中国为CN',
-  `province` VARCHAR(32) DEFAULT NULL,
-  `city` VARCHAR(32) DEFAULT NULL,
-#   `privilege` VARCHAR(128) DEFAULT NULL COMMENT '用户特权信息数组,以0分隔，如微信沃卡用户为（chinaunicom）',
-  `fk_wechatUser_ownerinfo` int(11) NOT NULL COMMENT '外键关联ownerinfo的主键SEQ',
+  `sex` int(8) DEFAULT 0 COMMENT '用户的性别，值为1时是男性，值为2时是女性，值为0时是未知',
+  `country` varchar(32) DEFAULT NULL COMMENT '中国为CN',
+  `province` varchar(32) DEFAULT NULL,
+  `city` varchar(32) DEFAULT NULL,
+  `privilege` varchar(128) DEFAULT NULL COMMENT '用户特权信息数组,以0分隔，如微信沃卡用户为（chinaunicom）',
+  `fk_wechatUser_ownerinfo` int(11) NOT NULL COMMENT '取消外键关联,引用ownerinfo的主键SEQ',
 
   PRIMARY KEY (`SEQ`),
-  UNIQUE KEY `openid` (`openid`),
-  FOREIGN KEY (fk_wechatUser_ownerinfo) REFERENCES ownerinfo(`SEQ`)
+  UNIQUE KEY `openid` (`openid`)
+#   FOREIGN KEY (fk_wechatUser_ownerinfo) REFERENCES ownerinfo(`SEQ`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='微信用户关注表';
 
 #

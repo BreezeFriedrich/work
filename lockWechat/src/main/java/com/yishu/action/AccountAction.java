@@ -5,6 +5,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
+import com.yishu.dao.LockUserDao;
 import com.yishu.domain.WechatUser;
 import com.yishu.pojo.LockUser;
 import com.yishu.jwt.*;
@@ -34,6 +35,8 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
 
     @Autowired
     IWechatService wechatService;
+    @Autowired
+    LockUserDao lockUserDao;
 
     private String ownerPhoneNumber;
     private String openid;
@@ -73,7 +76,8 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
             WechatUser wechatUser = wechatService.findWechatUserByopenid(openid);
             logger.info("wechatUser : "+wechatUser);
             if (wechatUser != null) {
-                ownerPhoneNumber=wechatUser.getLockUser().getPhonenumber();
+                LockUser lockUserTemp=lockUserDao.findLockUserById(wechatUser.getLockUserId());
+                ownerPhoneNumber=lockUserTemp.getPhonenumber();
                 logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
                 session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
 //                setOwnerPhoneNumber(ownerPhoneNumber);
@@ -160,10 +164,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
             wechatUser = new WechatUser();
             wechatUser.setOpenid(openid);
             wechatUser.setCreatetime(DataUtil.fromDate24H());
-            lockUser=new LockUser();
-            lockUser.setPhonenumber(phoneNum);
-            wechatUser.setLockUser(lockUser);
-            wechatService.addSubscribe(wechatUser);
+            wechatService.addSubscribe(wechatUser,phoneNum);
             session.setAttribute("ownerPhoneNumber",phoneNum);
         }else {
             //验证码无效(超时或不正确),重新获取.

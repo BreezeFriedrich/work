@@ -6,6 +6,7 @@
 package com.yishu.service;
 
 import com.yishu.domain.WechatUser;
+import com.yishu.pojo.LockUser;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -17,11 +18,11 @@ public interface IWechatService {
     public static String OPENID="OPENID";
     public static String ACCESS_TOKEN="ACCESS_TOKEN";
 
-    public int addSubscribe(WechatUser wechatUser);
+    public int addSubscribe(WechatUser wechatUser,String phonenumber);
+
+    public int updateByOpenid(WechatUser wechatUser);
 
     public int UnSubscribe(WechatUser wechatUser);
 
     public WechatUser findWechatUserByopenid(String openid);
-
-    public int UnSubscribe2(WechatUser wechatUser);
 }

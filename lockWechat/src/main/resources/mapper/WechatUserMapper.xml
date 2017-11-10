@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yishu.dao.WechatDao">
+<mapper namespace="com.yishu.dao.WechatUserDao">
     <!--
     id,openid,unionid,createtime,untime,nickname,headimgurl;
-    country,province,city;sex;lockUser;
+    country,province,city,sex,privilege,lockUserId;
     -->
-    <insert id="addSubscribe2" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="SEQ">
+    <!--
+    <insert id="addSubscribe2" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wechatUser(`openid`,`createtime`,`nickname`,`headimgurl`)
           VALUES (#{openid},#{createtime},#{nickname},#{headimgurl});
     </insert>
 
-    <insert id="addSubscribe" parameterType="WechatUserResultMap" useGeneratedKeys="true" keyProperty="SEQ">
+    <insert id="addSubscribe" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wechatUser(`openid`,`createtime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`fk_wechatUser_ownerinfo`)
         VALUES (#{openid},#{createtime},#{nickname},#{headimgurl},#{sex},#{country},#{province},#{city},#{lockUser.id});
     </insert>
@@ -26,6 +27,7 @@
           SET headimgurl=#{headimgurl},nickname=#{nickname}
         WHERE openid=#{openid};
     </update>
+    -->
 
     <!--关联查询-->
     <!--
@@ -39,9 +41,6 @@
     <!--
         方式一：嵌套结果：使用嵌套结果映射来处理重复的联合结果的子集
             封装联表查询的数据(去除重复的数据)
-            select * from class c, teacher t where c.teacher_id=t.t_id and c.c_id=1
-    -->
-    <!--
     <select id="findWechatUserByopenid" parameterType="String" resultMap="WechatUserResultMap2">
         SELECT `SEQ`,`openid`,`unionid`,`createtime`,`untime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`fk_wechatUser_ownerinfo`
         FROM wechatUser w, ownerinfo o
@@ -54,12 +53,8 @@
         </association>
     </resultMap>
     -->
-
     <!--
-        方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型
-            SELECT * FROM class WHERE c_id=1;
-            SELECT * FROM teacher WHERE t_id=1   //1 是上一个查询得到的teacher_id的值
-    -->
+        方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型(对于外键约束表wechatUser亲测成功!)
     <select id="findWechatUserByopenid" parameterType="String" resultMap="WechatUserResultMap">
         SELECT *
         FROM wechatUser
@@ -73,6 +68,38 @@
         SELECT *
         FROM ownerinfo
         WHERE SEQ=#{id}
+    </select>
+    -->
+
+    <insert id="add" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wechatUser(`openid`,`unionid`,`createtime`,`untime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`privilege`,`fk_wechatUser_ownerinfo`)
+        VALUES (#{openid},#{unionid},#{createtime},#{untime},#{nickname},#{headimgurl},#{sex},#{country},#{province},#{city},#{privilege},#{lockUserId})
+    </insert>
+    <update id="updateByOpenid" parameterType="WechatUser">
+        UPDATE wechatUser
+        <set>
+            <if test="unionid !=null">unionid=#{unionid}</if>
+            <if test="createtime !=null">createtime=#{createtime}</if>
+            <if test="untime !=null">untime=#{untime}</if>
+            <if test="nickname !=null">nickname=#{nickname}</if>
+            <if test="headimgurl !=null">headimgurl=#{headimgurl}</if>
+            <if test="sex !=null">sex=#{sex}</if>
+            <if test="country !=null">country=#{country}</if>
+            <if test="province !=null">province=#{province}</if>
+            <if test="city !=null">city=#{city}</if>
+            <if test="privilege !=null">privilege=#{privilege}</if>
+            <if test="lockUserId !=null">fk_wechatUser_ownerinfo=#{lockUserId}</if>
+        </set>
+        WHERE openid=#{openid}
+    </update>
+    <delete id="deleteByOpenid" parameterType="String">
+        DELETE FROM wechatUser
+        WHERE openid=#{openid}
+    </delete>
+    <select id="findWechatUserByOpenid" resultType="WechatUser">
+        SELECT `SEQ` AS id,`openid`,`unionid`,`createtime`,`untime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`privilege`,`fk_wechatUser_ownerinfo`
+        FROM wechatUser
+        WHERE openid=#{openid}
     </select>
 
 </mapper>

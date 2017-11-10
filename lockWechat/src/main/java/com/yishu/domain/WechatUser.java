@@ -20,7 +20,9 @@ public class WechatUser {
     private String openid,unionid,createtime,untime,nickname,headimgurl;
     private String country,province,city;
     private int sex;
-    private LockUser lockUser;
+    private String privilege;
+//    private LockUser lockUser;
+    private int lockUserId;
 
     public int getId() {
         return id;
@@ -110,11 +112,19 @@ public class WechatUser {
         this.sex = sex;
     }
 
-    public LockUser getLockUser() {
-        return lockUser;
+    public String getPrivilege() {
+        return privilege;
     }
 
-    public void setLockUser(LockUser lockUser) {
-        this.lockUser = lockUser;
+    public void setPrivilege(String privilege) {
+        this.privilege = privilege;
+    }
+
+    public int getLockUserId() {
+        return lockUserId;
+    }
+
+    public void setLockUserId(int lockUserId) {
+        this.lockUserId = lockUserId;
     }
 }

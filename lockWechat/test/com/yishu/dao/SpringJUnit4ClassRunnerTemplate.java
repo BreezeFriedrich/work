@@ -17,6 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 * @version 1.0.0.0 2017-09-06 17:46 admin 
 */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring.xml"})
+@ContextConfiguration(locations = {"classpath:spring/spring-product.xml"})
 public class SpringJUnit4ClassRunnerTemplate {
 }
