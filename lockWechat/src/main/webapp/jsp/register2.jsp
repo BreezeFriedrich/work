@@ -44,7 +44,7 @@
     <div class="page page-current">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
-            <h1 class="title">注册手机号码2</h1>
+            <h1 class="title">注册手机号码</h1>
         </header>
 
         <!-- 这里是页面内容区 -->
@@ -74,6 +74,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/register2.js?ver=1' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/register2.js?ver=3' charset='utf-8'></script>
 </body>
 </html>

@@ -41,6 +41,7 @@ function getQueryString(name) {
 }
 
 function authById() {
+    $.showIndicator();
     name=document.getElementsByTagName('input')[0].value;
     cardNumb=document.getElementsByTagName('input')[1].value;
     startTime=document.getElementsByTagName('input')[2].value;
@@ -63,6 +64,7 @@ function authById() {
                 },
                 dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
                 success:function(data,status,xhr){
+                    $.hideIndicator();
                     ajaxResult = data;
                     $.toast('开锁授权成功,正在刷新页面...',1500);
                     // window.setTimeout("refreshPage()",2000);
@@ -77,6 +79,7 @@ function authById() {
             $.toast('身份证号码输入错误',1500);
         }
     }
+    $.hideIndicator();
 }
 function validateIdCard(idCard){
     //15位和18位身份证号码的正则表达式

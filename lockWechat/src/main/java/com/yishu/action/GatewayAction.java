@@ -10,6 +10,7 @@ import com.yishu.pojo.Device;
 import com.yishu.service.IDeviceService;
 import com.yishu.service.IGatewayService;
 import com.yishu.util.HttpUtil;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Iterator;
@@ -25,6 +26,8 @@ public class GatewayAction extends ActionSupport {
     public GatewayAction() {
         System.out.println(">>>Initialization GatewayAction......................................");
     }
+    private org.slf4j.Logger logger= LoggerFactory.getLogger("GatewayAction");
+
     @Autowired
     private IGatewayService gatewayService;
     @Autowired
@@ -163,6 +166,7 @@ public class GatewayAction extends ActionSupport {
 
     public String getVerificationCode(){
         String result=HttpUtil.httpToGateway(url);
+        logger.info("getVerificationCode,httpToGateway("+url+")返回结果为："+result);
         jsonResult=result.substring(result.indexOf("<h1>")+4,result.indexOf("</h1>"));
         return "json";
     }

@@ -13,6 +13,7 @@ $(function () {
 function registerPhoneByVerifyCode(){
     verifyCode=document.getElementsByTagName('input')[0].value;
     if(''!==verifyCode){
+        /*
         $.ajax({
             type:"POST",
             url:projectPath+"/account/checkVerifyCodeThenRegister.action",
@@ -28,6 +29,9 @@ function registerPhoneByVerifyCode(){
                 console.log('错误')
             }
         });
+        */
+        var url=projectPath+"/account/checkVerifyCodeThenRegister.action?verifyCode="+verifyCode;
+        window.location.href=encodeURI(url);
     }else {
         $.toast('验证码为空，无法完成注册',1500);
     }

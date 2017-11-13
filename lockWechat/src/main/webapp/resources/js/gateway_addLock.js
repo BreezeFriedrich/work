@@ -29,6 +29,7 @@ function getQueryString(name) {
     return null;
 }
 function addLock() {
+    $.showIndicator();
     lockCode=document.getElementsByTagName('input')[0].value;
     lockName=document.getElementsByTagName('input')[1].value;
     lockLocation=document.getElementsByTagName('input')[2].value;
@@ -57,6 +58,7 @@ function addLock() {
             dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
 
             success:function(data,status,xhr){
+                $.hideIndicator();
                 // $.alert('增加门锁成功,刷新页面', '操作成功');
                 $.toast('操作成功,正在刷新页面...',1500);
                 window.setTimeout("refreshPage()",2000);
@@ -70,6 +72,7 @@ function addLock() {
     }else {
         $.alert('该门锁不被允许添加到网关', '操作失败！');
     }
+    $.hideIndicator();
 }
 function refreshPage()
 {

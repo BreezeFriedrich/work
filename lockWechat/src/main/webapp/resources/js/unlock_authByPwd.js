@@ -40,6 +40,7 @@ function getQueryString(name) {
 }
 
 function authByPwd() {
+    $.showIndicator();
     password=document.getElementsByTagName('input')[0].value;
     startTime=document.getElementsByTagName('input')[1].value;
     endTime=document.getElementsByTagName('input')[2].value;
@@ -60,6 +61,7 @@ function authByPwd() {
                 },
                 dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
                 success:function(data,status,xhr){
+                    $.hideIndicator();
                     ajaxResult = data;
                     $.toast('开锁授权成功,正在刷新页面...',1500);
                     // window.setTimeout("refreshPage()",2000);
@@ -74,6 +76,7 @@ function authByPwd() {
             $.toast('密码输入错误,请输入4~12位数字或字母',1500);
         }
     }
+    $.hideIndicator();
 }
 function validatePwd(password){
     //密码验证规则:4~12位数字和字母的组合

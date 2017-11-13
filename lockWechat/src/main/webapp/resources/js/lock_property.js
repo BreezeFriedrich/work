@@ -66,6 +66,7 @@ function modifyLockInfo(){
 //	alert('gatewayName: '+gatewayName);
 //	alert('gatewayLocation: '+gatewayLocation);
 //	alert('gatewayComment: '+gatewayComment);
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/lock/modifyLockInfo.action",
@@ -85,10 +86,12 @@ function modifyLockInfo(){
             console.log('错误')
         }
     });
+    $.hideIndicator();
     window.location.reload(false);//缓存中获取当前页
 }
 
 function deleteLock(){
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/lock/deleteLock.action",
@@ -105,6 +108,7 @@ function deleteLock(){
             console.log('错误')
         }
     });
+    $.hideIndicator();
     // window.location.href="jsp/main.jsp";
     window.history.go(-2);
 }

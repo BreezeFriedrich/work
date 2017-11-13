@@ -67,7 +67,7 @@ function getQueryString(name) {
     return null;
 }
 function prohibitUnlockAuth() {
-
+    $.showIndicator();
     var div_authInfo=document.getElementById('div_authInfo');
     div_authInfo.innerHTML = getAuthInfo();
 
@@ -119,6 +119,7 @@ function prohibitUnlockAuth() {
             target=target.parentNode;
         }
     });
+    $.hideIndicator();
 }
 function getAuthInfo() {
     ul_authInfo='';

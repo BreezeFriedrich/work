@@ -66,6 +66,7 @@ function modifyGatewayInfo(){
 //	alert('gatewayName: '+gatewayName);
 //	alert('gatewayLocation: '+gatewayLocation);
 //	alert('gatewayComment: '+gatewayComment);
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/gateway/modifyGatewayInfo.action",
@@ -85,10 +86,12 @@ function modifyGatewayInfo(){
             console.log('错误')
         }
     });
+    $.hideIndicator();
     window.location.reload(false);//缓存中获取当前页
 }
 
 function deleteGateway(){
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/gateway/deleteGateway.action",
@@ -99,11 +102,11 @@ function deleteGateway(){
         },
         dataType:'json',
         success:function(data,status,xhr){
-            alert('ajax-result : '+data)
         },
         error:function(xhr,errorType,error){
             console.log('错误')
         }
     });
+    $.hideIndicator();
     window.location.href="jsp/main.jsp";
 }

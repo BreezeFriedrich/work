@@ -67,6 +67,24 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
      * @return
      */
     public String wxLogin () {
+        openid= (String) session.getAttribute(IWechatService.OPENID);
+        logger.info("openid :"+openid);
+        //有openid无ownerPhoneNumber
+        WechatUser wechatUser = wechatService.findWechatUserByopenid(openid);
+        logger.info("wechatUser : "+wechatUser);
+        if (wechatUser != null) {
+            LockUser lockUserTemp=lockUserDao.findLockUserById(wechatUser.getLockUserId());
+            ownerPhoneNumber=lockUserTemp.getPhonenumber();
+            logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
+            session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
+        }else{
+            //已获得openid,无ownerPhoneNumber.交由register.jsp获取短信验证码.
+            return "register";
+        }
+        return "main";
+    }
+    /*
+    public String wxLogin () {
         ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         if (null==ownerPhoneNumber){
             openid= (String) session.getAttribute(IWechatService.OPENID);
@@ -88,6 +106,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         }
         return "main";
     }
+    */
 
     private String registerPhoneNumber;
     public String getRegisterPhoneNumber() {
@@ -107,6 +126,9 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         SendSmsResponse smsResponse=null;
         String sms_BizId=null;
         smsResponse=SmsUtil.sendVerifyCode(registerPhoneNumber,verifyCodeStr);
+        session.setAttribute("registerPhoneNumber",registerPhoneNumber);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        session.setAttribute("sendDateStr",dateFormat.format(new Date()));
         session.setAttribute("verifyCode",verifyCodeStr);
         sms_BizId=smsResponse.getBizId();
         session.setAttribute("sms_BizId",sms_BizId);
@@ -133,9 +155,10 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     public String checkVerifyCodeThenRegister() throws ClientException, ParseException {
         String sms_BizId=null;
         sms_BizId= (String) session.getAttribute("sms_BizId");
+        String registerPhoneNumber= (String) session.getAttribute("registerPhoneNumber");
         logger.info("查询 已发送短信 流水号为："+sms_BizId);
         SendSmsResponse smsResponse=null;
-        QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(sms_BizId);
+        QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(registerPhoneNumber,sms_BizId);
 //        System.out.println("短信明细查询接口返回数据----------------");
 //        System.out.println("Code=" + querySendDetailsResponse.getCode());
 //        System.out.println("Message=" + querySendDetailsResponse.getMessage());
@@ -152,12 +175,26 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
             phoneNum=smsSendDetailDTO.getPhoneNum();
             sendDateStr=smsSendDetailDTO.getSendDate();
         }
+        if (null != sendDateStr){
+            logger.warn("获得短信回执,短信发送时间 : "+ sendDateStr);
+        }else {
+            sendDateStr= (String) session.getAttribute("sendDateStr");
+            logger.info("短信发送时间 : "+sendDateStr);
+        }
+        if (null != phoneNum){
+            logger.warn("获得短信回执,短信发送目标手机 : "+ phoneNum);
+        }else {
+            phoneNum= (String) session.getAttribute("registerPhoneNumber");
+            logger.info("短信发送目标手机 : "+phoneNum);
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long timeLag= new Date().getTime()- (dateFormat.parse(sendDateStr).getTime());
         WechatUser wechatUser=null;
         LockUser lockUser=null;
         logger.info("客户端提交验证码:"+verifyCode+" 服务端发送验证码:"+session.getAttribute("verifyCode"));
         logger.info("验证码发送时间:"+sendDateStr);
+        openid= (String) session.getAttribute(IWechatService.OPENID);
+        logger.info("session中OPENID 为 ",openid);
         if(timeLag < 5*60*1000 && verifyCode.equals(session.getAttribute("verifyCode")) ){
             //验证码未超时并且客户端提交的验证码与服务器发送的验证码相同,即验证码有效,注册用户信息.
             logger.info("短信验证码有效!");

@@ -44,7 +44,7 @@
     <div class="page page-current">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
-            <h1 class="title">注册手机号码</h1>
+            <h1 class="title">获取验证码</h1>
         </header>
 
         <!-- 这里是页面内容区 -->

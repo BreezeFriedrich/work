@@ -97,7 +97,7 @@
         WHERE openid=#{openid}
     </delete>
     <select id="findWechatUserByOpenid" resultType="WechatUser">
-        SELECT `SEQ` AS id,`openid`,`unionid`,`createtime`,`untime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`privilege`,`fk_wechatUser_ownerinfo`
+        SELECT `SEQ` AS id,`openid`,`unionid`,`createtime`,`untime`,`nickname`,`headimgurl`,`sex`,`country`,`province`,`city`,`privilege`,`fk_wechatUser_ownerinfo` AS lockUserId
         FROM wechatUser
         WHERE openid=#{openid}
     </select>

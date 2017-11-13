@@ -20,31 +20,38 @@ $(function () {
 });
 
 function addGateway() {
+    $.showIndicator();
     gatewayIp=null;
     getGatewayIp();
     LANaddr=null;
     if(null!=gatewayIp && ''!==gatewayIp){
         getGatewayLANaddr();
+        opCode=null;
+        if(null!=LANip && ''!==LANip){
+            getVerificationCode();
+            isCorrectGatewayVerificationCode=null;
+            if(null!=opCode && ''!==opCode){
+                correctGatewayVerificationCode();
+                if(true===isCorrectGatewayVerificationCode){
+                    $.hideIndicator();
+                    url="jsp/gateway/gateway_registerGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+gatewayCode+"&opCode="+opCode;
+                    window.location.href=encodeURI(url);
+                }else {
+                    $.hideIndicator();
+                    $.toast('校验网关验证码失败');
+                }
+            }else {
+                $.hideIndicator();
+                $.toast('获取网关验证码失败');
+            }
+        }else {
+            //获取网关所在局域网地址失败,可能是网关已被添加过
+            $.hideIndicator();
+            $.toast('网关已被添加过');
+        }
     }else {
+        $.hideIndicator();
         $.toast('获取网关所在数据服务器地址失败');
-    }
-    opCode=null;
-    if(null!=LANip && ''!==LANip){
-        getVerificationCode();
-    }else {
-        $.toast('获取网关所在局域网地址失败,可能是网关已被添加过');
-    }
-    isCorrectGatewayVerificationCode=null;
-    if(null!=opCode && ''!==opCode){
-        correctGatewayVerificationCode();
-    }else {
-        $.toast('获取网关验证码失败');
-    }
-    if(true===isCorrectGatewayVerificationCode){
-        url="jsp/gateway/gateway_registerGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+gatewayCode+"&opCode="+opCode;
-        window.location.href=encodeURI(url);
-    }else {
-        $.toast('校验网关验证码失败');
     }
 }
 //获取网关的数据服务器ip

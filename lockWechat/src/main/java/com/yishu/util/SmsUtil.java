@@ -89,7 +89,7 @@ public class SmsUtil {
         //组装请求对象-具体描述见控制台-文档部分内容
         SendSmsRequest request = new SendSmsRequest();
         //必填:待发送手机号
-        request.setPhoneNumbers("13905169825");
+        request.setPhoneNumbers("13905169824");
         //必填:短信签名-可在短信控制台中找到
         request.setSignName("汪凯");
         //必填:短信模板-可在短信控制台中找到
@@ -110,7 +110,7 @@ public class SmsUtil {
     }
 
 
-    public static QuerySendDetailsResponse querySendDetails(String bizId) throws ClientException {
+    public static QuerySendDetailsResponse querySendDetails(String phoneNumber,String bizId) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -124,7 +124,7 @@ public class SmsUtil {
         //组装请求对象
         QuerySendDetailsRequest request = new QuerySendDetailsRequest();
         //必填-号码
-        request.setPhoneNumber("13905169825");
+        request.setPhoneNumber(phoneNumber);
         //可选-流水号
         request.setBizId(bizId);
         //必填-发送日期 支持30天内记录查询，格式yyyyMMdd
@@ -143,8 +143,9 @@ public class SmsUtil {
 
     public static void main(String[] args) throws ClientException, InterruptedException {
 
+        String phonenumber="13905169825";
         //发短信
-        SendSmsResponse response = sendSms();
+        SendSmsResponse response = sendVerifyCode(phonenumber,"632325");
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());
@@ -155,13 +156,12 @@ public class SmsUtil {
 
         //查明细
         if(response.getCode() != null && response.getCode().equals("OK")) {
-            QuerySendDetailsResponse querySendDetailsResponse = querySendDetails(response.getBizId());
+            QuerySendDetailsResponse querySendDetailsResponse = querySendDetails(phonenumber,response.getBizId());
             System.out.println("短信明细查询接口返回数据----------------");
             System.out.println("Code=" + querySendDetailsResponse.getCode());
             System.out.println("Message=" + querySendDetailsResponse.getMessage());
             int i = 0;
-            for(QuerySendDetailsResponse.SmsSendDetailDTO smsSendDetailDTO : querySendDetailsResponse.getSmsSendDetailDTOs())
-            {
+            for(QuerySendDetailsResponse.SmsSendDetailDTO smsSendDetailDTO : querySendDetailsResponse.getSmsSendDetailDTOs()) {
                 System.out.println("SmsSendDetailDTO["+i+"]:");
                 System.out.println("Content=" + smsSendDetailDTO.getContent());
                 System.out.println("ErrCode=" + smsSendDetailDTO.getErrCode());

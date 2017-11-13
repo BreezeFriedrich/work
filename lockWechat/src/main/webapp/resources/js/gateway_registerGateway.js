@@ -24,6 +24,7 @@ $(function () {
 
 function registerGateway() {
     getINPUT_gatewayProperty();
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/gateway/registerGatewayInfo.action",
@@ -38,6 +39,7 @@ function registerGateway() {
         },
         dataType:'json',
         success:function(data,status,xhr){
+            $.hideIndicator();
             // alert('Action-addGateway ajax-result : '+data);
             $.toast('操作成功,正在返回上一页...',1500);
             window.setTimeout("refreshPage()",2000);
@@ -46,6 +48,7 @@ function registerGateway() {
             console.log('错误')
         }
     });
+    $.hideIndicator();
 }
 
 function getINPUT_gatewayProperty(){
