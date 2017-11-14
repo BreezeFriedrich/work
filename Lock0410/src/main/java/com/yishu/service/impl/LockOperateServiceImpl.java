@@ -146,7 +146,7 @@ public class LockOperateServiceImpl implements LockOperateService{
 		if(lockOperateJson.rows!=null){
 			List<LockOperateRecord> list=lockOperateJson.rows;
 			for(int i=0;i<list.size();i++){
-				LockOperateRecord lockOperateRecord=list.get(i);				
+				LockOperateRecord lockOperateRecord=list.get(i);
 				if(lockOperateRecord.cardNumb!=null&&lockOperateRecord.cardNumb.equals(id)){
 					newlockOperateJson.rows.add(list.get(i));
 					System.out.println("SerImpl-newlockOperateJson.rows.size:"+newlockOperateJson.rows.size());
@@ -171,7 +171,7 @@ public class LockOperateServiceImpl implements LockOperateService{
 		if(lockOperateJson.rows!=null){
 			List<LockOperateRecord> list=lockOperateJson.rows;
 			for(int i=0;i<list.size();i++){
-				LockOperateRecord lockOperateRecord=list.get(i);				
+				LockOperateRecord lockOperateRecord=list.get(i);
 				if(lockOperateRecord.password!=null&&lockOperateRecord.password.equals(pwd)){
 					newlockOperateJson.rows.add(list.get(i));
 					System.out.println("SerImpl-newlockOperateJson.rows.size:"+newlockOperateJson.rows.size());
@@ -248,7 +248,7 @@ public class LockOperateServiceImpl implements LockOperateService{
 				}
 				StringBuffer data=new StringBuffer("{\"totals\":"+strArr2.length+','+"\"rows\":[");
 				for(int j=0;j<20;j++){
-				for(String x:strArr2){				
+				for(String x:strArr2){
 					data.append(x+",");
 				}
 				}

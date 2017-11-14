@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="record" namespace="/record" extends="default">
+
+        <action name="*" class="com.yishu.action.RecordAction" method="{0}">
+            <interceptor-ref name="defaultStack">
+                <param name="exception.logEnabled">true</param>
+                <param name="exception.logLevel">error</param>
+            </interceptor-ref>
+            <!--
+            <interceptor-ref name="openidStack"/>
+            -->
+            <result name="json" type="json">
+                <param name="root">jsonResult</param>
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

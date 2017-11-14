@@ -78,7 +78,7 @@
         <header class="bar bar-nav">
             <a class="icon icon-menu pull-left open-panel" data-panel='#panel-left-menu'></a>
             <h1 class="title">主页</h1>
-            <a class="icon icon-me pull-right" href="#account"></a>
+            <%--<a class="icon icon-me pull-right" href="#account"></a>--%>
         </header>
 
         <!-- 工具栏 -->
