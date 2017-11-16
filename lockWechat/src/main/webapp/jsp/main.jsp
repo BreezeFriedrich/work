@@ -219,7 +219,7 @@
             <div class="col-20">
                 <img class='auto-zoom-1' src="resources/img/statistics.png"/>
             </div>
-            <div class="col-80">
+            <div class="col-80" id="div_statistics">
                 查询统计
             </div>
         </div>

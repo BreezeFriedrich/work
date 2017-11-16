@@ -148,6 +148,12 @@
 <script type='text/javascript' src='resources/js/mescroll.min.js'></script>
 <script type='text/javascript' src='resources/js/record.js?ver=1' charset='utf-8'></script>
 <script type="text/javascript" charset="utf-8">
+    var pathName=window.document.location.pathname;
+    var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+    var ownerPhoneNumber="13905169824";
+    var startTime="20140101010101";
+    var endTime="20171210010101";
+
     $(function(){
         //创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;
         var mescroll = new MeScroll("mescroll", {
@@ -155,7 +161,7 @@
                 clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
                 callback: getListData, //上拉回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
                 toTop:{ //配置回到顶部按钮
-                    src : "../res/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
+                    src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                     //offset : 1000
                 }
             }
@@ -191,6 +197,7 @@
 
         /*设置列表数据*/
         function setListData(curPageData){
+            /*
             var listDom=document.getElementById("dataList");
             for (var i = 0; i < curPageData.length; i++) {
                 var pd=curPageData[i];
@@ -204,16 +211,39 @@
                 liDom.innerHTML=str;
                 listDom.appendChild(liDom);
             }
+            */
+            var listDom=document.getElementById("dataList");
+            for (var i = 0; i < curPageData.length; i++) {
+                var pd=curPageData[i];
+
+                var str='<img class="pd-img" src="'+pd.pdImg+'"/>';
+                str+='<p class="pd-name">网关'+pd.gatewayCode+'</p>';
+                str+='<p class="pd-name">门锁'+pd.lockCode+'</p>';
+                str+='<p class="pd-price">时间'+pd.timetag+'</p>';
+                if(null !== pd.cardInfo){
+                    str+='<p class="pd-sold">身份证'+pd.cardInfo.cardNumb+'</p>';
+                    str+='<p class="pd-sold">姓名'+pd.cardInfo.name+'</p>';
+                }
+                if(null !== pd.passwordInfo){
+                    str+='<p class="pd-sold">密码'+pd.passwordInfo.password+'</p>';
+                }
+
+                var liDom=document.createElement("li");
+                liDom.innerHTML=str;
+                listDom.appendChild(liDom);
+            }
         }
 
         /*联网加载列表数据*/
         function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
-            //延时一秒,模拟联网
+            //ownerPhoneNumber,startTime,endTime
             $.ajax({
-                type: 'GET',
-                url:projectPath+"/record/pageUnlockRecord.action?pageNum="+pageNum+"&pageSize="+pageSize,
-                dataType: 'json',
-                success: function(data){
+                type:"POST",
+                url:projectPath+"/record/pageUnlockRecord.action",
+                async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+                data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":startTime,"endTime":endTime,"pageNum":pageNum,"pageSize":pageSize},
+                dataType:'json',
+                success:function(data,status,xhr){
                     /*
                     //模拟分页数据
                     var listData=[];
@@ -225,7 +255,7 @@
                     */
                     successCallback(data.rows);
                 },
-                error: errorCallback
+                error:errorCallback
             });
         }
 

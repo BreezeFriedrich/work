@@ -11,13 +11,63 @@ package com.yishu.pojo;
  * @since JDK1.7
  */
 public class UnlockRecord {
-    public String lockCode;
-    public String gatewayCode;
-    public int openMode;
-    public String timetag;
+    //确保存在默认无参构造,用于JACKSON解析.
 
-    public CardInfo cardInfo;
-    public PasswordInfo passwordInfo;
+    private String lockCode;
+    private String gatewayCode;
+    private int openMode;
+    private String timetag;
+
+    private CardInfo cardInfo;
+    private PasswordInfo passwordInfo;
+
+    public String getLockCode() {
+        return lockCode;
+    }
+
+    public void setLockCode(String lockCode) {
+        this.lockCode = lockCode;
+    }
+
+    public String getGatewayCode() {
+        return gatewayCode;
+    }
+
+    public void setGatewayCode(String gatewayCode) {
+        this.gatewayCode = gatewayCode;
+    }
+
+    public int getOpenMode() {
+        return openMode;
+    }
+
+    public void setOpenMode(int openMode) {
+        this.openMode = openMode;
+    }
+
+    public String getTimetag() {
+        return timetag;
+    }
+
+    public void setTimetag(String timetag) {
+        this.timetag = timetag;
+    }
+
+    public CardInfo getCardInfo() {
+        return cardInfo;
+    }
+
+    public void setCardInfo(CardInfo cardInfo) {
+        this.cardInfo = cardInfo;
+    }
+
+    public PasswordInfo getPasswordInfo() {
+        return passwordInfo;
+    }
+
+    public void setPasswordInfo(PasswordInfo passwordInfo) {
+        this.passwordInfo = passwordInfo;
+    }
 
     @Override
     public String toString() {
@@ -27,13 +77,61 @@ public class UnlockRecord {
     }
 
     public class CardInfo{
-        public String name;
-        public String cardNumb;
-        public String dnCode;
-        public String serviceNumb;
+        private String name;
+        private String cardNumb;
+        private String dnCode;
+        private String serviceNumb;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getCardNumb() {
+            return cardNumb;
+        }
+
+        public void setCardNumb(String cardNumb) {
+            this.cardNumb = cardNumb;
+        }
+
+        public String getDnCode() {
+            return dnCode;
+        }
+
+        public void setDnCode(String dnCode) {
+            this.dnCode = dnCode;
+        }
+
+        public String getServiceNumb() {
+            return serviceNumb;
+        }
+
+        public void setServiceNumb(String serviceNumb) {
+            this.serviceNumb = serviceNumb;
+        }
     }
     public class PasswordInfo{
-        public String password;
-        public String serviceNumb;
+        private String password;
+        private String serviceNumb;
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getServiceNumb() {
+            return serviceNumb;
+        }
+
+        public void setServiceNumb(String serviceNumb) {
+            this.serviceNumb = serviceNumb;
+        }
     }
 }

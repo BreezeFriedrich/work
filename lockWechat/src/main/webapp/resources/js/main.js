@@ -55,6 +55,11 @@ $(function(){
         url="jsp/gateway/gateway_addGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
+    var div_statistics=document.getElementById("div_statistics");
+    div_statistics.addEventListener('click',function(ev){
+        url="jsp/record.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+        window.location.href=encodeURI(url);
+    });
 
     <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
     $.init();
