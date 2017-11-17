@@ -1,13 +1,3 @@
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<%--
-  WechatUser: admin
-  Date: 2017/10/18
-  Time: 15:27
---%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
@@ -65,21 +55,12 @@
                 </ul>
             </div>
             <div class="content-block">
-                <a href="javascript:void(0);" onclick="getVerificationCode()" class="button button-big button-fill button-success">添加网关</a>
-                <a id="a_opCode"/><!--style="width: 0px;height: 0px"-->
+                <a href="javascript:void(0);" onclick="getopCode()" class="button button-big button-fill button-success">获取验证码</a>
             </div>
-            <!--
-            <div class="content-block" id="div_iframe">
-                <div class="content-block-title">网关内网ip</div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-content-inner" id="expande_iframe">
-                            <%--<iframe frameborder="0" scrolling="no" class="external"></iframe>--%>
-                        </div>
-                    </div>
-                </div>
+            <div class="content-block">
+            	<!-- src="http://192.168.1.5:9018" -->
+            	<iframe id="frame1" src="" width="300" height="130" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"/></iframe>
             </div>
-            -->
         </div>
     </div>
 </div>
@@ -87,7 +68,18 @@
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=7' charset='utf-8'></script>
+<script>
+	function getopCode(){
+//		alert('HI');
+//		document.frames[1].location.href="http://192.168.1.5:9018";
+		document.getElementById("frame1").src="http://192.168.1.5:9018";
+		setTimeout(function(){
+//			var opCode=document.getElementById("frame1").html.body.center;
+			var opCode=document.getElementById("frame1").contentWindow.document.getElementsByTagName('html')[0];
+//			var opCode=window.frames("frame1").contentWindow.getElementsByTagName('html')[0];
+			alert('opCode : '+opCode);
+		},4000)
+	}
+</script>
 </body>
 </html>

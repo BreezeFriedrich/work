@@ -44,10 +44,10 @@ public class HttpUtil
             }
             br.close();
             connection.disconnect();
-            System.out.println(sb.toString());
+            logger.info(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("失败!");
+            logger.info("失败!");
         }
     }
 
@@ -60,19 +60,19 @@ public class HttpUtil
             URL url = new URL(urlStr);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Accept","Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
-            connection.setRequestProperty("WechatUser-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
-//            connection.setRequestProperty("WechatUser-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko");
-//            connection.setDoInput(true);
-//            connection.setDoOutput(true);
+//            connection.setRequestProperty("Accept","Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+//            connection.setRequestProperty("WechatUser-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
+            connection.setRequestProperty("WechatUser-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko");
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
 
-            System.err.println("ContentType : "+connection.getContentType());
-            System.err.println("permission : "+connection.getPermission());
-            System.err.println("ResponseMessage : "+connection.getResponseMessage());
+            logger.info("ContentType : "+connection.getContentType());
+            logger.info("permission : "+connection.getPermission());
+            logger.info("ResponseMessage : "+connection.getResponseMessage());
             int responseCode = connection.getResponseCode();
-            System.err.println("HTTP连接 responseCode : " + responseCode);
+            logger.info("HTTP连接 responseCode : " + responseCode);
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                System.out.println("responseCode=200,HTTP连接正常");
+                logger.info("responseCode=200,HTTP连接正常");
                 in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String inputLine = null;
                 while ((inputLine = in.readLine()) != null)
@@ -80,11 +80,11 @@ public class HttpUtil
                     stringBuffer.append(inputLine);
                 }
             } else {
-//                System.out.println("Can not access the website");
-//                System.err.println("responseCode="+responseCode+",HTTP连接异常");
+//                logger.info("Can not access the website");
+//                logger.info("responseCode="+responseCode+",HTTP连接异常");
                 Map map=connection.getHeaderFields();
                 for (Object key : map.keySet()) {
-                    System.out.println("key= "+ key + " and value= " + map.get(key));
+                    logger.info("key= "+ key + " and value= " + map.get(key));
                 }
 
                 in = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
@@ -95,9 +95,9 @@ public class HttpUtil
                 }
             }
         } catch (MalformedURLException e) {
-            System.out.println("Wrong URL");
+            logger.info("Wrong URL");
         } catch (IOException e) {
-            System.out.println("Can not connect");
+            logger.info("Can not connect");
         }finally {
             if (null!=in){
                 try {
@@ -106,6 +106,7 @@ public class HttpUtil
                     e.printStackTrace();
                 }
             }
+            logger.error("HttpUtil.httpToGateway("+urlStr+")返回值: "+stringBuffer.toString());
             return stringBuffer.toString();
         }
     }
