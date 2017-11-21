@@ -6,7 +6,6 @@
 package com.yishu.service;
 
 import com.yishu.domain.WechatUser;
-import com.yishu.pojo.LockUser;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>

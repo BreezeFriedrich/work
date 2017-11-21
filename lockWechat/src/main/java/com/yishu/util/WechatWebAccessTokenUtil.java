@@ -9,7 +9,6 @@ import com.yishu.domain.WechatUser;
 import com.yishu.domain.WechatWebAccessToken;
 import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;

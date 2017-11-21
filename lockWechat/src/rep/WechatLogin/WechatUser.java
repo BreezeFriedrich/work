@@ -5,17 +5,24 @@
 
 package com.yishu.domain;
 
+import com.yishu.pojo.LockUser;
+
 /**
+ * 微信服务号所使用的帐户User
+ *
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
- * @version 1.0.0.0 2017-11-21 16:03 admin
+ * @version 1.0.0.0 2017-10-12 17:29 admin
  * @since JDK1.7
  */
 public class WechatUser {
+
     private int id;
-    private String phonenumber,openid,unionid,followtime,unfollowtime,nickname,headimgurl;
+    private String openid,unionid,createtime,untime,nickname,headimgurl;
     private String country,province,city;
     private int sex;
-    private String privilege,timetag;
+    private String privilege;
+//    private LockUser lockUser;
+    private int lockUserId;
 
     public int getId() {
         return id;
@@ -23,14 +30,6 @@ public class WechatUser {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getPhonenumber() {
-        return phonenumber;
-    }
-
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
     }
 
     public String getOpenid() {
@@ -49,20 +48,20 @@ public class WechatUser {
         this.unionid = unionid;
     }
 
-    public String getFollowtime() {
-        return followtime;
+    public String getCreatetime() {
+        return createtime;
     }
 
-    public void setFollowtime(String followtime) {
-        this.followtime = followtime;
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
     }
 
-    public String getUnfollowtime() {
-        return unfollowtime;
+    public String getUntime() {
+        return untime;
     }
 
-    public void setUnfollowtime(String unfollowtime) {
-        this.unfollowtime = unfollowtime;
+    public void setUntime(String untime) {
+        this.untime = untime;
     }
 
     public String getNickname() {
@@ -121,11 +120,11 @@ public class WechatUser {
         this.privilege = privilege;
     }
 
-    public String getTimetag() {
-        return timetag;
+    public int getLockUserId() {
+        return lockUserId;
     }
 
-    public void setTimetag(String timetag) {
-        this.timetag = timetag;
+    public void setLockUserId(int lockUserId) {
+        this.lockUserId = lockUserId;
     }
 }

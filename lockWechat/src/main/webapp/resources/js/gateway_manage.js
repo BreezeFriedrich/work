@@ -30,7 +30,8 @@ $(function(){
         }
     });
     //动态显示门锁列表
-    UL_gatewayProperty.innerHTML += getGatewayDetails();
+    UL_gatewayProperty=document.getElementById("UL_gatewayProperty");
+    UL_gatewayProperty.innerHTML = getGatewayDetails();
     UL_theSpecificGateway=document.getElementById("UL_theSpecificGateway");
     UL_theSpecificGateway.innerHTML = createLockNode();
 

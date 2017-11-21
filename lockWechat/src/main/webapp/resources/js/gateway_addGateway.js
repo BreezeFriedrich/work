@@ -93,7 +93,7 @@ function getGatewayLANaddr() {
 
 //根据网关内网LANaddr获取网关验证码opCode
 function getVerificationCode() {
-    /*后端与网关不在同一个局域网.
+    // /*后端与网关不在同一个局域网.
     $.ajax({
         type:"POST",
         url:projectPath+"/gateway/getVerificationCode.action",
@@ -108,10 +108,10 @@ function getVerificationCode() {
             console.log('ajax错误');
         }
     });
-    */
+    // */
 
-    LANaddr="http://192.168.1.5:9018";
     /*出现跨域问题
+    LANaddr="http://192.168.1.5:9018";
     $.ajax({
         type:"GET",
         url:LANaddr,
@@ -130,11 +130,13 @@ function getVerificationCode() {
         }
     });
     */
+    /*
     var a_opCode=document.getElementById("a_opCode");
     opCode.setAttribute("href",LANaddr);
     alert('opCode : '+opCode);
     opCode=opCode.match(/<h1>.*<\/h1>/g);
     alert('验证码 : '+opCode);
+    */
 }
 
 //验证网关验证码是否正确
