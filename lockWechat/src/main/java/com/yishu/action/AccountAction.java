@@ -6,10 +6,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
 import com.yishu.dao.LockUserDao;
-import com.yishu.domain.WechatUser;
-import com.yishu.pojo.LockUser;
 import com.yishu.service.ILoginService;
-import com.yishu.service.IWechatService;
 import com.yishu.util.*;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -29,7 +26,6 @@ import java.util.Map;
  */
 public class AccountAction extends ActionSupport implements Parameterizable,SessionAware {
     public AccountAction() {
-        System.out.println(">>>Initialization AccountAction......................................");
         logger.info(">>>Initialization AccountAction......................................");
     }
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("AccountAction");
@@ -39,9 +35,25 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     @Autowired
     LockUserDao lockUserDao;
 
+    private String code;
+    private String state;
+    public String getCode() {
+        return code;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public String getState() {
+        return state;
+    }
+    public void setState(String state) {
+        this.state = state;
+    }
+
     private String ownerPhoneNumber;
     private String ownerPassword;
     private String openid;
+    private String ownerName;
     private int registerMode;
     private String errMsg;
 
@@ -67,6 +79,14 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
 
     public void setOpenid(String openid) {
         this.openid = openid;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public int getRegisterMode() {
@@ -95,7 +115,8 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
      * @return
      */
     public String wxLogin () {
-        openid= (String) session.getAttribute(IWechatService.OPENID);
+        logger.warn("wxLogin.action");
+        openid= (String) session.getAttribute("OPENID");
         logger.info("openid :"+openid);
         //有openid无ownerPhoneNumber
         /*
@@ -116,6 +137,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         //如果http返回的字段result=-1,则http请求查询openid遭遇失败.
         if (-1==(int)map.get("result")){
             errMsg="http请求查询后台openid遭遇失败";
+            logger.info("http请求查询后台openid遭遇失败");
             return ActionSupport.ERROR;
         }
         //0==result,则openid存在,直接登录.
@@ -123,10 +145,12 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
             ownerPhoneNumber= (String) map.get("ownerPhoneNumber");
             logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
             session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
+            logger.warn("openid存在,即将登录");
             return "main";
         }
         //如果http返回的字段result=1,则openid不存在,进入注册流程.
         if (1==(int)map.get("result")){
+            logger.warn("openid不存在,即将进入注册流程");
             return "SMSVerifyCode";
         }
         return ActionSupport.ERROR;
@@ -166,6 +190,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     }
     */
     public String sendVerifyCode() throws Exception {
+        logger.warn("sendVerifyCode.action");
         logger.info("客户端提交的手机号码："+registerPhoneNumber);
         String verifyCodeStr=VerifyCodeUtils.generateVerifyCodeNum(6);
         SendSmsResponse smsResponse=null;
@@ -178,11 +203,11 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         sms_BizId=smsResponse.getBizId();
         session.setAttribute("sms_BizId",sms_BizId);
         logger.info("发送 短信验证码为："+verifyCodeStr+" ,流水号为："+sms_BizId);
+        Map <String,Object> resultMap=new HashMap<>(1);
         if(smsResponse.getCode() == null || ! smsResponse.getCode().equals("OK")){
             logger.error("发送短信验证码失败");
-            return "SMSVerifyCode";//发送短信验证码失败,重新发送.
+            resultMap.put("result",false);
         }
-        Map <String,Object> resultMap=new HashMap<>(1);
         resultMap.put("smsverifycode",verifyCodeStr);
         jsonResult=resultMap;
         return "json";
@@ -242,7 +267,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         LockUser lockUser=null;
         logger.info("客户端提交验证码:"+verifyCode+" 服务端发送验证码:"+session.getAttribute("verifyCode"));
         logger.info("验证码发送时间:"+sendDateStr);
-        openid= (String) session.getAttribute(IWechatService.OPENID);
+        openid= (String) session.getAttribute("OPENID");
         logger.info("session中OPENID 为 ",openid);
         if(timeLag < 5*60*1000 && verifyCode.equals(session.getAttribute("verifyCode")) ){
             //验证码未超时并且客户端提交的验证码与服务器发送的验证码相同,即验证码有效,注册用户信息.
@@ -265,6 +290,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     }
     */
     public String checkVerifyCode() throws ClientException, ParseException {
+        logger.warn("checkVerifyCode.action");
         String sms_BizId=null;
         sms_BizId= (String) session.getAttribute("sms_BizId");
         String registerPhoneNumber= (String) session.getAttribute("registerPhoneNumber");
@@ -303,7 +329,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         long timeLag= new Date().getTime()- (dateFormat.parse(sendDateStr).getTime());
         logger.info("客户端提交验证码:"+verifyCode+" 服务端发送验证码:"+session.getAttribute("verifyCode"));
         logger.info("验证码发送时间:"+sendDateStr);
-        openid= (String) session.getAttribute(IWechatService.OPENID);
+        openid= (String) session.getAttribute("OPENID");
         logger.info("session中OPENID 为 ",openid);
         Map <String,Object> resultMap=new HashMap<>(1);
         if(timeLag < 5*60*1000 && verifyCode.equals(session.getAttribute("verifyCode")) ){
@@ -322,13 +348,41 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     }
 
     public String bindOpenid(){
-        openid= (String) session.getAttribute(IWechatService.OPENID);
+        logger.warn("bindOpenid.action");
+        openid= (String) session.getAttribute("OPENID");
         int result=loginService.bindOpenidToPhone(openid,ownerPhoneNumber,ownerPassword);
+        session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
+        session.setAttribute("ownerPassword",ownerPassword);
+        Map resultMap=new HashMap<String,Object>(1);
+        resultMap.put("result",result);
         if (0==result){
-            //绑定openid到phone.
-            return "main";
+            //已绑定openid到phone,直接登录.
+//            return "main";
         }
-        return null;
+        if (2==result){
+            //手机号不存在，需要注册手机号.
+//            return "register";
+        }
+        if (1==result){
+            //登录失败,密码错误
+            resultMap.put("errMsg","登录失败,密码错误");
+        }
+        if (-1==result){
+            //绑定失败
+            resultMap.put("errMsg","绑定失败");
+        }
+        jsonResult=resultMap;
+        return "json";
+    }
+
+    public String register(){
+        logger.warn("register.action");
+        openid= (String) session.getAttribute("OPENID");
+        boolean booleanResult=loginService.register(ownerName,ownerPhoneNumber,ownerPassword,openid);
+        Map resultMap=new HashMap();
+        resultMap.put("result",booleanResult);
+        jsonResult=resultMap;
+        return "json";
     }
 
     //********************************************************************************************************

@@ -66,7 +66,7 @@
             </div>
             <div class="content-block">
                 <a href="javascript:void(0);" onclick="sendVerifyCode()" class="button button-big button-fill button-success">获取短信验证码</a>
-                <p id="P_smsverifycode"></p>
+                <%--<p id="P_smsverifycode"></p>--%>
             </div>
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
@@ -108,6 +108,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/smsverifycode.js?ver=1' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/smsverifycode.js?ver=2' charset='utf-8'></script>
 </body>
 </html>

@@ -51,11 +51,11 @@ public class LoginServiceImpl implements ILoginService{
     public Map openidExist(String openid) {
         timetag= String.valueOf(new Date().getTime());
         reqSign=201;
-        System.err.println("sign:"+reqSign+" operation:openidExist");
-        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
+        logger.info("sign:"+reqSign+" operation:openidExist");
+        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\",\"ownerPhoneNumber\":\""+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }
@@ -86,11 +86,11 @@ public class LoginServiceImpl implements ILoginService{
     public int bindOpenidToPhone(String openid, String ownerPhoneNumber, String ownerPassword) {
         timetag= String.valueOf(new Date().getTime());
         reqSign=202;
-        System.err.println("sign:"+reqSign+" operation:bindOpenidToPhone");
+        logger.info("sign:"+reqSign+" operation:bindOpenidToPhone");
         reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }
@@ -117,11 +117,11 @@ public class LoginServiceImpl implements ILoginService{
     public boolean register(String ownerName, String ownerPhoneNumber, String ownerPassword, String openid) {
         timetag= String.valueOf(new Date().getTime());
         reqSign=203;
-        System.err.println("sign:"+reqSign+" operation:register");
+        logger.info("sign:"+reqSign+" operation:register");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }

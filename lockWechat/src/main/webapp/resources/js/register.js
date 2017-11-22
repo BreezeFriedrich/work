@@ -5,35 +5,49 @@
 
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-var registerPhoneNumber;
+var ownerPhoneNumber;
+var ownerPassword;
+var ownerName;
 $(function () {
     $.init();
 });
+//获取链接参数
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = decodeURI(window.location.search).substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
 
-//请求短信验证码
-function getVerifyCode(){
-    registerPhoneNumber=document.getElementsByTagName('input')[0].value;
-    if(''!==registerPhoneNumber){
-        /*
+function register() {
+    ownerName=document.getElementsByTagName('input')[0].value;
+    ownerPhoneNumber=getQueryString('ownerPhoneNumber');
+    ownerPassword=getQueryString("ownerPassword");
+    if(''!==ownerName){
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/sendVerifyCode.action",
+            url:projectPath+"/account/register.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
-                "registerPhoneNumber":registerPhoneNumber
+                "ownerName":ownerName,
+                "ownerPhoneNumber":ownerPhoneNumber,
+                "ownerPassword":ownerPassword
             },
             dataType:'json',
             success:function(data,status,xhr){
-                // alert('ajax-result : '+data)
+                if(true===data.result){
+                    window.location.href="main.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+                }else {
+                    $.toast('注册失败',1500);
+                    window.location.reload();
+                }
             },
             error:function(xhr,errorType,error){
                 console.log('错误')
             }
         });
-        */
-        var url=projectPath+"/account/sendVerifyCode.action?registerPhoneNumber="+registerPhoneNumber;
-        window.location.href=encodeURI(url);
     }else {
-        $.toast('手机号码为空，无法获取验证码',1500);
+        $.toast('请先输入昵称',1500);
     }
 }
+

@@ -44,7 +44,7 @@
                 <!--<param name="excludeProperties">SUCCESS</param>-->
             </result>
             <result name="main">/jsp/main.jsp</result>
-            <result name="SMSVerifyCode">/jsp/SMSVerifyCode.jsp</result>
+            <result name="register">/jsp/register.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
@@ -53,10 +53,8 @@
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
-            <result name="json" type="json">
-                <param name="root">jsonResult</param>
-                <param name="excludeNullProperties">false</param>
-            </result>
+            <result name="register">/jsp/register.jsp</result>
+            <result name="register2">/jsp/register2.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
@@ -65,34 +63,8 @@
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
-            <result name="json" type="json">
-                <param name="root">jsonResult</param>
-                <param name="excludeNullProperties">false</param>
-            </result>
-            <result name="error" type="dispatcher">/jsp/error.jsp</result>
-        </action>
-
-        <action name="bindOpenid" class="com.yishu.action.AccountAction" method="bindOpenid">
-            <interceptor-ref name="defaultStack">
-                <param name="exception.logEnabled">true</param>
-                <param name="exception.logLevel">error</param>
-            </interceptor-ref>
-            <result name="json" type="json">
-                <param name="root">jsonResult</param>
-                <param name="excludeNullProperties">false</param>
-            </result>
-            <result name="error" type="dispatcher">/jsp/error.jsp</result>
-        </action>
-
-        <action name="register" class="com.yishu.action.AccountAction" method="register">
-            <interceptor-ref name="defaultStack">
-                <param name="exception.logEnabled">true</param>
-                <param name="exception.logLevel">error</param>
-            </interceptor-ref>
-            <result name="json" type="json">
-                <param name="root">jsonResult</param>
-                <param name="excludeNullProperties">false</param>
-            </result>
+            <result name="main">/jsp/main.jsp</result>
+            <result name="register">/jsp/register.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
     </package>

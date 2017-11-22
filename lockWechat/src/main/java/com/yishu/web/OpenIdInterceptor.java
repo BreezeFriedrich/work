@@ -8,8 +8,6 @@ package com.yishu.web;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.yishu.domain.WechatWebAccessToken;
-import com.yishu.service.IWechatService;
-import com.yishu.util.DataUtil;
 import com.yishu.util.WechatWebAccessTokenUtil;
 import com.yishu.util.StringUtil;
 import org.apache.struts2.ServletActionContext;
@@ -33,9 +31,6 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         logger.info(">>>Initialization OpenIdInterceptor......................................");
     }
 
-    @Autowired
-    IWechatService wechatService;
-
     /**
      * 获得openid.
      *
@@ -51,7 +46,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
         logger.info("网页授权code: "+code);
-        String openid = (String) session.getAttribute(IWechatService.OPENID);
+        String openid = (String) session.getAttribute("OPENID");
 
         if (null==openid) {
             if (StringUtil.bIsNotNull(code)) {
@@ -62,7 +57,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
                 String access_token=wechatWebAccessToken.getAccess_token();
                 if (StringUtil.bIsNotNull(openId)) {
                     logger.info("网页授权openId: "+openId);
-                    session.setAttribute(IWechatService.OPENID,openId);
+                    session.setAttribute("OPENID",openId);
                     openid=openId;
                 }else {
                     throw new Exception(this.getClass()+":已获取code为"+code+",但是获取的openId为空");

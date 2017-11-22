@@ -10,6 +10,9 @@ var ownerPhoneNumber;
 var url;
 $(function(){
     ownerPhoneNumber = document.getElementById("INPUT_hidden").value;
+    if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
+        ownerPhoneNumber=getQueryString('ownerPhoneNumber');
+    }
     /*
     if (""!==ownerPhoneNumber){
         $.toast('通过隐藏输入框获取手机号码:'+ownerPhoneNumber,3000);
@@ -235,3 +238,11 @@ if(UL_lockList.innerHTML === ""){
 	UL_lockList.innerHTML = "";
 }
 */
+
+//获取链接参数
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = decodeURI(window.location.search).substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}

@@ -108,5 +108,5 @@ function deleteGateway(){
         }
     });
     $.hideIndicator();
-    window.location.href="jsp/main.jsp";
+    window.location.href="jsp/main.jsp?ownerPhoneNumber="+ownerPhoneNumber;
 }

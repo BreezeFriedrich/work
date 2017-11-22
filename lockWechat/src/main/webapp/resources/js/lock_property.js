@@ -109,6 +109,6 @@ function deleteLock(){
         }
     });
     $.hideIndicator();
-    // window.location.href="jsp/main.jsp";
+    // window.location.href="jsp/main.jsp?ownerPhoneNumber="+ownerPhoneNumber;
     window.history.go(-2);
 }
