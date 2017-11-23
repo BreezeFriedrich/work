@@ -63,7 +63,7 @@ public class RecordServiceImpl implements IRecordService {
         if (0==respSign){
             //获取开锁记录成功.
 //            String recordListTemp=rootNode.path("recordList").asText();
-            String recordListTemp=rootNode.path("recordList").toString();
+            String recordListTemp=rootNode.path("recordList").toString();//!!!toString多了引号
             List<UnlockRecord> recordList=null;
             try {
                 recordList = objectMapper.readValue(recordListTemp, new TypeReference<List<UnlockRecord>>() {});

@@ -5,9 +5,9 @@
 
 <struts>
 
-    <package name="record" namespace="/record" extends="default">
+    <package name="sms" namespace="/sms" extends="default">
 
-        <action name="*" class="com.yishu.action.RecordAction" method="{0}">
+        <action name="*" class="com.yishu.action.SMSAction" method="{0}">
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>

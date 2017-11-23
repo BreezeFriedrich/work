@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,10 @@ public class LoginServiceImpl implements ILoginService{
      */
     int respSign;
 
+    public String getNow(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(new Date().getTime()).toString();
+    }
     /**
      * 微信登录，判断openid是否存在
      *
@@ -49,9 +54,9 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public Map openidExist(String openid) {
-        timetag= String.valueOf(new Date().getTime());
+        timetag= getNow();
         reqSign=201;
-        logger.info("sign:"+reqSign+" operation:openidExist");
+//        logger.info("sign:"+reqSign+" operation:openidExist");
         reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\",\"ownerPhoneNumber\":\""+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
@@ -67,8 +72,8 @@ public class LoginServiceImpl implements ILoginService{
         //字段result: -1 查询失败 ,0 openid存在 ,1 openid不存在
         respSign=rootNode.path("result").asInt();
         resultMap.put("result",respSign);
-        logger.info("respSign:"+String.valueOf(respSign));
-        String ownerPhoneNumber=rootNode.path("ownerPhoneNumber").toString();
+//        logger.info("respSign:"+String.valueOf(respSign));
+        String ownerPhoneNumber=rootNode.path("ownerPhoneNumber").asText();
         resultMap.put("ownerPhoneNumber",ownerPhoneNumber);
 
         return resultMap;
@@ -84,7 +89,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public int bindOpenidToPhone(String openid, String ownerPhoneNumber, String ownerPassword) {
-        timetag= String.valueOf(new Date().getTime());
+        timetag= getNow();
         reqSign=202;
         logger.info("sign:"+reqSign+" operation:bindOpenidToPhone");
         reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
@@ -115,7 +120,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public boolean register(String ownerName, String ownerPhoneNumber, String ownerPassword, String openid) {
-        timetag= String.valueOf(new Date().getTime());
+        timetag= getNow();
         reqSign=203;
         logger.info("sign:"+reqSign+" operation:register");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";

@@ -126,7 +126,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         SendSmsResponse smsResponse=null;
         String sms_BizId=null;
         smsResponse=SmsUtil.sendVerifyCode(registerPhoneNumber,verifyCodeStr);
-        session.setAttribute("registerPhoneNumber",registerPhoneNumber);
+        session.setAttribute("phoneNumber",registerPhoneNumber);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         session.setAttribute("sendDateStr",dateFormat.format(new Date()));
         session.setAttribute("verifyCode",verifyCodeStr);
@@ -155,7 +155,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
     public String checkVerifyCodeThenRegister() throws ClientException, ParseException {
         String sms_BizId=null;
         sms_BizId= (String) session.getAttribute("sms_BizId");
-        String registerPhoneNumber= (String) session.getAttribute("registerPhoneNumber");
+        String registerPhoneNumber= (String) session.getAttribute("phoneNumber");
         logger.info("查询 已发送短信 流水号为："+sms_BizId);
         SendSmsResponse smsResponse=null;
         QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(registerPhoneNumber,sms_BizId);
@@ -184,7 +184,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         if (null != phoneNum){
             logger.warn("获得短信回执,短信发送目标手机 : "+ phoneNum);
         }else {
-            phoneNum= (String) session.getAttribute("registerPhoneNumber");
+            phoneNum= (String) session.getAttribute("phoneNumber");
             logger.info("短信发送目标手机 : "+phoneNum);
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

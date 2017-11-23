@@ -35,7 +35,7 @@
             /*上下 ,左右*/
             padding: 0 0.75rem;
         }
-        .button-big {margin: 0 0.9rem;}
+        .button-big {margin: 0.1rem 3rem;}
     </style>
 </head>
 <body>
@@ -44,7 +44,7 @@
     <div class="page page-current">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
-            <h1 class="title">获取验证码</h1>
+            <h1 class="title">身份验证</h1>
         </header>
 
         <!-- 这里是页面内容区 -->
@@ -63,11 +63,11 @@
                         </div>
                     </li>
                 </ul>
-            </div>
-            <div class="content-block">
                 <a href="javascript:void(0);" onclick="sendVerifyCode()" class="button button-big button-fill button-success">获取短信验证码</a>
-                <%--<p id="P_smsverifycode"></p>--%>
             </div>
+            <%--<div class="content-block">--%>
+                <%--<a href="javascript:void(0);" onclick="sendVerifyCode()" class="button button-big button-fill button-success">获取短信验证码</a>--%>
+            <%--</div>--%>
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
                     <li>
@@ -81,10 +81,6 @@
                             </div>
                         </div>
                     </li>
-                </ul>
-            </div>
-            <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
-                <ul>
                     <li>
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
@@ -97,8 +93,6 @@
                         </div>
                     </li>
                 </ul>
-            </div>
-            <div class="content-block">
                 <a href="javascript:void(0);" onclick="checkVerifyCode()" class="button button-big button-fill button-success">登录</a>
             </div>
         </div>
@@ -108,6 +102,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/smsverifycode.js?ver=2' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/smsverifycode.js?ver=16' charset='utf-8'></script>
 </body>
 </html>

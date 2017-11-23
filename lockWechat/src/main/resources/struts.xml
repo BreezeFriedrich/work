@@ -37,6 +37,7 @@
     <include file="struts/struts-gateway.xml" />
     <include file="struts/struts-lock.xml" />
     <include file="struts/struts-record.xml" />
+    <include file="struts/struts-sms.xml" />
 
     <package name="default" extends="struts-default,json-default">
         <!-- javamelody和struts2集成 -->

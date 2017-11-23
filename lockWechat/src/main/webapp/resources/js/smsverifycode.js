@@ -5,31 +5,30 @@
 
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-var registerPhoneNumber;
-var verifyCode;
+var phoneNumber;
+var verificationCode;
 var ownerPassword;
 $(function () {
     $.init();
 });
 
+/*
 //请求短信验证码
 function sendVerifyCode(){
-    registerPhoneNumber=document.getElementsByTagName('input')[0].value;
-    if(''!==registerPhoneNumber){
+    phoneNumber=document.getElementsByTagName('input')[0].value;
+    if(''!==phoneNumber){
         $.ajax({
             type:"POST",
             url:projectPath+"/account/sendVerifyCode.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
-                "registerPhoneNumber":registerPhoneNumber
+                "phoneNumber":phoneNumber
             },
             dataType:'json',
             success:function(data,status,xhr){
                 if (false==data.result){
                     window.location.reload();
                 }
-                // var P_smsverifycode=document.getElementById('P_smsverifycode');
-                // P_smsverifycode.innerText="短信验证码为 "+data.smsverifycode;
             },
             error:function(xhr,errorType,error){
                 console.log('错误')
@@ -66,26 +65,26 @@ function checkVerifyCode() {
     }
 }
 function bindOpenid() {
-    registerPhoneNumber=document.getElementsByTagName('input')[0].value;
+    phoneNumber=document.getElementsByTagName('input')[0].value;
     ownerPassword=document.getElementsByTagName('input')[2].value;
-    if (''!==registerPhoneNumber && ''!==ownerPassword){
+    if (''!==phoneNumber && ''!==ownerPassword){
         $.ajax({
             type:"POST",
             url:projectPath+"/account/bindOpenid.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
-                "ownerPhoneNumber":registerPhoneNumber,
+                "ownerPhoneNumber":phoneNumber,
                 "ownerPassword":ownerPassword
             },
             dataType:'json',
             success:function(data,status,xhr){
                 if (0===data.result){
                     //已绑定openid到phone,直接登录.
-                    window.location.href="jsp/main.jsp?ownerPhoneNumber="+registerPhoneNumber;
+                    window.location.href="jsp/main.jsp?ownerPhoneNumber="+phoneNumber;
                 }
                 if (2===data.result){
                     //手机号不存在，需要注册手机号.
-                    window.location.href="jsp/register.jsp?ownerPhoneNumber="+registerPhoneNumber+"&ownerPassword="+ownerPassword;
+                    window.location.href="jsp/register.jsp?ownerPhoneNumber="+phoneNumber+"&ownerPassword="+ownerPassword;
                 }
                 if (undefined===data.result || 0==data.result){
                     $.toast("data.result为空"+data.result,5000);
@@ -101,6 +100,102 @@ function bindOpenid() {
     }else {
         $.toast('请先输入手机号和密码',1500);
     }
-    // var url=projectPath+"/account/bindOpenid.action?ownerPhoneNumber="+registerPhoneNumber+"&ownerPassword="+ownerPassword;
+    // var url=projectPath+"/account/bindOpenid.action?ownerPhoneNumber="+phoneNumber+"&ownerPassword="+ownerPassword;
+    // window.location.href=encodeURI(url);
+}
+*/
+
+//请求短信验证码
+function sendVerifyCode(){
+    phoneNumber=document.getElementsByTagName('input')[0].value;
+    if(''!==phoneNumber){
+        $.ajax({
+            type:"POST",
+            url:projectPath+"/sms/sendVerifyCode.action",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:{
+                "phoneNumber":phoneNumber
+            },
+            dataType:'json',
+            success:function(data,status,xhr){
+                $.toast('data.result'+data.result);
+                // $.toast('data.verificationCode : '+data.verificationCode);
+
+                if (0!==data.result){
+                    $.toast('data.result'+data.result);
+                    // window.location.reload();
+                }
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误')
+            }
+        });
+    }else {
+        $.toast('手机号码为空，无法获取验证码',1500);
+    }
+}
+function checkVerifyCode() {
+    verificationCode=document.getElementsByTagName('input')[1].value;
+    if(''!==verificationCode){
+        $.ajax({
+            type:"POST",
+            url:projectPath+"/sms/checkVerifyCode.action",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:{
+                "verificationCode":verificationCode
+            },
+            dataType:'json',
+            success:function(data,status,xhr){
+                if(1===data.result){
+                    //验证码有效
+                    bindOpenid();
+                }else {
+                    $.toast(data.errMsg,1500);
+                }
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误')
+            }
+        });
+    }else {
+        $.toast('请先输入验证码',1500);
+    }
+}
+
+function bindOpenid() {
+    ownerPassword=document.getElementsByTagName('input')[2].value;
+    if (''!==ownerPassword){
+        $.ajax({
+            type:"POST",
+            url:projectPath+"/account/bindOpenid.action",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:{
+                "ownerPassword":ownerPassword
+            },
+            dataType:'json',
+            success:function(data,status,xhr){
+                if (0===data.result){
+                    //已绑定openid到phone,直接登录.
+                    window.location.href="jsp/main.jsp";
+                }
+                if (2===data.result){
+                    //手机号不存在，需要注册手机号.
+                    window.location.href="jsp/register.jsp";
+                }
+                if (undefined===data.result || 0==data.result){
+                    $.toast("data.result为空"+data.result,5000);
+                }
+                if (undefined!=data.errMsg && null!=data.errMsg && ''!=data.errMsg){
+                    $.toast(data.errMsg,1500);
+                }
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误');
+            }
+        });
+    }else {
+        $.toast('请先输入密码',1500);
+    }
+    // var url=projectPath+"/account/bindOpenid.action?ownerPhoneNumber="+phoneNumber+"&ownerPassword="+ownerPassword;
     // window.location.href=encodeURI(url);
 }
