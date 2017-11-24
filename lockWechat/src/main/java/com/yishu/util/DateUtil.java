@@ -21,7 +21,10 @@ import java.util.List;
  * @version 1.0.0.0 2017-10-12 17:43 admin
  * @since JDK1.7
  */
-public class DataUtil {
+public class DateUtil {
+    private static SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat format2=new SimpleDateFormat("yyyyMMddHHmmss");
+
     /**
      * @discription 返回当前日期的几月后的一天
      * @author 刘正义
@@ -131,7 +134,6 @@ public class DataUtil {
      * 前几天
      *
      * @param d
-     * @param day
      * @return
      */
     public static String getMonthBefore(Date d, int number) {
@@ -221,5 +223,21 @@ public class DataUtil {
         now.setTime(d);
         now.set(Calendar.DATE, now.get(Calendar.DATE) + day);
         return format1.format(now.getTime());
+    }
+
+    public static Date StringToDateByformat1(String time) throws ParseException {
+        return format1.parse(time);
+    }
+
+    public static String DateToStringByformat2(Date date){
+        return format2.format(date);
+    }
+
+    public static String format1StringToformat2String(String dateStr) throws ParseException {
+        return format2.format(format1.parse(dateStr));
+    }
+
+    public static String getFormat1TimetagStr(){
+        return format2.format(new Date());
     }
 }

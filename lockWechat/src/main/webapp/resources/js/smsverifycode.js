@@ -8,7 +8,12 @@ var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var phoneNumber;
 var verificationCode;
 var ownerPassword;
+var timerGate_sendCode;
+var timerGate_login;
 $(function () {
+    timerGate_sendCode=true;
+    timerGate_login=true;
+
     $.init();
 });
 
@@ -109,30 +114,51 @@ function bindOpenid() {
 function sendVerifyCode(){
     phoneNumber=document.getElementsByTagName('input')[0].value;
     if(''!==phoneNumber){
-        $.ajax({
-            type:"POST",
-            url:projectPath+"/sms/sendVerifyCode.action",
-            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-            data:{
-                "phoneNumber":phoneNumber
-            },
-            dataType:'json',
-            success:function(data,status,xhr){
-                $.toast('data.result'+data.result);
-                // $.toast('data.verificationCode : '+data.verificationCode);
+        if (timerGate_sendCode) {
+            timerGate_sendCode = false;
+            $.ajax({
+                type:"POST",
+                url:projectPath+"/sms/sendVerifyCode.action",
+                async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+                data:{
+                    "phoneNumber":phoneNumber
+                },
+                dataType:'json',
+                success:function(data,status,xhr){
+                    // $.toast('data.result'+data.result);
+                    // $.toast('data.verificationCode : '+data.verificationCode);
 
-                if (0!==data.result){
-                    $.toast('data.result'+data.result);
-                    // window.location.reload();
+                    // if (0!==data.result){
+                    //     $.toast('发送失败,状态码: '+data.result,2000);
+                    //     window.location.reload();
+                    // }
+                },
+                error:function(xhr,errorType,error){
+                    console.log('错误')
                 }
-            },
-            error:function(xhr,errorType,error){
-                console.log('错误')
-            }
-        });
+            });
+            scheduleINfo();
+        }else {
+            $.toast('暂时无法获取验证码,请稍待',1500);
+        }
     }else {
         $.toast('手机号码为空，无法获取验证码',1500);
     }
+}
+//重新获取验证码提示
+function scheduleINfo() {
+    var codeCreateInterval=60;
+    window.setTimeout(function () {
+        window.clearInterval(timer1);
+        timerGate_sendCode=true;
+        document.getElementById("A_sendVerifyCode").innerText="重新获取验证码 ";
+    },(codeCreateInterval+1)*1000);
+    var timer1=window.setInterval(function () {
+        if (codeCreateInterval>0){
+            document.getElementById("A_sendVerifyCode").innerText="重新获取验证码 ("+codeCreateInterval+'s)';
+            codeCreateInterval=codeCreateInterval-1;
+        }
+    },1000);
 }
 function checkVerifyCode() {
     verificationCode=document.getElementsByTagName('input')[1].value;

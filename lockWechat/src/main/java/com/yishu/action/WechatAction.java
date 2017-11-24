@@ -175,7 +175,7 @@ public class WechatAction extends BaseAction {
             String imgurl=mm.get("headimgurl");
             user.setNickname(nickname);
             user.setImgurl(imgurl);
-            user.setCreatetime(DataUtil.fromDate24H());
+            user.setCreatetime(DateUtil.fromDate24H());
             // 保存用户
             int val = wxservice.addSubscribe(user);
             if (val == 1){
@@ -196,7 +196,7 @@ public class WechatAction extends BaseAction {
     private void HandelUnSubscribe(String openid){
         WechatUser user = new WechatUser();
         user.setOpenid(openid);
-        user.setUntime(DataUtil.fromDate24H());
+        user.setUntime(DateUtil.fromDate24H());
         wxservice.UnSubscribe(user);
     }
 

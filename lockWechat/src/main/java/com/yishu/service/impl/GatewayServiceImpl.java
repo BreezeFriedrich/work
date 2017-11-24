@@ -8,6 +8,7 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.service.IGatewayService;
+import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -191,7 +192,7 @@ public class GatewayServiceImpl implements IGatewayService {
 
         reqSign=8;
         System.err.println("sign:"+reqSign+" operation:registerGatewayInfo");
-        timetag= String.valueOf(new Date().getTime());
+        timetag= DateUtil.getFormat1TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -213,7 +214,7 @@ public class GatewayServiceImpl implements IGatewayService {
 
         reqSign=9;
         System.err.println("sign:"+reqSign+" operation:modifyGatewayInfo");
-        timetag= String.valueOf(new Date().getTime());
+        timetag= DateUtil.getFormat1TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -235,7 +236,7 @@ public class GatewayServiceImpl implements IGatewayService {
 
         reqSign=10;
         System.err.println("sign:"+reqSign+" operation:deleteGateway");
-        timetag= String.valueOf(new Date().getTime());
+        timetag= DateUtil.getFormat1TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);

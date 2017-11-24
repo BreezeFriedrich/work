@@ -10,11 +10,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.UnlockRecord;
 import com.yishu.service.IRecordService;
+import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +55,12 @@ public class RecordServiceImpl implements IRecordService {
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         reqSign=26;
+        try {
+            startTime=DateUtil.format1StringToformat2String(startTime);
+            endTime=DateUtil.format1StringToformat2String(endTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);

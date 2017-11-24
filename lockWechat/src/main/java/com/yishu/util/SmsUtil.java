@@ -143,9 +143,12 @@ public class SmsUtil {
 
     public static void main(String[] args) throws ClientException, InterruptedException {
 
+        long time1=new Date().getTime();
+        String verifyCodeStr=VerifyCodeUtils.generateVerifyCodeNum(6);
         String phonenumber="13905169825";
         //发短信
-        SendSmsResponse response = sendVerifyCode(phonenumber,"632325");
+        SendSmsResponse response = sendVerifyCode(phonenumber,verifyCodeStr);
+        long time2=new Date().getTime();
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());
@@ -175,6 +178,9 @@ public class SmsUtil {
             System.out.println("TotalCount=" + querySendDetailsResponse.getTotalCount());
             System.out.println("RequestId=" + querySendDetailsResponse.getRequestId());
         }
-
+        long time3=new Date().getTime();
+        System.out.println("time2-time1 : "+(time2-time1));
+        System.out.println("time3-time2 : "+(time3-time2));
+        System.out.println("time3-time1 : "+(time3-time1));
     }
 }

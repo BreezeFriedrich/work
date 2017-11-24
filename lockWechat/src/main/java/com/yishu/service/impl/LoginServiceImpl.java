@@ -8,6 +8,7 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.service.ILoginService;
+import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -42,10 +43,6 @@ public class LoginServiceImpl implements ILoginService{
      */
     int respSign;
 
-    public String getNow(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        return sdf.format(new Date().getTime()).toString();
-    }
     /**
      * 微信登录，判断openid是否存在
      *
@@ -54,7 +51,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public Map openidExist(String openid) {
-        timetag= getNow();
+        timetag= DateUtil.getFormat1TimetagStr();
         reqSign=201;
 //        logger.info("sign:"+reqSign+" operation:openidExist");
         reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\",\"ownerPhoneNumber\":\""+"\"}";
@@ -89,7 +86,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public int bindOpenidToPhone(String openid, String ownerPhoneNumber, String ownerPassword) {
-        timetag= getNow();
+        timetag= DateUtil.getFormat1TimetagStr();
         reqSign=202;
         logger.info("sign:"+reqSign+" operation:bindOpenidToPhone");
         reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
@@ -120,7 +117,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public boolean register(String ownerName, String ownerPhoneNumber, String ownerPassword, String openid) {
-        timetag= getNow();
+        timetag= DateUtil.getFormat1TimetagStr();
         reqSign=203;
         logger.info("sign:"+reqSign+" operation:register");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";

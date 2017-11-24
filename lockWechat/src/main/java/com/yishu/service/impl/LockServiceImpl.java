@@ -12,6 +12,7 @@ import com.yishu.pojo.Lock;
 import com.yishu.service.IDeviceService;
 import com.yishu.service.IGatewayService;
 import com.yishu.service.ILockService;
+import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,7 @@ public class LockServiceImpl implements ILockService {
 
         reqSign=12;
         System.err.println("sign:"+reqSign+" operation:addLock");
-        timetag= String.valueOf(new Date().getTime());
+        timetag= DateUtil.getFormat1TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
@@ -142,7 +143,7 @@ public class LockServiceImpl implements ILockService {
 
         reqSign=13;
         System.err.println("sign:"+reqSign+" operation:modifyLockInfo");
-        timetag= String.valueOf(new Date().getTime());
+        timetag= DateUtil.getFormat1TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -164,7 +165,7 @@ public class LockServiceImpl implements ILockService {
 
         reqSign=14;
         System.err.println("sign:"+reqSign+" operation:deleteLock");
-        timetag= String.valueOf(new Date().getTime());
+        timetag= DateUtil.getFormat1TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);

@@ -22,6 +22,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Permission;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Date;
 import java.util.Map;
 
 public class HttpUtil
@@ -112,7 +113,8 @@ public class HttpUtil
     }
 
     public static String getQixuIp(){
-        //return "192.168.1.54";
+        return "43.254.149.28";
+        /*
         try {
             InetAddress inetAddress=InetAddress.getByName(hostName);
             return inetAddress.getHostAddress().toString();
@@ -120,9 +122,11 @@ public class HttpUtil
             e.printStackTrace();
         }
         return null;
+        */
     }
 
     public static String httpsPostToQixu(String data){
+//        long time1=new Date().getTime();
         String qixuIp=HttpUtil.getQixuIp();
         URL url = null;
         try {
@@ -131,7 +135,12 @@ public class HttpUtil
             e.printStackTrace();
         }
 //        return HttpUtil.doPost(url.toString(),data);
+        long time2=new Date().getTime();
+//        logger.warn("getQixuIp     用时: "+(time2-time1));
         String result=HttpUtil.httpsPostToIp(qixuIp,data);
+        long time3=new Date().getTime();
+        logger.warn("httpsPostToIp 用时: "+(time3-time2));
+
         logger.info("HTTPS RESPONSE : "+result);
         return result;
     }

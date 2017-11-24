@@ -26,6 +26,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <style>
         .row.pad-left {
@@ -63,11 +67,8 @@
                         </div>
                     </li>
                 </ul>
-                <a href="javascript:void(0);" onclick="sendVerifyCode()" class="button button-big button-fill button-success">获取短信验证码</a>
+                <a id="A_sendVerifyCode" href="javascript:void(0);" onclick="sendVerifyCode()" class="button button-big button-fill button-success">获取短信验证码</a>
             </div>
-            <%--<div class="content-block">--%>
-                <%--<a href="javascript:void(0);" onclick="sendVerifyCode()" class="button button-big button-fill button-success">获取短信验证码</a>--%>
-            <%--</div>--%>
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
                     <li>
@@ -102,6 +103,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/smsverifycode.js?ver=16' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/smsverifycode.js?ver=18' charset='utf-8'></script>
 </body>
 </html>

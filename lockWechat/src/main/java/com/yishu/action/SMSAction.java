@@ -59,7 +59,9 @@ public class SMSAction {
         session.setAttribute("phoneNumber",phoneNumber);
         Map resultMap=smsService.sendVerifyCode(phoneNumber);
         SMSVerificationCode smsVerificationCode= (SMSVerificationCode) resultMap.get("verificationCode");
-        session.setAttribute("smsVerificationCode",smsVerificationCode);
+        if (null!=smsVerificationCode){
+            session.setAttribute("smsVerificationCode",smsVerificationCode);
+        }
 //        logger.info("smsVerificationCode : "+session.getAttribute("smsVerificationCode"));
         jsonResult=resultMap;
         long time2=new Date().getTime();
@@ -86,9 +88,9 @@ public class SMSAction {
         logger.info("checkVerifyCode.action");
         Map <String,Object> resultMap=new HashMap<>(1);
         phoneNumber= (String) session.getAttribute("phoneNumber");
-        session.removeAttribute("phoneNumber");
+//        session.removeAttribute("phoneNumber");
         SMSVerificationCode smsVerificationCode= (SMSVerificationCode) session.getAttribute("smsVerificationCode");
-        session.removeAttribute("smsVerificationCode");
+//        session.removeAttribute("smsVerificationCode");
         logger.info("smsVerificationCode : "+smsVerificationCode);
         if (null!=smsVerificationCode && smsVerificationCode.getPhoneNumber().equals(phoneNumber)){
             if (smsVerificationCode.getVerificationCode().equals(verificationCode)){

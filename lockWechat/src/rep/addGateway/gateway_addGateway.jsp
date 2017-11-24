@@ -63,23 +63,23 @@
                         </div>
                     </li>
                 </ul>
-                <a href="javascript:void(0);" onclick="getGatewayVerifyCode()" class="button button-big button-fill button-success">获取网关验证码</a>
-                <iframe id="frame1" width="300" height="180" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"/></iframe>
-                <ul>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-name"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">网关验证码</div>
-                                <div class="item-input">
-                                    <input type="text" placeholder="请输入网关验证码"/>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <a href="javascript:void(0);" onclick="addGateway()" class="button button-big button-fill button-success">添加网关</a>
             </div>
+            <div class="content-block">
+                <a href="javascript:void(0);" onclick="addGateway()" class="button button-big button-fill button-success">添加网关</a>
+                <a id="a_opCode"/><!--style="width: 0px;height: 0px"-->
+            </div>
+            <!--
+            <div class="content-block" id="div_iframe">
+                <div class="content-block-title">网关内网ip</div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-content-inner" id="expande_iframe">
+                            <%--<iframe frameborder="0" scrolling="no" class="external"></iframe>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
         </div>
     </div>
 </div>
@@ -88,6 +88,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=10' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=8' charset='utf-8'></script>
 </body>
 </html>

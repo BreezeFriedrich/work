@@ -19,7 +19,7 @@ $(function () {
     $.init();
 });
 
-function getGatewayVerifyCode() {
+function addGateway() {
     $.showIndicator();
     gatewayIp=null;
     getGatewayIp();
@@ -28,8 +28,22 @@ function getGatewayVerifyCode() {
         getGatewayLANaddr();
         opCode=null;
         if(null!=LANip && ''!==LANip){
-            document.getElementById("frame1").src=LANaddr;
-            $.hideIndicator();
+            getVerificationCode();
+            isCorrectGatewayVerificationCode=null;
+            if(null!=opCode && ''!==opCode){
+                correctGatewayVerificationCode();
+                if(true===isCorrectGatewayVerificationCode){
+                    $.hideIndicator();
+                    url="jsp/gateway/gateway_registerGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+gatewayCode+"&opCode="+opCode;
+                    window.location.href=encodeURI(url);
+                }else {
+                    $.hideIndicator();
+                    $.toast('校验网关验证码失败');
+                }
+            }else {
+                $.hideIndicator();
+                $.toast('获取网关验证码失败');
+            }
         }else {
             //获取网关所在局域网地址失败,可能是网关已被添加过
             $.hideIndicator();
@@ -38,24 +52,6 @@ function getGatewayVerifyCode() {
     }else {
         $.hideIndicator();
         $.toast('获取网关所在数据服务器地址失败');
-    }
-}
-function addGateway() {
-    isCorrectGatewayVerificationCode=null;
-    opCode=document.getElementsByTagName('input')[1].value;
-    if(null!=opCode && ''!==opCode){
-        correctGatewayVerificationCode();
-        if(true===isCorrectGatewayVerificationCode){
-            $.hideIndicator();
-            url="jsp/gateway/gateway_registerGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+gatewayCode+"&opCode="+opCode;
-            window.location.href=encodeURI(url);
-        }else {
-            $.hideIndicator();
-            $.toast('校验网关验证码失败');
-        }
-    }else {
-        $.hideIndicator();
-        $.toast('网关验证码不能为空');
     }
 }
 //获取网关的数据服务器ip
@@ -95,6 +91,51 @@ function getGatewayLANaddr() {
     });
 }
 
+//根据网关内网LANaddr获取网关验证码opCode
+function getVerificationCode() {
+    /*后端与网关不在同一个局域网.
+    $.ajax({
+        type:"POST",
+        url:projectPath+"/gateway/getVerificationCode.action",
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        data:{url:LANaddr},
+        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        success:function(data,status,xhr){
+            // alert('opCode : '+data);
+            opCode=data;
+        },
+        error:function(xhr,errorType,error){
+            console.log('ajax错误');
+        }
+    });
+    */
+
+    /*出现跨域问题
+    LANaddr="http://192.168.1.5:9018";
+    $.ajax({
+        type:"GET",
+        url:LANaddr,
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        data:{},
+        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        success:function(data,status,xhr){
+            alert('验证码ajax data : '+data);
+//          opCode=data.substring(data.indexOf("<h1>")+4,data.indexOf("</h1>"));
+            opCode=data.match(/<h1>.*<\/h1>/g);
+            alert('opCode : '+opCode);
+            console.log(data);
+        },
+        error:function(xhr,errorType,error){
+            console.log('ajax错误');
+        }
+    });
+    */
+
+    var a_opCode=document.getElementById("a_opCode");
+    opCode.setAttribute("href",LANaddr);
+    alert('opCode : '+opCode);
+}
+
 //验证网关验证码是否正确
 function correctGatewayVerificationCode() {
     $.ajax({
@@ -116,6 +157,30 @@ function correctGatewayVerificationCode() {
         }
     });
 }
+
+/*
+//创建连接内网中网关从而获取验证码的窗体frame.
+function createFrame() {
+    var $iframe = document.createElement('iframe');
+    $iframe.name='iframe_opCode';
+    $iframe.src = LANaddr;
+    $iframe.style.height = 200;
+    document.getElementById('expande_iframe').appendChild($iframe);
+}
+function createIframeCard() {
+    var div_iframe='';
+    div_iframe += "<div class='content-block-title'>网关内网ip</div>";
+    div_iframe += "<div class='card'>";
+    div_iframe +=     "<div class='card-content'>";
+    div_iframe +=         "<div class='card-content-inner'>";
+    // div_iframe +=             "<iframe src='LANaddr' frameborder='0' scrolling='no'></iframe>";
+    div_iframe +=             "<iframe src="+LANaddr+" frameborder='0' scrolling='no'></iframe>";
+    div_iframe +=         "</div>";
+    div_iframe +=     "</div>";
+    div_iframe += "</div>";
+    return div_iframe;
+}
+*/
 
 //获取链接参数
 function getQueryString(name) {
