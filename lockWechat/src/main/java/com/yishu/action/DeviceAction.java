@@ -34,7 +34,7 @@ public class DeviceAction extends ActionSupport {
      */
     public String getUserGatewayIp(){
         jsonList.clear();
-        List userGatewayIp=deviceService.getUserGatewayIp(ownerPhoneNumber);System.err.println(userGatewayIp.size());
+        List userGatewayIp=deviceService.getUserGatewayIp(ownerPhoneNumber);
         jsonList.addAll(userGatewayIp);
         return "json";
     }
@@ -46,7 +46,7 @@ public class DeviceAction extends ActionSupport {
      */
     public String getDeviceInfo(){
         jsonList.clear();
-        List unlockAccountDeviceList=deviceService.getDeviceInfo(ownerPhoneNumber);System.err.println(unlockAccountDeviceList.size());
+        List unlockAccountDeviceList=deviceService.getDeviceInfo(ownerPhoneNumber);
         jsonList.addAll(unlockAccountDeviceList);
         return "json";
     }

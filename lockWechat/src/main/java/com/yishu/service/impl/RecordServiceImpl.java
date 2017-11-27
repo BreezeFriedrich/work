@@ -56,8 +56,8 @@ public class RecordServiceImpl implements IRecordService {
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         reqSign=26;
         try {
-            startTime=DateUtil.format1StringToformat2String(startTime);
-            endTime=DateUtil.format1StringToformat2String(endTime);
+            startTime=DateUtil.format1tillminStringToformat2tillminString(startTime);
+            endTime=DateUtil.format1tillminStringToformat2tillminString(endTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }

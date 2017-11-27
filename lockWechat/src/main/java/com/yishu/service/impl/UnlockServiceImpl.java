@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -97,7 +96,7 @@ public class UnlockServiceImpl implements IUnlockService {
         }
 
         reqSign=17;
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -132,14 +131,18 @@ public class UnlockServiceImpl implements IUnlockService {
         }
 
         reqSign=18;
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
+        logger.info("startTime-1 : "+startTime);
+        logger.info("endTime-1   : "+endTime);
         try {
-            startTime=DateUtil.format1StringToformat2String(startTime);
-            endTime=DateUtil.format1StringToformat2String(endTime);
+            startTime=DateUtil.format1tillminStringToformat2tillminString(startTime);
+            endTime=DateUtil.format1tillminStringToformat2tillminString(endTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        logger.info("startTime-2 : "+startTime);
+        logger.info("endTime-2   : "+endTime);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -164,7 +167,7 @@ public class UnlockServiceImpl implements IUnlockService {
         }
 
         reqSign=19;
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"cardNumb\":\""+cardNumb+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -189,7 +192,7 @@ public class UnlockServiceImpl implements IUnlockService {
         }
 
         reqSign=20;
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -226,14 +229,18 @@ public class UnlockServiceImpl implements IUnlockService {
         }
 
         reqSign=21;
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
+        logger.info("startTime-1 : "+startTime);
+        logger.info("endTime-1   : "+endTime);
         try {
-            startTime=DateUtil.format1StringToformat2String(startTime);
-            endTime=DateUtil.format1StringToformat2String(endTime);
+            startTime=DateUtil.format1tillminStringToformat2tillminString(startTime);
+            endTime=DateUtil.format1tillminStringToformat2tillminString(endTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        logger.info("startTime-2 : "+startTime);
+        logger.info("endTime-2   : "+endTime);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"password\":\""+password+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -259,7 +266,7 @@ public class UnlockServiceImpl implements IUnlockService {
         }
 
         reqSign=22;
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
 //        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"gatewayCode\":\""+gatewayCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);

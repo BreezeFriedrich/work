@@ -14,15 +14,15 @@ import java.util.List;
  * @since JDK1.7
  */
 public class Records<X> {
-    private int totals;
+    private int totalSize;
     private List<X> rows=new ArrayList<X>();
 
-    public int getTotals() {
-        return totals;
+    public int getTotalSize() {
+        return totalSize;
     }
 
-    public void setTotals(int totals) {
-        this.totals = totals;
+    public void setTotalSize(int totalSize) {
+        this.totalSize = totalSize;
     }
 
     public List<X> getRows() {

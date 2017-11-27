@@ -44,8 +44,9 @@ function authById() {
     $.showIndicator();
     name=document.getElementsByTagName('input')[0].value;
     cardNumb=document.getElementsByTagName('input')[1].value;
-    startTime=document.getElementsByTagName('input')[2].value;
-    endTime=document.getElementsByTagName('input')[3].value;
+    // 错误的写法 startTime=document.getElementsByTagName('input')[2].value;
+    startTime=$("#datetime-picker-1").val();
+    endTime=$("#datetime-picker-2").val();
 
     if(''!=name && ''!=cardNumb && ''!=startTime && ''!=endTime){
         if(validateIdCard(cardNumb)){

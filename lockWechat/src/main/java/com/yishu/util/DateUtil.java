@@ -25,6 +25,9 @@ public class DateUtil {
     private static SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static SimpleDateFormat format2=new SimpleDateFormat("yyyyMMddHHmmss");
 
+    private static SimpleDateFormat format1TillMin=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private static SimpleDateFormat format2TillMin=new SimpleDateFormat("yyyyMMddHHmm");
+
     /**
      * @discription 返回当前日期的几月后的一天
      * @author 刘正义
@@ -237,7 +240,15 @@ public class DateUtil {
         return format2.format(format1.parse(dateStr));
     }
 
-    public static String getFormat1TimetagStr(){
+    public static String format1tillminStringToformat2tillminString(String dateStr) throws ParseException {
+        return format2TillMin.format(format1TillMin.parse(dateStr));
+    }
+
+    public static String format2tillminStringToformat1tillminString(String dateStr) throws ParseException {
+        return format1TillMin.format(format2TillMin.parse(dateStr));
+    }
+
+    public static String getFormat2TimetagStr(){
         return format2.format(new Date());
     }
 }

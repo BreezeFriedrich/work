@@ -121,7 +121,7 @@ public class LockServiceImpl implements ILockService {
 
         reqSign=12;
         System.err.println("sign:"+reqSign+" operation:addLock");
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToQixu(reqData);
         System.err.println(rawData);
@@ -143,7 +143,7 @@ public class LockServiceImpl implements ILockService {
 
         reqSign=13;
         System.err.println("sign:"+reqSign+" operation:modifyLockInfo");
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);
@@ -165,7 +165,7 @@ public class LockServiceImpl implements ILockService {
 
         reqSign=14;
         System.err.println("sign:"+reqSign+" operation:deleteLock");
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         System.err.println(rawData);

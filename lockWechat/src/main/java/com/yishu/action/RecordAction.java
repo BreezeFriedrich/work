@@ -9,7 +9,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
 import com.yishu.service.IRecordService;
-import com.yishu.service.IUnlockService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -96,7 +95,7 @@ public class RecordAction extends ActionSupport{
             newRecordList=recordList.subList((pageNum-1)*pageSize,recordSize);
         }
         Records<UnlockRecord> records =new Records<>();
-        records.setTotals(newRecordList.size());
+        records.setTotalSize(newRecordList.size());
         records.setRows(newRecordList);
         jsonResult=records;
         return "json";

@@ -42,8 +42,8 @@ function getQueryString(name) {
 function authByPwd() {
     $.showIndicator();
     password=document.getElementsByTagName('input')[0].value;
-    startTime=document.getElementsByTagName('input')[1].value;
-    endTime=document.getElementsByTagName('input')[2].value;
+    startTime=$("#datetime-picker-1").val();
+    endTime=$("#datetime-picker-2").val();
 
     if(''!=password && ''!=startTime && ''!=endTime){
         if(validatePwd(password)){

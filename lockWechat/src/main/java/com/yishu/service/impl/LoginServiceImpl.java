@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,7 +49,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public Map openidExist(String openid) {
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqSign=201;
 //        logger.info("sign:"+reqSign+" operation:openidExist");
         reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\",\"ownerPhoneNumber\":\""+"\"}";
@@ -86,7 +84,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public int bindOpenidToPhone(String openid, String ownerPhoneNumber, String ownerPassword) {
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqSign=202;
         logger.info("sign:"+reqSign+" operation:bindOpenidToPhone");
         reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
@@ -117,7 +115,7 @@ public class LoginServiceImpl implements ILoginService{
      */
     @Override
     public boolean register(String ownerName, String ownerPhoneNumber, String ownerPassword, String openid) {
-        timetag= DateUtil.getFormat1TimetagStr();
+        timetag= DateUtil.getFormat2TimetagStr();
         reqSign=203;
         logger.info("sign:"+reqSign+" operation:register");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
