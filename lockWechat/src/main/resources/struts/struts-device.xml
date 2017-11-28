@@ -24,7 +24,7 @@
             <result name="json" type="json">
                 <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
                 <!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->
-                <param name="root">jsonList</param>
+                <param name="root">jsonResult</param>
                 <!-- 指定是否序列化空的属性 -->
                 <param name="excludeNullProperties">false</param>
             </result>
@@ -37,7 +37,22 @@
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
             <result name="json" type="json">
-                <param name="root">jsonList</param>
+                <param name="root">jsonResult</param>
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+        </action>
+
+        <action name="*" class="com.yishu.action.DeviceAction" method="{0}">
+            <interceptor-ref name="defaultStack">
+                <param name="exception.logEnabled">true</param>
+                <param name="exception.logLevel">error</param>
+            </interceptor-ref>
+            <!--
+            <interceptor-ref name="openidStack"/>
+            -->
+            <result name="json" type="json">
+                <param name="root">jsonResult</param>
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>

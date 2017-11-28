@@ -31,6 +31,7 @@ public class FilterUtil<T> {
     }
     */
 
+    /*
     public List<T> filter(T t){
         ParameterizedType parameterizedType = (ParameterizedType) this.getClass().getGenericSuperclass();//获取当前new对象的泛型的父类类型
         Class clazz = (Class<T>) parameterizedType.getActualTypeArguments()[0];
@@ -39,4 +40,5 @@ public class FilterUtil<T> {
             if ()
         }
     }
+    */
 }

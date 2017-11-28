@@ -30,8 +30,6 @@ public class GatewayAction extends ActionSupport {
 
     @Autowired
     private IGatewayService gatewayService;
-    @Autowired
-    private IDeviceService deviceService;
 
     /**
      * Object jsonResult——返回的JSON格式的Model
@@ -143,24 +141,6 @@ public class GatewayAction extends ActionSupport {
     public String deleteGateway(){
         boolean resultBoolean=gatewayService.deleteGateway(ownerPhoneNumber,gatewayCode);
         jsonResult=resultBoolean;
-        return "json";
-    }
-
-    public String getSpecificGateway(){
-        List jsonList=deviceService.getDeviceInfo(ownerPhoneNumber);
-        Device device=null;
-        Iterator iter=jsonList.iterator();
-        while (iter.hasNext()) {
-            device=(Device)(iter.next());
-            String specificGatewayCode = device.getGatewayCode();
-            if (gatewayCode.equals(specificGatewayCode)) {//gatewayCode来自于struts2 拦截器栈 参数拦截器传递类request.getParameter()
-                break;
-            }
-        }
-//        for (Object x :jsonList ) {
-//            gatewayCode=((Device)x).getGatewayCode();
-//        }
-        jsonResult=device;
         return "json";
     }
 

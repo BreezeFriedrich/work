@@ -41,6 +41,6 @@ function formatTimetillminString(dateStr) {
  * @param dateStr
  */
 function formatTimeString(dateStr) {
-    var dateStr="20171127131712";
+    // var dateStr="20171127131712";
     return dateStr.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,'$1-$2-$3 $4:$5:$6');
 }

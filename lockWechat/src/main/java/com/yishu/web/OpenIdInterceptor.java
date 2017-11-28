@@ -12,7 +12,6 @@ import com.yishu.util.WechatWebAccessTokenUtil;
 import com.yishu.util.StringUtil;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

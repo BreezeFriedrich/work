@@ -5,8 +5,8 @@
 
 <%--
   User: admin
-  Date: 2017/11/14
-  Time: 14:43
+  Date: 2017/11/27
+  Time: 15:38
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -128,24 +128,10 @@
     </style>
 </head>
 <body>
-<!--模拟的标题-->
-<%--<p class="header"><a class="btn-left" href="../index.html">main</a> 商品列表 <a class="btn-right" href="list-news.html">list-news</a></p>--%>
-<p class="header">
-    全部记录
-    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/gatewayDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">网关</a>
-    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/lockDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">门锁</a>
-    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/timeDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">时间</a>
-</p>
 <!--滑动区域-->
 <div id="mescroll" class="mescroll">
     <!--展示上拉加载的数据列表-->
     <ul id="dataList" class="data-list">
-        <!--<li>
-            <img class="pd-img" src="../res/img/pd1.jpg"/>
-            <p class="pd-name">商品标题商品标题商品标题商品标题商品标题商品</p>
-            <p class="pd-price">200.00 元</p>
-            <p class="pd-sold">已售50件</p>
-        </li>-->
     </ul>
 </div>
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
@@ -153,7 +139,7 @@
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/mescroll.min.js'></script>
 <script type='text/javascript' src='resources/js/util/date.js'></script>
-<%--<script type='text/javascript' src='resources/js/record.js?ver=1' charset='utf-8'></script>--%>
+<%--<script type='text/javascript' src='resources/js/lockDivision.js?ver=1' charset='utf-8'></script>--%>
 <script type="text/javascript" charset="utf-8">
     var pathName=window.document.location.pathname;
     var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
@@ -174,25 +160,11 @@
             }
         });
 
-        /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
         function getListData(page){
             //联网加载数据
-            getListDataFromNet(page.num, page.size, function(curPageData){
-                //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
-                //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
-                console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
-
-                //方法一(推荐): 后台接口有返回列表的总页数 totalPage
-                //mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
-
+            getListDataFromNet(page.num, page.size, function(curPageData,totalSize){
                 //方法二(推荐): 后台接口有返回列表的总数据量 totalSize
-                //mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
-
-                //方法三(推荐): 您有其他方式知道是否有下一页 hasNext
-                //mescroll.endSuccess(curPageData.length, hasNext); //必传参数(当前页的数据个数, 是否有下一页true/false)
-
-                //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
-                mescroll.endSuccess(curPageData.length);
+                mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
 
                 //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
                 setListData(curPageData);
@@ -204,21 +176,6 @@
 
         /*设置列表数据*/
         function setListData(curPageData){
-            /*
-            var listDom=document.getElementById("dataList");
-            for (var i = 0; i < curPageData.length; i++) {
-                var pd=curPageData[i];
-
-                var str='<img class="pd-img" src="'+pd.pdImg+'"/>';
-                str+='<p class="pd-name">'+pd.pdName+'</p>';
-                str+='<p class="pd-price">'+pd.pdPrice+' 元</p>';
-                str+='<p class="pd-sold">已售'+pd.pdSold+'件</p>';
-
-                var liDom=document.createElement("li");
-                liDom.innerHTML=str;
-                listDom.appendChild(liDom);
-            }
-            */
             var listDom=document.getElementById("dataList");
             for (var i = 0; i < curPageData.length; i++) {
                 var pd=curPageData[i];
@@ -243,24 +200,14 @@
 
         /*联网加载列表数据*/
         function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
-            //ownerPhoneNumber,startTime,endTime
             $.ajax({
                 type:"POST",
                 url:projectPath+"/record/pageUnlockRecord.action",
                 async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-                data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":startTime,"endTime":endTime,"pageNum":pageNum,"pageSize":pageSize},
+                data:{"ownerPhoneNumber":ownerPhoneNumber,"pageNum":pageNum,"pageSize":pageSize},
                 dataType:'json',
                 success:function(data,status,xhr){
-                    /*
-                    //模拟分页数据
-                    var listData=[];
-                    for (var i = (pageNum-1)*pageSize; i < pageNum*pageSize; i++) {
-                        if(i==data.length) break;
-                        listData.push(data[i]);
-                    }
-                    successCallback(listData);
-                    */
-                    successCallback(data.rows);
+                    successCallback(data.rows,data.totalSize);
                 },
                 error:errorCallback
             });
