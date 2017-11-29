@@ -141,7 +141,7 @@ public class HttpUtil
         long time3=new Date().getTime();
         logger.warn("httpsPostToIp 用时: "+(time3-time2));
 
-        logger.info("HTTPS RESPONSE : "+result);
+//        logger.info("HTTPS RESPONSE : "+result);
         return result;
     }
 

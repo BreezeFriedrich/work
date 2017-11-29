@@ -33,7 +33,7 @@ public class DeviceServiceImpl implements IDeviceService{
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+//        System.err.println(rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map gatewayIpMap;
@@ -81,7 +81,7 @@ public class DeviceServiceImpl implements IDeviceService{
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+//        System.err.println(rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;

@@ -79,7 +79,7 @@ public class GatewayServiceImpl implements IGatewayService {
         System.err.println("sign:"+reqSign+" operation:getGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         rawData= HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+//        System.err.println(rawData);
 
         /*@deprecated: getGatewayIp()返回值 type=Map structure: { "result" : int(0成功,1失败) , "gatewayIp" : String(网关数据所在IP) }.
         Map resultMap=new HashMap();

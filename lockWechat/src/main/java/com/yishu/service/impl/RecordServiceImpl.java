@@ -49,7 +49,7 @@ public class RecordServiceImpl implements IRecordService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
+//        logger.info("respSign:"+String.valueOf(respSign));
         return respSign;
     }
     @Override
@@ -64,7 +64,7 @@ public class RecordServiceImpl implements IRecordService {
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+//        System.err.println(rawData);
 
         respSign();
         resultMap.put("result",respSign);

@@ -95,7 +95,7 @@ public class RecordAction extends ActionSupport{
             newRecordList=recordList.subList((pageNum-1)*pageSize,recordSize);
         }
         Records<UnlockRecord> records =new Records<>();
-        records.setTotalSize(newRecordList.size());
+        records.setTotalSize(recordSize);
         records.setRows(newRecordList);
         jsonResult=records;
         return "json";

@@ -42,52 +42,12 @@
         ul{list-style-type: none}
         a {text-decoration: none;color: #18B4FE;}
 
-        /*模拟的标题*/
-        .header{
-            z-index: 9990;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 44px;
-            line-height: 44px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            background-color: white;
+        header .pageTitle{
+            padding: 0.1rem 0.5rem;
+            height: 2.3rem;
+            line-height: 2.3rem;
         }
-        .header .btn-left{
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding:12px;
-            line-height: 22px;
-        }
-        .header .btn-right{
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 0 12px;
-        }
-        /*说明*/
-        .notice{
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-            line-height: 24px;
-            text-align: center;
-            color:#555;
-        }
-        .btn-change{
-            display: inline-block;
-            margin-top: 14px;
-            font-size: 14px;
-            padding: 3px 15px;
-            text-align: center;
-            border: 1px solid #FF6990;
-            border-radius: 20px;
-            color: #FF6990;
-        }
-        .btn-change:active{
+        header>a:active{
             opacity: .5;
         }
         /*列表*/
@@ -99,31 +59,43 @@
         }
         /*展示上拉加载的数据列表*/
         .data-list li{
+            background-color: #FFFFFF;
             position: relative;
-            padding: 10px 8px 10px 120px;
+            padding: 10px 6px 10px 6px;
             border-bottom: 1px solid #eee;
-        }
-        .data-list .pd-img{
-            position: absolute;
-            left: 18px;
-            top: 18px;
-            width: 80px;
             height: 80px;
         }
-        .data-list .pd-name{
-            font-size: 16px;
-            line-height: 20px;
-            height: 40px;
+        /*表格卡片样式*/
+        .pd{
+            font-size: 0.5rem;
+            line-height: 0.6rem;
             overflow: hidden;
         }
-        .data-list .pd-price{
-            margin-top: 8px;
-            color: red;
+        .pd>div{
+            float: left;
         }
-        .data-list .pd-sold{
-            font-size: 12px;
-            margin-top: 8px;
-            color: gray;
+        .pd p{
+            margin: 0;
+            /*line-height: 0.6rem;*/
+            height: 1rem;
+            overflow: hidden;
+        }
+        .pd img{
+            vertical-align: middle;
+        }
+        .pd-left{
+            width: 48%;
+            color: #33aa66;
+        }
+        .pd-right{
+            width: 48%;
+            color: #33aa66;
+        }
+        .pd-left .entry-val{
+            color: #3366CC;
+        }
+        .pd-right .entry-val{
+            color: #232332;
         }
     </style>
 </head>
@@ -132,9 +104,8 @@
 <%--<p class="header"><a class="btn-left" href="../index.html">main</a> 商品列表 <a class="btn-right" href="list-news.html">list-news</a></p>--%>
 <p class="header">
     全部记录
-    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/gatewayDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">网关</a>
-    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/lockDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">门锁</a>
-    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/timeDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">时间</a>
+    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/record_param_device.jsp?ownerPhoneNumber='+ownerPhoneNumber);">网关</a>
+    <a class="btn-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/record_timeDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">时间</a>
 </p>
 <!--滑动区域-->
 <div id="mescroll" class="mescroll">
@@ -157,16 +128,28 @@
 <script type="text/javascript" charset="utf-8">
     var pathName=window.document.location.pathname;
     var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-    var ownerPhoneNumber="13905169824";
-    var startTime="20140101010101";
-    var endTime="20171210010101";
+    var ownerPhoneNumber;
+    var startTime;
+    var endTime;
+    /*
+    ownerPhoneNumber="13905169824";
+    startTime="2014-01-01 01:01";
+    endTime="2017-12-10 01:01";
+    */
 
     $(function(){
+
+//        ownerPhoneNumber=getQueryString('ownerPhoneNumber');
+        ownerPhoneNumber="13905169824";
+        startTime=getQueryString('startTime');
+        endTime=getQueryString('endTime');
+
         //创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;
         var mescroll = new MeScroll("mescroll", {
+            //上拉加载列表项.
             up: {
                 clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
-                callback: getListData, //上拉回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+                callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
                 toTop:{ //配置回到顶部按钮
                     src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                     //offset : 1000
@@ -175,9 +158,9 @@
         });
 
         /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
-        function getListData(page){
+        function upCallback(page){
             //联网加载数据
-            getListDataFromNet(page.num, page.size, function(curPageData){
+            getListDataFromNet(page.num, page.size, function(curPageData,totalSize){
                 //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
                 //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
                 console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
@@ -186,13 +169,13 @@
                 //mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
 
                 //方法二(推荐): 后台接口有返回列表的总数据量 totalSize
-                //mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
+                mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
 
                 //方法三(推荐): 您有其他方式知道是否有下一页 hasNext
                 //mescroll.endSuccess(curPageData.length, hasNext); //必传参数(当前页的数据个数, 是否有下一页true/false)
 
                 //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
-                mescroll.endSuccess(curPageData.length);
+//                mescroll.endSuccess(curPageData.length);
 
                 //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
                 setListData(curPageData);
@@ -202,38 +185,28 @@
             });
         }
 
-        /*设置列表数据*/
+        /*设置列表数据与渲染列表*/
         function setListData(curPageData){
-            /*
             var listDom=document.getElementById("dataList");
             for (var i = 0; i < curPageData.length; i++) {
                 var pd=curPageData[i];
-
-                var str='<img class="pd-img" src="'+pd.pdImg+'"/>';
-                str+='<p class="pd-name">'+pd.pdName+'</p>';
-                str+='<p class="pd-price">'+pd.pdPrice+' 元</p>';
-                str+='<p class="pd-sold">已售'+pd.pdSold+'件</p>';
-
-                var liDom=document.createElement("li");
-                liDom.innerHTML=str;
-                listDom.appendChild(liDom);
-            }
-            */
-            var listDom=document.getElementById("dataList");
-            for (var i = 0; i < curPageData.length; i++) {
-                var pd=curPageData[i];
-
-                var str='<img class="pd-img" src="'+pd.pdImg+'"/>';
-                str+='<p class="pd-name">网关'+pd.gatewayCode+'</p>';
-                str+='<p class="pd-name">门锁'+pd.lockCode+'</p>';
-                str+='<p class="pd-price">时间'+pd.formatTimeString(timetag)+'</p>';
+                var str='<div class="pd">';
+                str+='<div class="pd-left">';
+                str+='<p class="pd-name"><img class="pd-img" src="resources/img/gateway_green_15px.png"/> '+'<span class="entry-val">'+pd.gatewayCode+'</span></p>';
+                str+='<p class="pd-name"><img class="pd-img" src="resources/img/lock_15px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</p>';
+                str+='<p class="icon icon-clock"> <span class="entry-val">'+formatTimeString(pd.timetag)+'</p>';
+                str+='</div>';
+                str+='<div class="pd-right">';
+//              str+='<img class="pd-img" src="'+pd.pdImg+'"/>';
                 if(null !== pd.cardInfo){
-                    str+='<p class="pd-sold">身份证'+pd.cardInfo.cardNumb+'</p>';
-                    str+='<p class="pd-sold">姓名'+pd.cardInfo.name+'</p>';
+                    str+='<p class="icon icon-card"> <span class="entry-val">'+pd.cardInfo.cardNumb+'</p>';
+                    str+='<p class="icon icon-me"> <span class="entry-val">'+pd.cardInfo.name+'</p>';
                 }
                 if(null !== pd.passwordInfo){
-                    str+='<p class="pd-sold">密码'+pd.passwordInfo.password+'</p>';
+                    str+='<p class="pd-unlock"><img class="pd-img" src="resources/img/password_20X15.png"/> '+'<span class="entry-val">'+pd.passwordInfo.password+'</p>';
                 }
+                str+='</div>';
+                str+='</div>';
 
                 var liDom=document.createElement("li");
                 liDom.innerHTML=str;
@@ -260,7 +233,7 @@
                     }
                     successCallback(listData);
                     */
-                    successCallback(data.rows);
+                    successCallback(data.rows,data.totalSize);
                 },
                 error:errorCallback
             });
@@ -269,6 +242,14 @@
         //禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
         document.ondragstart=function() {return false;}
     });
+
+    //获取链接参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = decodeURI(window.location.search).substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
 </script>
 </body>
 </html>
