@@ -60,7 +60,8 @@ $(function(){
     });
     var div_statistics=document.getElementById("div_statistics");
     div_statistics.addEventListener('click',function(ev){
-        url="jsp/record/record_param_time.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+        // url="jsp/record/record_param_time.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+        url="jsp/record/record.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
 
