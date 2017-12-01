@@ -130,7 +130,7 @@
                     </div>
                     <div style="width:30%;height: 75px; margin:22.5px 5%;float: left;">
                         <a href="#" class="open-popup" data-popup=".popup-menu">
-                            <img alt="menu" src="../resources/img/menu-dots_128px.png" width="75px;"/>
+                            <img alt="menu" src="resources/img/menu-dots_128px.png" width="75px;"/>
                         </a>
                     </div>
                 </div>
@@ -239,18 +239,18 @@
 
             var str='<div class="pd">';
             str+='<div class="pd-left">';
-            str+='<p class="pd-name"><img class="pd-img" src="../resources/img/gateway_64px.png"/> '+'<span class="entry-val">'+pd.gatewayCode+'</span></p>';
-            str+='<p><img src="../resources/img/padlock_64px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</span></p>';
+            str+='<p class="pd-name"><img class="pd-img" src="resources/img/gateway_64px.png"/> '+'<span class="entry-val">'+pd.gatewayCode+'</span></p>';
+            str+='<p><img src="resources/img/padlock_64px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</span></p>';
             str+='</div>';
             str+='<div class="pd-right">';
             if(null !== pd.cardInfo){
-                str+='<p><img class="pd-img" src="../resources/img/idCard_48px.png"/> <span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
-                str+='<p><img class="pd-img" src="../resources/img/person_64px.png"/> <span class="entry-val">'+pd.cardInfo.name+'</span></p>';
+                str+='<p><img class="pd-img" src="resources/img/idCard_48px.png"/> <span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
+                str+='<p><img class="pd-img" src="resources/img/person_64px.png"/> <span class="entry-val">'+pd.cardInfo.name+'</span></p>';
             }
             if(null !== pd.passwordInfo){
-                str+='<p class="pd-unlock"><img class="pd-img" src="../resources/img/password_64px.png"/> '+'<span class="entry-val">'+pd.passwordInfo.password+'</span></p>';
+                str+='<p class="pd-unlock"><img class="pd-img" src="resources/img/password_64px.png"/> '+'<span class="entry-val">'+pd.passwordInfo.password+'</span></p>';
             }
-            str+='<p><img class="pd-img" src="../resources/img/time_64px.png"/> <span class="entry-val">'+formatTimeString(pd.timetag)+'</span></p>';
+            str+='<p><img class="pd-img" src="resources/img/time_64px.png"/> <span class="entry-val">'+formatTimeString(pd.timetag)+'</span></p>';
             str+='</div>';
             str+='</div>';
 
