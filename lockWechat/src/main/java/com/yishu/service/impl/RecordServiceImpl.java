@@ -10,16 +10,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.UnlockRecord;
 import com.yishu.service.IRecordService;
+import com.yishu.util.DataInject;
 import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -53,6 +53,7 @@ public class RecordServiceImpl implements IRecordService {
         return respSign;
     }
     @Override
+    /*
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         reqSign=26;
         try {
@@ -61,10 +62,12 @@ public class RecordServiceImpl implements IRecordService {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+"}");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
 //        System.err.println(rawData);
+//        logger.info("获取unlock record信息,HTTP结果: "+rawData);
 
         respSign();
         resultMap.put("result",respSign);
@@ -78,8 +81,20 @@ public class RecordServiceImpl implements IRecordService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Collections.reverse(recordList);
             return recordList;
         }
         return null;
     }
+    */
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
+        List<UnlockRecord> recordList=null;
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return recordList;
+    }
+
 }

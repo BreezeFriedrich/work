@@ -114,6 +114,7 @@ public class HttpUtil
 
     public static String getQixuIp(){
         return "43.254.149.28";
+//        return "112.25.233.122";
         /*
         try {
             InetAddress inetAddress=InetAddress.getByName(hostName);

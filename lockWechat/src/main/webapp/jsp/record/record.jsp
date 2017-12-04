@@ -169,7 +169,7 @@
         //初始化时间选择器
         var temptime = new Date();
         $("#datetime-picker-1").datetimePicker({
-            value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+            value: [temptime.getFullYear()-3,temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
         });
         temptime.setDate(temptime.getDate()+1);
         $("#datetime-picker-2").datetimePicker({
@@ -177,10 +177,10 @@
         });
 
         ownerPhoneNumber="13905169824";
-        /*
-        startTime="2014-01-01 01:01";
-        endTime="2017-12-10 01:01";
-        */
+
+//        startTime="2014-01-01 01:01";
+//        endTime="2017-12-10 01:01";
+
 //      ownerPhoneNumber=getQueryString("ownerPhoneNumber");
         startTime=$("#datetime-picker-1").val();
         endTime=$("#datetime-picker-2").val();
@@ -198,44 +198,46 @@
             }
         });
 
+        /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+        function upCallback(page){
+            //联网加载数据
+            getListDataFromNet(page.num, page.size, function(curPageData,totalSize){
+                //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+                //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+                console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+
+                //方法一(推荐): 后台接口有返回列表的总页数 totalPage
+                //mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
+
+                //方法二(推荐): 后台接口有返回列表的总数据量 totalSize
+                mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
+
+                //方法三(推荐): 您有其他方式知道是否有下一页 hasNext
+                //mescroll.endSuccess(curPageData.length, hasNext); //必传参数(当前页的数据个数, 是否有下一页true/false)
+
+                //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
+//                mescroll.endSuccess(curPageData.length);
+
+                //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
+                setListData(curPageData);
+            }, function(){
+                //联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+                mescroll.endErr();
+            });
+        }
+
         //禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
         document.ondragstart=function() {return false;};
 
         $.init();
     });
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
-    function upCallback(page){
-        //联网加载数据
-        getListDataFromNet(page.num, page.size, function(curPageData,totalSize){
-            //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
-            //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
-            console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
-
-            //方法一(推荐): 后台接口有返回列表的总页数 totalPage
-            //mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
-
-            //方法二(推荐): 后台接口有返回列表的总数据量 totalSize
-            mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
-
-            //方法三(推荐): 您有其他方式知道是否有下一页 hasNext
-            //mescroll.endSuccess(curPageData.length, hasNext); //必传参数(当前页的数据个数, 是否有下一页true/false)
-
-            //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
-//                mescroll.endSuccess(curPageData.length);
-
-            //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
-            setListData(curPageData);
-        }, function(){
-            //联网失败的回调,隐藏下拉刷新和上拉加载的状态;
-            mescroll.endErr();
-        });
-    }
 
     /*设置列表数据与渲染列表*/
     function setListData(curPageData){
         var listDom=document.getElementById("dataList");
         for (var i = 0; i < curPageData.length; i++) {
             var pd=curPageData[i];
+//            alert('curPageData['+i+'] : {gatewayCode:'+pd.gatewayCode+',lockCode'+pd.lockCode+'}');
 
             var str='<div class="pd">';
             str+='<div class="pd-left">';
@@ -243,11 +245,12 @@
             str+='<p><img src="resources/img/padlock_64px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</span></p>';
             str+='</div>';
             str+='<div class="pd-right">';
-            if(null !== pd.cardInfo){
+            console.log(pd.cardInfo);
+            if(null !== pd.cardInfo && 'null'!==pd.cardInfo){
                 str+='<p><img class="pd-img" src="resources/img/idCard_48px.png"/> <span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
                 str+='<p><img class="pd-img" src="resources/img/person_64px.png"/> <span class="entry-val">'+pd.cardInfo.name+'</span></p>';
             }
-            if(null !== pd.passwordInfo){
+            if(null !== pd.passwordInfo && 'null'!==pd.passwordInfo){
                 str+='<p class="pd-unlock"><img class="pd-img" src="resources/img/password_64px.png"/> '+'<span class="entry-val">'+pd.passwordInfo.password+'</span></p>';
             }
             str+='<p><img class="pd-img" src="resources/img/time_64px.png"/> <span class="entry-val">'+formatTimeString(pd.timetag)+'</span></p>';
@@ -265,7 +268,8 @@
         //ownerPhoneNumber,startTime,endTime
         $.ajax({
             type:"POST",
-            url:projectPath+"/record/pageUnlockRecord.action",
+//            url:projectPath+"/record/pageUnlockRecord.action",
+            url:"http://localhost/lockWechat"+"/record/pageUnlockRecord.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":startTime,"endTime":endTime,"pageNum":pageNum,"pageSize":pageSize},
             dataType:'json',

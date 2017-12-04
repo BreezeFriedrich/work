@@ -376,6 +376,8 @@
         <includes>
           <include>**/*.properties</include>
           <include>**/*.xml</include>
+          <include>**/*.json</include>
+          <include>**/*.txt</include>
         </includes>
         <excludes>
           <exclude>config/production/jdbc.properties</exclude>

@@ -86,6 +86,7 @@ public class RecordAction extends ActionSupport{
      *
      */
     public String pageUnlockRecord(){
+        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+",pageNum:"+pageNum+",pageSize:"+pageSize+"}");
         List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         List<UnlockRecord> newRecordList=null;
         int recordSize=recordList.size();
@@ -98,6 +99,7 @@ public class RecordAction extends ActionSupport{
         records.setTotalSize(recordSize);
         records.setRows(newRecordList);
         jsonResult=records;
+//        logger.info("records: { totalSize: "+records.getTotalSize()+"rowsSize:"+records.getRows().size()+", rows: "+records.getRows()+"}");
         return "json";
     }
 }

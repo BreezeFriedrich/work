@@ -240,7 +240,7 @@
         }
 
         //禁止PC浏览器拖拽图片,避免与下拉刷新冲突;如果仅在移动端使用,可删除此代码
-        document.ondragstart=function() {return false;}
+        document.ondragstart=function() {return false;};
 
         $.init();
     });
