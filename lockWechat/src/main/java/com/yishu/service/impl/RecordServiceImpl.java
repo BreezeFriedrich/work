@@ -87,14 +87,25 @@ public class RecordServiceImpl implements IRecordService {
         return null;
     }
     */
-    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) throws ParseException {
         List<UnlockRecord> recordList=null;
+        List<UnlockRecord> resultList=new ArrayList<>();
         try {
             recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return recordList;
+        UnlockRecord unlockRecord=null;
+        Date timetag=null;
+        for(int i=0;i<recordList.size();i++){
+            unlockRecord=recordList.get(i);
+            timetag=DateUtil.format2.parse(unlockRecord.getTimetag());
+            if (DateUtil.format1.parse(startTime).getTime()<timetag.getTime() && DateUtil.format1.parse(endTime).getTime()>timetag.getTime()){
+                resultList.add(unlockRecord);
+            }
+        }
+        Collections.reverse(resultList);
+        return resultList;
     }
 
 }

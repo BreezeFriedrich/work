@@ -12,6 +12,7 @@ import com.yishu.service.IRecordService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -73,7 +74,7 @@ public class RecordAction extends ActionSupport{
      * 获取用户ownerPhoneNumber的开锁记录
      *
      */
-    public String getUnlockRecord(){
+    public String getUnlockRecord() throws ParseException {
         List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         jsonResult=recordList;
         return "json";
@@ -85,7 +86,7 @@ public class RecordAction extends ActionSupport{
      * @param pageSize 每页可以展示多少条记录的数目.
      *
      */
-    public String pageUnlockRecord(){
+    public String pageUnlockRecord() throws ParseException {
         logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+",pageNum:"+pageNum+",pageSize:"+pageSize+"}");
         List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         List<UnlockRecord> newRecordList=null;

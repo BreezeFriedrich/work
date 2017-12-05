@@ -22,11 +22,11 @@ import java.util.List;
  * @since JDK1.7
  */
 public class DateUtil {
-    private static SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static SimpleDateFormat format2=new SimpleDateFormat("yyyyMMddHHmmss");
+    public static final SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final SimpleDateFormat format2=new SimpleDateFormat("yyyyMMddHHmmss");
 
-    private static SimpleDateFormat format1TillMin=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    private static SimpleDateFormat format2TillMin=new SimpleDateFormat("yyyyMMddHHmm");
+    public static final SimpleDateFormat format1TillMin=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public static final SimpleDateFormat format2TillMin=new SimpleDateFormat("yyyyMMddHHmm");
 
     /**
      * @discription 返回当前日期的几月后的一天

@@ -7,6 +7,7 @@ package com.yishu.service;
 
 import com.yishu.pojo.UnlockRecord;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -15,5 +16,5 @@ import java.util.List;
  * @since JDK1.7
  */
 public interface IRecordService {
-    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime);
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) throws ParseException;
 }

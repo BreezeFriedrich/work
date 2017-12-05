@@ -129,7 +129,7 @@
                         <input type="text" placeholder="" id='datetime-picker-2' />
                     </div>
                     <div style="width:30%;height: 75px; margin:22.5px 5%;float: left;">
-                        <a href="#" class="open-popup" data-popup=".popup-menu">
+                        <a href="javascript:void(0);" class="open-popup" data-popup=".popup-menu">
                             <img alt="menu" src="resources/img/menu-dots_128px.png" width="75px;"/>
                         </a>
                     </div>
@@ -144,9 +144,9 @@
         <!-- About Popup -->
         <div class="popup popup-menu">
             <div class="content-block">
-                <p><a href="javascript:void(0);" onclick="javascript:console.log('Hello');" class="close-popup" >查询所有记录</a></p>
+                <p><a href="javascript:void(0);" onclick="showAllRecords()" class="close-popup" >查询所有记录</a></p>
                 <p><a href="javascript:void(0);" onclick="showDevicesWithinRecords()">按设备分类</a></p>
-                <p><a href="#" class="close-popup">按时间分类</a></p>
+                <p><a href="javascript:void(0);" class="close-popup">按时间分类</a></p>
             </div>
         </div>
         <div class="popup-overlay"></div>
@@ -164,6 +164,7 @@
     var ownerPhoneNumber;
     var startTime;
     var endTime;
+    var mescroll;
 
     $(function(){
         //初始化时间选择器
@@ -177,16 +178,31 @@
         });
 
         ownerPhoneNumber="13905169824";
+//        ownerPhoneNumber=getQueryString("ownerPhoneNumber");
 
 //        startTime="2014-01-01 01:01";
 //        endTime="2017-12-10 01:01";
-
-//      ownerPhoneNumber=getQueryString("ownerPhoneNumber");
         startTime=$("#datetime-picker-1").val();
         endTime=$("#datetime-picker-2").val();
 
+        document.getElementById("datetime-picker-1").addEventListener('change',function(ev){
+//            $("#datetime-picker-1").val().replace(/^(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})$/,'$1-$2-$3 $4:$5');
+            console.log('change');
+            console.log($("#datetime-picker-1").val());
+            formatDatetimePicker($("#datetime-picker-1"));
+        });
+        document.getElementById("datetime-picker-1").addEventListener('change',function(ev){
+//            $("#datetime-picker-1").val().replace(/^(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})$/,'$1-$2-$3 $4:$5');
+            console.log('Event : onchange');
+            console.log($("#datetime-picker-1").val());
+            formatDatetimepicker($("#datetime-picker-1"));
+            getTimeFromDatetimepicker($("#datetime-picker-1"));
+//            console.log('Format : '+new Date().format('yyyy-MM-dd h:m:s'));
+            getTimeInTimestampFromDatetimepicker($("#datetime-picker-1"));
+        });
+
         //创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;
-        var mescroll = new MeScroll("mescroll", {
+        mescroll = new MeScroll("mescroll", {
             //上拉加载列表项.
             up: {
                 clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
@@ -232,6 +248,58 @@
         $.init();
     });
 
+    function showAllRecords() {
+        startTime="2014-01-01 01:01";
+        endTime="2017-12-10 01:01";
+        startTime=$("#datetime-picker-1").val();
+        endTime=$("#datetime-picker-2").val();
+        if (timeStr1BigThantimeStr2(formatTimetillminString2(endTime),formatTimetillminString2(startTime))){
+            $.toast('开始时间不能大于截止时间',1500);
+            return null;
+        }
+        mescroll.destroy();
+        setTimeout(console.log('delay...'),3000);
+        mescroll = new MeScroll("mescroll", {
+            //上拉加载列表项.
+            up: {
+                clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+                callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+                toTop:{ //配置回到顶部按钮
+                    src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
+                    //offset : 1000
+                }
+            }
+        });
+
+        /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+        function upCallback(page){
+            //联网加载数据
+            getListDataFromNet(page.num, page.size, function(curPageData,totalSize){
+                //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
+                //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+                console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+
+                //方法一(推荐): 后台接口有返回列表的总页数 totalPage
+                //mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
+
+                //方法二(推荐): 后台接口有返回列表的总数据量 totalSize
+                mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
+
+                //方法三(推荐): 您有其他方式知道是否有下一页 hasNext
+                //mescroll.endSuccess(curPageData.length, hasNext); //必传参数(当前页的数据个数, 是否有下一页true/false)
+
+                //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
+//                mescroll.endSuccess(curPageData.length);
+
+                //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
+                setListData(curPageData);
+            }, function(){
+                //联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+                mescroll.endErr();
+            });
+        }
+    }
+
     /*设置列表数据与渲染列表*/
     function setListData(curPageData){
         var listDom=document.getElementById("dataList");
@@ -266,6 +334,7 @@
     /*联网加载列表数据*/
     function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
         //ownerPhoneNumber,startTime,endTime
+
         $.ajax({
             type:"POST",
 //            url:projectPath+"/record/pageUnlockRecord.action",
@@ -292,6 +361,112 @@
         var r = decodeURI(window.location.search).substr(1).match(reg);
         if (r != null) return unescape(r[2]);
         return null;
+    }
+
+    //new Date() 格式化为 js对象 {year: yyyy,month: MM,date: dd,hour: hh,min: mm,second: ss}
+    function formatDate2Object(temptime){
+        var newDate={};
+        newDate.year=temptime.getFullYear();
+        var tempMonth=temptime.getMonth()+1;
+        if(tempMonth<10){
+            tempMonth='0'+tempMonth;
+        }
+        var tempDate=temptime.getDate();
+        if(tempDate<10){
+            tempDate='0'+tempDate;
+        }
+        var tempHour=temptime.getHours();
+        if(tempHour<10){
+            tempHour='0'+tempHour;
+        }
+        var tempMin=temptime.getMinutes();
+        if(tempMin<10){
+            tempMin='0'+tempMin;
+        }
+        var tempSec=temptime.getSeconds();
+        if(tempSec<10){
+            tempSec='0'+tempSec;
+        }
+        newDate.month=tempMonth;
+        newDate.date=tempDate;
+        newDate.hour=tempHour;
+        newDate.min=tempMin;
+        newDate.second=tempSec;
+        return newDate;
+    }
+    //改变输入框datetimepicker的显示,若有yyyy-MM-dd h:mm,则转化为yyyy-MM-dd hh:mm.
+    function formatDatetimepicker(datetimepicker){
+        var timeStr=datetimepicker.val();
+        var pattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})/;
+//			console.log(pattern.test(timeStr));
+        var rep=timeStr;
+        if(pattern.test(rep)){
+            var reg=new RegExp(pattern);
+            rep=rep.replace(reg,"$1-$2-$3 0$4:$5")
+        }
+        console.log(rep);
+        var newDate=new Date(Date.parse(rep));
+        console.log('newDate : '+newDate);
+        var dateObj=formatDate2Object(newDate);
+        datetimepicker.datetimePicker({
+            value: [dateObj.year,dateObj.month,dateObj.date,dateObj.hour,dateObj.min]
+        });
+    }
+    //获得datetimepicker的时间与GMT时间1970年1月1日之间相差的毫秒数
+    function getTimeFromDatetimepicker(datetimepicker){
+        var timeStr=datetimepicker.val();
+        var pattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})/;
+//			console.log(pattern.test(timeStr));
+        var rep=timeStr;
+        if(pattern.test(rep)){
+            var reg=new RegExp(pattern);
+            rep=rep.replace(reg,"$1-$2-$3 0$4:$5")
+        }
+//			console.log(rep);
+        var timeInSec=Date.parse(rep);
+        console.log('timeInSec : '+timeInSec);
+        return timeInSec;
+    }
+    //获得datetimepicker时间的时间戳格式的字符串
+    function getTimeInTimestampFromDatetimepicker(datetimepicker){
+        var timeStr=datetimepicker.val();
+        var pattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})/;
+//        console.log(pattern.test(timeStr));
+        var rep=timeStr;
+        if(pattern.test(rep)){
+            var reg=new RegExp(pattern);
+            rep=rep.replace(reg,"$1-$2-$3 0$4:$5")
+        }
+//        console.log(rep);
+//        var timeInSec=Date.parse(rep);
+//        console.log('timeInSec : '+timeInSec);
+        var newDate=new Date(Date.parse(rep));
+        console.log('newDate : '+newDate);
+        console.log('Format : '+newDate.format('yyyy-MM-dd hh:mm:ss'));
+        console.log('Format : '+newDate.format('yyyyMMddhhmm'));
+        return newDate.format('yyyyMMddhhmm');
+    }
+
+    Date.prototype.format = function(format) {
+        var date = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S+": this.getMilliseconds()
+        };
+        if (/(y+)/i.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+        for (var k in date) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                    ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+            }
+        }
+        return format;
     }
 </script>
 </body>
