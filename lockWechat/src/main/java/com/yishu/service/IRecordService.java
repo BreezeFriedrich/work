@@ -5,10 +5,12 @@
 
 package com.yishu.service;
 
+import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -16,5 +18,11 @@ import java.util.List;
  * @since JDK1.7
  */
 public interface IRecordService {
-    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) throws ParseException;
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime);
+
+    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) throws ParseException;
+
+    public Map<String,UnlockRecord> getUnlockRecordLock(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
+
+    public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime);
 }

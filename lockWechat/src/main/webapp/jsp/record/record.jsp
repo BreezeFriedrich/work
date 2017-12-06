@@ -117,8 +117,8 @@
             <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
             <h1 class="title">全部记录</h1>
             <!--<a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/gatewayDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">网关</a>
-			    <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/lockDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">门锁</a>
-			    <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/timeDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">时间</a>-->
+                <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/lockDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">门锁</a>
+                <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/timeDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">时间</a>-->
         </header>
         <!-- 这里是页面内容区 -->
         <div class="content">
@@ -157,6 +157,7 @@
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/mescroll.min.js'></script>
 <script type='text/javascript' src='resources/js/util/date.js'></script>
+<script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>
 <%--<script type='text/javascript' src='resources/js/record.js?ver=1' charset='utf-8'></script>--%>
 <script type="text/javascript" charset="utf-8">
     var pathName=window.document.location.pathname;
@@ -164,9 +165,12 @@
     var ownerPhoneNumber;
     var startTime;
     var endTime;
+    var timeInSec_start;
+    var timeInSec_end;
     var mescroll;
 
     $(function(){
+        /*
         //初始化时间选择器
         var temptime = new Date();
         $("#datetime-picker-1").datetimePicker({
@@ -176,29 +180,39 @@
         $("#datetime-picker-2").datetimePicker({
             value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
         });
+        */
+        var tempDate = new Date();
+        temptime=formatDate2Object(tempDate);
+        $("#datetime-picker-1").datetimePicker({
+            value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.min,temptime.second]
+        });
+        tempDate.setDate(tempDate.getDate()+1);
+        temptime=formatDate2Object(tempDate);
+        $("#datetime-picker-2").datetimePicker({
+            value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.min,temptime.second]
+        });
 
         ownerPhoneNumber="13905169824";
-//        ownerPhoneNumber=getQueryString("ownerPhoneNumber");
-
-//        startTime="2014-01-01 01:01";
-//        endTime="2017-12-10 01:01";
+        /*
+        ownerPhoneNumber=getQueryString("ownerPhoneNumber");
+        startTime="2014-01-01 01:01";
+        endTime="2017-12-10 01:01";
         startTime=$("#datetime-picker-1").val();
         endTime=$("#datetime-picker-2").val();
+        */
+        timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+        timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
 
-        document.getElementById("datetime-picker-1").addEventListener('change',function(ev){
-//            $("#datetime-picker-1").val().replace(/^(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})$/,'$1-$2-$3 $4:$5');
-            console.log('change');
-            console.log($("#datetime-picker-1").val());
-            formatDatetimePicker($("#datetime-picker-1"));
-        });
         document.getElementById("datetime-picker-1").addEventListener('change',function(ev){
 //            $("#datetime-picker-1").val().replace(/^(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})$/,'$1-$2-$3 $4:$5');
             console.log('Event : onchange');
             console.log($("#datetime-picker-1").val());
             formatDatetimepicker($("#datetime-picker-1"));
             getTimeFromDatetimepicker($("#datetime-picker-1"));
-//            console.log('Format : '+new Date().format('yyyy-MM-dd h:m:s'));
             getTimeInTimestampFromDatetimepicker($("#datetime-picker-1"));
+        });
+        document.getElementById("datetime-picker-2").addEventListener('change',function(ev){
+            formatDatetimepicker($("#datetime-picker-2"));
         });
 
         //创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;
@@ -217,7 +231,9 @@
         /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
         function upCallback(page){
             //联网加载数据
-            getListDataFromNet(page.num, page.size, function(curPageData,totalSize){
+            getListDataFromNet(page.num, page.size, function(data){
+                var curPageData=data.rows;
+                var totalSize=data.totalSize;
                 //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
                 //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
                 console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
@@ -249,6 +265,7 @@
     });
 
     function showAllRecords() {
+        /*
         startTime="2014-01-01 01:01";
         endTime="2017-12-10 01:01";
         startTime=$("#datetime-picker-1").val();
@@ -257,8 +274,15 @@
             $.toast('开始时间不能大于截止时间',1500);
             return null;
         }
+        */
+        timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+        timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+        if (timeInSec_start>=timeInSec_end){
+            $.toast('开始时间应当小于截止时间',1500);
+            return null;
+        }
         mescroll.destroy();
-        setTimeout(console.log('delay...'),3000);
+        setTimeout(console.log('delay...'),5000);
         mescroll = new MeScroll("mescroll", {
             //上拉加载列表项.
             up: {
@@ -273,28 +297,13 @@
 
         /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
         function upCallback(page){
-            //联网加载数据
-            getListDataFromNet(page.num, page.size, function(curPageData,totalSize){
-                //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
-                //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
+            getListDataFromNet(page.num, page.size, function(data){
+                var curPageData=data.rows;
+                var totalSize=data.totalSize;
                 console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
-
-                //方法一(推荐): 后台接口有返回列表的总页数 totalPage
-                //mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
-
-                //方法二(推荐): 后台接口有返回列表的总数据量 totalSize
-                mescroll.endBySize(curPageData.length, totalSize); //必传参数(当前页的数据个数, 总数据量)
-
-                //方法三(推荐): 您有其他方式知道是否有下一页 hasNext
-                //mescroll.endSuccess(curPageData.length, hasNext); //必传参数(当前页的数据个数, 是否有下一页true/false)
-
-                //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
-//                mescroll.endSuccess(curPageData.length);
-
-                //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
+                mescroll.endBySize(curPageData.length, totalSize);
                 setListData(curPageData);
             }, function(){
-                //联网失败的回调,隐藏下拉刷新和上拉加载的状态;
                 mescroll.endErr();
             });
         }
@@ -334,13 +343,61 @@
     /*联网加载列表数据*/
     function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
         //ownerPhoneNumber,startTime,endTime
-
         $.ajax({
             type:"POST",
-//            url:projectPath+"/record/pageUnlockRecord.action",
-            url:"http://localhost/lockWechat"+"/record/pageUnlockRecord.action",
+//            url:projectPath+"/record/getUnlockRecordPage.action",
+            url:"http://localhost/lockWechat"+"/record/getUnlockRecordPage.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-            data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":startTime,"endTime":endTime,"pageNum":pageNum,"pageSize":pageSize},
+            data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+            dataType:'json',
+            success:function(data,status,xhr){
+                successCallback(data);
+            },
+            error:errorCallback
+        });
+    }
+
+    function showDevicesWithinRecords(){
+        timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+        timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+        if (timeInSec_start>=timeInSec_end){
+            $.toast('开始时间应当小于截止时间',1500);
+            return null;
+        }
+        mescroll.destroy();
+        mescroll = new MeScroll("mescroll", {
+            //上拉加载列表项.
+            up: {
+                clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+                callback: upCallbackDevice, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+                toTop:{ //配置回到顶部按钮
+                    src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
+                    //offset : 1000
+                }
+            }
+        });
+
+        /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+        function upCallbackDevice(page){
+            getUnlockRecordDevice(page.num, page.size, function(curPageData,totalSize){
+                console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+                mescroll.endBySize(curPageData.length, totalSize);
+                setListData(curPageData);
+            }, function(){
+                mescroll.endErr();
+            });
+        }
+    }
+
+    /*联网加载列表数据*/
+    function getUnlockRecordDevice(pageNum,pageSize,successCallback,errorCallback) {
+        //ownerPhoneNumber,startTime,endTime
+        $.ajax({
+            type:"POST",
+//            url:projectPath+"/record/getUnlockRecordDevice.action",
+            url:"http://localhost/lockWechat"+"/record/getUnlockRecordDevice.action",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end},
             dataType:'json',
             success:function(data,status,xhr){
                 successCallback(data.rows,data.totalSize);
@@ -349,10 +406,35 @@
         });
     }
 
-    function showDevicesWithinRecords(){
-        $.closeModal();
-//        console.log('Hey');
-        alert('Hi');
+    /*设置列表数据与渲染列表*/
+    function showRecordsInDevice(curPageData){
+        var listDom=document.getElementById("dataList");
+        for (var i = 0; i < curPageData.length; i++) {
+            var pd=curPageData[i];
+//            alert('curPageData['+i+'] : {gatewayCode:'+pd.gatewayCode+',lockCode'+pd.lockCode+'}');
+
+            var str='<div class="pd">';
+            str+='<div class="pd-left">';
+            str+='<p class="pd-name"><img class="pd-img" src="resources/img/gateway_64px.png"/> '+'<span class="entry-val">'+pd.gatewayCode+'</span></p>';
+            str+='<p><img src="resources/img/padlock_64px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</span></p>';
+            str+='</div>';
+            str+='<div class="pd-right">';
+            console.log(pd.cardInfo);
+            if(null !== pd.cardInfo && 'null'!==pd.cardInfo){
+                str+='<p><img class="pd-img" src="resources/img/idCard_48px.png"/> <span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
+                str+='<p><img class="pd-img" src="resources/img/person_64px.png"/> <span class="entry-val">'+pd.cardInfo.name+'</span></p>';
+            }
+            if(null !== pd.passwordInfo && 'null'!==pd.passwordInfo){
+                str+='<p class="pd-unlock"><img class="pd-img" src="resources/img/password_64px.png"/> '+'<span class="entry-val">'+pd.passwordInfo.password+'</span></p>';
+            }
+            str+='<p><img class="pd-img" src="resources/img/time_64px.png"/> <span class="entry-val">'+formatTimeString(pd.timetag)+'</span></p>';
+            str+='</div>';
+            str+='</div>';
+
+            var liDom=document.createElement("li");
+            liDom.innerHTML=str;
+            listDom.appendChild(liDom);
+        }
     }
 
     //获取链接参数
@@ -361,112 +443,6 @@
         var r = decodeURI(window.location.search).substr(1).match(reg);
         if (r != null) return unescape(r[2]);
         return null;
-    }
-
-    //new Date() 格式化为 js对象 {year: yyyy,month: MM,date: dd,hour: hh,min: mm,second: ss}
-    function formatDate2Object(temptime){
-        var newDate={};
-        newDate.year=temptime.getFullYear();
-        var tempMonth=temptime.getMonth()+1;
-        if(tempMonth<10){
-            tempMonth='0'+tempMonth;
-        }
-        var tempDate=temptime.getDate();
-        if(tempDate<10){
-            tempDate='0'+tempDate;
-        }
-        var tempHour=temptime.getHours();
-        if(tempHour<10){
-            tempHour='0'+tempHour;
-        }
-        var tempMin=temptime.getMinutes();
-        if(tempMin<10){
-            tempMin='0'+tempMin;
-        }
-        var tempSec=temptime.getSeconds();
-        if(tempSec<10){
-            tempSec='0'+tempSec;
-        }
-        newDate.month=tempMonth;
-        newDate.date=tempDate;
-        newDate.hour=tempHour;
-        newDate.min=tempMin;
-        newDate.second=tempSec;
-        return newDate;
-    }
-    //改变输入框datetimepicker的显示,若有yyyy-MM-dd h:mm,则转化为yyyy-MM-dd hh:mm.
-    function formatDatetimepicker(datetimepicker){
-        var timeStr=datetimepicker.val();
-        var pattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})/;
-//			console.log(pattern.test(timeStr));
-        var rep=timeStr;
-        if(pattern.test(rep)){
-            var reg=new RegExp(pattern);
-            rep=rep.replace(reg,"$1-$2-$3 0$4:$5")
-        }
-        console.log(rep);
-        var newDate=new Date(Date.parse(rep));
-        console.log('newDate : '+newDate);
-        var dateObj=formatDate2Object(newDate);
-        datetimepicker.datetimePicker({
-            value: [dateObj.year,dateObj.month,dateObj.date,dateObj.hour,dateObj.min]
-        });
-    }
-    //获得datetimepicker的时间与GMT时间1970年1月1日之间相差的毫秒数
-    function getTimeFromDatetimepicker(datetimepicker){
-        var timeStr=datetimepicker.val();
-        var pattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})/;
-//			console.log(pattern.test(timeStr));
-        var rep=timeStr;
-        if(pattern.test(rep)){
-            var reg=new RegExp(pattern);
-            rep=rep.replace(reg,"$1-$2-$3 0$4:$5")
-        }
-//			console.log(rep);
-        var timeInSec=Date.parse(rep);
-        console.log('timeInSec : '+timeInSec);
-        return timeInSec;
-    }
-    //获得datetimepicker时间的时间戳格式的字符串
-    function getTimeInTimestampFromDatetimepicker(datetimepicker){
-        var timeStr=datetimepicker.val();
-        var pattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})/;
-//        console.log(pattern.test(timeStr));
-        var rep=timeStr;
-        if(pattern.test(rep)){
-            var reg=new RegExp(pattern);
-            rep=rep.replace(reg,"$1-$2-$3 0$4:$5")
-        }
-//        console.log(rep);
-//        var timeInSec=Date.parse(rep);
-//        console.log('timeInSec : '+timeInSec);
-        var newDate=new Date(Date.parse(rep));
-        console.log('newDate : '+newDate);
-        console.log('Format : '+newDate.format('yyyy-MM-dd hh:mm:ss'));
-        console.log('Format : '+newDate.format('yyyyMMddhhmm'));
-        return newDate.format('yyyyMMddhhmm');
-    }
-
-    Date.prototype.format = function(format) {
-        var date = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),
-            "S+": this.getMilliseconds()
-        };
-        if (/(y+)/i.test(format)) {
-            format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
-        }
-        for (var k in date) {
-            if (new RegExp("(" + k + ")").test(format)) {
-                format = format.replace(RegExp.$1, RegExp.$1.length == 1
-                    ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
-            }
-        }
-        return format;
     }
 </script>
 </body>

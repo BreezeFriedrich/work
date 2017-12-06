@@ -5,6 +5,8 @@
 
 package com.yishu.pojo;
 
+import java.util.List;
+
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
  * @version 1.0.0.0 2017-11-14 16:17 admin

@@ -6,6 +6,8 @@
 package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.yishu.pojo.Device;
+import com.yishu.pojo.Lock;
 import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
 import com.yishu.service.IRecordService;
@@ -13,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -34,7 +38,7 @@ public class RecordAction extends ActionSupport{
     }
 
     private String ownerPhoneNumber;
-    private String startTime;
+    private String startTime;//String类型的毫秒数(距离1970-01-01 08:00:00的时间差毫秒表示),需要先转换为long.
     private String endTime;
     public String getOwnerPhoneNumber() {
         return ownerPhoneNumber;
@@ -82,25 +86,22 @@ public class RecordAction extends ActionSupport{
 
     /**
      * 获取用户ownerPhoneNumber的开锁记录,再将数据分页.
+     *
      * @param pageNum 第几页的页码数字.
      * @param pageSize 每页可以展示多少条记录的数目.
      *
      */
-    public String pageUnlockRecord() throws ParseException {
-        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+",pageNum:"+pageNum+",pageSize:"+pageSize+"}");
-        List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
-        List<UnlockRecord> newRecordList=null;
-        int recordSize=recordList.size();
-        if (recordSize > pageNum*pageSize){
-            newRecordList=recordList.subList((pageNum-1)*pageSize,pageNum*pageSize);
-        }else if (recordSize > (pageNum-1)*pageSize && recordSize <= pageNum*pageSize){
-            newRecordList=recordList.subList((pageNum-1)*pageSize,recordSize);
-        }
-        Records<UnlockRecord> records =new Records<>();
-        records.setTotalSize(recordSize);
-        records.setRows(newRecordList);
+    public String getUnlockRecordPage() throws ParseException {
+//        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+",pageNum:"+pageNum+",pageSize:"+pageSize+"}");
+        Records<UnlockRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=records;
 //        logger.info("records: { totalSize: "+records.getTotalSize()+"rowsSize:"+records.getRows().size()+", rows: "+records.getRows()+"}");
+        return "json";
+    }
+
+    public String getUnlockRecordDevice() {
+        Map recordMap=recordService.getUnlockRecordDevice(ownerPhoneNumber,startTime,endTime);
+        jsonResult=recordMap;
         return "json";
     }
 }
