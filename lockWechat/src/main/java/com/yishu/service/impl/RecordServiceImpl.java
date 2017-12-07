@@ -49,6 +49,7 @@ public class RecordServiceImpl implements IRecordService {
 //        logger.info("respSign:"+String.valueOf(respSign));
         return respSign;
     }
+    /*
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         reqSign=26;
@@ -85,6 +86,41 @@ public class RecordServiceImpl implements IRecordService {
             return recordList;
         }
         return null;
+    }
+    */
+
+    @Override
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
+        final long startTimeL=Long.valueOf(startTime);
+        final long endTimeL=Long.valueOf(endTime);
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        List<UnlockRecord> recordList2=new ArrayList<>();
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //filter-recordList-Bytime,按时间过滤开锁记录.
+        UnlockRecord unlockRecord=null;
+        recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+//                return Long.valueOf(startTime)<timetag.getTime() && Long.valueOf(endTime)>timetag.getTime();
+                return startTimeL<timetagL && endTimeL>timetagL;
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+        Collections.reverse(recordList2);
+        return recordList2;
     }
 
     @Override
@@ -146,6 +182,7 @@ public class RecordServiceImpl implements IRecordService {
         return records;
     }
 
+    /*
     @Override
     public Map<String,UnlockRecord> getUnlockRecordLock(String ownerPhoneNumber, String startTime, String endTime, String lockCodeParam) {
         List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
@@ -167,6 +204,8 @@ public class RecordServiceImpl implements IRecordService {
 //        unlockRecordInLock.setLock();
         return null;
     }
+    */
+
     @Override
     public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime) {
         List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
@@ -177,11 +216,12 @@ public class RecordServiceImpl implements IRecordService {
         Map<String,Map> deviceRecordsMap=null;//deviceRecordsMap:{String:gatewayCode,Map:lockRecordsMap}
         Map<String,List> lockRecordsMap=null;//lockRecordsMap:{String:lockCode,List:unlockRecordList}
 
+        deviceRecordsMap= new HashMap<>();
         for (int i=0;i<rawUnlockRecordList.size();i++){
             unlockRecord=rawUnlockRecordList.get(i);
             gatewayCode=unlockRecord.getGatewayCode();
             lockCode=unlockRecord.getLockCode();
-            if (null==deviceRecordsMap.get(gatewayCode)){
+            if (!deviceRecordsMap.containsKey(gatewayCode)){
                 unlockRecordList=new ArrayList<UnlockRecord>();
                 unlockRecordList.add(unlockRecord);
                 lockRecordsMap=new HashMap<String,List>();
@@ -189,7 +229,7 @@ public class RecordServiceImpl implements IRecordService {
                 deviceRecordsMap.put(gatewayCode,lockRecordsMap);
             }else {
                 lockRecordsMap=deviceRecordsMap.get(gatewayCode);
-                if (null==lockRecordsMap.get(lockCode)){
+                if (!lockRecordsMap.containsKey(lockCode)){
                     unlockRecordList=new ArrayList<UnlockRecord>();
                     unlockRecordList.add(unlockRecord);
                     lockRecordsMap.put(lockCode,unlockRecordList);
@@ -199,6 +239,25 @@ public class RecordServiceImpl implements IRecordService {
             }
         }
         return deviceRecordsMap;
+    }
+
+    @Override
+    public Map getUnlockRecordDevicePage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
+        Map<String,Map> deviceRecordsMap=null;
+        deviceRecordsMap=getUnlockRecordDevice(ownerPhoneNumber,startTime,endTime);
+        Map<String,Map> subMap=new HashMap<>();
+        List<Map> mapList=new ArrayList<>();
+        int i = 0;
+        int mapSize=deviceRecordsMap.size();
+        for (String key : deviceRecordsMap.keySet()) {
+            subMap.put(key, deviceRecordsMap.get(key));
+            if ((i+1)%pageSize==0 || i==mapSize){
+                mapList.add(subMap);
+                subMap=new HashMap<>();
+            }
+            i++;
+        }
+        return mapList.get(pageNum-1);
     }
 
 }

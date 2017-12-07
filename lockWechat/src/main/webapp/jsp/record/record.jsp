@@ -57,13 +57,13 @@
             position: relative;
             padding: 10px 6px 10px 6px;
             border-bottom: 1px solid #eee;
-            height: 80px;
         }
         /*表格卡片样式*/
         .pd{
             overflow: hidden;
             background-color: white;
             border: 1px solid #bbbbbb;
+            height: 80px;
         }
         .pd>div{
             float: left;
@@ -72,7 +72,12 @@
             margin: 0;
             overflow: hidden;
         }
+        /*
         .pd img{
+            vertical-align: middle;
+        }
+        */
+        img{
             vertical-align: middle;
         }
         .pd-left{
@@ -106,6 +111,19 @@
             margin-left: 10px;
             margin-top: 10px;
             margin-bottom: 10px;
+        }
+
+        .mix-row{
+            overflow: hidden;
+            background-color: white;
+            border: 1px solid #bbbbbb;
+            font-size: 15px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .mix-row img{
+            max-height: 30px;
+            max-width: 30px;
         }
     </style>
 </head>
@@ -144,8 +162,8 @@
         <!-- About Popup -->
         <div class="popup popup-menu">
             <div class="content-block">
-                <p><a href="javascript:void(0);" onclick="showAllRecords()" class="close-popup" >查询所有记录</a></p>
-                <p><a href="javascript:void(0);" onclick="showDevicesWithinRecords()">按设备分类</a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()">查询所有记录</a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesWithinRecords()">按设备分类</a></p>
                 <p><a href="javascript:void(0);" class="close-popup">按时间分类</a></p>
             </div>
         </div>
@@ -155,7 +173,7 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='resources/js/mescroll.min.js'></script>
+<script type='text/javascript' src='resources/js/mescroll.min.js?ver=1'></script>
 <script type='text/javascript' src='resources/js/util/date.js'></script>
 <script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>
 <%--<script type='text/javascript' src='resources/js/record.js?ver=1' charset='utf-8'></script>--%>
@@ -357,7 +375,7 @@
         });
     }
 
-    function showDevicesWithinRecords(){
+    function showDevicesWithinRecords() {
         timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
         timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
         if (timeInSec_start>=timeInSec_end){
@@ -365,11 +383,12 @@
             return null;
         }
         mescroll.destroy();
+        setTimeout(console.log('delay...'),5000);
         mescroll = new MeScroll("mescroll", {
             //上拉加载列表项.
             up: {
                 clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
-                callback: upCallbackDevice, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+                callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
                 toTop:{ //配置回到顶部按钮
                     src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                     //offset : 1000
@@ -378,11 +397,19 @@
         });
 
         /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
-        function upCallbackDevice(page){
-            getUnlockRecordDevice(page.num, page.size, function(curPageData,totalSize){
+        function upCallback(page){
+            getUnlockRecordDevice(page.num, page.size, function(data){
+                /*
+                var curPageData=data.rows;
+                var totalSize=data.totalSize;
                 console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
                 mescroll.endBySize(curPageData.length, totalSize);
-                setListData(curPageData);
+                showDeviceWithRecord(curPageData);
+                */
+                console.log('length : '+Object.keys(data).length);
+                mescroll.setPageSize(Object.keys(data).length+1);
+                mescroll.endSuccess(Object.keys(data).length);
+                setDeviceWithRecord(data);
             }, function(){
                 mescroll.endErr();
             });
@@ -397,19 +424,33 @@
 //            url:projectPath+"/record/getUnlockRecordDevice.action",
             url:"http://localhost/lockWechat"+"/record/getUnlockRecordDevice.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-            data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end},
+            data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
             dataType:'json',
             success:function(data,status,xhr){
-                successCallback(data.rows,data.totalSize);
+                successCallback(data);
             },
             error:errorCallback
         });
     }
 
     /*设置列表数据与渲染列表*/
-    function showRecordsInDevice(curPageData){
+    function setDeviceWithRecord(data){
         var listDom=document.getElementById("dataList");
-        for (var i = 0; i < curPageData.length; i++) {
+        var mapLength=Object.keys(data).length;
+        for(var gatewayCode in data) {
+            var lockRecordsMap=data[gatewayCode];
+            var str='<div class="mix-row">';
+            str+="<a href='javascript:void(0);' onclick='expandGatewayLock(lockRecordsMap,$(this).parent())'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
+            str+='<span style="width: 180px;padding-left: 40px;">';
+            str+="<img alt='gateway' src='resources/img/gateway_64px.png'/>"+gatewayCode;
+            str+='</span>';
+            str+='</div>';
+            var liDom=document.createElement("li");
+            liDom.innerHTML=str;
+            listDom.appendChild(liDom);
+        }
+        /*
+        for (var i = 0; i < mapLength; i++) {
             var pd=curPageData[i];
 //            alert('curPageData['+i+'] : {gatewayCode:'+pd.gatewayCode+',lockCode'+pd.lockCode+'}');
 
@@ -435,6 +476,13 @@
             liDom.innerHTML=str;
             listDom.appendChild(liDom);
         }
+        */
+    }
+
+    function expandGatewayLock(map,element) {
+        //lockRecordsMap,
+
+        console.log('expandGatewayLock');
     }
 
     //获取链接参数
@@ -443,6 +491,11 @@
         var r = decodeURI(window.location.search).substr(1).match(reg);
         if (r != null) return unescape(r[2]);
         return null;
+    }
+
+    function getMapSize() {
+        var map={gateway1:[{lock1:'LK001001'},{lock1:'LK001002'},{lock1:'LK001003'}],gateway2:[{lock1:'LK002001'},{lock1:'LK002002'},{lock1:'LK002003'},{lock1:'LK002004'}],gateway3:[{lock1:'LK003001'},{lock1:'LK003002'}]};
+        console.log(Object.keys(map).length);
     }
 </script>
 </body>

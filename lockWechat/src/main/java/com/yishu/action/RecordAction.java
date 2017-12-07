@@ -104,4 +104,10 @@ public class RecordAction extends ActionSupport{
         jsonResult=recordMap;
         return "json";
     }
+
+    public String getUnlockRecordDevicePage() {
+        Map map=recordService.getUnlockRecordDevicePage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
+        jsonResult=map;
+        return "json";
+    }
 }

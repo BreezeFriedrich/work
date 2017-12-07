@@ -22,7 +22,9 @@ public interface IRecordService {
 
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) throws ParseException;
 
-    public Map<String,UnlockRecord> getUnlockRecordLock(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
+//    public Map<String,UnlockRecord> getUnlockRecordLock(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
 
     public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime);
+
+    public Map getUnlockRecordDevicePage(String ownerPhoneNumber, String startTime, String endTime, int pageNum,int pageSize);
 }
