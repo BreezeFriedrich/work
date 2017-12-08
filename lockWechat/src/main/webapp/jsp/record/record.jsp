@@ -435,12 +435,15 @@
 
     /*设置列表数据与渲染列表*/
     function setDeviceWithRecord(data){
+        deviceRecordsMap=data;
+        console.log('data: '+data);
         var listDom=document.getElementById("dataList");
         var mapLength=Object.keys(data).length;
         for(var gatewayCode in data) {
-            var lockRecordsMap=data[gatewayCode];
+            lockRecordsMap=data[gatewayCode];
+            gatewayCode="'"+gatewayCode+"'";
             var str='<div class="mix-row">';
-            str+="<a href='javascript:void(0);' onclick='expandGatewayLock(lockRecordsMap,$(this).parent())'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
+            str+='<a href="javascript:void(0);" onclick="expandGatewayLock('+gatewayCode+',$($(this).parent()[0]).parent()[0])"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
             str+='<span style="width: 180px;padding-left: 40px;">';
             str+="<img alt='gateway' src='resources/img/gateway_64px.png'/>"+gatewayCode;
             str+='</span>';
@@ -449,40 +452,37 @@
             liDom.innerHTML=str;
             listDom.appendChild(liDom);
         }
-        /*
-        for (var i = 0; i < mapLength; i++) {
-            var pd=curPageData[i];
-//            alert('curPageData['+i+'] : {gatewayCode:'+pd.gatewayCode+',lockCode'+pd.lockCode+'}');
-
-            var str='<div class="pd">';
-            str+='<div class="pd-left">';
-            str+='<p class="pd-name"><img class="pd-img" src="resources/img/gateway_64px.png"/> '+'<span class="entry-val">'+pd.gatewayCode+'</span></p>';
-            str+='<p><img src="resources/img/padlock_64px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</span></p>';
-            str+='</div>';
-            str+='<div class="pd-right">';
-            console.log(pd.cardInfo);
-            if(null !== pd.cardInfo && 'null'!==pd.cardInfo){
-                str+='<p><img class="pd-img" src="resources/img/idCard_48px.png"/> <span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
-                str+='<p><img class="pd-img" src="resources/img/person_64px.png"/> <span class="entry-val">'+pd.cardInfo.name+'</span></p>';
-            }
-            if(null !== pd.passwordInfo && 'null'!==pd.passwordInfo){
-                str+='<p class="pd-unlock"><img class="pd-img" src="resources/img/password_64px.png"/> '+'<span class="entry-val">'+pd.passwordInfo.password+'</span></p>';
-            }
-            str+='<p><img class="pd-img" src="resources/img/time_64px.png"/> <span class="entry-val">'+formatTimeString(pd.timetag)+'</span></p>';
-            str+='</div>';
-            str+='</div>';
-
-            var liDom=document.createElement("li");
-            liDom.innerHTML=str;
-            listDom.appendChild(liDom);
-        }
-        */
     }
 
-    function expandGatewayLock(map,element) {
-        //lockRecordsMap,
+    function expandGatewayLock(gatewayNum,element) {
+//        console.log('element: '+element);
+//        console.log('gatewayNum: '+gatewayNum);
+//        console.log('deviceRecordsMap: '+deviceRecordsMap);
+        lockRecordsMap=deviceRecordsMap[gatewayNum];
+//        console.log('lockRecordsMap : '+lockRecordsMap);
+        var lockHeight=Object.keys(lockRecordsMap).length*75;
 
-        console.log('expandGatewayLock');
+        var str='<div class="pd-expand" style="height:'+lockHeight+'px;">';
+        str+='<div class="expand-left" style="width: 100px;float:left;">';
+        str+="<a href='javascript:void(0);' onclick='deleteExpandLock($($(this).parent()[0]).parent()[0])'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
+        str+='</div>';
+        str+='<div class="expand-right" style="width: 200px;float:left;"><ul>'
+        for(var lockCode in lockRecordsMap) {
+            unlockRecordList=lockRecordsMap[lockCode];
+            str+='<li style="width: 180px;height:50px;">';
+            str+='<div class="mix-row">';
+            str+="<a href='javascript:void(0);' onclick='' style='padding-left: 40px;'><img alt='lock' src='resources/img/padlock_64px.png'/>"+lockCode+"</a>";
+            str+='</div>';
+            str+='</li>';
+        }
+        str+='</ul></div>';
+        str+='</div>';
+        var expand_lock=document.createElement("div");
+        expand_lock.innerHTML=str;
+        element.append(expand_lock);
+    }
+    function deleteExpandLock(element) {
+        $($(element).parent()[0]).removeChild($($(element).parent()[0]));
     }
 
     //获取链接参数
