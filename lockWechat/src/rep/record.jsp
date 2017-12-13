@@ -31,6 +31,12 @@
     <link rel="stylesheet" href="resources/css/mescroll.min.css"/>
 
     <style type="text/css">
+        /*水平翻转*/
+        .flipx { transform: rotateY(180deg); }
+
+        /*垂直翻转*/
+        .flipy { transform: rotateX(180deg); }
+
         * {
             margin: 0;
             padding: 0;
@@ -448,7 +454,7 @@
             var str='';
 //            str+='<div>';
             str+='<div class="row-header">';
-            str+='<a href="javascript:void(0);" onclick="expandGatewayLock('+gatewayCode+',$(this)"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
+            str+='<a href="javascript:void(0);" onclick="expandGatewayLock('+gatewayCode+',$($(this).parent()[0]).parent()[0])"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" class="flipy" /></a>';
             str+='<span style="width: 180px;padding-left: 40px;">';
             str+="<img alt='gateway' src='resources/img/gateway_64px.png'/>"+gatewayCode.substring(1,gatewayCode.length-1);
             str+='</span>';
@@ -461,7 +467,7 @@
     }
 
     function expandGatewayLock(gatewayNum,element) {
-        var DIV_row_expand=$($($(this).parent()[0]).parent()[0]).children(".row-expand");
+        var DIV_row_expand=$(element).children(".row-expand");
         if (DIV_row_expand.size()!==0){
             return null;
         }
