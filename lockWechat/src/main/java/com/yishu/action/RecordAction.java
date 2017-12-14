@@ -40,6 +40,8 @@ public class RecordAction extends ActionSupport{
     private String ownerPhoneNumber;
     private String startTime;//String类型的毫秒数(距离1970-01-01 08:00:00的时间差毫秒表示),需要先转换为long.
     private String endTime;
+    private String gatewayCode;
+    private String lockCode;
     public String getOwnerPhoneNumber() {
         return ownerPhoneNumber;
     }
@@ -57,6 +59,18 @@ public class RecordAction extends ActionSupport{
     }
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+    public String getGatewayCode() {
+        return gatewayCode;
+    }
+    public void setGatewayCode(String gatewayCode) {
+        this.gatewayCode = gatewayCode;
+    }
+    public String getLockCode() {
+        return lockCode;
+    }
+    public void setLockCode(String lockCode) {
+        this.lockCode = lockCode;
     }
 
     public int pageNum;
@@ -96,6 +110,18 @@ public class RecordAction extends ActionSupport{
         Records<UnlockRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=records;
 //        logger.info("records: { totalSize: "+records.getTotalSize()+"rowsSize:"+records.getRows().size()+", rows: "+records.getRows()+"}");
+        return "json";
+    }
+
+    public String getGatewayUnlockRecordPage() {
+        Records<UnlockRecord> records=recordService.getGatewayUnlockRecordPage(ownerPhoneNumber,startTime,endTime,gatewayCode,pageNum,pageSize);
+        jsonResult=records;
+        return "json";
+    }
+
+    public String getLockUnlockRecordPage() {
+        Records<UnlockRecord> records=recordService.getLockUnlockRecordPage(ownerPhoneNumber,startTime,endTime,lockCode,pageNum,pageSize);
+        jsonResult=records;
         return "json";
     }
 

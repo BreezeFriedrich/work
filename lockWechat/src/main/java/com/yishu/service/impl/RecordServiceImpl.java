@@ -53,8 +53,8 @@ public class RecordServiceImpl implements IRecordService {
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         reqSign=26;
-        long startTimeL=Long.valueOf(startTime);
-        long endTimeL=Long.valueOf(endTime);
+        long startTimeL=Long.parseLong(startTime);
+        long endTimeL=Long.parseLong(endTime);
         String startTimeReqParam=DateUtil.format2TillMin.format(new Date(startTimeL));
         String endTimeReqParam=DateUtil.format2TillMin.format(new Date(endTimeL));
 //        try {
@@ -91,8 +91,8 @@ public class RecordServiceImpl implements IRecordService {
 
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
-        final long startTimeL=Long.valueOf(startTime);
-        final long endTimeL=Long.valueOf(endTime);
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         List<UnlockRecord> recordList2=new ArrayList<>();
@@ -114,7 +114,7 @@ public class RecordServiceImpl implements IRecordService {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-//                return Long.valueOf(startTime)<timetag.getTime() && Long.valueOf(endTime)>timetag.getTime();
+//                return Long.parseLong(startTime)<timetag.getTime() && Long.parseLong(endTime)>timetag.getTime();
                 return startTimeL<timetagL && endTimeL>timetagL;
             }
         });
@@ -124,9 +124,9 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) throws ParseException {
-        final long startTimeL=Long.valueOf(startTime);
-        final long endTimeL=Long.valueOf(endTime);
+    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         List<UnlockRecord> recordList2=new ArrayList<>();
@@ -142,7 +142,7 @@ public class RecordServiceImpl implements IRecordService {
         for(int i=0;i<recordList.size();i++){
             unlockRecord=recordList.get(i);
             timetag=DateUtil.format2.parse(unlockRecord.getTimetag());
-            if (Long.valueOf(startTime)<timetag.getTime() && Long.valueOf(endTime)>timetag.getTime()){
+            if (Long.parseLong(startTime)<timetag.getTime() && Long.parseLong(endTime)>timetag.getTime()){
                 recordList2.add(unlockRecord);
             }
         }
@@ -158,7 +158,109 @@ public class RecordServiceImpl implements IRecordService {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-//                return Long.valueOf(startTime)<timetag.getTime() && Long.valueOf(endTime)>timetag.getTime();
+//                return Long.parseLong(startTime)<timetag.getTime() && Long.parseLong(endTime)>timetag.getTime();
+                return startTimeL<timetagL && endTimeL>timetagL;
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+        Collections.reverse(recordList2);
+        //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
+        List<UnlockRecord> newRecordList=null;
+        int recordList2Size=recordList2.size();
+        if (recordList2Size > pageNum*pageSize){
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+        }
+        if (null==newRecordList){
+            newRecordList=new ArrayList<>();
+        }
+        Records<UnlockRecord> records =new Records<>();
+        records.setTotalSize(recordList2Size);
+        records.setRows(newRecordList);
+
+        return records;
+    }
+
+    @Override
+    public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String gatewayCode, int pageNum, int pageSize) {
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        List<UnlockRecord> recordList2=new ArrayList<>();
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        UnlockRecord unlockRecord=null;
+        recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                if ( !gatewayCode.equals(unlockRecord.getGatewayCode()) ){
+                    return false;
+                }
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return startTimeL<timetagL && endTimeL>timetagL;
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+        Collections.reverse(recordList2);
+        //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
+        List<UnlockRecord> newRecordList=null;
+        int recordList2Size=recordList2.size();
+        if (recordList2Size > pageNum*pageSize){
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+        }
+        if (null==newRecordList){
+            newRecordList=new ArrayList<>();
+        }
+        Records<UnlockRecord> records =new Records<>();
+        records.setTotalSize(recordList2Size);
+        records.setRows(newRecordList);
+
+        return records;
+    }
+
+    @Override
+    public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String lockCode, int pageNum, int pageSize) {
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        List<UnlockRecord> recordList2=new ArrayList<>();
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        UnlockRecord unlockRecord=null;
+        recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                if ( !lockCode.equals(unlockRecord.getLockCode()) ){
+                    return false;
+                }
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 return startTimeL<timetagL && endTimeL>timetagL;
             }
         });
@@ -207,6 +309,7 @@ public class RecordServiceImpl implements IRecordService {
     */
 
     @Override
+    /*
     public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime) {
         List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         UnlockRecord unlockRecord=null;
@@ -237,6 +340,75 @@ public class RecordServiceImpl implements IRecordService {
                     lockRecordsMap.get(lockCode).add(unlockRecord);
                 }
             }
+        }
+        return deviceRecordsMap;
+    }
+    */
+    public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime) {
+        List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        UnlockRecord unlockRecord=null;
+        String gatewayCode=null;
+        String lockCode=null;
+        List<UnlockRecord> unlockRecordList=null;
+        Map<String,DataWithSize> deviceRecordsMap=null;//deviceRecordsMap:{key-String:gatewayCode,value-DataWithSize:dataWithSizeGatewayRecords}
+        DataWithSize<Map> dataWithSizeGatewayRecords=null;//dataWithSize:(key:gatewayCode,size:,data<X-Map>:lockRecordsMap)
+        Map<String,DataWithSize> lockRecordsMap=null;//lockRecordsMap:{key-String:lockCode,value-DataWithSize:dataWithSizeLockRecords}
+        DataWithSize<List> dataWithSizeLockRecords=null;//dataWithSize:(key:lockCode,size:,data<X-List>:unlockRecordList)
+
+        deviceRecordsMap= new HashMap<>();
+        for (int i=0;i<rawUnlockRecordList.size();i++){
+            unlockRecord=rawUnlockRecordList.get(i);
+            gatewayCode=unlockRecord.getGatewayCode();
+            lockCode=unlockRecord.getLockCode();
+            if (!deviceRecordsMap.containsKey(gatewayCode)){
+
+                unlockRecordList=new ArrayList<UnlockRecord>();
+                unlockRecordList.add(unlockRecord);
+
+                dataWithSizeLockRecords=new DataWithSize();
+                dataWithSizeLockRecords.setKey(lockCode);
+                dataWithSizeLockRecords.setData(unlockRecordList);
+
+                lockRecordsMap=new HashMap<String,DataWithSize>();
+                lockRecordsMap.put(lockCode,dataWithSizeLockRecords);
+
+                dataWithSizeGatewayRecords=new DataWithSize();
+                dataWithSizeGatewayRecords.setKey(gatewayCode);
+                dataWithSizeGatewayRecords.setData(lockRecordsMap);
+
+                deviceRecordsMap.put(gatewayCode,dataWithSizeGatewayRecords);
+            }else {
+                dataWithSizeGatewayRecords=deviceRecordsMap.get(gatewayCode);
+                lockRecordsMap=dataWithSizeGatewayRecords.getData();
+                if (!lockRecordsMap.containsKey(lockCode)){
+                    unlockRecordList=new ArrayList<UnlockRecord>();
+                    unlockRecordList.add(unlockRecord);
+
+                    dataWithSizeLockRecords=new DataWithSize();
+                    dataWithSizeLockRecords.setKey(lockCode);
+                    dataWithSizeLockRecords.setData(unlockRecordList);
+
+                    lockRecordsMap.put(lockCode,dataWithSizeLockRecords);
+                }else {
+                    dataWithSizeLockRecords=lockRecordsMap.get(lockCode);
+                    (dataWithSizeLockRecords.getData()).add(unlockRecord);
+                }
+            }
+        }
+        int lockRecordsSize=0;
+        int gatewayRecordsSize=0;
+        for (Map.Entry<String, DataWithSize> entryX : deviceRecordsMap.entrySet()) {
+            System.out.println("key= " + entryX.getKey() + " and value= " + entryX.getValue());
+            dataWithSizeGatewayRecords=entryX.getValue();
+            lockRecordsMap=dataWithSizeGatewayRecords.getData();
+            gatewayRecordsSize=0;
+            for (Map.Entry<String, DataWithSize> entryY : lockRecordsMap.entrySet()) {
+                dataWithSizeLockRecords=entryY.getValue();
+                lockRecordsSize=dataWithSizeLockRecords.getData().size();
+                dataWithSizeGatewayRecords.setSize(lockRecordsSize);
+                gatewayRecordsSize=gatewayRecordsSize+lockRecordsSize;
+            }
+            dataWithSizeGatewayRecords.setSize(gatewayRecordsSize);
         }
         return deviceRecordsMap;
     }

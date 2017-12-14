@@ -31,12 +31,6 @@
     <link rel="stylesheet" href="resources/css/mescroll.min.css"/>
 
     <style type="text/css">
-        /*水平翻转*/
-        .flipx { transform: rotateY(180deg); }
-
-        /*垂直翻转*/
-        .flipy { transform: rotateX(180deg); }
-
         * {
             margin: 0;
             padding: 0;
@@ -172,7 +166,7 @@
         <div class="popup popup-menu">
             <div class="content-block">
                 <p><a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()">查询所有记录</a></p>
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesWithinRecords()">按设备分类</a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesFromRecords()">按设备分类</a></p>
                 <p><a href="javascript:void(0);" class="close-popup">按时间分类</a></p>
             </div>
         </div>
@@ -384,7 +378,7 @@
         });
     }
 
-    function showDevicesWithinRecords() {
+    function showDevicesFromRecords() {
         timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
         timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
         if (timeInSec_start>=timeInSec_end){
@@ -454,7 +448,7 @@
             var str='';
 //            str+='<div>';
             str+='<div class="row-header">';
-            str+='<a href="javascript:void(0);" onclick="expandGatewayLock('+gatewayCode+',$($(this).parent()[0]).parent()[0])"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" class="flipy" /></a>';
+            str+='<a href="javascript:void(0);" onclick="expandGatewayLock('+gatewayCode+',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
             str+='<span style="width: 180px;padding-left: 40px;">';
             str+="<img alt='gateway' src='resources/img/gateway_64px.png'/>"+gatewayCode.substring(1,gatewayCode.length-1);
             str+='</span>';
@@ -467,8 +461,9 @@
     }
 
     function expandGatewayLock(gatewayNum,element) {
-        var DIV_row_expand=$(element).children(".row-expand");
-        if (DIV_row_expand.size()!==0){
+        var LI=$(element.parent()[0]).parent()[0];
+        var DIV_row_expand=$(LI).children(".row-expand");
+        if (undefined!=DIV_row_expand && DIV_row_expand.size()!==0){
             return null;
         }
 //        console.log('element: '+element);
@@ -481,7 +476,7 @@
 //        var str='<div class="row-expand" style="height:'+lockHeight+'px;">';
         var str='<div class="row-expand" >';
         str+='<div class="expand-left" style="width: 100px;float:left;">';
-        str+="<a href='javascript:void(0);' onclick='deleteExpandLock($($(this).parent()[0]).parent()[0])'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
+        str+="<a href='javascript:void(0);' onclick='deleteExpandLock($(this))'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
         str+='</div>';
         str+='<div class="expand-right" style="float:left;margin-left: 20px"><ul>';
         for(var lockCode in lockRecordsMap) {
@@ -497,11 +492,12 @@
 //        var expand_lock=document.createElement("div");
 //        expand_lock.innerHTML=str;
 //        element.append(expand_lock);
-        element.innerHTML+=str;
+        LI.innerHTML+=str;
     }
     function deleteExpandLock(element) {
 //        $($(element).parent()[0]).remove();
-        element.remove();
+//        element.remove();
+        $(element.parent()[0]).parent()[0].remove();
     }
 
     //获取链接参数

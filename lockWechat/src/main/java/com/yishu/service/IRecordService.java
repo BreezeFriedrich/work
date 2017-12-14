@@ -20,7 +20,11 @@ import java.util.Map;
 public interface IRecordService {
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime);
 
-    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) throws ParseException;
+    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize);
+
+    public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String gatewayCode, int pageNum, int pageSize);
+
+    public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String lockCode, int pageNum, int pageSize);
 
 //    public Map<String,UnlockRecord> getUnlockRecordLock(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
 
