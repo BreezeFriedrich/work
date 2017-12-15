@@ -13,6 +13,7 @@ $(function(){
     if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     }
+    ownerPhoneNumber="17705155208";
     /*
     if (""!==ownerPhoneNumber){
         $.toast('通过隐藏输入框获取手机号码:'+ownerPhoneNumber,3000);

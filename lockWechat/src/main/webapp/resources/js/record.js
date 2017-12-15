@@ -13,6 +13,10 @@ var timeInSec_end;
 var mescroll;
 var gatewayCode;
 var lockCode;
+var deviceRecordsMap;
+var recordSize;
+var name;
+var operatorRecordsMap;
 
 $(function(){
     /*
@@ -136,6 +140,9 @@ function showAllRecords() {
             toTop:{ //配置回到顶部按钮
                 src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                 //offset : 1000
+            },
+            empty:{
+                tip: "我也是有底线的~",
             }
         }
     });
@@ -202,6 +209,7 @@ function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
     });
 }
 
+/*根据开锁记录展示网关和门锁的设备信息*/
 function showDevicesFromRecords() {
     timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
     timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
@@ -219,13 +227,16 @@ function showDevicesFromRecords() {
             toTop:{ //配置回到顶部按钮
                 src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                 //offset : 1000
+            },
+            empty:{
+                tip: "我也是有底线的~",
             }
         }
     });
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
-        getUnlockRecordDevice(page.num, page.size, function(data){
+        getUnlockDevice(page.num, page.size, function(data){
             /*
             var curPageData=data.rows;
             var totalSize=data.totalSize;
@@ -242,9 +253,7 @@ function showDevicesFromRecords() {
         });
     }
 }
-
-/*联网加载列表数据*/
-function getUnlockRecordDevice(pageNum,pageSize,successCallback,errorCallback) {
+function getUnlockDevice(pageNum,pageSize,successCallback,errorCallback) {
     //ownerPhoneNumber,startTime,endTime
     $.ajax({
         type:"POST",
@@ -259,8 +268,6 @@ function getUnlockRecordDevice(pageNum,pageSize,successCallback,errorCallback) {
         error:errorCallback
     });
 }
-
-/*设置列表数据与渲染列表*/
 function setDeviceWithRecord(data){
     deviceRecordsMap=data;
     console.log('data: '+data);
@@ -268,6 +275,7 @@ function setDeviceWithRecord(data){
     var mapLength=Object.keys(data).length;
     for(var gatewayNum in data) {
         lockRecordsMap=data[gatewayNum].data;
+        recordSize=data[gatewayNum].size;
         /*
         gatewayNum="'"+gatewayNum+"'";
         var str='';
@@ -288,7 +296,9 @@ function setDeviceWithRecord(data){
         str+='<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
         str+='<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords(\''+gatewayNum+'\')" style="width: 280px;margin-left: 30px;">';
         str+='<img alt="gateway" src="resources/img/gateway_64px.png"/>';
-        str+='<span style="width: 230px;margin-left: 20px;">'+gatewayNum;
+        str+='<span style="width: 180px;margin-left: 20px;">'+gatewayNum;
+        str+='</span>';
+        str+='<span style="width: 30px;margin-left: 20px;">'+recordSize;
         str+='</span>';
         str+='</a>';
         str+='</div>';
@@ -298,32 +308,35 @@ function setDeviceWithRecord(data){
     }
 }
 
+/*切换显示门锁下拉列表*/
 function shiftExpand(gatewayNum,element) {
     var LI=$(element.parent()[0]).parent()[0];
     var DIV_row_expand=$(LI).children(".row-expand");
-    //.row-expand存在,删除之图标不旋转.
+    //.row-expand存在,删除.row-expand元素并使图标不旋转.
     if (undefined!=DIV_row_expand && DIV_row_expand.size()!==0){
         element.children("img")[0].style.transform= "rotate(0deg)";
         DIV_row_expand.remove();
         return null;
     }
-    //.row-expand不存在,扩展之图标旋转.
+    //.row-expand不存在,扩展.row-expand元素并使图标旋转.
     element.children("img")[0].style.transform= "rotate(180deg)";
-    lockRecordsMap=deviceRecordsMap[gatewayNum];
-    var lockHeight=Object.keys(lockRecordsMap).length*75;
-
-//        var str='<div class="row-expand" style="height:'+lockHeight+'px;">';
+    lockRecordsMap=deviceRecordsMap[gatewayNum].data;
+    // var lockHeight=Object.keys(lockRecordsMap).length*75;
+    // var str='<div class="row-expand" style="height:'+lockHeight+'px;">';
     var str='<div class="row-expand" >';
 //        str+='<div class="expand-left" style="width: 100px;float:left;">';
 //        str+="<a href='javascript:void(0);' onclick='deleteExpandLock($(this))'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
 //        str+='</div>';
     str+='<div class="expand-right" style="float:left;margin-left: 60px"><ul>';
     for(var lockCode in lockRecordsMap) {
-        unlockRecordList=lockRecordsMap[lockCode];
-        str+='<li style="width: 220px;height:50px;">';
+        unlockRecordList=lockRecordsMap[lockCode].data;
+        recordSize=lockRecordsMap[lockCode].size;
+        str+='<li style="width: 280px;height:50px;">';
         str+='<div class="row-line">';
         str+='<a class="a-device" href="javascript:void(0);" onclick="showLockRecords(\''+lockCode+'\')"><img alt="lock" src="resources/img/padlock_64px.png"/>';
-        str+='<span style="width: 230px;margin-left: 20px;">'+lockCode;
+        str+='<span style="width: 180px;margin-left: 20px;">'+lockCode;
+        str+='</span>';
+        str+='<span style="width: 30px;margin-left: 20px;">'+recordSize;
         str+='</span>';
         str+='</a>';
         str+='</div>';
@@ -334,6 +347,7 @@ function shiftExpand(gatewayNum,element) {
     LI.innerHTML+=str;
 }
 
+/*按网关展示记录*/
 function showGatewayRecords(gatewayNum) {
     console.log('gatewayNum : '+gatewayNum);
     timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
@@ -352,6 +366,9 @@ function showGatewayRecords(gatewayNum) {
             toTop:{ //配置回到顶部按钮
                 src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                 //offset : 1000
+            },
+            empty:{
+                tip: "我也是有底线的~",
             }
         }
     });
@@ -369,8 +386,6 @@ function showGatewayRecords(gatewayNum) {
         });
     }
 }
-
-/*联网加载列表数据*/
 function getGatewayRecords(pageNum,pageSize,gatewayNum,successCallback,errorCallback) {
     console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",gatewayNum:"+gatewayNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
     //ownerPhoneNumber,startTime,endTime
@@ -388,6 +403,7 @@ function getGatewayRecords(pageNum,pageSize,gatewayNum,successCallback,errorCall
     });
 }
 
+/*按门锁展示记录*/
 function showLockRecords(lockNum) {
     console.log('lockNum : '+lockNum);
     timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
@@ -406,6 +422,9 @@ function showLockRecords(lockNum) {
             toTop:{ //配置回到顶部按钮
                 src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                 //offset : 1000
+            },
+            empty:{
+                tip: "我也是有底线的~",
             }
         }
     });
@@ -423,8 +442,6 @@ function showLockRecords(lockNum) {
         });
     }
 }
-
-/*联网加载列表数据*/
 function getLockRecords(pageNum,pageSize,lockNum,successCallback,errorCallback) {
     console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",lockNum:"+lockNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
     //ownerPhoneNumber,startTime,endTime
@@ -442,6 +459,145 @@ function getLockRecords(pageNum,pageSize,lockNum,successCallback,errorCallback) 
     });
 }
 
+/*根据开锁记录展示开锁人信息*/
+function showOperatorFromRecords() {
+    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    if (timeInSec_start>=timeInSec_end){
+        $.toast('开始时间应当小于截止时间',1500);
+        return null;
+    }
+    mescroll.destroy();
+    // setTimeout(console.log('delay...'),5000);
+    mescroll = new MeScroll("mescroll", {
+        //上拉加载列表项.
+        up: {
+            clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+            callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+            toTop:{ //配置回到顶部按钮
+                src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
+                //offset : 1000
+            },
+            empty:{
+                tip: "我也是有底线的~",
+            }
+        }
+    });
+
+    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+    function upCallback(page){
+        getUnlockOperator(page.num, page.size, function(data){
+            console.log('length : '+Object.keys(data).length);
+            mescroll.setPageSize(Object.keys(data).length+1);
+            mescroll.endSuccess(Object.keys(data).length);
+            setOperatorWithRecord(data);
+        }, function(){
+            mescroll.endErr();
+        });
+    }
+}
+function getUnlockOperator(pageNum,pageSize,successCallback,errorCallback) {
+    $.ajax({
+        type:"POST",
+        url:projectPath+"/record/getUnlockOperator.action",
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        dataType:'json',
+        success:function(data,status,xhr){
+            successCallback(data);
+        },
+        error:errorCallback
+    });
+}
+function setOperatorWithRecord(data) {
+    operatorRecordsMap=data;
+    console.log('data: '+data);
+    var listDom=document.getElementById("dataList");
+    for(var cardNum in data) {
+        lockRecordsMap=data[cardNum].data;
+        recordSize=data[cardNum].size;
+        name=data[cardNum].note;
+        var str='';
+        /*
+        str+='<div class="row-header">';
+        str+=   '<a class="a-device" href="javascript:void(0);" onclick="showOperatorRecords(\''+cardNum+'\')" style="width: 280px;margin-left: 60px;">';
+        str+=       '<img alt="gateway" src="resources/img/gateway_64px.png"/>';
+        str+=       '<span style="width: 180px;margin-left: 20px;">'+cardNum;
+        str+=       '</span>';
+        str+=       '<span style="width: 30px;margin-left: 20px;">'+recordSize;
+        str+=       '</span>';
+        str+=   '</a>';
+        str+='</div>';
+        */
+        str+='<div>';
+        str+=    '<a class="a-id" href="javascript:void(0);" onclick="showOperatorRecords(\''+cardNum+'\')" style="width: 340px;">';
+        str+=       '<img alt="idCard" src="resources/img/idCard_48px.png">';
+        str+=       '<span style="width: 55px;margin-left: 5px;">'+name+'</span>';
+        str+=       '<img alt="idCard" src="resources/img/person_64px.png">';
+        str+=       '<span style="width: 145px;margin-left: 5px;">'+cardNum+'</span>';
+        str+=       '<span style="width: 65px;margin-left: 5px;">'+recordSize+'</span>';
+        str+=    '</a>';
+        str+='</div>';
+        var liDom=document.createElement("li");
+        liDom.innerHTML=str;
+        listDom.appendChild(liDom);
+    }
+}
+
+/*按开锁人展示记录*/
+function showOperatorRecords(cardNum) {
+    console.log('cardNum : '+cardNum);
+    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    if (timeInSec_start>=timeInSec_end){
+        $.toast('开始时间应当小于截止时间',1500);
+        return null;
+    }
+    mescroll.destroy();
+    // setTimeout(console.log('delay...'),5000);
+    mescroll = new MeScroll("mescroll", {
+        //上拉加载列表项.
+        up: {
+            clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
+            callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
+            toTop:{ //配置回到顶部按钮
+                src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
+                //offset : 1000
+            },
+            empty:{
+                tip: "我也是有底线的~",
+            }
+        }
+    });
+
+    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+    function upCallback(page){
+        getOperatorRecords(page.num, page.size,cardNum, function(data){
+            var curPageData=data.rows;
+            var totalSize=data.totalSize;
+            console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+            mescroll.endBySize(curPageData.length, totalSize);
+            setListData(curPageData);
+        }, function(){
+            mescroll.endErr();
+        });
+    }
+}
+function getOperatorRecords(pageNum,pageSize,cardNum,successCallback,errorCallback) {
+    console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",cardNum:"+cardNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
+    $.ajax({
+        type:"POST",
+        url:projectPath+"/record/getOperatorUnlockRecordPage.action",
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"cardNum":cardNum,"pageNum":pageNum,"pageSize":pageSize},
+        dataType:'json',
+        success:function(data,status,xhr){
+            successCallback(data);
+        },
+        error:errorCallback
+    });
+}
+
 //获取链接参数
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -449,9 +605,3 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
-
-function getMapSize() {
-    var map={gateway1:[{lock1:'LK001001'},{lock1:'LK001002'},{lock1:'LK001003'}],gateway2:[{lock1:'LK002001'},{lock1:'LK002002'},{lock1:'LK002003'},{lock1:'LK002004'}],gateway3:[{lock1:'LK003001'},{lock1:'LK003002'}]};
-    console.log(Object.keys(map).length);
-}
-

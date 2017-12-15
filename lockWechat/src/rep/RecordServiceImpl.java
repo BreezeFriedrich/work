@@ -126,24 +126,58 @@ public class RecordServiceImpl implements IRecordService {
 
     @Override
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
-        recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<UnlockRecord> recordList2=new ArrayList<>();
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //filter-recordList-Bytime,按时间过滤开锁记录.
+        UnlockRecord unlockRecord=null;
+        /*
+        Date timetag=null;
+        for(int i=0;i<recordList.size();i++){
+            unlockRecord=recordList.get(i);
+            timetag=DateUtil.format2.parse(unlockRecord.getTimetag());
+            if (Long.parseLong(startTime)<timetag.getTime() && Long.parseLong(endTime)>timetag.getTime()){
+                recordList2.add(unlockRecord);
+            }
+        }
+        */
+        recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+//                return Long.parseLong(startTime)<timetag.getTime() && Long.parseLong(endTime)>timetag.getTime();
+                return startTimeL<timetagL && endTimeL>timetagL;
+            }
+        });
         //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-//        Collections.reverse(recordList);
+        Collections.reverse(recordList2);
         //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
         List<UnlockRecord> newRecordList=null;
-        int recordListSize=recordList.size();
-        if (recordListSize > pageNum*pageSize){
-            newRecordList=recordList.subList((pageNum-1)*pageSize,pageNum*pageSize);
-        }else if (recordListSize > (pageNum-1)*pageSize && recordListSize <= pageNum*pageSize){
-            newRecordList=recordList.subList((pageNum-1)*pageSize,recordListSize);
+        int recordList2Size=recordList2.size();
+        if (recordList2Size > pageNum*pageSize){
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
         }
         if (null==newRecordList){
             newRecordList=new ArrayList<>();
         }
         Records<UnlockRecord> records =new Records<>();
-        records.setTotalSize(recordListSize);
+        records.setTotalSize(recordList2Size);
         records.setRows(newRecordList);
 
         return records;
@@ -151,66 +185,102 @@ public class RecordServiceImpl implements IRecordService {
 
     @Override
     public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String gatewayCode, int pageNum, int pageSize) {
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
-        recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
-        List<UnlockRecord> recordList2=null;
-        //filter-recordList-Bytime,按网关过滤开锁记录.
+        List<UnlockRecord> recordList2=new ArrayList<>();
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        UnlockRecord unlockRecord=null;
         recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
             @Override
             public boolean test(UnlockRecord unlockRecord) {
-                return gatewayCode.equals(unlockRecord.getGatewayCode());
+                if ( !gatewayCode.equals(unlockRecord.getGatewayCode()) ){
+                    return false;
+                }
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return startTimeL<timetagL && endTimeL>timetagL;
             }
         });
         //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-//        Collections.reverse(recordList2);
+        Collections.reverse(recordList2);
         //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
-        List<UnlockRecord> recordList3=null;
+        List<UnlockRecord> newRecordList=null;
         int recordList2Size=recordList2.size();
         if (recordList2Size > pageNum*pageSize){
-            recordList3=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
         }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
-            recordList3=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
         }
-        if (null==recordList3){
-            recordList3=new ArrayList<>();
+        if (null==newRecordList){
+            newRecordList=new ArrayList<>();
         }
         Records<UnlockRecord> records =new Records<>();
         records.setTotalSize(recordList2Size);
-        records.setRows(recordList3);
+        records.setRows(newRecordList);
 
         return records;
     }
 
     @Override
     public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String lockCode, int pageNum, int pageSize) {
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
-        recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<UnlockRecord> recordList2=new ArrayList<>();
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //filter-recordList-Bytime,按时间&网关过滤开锁记录.
-        List<UnlockRecord> recordList2=null;
+        UnlockRecord unlockRecord=null;
         recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
             @Override
             public boolean test(UnlockRecord unlockRecord) {
-                return lockCode.equals(unlockRecord.getLockCode());
+                if ( !lockCode.equals(unlockRecord.getLockCode()) ){
+                    return false;
+                }
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return startTimeL<timetagL && endTimeL>timetagL;
             }
         });
         //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-//        Collections.reverse(recordList2);
+        Collections.reverse(recordList2);
         //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
-        List<UnlockRecord> recordList3=null;
+        List<UnlockRecord> newRecordList=null;
         int recordList2Size=recordList2.size();
         if (recordList2Size > pageNum*pageSize){
-            recordList3=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
         }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
-            recordList3=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
         }
-        if (null==recordList3){
-            recordList3=new ArrayList<>();
+        if (null==newRecordList){
+            newRecordList=new ArrayList<>();
         }
         Records<UnlockRecord> records =new Records<>();
         records.setTotalSize(recordList2Size);
-        records.setRows(recordList3);
+        records.setRows(newRecordList);
 
         return records;
     }
@@ -450,37 +520,52 @@ public class RecordServiceImpl implements IRecordService {
 
     @Override
     public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String cardNum, int pageNum, int pageSize) {
+        final long startTimeL=Long.parseLong(startTime);
+        final long endTimeL=Long.parseLong(endTime);
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
-        recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
-        //filter-recordList-Bytime,按身份证号码cardNumb过滤开锁记录.
-        List<UnlockRecord> recordList2=null;
+        List<UnlockRecord> recordList2=new ArrayList<>();
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //filter-recordList-Bytime,按时间&身份证号码cardNumb过滤开锁记录.
+        UnlockRecord unlockRecord=null;
         recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
             @Override
             public boolean test(UnlockRecord unlockRecord) {
                 UnlockRecord.CardInfo cardInfo=unlockRecord.getCardInfo();
-                if (null!=cardInfo){
-                    return cardNum.equals(cardInfo.getCardNumb());
+                if ( null==cardInfo || !cardNum.equals(cardInfo.getCardNumb()) ){
+                    return false;
                 }
-                return false;
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return startTimeL<timetagL && endTimeL>timetagL;
             }
         });
         //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-//        Collections.reverse(recordList2);
+        Collections.reverse(recordList2);
         //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
-        List<UnlockRecord> recordList3=null;
+        List<UnlockRecord> newRecordList=null;
         int recordList2Size=recordList2.size();
         if (recordList2Size > pageNum*pageSize){
-            recordList3=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
         }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
-            recordList3=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+            newRecordList=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
         }
-        if (null==recordList3){
-            recordList3=new ArrayList<>();
+        if (null==newRecordList){
+            newRecordList=new ArrayList<>();
         }
         Records<UnlockRecord> records =new Records<>();
         records.setTotalSize(recordList2Size);
-        records.setRows(recordList3);
+        records.setRows(newRecordList);
 
         return records;
     }

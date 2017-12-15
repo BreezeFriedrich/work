@@ -42,6 +42,7 @@ public class RecordAction extends ActionSupport{
     private String endTime;
     private String gatewayCode;
     private String lockCode;
+    private String cardNum;
     public String getOwnerPhoneNumber() {
         return ownerPhoneNumber;
     }
@@ -71,6 +72,12 @@ public class RecordAction extends ActionSupport{
     }
     public void setLockCode(String lockCode) {
         this.lockCode = lockCode;
+    }
+    public String getCardNum() {
+        return cardNum;
+    }
+    public void setCardNum(String cardNum) {
+        this.cardNum = cardNum;
     }
 
     public int pageNum;
@@ -134,6 +141,18 @@ public class RecordAction extends ActionSupport{
     public String getUnlockRecordDevicePage() {
         Map map=recordService.getUnlockRecordDevicePage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=map;
+        return "json";
+    }
+
+    public String getUnlockOperator() {
+        Map map=recordService.getUnlockOperator(ownerPhoneNumber,startTime,endTime);
+        jsonResult=map;
+        return "json";
+    }
+
+    public String getOperatorUnlockRecordPage() {
+        Records<UnlockRecord> records=recordService.getOperatorUnlockRecordPage(ownerPhoneNumber,startTime,endTime,cardNum,pageNum,pageSize);
+        jsonResult=records;
         return "json";
     }
 }

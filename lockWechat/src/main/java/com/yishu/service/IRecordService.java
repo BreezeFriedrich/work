@@ -26,9 +26,11 @@ public interface IRecordService {
 
     public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String lockCode, int pageNum, int pageSize);
 
-//    public Map<String,UnlockRecord> getUnlockRecordLock(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
-
     public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime);
 
     public Map getUnlockRecordDevicePage(String ownerPhoneNumber, String startTime, String endTime, int pageNum,int pageSize);
+
+    public Map getUnlockOperator(String ownerPhoneNumber, String startTime, String endTime);
+
+    public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String cardNum, int pageNum, int pageSize);
 }

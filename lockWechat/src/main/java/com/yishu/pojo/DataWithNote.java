@@ -7,13 +7,22 @@ package com.yishu.pojo;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
- * @version 1.0.0.0 2017-12-14 15:42 admin
+ * @version 1.0.0.0 2017-12-15 14:23 admin
  * @since JDK1.7
  */
-public class DataWithSize<X> {
+public class DataWithNote<X,Y> {
+    private X data;
     private String key;
     private int size;
-    private X data;
+    private Y note;
+
+    public X getData() {
+        return data;
+    }
+
+    public void setData(X data) {
+        this.data = data;
+    }
 
     public String getKey() {
         return key;
@@ -31,11 +40,11 @@ public class DataWithSize<X> {
         this.size = size;
     }
 
-    public X getData() {
-        return data;
+    public Y getNote() {
+        return note;
     }
 
-    public void setData(X data) {
-        this.data = data;
+    public void setNote(Y note) {
+        this.note = note;
     }
 }
