@@ -41,7 +41,8 @@ $(function(){
         value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.min,temptime.second]
     });
 
-    ownerPhoneNumber="13905169824";
+    // ownerPhoneNumber="13905169824";
+    ownerPhoneNumber="17705155208";
     /*
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     startTime="2014-01-01 01:01";
@@ -73,6 +74,9 @@ $(function(){
             toTop:{ //配置回到顶部按钮
                 src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
                 //offset : 1000
+            },
+            empty:{
+                tip: "我也是有底线的~",
             }
         }
     });
@@ -218,7 +222,6 @@ function showDevicesFromRecords() {
         return null;
     }
     mescroll.destroy();
-    // setTimeout(console.log('delay...'),5000);
     mescroll = new MeScroll("mescroll", {
         //上拉加载列表项.
         up: {
@@ -254,7 +257,6 @@ function showDevicesFromRecords() {
     }
 }
 function getUnlockDevice(pageNum,pageSize,successCallback,errorCallback) {
-    //ownerPhoneNumber,startTime,endTime
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getUnlockRecordDevice.action",
@@ -293,14 +295,12 @@ function setDeviceWithRecord(data){
          */
         var str='';
         str+='<div class="row-header">';
-        str+='<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
-        str+='<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords(\''+gatewayNum+'\')" style="width: 280px;margin-left: 30px;">';
-        str+='<img alt="gateway" src="resources/img/gateway_64px.png"/>';
-        str+='<span style="width: 180px;margin-left: 20px;">'+gatewayNum;
-        str+='</span>';
-        str+='<span style="width: 30px;margin-left: 20px;">'+recordSize;
-        str+='</span>';
-        str+='</a>';
+        str+=   '<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
+        str+=   '<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords(\''+gatewayNum+'\')" style="width: 280px;margin-left: 30px;">';
+        str+=       '<img alt="gateway" src="resources/img/gateway_64px.png"/>';
+        str+=       '<span style="width: 180px;margin-left: 20px;">'+gatewayNum+'</span>';
+        str+=       '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
+        str+=   '</a>';
         str+='</div>';
         var liDom=document.createElement("li");
         liDom.innerHTML=str;
@@ -321,28 +321,29 @@ function shiftExpand(gatewayNum,element) {
     //.row-expand不存在,扩展.row-expand元素并使图标旋转.
     element.children("img")[0].style.transform= "rotate(180deg)";
     lockRecordsMap=deviceRecordsMap[gatewayNum].data;
+    var str='';
     // var lockHeight=Object.keys(lockRecordsMap).length*75;
     // var str='<div class="row-expand" style="height:'+lockHeight+'px;">';
-    var str='<div class="row-expand" >';
+    str+='<div class="row-expand" >';
 //        str+='<div class="expand-left" style="width: 100px;float:left;">';
 //        str+="<a href='javascript:void(0);' onclick='deleteExpandLock($(this))'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
 //        str+='</div>';
-    str+='<div class="expand-right" style="float:left;margin-left: 60px"><ul>';
+    str+='<div class="expand-right" style="float:left;margin-left: 60px">';
+    str+='<ul>';
     for(var lockCode in lockRecordsMap) {
         unlockRecordList=lockRecordsMap[lockCode].data;
         recordSize=lockRecordsMap[lockCode].size;
         str+='<li style="width: 280px;height:50px;">';
-        str+='<div class="row-line">';
-        str+='<a class="a-device" href="javascript:void(0);" onclick="showLockRecords(\''+lockCode+'\')"><img alt="lock" src="resources/img/padlock_64px.png"/>';
-        str+='<span style="width: 180px;margin-left: 20px;">'+lockCode;
-        str+='</span>';
-        str+='<span style="width: 30px;margin-left: 20px;">'+recordSize;
-        str+='</span>';
-        str+='</a>';
-        str+='</div>';
+        str+=   '<div class="row-line">';
+        str+=       '<a class="a-device" href="javascript:void(0);" onclick="showLockRecords(\''+lockCode+'\')"><img alt="lock" src="resources/img/padlock_64px.png"/>';
+        str+=           '<span style="width: 180px;margin-left: 20px;">'+lockCode+'</span>';
+        str+=           '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
+        str+=       '</a>';
+        str+=   '</div>';
         str+='</li>';
     }
-    str+='</ul></div>';
+    str+='</ul>';
+    str+='</div>';
     str+='</div>';
     LI.innerHTML+=str;
 }
@@ -357,7 +358,6 @@ function showGatewayRecords(gatewayNum) {
         return null;
     }
     mescroll.destroy();
-    // setTimeout(console.log('delay...'),5000);
     mescroll = new MeScroll("mescroll", {
         //上拉加载列表项.
         up: {
@@ -388,11 +388,9 @@ function showGatewayRecords(gatewayNum) {
 }
 function getGatewayRecords(pageNum,pageSize,gatewayNum,successCallback,errorCallback) {
     console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",gatewayNum:"+gatewayNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
-    //ownerPhoneNumber,startTime,endTime
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getGatewayUnlockRecordPage.action",
-//            url:"http://localhost/lockWechat"+"/record/getUnlockRecordPage.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"gatewayCode":gatewayNum,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
@@ -413,7 +411,6 @@ function showLockRecords(lockNum) {
         return null;
     }
     mescroll.destroy();
-    // setTimeout(console.log('delay...'),5000);
     mescroll = new MeScroll("mescroll", {
         //上拉加载列表项.
         up: {
@@ -448,7 +445,6 @@ function getLockRecords(pageNum,pageSize,lockNum,successCallback,errorCallback) 
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getLockUnlockRecordPage.action",
-//            url:"http://localhost/lockWechat"+"/record/getUnlockRecordPage.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"lockCode":lockNum,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
@@ -468,7 +464,6 @@ function showOperatorFromRecords() {
         return null;
     }
     mescroll.destroy();
-    // setTimeout(console.log('delay...'),5000);
     mescroll = new MeScroll("mescroll", {
         //上拉加载列表项.
         up: {
@@ -518,17 +513,6 @@ function setOperatorWithRecord(data) {
         recordSize=data[cardNum].size;
         name=data[cardNum].note;
         var str='';
-        /*
-        str+='<div class="row-header">';
-        str+=   '<a class="a-device" href="javascript:void(0);" onclick="showOperatorRecords(\''+cardNum+'\')" style="width: 280px;margin-left: 60px;">';
-        str+=       '<img alt="gateway" src="resources/img/gateway_64px.png"/>';
-        str+=       '<span style="width: 180px;margin-left: 20px;">'+cardNum;
-        str+=       '</span>';
-        str+=       '<span style="width: 30px;margin-left: 20px;">'+recordSize;
-        str+=       '</span>';
-        str+=   '</a>';
-        str+='</div>';
-        */
         str+='<div>';
         str+=    '<a class="a-id" href="javascript:void(0);" onclick="showOperatorRecords(\''+cardNum+'\')" style="width: 340px;">';
         str+=       '<img alt="idCard" src="resources/img/idCard_48px.png">';

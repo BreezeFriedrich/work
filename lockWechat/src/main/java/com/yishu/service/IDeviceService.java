@@ -5,4 +5,5 @@ import java.util.List;
 public interface IDeviceService {
     public List getUserGatewayIp(String ownerPhoneNumber);
     public List getDeviceInfo(String ownerPhoneNumber);
+    public List getAbnormalDevice(String ownerPhoneNumber);
 }

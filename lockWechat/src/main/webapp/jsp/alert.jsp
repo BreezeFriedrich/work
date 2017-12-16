@@ -5,8 +5,8 @@
 
 <%--
   User: admin
-  Date: 2017/12/1
-  Time: 14:50
+  Date: 2017/12/16
+  Time: 11:14
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -72,11 +72,6 @@
             margin: 0;
             overflow: hidden;
         }
-        /*
-        .pd img{
-            vertical-align: middle;
-        }
-        */
         img{
             vertical-align: middle;
         }
@@ -90,12 +85,6 @@
             font-size: 14px;
             line-height: 20px;
         }
-        /*.pd-left .entry-val{
-            color: #3366CC;
-        }
-        .pd-right .entry-val{
-            color: #232332;
-        }*/
         .pd-left img{
             max-height: 25px;
             max-width: 25px;
@@ -103,14 +92,6 @@
         .pd-right img{
             max-height: 20px;
             max-width: 20px;
-        }
-
-        input{
-            font-size: 18px;
-            width: 150px;
-            margin-left: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
         }
 
         .row-header,row-line{
@@ -133,6 +114,22 @@
             font-size: 15px;
             line-height: 30px;
         }
+        img.auto-zoom-3 {
+            width: 3rem;
+            height: 3rem;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        img.auto-zoom-4 {
+            width: 4rem;
+            height: 4rem;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .card .card-footer {
+            /*上下 ,左右*/
+            padding: 0 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -141,49 +138,23 @@
         <!-- 标题栏 -->
         <header class="bar bar-nav">
             <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
-            <h1 class="title">全部记录</h1>
-            <!--<a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/gatewayDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">网关</a>
-                <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/lockDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">门锁</a>
-                <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/timeDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">时间</a>-->
+            <h1 class="title">告警</h1>
         </header>
         <!-- 这里是页面内容区 -->
         <div class="content">
             <div class="content-block" style="background-color: #A3CE82;margin: 0px;padding: 0px;">
-                <div style="height: 120px;width: 360px;margin: auto;background-color: #D1E08D;">
-                    <div style="width:50%;height: 100px;margin:10px 5%; float: left;background-color: #F2F7DA;border: 1px solid #bbbbbb;">
-                        <input type="text" placeholder="" id='datetime-picker-1' />
-                        <input type="text" placeholder="" id='datetime-picker-2' />
-                    </div>
-                    <div style="width:30%;height: 75px; margin:22.5px 5%;float: left;">
-                        <a href="javascript:void(0);" class="open-popup" data-popup=".popup-menu">
-                            <img alt="menu" src="resources/img/menu-dots_128px.png" width="75px;"/>
-                        </a>
-                    </div>
-                </div>
                 <div id="mescroll" class="mescroll">
                     <ul id="dataList" class="data-list">
                     </ul>
                 </div>
             </div>
         </div>
-
-        <!-- About Popup -->
-        <div class="popup popup-menu">
-            <div class="content-block">
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()">查询所有记录</a></p>
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesFromRecords()">按设备分类</a></p>
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showOperatorFromRecords()">按开锁人分类</a></p>
-            </div>
-        </div>
-        <div class="popup-overlay"></div>
     </div>
 </div>
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/mescroll.min.js'></script>
-<script type='text/javascript' src='resources/js/util/date.js'></script>
-<script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>
-<script type='text/javascript' src='resources/js/record.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/alert.js' charset='utf-8'></script>
 </body>
 </html>

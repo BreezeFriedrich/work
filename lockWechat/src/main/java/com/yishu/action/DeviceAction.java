@@ -36,11 +36,9 @@ public class DeviceAction extends ActionSupport {
     }
 
     private String gatewayCode;
-
     public String getGatewayCode() {
         return gatewayCode;
     }
-
     public void setGatewayCode(String gatewayCode) {
         this.gatewayCode = gatewayCode;
     }
@@ -120,14 +118,10 @@ public class DeviceAction extends ActionSupport {
         return "json";
     }
 
-//    public String getUserGateways(){
-//        List jsonList=deviceService.getDeviceInfo(ownerPhoneNumber);
-//        return "json";
-//    }
-
-    public String getUserLocks(){
-        List jsonList=deviceService.getDeviceInfo(ownerPhoneNumber);
-
+    public String getAbnormalDevice(){
+        System.out.println("Action-DeviceAction-getAbnormalDevice");
+        List jsonList=deviceService.getAbnormalDevice(ownerPhoneNumber);
+        jsonResult=jsonList;
         return "json";
     }
 }

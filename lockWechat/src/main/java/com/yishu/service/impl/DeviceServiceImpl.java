@@ -3,10 +3,10 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yishu.util.FilterUtil;
+import com.yishu.pojo.Lock;
+import com.yishu.util.*;
 import com.yishu.pojo.Device;
 import com.yishu.service.IDeviceService;
-import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +20,8 @@ public class DeviceServiceImpl implements IDeviceService{
     int reqSign;
     String reqData;
     String rawData;
+
+    ObjectMapper objectMapper=new ObjectMapper();
 
     /**
      * 获取当前帐户ownerPhoneNumber所有的网关数据服务器的IP (request URL: lock.qixutech.com)
@@ -104,5 +106,40 @@ public class DeviceServiceImpl implements IDeviceService{
         }
 
         return accountDeviceList;
+    }
+
+    @Override
+    public List getAbnormalDevice(String ownerPhoneNumber) {
+        System.err.println("sign:"+'空'+" operation:getDeviceInfo");
+        //rawData,获取原始数据:开锁记录的List.
+//        List<Device> rawList=getDeviceInfo(ownerPhoneNumber);
+        List<Device> rawList=null;
+        try {
+            rawList=objectMapper.readValue(DataInject.readFile2String("classpath:device.json"),new TypeReference<List<Device>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<Device> deviceList=null;
+        Device device=null;
+        List<Lock> lockLists=null;
+        for (Iterator itr=rawList.iterator();itr.hasNext();){
+            device= (Device) itr.next();
+            lockLists= device.getLockLists();
+            lockLists= FilterList.filter(lockLists, new FilterListHook<Lock>() {
+                @Override
+                public boolean test(Lock lock) {
+                    return !lock.getLockStatus().equals("1");
+                }
+            });
+            device.setLockLists(lockLists);
+        }
+        deviceList= FilterList.filter(rawList, new FilterListHook<Device>() {
+            @Override
+            public boolean test(Device device) {
+                return !device.getGatewayStatus().equals("4") || device.getLockLists().size()>0;
+            }
+        });
+        return deviceList;
     }
 }

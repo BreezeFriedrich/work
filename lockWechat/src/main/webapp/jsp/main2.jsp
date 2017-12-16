@@ -93,11 +93,11 @@
                 <span class="icon icon-search"></span>
                 <span class="tab-label">记录</span>
             </a>
-            <a class="tab-item external" href="#">
+            <a class="tab-item external" href="jsp/alert.jsp">
                 <span class="icon icon-phone"></span>
                 <span class="tab-label">告警</span>
             </a>
-            <a class="tab-item external" href="#">
+            <a class="tab-item external" href="jsp/setting.jsp">
                 <span class="icon icon-settings"></span>
                 <span class="tab-label">设置</span>
             </a>
