@@ -51,12 +51,30 @@ $(function(){
         // }
     });
     showDevices();
+    initAlertBadge(ownerPhoneNumber);
     $.hideIndicator();
 
     <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
     $.init();
 });
-
+function initAlertBadge(phone) {
+    $.ajax({
+        type:"POST",
+        url:projectPath+"/device/countAbnormalDevice.action",
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        data:{"ownerPhoneNumber":phone},
+        dataType:'json',
+        success:function(data,status,xhr){
+            document.getElementsByClassName('badge')[0].innerText=data;
+        },
+        error:function(xhr,errorType,error){
+            console.log('错误');
+            console.log(xhr);
+            console.log(errorType);
+            console.log(error)
+        }
+    });
+}
 function showDevices(){
     var UL_gateway=document.createElement('ul');
     UL_gateway.id="UL_gateway";

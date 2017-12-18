@@ -203,10 +203,10 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://localhost:8080/Lock/main.jsp</url>
+                    <url>http://localhost:8080/lock/login.jsp</url>
                     <server>Tomcat7</server>
                     <port>8080</port>
-                    <path>/Lock</path>
+                    <path>/lock</path>
                 </configuration>
             </plugin>
         </plugins>

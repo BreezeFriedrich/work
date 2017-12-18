@@ -67,6 +67,25 @@
             /*上下 ,左右*/
             padding: 0 0.75rem;
         }
+
+        /*徽章badge*/
+        .badge {
+            display: inline-block;
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            /*vertical-align: baseline;*/
+            background-color: #999;
+            border-radius: 10px;
+        }
+        .badge:empty {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -95,7 +114,7 @@
             </a>
             <a class="tab-item external" href="jsp/alert.jsp">
                 <span class="icon icon-phone"></span>
-                <span class="tab-label">告警</span>
+                <span class="tab-label">告警<span class="badge" style="vertical-align: -50%;">23</span></span>
             </a>
             <a class="tab-item external" href="jsp/setting.jsp">
                 <span class="icon icon-settings"></span>

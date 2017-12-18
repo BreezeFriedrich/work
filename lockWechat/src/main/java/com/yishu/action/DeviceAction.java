@@ -124,4 +124,11 @@ public class DeviceAction extends ActionSupport {
         jsonResult=jsonList;
         return "json";
     }
+
+    public String countAbnormalDevice(){
+        System.out.println("Action-DeviceAction-countAbnormalDevice");
+        int num=deviceService.countAbnormalDevice(ownerPhoneNumber);
+        jsonResult=num;
+        return "json";
+    }
 }

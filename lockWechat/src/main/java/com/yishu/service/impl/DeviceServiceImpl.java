@@ -142,4 +142,19 @@ public class DeviceServiceImpl implements IDeviceService{
         });
         return deviceList;
     }
+
+    @Override
+    public int countAbnormalDevice(String ownerPhoneNumber) {
+        int num=0;
+        Device device=null;
+        List list=getAbnormalDevice(ownerPhoneNumber);
+        for (Iterator itr=list.iterator();itr.hasNext();){
+            device= (Device) itr.next();
+            if (!device.getGatewayStatus().equals("4")){
+                num++;
+            }
+            num+=device.getLockLists().size();
+        }
+        return num;
+    }
 }
