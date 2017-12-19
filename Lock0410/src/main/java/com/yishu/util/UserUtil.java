@@ -16,5 +16,4 @@ public class UserUtil {
 		System.out.println("util-CheckLogin-strData:"+strData);
 		return strData;
 	}
-	
 }
