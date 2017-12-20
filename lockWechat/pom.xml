@@ -267,7 +267,7 @@
     <dependency>
       <groupId>net.bull.javamelody</groupId>
       <artifactId>javamelody-core</artifactId>
-      <version>1.69.0</version>
+      <version>1.70.0</version>
     </dependency>
 
     <!-- struts2-junit-plugin ver2.5.12 要求 servlet-api版本至少3.1.0+(实测3.0.1也行,没发现问题) -->

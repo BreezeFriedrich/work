@@ -34,7 +34,7 @@
     </bean>
 
     <!-- 引入.properties配置文件 -->
-    <context:property-placeholder location="classpath:properties/project.properties,classpath:properties/jdbc.properties"  ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:properties/project.properties,classpath:properties/jdbc.properties" ignore-unresolvable="true"/>
     <!--
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
@@ -64,7 +64,7 @@
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
     <bean  id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.yishu.domain,com.yishu.pojo" />
+        <property name="typeAliasesPackage" value="com.yishu.model" />
         <property name="mapperLocations" value="classpath:mapper/*.xml" />
     </bean>
 
