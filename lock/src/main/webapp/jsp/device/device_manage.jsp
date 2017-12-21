@@ -31,19 +31,19 @@
     <!-- Custom styles for this template -->
 
     <!-- Bootstrap core CSS -->
-    <link href="page/js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="page/css/style.css" rel="stylesheet" />
-    <link href="css/index.css" rel="stylesheet" />
+    <link href="resources/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/css/style.css" rel="stylesheet" />
+    <link href="resources/css/index.css" rel="stylesheet" />
 
     <!-- DateRange -->
     <link rel="stylesheet" type="text/css" href="page/js/bootstrap.daterangepicker/daterangepicker-bs3.css" />
 
     <!-- 弹出-->
-    <link rel="stylesheet" type="text/css" href="page/js/jquery.niftymodals/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
 
     <!-- table-->
     <link rel="stylesheet" href="css/fixed-table.css" />
-    <script src="page/js/jquery.min.js"></script>
+    <script src="resources/plugin/jquery.min.js"></script>
     <script src="js/fixed-table.js"></script>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
@@ -53,7 +53,7 @@
         .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/height: 90%;}
     </style>
 
-    <link rel="stylesheet" type="text/css" href="page/js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <script language="javascript" type="text/javascript">
         <!--
         //获得当前时间,刻度为一千分一秒
@@ -95,7 +95,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right user-nav">
                 <li class="dropdown profile_menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar2.jpg" />张三<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="resources/images/avatar2.jpg" />张三<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">设置</a></li>
                         <li><a href="#">退出系统</a></li>
@@ -109,7 +109,7 @@
 
 <div id="cl-wrapper" class="fixed-menu">
     <div class="container-fluid "  id="pcont" >
-        <div class="page-head"><img src="images/lb.png" class="inco-lb"><h3>业主管理房间</h3></div>
+        <div class="page-head"><img src="resources/images/lb.png" class="inco-lb"><h3>业主管理房间</h3></div>
         <div class="col-sm-9 table1">
             <div class="block-flat table0-top gateway-table">
                 <div class="content">
@@ -1220,21 +1220,21 @@
     <div class="clearfix"></div>
 </div>
 
-<script src="page/js/jquery.min.js"></script>
-<script src="page/js/jquery.js"></script>
-<script src="page/js/jquery.select2/select2.min.js" type="text/javascript"></script>
+<script src="resources/plugin/jquery.min.js"></script>
+<script src="resources/plugin/jquery.js"></script>
+<script src="resources/plugin/jquery.select2/select2.min.js" type="text/javascript"></script>
 <script src="page/js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
 <script type="text/javascript" src="page/js/bootstrap.daterangepicker/moment.min.js"></script>
-<script type="text/javascript" src="page/js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-<script type="text/javascript" src="page/js/behaviour/general.js"></script>
-<script type="text/javascript" src="page/js/jquery.niftymodals/js/jquery.modalEffects.js"></script>
-<script type="text/javascript" src="page/js/jquery.icheck/icheck.min.js"></script>
-<script src="page/js/behaviour/voice-commands.js"></script>
-<script src="page/js/jquery.parsley/dist/parsley.js" type="text/javascript"></script>
-<script type="text/javascript" src="page/js/jquery.nestable/jquery.nestable.js"></script>
-<script src="page/js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
-<script type="text/javascript" src="page/js/bootstrap.switch/bootstrap-switch.js"></script>
-<script type="text/javascript" src="page/js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.icheck/icheck.min.js"></script>
+<script src="resources/plugin/behaviour/voice-commands.js"></script>
+<script src="resources/plugin/jquery.parsley/dist/parsley.js" type="text/javascript"></script>
+<script type="text/javascript" src="resources/plugin/jquery.nestable/jquery.nestable.js"></script>
+<script src="resources/plugin/jquery.ui/jquery-ui.js" type="text/javascript"></script>
+<script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
+<script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
 <script type="text/javascript" src="page/js/bootstrap.daterangepicker/daterangepicker.js"></script>
 
@@ -1326,8 +1326,8 @@
 
 <!-- Bootstrap core JavaScript ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="page/js/behaviour/voice-commands.js"></script>
-<script src="page/js/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="resources/plugin/behaviour/voice-commands.js"></script>
+<script src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

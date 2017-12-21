@@ -229,7 +229,7 @@ pre {
   text-align: left;
   width: 206px;
   color: #FFF;
-  background: url(../../images/logo.png) no-repeat 0 0;
+  background: url(../images/logo.png) no-repeat 0 0;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
   font-weight: 300;
   font-size: 19px;
@@ -4852,7 +4852,7 @@ button::-moz-focus-inner {
   top: 45px;
 }
 .gritter-item-wrapper {
-  background: url(../js/jquery.gritter/images/gritter-bg.png);
+  background: url(../plugin/jquery.gritter/images/gritter-bg.png);
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.32);
 }
 .gritter-top {
