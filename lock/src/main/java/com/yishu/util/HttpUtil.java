@@ -22,6 +22,7 @@ public class HttpUtil
     }
 
     public final static String hostName="lock.qixutech.com";
+    public final static String ownerIp="lock.qixutech.com";
 
     public static String getIpFromHostname(String hostName){
 //        return "43.254.149.28";
