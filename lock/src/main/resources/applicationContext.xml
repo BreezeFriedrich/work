@@ -25,13 +25,15 @@
     </context:component-scan>
 
     <!--javamelody与Spring集成-->
+    <!--
     <bean id= "facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor" >
         <property name ="pointcut" >
             <bean class="org.springframework.aop.support.JdkRegexpMethodPointcut" >
-                <property name ="pattern" value="com.yishu.service.*" /><!--正则表达式-->
+                <property name ="pattern" value="com.yishu.service.*" />
             </bean>
         </property>
     </bean>
+    -->
 
     <!-- 引入.properties配置文件 -->
     <context:property-placeholder location="classpath:properties/project.properties,classpath:properties/jdbc.properties" ignore-unresolvable="true"/>

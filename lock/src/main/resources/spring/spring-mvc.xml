@@ -28,7 +28,7 @@
             <mvc:mapping path="/**" />
             <!-- 不需要拦截的地址 -->
             <mvc:exclude-mapping path="/" />
-            <mvc:exclude-mapping path="/login.do" />
+            <mvc:exclude-mapping path="/user/login.do" />
             <bean class="com.yishu.web.SystemSessionInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

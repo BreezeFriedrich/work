@@ -12,5 +12,9 @@ import java.util.Map;
 public interface IUserService {
     public Map checkLogin(String username, String password);
     public User getUserWithSubordinate(String phoneNumber,int grade);
-    public User getUserWithSubordinateHierarchy(String phoneNumber,int grade,int levels);
+    public User getUserWithSubordinateHierarchy(String phoneNumber,int grade,int juniorGrade);
+    public User getSubordinateHierarchy(User user,int minGrade);
+
+    public Map addSubordinate(String ownerPhoneNumber,String juniorPhoneNumber,String juniorName,String juniorLocation,int grade);
+    public boolean cancleSubordinate(String ownerPhoneNumber,String juniorPhoneNumber,int grade);
 }

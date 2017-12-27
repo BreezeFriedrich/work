@@ -1,5 +1,6 @@
 package com.yishu.controller;
 
+import com.yishu.pojo.User;
 import com.yishu.service.IUserService;
 import com.yishu.util.CookieUtil;
 import org.slf4j.LoggerFactory;
@@ -59,8 +60,20 @@ public class LoginController {
             model.addAttribute("ownerName",ownerName);
             model.addAttribute("grade",grade);//初始10,添加了下级用户之后变为20,30,...
         }
-        if (grade)
+        User user=userService.getUserWithSubordinate(username,grade);
+        /*
+        User userHierarchy=userService.getSubordinateHierarchy(user,10);
+        model.addAttribute("userHierarchy",userHierarchy);
+        if (grade>=30){
+            return "house/house_city";
+        }else if (grade>=20){
+            return "house/house_district";
+        }else if (grade>=10){
+            return "house/house_landlord";
+        }
         return "redirect:/jsp/error.jsp";
+        */
+        return "house/house_city";
     }
 
     @RequestMapping("/logout.do")
@@ -71,6 +84,36 @@ public class LoginController {
         CookieUtil.delAllCookie(request,response);
 
         request.getSession().invalidate();
+    }
+
+    @RequestMapping("/addSubordinate.do")
+    @ResponseBody
+    public boolean addSubordinate(HttpServletRequest request,HttpServletResponse response){
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+        String juniorPhoneNumber=request.getParameter("juniorPhoneNumber");
+        String juniorName=request.getParameter("juniorName");
+        String juniorLocation=request.getParameter("juniorLocation");
+        LOG.info("ownerPhoneNumber : "+ownerPhoneNumber);
+        LOG.info("grade : "+grade);
+        LOG.info("juniorPhoneNumber : "+juniorPhoneNumber+" ; juniorName : "+juniorName+" ; juniorLocation : "+juniorLocation);
+        Map resultMap=userService.addSubordinate(ownerPhoneNumber,juniorPhoneNumber,juniorName,juniorLocation,grade);
+        int result=0;
+        result= (int) resultMap.get("result");
+        return 0==result;
+    }
+
+    @RequestMapping("/cancleSubordinate.do")
+    @ResponseBody
+    public boolean cancleSubordinate(HttpServletRequest request,HttpServletResponse response){
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+        String juniorPhoneNumber=request.getParameter("juniorPhoneNumber");
+        boolean resultBoolean=false;
+        resultBoolean=userService.cancleSubordinate(ownerPhoneNumber,juniorPhoneNumber,grade);
+        return resultBoolean;
     }
 }
 /*

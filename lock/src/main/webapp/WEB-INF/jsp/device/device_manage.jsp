@@ -23,15 +23,15 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="page/css/font-awesome.4.6.0.css">
-    <link rel="stylesheet" type="text/css" href="page/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="page/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
 
     <!-- Bootstrap core CSS -->
-    <link href="resources/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/plugin/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet" />
     <link href="resources/css/index.css" rel="stylesheet" />
 
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
 
     <!-- table-->
-    <link rel="stylesheet" href="css/fixed-table.css" />
+    <link rel="stylesheet" href="resources/css/fixed-table.css" />
     <script src="resources/plugin/jquery.min.js"></script>
-    <script src="js/fixed-table.js"></script>
+    <script src="resources/js/fixed-table.js"></script>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
         .fixed-table_body-wraper{}

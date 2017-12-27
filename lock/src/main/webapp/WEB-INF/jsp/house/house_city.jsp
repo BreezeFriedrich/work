@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="resources/css/font-awesome.min.css" /><!--Font Awesome,为Bootstrap而创造的图标字体-->
     <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="resources/css/style.css" />
-    <link rel="stylesheet" href="resources/resources/css/index.css" />
+    <link rel="stylesheet" href="resources/css/index.css" />
 
     <!-- 弹出-->
     <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
@@ -89,7 +89,7 @@
                 <li class="dropdown profile_menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="resources/images/avatar2.jpg" />张三<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">设置</a></li>
+                        <li><a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/userManage.jsp');">设置</a></li>
                         <li><a href="#">退出系统</a></li>
                     </ul>
                 </li>
@@ -1049,7 +1049,7 @@
 <script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="resources/plugin/jquery.parsley/dist/parsley.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.parsley/dist/parsley.js"></script><!--表单验证-->
 <script type="text/javascript" src="resources/plugin/jquery.nestable/jquery.nestable.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.ui/jquery-ui.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script><!--switch-->
