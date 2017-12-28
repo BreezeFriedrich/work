@@ -7,6 +7,7 @@ import com.yishu.pojo.User;
 import com.yishu.service.IUserService;
 import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ import java.util.*;
  */
 @Service("userService")
 public class UserServiceImpl implements IUserService {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger("UserServiceImpl");
 
     String timetag;
     /**
@@ -77,9 +78,12 @@ public class UserServiceImpl implements IUserService {
     public Map checkLogin(String username, String password) {
         reqSign=302;
         timetag= DateUtil.getFormat2TimetagStr();
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+username+"\",\"ownerPassword\":\""+password+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+username+"\",\"ownerPassword\":\""+password+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
-        System.err.println(rawData);
+        if (LOG.isInfoEnabled()){
+            LOG.info("reqData : "+reqData);
+            LOG.info("rawData : "+rawData);
+        }
         resultMap=new HashMap();
         try {
             rootNode = objectMapper.readTree(rawData);
@@ -121,9 +125,12 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User getUserWithSubordinate(String phoneNumber, int grade) {
         reqSign=304;
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+phoneNumber+"\",\"grade\":\""+grade+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+phoneNumber+"\",\"grade\":"+grade+"}";
         rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
-        System.err.println(rawData);
+        if (LOG.isInfoEnabled()){
+            LOG.info("reqData : "+reqData);
+            LOG.info("rawData : "+rawData);
+        }
         resultMap=new HashMap();
         try {
             rootNode = objectMapper.readTree(rawData);
@@ -132,7 +139,7 @@ public class UserServiceImpl implements IUserService {
         }
         respSign=rootNode.path("result").asInt();
         LOG.info("respSign:"+String.valueOf(respSign));
-        List<User> subordinateList = null;
+        List<User> subordinateList = new ArrayList<>();
         User subordinate = null;
         if (0==respSign){//获取下级用户成功.
             User user=new User();
@@ -145,10 +152,14 @@ public class UserServiceImpl implements IUserService {
             while (iterator.hasNext()) {
                 subordinateNode = iterator.next();
                 subordinate=new User();
-                subordinate.setPhoneNumber(subordinateNode.findValue("juniorPhoneNumber").toString());
-                subordinate.setGrade(subordinateNode.findValue("grade").asInt());
-                subordinate.setName(subordinateNode.findValue("juniorName").toString());
-                subordinate.setLocation(subordinateNode.findValue("juniorLocation").toString());
+                System.err.println("juniorPhoneNumber toString : "+subordinateNode.path("juniorPhoneNumber").toString());
+                System.err.println("juniorPhoneNumber asText : "+subordinateNode.path("juniorPhoneNumber").asText());
+                System.err.println("juniorPhoneNumber textValue : "+subordinateNode.path("juniorPhoneNumber").textValue());
+                System.err.println("juniorGrade : "+subordinateNode.path("juniorGrade").asInt());
+                subordinate.setPhoneNumber(subordinateNode.path("juniorPhoneNumber").asText());
+                subordinate.setGrade(subordinateNode.path("juniorGrade").asInt());
+                subordinate.setName(subordinateNode.path("juniorName").asText());
+                subordinate.setLocation(subordinateNode.path("juniorLocation").asText());
                 subordinateList.add(subordinate);
             }
             user.setSubordinateList(subordinateList);
@@ -220,11 +231,11 @@ public class UserServiceImpl implements IUserService {
             subordinate = (User) obj;
             phoneNumber = subordinate.getPhoneNumber();
             grade = subordinate.getGrade();
-            if (grade>=minGrade){
+            if (grade<minGrade){
                 break;
             }
             subordinate = getUserWithSubordinate(phoneNumber, grade);
-            getSubordinateHierarchy(subordinate,minGrade);
+            subordinate = getSubordinateHierarchy(subordinate,minGrade);
             newSubordinateList.add(subordinate);
         }
         user.setSubordinateList(newSubordinateList);
@@ -234,9 +245,12 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Map addSubordinate(String ownerPhoneNumber, String juniorPhoneNumber, String juniorName, String juniorLocation, int grade) {
         reqSign=303;
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"juniorName\":\""+juniorName+"\",\"juniorLocation\":\""+juniorLocation+"\",\"grade\":\""+grade+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"juniorName\":\""+juniorName+"\",\"juniorLocation\":\""+juniorLocation+"\",\"grade\":"+grade+"}";
         rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
-        System.err.println(rawData);
+        if (LOG.isInfoEnabled()){
+            LOG.info("reqData : "+reqData);
+            LOG.info("rawData : "+rawData);
+        }
         resultMap=new HashMap();
         try {
             rootNode = objectMapper.readTree(rawData);
@@ -257,9 +271,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean cancleSubordinate(String ownerPhoneNumber, String juniorPhoneNumber, int grade) {
         reqSign=305;
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"grade\":\""+grade+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"grade\":"+grade+"}";
         rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
-        System.err.println(rawData);
+        if (LOG.isInfoEnabled()){
+            LOG.info("rawData : "+rawData);
+        }
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {

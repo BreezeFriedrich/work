@@ -49,36 +49,8 @@
 </head>
 <body>
 <!-- header -->
-<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><button id="sidebar-collapse" class="button-open" style=""></button></li>
-                <li class="nav-left"> <a href="#"> 设备管理 </a></li>
-                <li><a href="#">查询与统计</a></li>
-                <li ><a href="#" >房  态 </a></li>
-                <li class="active"><a href="#" >分级管理</a></li>
-                <!--
-                <li ><a href="#">设置</a></li>
-                  <li ><a href="#"><i class="inco-exit"></i>退出系统</a></li>
-                -->
-            </ul>
-            <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="dropdown profile_menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="resources/images/avatar2.jpg" />张三<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">设置</a></li>
-                        <li><a href="#">退出系统</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!--header  end-->
+<jsp:include page="/jsp/header.jsp"/>
+<!--header end-->
 
 <div id="cl-wrapper" class="fixed-menu">
 
@@ -99,17 +71,17 @@
                                 <form class="form-horizontal" role="form" method="post" action="user/addSubordinate.do">
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="juniorPhoneNumber" placeholder="用户名(phonenumber)">
+                                            <input type="text" class="form-control" name="juniorPhoneNumber" placeholder="用户名(phonenumber)">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="juniorName" placeholder="昵称">
+                                            <input type="text" class="form-control" name="juniorName" placeholder="昵称">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="juniorLocation" placeholder="地址">
+                                            <input type="text" class="form-control" name="juniorLocation" placeholder="地址">
                                         </div>
                                     </div>
                                     <div class="form-group" >
@@ -142,7 +114,7 @@
                             <td>萨法</td>
                             <td>南京市雨花台区</td>
                             <td class="text-center">
-                                <a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>
+                                <%--<a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>--%>
                                 <a class="label label-danger btn btn-danger btn-xs md-trigger" href="#"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
@@ -151,7 +123,7 @@
                             <td>欧科</td>
                             <td>南京市栖霞区</td>
                             <td class="text-center">
-                                <a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>
+                                <%--<a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>--%>
                                 <a class="label label-danger btn btn-danger btn-xs md-trigger" href="#"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
@@ -160,7 +132,7 @@
                             <td>梅花</td>
                             <td>南京市江宁区</td>
                             <td class="text-center">
-                                <a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>
+                                <%--<a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>--%>
                                 <a class="label label-danger btn btn-danger btn-xs md-trigger" href="#"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
@@ -242,7 +214,8 @@
                                     -->
                                     <div class="col-sm-12" >
                                         <button id="btn-cancleSubordinate" type="submit" class="btn btn-primary">确认删除</button>
-                                        <button class="btn btn-default  md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                        <%--<a id="btn-cancleSubordinate" onclick="cancleSubordinate();" class="btn btn-primary">确认删除</a>--%>
+                                        <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -298,27 +271,44 @@
 //    });
     $('.md-trigger:gt(0)').on('click',function(){
         var tds=$(this).closest('td').siblings();
-        juniorPhoneNumber=tds.eq(0);
-        juniorName=tds.eq(1);
-        juniorLocation=tds.eq(2);
+        juniorPhoneNumber=tds.eq(0).text();
+        juniorName=tds.eq(1).text();
+        juniorLocation=tds.eq(2).text();
         $('#reply-ticket2').niftyModal();
-        $('#btn-cancleSubordinate').on('click',function(){
-            $.ajax({
-                type:"POST",
-                url:projectPath+"/user/cancleSubordinate.do",
-                async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-                data:{"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation},
-                dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-
-                success:function(data,status,xhr){
-                    ajaxResult = data;
-                },
-                error:function(xhr,errorType,error){
-                    console.log('错误');
-                }
-            });
-        });
     });
+    function cancleSubordinate() {
+        console.log({"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation});
+        $.ajax({
+            type:"POST",
+            url:projectPath+"/user/cancleSubordinate.do",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:{"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation},
+            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+
+            success:function(data,status,xhr){
+                ajaxResult = data;
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误');
+            }
+        });
+    }
+//    $('#btn-cancleSubordinate').on('click',function(){
+//        $.ajax({
+//            type:"POST",
+//            url:projectPath+"/user/cancleSubordinate.do",
+//            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+//            data:{"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation},
+//            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+//
+//            success:function(data,status,xhr){
+//                ajaxResult = data;
+//            },
+//            error:function(xhr,errorType,error){
+//                console.log('错误');
+//            }
+//        });
+//    });
 
     $(document).ready(function(){
         //initialize the javascript
@@ -327,8 +317,8 @@
         /*Sparklines*/
         $(".spk1").sparkline([2,4,3,6,7,5,8,9,4,2,6,8,8,9,10], { type: 'bar', width: '80px', barColor: '#4A8CF7'});
         $(".spk2").sparkline([4,6,7,7,4,3,2,1,4,4 ,5,6,5], { type: 'discrete', width: '80', lineColor: '#4A8CF7',thresholdValue: 4,thresholdColor: '#ff0000'});
-        $(".spk4").sparkline([2,4,3,6,7,5,8,9,4,2,10,], { type: 'bar', width: '80px', height: '30px',barColor: '#EA6153'});
-        $(".spk5").sparkline([5,3,5,6,5,7,4,8,6,9,8,], { type: 'bar', width: '80px', height: '30px',barColor: '#4AA3DF'});
+        $(".spk4").sparkline([2,4,3,6,7,5,8,9,4,2,10], { type: 'bar', width: '80px', height: '30px',barColor: '#EA6153'});
+        $(".spk5").sparkline([5,3,5,6,5,7,4,8,6,9,8], { type: 'bar', width: '80px', height: '30px',barColor: '#4AA3DF'});
 
         $(".spk3").sparkline([5,6,7,9,9,5,3,2,2,4,6,7], {
             type: 'line',

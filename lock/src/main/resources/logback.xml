@@ -8,7 +8,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 <timestamp key="now" datePattern="yyyy-MM-dd HH:mm:ss"></timestamp>
 <contextName>lock</contextName>
 <!-- 定义日志的根目录 -->
-<property name="LOG_HOME" value="e:/workspace/logs" />
+<property name="LOG_HOME" value="e:/workspace/logs/lock" />
 <!-- 定义日志文件名称 -->
 <property name="appName" value="lock" />
 <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->

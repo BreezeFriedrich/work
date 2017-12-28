@@ -25,14 +25,16 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 public class LoginController {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(LoginController.class.getName());
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("LoginController");
 
     @Resource
     private IUserService userService;
 
     @RequestMapping("/login.do")
     public String login(HttpServletRequest request, Model model, @CookieValue(value="username",required=false) String cookie_username, @CookieValue(value="password",required=false) String cookie_password){
-        String viewName="house/house_city";
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/login.do -->>--");
+        }
         HttpSession session=request.getSession(true);//也可以直接作为handler方法的HttpSession类型的入参传入.
         String username=request.getParameter("username");
         String password=request.getParameter("password");
@@ -42,8 +44,10 @@ public class LoginController {
         if ("".equals(password)||null==password){
             password=cookie_password;
         }
-        LOG.info("username : "+username);System.out.println("username : "+username);
-        LOG.info("password : "+password);System.out.println("password : "+password);
+        LOG.info("username : "+username);
+        LOG.info("password : "+password);
+//        System.out.println("username : "+username);
+//        System.out.println("password : "+password);
         Map loginResultMap = userService.checkLogin(username,password);
         boolean isSuccess = false;
         if (0==(int)loginResultMap.get("result")){
@@ -60,8 +64,8 @@ public class LoginController {
             model.addAttribute("ownerName",ownerName);
             model.addAttribute("grade",grade);//初始10,添加了下级用户之后变为20,30,...
         }
-        User user=userService.getUserWithSubordinate(username,grade);
         /*
+        User user=userService.getUserWithSubordinate(username,grade);
         User userHierarchy=userService.getSubordinateHierarchy(user,10);
         model.addAttribute("userHierarchy",userHierarchy);
         if (grade>=30){
@@ -73,13 +77,36 @@ public class LoginController {
         }
         return "redirect:/jsp/error.jsp";
         */
-        return "house/house_city";
+        return "redirect:/user/redirect_userhierarchy.do";
+    }
+
+    @RequestMapping("/redirect_userhierarchy.do")
+    public String redirectUserHierarchy(HttpServletRequest request, Model model){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/redirect_userhierarchy.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String username= (String) session.getAttribute("username");
+        int grade= (int) session.getAttribute("grade");
+        User user=userService.getUserWithSubordinate(username,grade);
+        User userHierarchy=userService.getSubordinateHierarchy(user,10);
+        model.addAttribute("userHierarchy",userHierarchy);
+        if (grade>=30){
+            return "house/house_city";
+        }else if (grade>=20){
+            return "house/house_district";
+        }else if (grade>=10){
+            return "house/house_landlord";
+        }
+        return "redirect:/jsp/error.jsp";
     }
 
     @RequestMapping("/logout.do")
     @ResponseBody
     public void logout(HttpServletRequest request,HttpServletResponse response){
-        System.out.println("user/logout.do");
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/logout.do -->>--");
+        }
         //clear Cookie[]
         CookieUtil.delAllCookie(request,response);
 
@@ -89,6 +116,9 @@ public class LoginController {
     @RequestMapping("/addSubordinate.do")
     @ResponseBody
     public boolean addSubordinate(HttpServletRequest request,HttpServletResponse response){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/addSubordinate.do -->>--");
+        }
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int grade= (int) session.getAttribute("grade");
@@ -107,6 +137,9 @@ public class LoginController {
     @RequestMapping("/cancleSubordinate.do")
     @ResponseBody
     public boolean cancleSubordinate(HttpServletRequest request,HttpServletResponse response){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/cancleSubordinate.do -->>--");
+        }
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int grade= (int) session.getAttribute("grade");
@@ -116,31 +149,3 @@ public class LoginController {
         return resultBoolean;
     }
 }
-/*
-@Controller
-@SessionAttributes({"User","Y"})        //此处定义此Controller中将要创建和使用哪些session中的对象名
-public class UserController {
-    @Resource
-    private UserService userService;
-
-    @RequestMapping("user_login")
-    public String login(User user, ModelMap modelMap){
-        //modelMap自动与session对应，你在往modelmap中添加对应属性便是往session中添加属性（前提是你已经在@SessionAttributes注解中定义好）
-        User userTemp = this.userService.findByName(user.getName());
-        if((userTemp.getState() == 1) && (userTemp.getPassword().equals(user.getPassword())){
-            modelMap.addAttribute("User", userTemp);        //成功将userTemp存入session中
-            modelMap.addAttribute("Y",1);                   //成功将1存入session中
-            return "/user/index";
-        }else {
-            return "index";
-        }
-
-    @RequestMapping("user_logout")
-    public String logout(@ModelAttribute("User") User user, SessionStatus sessionStatus){
-        //@ModelAttribute("User")相当于将session中名为"User"的对象注入user对象中
-        //sessionStatus中的setComplete方法可以将session中的内容全部清空
-        sessionStatus.setComplete();
-        return "index";
-    }
-}
- */
