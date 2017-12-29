@@ -36,7 +36,7 @@
     <link href="resources/css/index.css" rel="stylesheet" />
 
     <!-- DateRange -->
-    <link rel="stylesheet" type="text/css" href="page/js/bootstrap.daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.daterangepicker/daterangepicker-bs3.css" />
 
     <!-- 弹出-->
     <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
@@ -1223,8 +1223,8 @@
 <script src="resources/plugin/jquery.min.js"></script>
 <script src="resources/plugin/jquery.js"></script>
 <script src="resources/plugin/jquery.select2/select2.min.js" type="text/javascript"></script>
-<script src="page/js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
-<script type="text/javascript" src="page/js/bootstrap.daterangepicker/moment.min.js"></script>
+<script src="resources/plugin/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
+<script type="text/javascript" src="resources/plugin/bootstrap.daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
@@ -1236,7 +1236,7 @@
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
-<script type="text/javascript" src="page/js/bootstrap.daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="resources/plugin/bootstrap.daterangepicker/daterangepicker.js"></script>
 
 <script src="js/jquery.contextmenu.r2.js"></script>
 <script>

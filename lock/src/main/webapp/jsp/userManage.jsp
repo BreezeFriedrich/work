@@ -34,9 +34,9 @@
     <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
     <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
     <%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
-    <script type="text/javascript" src="resources/js/FixedTable.js"></script>
-    <%--<script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>--%>
-    <%--<script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>--%>
+    <%--<script type="text/javascript" src="resources/js/FixedTable.js"></script>--%>
+    <script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>
+    <script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
         .fixed-table_body-wraper{}
@@ -68,7 +68,13 @@
                                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="content">
-                                <form class="form-horizontal" role="form" method="post" action="user/addSubordinate.do">
+                                <%--表单数据提交方式一、配合ajax提交表单数据,页面不跳转仅刷新js.--%>
+                                <%--
+                                <iframe id="id_iframe" name="iframe_hideForFormPost" style="display:none;"></iframe>
+                                <form class="form-horizontal" id="form-addSubordinate" method="post" action="" target="iframe_hideForFormPost">
+                                --%>
+                                <%--表单数据提交方式二、正宗的form提交,页面必定跳转,handler需要返回view.--%>
+                                <form class="form-horizontal" id="form-addSubordinate" method="post" action="user/addSubordinateReturnView.do">
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control" name="juniorPhoneNumber" placeholder="用户名(phonenumber)">
@@ -96,26 +102,27 @@
                     </div>
                 </div>
                 <div class="md-overlay"></div>
-                <!-- 添加下级用户  end-->
+                <!-- 添加下级用户 end-->
 
                 <div class="content">
                     <table>
                         <thead>
                         <tr>
-                            <th style="width:25%;">手机号码</th>
+                            <th style="width:30%;">手机号码</th>
                             <th>昵称</th>
                             <th>地址</th>
                             <th class="text-center">操作</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody">
+                        <%--
                         <tr>
                             <td style="width:30%;">17253651489</td>
                             <td>萨法</td>
                             <td>南京市雨花台区</td>
                             <td class="text-center">
-                                <%--<a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>--%>
-                                <a class="label label-danger btn btn-danger btn-xs md-trigger" href="#"><i class="fa fa-times"></i></a>
+                                <a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>
+                                <a class="label label-danger btn btn-danger btn-xs md-trigger"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -123,8 +130,8 @@
                             <td>欧科</td>
                             <td>南京市栖霞区</td>
                             <td class="text-center">
-                                <%--<a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>--%>
-                                <a class="label label-danger btn btn-danger btn-xs md-trigger" href="#"><i class="fa fa-times"></i></a>
+                                <a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>
+                                <a class="label label-danger btn btn-danger btn-xs md-trigger"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -132,10 +139,11 @@
                             <td>梅花</td>
                             <td>南京市江宁区</td>
                             <td class="text-center">
-                                <%--<a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>--%>
+                                <a class="label  btn btn-primary btn-xs btn-rad" href="#"><i class="fa fa-pencil"></i></a>
                                 <a class="label label-danger btn btn-danger btn-xs md-trigger" href="#"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
+                        --%>
                         </tbody>
                     </table>
 
@@ -213,7 +221,7 @@
                                     </form>
                                     -->
                                     <div class="col-sm-12" >
-                                        <button id="btn-cancleSubordinate" type="submit" class="btn btn-primary">确认删除</button>
+                                        <button id="btn-cancleSubordinate" class="btn btn-primary">确认删除</button>
                                         <%--<a id="btn-cancleSubordinate" onclick="cancleSubordinate();" class="btn btn-primary">确认删除</a>--%>
                                         <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                     </div>
@@ -258,7 +266,6 @@
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
-<!-- Bootstrap core JavaScript ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript">
     var pathName=window.document.location.pathname;
@@ -266,6 +273,32 @@
     var juniorPhoneNumber;
     var juniorName;
     var juniorLocation;
+    var userHierarchy;
+
+    //表单数据提交方式一、ajax提交表单数据
+    /*
+    $('#form-addSubordinate').submit(function () {
+        $.ajax({
+            type:"POST",
+            url:"user/addSubordinate.do",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:$('#form-addSubordinate').serialize(),
+            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(data,status,xhr){
+                if(true==data){
+                    alert("操作成功");
+                }else {
+                    alert("操作失败");
+                }
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误');
+            }
+        });
+    });
+    */
+
+    //添加下级用户的弹出框,js方式实现弹出
 //    $('.md-trigger:first').on('click',function(){
 //        $('#reply-ticket').niftyModal();
 //    });
@@ -276,15 +309,15 @@
         juniorLocation=tds.eq(2).text();
         $('#reply-ticket2').niftyModal();
     });
-    function cancleSubordinate() {
+    $('#btn-cancleSubordinate').on('click',function(){
+        console.log("projectPath : "+projectPath);
         console.log({"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation});
         $.ajax({
             type:"POST",
-            url:projectPath+"/user/cancleSubordinate.do",
+            url:"user/cancleSubordinate.do",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation},
             dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-
             success:function(data,status,xhr){
                 ajaxResult = data;
             },
@@ -292,25 +325,47 @@
                 console.log('错误');
             }
         });
+    });
+
+    function completeTable() {
+        $.ajax({
+            type:"POST",
+            url:"user/getUserHierarchy.do",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:{},
+            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(data,status,xhr){
+                userHierarchy = data;
+                console.log('data : '+data);
+                createTbody(userHierarchy);
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误');
+            }
+        });
     }
-//    $('#btn-cancleSubordinate').on('click',function(){
-//        $.ajax({
-//            type:"POST",
-//            url:projectPath+"/user/cancleSubordinate.do",
-//            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-//            data:{"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation},
-//            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-//
-//            success:function(data,status,xhr){
-//                ajaxResult = data;
-//            },
-//            error:function(xhr,errorType,error){
-//                console.log('错误');
-//            }
-//        });
-//    });
+    function createTbody(data) {
+        var subordinates=data.subordinateList;
+        //第一种：动态创建表格的方式，使用拼接html的方式 （推荐）
+        //清空所有的子节点
+        $("#tbody").empty();
+        var html = "";
+        for( var i = 0; i < subordinates.length; i++ ) {
+            html += '<tr>';
+            html +=     '<td style="width:30%;">'+subordinates[i].phoneNumber+'</td>';
+            html +=     '<td>'+subordinates[i].name+'</td>';
+            html +=     '<td>'+subordinates[i].location+'</td>';
+            html +=     '<td class="text-center">';
+            html +=         '<a class="label label-danger btn btn-danger btn-xs md-trigger"><i class="fa fa-times"></i></a>';
+            html +=     '</td>';
+            html += '</tr>';
+        }
+        $("#tbody").html(html);
+    }
 
     $(document).ready(function(){
+        completeTable();
+
         //initialize the javascript
         App.init();
         //App.dashBoard();

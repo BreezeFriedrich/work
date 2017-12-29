@@ -169,6 +169,50 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public User getUserWithSubordinate(User user) {
+        String phoneNumber=user.getPhoneNumber();
+        int grade=user.getGrade();
+        reqSign=304;
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+phoneNumber+"\",\"grade\":"+grade+"}";
+        rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
+        if (LOG.isInfoEnabled()){
+            LOG.info("reqData : "+reqData);
+            LOG.info("rawData : "+rawData);
+        }
+        resultMap=new HashMap();
+        try {
+            rootNode = objectMapper.readTree(rawData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        respSign=rootNode.path("result").asInt();
+        LOG.info("respSign:"+String.valueOf(respSign));
+        List<User> subordinateList = new ArrayList<>();
+        User subordinate = null;
+        if (0==respSign){//获取下级用户成功.
+            JsonNode subordinateListNode=rootNode.path("juniorList");
+
+            Iterator<JsonNode> iterator = subordinateListNode.elements();
+            JsonNode subordinateNode=null;
+            while (iterator.hasNext()) {
+                subordinateNode = iterator.next();
+                subordinate=new User();
+                System.err.println("juniorPhoneNumber toString : "+subordinateNode.path("juniorPhoneNumber").toString());
+                System.err.println("juniorPhoneNumber asText : "+subordinateNode.path("juniorPhoneNumber").asText());
+                System.err.println("juniorPhoneNumber textValue : "+subordinateNode.path("juniorPhoneNumber").textValue());
+                subordinate.setPhoneNumber(subordinateNode.path("juniorPhoneNumber").asText());
+                subordinate.setGrade(subordinateNode.path("juniorGrade").asInt());
+                subordinate.setName(subordinateNode.path("juniorName").asText());
+                subordinate.setLocation(subordinateNode.path("juniorLocation").asText());
+                subordinateList.add(subordinate);
+            }
+            user.setSubordinateList(subordinateList);
+            return user;
+        }
+        return null;
+    }
+
+    @Override
     public User getUserWithSubordinateHierarchy(String phoneNumber, int grade ,int levels) {
 //        User user=getUserWithSubordinate(phoneNumber,grade);
 //        User resultUser;
@@ -208,20 +252,6 @@ public class UserServiceImpl implements IUserService {
     }
 
     public User getSubordinateHierarchy(User user,int minGrade) {
-//        List subordinateList=user.getSubordinateList();
-//        subordinateList.clear();
-//        //lvl=0
-//        for (Object obj : subordinateList){
-//            //lvl=1
-//            User subordinate= (User) obj;
-//            if (subordinate.getGrade()>minGrade){
-//                break;
-//            }
-//            subordinate=getUserWithSubordinate(subordinate.getPhoneNumber(),subordinate.getGrade());
-////            subordinate=getSubordinateHierarchy(subordinate,juniorGrade);
-//            subordinateList.add(subordinate);
-//        }
-
         String phoneNumber;
         int grade;
         List subordinateList = user.getSubordinateList();
@@ -234,7 +264,7 @@ public class UserServiceImpl implements IUserService {
             if (grade<minGrade){
                 break;
             }
-            subordinate = getUserWithSubordinate(phoneNumber, grade);
+            subordinate = getUserWithSubordinate(subordinate);
             subordinate = getSubordinateHierarchy(subordinate,minGrade);
             newSubordinateList.add(subordinate);
         }

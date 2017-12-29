@@ -77,18 +77,18 @@ public class LoginController {
         }
         return "redirect:/jsp/error.jsp";
         */
-        return "redirect:/user/redirect_userhierarchy.do";
+        return "redirect:/user/redirectHouseStatus.do";
     }
 
-    @RequestMapping("/redirect_userhierarchy.do")
+    @RequestMapping("/redirectHouseStatus.do")
     public String redirectUserHierarchy(HttpServletRequest request, Model model){
         if (LOG.isInfoEnabled()){
-            LOG.info("-->>-- user/redirect_userhierarchy.do -->>--");
+            LOG.info("-->>-- user/redirectHouseStatus.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String username= (String) session.getAttribute("username");
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int grade= (int) session.getAttribute("grade");
-        User user=userService.getUserWithSubordinate(username,grade);
+        User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
         User userHierarchy=userService.getSubordinateHierarchy(user,10);
         model.addAttribute("userHierarchy",userHierarchy);
         if (grade>=30){
@@ -99,6 +99,20 @@ public class LoginController {
             return "house/house_landlord";
         }
         return "redirect:/jsp/error.jsp";
+    }
+
+    @RequestMapping("/getUserHierarchy.do")
+    @ResponseBody
+    public User getUserHierarchy(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/getUserHierarchy.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+        User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
+        User userHierarchy=userService.getSubordinateHierarchy(user,10);
+        return userHierarchy;
     }
 
     @RequestMapping("/logout.do")
@@ -113,6 +127,42 @@ public class LoginController {
         request.getSession().invalidate();
     }
 
+    /**
+     * 前台form提交,必然要刷新页面,handler return视图.
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/addSubordinateReturnView.do")
+    public String addSubordinateReturnView(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/addSubordinateReturnView.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+        String juniorPhoneNumber=request.getParameter("juniorPhoneNumber");
+        String juniorName=request.getParameter("juniorName");
+        String juniorLocation=request.getParameter("juniorLocation");
+        LOG.info("ownerPhoneNumber : "+ownerPhoneNumber);
+        LOG.info("grade : "+grade);
+        LOG.info("juniorPhoneNumber : "+juniorPhoneNumber+" ; juniorName : "+juniorName+" ; juniorLocation : "+juniorLocation);
+        Map resultMap=userService.addSubordinate(ownerPhoneNumber,juniorPhoneNumber,juniorName,juniorLocation,grade);
+        int result=0;
+        result= (int) resultMap.get("result");
+        if (0==result){
+            LOG.info("操作成功");
+        }
+        return "userManage";
+    }
+
+    /**
+     * 前台不用form提交,用ajax提交,handler return数据.
+     *
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping("/addSubordinate.do")
     @ResponseBody
     public boolean addSubordinate(HttpServletRequest request,HttpServletResponse response){

@@ -14,10 +14,18 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><button id="sidebar-collapse" class="button-open" style=""></button></li>
-                <li class="nav-left"> <a href="#"> 设备管理 </a></li>
-                <li><a href="#">查询与统计</a></li>
-                <li class="active"><a href="#" >房  态</a></li>
-                <li ><a href="#" >分级管理</a></li>
+                <li class="nav-left">
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/device/device_manage.jsp');">设备管理</a>
+                </li>
+                <li>
+                    <a href="#">查询与统计</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/house/house_city.jsp');">房  态</a>
+                </li>
+                <li >
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/redirectHouseStatus.do');">分级管理</a>
+                </li>
                 <!--
                 <li><a href="#">设置</a></li>
                 <li><a href="#"><i class="inco-exit"></i>退出系统</a></li>

@@ -67,8 +67,45 @@
 </head>
 <body onload="showLeftTime()">
 <!-- header -->
-<jsp:include page="/jsp/header.jsp"/>
-<!--header end-->
+<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><button id="sidebar-collapse" class="button-open" style=""></button></li>
+                <li class="nav-left">
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/device/device_manage.jsp');">设备管理</a>
+                </li>
+                <li>
+                    <a href="#">查询与统计</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/house/house_city.jsp');">房  态</a>
+                </li>
+                <li >
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/redirectHouseStatus');">分级管理</a>
+                </li>
+                <!--
+                <li><a href="#">设置</a></li>
+                <li><a href="#"><i class="inco-exit"></i>退出系统</a></li>
+                -->
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right user-nav">
+                <li class="dropdown profile_menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="resources/images/avatar2.jpg" />张三<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/userManage.jsp');">设置</a></li>
+                        <li><a href="#">退出系统</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--header  end-->
 
 <div id="cl-wrapper" class="fixed-menu">
     <div class="cl-sidebar" data-position="right" data-step="1" data-intro="<strong>Fixed Sidebar</strong> <br/> It adjust to your needs." >
@@ -106,8 +143,8 @@
 
         <div class="fixed-table-box row-col-fixed" >
             <!-- 表头 start -->
-            <div class="fixed-table_header-wraper" style="margin: 0 15px 0 0;">
-                <table class="fixed-table_header table-butstyle" cellspacing="0" cellpadding="0" border="0">
+            <div class="fixed-table_header-wraper" style="margin: 0 15px 0  0 " >
+                <table class="fixed-table_header table-butstyle" cellspacing="0" cellpadding="0" border="0" >
                     <thead>
                     <tr>
                         <th   class="table-width3 "><div class="table-time table-cell table-header-hight58 table-width3  table-butstyle">当前日期：2017-11-09</div></th>
