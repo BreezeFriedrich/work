@@ -15,16 +15,17 @@
             <ul class="nav navbar-nav">
                 <li><button id="sidebar-collapse" class="button-open" style=""></button></li>
                 <li class="nav-left">
-                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/device/device_manage.jsp');">设备管理</a>
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/deviceManage.jsp');">设备管理</a>
                 </li>
                 <li>
                     <a href="#">查询与统计</a>
                 </li>
-                <li class="active">
-                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/house/house_city.jsp');">房  态</a>
+                <li>
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/dispatcherHouseStatus.do');">房  态</a>
+                    <%--<a href="javascript:void(0);" onclick="javascript:navToHouseStatus();">房  态</a>--%>
                 </li>
-                <li >
-                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/redirectHouseStatus.do');">分级管理</a>
+                <li>
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/dispatcherJuniorSetting.do');">分级管理</a>
                 </li>
                 <!--
                 <li><a href="#">设置</a></li>
@@ -45,3 +46,37 @@
     </div>
 </div>
 <!--header end-->
+<!--
+<script>
+    var ownerPhoneNumber;
+    var grade;
+
+    function navToHouseStatus() {
+        if (grade>=30){
+            window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/house/house_city.jsp');
+        }else if (grade>=20){
+            window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/house/house_district.jsp');
+        }else if (grade>=10){
+            window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/house/house_landlord.jsp');
+        }
+    }
+    $(function () {
+        $.ajax({
+            type:"GET",
+            url:"user/getUserFromSession.do",
+            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data:{},
+            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(data,status,xhr){
+                ownerPhoneNumber=data.phoneNumber;
+                grade=data.grade;
+                console.log('{ ownerPhoneNumber:'+ownerPhoneNumber+' ; grade:'+grade+' }');
+            },
+            error:function(xhr,errorType,error){
+                console.log('会话过期,请重新登录');
+                window.location.href=('user/login.do');
+            }
+        });
+    })
+</script>
+-->

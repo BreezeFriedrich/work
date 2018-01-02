@@ -27,6 +27,36 @@ public class GetNetworkTime {
     private static String webUrl5 = "http://www.360.cn";//360
     private static String webUrl6 = "http://www.beijing-time.org";//beijing-time
 
+    private static String NT_ALI="http://time1.pool.aliyun.com";//阿里云提供的公共NTP服务
+    /*
+    time1.aliyun.com
+    time2.aliyun.com
+    time3.aliyun.com
+    time4.aliyun.com
+    time5.aliyun.com
+    time6.aliyun.com
+    time7.aliyun.com
+     */
+
+    private static String NT_APPLE="http://time1.apple.com";
+    /*
+    time1.apple.com
+    time2.apple.com
+    time3.apple.com
+    time4.apple.com
+    time5.apple.com
+    time6.apple.com
+    time7.apple.com
+     */
+
+    private static String NT_GOOGLE="http://time1.google.com";
+    /*
+    time1.google.com
+    time2.google.com
+    time3.google.com
+    time4.google.com
+     */
+
     /**
      * 获取网络时间
      * 与时间权威网站建立http连接，返回连接的时间
@@ -53,5 +83,9 @@ public class GetNetworkTime {
 
     public static String getWebsiteDatetimeFromAcademy(){
         return getWebsiteDatetime(webUrl4);
+    }
+
+    public static String getWebsiteDatetimeFromAli(){
+        return getWebsiteDatetime(NT_ALI);
     }
 }

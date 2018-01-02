@@ -77,13 +77,23 @@ public class LoginController {
         }
         return "redirect:/jsp/error.jsp";
         */
-        return "redirect:/user/redirectHouseStatus.do";
+        return "redirect:/user/dispatcherHouseStatus.do";
     }
 
-    @RequestMapping("/redirectHouseStatus.do")
-    public String redirectUserHierarchy(HttpServletRequest request, Model model){
+    /*
+    @RequestMapping("/dispatcherDeviceManage.do")
+    public String dispatcherDeviceManage(HttpServletRequest request, Model model){
         if (LOG.isInfoEnabled()){
-            LOG.info("-->>-- user/redirectHouseStatus.do -->>--");
+            LOG.info("-->>-- user/dispatcherDeviceManage.do -->>--");
+        }
+        return "deviceManage";
+    }
+    */
+
+    @RequestMapping("/dispatcherHouseStatus.do")
+    public String dispatcherHouseStatus(HttpServletRequest request, Model model){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/dispatcherHouseStatus.do -->>--");
         }
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
@@ -99,6 +109,42 @@ public class LoginController {
             return "house/house_landlord";
         }
         return "redirect:/jsp/error.jsp";
+    }
+
+    @RequestMapping("/dispatcherJuniorSetting.do")
+    public String dispatcherJuniorSetting(HttpServletRequest request, Model model){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/dispatcherJuniorSetting.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+        User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
+        User userHierarchy=userService.getSubordinateHierarchy(user,10);
+        model.addAttribute("userHierarchy",userHierarchy);
+        if (grade>=30){
+            return "set/set_citySetDistrict";
+        }else if (grade>=20){
+            return "set/set_districtSetLandlord";
+        }else if (grade>=10){
+            return "set/set_landLordSetHouse";
+        }
+        return "redirect:/jsp/error.jsp";
+    }
+
+    @RequestMapping("/getUserFromSession.do")
+    @ResponseBody
+    public User getUserFromSession(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/getUserFromSession.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+        User user=new User();
+        user.setPhoneNumber(ownerPhoneNumber);
+        user.setGrade(grade);
+        return user;
     }
 
     @RequestMapping("/getUserHierarchy.do")

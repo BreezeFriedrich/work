@@ -1032,6 +1032,9 @@
     $(document).ready(function(){
         //initialize the javascript
         App.init();
+
+        $(".navbar-collapse ul:first li:eq(3)").addClass("active");
+
         //App.dashBoard();
         /*Sparklines*/
 //        $(".spk1").sparkline([2,4,3,6,7,5,8,9,4,2,6,8,8,9,10], { type: 'bar', width: '80px', barColor: '#4A8CF7'});

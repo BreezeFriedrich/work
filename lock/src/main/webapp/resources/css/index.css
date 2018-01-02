@@ -1,0 +1,116 @@
+/* CSS Document */
+
+/* header */
+.button-open{ width:25px; height:25px; background:url(../images/Open.png) no-repeat; border:0px; margin:10px 0 0 0}
+.inco-exit{ width:20px; height:20px; background:url(../images/exit.png)  no-repeat; display:block; float:left}
+/*header  end*/
+
+
+/*lefter */
+.inco-ctiy{ width:25px; height:25px; background:url(../images/inco-city.png)  no-repeat; display:block; float:left}
+.inco-map{ width:25px; height:25px; background:url(../images/inco-map.png)  no-repeat; display:block; float:left}
+.cl-vnavigation .selected{ color:#43a0f2}
+
+.nav-left{ padding-left:40px}
+
+/*lefter  end*/
+
+
+
+/*表格  */
+.table-odyssey{ padding:20px !important; height: 100%;}
+.table-header{ border-top:1px solid #c8c8c8;   min-height:100px; font-size:14px; color:#333; float:left; position:absolute; left:20px }
+
+.table-header .table-time {width:316px;  float:left ; }
+.table-odyssey  .table-butstyle{-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none; -moz-border-top-colors: none; background-color: #f8f8f8; background-image: -moz-linear-gradient(center top, #ffffff 50%, #f8f8f8 100%); background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f8f8f8)); /* Chrome, Safari 4+ */background-image: -webkit-linear-gradient(top, #ffffff, #f8f8f8); /* Chrome 10-25, iOS 5+, Safari 5.1+ */ background-image: -o-linear-gradient(top, #ffffff, #f8f8f8);  /* Opera 11.10-12.00 */ background-image: linear-gradient(to bottom, #ffffff 50%, #f8f8f8 100%);  cursor: pointer; transition: border-color 0.21s ease-out 0s;}
+
+
+.table-odyssey .table-area{ float:left}
+.table-odyssey .table-owner{ float:left}
+.table-odyssey .table-addresses{ float:left}
+.table-odyssey .square{ border-left:1px solid #c8c8c8;border-bottom:1px solid #c8c8c8;}
+
+.table-odyssey .table-content0{ position:absolute; left:336px; right:20px; overflow-x:auto ; cursor:pointer }
+.table-odyssey .table-content{ width:auto; min-height:100px; font-size:14px; color:#333;display:inline-block;*display:inline; *zoom:1; }
+.table-odyssey .table-content .table-column{ float:left; width:141px;}
+
+.table-odyssey .table-content .cd{ background:#fff}
+
+.table-width1{ width:186px; text-align:center}
+.table-width11{ width:196px; text-align:center}
+
+.table-width2{ width:190px; text-align:center}
+.table-width22{ width:211px; text-align:center}
+
+.table-width3{ width:286px; text-align:center}
+.table-width32{ width:317px; text-align:center}
+.table-width105{ width:105px; text-align:center}
+.table-width190{ width:206px; text-align:center}
+.table-width140{ width:140px; text-align:center; overflow: hidden; }
+.table-header-hight58{ height:58px; line-height:58px}
+
+
+
+.table-hight1{ height:44px; line-height:44px}
+.table-hight2{ height:88px; line-height:88px}
+.table-hight3{ height:132px; line-height:132px}
+.table-hight4{ height:176px; line-height:176px}
+.table-hight5{ height:220px; line-height:220px}
+.table-hight6{ height:264px; line-height:264px}
+.table-hight7{ height:308px; line-height:308px}
+.table-hight8{ height:352px; line-height:352px}
+.table-hight9{ height:396px; line-height:396px}
+.table-hight10{ height:440px; line-height:440px}
+.table-hight11{ height:484px; line-height:484px}
+.table-hight12{ height:528px; line-height:528px}
+
+
+
+.fixed-table_body .cd-select{ background:#fcad37  !important; color:#fff; font-size: 14px;}
+.fixed-table_body .cd-booked{ background:#76bd4c !important ; color:#fff; font-size: 14px;}
+
+
+
+.tc-table{ border: 1px solid #dadada; border-bottom: 0px}
+.tc-table .tc-table-th{ line-height: 43px; border-bottom: 1px solid #dadada; height: 43px;}
+.tc-table .tc-table-td{ line-height: 43px; border-bottom: 1px solid #dadada; height: 43px;}
+.tc-table .tc-table-td2{ line-height: 43px; border-bottom: 1px solid #dadada; background: #f8f8f8; height: 43px;}
+.pag-left{ float: right; clear: both; padding: 18px 0}
+
+
+.rightclick{ background: #9ad8ef }
+.contextMenu{ width: 142px ;} 
+.contextMenu ul{ border: 0px ; padding: 0px !important; margin: 0px !important}
+.contextMenu ul li{ border: 0px; padding: 0px !important; margin: 0px !important}
+.rightclickan{width: 142px !important; margin: 0px !important} 
+
+
+
+
+/*表格  end */
+
+.current-date{ width:160px; float:left; padding:0 0 0 3px}
+.current-date  .time3{ margin:0px}
+.date-selection{ width:40px; height:40px; float:right; margin:10px 5px 0 0}
+.date-selection .date-selection-span{ border-radius:5px; -webkit-border-radius:5px;-moz-border-radius:5px; padding:0px !important}
+.glyphicon-th:before{ content:""}
+.date-selection-img{width:40px !important ; display:block; height:40px !important; background:url(../images/time.png) no-repeat; padding:0px !important}
+
+.footer{ position:absolute; height:38px; line-height:38px; bottom:0px; font-size:12px; text-align:left; background:#edebeb; left:0px; right:0px; padding:0 0 0 20px}
+
+
+.btn-dlan{ position: absolute; left: 50%; margin:0 0 0 -35px}
+
+.table0-top{ margin-top: 30px !important;}
+.table0{margin: 0 auto; float: inherit}
+
+.table1{margin: 0px auto; float: inherit; padding:0 0 50px 0}
+
+.inco-lb{float: left; margin: 8px 0 0 0}
+.gateway-table{  }
+.gateway-table th{ padding: 5px; font-size: 14px; font-weight: bold;border:  1px solid #dadada; text-align: center}
+.gateway-table td{ padding: 7px 8px; border: 0px;border:  1px solid #dadada}
+
+
+
+.line-heightin{ line-height:inherit}

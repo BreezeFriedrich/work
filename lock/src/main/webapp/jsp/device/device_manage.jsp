@@ -22,7 +22,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="page/css/font-awesome.4.6.0.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.4.6.0.css">
     <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
 
@@ -1235,10 +1235,9 @@
 <script src="resources/plugin/jquery.ui/jquery-ui.js" type="text/javascript"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-
 <script type="text/javascript" src="resources/plugin/bootstrap.daterangepicker/daterangepicker.js"></script>
 
-<script src="js/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript" src="resources/js/jquery.contextmenu.r2.js"></script>
 <script>
     //所有class为demo1的span标签都会绑定此右键菜单
     $('div.rightclick').contextMenu('myMenu1',{
