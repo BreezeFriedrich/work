@@ -7,12 +7,12 @@ import java.util.List;
  * @version 1.0.0.0 2017-12-22 15:22 admin
  * @since JDK1.7
  */
-public class User {
+public class User<X> {
     private String phoneNumber;
     private int grade;
     private String name;
     private String location;
-    private List<User> subordinateList;
+    private List<X> subordinateList;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -46,11 +46,11 @@ public class User {
         this.location = location;
     }
 
-    public List<User> getSubordinateList() {
+    public List<X> getSubordinateList() {
         return subordinateList;
     }
 
-    public void setSubordinateList(List<User> subordinateList) {
+    public void setSubordinateList(List<X> subordinateList) {
         this.subordinateList = subordinateList;
     }
 }

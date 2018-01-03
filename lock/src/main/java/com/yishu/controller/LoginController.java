@@ -161,6 +161,22 @@ public class LoginController {
         return userHierarchy;
     }
 
+    @RequestMapping("/getSubordinateHierarchyTillLock.do")
+    @ResponseBody
+    public User getSubordinateHierarchyTillLock(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- user/getSubordinateHierarchyTillLock.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        int grade= (int) session.getAttribute("grade");
+        String ownerPhoneNumber="18255683932";
+        int grade=20;
+        User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
+        User userHierarchyTillLock=userService.getSubordinateHierarchyTillLock(user);
+        return userHierarchyTillLock;
+    }
+
     @RequestMapping("/logout.do")
     @ResponseBody
     public void logout(HttpServletRequest request,HttpServletResponse response){

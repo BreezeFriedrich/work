@@ -16,6 +16,7 @@ public interface IUserService {
 
     public User getUserWithSubordinateHierarchy(String phoneNumber,int grade,int juniorGrade);
     public User getSubordinateHierarchy(User user,int minGrade);
+    public User getSubordinateHierarchyTillLock(User user);
 
     public Map addSubordinate(String ownerPhoneNumber,String juniorPhoneNumber,String juniorName,String juniorLocation,int grade);
     public boolean cancleSubordinate(String ownerPhoneNumber,String juniorPhoneNumber,int grade);

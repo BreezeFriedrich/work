@@ -55,7 +55,6 @@ public class ManageServiceImpl implements ManageService {
 		String result= HttpUtil.postData(data);
 		System.out.println("addJunior data" +data);
 		System.out.println("addJunior result" +result);
-
 		return result;
 	}
 
@@ -146,12 +145,6 @@ public class ManageServiceImpl implements ManageService {
 		return result;
 	}
 
-
-
-
-
-
-
 	/**
 	 * 把Date转换成timetag
 	 * @param date
@@ -163,7 +156,6 @@ public class ManageServiceImpl implements ManageService {
 		timetag=sdf.format(date);
 		return timetag;
 	}
-
 
 	/**
 	 * 删除网关
@@ -194,7 +186,6 @@ public class ManageServiceImpl implements ManageService {
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayLocation+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
 		String result= HttpUtil.postData(data);
 		return result;
-
 	}
 
 	/**
@@ -212,7 +203,6 @@ public class ManageServiceImpl implements ManageService {
 		System.out.println("ID cardNumb:  "+cardNumb);
 		System.out.println("ID serviceNumb:  "+serviceNumb);
 		System.out.println("ID lockCode:  "+lockCode);
-
 		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"cardNumb\":\""+cardNumb+"\",\"timetag\":\""+timetag+"\"}";
 		System.out.println("delIDAuthData:  "+data);
 		String result= HttpUtil.postData(data);
@@ -249,7 +239,6 @@ public class ManageServiceImpl implements ManageService {
 		return result;
 	}
 
-
 	public String doPwdAuth(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime) {
 		int sign=21;
 		String timetag=getTimetag(new Date());
@@ -271,8 +260,7 @@ public class ManageServiceImpl implements ManageService {
 		return serviceNumb;
 	}
 
-
-	public static   void main(String args[]){
+	public static void main(String args[]){
 		ManageServiceImpl mm=new ManageServiceImpl();
 		mm.delLock("13998892002","12456");
 	}

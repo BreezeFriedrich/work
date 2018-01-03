@@ -114,7 +114,7 @@
             </a>
             <a class="tab-item external" href="jsp/alert.jsp">
                 <span class="icon icon-phone"></span>
-                <span class="tab-label">告警<span class="badge" style="vertical-align: -50%;">23</span></span>
+                <span class="tab-label">告警<span class="badge" style="vertical-align: -50%;"></span></span>
             </a>
             <a class="tab-item external" href="jsp/setting.jsp">
                 <span class="icon icon-settings"></span>

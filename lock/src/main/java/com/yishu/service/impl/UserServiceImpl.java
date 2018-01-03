@@ -3,12 +3,16 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yishu.pojo.Device;
+import com.yishu.pojo.Lock;
 import com.yishu.pojo.User;
+import com.yishu.service.IDeviceService;
 import com.yishu.service.IUserService;
 import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,6 +26,8 @@ import java.util.*;
 @Service("userService")
 public class UserServiceImpl implements IUserService {
     private static final Logger LOG = LoggerFactory.getLogger("UserServiceImpl");
+    @Autowired
+    private IDeviceService deviceService;
 
     String timetag;
     /**
@@ -269,6 +275,61 @@ public class UserServiceImpl implements IUserService {
             newSubordinateList.add(subordinate);
         }
         user.setSubordinateList(newSubordinateList);
+        return user;
+    }
+
+    @Override
+    public User getSubordinateHierarchyTillLock(User user) {
+        String phoneNumber;
+        int grade;
+        phoneNumber=user.getPhoneNumber();
+        grade=user.getGrade();
+        User userHierarchy=getSubordinateHierarchy(user,10);
+        List subordinates=userHierarchy.getSubordinateList();
+        User subordinate=null;
+
+        List<Lock> lockList;
+        Device device;
+//        Map landLordMapLock=new HashMap();
+        if (30==grade){
+            for (Object objX : subordinates) {
+                subordinate = (User) objX;//subordinate.grade==20
+                List subordinateList_10=subordinate.getSubordinateList();
+                for (Object objY : subordinateList_10) {
+                    subordinate = (User) objY;
+                    phoneNumber = subordinate.getPhoneNumber();
+                    List deviceList=deviceService.getDeviceInfo(phoneNumber);
+                    lockList=new ArrayList<>();
+                    for (Object objZ : deviceList){
+                        device= (Device) objZ;
+                        lockList.addAll(device.getLockLists());
+                    }
+                    subordinate.setSubordinateList(lockList);
+                }
+            }
+        }
+        if (20==grade){
+            for (Object objX : subordinates) {
+                subordinate = (User) objX;
+                phoneNumber = subordinate.getPhoneNumber();
+                List deviceList=deviceService.getDeviceInfo(phoneNumber);
+                lockList=new ArrayList<>();
+                for (Object objY : deviceList){
+                    device= (Device) objY;
+                    lockList.addAll(device.getLockLists());
+                }
+                subordinate.setSubordinateList(lockList);
+            }
+        }
+        if (10==grade){
+            List deviceList=deviceService.getDeviceInfo(phoneNumber);
+            lockList=new ArrayList<>();
+            for (Object objY : deviceList){
+                device= (Device) objY;
+                lockList.addAll(device.getLockLists());
+            }
+            subordinate.setSubordinateList(lockList);
+        }
         return user;
     }
 

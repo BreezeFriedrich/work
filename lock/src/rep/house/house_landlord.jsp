@@ -95,21 +95,17 @@
                 <table class="fixed-table_header table-butstyle" cellspacing="0" cellpadding="0" border="0">
                     <thead>
                     <tr>
-                        <th class="table-width1 " data-fixed="true">
-                            <div class="table-time table-width1  table-cell table-header-hight58   table-butstyle">
-                                当前日期：2017-11-09
-                            </div>
+                        <th class="table-width1" data-fixed="true">
+                            <div class="table-time table-width1 table-cell table-header-hight58 table-butstyle">当前日期：2017-11-09</div>
                         </th>
-                        <th class="table-width140  table-butstyle" data-fixed>
+                        <th class="table-width140 table-butstyle" data-fixed>
                             <div class="rq  table-header-hight58 table-cell table-width140 table-butstyle">11-01</div>
                         </th>
                         <th class="table-width140 table-butstyle" data-fixed>
                             <div class="rq  table-header-hight58 table-cell table-width140 table-butstyle">11-02</div>
                         </th>
                         <th class="table-width140 table-butstyle" data-fixed>
-                            <div class="rq  table-header-hight58 table-cell table-width140 table-butstyle cd-choice">
-                                11-03
-                            </div>
+                            <div class="rq  table-header-hight58 table-cell table-width140 table-butstyle cd-choice">11-03</div>
                         </th>
                         <th class="table-width140 table-butstyle" data-fixed>
                             <div class="rq  table-header-hight58 table-cell table-width140 table-butstyle">11-04</div>
@@ -206,14 +202,14 @@
                             <div class="table-time table-cell table-width1 table-butstyle"></div>
                         </td>
                         <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
+                            <div class="cd table-hight1 table-width140"></div>
                         </td>
-                        <td class="table-width140  cd-select">
+                        <td class="table-width140 cd-select">
                             <div class="cd table-hight1 table-width140 btn-rad md-trigger" data-modal="reply-ticket">
                                 已预订
                             </div>
                         </td>
-                        <td class="table-width140  cd-booked">
+                        <td class="table-width140 cd-booked">
                             <div class="cd table-hight1 table-width140 btn-rad md-trigger" data-modal="reply-ticket2">
                                 被预订
                             </div>
@@ -222,6 +218,7 @@
                             <div class="cd table-hight1 table-width140 rightclick" style="color:green;"></div>
                         </td>
                         <!--右键菜单的源-->
+                        <!--
                         <div class=" contextMenu btn-group-vertical rightclicktc" id="myMenu1">
                             <ul>
                                 <button class="btn btn-primary btn-flat md-trigger rightclickan"
@@ -235,21 +232,7 @@
                                 </button>
                             </ul>
                         </div>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
+                        -->
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
                         </td>
@@ -264,86 +247,6 @@
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140">11</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-width1">
-                            <div class="table-time  table-butstyle"><!--没有内容--></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
@@ -465,10 +368,10 @@
                             <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
+                            <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
+                            <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
@@ -819,6 +722,101 @@
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140 "></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140 "></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140 "></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-width1">
+                            <div class="table-time  table-butstyle"><!--没有内容--></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
@@ -1925,10 +1923,28 @@
                             <div class="table-time  table-butstyle"><!--没有内容--></div>
                         </td>
                         <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
+                            <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
+                        </td>
+                        <td class="table-width140">
+                            <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
@@ -1955,12 +1971,6 @@
                             <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
                         </td>
                         <td class="table-width140">
@@ -1977,18 +1987,6 @@
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140"></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
-                        </td>
-                        <td class="table-width140">
-                            <div class="cd table-hight1 table-width140 "></div>
                         </td>
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
@@ -2466,8 +2464,27 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $.contextMenu({
+            // define which elements trigger this menu
+            selector: ".rightclick",
+            // define the elements of the menu
+            items: {
+                identity: {name: "身份证授权", callback: function(key, opt){
+                    $('#reply-identity').niftyModal();
+                }},
+                password: {name: "密码授权", callback: function(key, opt){
+                    $('#reply-password').niftyModal();
+                }},
+                unlocking: {name: "开锁信息", callback: function(key, opt){
+                    $('#reply-unlocking').niftyModal();
+                }}
+            }
+            // there's more, have a look at the demos and docs...
+        });
         //initialize the javascript
         App.init();
+
+        $(".navbar-collapse ul:first li:eq(3)").addClass("active");
 
         $('#reservation').daterangepicker();
         $('#reservationtime').daterangepicker({
