@@ -99,6 +99,7 @@ public class LoginController {
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int grade= (int) session.getAttribute("grade");
         User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
+        user.setName((String) session.getAttribute("ownerName"));
         User userHierarchy=userService.getSubordinateHierarchy(user,10);
         model.addAttribute("userHierarchy",userHierarchy);
         if (grade>=30){
@@ -120,6 +121,7 @@ public class LoginController {
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int grade= (int) session.getAttribute("grade");
         User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
+        user.setName((String) session.getAttribute("ownerName"));
         User userHierarchy=userService.getSubordinateHierarchy(user,10);
         model.addAttribute("userHierarchy",userHierarchy);
         if (grade>=30){
@@ -144,6 +146,7 @@ public class LoginController {
         User user=new User();
         user.setPhoneNumber(ownerPhoneNumber);
         user.setGrade(grade);
+        user.setName((String) session.getAttribute("ownerName"));
         return user;
     }
 
@@ -157,6 +160,7 @@ public class LoginController {
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int grade= (int) session.getAttribute("grade");
         User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
+        user.setName((String) session.getAttribute("ownerName"));
         User userHierarchy=userService.getSubordinateHierarchy(user,10);
         return userHierarchy;
     }
@@ -168,11 +172,12 @@ public class LoginController {
             LOG.info("-->>-- user/getSubordinateHierarchyTillLock.do -->>--");
         }
         HttpSession session=request.getSession(false);
-//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-//        int grade= (int) session.getAttribute("grade");
-        String ownerPhoneNumber="18255683932";
-        int grade=20;
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+//        String ownerPhoneNumber="18255683932";
+//        int grade=20;
         User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
+        user.setName((String) session.getAttribute("ownerName"));
         User userHierarchyTillLock=userService.getSubordinateHierarchyTillLock(user);
         return userHierarchyTillLock;
     }

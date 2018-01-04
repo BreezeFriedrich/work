@@ -101,7 +101,7 @@ public class UserServiceImpl implements IUserService {
         resultMap.put("ownerPhoneNumber",username);
         resultMap.put("ownerPassword",password);
         resultMap.put("result",rootNode.path("result").asInt());
-        resultMap.put("ownerName",rootNode.path("ownerName").toString());
+        resultMap.put("ownerName",rootNode.path("ownerName").asText());
         resultMap.put("grade",rootNode.path("grade").asInt());
         return resultMap;
     }
@@ -286,49 +286,51 @@ public class UserServiceImpl implements IUserService {
         grade=user.getGrade();
         User userHierarchy=getSubordinateHierarchy(user,10);
         List subordinates=userHierarchy.getSubordinateList();
-        User subordinate=null;
+//        User subordinate=null;
+        User subordinate_20=null;
+        User subordinate_10=null;
 
         List<Lock> lockList;
         Device device;
 //        Map landLordMapLock=new HashMap();
         if (30==grade){
-            for (Object objX : subordinates) {
-                subordinate = (User) objX;//subordinate.grade==20
-                List subordinateList_10=subordinate.getSubordinateList();
-                for (Object objY : subordinateList_10) {
-                    subordinate = (User) objY;
-                    phoneNumber = subordinate.getPhoneNumber();
+            for (Object z : subordinates) {
+                subordinate_20 = (User) z;//subordinate.grade==20
+                List subordinateList_10=subordinate_20.getSubordinateList();
+                for (Object y : subordinateList_10) {
+                    subordinate_10 = (User) y;
+                    phoneNumber = subordinate_10.getPhoneNumber();
                     List deviceList=deviceService.getDeviceInfo(phoneNumber);
                     lockList=new ArrayList<>();
-                    for (Object objZ : deviceList){
-                        device= (Device) objZ;
+                    for (Object x : deviceList){
+                        device= (Device) x;
                         lockList.addAll(device.getLockLists());
                     }
-                    subordinate.setSubordinateList(lockList);
+                    subordinate_10.setSubordinateList(lockList);
                 }
             }
         }
         if (20==grade){
-            for (Object objX : subordinates) {
-                subordinate = (User) objX;
-                phoneNumber = subordinate.getPhoneNumber();
+            for (Object y : subordinates) {
+                subordinate_10 = (User) y;
+                phoneNumber = subordinate_10.getPhoneNumber();
                 List deviceList=deviceService.getDeviceInfo(phoneNumber);
                 lockList=new ArrayList<>();
-                for (Object objY : deviceList){
-                    device= (Device) objY;
+                for (Object x : deviceList){
+                    device= (Device) x;
                     lockList.addAll(device.getLockLists());
                 }
-                subordinate.setSubordinateList(lockList);
+                subordinate_10.setSubordinateList(lockList);
             }
         }
         if (10==grade){
             List deviceList=deviceService.getDeviceInfo(phoneNumber);
             lockList=new ArrayList<>();
-            for (Object objY : deviceList){
-                device= (Device) objY;
+            for (Object x : deviceList){
+                device= (Device) x;
                 lockList.addAll(device.getLockLists());
             }
-            subordinate.setSubordinateList(lockList);
+            user.setSubordinateList(lockList);
         }
         return user;
     }

@@ -406,10 +406,10 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $(".navbar-collapse ul:first li:eq(1)").addClass("active");
+
         //initialize the javascript
         App.init();
-
-        $(".navbar-collapse ul:first li:eq(1)").addClass("active");
 
         $('#reservation').daterangepicker();
         $('#reservationtime').daterangepicker({

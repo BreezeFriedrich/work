@@ -1030,11 +1030,10 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript">
     $(document).ready(function(){
-        //initialize the javascript
-        App.init();
-
         $(".navbar-collapse ul:first li:eq(3)").addClass("active");
 
+        //initialize the javascript
+        App.init();
         //App.dashBoard();
         /*Sparklines*/
 //        $(".spk1").sparkline([2,4,3,6,7,5,8,9,4,2,6,8,8,9,10], { type: 'bar', width: '80px', barColor: '#4A8CF7'});

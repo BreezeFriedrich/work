@@ -2464,6 +2464,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".navbar-collapse ul:first li:eq(3)").addClass("active");
+
         $.contextMenu({
             // define which elements trigger this menu
             selector: ".rightclick",
@@ -2483,8 +2485,6 @@
         });
         //initialize the javascript
         App.init();
-
-        $(".navbar-collapse ul:first li:eq(3)").addClass("active");
 
         $('#reservation').daterangepicker();
         $('#reservationtime').daterangepicker({
