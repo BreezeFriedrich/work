@@ -89,10 +89,10 @@ public class LockServiceImpl implements ILockService {
         reqData=null;
 
         reqSign=11;
-        System.err.println("sign:"+reqSign+" operation:hasLockAdded");
+        logger.info("sign:"+reqSign+" operation:hasLockAdded");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }
@@ -120,11 +120,11 @@ public class LockServiceImpl implements ILockService {
         */
 
         reqSign=12;
-        System.err.println("sign:"+reqSign+" operation:addLock");
+        logger.info("sign:"+reqSign+" operation:addLock");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){
             return false;
@@ -142,11 +142,11 @@ public class LockServiceImpl implements ILockService {
         reqData=null;
 
         reqSign=13;
-        System.err.println("sign:"+reqSign+" operation:modifyLockInfo");
+        logger.info("sign:"+reqSign+" operation:modifyLockInfo");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){
             return false;
@@ -164,11 +164,11 @@ public class LockServiceImpl implements ILockService {
         reqData=null;
 
         reqSign=14;
-        System.err.println("sign:"+reqSign+" operation:deleteLock");
+        logger.info("sign:"+reqSign+" operation:deleteLock");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){
             return false;
@@ -184,6 +184,7 @@ public class LockServiceImpl implements ILockService {
      */
     @Override
     public String getLockIp(String ownerPhoneNumber, String lockCode) {
+        logger.info("sign:"+"空"+" operation:getLockIp");
         List accountDeviceList=deviceService.getDeviceInfo(ownerPhoneNumber);
 
         String gatewayCode=null;

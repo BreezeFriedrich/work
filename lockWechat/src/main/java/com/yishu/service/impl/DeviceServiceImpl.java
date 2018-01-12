@@ -31,11 +31,11 @@ public class DeviceServiceImpl implements IDeviceService{
     @Override
     public List getUserGatewayIp(String ownerPhoneNumber) {
         reqSign=15;
-        System.err.println("sign:"+reqSign+" operation:getUserGatewayIp");
+        logger.info("sign:"+reqSign+" operation:getUserGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);
-//        System.err.println(rawData);
+//        logger.info(rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         Map gatewayIpMap;
@@ -79,11 +79,11 @@ public class DeviceServiceImpl implements IDeviceService{
     @Override
     public List getDeviceInfo(String ownerPhoneNumber) {
         reqSign=16;
-        System.err.println("sign:"+reqSign+" operation:getDeviceInfo");
+        logger.info("sign:"+reqSign+" operation:getDeviceInfo");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);
-//        System.err.println(rawData);
+//        logger.info(rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;
@@ -110,14 +110,16 @@ public class DeviceServiceImpl implements IDeviceService{
 
     @Override
     public List getAbnormalDevice(String ownerPhoneNumber) {
-        System.err.println("sign:"+'空'+" operation:getDeviceInfo");
+        logger.info("sign:"+'空'+" operation:getDeviceInfo");
         //rawData,获取原始数据:开锁记录的List.
-//        List<Device> rawList=getDeviceInfo(ownerPhoneNumber);
-        List<Device> rawList=null;
-        try {
-            rawList=objectMapper.readValue(DataInject.readFile2String("classpath:device.json"),new TypeReference<List<Device>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
+        List<Device> rawList=getDeviceInfo(ownerPhoneNumber);
+        //注入假数据用于测试.
+        if (rawList.isEmpty()){
+            try {
+                rawList=objectMapper.readValue(DataInject.readFile2String("classpath:device.json"),new TypeReference<List<Device>>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         List<Device> deviceList=null;
@@ -145,6 +147,7 @@ public class DeviceServiceImpl implements IDeviceService{
 
     @Override
     public int countAbnormalDevice(String ownerPhoneNumber) {
+        logger.info("sign:"+'空'+" operation:countAbnormalDevice");
         int num=0;
         Device device=null;
         List list=getAbnormalDevice(ownerPhoneNumber);

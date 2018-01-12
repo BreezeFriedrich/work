@@ -43,7 +43,8 @@
                 <!-- 这里指定将要从dataMap中排除那些属性，这些排除的属性将不被序列化，一般不与上边的参数配置同时出现 -->
                 <!--<param name="excludeProperties">SUCCESS</param>-->
             </result>
-            <result name="main">/jsp/main.jsp</result>
+            <!--<result name="main">/jsp/main.jsp</result>-->
+            <result name="main2">/jsp/main2.jsp</result>
             <result name="SMSVerifyCode">/jsp/SMSVerifyCode.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>

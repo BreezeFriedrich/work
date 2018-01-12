@@ -18,7 +18,8 @@ $(function () {
         type:"POST",
         url:projectPath+"/device/getAbnormalDevice.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber},
+        data:{},
         dataType:'json',
         success:function(data,status,xhr){
             showAbnormalDevice(data);

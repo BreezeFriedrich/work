@@ -70,6 +70,7 @@ public class LoginServiceImpl implements ILoginService{
 //        logger.info("respSign:"+String.valueOf(respSign));
         String ownerPhoneNumber=rootNode.path("ownerPhoneNumber").asText();
         resultMap.put("ownerPhoneNumber",ownerPhoneNumber);
+        logger.info("ownerPhoneNumber",ownerPhoneNumber);
 
         return resultMap;
     }
@@ -99,7 +100,7 @@ public class LoginServiceImpl implements ILoginService{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //字段result: -1 失败 ,0 登录成功  openid已经与phoneNumber绑定
+        //字段result: -1 绑定失败; 0 登录成功,openid已经与phoneNumber绑定（openid如果不匹配，则替换）; 1 登录失败,密码错误; 2 手机号不存在，需要注册手机号
         respSign=rootNode.path("result").asInt();
         return respSign;
     }

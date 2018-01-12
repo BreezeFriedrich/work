@@ -27,7 +27,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
 
     public OpenIdInterceptor() {
 //        System.out.println(">>>Initialization OpenIdInterceptor......................................");
-//        logger.info(">>>Initialization OpenIdInterceptor......................................");
+        logger.info(">>>Initialization OpenIdInterceptor......................................");
     }
 
     /**
@@ -36,7 +36,11 @@ public class OpenIdInterceptor extends AbstractInterceptor{
      */
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
-
+        /*使用struts2操作session,获取session.
+        ActionContext ctx = invocation.getInvocationContext();
+        Map<String,Object> session = ctx.getSession();
+        String openid = (String) session.get("OPENID");
+         */
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
         String url= "https://lockwx.manxing1798.com/lockWechat/account/wxLogin.action";

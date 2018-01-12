@@ -41,10 +41,12 @@ $(function(){
         value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.min,temptime.second]
     });
 
-    // ownerPhoneNumber="13905169824";
-    ownerPhoneNumber="17705155208";
     /*
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
+    ownerPhoneNumber="13905169824";
+    ownerPhoneNumber="17705155208";
+    */
+    /*
     startTime="2014-01-01 01:01";
     endTime="2017-12-10 01:01";
     startTime=$("#datetime-picker-1").val();
@@ -204,7 +206,8 @@ function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
         url:projectPath+"/record/getUnlockRecordPage.action",
 //            url:"http://localhost/lockWechat"+"/record/getUnlockRecordPage.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
         success:function(data,status,xhr){
             successCallback(data);
@@ -262,7 +265,8 @@ function getUnlockDevice(pageNum,pageSize,successCallback,errorCallback) {
         url:projectPath+"/record/getUnlockRecordDevice.action",
 //            url:"http://localhost/lockWechat"+"/record/getUnlockRecordDevice.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
         success:function(data,status,xhr){
             successCallback(data);
@@ -387,12 +391,13 @@ function showGatewayRecords(gatewayNum) {
     }
 }
 function getGatewayRecords(pageNum,pageSize,gatewayNum,successCallback,errorCallback) {
-    console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",gatewayNum:"+gatewayNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
+    // console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",gatewayNum:"+gatewayNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getGatewayUnlockRecordPage.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"gatewayCode":gatewayNum,"pageNum":pageNum,"pageSize":pageSize},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"gatewayCode":gatewayNum,"pageNum":pageNum,"pageSize":pageSize},
+        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"gatewayCode":gatewayNum,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
         success:function(data,status,xhr){
             successCallback(data);
@@ -403,7 +408,7 @@ function getGatewayRecords(pageNum,pageSize,gatewayNum,successCallback,errorCall
 
 /*按门锁展示记录*/
 function showLockRecords(lockNum) {
-    console.log('lockNum : '+lockNum);
+    // console.log('lockNum : '+lockNum);
     timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
     timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
@@ -440,13 +445,14 @@ function showLockRecords(lockNum) {
     }
 }
 function getLockRecords(pageNum,pageSize,lockNum,successCallback,errorCallback) {
-    console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",lockNum:"+lockNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
+    // console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",lockNum:"+lockNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
     //ownerPhoneNumber,startTime,endTime
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getLockUnlockRecordPage.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"lockCode":lockNum,"pageNum":pageNum,"pageSize":pageSize},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"lockCode":lockNum,"pageNum":pageNum,"pageSize":pageSize},
+        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"lockCode":lockNum,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
         success:function(data,status,xhr){
             successCallback(data);
@@ -496,7 +502,8 @@ function getUnlockOperator(pageNum,pageSize,successCallback,errorCallback) {
         type:"POST",
         url:projectPath+"/record/getUnlockOperator.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
         success:function(data,status,xhr){
             successCallback(data);
@@ -506,7 +513,7 @@ function getUnlockOperator(pageNum,pageSize,successCallback,errorCallback) {
 }
 function setOperatorWithRecord(data) {
     operatorRecordsMap=data;
-    console.log('data: '+data);
+    // console.log('data: '+data);
     var listDom=document.getElementById("dataList");
     for(var cardNum in data) {
         lockRecordsMap=data[cardNum].data;
@@ -530,7 +537,7 @@ function setOperatorWithRecord(data) {
 
 /*按开锁人展示记录*/
 function showOperatorRecords(cardNum) {
-    console.log('cardNum : '+cardNum);
+    // console.log('cardNum : '+cardNum);
     timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
     timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
@@ -568,12 +575,13 @@ function showOperatorRecords(cardNum) {
     }
 }
 function getOperatorRecords(pageNum,pageSize,cardNum,successCallback,errorCallback) {
-    console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",cardNum:"+cardNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
+    // console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",cardNum:"+cardNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getOperatorUnlockRecordPage.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"cardNum":cardNum,"pageNum":pageNum,"pageSize":pageSize},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"cardNum":cardNum,"pageNum":pageNum,"pageSize":pageSize},
+        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"cardNum":cardNum,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',
         success:function(data,status,xhr){
             successCallback(data);

@@ -3,6 +3,7 @@ package com.yishu.action;
 import com.aliyuncs.dysmsapi.model.v20170525.QuerySendDetailsResponse;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
 import com.yishu.dao.LockUserDao;
@@ -106,6 +107,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
      * @return
      */
     public String wxLogin () {
+        logger.info("login&session ￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
 //        logger.info("wxLogin.action");
         openid= (String) session.getAttribute("OPENID");
 //        logger.info("openid :"+openid);
@@ -121,8 +123,11 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
             ownerPhoneNumber= (String) map.get("ownerPhoneNumber");
 //            logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
             session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
+            /*使用struts2操作session,设置session.
+            ActionContext.getContext().getSession().put("ownerPhoneNumber", ownerPhoneNumber);
+             */
             logger.warn("openid存在,即将登录");
-            return "main";
+            return "main2";
         }
         //如果http返回的字段result=1,则openid不存在,进入注册流程.
         if (1==(int)map.get("result")){

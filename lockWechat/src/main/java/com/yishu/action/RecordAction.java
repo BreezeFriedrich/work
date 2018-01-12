@@ -5,15 +5,19 @@
 
 package com.yishu.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.pojo.Device;
 import com.yishu.pojo.Lock;
 import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
 import com.yishu.service.IRecordService;
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +29,11 @@ import java.util.Map;
  * @since JDK1.7
  */
 public class RecordAction extends ActionSupport{
-    public RecordAction() {System.out.println(">>>Initialization RecordAction......................................");}
+    public RecordAction() {
+        logger.info(">>>Initialization RecordAction......................................");
+    }
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("RecordAction");
+
     @Autowired
     private IRecordService recordService;
     /**
@@ -95,11 +102,18 @@ public class RecordAction extends ActionSupport{
         this.pageSize = pageSize;
     }
 
+    HttpServletRequest request = ServletActionContext.getRequest();
+    HttpSession session = request.getSession();
+//    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
+
     /**
      * 获取用户ownerPhoneNumber的开锁记录
      *
      */
     public String getUnlockRecord() throws ParseException {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         jsonResult=recordList;
         return "json";
@@ -107,12 +121,14 @@ public class RecordAction extends ActionSupport{
 
     /**
      * 获取用户ownerPhoneNumber的开锁记录,再将数据分页.
-     *
-     * @param pageNum 第几页的页码数字.
-     * @param pageSize 每页可以展示多少条记录的数目.
+     * pageNum 第几页的页码数字.
+     * pageSize 每页可以展示多少条记录的数目.
      *
      */
     public String getUnlockRecordPage() throws ParseException {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
 //        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+",pageNum:"+pageNum+",pageSize:"+pageSize+"}");
         Records<UnlockRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=records;
@@ -121,36 +137,54 @@ public class RecordAction extends ActionSupport{
     }
 
     public String getGatewayUnlockRecordPage() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Records<UnlockRecord> records=recordService.getGatewayUnlockRecordPage(ownerPhoneNumber,startTime,endTime,gatewayCode,pageNum,pageSize);
         jsonResult=records;
         return "json";
     }
 
     public String getLockUnlockRecordPage() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Records<UnlockRecord> records=recordService.getLockUnlockRecordPage(ownerPhoneNumber,startTime,endTime,lockCode,pageNum,pageSize);
         jsonResult=records;
         return "json";
     }
 
     public String getUnlockRecordDevice() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Map recordMap=recordService.getUnlockRecordDevice(ownerPhoneNumber,startTime,endTime);
         jsonResult=recordMap;
         return "json";
     }
 
     public String getUnlockRecordDevicePage() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Map map=recordService.getUnlockRecordDevicePage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=map;
         return "json";
     }
 
     public String getUnlockOperator() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Map map=recordService.getUnlockOperator(ownerPhoneNumber,startTime,endTime);
         jsonResult=map;
         return "json";
     }
 
     public String getOperatorUnlockRecordPage() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Records<UnlockRecord> records=recordService.getOperatorUnlockRecordPage(ownerPhoneNumber,startTime,endTime,cardNum,pageNum,pageSize);
         jsonResult=records;
         return "json";

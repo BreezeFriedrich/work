@@ -23,7 +23,8 @@ $(function(){
         type:"POST",
         url:projectPath+"/lock/getSpecificLock.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
+        data:{"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
         dataType:'json',
         success:function(data,status,xhr){
             json_theLock = data;
@@ -72,7 +73,7 @@ function modifyLockInfo(){
         url:projectPath+"/lock/modifyLockInfo.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
-            "ownerPhoneNumber":ownerPhoneNumber,
+            // "ownerPhoneNumber":ownerPhoneNumber,
             "lockCode":specificLockCode,
             "lockName":lockName,
             "lockLocation":lockLocation,
@@ -97,7 +98,7 @@ function deleteLock(){
         url:projectPath+"/lock/deleteLock.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
-            "ownerPhoneNumber":ownerPhoneNumber,
+            // "ownerPhoneNumber":ownerPhoneNumber,
             "lockCode":specificLockCode
         },
         dataType:'json',

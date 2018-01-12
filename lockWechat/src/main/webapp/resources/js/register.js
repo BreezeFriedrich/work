@@ -24,7 +24,7 @@ function register() {
             dataType:'json',
             success:function(data,status,xhr){
                 if(true===data.result){
-                    window.location.href="main.jsp";
+                    window.location.href="main2.jsp";
                 }else {
                     $.toast('注册失败',1500);
                     window.location.reload();

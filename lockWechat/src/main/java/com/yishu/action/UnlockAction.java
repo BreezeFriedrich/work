@@ -8,8 +8,11 @@ package com.yishu.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.service.IUnlockService;
 import org.apache.struts2.ServletActionContext;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,8 +25,10 @@ import java.util.List;
  */
 public class UnlockAction extends ActionSupport {
     public UnlockAction() {
-        System.out.println(">>>Initialization UnlockAction......................................");
+        logger.info(">>>Initialization UnlockAction......................................");
     }
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("UnlockAction");
+
     @Autowired
     private IUnlockService unlockService;
 
@@ -131,12 +136,19 @@ public class UnlockAction extends ActionSupport {
         this.serviceNumb = serviceNumb;
     }
 
+    HttpServletRequest request = ServletActionContext.getRequest();
+    HttpSession session = request.getSession();
+//    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
+
     /**
      * 获取(当期帐户、当前网关、当前门锁)已授权的开锁身份证信息
      *
      * @return
      */
     public String getUnlockId (){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
 //        jsonList.clear();
         List unlockIdList=unlockService.getUnlockId(ownerPhoneNumber,gatewayCode,lockCode);
 //        jsonList.addAll(unlockIdList);
@@ -151,6 +163,9 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String authUnlockById (){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean isSuccess=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
         jsonObject=isSuccess;
         return "json";
@@ -163,6 +178,9 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String prohibitUnlockById (){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean isSuccess=unlockService.prohibitUnlockById(ownerPhoneNumber,lockCode,cardNumb,serviceNumb);
         jsonObject=isSuccess;
         return "json";
@@ -174,6 +192,9 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String getUnlockPwd (){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         jsonObject=unlockService.getUnlockPwd(ownerPhoneNumber,gatewayCode,lockCode);
         return "json";
     }
@@ -184,6 +205,9 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String authUnlockByPwd (){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean isSuccess=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
         jsonObject=isSuccess;
         return "json";
@@ -196,6 +220,9 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String prohibitUnlockByPwd (){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean isSuccess=unlockService.prohibitUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,serviceNumb);
         jsonObject=isSuccess;
         return "json";
@@ -203,6 +230,9 @@ public class UnlockAction extends ActionSupport {
 
     /*另一种方式返回Model(实测,成功).有无<result>都能成功.
     public void prohibitUnlockByPwd () {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean isSuccess=unlockService.prohibitUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,serviceNumb);
         PrintWriter out= ServletActionContext.getResponse().getWriter();
         try {

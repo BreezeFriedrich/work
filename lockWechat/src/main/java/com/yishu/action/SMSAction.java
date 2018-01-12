@@ -27,6 +27,7 @@ public class SMSAction {
         logger.info(">>>Initialization SMSAction......................................");
     }
     private static final org.slf4j.Logger logger= LoggerFactory.getLogger("SMSAction");
+
     @Autowired
     ISMSService smsService;
 
@@ -102,17 +103,20 @@ public class SMSAction {
                 }else {
                     logger.info("短信验证码超时");
                     resultMap.put("result",2);
-                    resultMap.put("errMsg","expired");
+//                    resultMap.put("errMsg","expired");
+                    resultMap.put("errMsg","短信验证码超时");
                 }
             }else {
                 logger.info("短信验证码无效");
                 resultMap.put("result",3);
-                resultMap.put("errMsg","invalid verificationCode");
+//                resultMap.put("errMsg","invalid verificationCode");
+                resultMap.put("errMsg","短信验证码无效");
             }
         }else {
             logger.info("没有发给"+phoneNumber+"的短信验证码");
             resultMap.put("result",4);
-            resultMap.put("errMsg","no verificationCode with "+phoneNumber);
+//            resultMap.put("errMsg","no verificationCode with "+phoneNumber);
+            resultMap.put("errMsg","没有发给"+phoneNumber+"的短信验证码");
         }
         jsonResult=resultMap;
         return "json";

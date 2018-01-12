@@ -151,6 +151,7 @@
             </div>
             --%>
             <div class="list-block cards-list" id="cardList">
+            </div>
         </div>
     </div>
 </div>

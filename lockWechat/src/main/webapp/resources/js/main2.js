@@ -10,10 +10,13 @@ var ownerPhoneNumber;
 var url;
 $(function(){
     ownerPhoneNumber = document.getElementById("INPUT_hidden").value;
-    if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
+    /*
+    if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber||null===ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
+        ownerPhoneNumber="18255683932";
+        ownerPhoneNumber="17705155208";
     }
-    ownerPhoneNumber="17705155208";
+    */
     /*
     if (""!==ownerPhoneNumber){
         $.toast('通过隐藏输入框获取手机号码:'+ownerPhoneNumber,3000);
@@ -29,7 +32,8 @@ $(function(){
         url:projectPath+"/device/getDeviceInfo.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         // headers:{"Access-Control-Allow-Origin":"*"},
-        data:{"ownerPhoneNumber":ownerPhoneNumber},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber},
+        data:{},
         // timeout:3000,
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
 
@@ -51,18 +55,19 @@ $(function(){
         // }
     });
     showDevices();
-    initAlertBadge(ownerPhoneNumber);
+    initAlertBadge();
     $.hideIndicator();
 
     <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
     $.init();
 });
-function initAlertBadge(phone) {
+function initAlertBadge() {
     $.ajax({
         type:"POST",
         url:projectPath+"/device/countAbnormalDevice.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":phone},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber},
+        data:{},
         dataType:'json',
         success:function(data,status,xhr){
             document.getElementsByClassName('badge')[0].innerText=data;

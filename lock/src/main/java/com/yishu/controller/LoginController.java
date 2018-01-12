@@ -53,16 +53,18 @@ public class LoginController {
         if (0==(int)loginResultMap.get("result")){
             isSuccess=true;
         }
-        String ownerName= (String) loginResultMap.get("ownerName");
-        int grade= (int) loginResultMap.get("grade");
         if (isSuccess){
-            session.setMaxInactiveInterval(24*60*60);//session单位为秒,默认30分钟.
+            String ownerName= (String) loginResultMap.get("ownerName");
+            int grade= (int) loginResultMap.get("grade");
+            session.setMaxInactiveInterval(1*60*60);//session单位为秒,默认30分钟.
             session.setAttribute("ownerPhoneNumber",username);
             session.setAttribute("ownerName",ownerName);
             session.setAttribute("grade",grade);
             model.addAttribute("ownerPhoneNumber",username);
             model.addAttribute("ownerName",ownerName);
             model.addAttribute("grade",grade);//初始10,添加了下级用户之后变为20,30,...
+        }else{
+            return "login";
         }
         /*
         User user=userService.getUserWithSubordinate(username,grade);
@@ -120,6 +122,7 @@ public class LoginController {
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int grade= (int) session.getAttribute("grade");
+        LOG.info("session中 ownerPhoneNumber:"+ownerPhoneNumber+" ,grade:"+grade+",maxInactiveInterval:"+session.getMaxInactiveInterval());
         User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
         user.setName((String) session.getAttribute("ownerName"));
         User userHierarchy=userService.getSubordinateHierarchy(user,10);

@@ -21,7 +21,8 @@ $(function(){
         type:"POST",
         url:projectPath+"/lock/getSpecificLock.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
+        data:{"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
         dataType:'json',
         success:function(data,status,xhr){
             json_theLock = data;
@@ -81,7 +82,8 @@ function prohibitUnlockAuth() {
                             type:"POST",
                             url:projectPath+"/unlock/prohibitUnlockById.action",
                             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-                            data:{"ownerPhoneNumber":ownerPhoneNumber,"lockCode":specificLockCode,"cardNumb":target.getAttribute('id').split('-')[0],"serviceNumb":target.getAttribute('id').split('-')[1]},
+                            // data:{"ownerPhoneNumber":ownerPhoneNumber,"lockCode":specificLockCode,"cardNumb":target.getAttribute('id').split('-')[0],"serviceNumb":target.getAttribute('id').split('-')[1]},
+                            data:{"lockCode":specificLockCode,"cardNumb":target.getAttribute('id').split('-')[0],"serviceNumb":target.getAttribute('id').split('-')[1]},
                             dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
 
                             success:function(data,status,xhr){
@@ -102,7 +104,8 @@ function prohibitUnlockAuth() {
                             type:"POST",
                             url:projectPath+"/unlock/prohibitUnlockByPwd.action",
                             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-                            data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode,"serviceNumb":target.getAttribute('id')},
+                            // data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode,"serviceNumb":target.getAttribute('id')},
+                            data:{"gatewayCode":specificGatewayCode,"lockCode":specificLockCode,"serviceNumb":target.getAttribute('id')},
                             dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
 
                             success:function(data,status,xhr){
@@ -128,7 +131,7 @@ function getAuthInfo() {
         url:projectPath+"/unlock/getUnlockId.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
-            "ownerPhoneNumber":ownerPhoneNumber,
+            // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
             "lockCode":specificLockCode
         },
@@ -178,7 +181,7 @@ function getAuthInfo() {
         url:projectPath+"/unlock/getUnlockPwd.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
-            "ownerPhoneNumber":ownerPhoneNumber,
+            // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
             "lockCode":specificLockCode
         },
@@ -243,31 +246,3 @@ function getAuthInfo() {
     });
     return ul_authInfo;
 }
-
-/*
-"
-<li class='item-content'>
-    <div class='item-inner'>
-        <div class='item-title'>姓名</div>
-        <div class='item-after'>李克用</div>
-    </div>
-</li>
-<li class='item-content'>
-    <div class='item-inner'>
-        <div class='item-title'>身份证号码</div>
-        <div class='item-after'>340987993883</div>
-    </div>
-</li>
-<li class='item-content'>
-    <div class='item-inner'>
-        <div class='item-title'>授权起始时间</div>
-        <div class='item-after'>2017-11-15 09:01:20</div>
-    </div>
-</li>
-<li class='item-content'>
-    <div class='item-inner'>
-        <div class='item-title'>授权结束时间</div>
-        <div class='item-after'>2017-11-16 09:01:20</div>
-    </div>
-</li>"
-*/

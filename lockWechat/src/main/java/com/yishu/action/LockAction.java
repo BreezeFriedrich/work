@@ -10,8 +10,12 @@ import com.yishu.pojo.Device;
 import com.yishu.pojo.Lock;
 import com.yishu.service.IDeviceService;
 import com.yishu.service.ILockService;
+import org.apache.struts2.ServletActionContext;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +27,10 @@ import java.util.Map;
  */
 public class LockAction extends ActionSupport {
     public LockAction() {
-        System.out.println(">>>Initialization LockAction......................................");
+        logger.info(">>>Initialization LockAction......................................");
     }
+    private org.slf4j.Logger logger= LoggerFactory.getLogger("LockAction");
+
     @Autowired
     private ILockService lockService;
     @Autowired
@@ -98,31 +104,50 @@ public class LockAction extends ActionSupport {
         this.lockComment = lockComment;
     }
 
+    HttpServletRequest request = ServletActionContext.getRequest();
+    HttpSession session = request.getSession();
+//    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
+
     public String hasLockAdded(){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Map resultMap=lockService.hasLockAdded(ownerPhoneNumber,lockCode);
         jsonResult=resultMap;
         return "json";
     }
 
     public String addLock(){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean resultBoolean=lockService.addLock(ownerPhoneNumber,gatewayCode,lockCode,lockName,lockLocation,lockComment);
         jsonResult=resultBoolean;
         return "json";
     }
 
     public String modifyLockInfo(){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean resultBoolean=lockService.modifyLockInfo(ownerPhoneNumber,lockCode,lockName,lockLocation,lockComment);
         jsonResult=resultBoolean;
         return "json";
     }
 
     public String deleteLock(){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean resultBoolean=lockService.deleteLock(ownerPhoneNumber,lockCode);
         jsonResult=resultBoolean;
         return "json";
     }
 
     public String getSpecificLock(){
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         List jsonList=deviceService.getDeviceInfo(ownerPhoneNumber);
         Device device=null;
         Iterator iter;

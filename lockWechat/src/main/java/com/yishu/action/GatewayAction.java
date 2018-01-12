@@ -10,9 +10,12 @@ import com.yishu.pojo.Device;
 import com.yishu.service.IDeviceService;
 import com.yishu.service.IGatewayService;
 import com.yishu.util.HttpUtil;
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +27,7 @@ import java.util.Map;
  */
 public class GatewayAction extends ActionSupport {
     public GatewayAction() {
-        System.out.println(">>>Initialization GatewayAction......................................");
+        logger.info(">>>Initialization GatewayAction......................................");
     }
     private org.slf4j.Logger logger= LoggerFactory.getLogger("GatewayAction");
 
@@ -103,48 +106,83 @@ public class GatewayAction extends ActionSupport {
         this.opCode = opCode;
     }
 
+    HttpServletRequest request = ServletActionContext.getRequest();
+    HttpSession session = request.getSession();
+//    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
+
     public String getGatewayIp(){
+        logger.info("-->>-- gateway/getGatewayIp.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         jsonResult=gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
         return "json";
     }
 
     public String hasGatewayAdded(){
+        logger.info("-->>-- gateway/hasGatewayAdded.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Map resultMap=gatewayService.hasGatewayAdded(ownerPhoneNumber,gatewayCode);
         jsonResult=resultMap;
         return "json";
     }
 
     public String getGatewayLANIp(){
+        logger.info("-->>-- gateway/getGatewayLANIp.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         Map resultMap=gatewayService.getGatewayLANIp(ownerPhoneNumber,gatewayCode);
         jsonResult=resultMap;
         return "json";
     }
 
     public String isCorrectGatewayVerificationCode(){
+        logger.info("-->>-- gateway/isCorrectGatewayVerificationCode.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         int resultInt=gatewayService.isCorrectGatewayVerificationCode(ownerPhoneNumber,gatewayCode,opCode);
         jsonResult=resultInt;
         return "json";
     }
 
     public String registerGatewayInfo(){
+        logger.info("-->>-- gateway/registerGatewayInfo.action -->>--");
+        logger.info("ownerPhoneNumber-before:"+ownerPhoneNumber);
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
+        logger.info("ownerPhoneNumber-after:"+ownerPhoneNumber);
         boolean resultBoolean=gatewayService.registerGatewayInfo(ownerPhoneNumber,gatewayCode,gatewayName,gatewayLocation,gatewayComment,opCode);
         jsonResult=resultBoolean;
         return "json";
     }
 
     public String modifyGatewayInfo(){
+        logger.info("-->>-- gateway/modifyGatewayInfo.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean resultBoolean=gatewayService.modifyGatewayInfo(ownerPhoneNumber,gatewayCode,gatewayName,gatewayLocation,gatewayComment);
         jsonResult=resultBoolean;
         return "json";
     }
 
     public String deleteGateway(){
+        logger.info("-->>-- gateway/deleteGateway.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         boolean resultBoolean=gatewayService.deleteGateway(ownerPhoneNumber,gatewayCode);
         jsonResult=resultBoolean;
         return "json";
     }
 
     public String getVerificationCode(){
+        logger.info("-->>-- gateway/getVerificationCode.action -->>--");
         String result=HttpUtil.httpToGateway(url);
         logger.info("getVerificationCode,httpToGateway("+url+")返回结果为："+result);
         jsonResult=result.substring(result.indexOf("<h1>")+4,result.indexOf("</h1>"));

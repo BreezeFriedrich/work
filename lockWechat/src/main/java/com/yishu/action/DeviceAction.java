@@ -5,15 +5,18 @@ import com.yishu.pojo.Device;
 import com.yishu.service.IDeviceService;
 import com.yishu.util.FilterList;
 import com.yishu.util.FilterListHook;
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class DeviceAction extends ActionSupport {
-    public DeviceAction() {System.out.println(">>>Initialization DeviceAction......................................");}
+    public DeviceAction() {logger.info(">>>Initialization DeviceAction......................................");}
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("DeviceAction");
 
     @Autowired
@@ -48,6 +51,9 @@ public class DeviceAction extends ActionSupport {
         return jsonList;
     }
     */
+    HttpServletRequest request = ServletActionContext.getRequest();
+    HttpSession session = request.getSession();
+//    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
 
     /**
      * 获取(当前账户ownerPhoneNumb下的)所有网关所在服务器的IP
@@ -55,6 +61,10 @@ public class DeviceAction extends ActionSupport {
      * @return
      */
     public String getUserGatewayIp(){
+        logger.info("-->>-- device/getUserGatewayIp.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         /*
         jsonList.clear();
         List userGatewayIp=deviceService.getUserGatewayIp(ownerPhoneNumber);
@@ -72,6 +82,10 @@ public class DeviceAction extends ActionSupport {
      * @return
      */
     public String getDeviceInfo(){
+        logger.info("-->>-- device/getDeviceInfo.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         List unlockAccountDeviceList=deviceService.getDeviceInfo(ownerPhoneNumber);
         jsonResult=unlockAccountDeviceList;
         return "json";
@@ -79,6 +93,10 @@ public class DeviceAction extends ActionSupport {
 
     /*
     public String getSpecificGateway(){
+        logger.info("-->>-- device/getSpecificGateway.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         List jsonList=deviceService.getDeviceInfo(ownerPhoneNumber);
         Device device=null;
         Iterator iter=jsonList.iterator();
@@ -102,6 +120,10 @@ public class DeviceAction extends ActionSupport {
      * @return
      */
     public String getSpecificGateway(){
+        logger.info("-->>-- device/getSpecificGateway.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         List jsonList=deviceService.getDeviceInfo(ownerPhoneNumber);
         List<Device> deviceList=null;
         deviceList= FilterList.filter(jsonList, new FilterListHook<Device>() {
@@ -119,14 +141,20 @@ public class DeviceAction extends ActionSupport {
     }
 
     public String getAbnormalDevice(){
-        System.out.println("Action-DeviceAction-getAbnormalDevice");
+        logger.info("-->>-- device/getAbnormalDevice.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         List jsonList=deviceService.getAbnormalDevice(ownerPhoneNumber);
         jsonResult=jsonList;
         return "json";
     }
 
     public String countAbnormalDevice(){
-        System.out.println("Action-DeviceAction-countAbnormalDevice");
+        logger.info("-->>-- device/countAbnormalDevice.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
         int num=deviceService.countAbnormalDevice(ownerPhoneNumber);
         jsonResult=num;
         return "json";

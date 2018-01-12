@@ -30,7 +30,7 @@ function registerGateway() {
         url:projectPath+"/gateway/registerGatewayInfo.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         data:{
-            "ownerPhoneNumber":ownerPhoneNumber,
+            // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":gatewayCode,
             "gatewayName":gatewayName,
             "gatewayLocation":gatewayLocation,

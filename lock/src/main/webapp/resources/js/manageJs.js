@@ -1,8 +1,8 @@
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 //当前用户手机和级别
-var ownerPhoneNumber="17761749533";
-var grade=30;
+var ownerPhoneNumber="18255683932";
+var grade=10;
 
 var PageSize = 1; //每页个数
 var Page = 1; //当前页码
@@ -289,6 +289,41 @@ function showF() {
 
     var showFJ=document.getElementById("showFJ");
     $("#showFJ tr").remove();
+    var html;
+    for(var i=0;i<(EndNO-BeginNO+1);i++){
+        // alert("enter show page ");
+        var lockName=lockList[BeginNO-1+i].lockName;
+        var lockCode=lockList[BeginNO-1+i].lockCode;
+        var lockLocation=lockList[BeginNO-1+i].lockLocation;
+
+        html="";
+        html += '<tr lockCode='+lockCode+'>';
+        html +=     '<td style="width:30%;">'+lockName+'</td>';
+        html +=     '<td>'+lockCode+'</td>';
+        html +=     '<td>lockLocation</td>';
+        html +=     '<td class="text-center"><a class="label label-danger btn btn-danger btn-xs" href="javascript:void(0);" onclick="delRoom(\"'+lockCode+'\");"><i class="fa fa-times"></i></a></td>';
+        html += '</tr>';
+        showFJ.innerHTML=html;
+    }
+}
+/*
+function showF() {
+    var lockList=getLockList();
+    if(0===lockList.length){
+        return;
+    }
+    //得到总页数并生成page列表
+    var Pages=getPageList(lockList.length);
+    var BeginNO = (Page - 1) * PageSize + 1; //开始编号
+    var EndNO = Page * PageSize; //结束编号
+
+    if(EndNO > lockList.length) EndNO = lockList.length;
+    if(EndNO == 0) BeginNO = 0;
+    if(!(Page <= Pages)) Page = Pages;
+
+    var showFJ=document.getElementById("showFJ");
+    $("#showFJ tr").remove();
+    var html;
     for(var i=0;i<(EndNO-BeginNO+1);i++){
         // alert("enter show page ");
         var lockName=lockList[BeginNO-1+i].lockName;
@@ -307,8 +342,15 @@ function showF() {
         td3.innerHTML=lockLocation;
         td4.setAttribute("class","text-center");
         var a=document.createElement("a");
+
+        //<td><a class="label label-danger btn btn-danger btn-xs" onclick="delRoom(\""+lockCode+"\");"><i class="fa fa-times"></i></a></td>
+        //<a class="label label-danger btn btn-danger btn-xs" href="#"><i class="fa fa-times"></i></a>
+        //<a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/dispatcherHouseStatus.do');">房  态</a>
+
         var ai=document.createElement("i");
         a.setAttribute("class","label label-danger btn btn-danger btn-xs");
+        // a.href("javascript:void(0);");
+        a.setAttribute("href","javascript:void(0);");
         a.setAttribute("onclick","delRoom(\""+lockCode+"\");");
         ai.setAttribute("class","fa fa-times");
         a.appendChild(ai);
@@ -320,7 +362,7 @@ function showF() {
         showFJ.appendChild(tr);
     }
 }
-
+*/
 /**
  *添加房间时，加载网关编码
  */

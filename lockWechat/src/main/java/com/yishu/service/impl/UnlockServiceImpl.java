@@ -99,7 +99,7 @@ public class UnlockServiceImpl implements IUnlockService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){//请求数据失败
             return null;
@@ -145,7 +145,7 @@ public class UnlockServiceImpl implements IUnlockService {
         logger.info("endTime-2   : "+endTime);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){
             return false;
@@ -170,7 +170,7 @@ public class UnlockServiceImpl implements IUnlockService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"cardNumb\":\""+cardNumb+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){
             return false;
@@ -195,7 +195,7 @@ public class UnlockServiceImpl implements IUnlockService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){//请求数据失败
             return null;
@@ -243,7 +243,7 @@ public class UnlockServiceImpl implements IUnlockService {
         logger.info("endTime-2   : "+endTime);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"password\":\""+password+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){
             return false;
@@ -270,7 +270,7 @@ public class UnlockServiceImpl implements IUnlockService {
 //        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"gatewayCode\":\""+gatewayCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        logger.info(rawData);
 
         if (respFail()){
             return false;
