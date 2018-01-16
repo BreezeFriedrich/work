@@ -1,9 +1,9 @@
-package com.yishu.action;
+package com.yishu.service;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
- * @version 1.0.0.0 2018-01-16 11:12 admin
+ * @version 1.0.0.0 2018-01-16 10:08 admin
  * @since JDK1.7
  */
-public class AccountAction {
+public interface IAccountService {
 }
