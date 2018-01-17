@@ -13,7 +13,20 @@ var lockName;
 var lockLocation;
 var lockComment;
 
+//fastclick javascript 调用
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
+/*
+document.querySelector("#box").addEventListener("click",function(){
+        alert("click me!");
+    },false)
+ */
+
 $(function(){
+    //fastclick jQuery 调用
     // FastClick.attach(document.body);
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
@@ -81,13 +94,14 @@ function modifyLockInfo(){
         },
         dataType:'json',
         success:function(data,status,xhr){
+            $.hideIndicator();
             // alert('ajax-result : '+data)
         },
         error:function(xhr,errorType,error){
+            $.hideIndicator();
             console.log('错误')
         }
     });
-    $.hideIndicator();
     window.location.reload(false);//缓存中获取当前页
 }
 
@@ -103,13 +117,14 @@ function deleteLock(){
         },
         dataType:'json',
         success:function(data,status,xhr){
+            $.showIndicator();
             // alert('ajax-result : '+data)
         },
         error:function(xhr,errorType,error){
+            $.showIndicator();
             console.log('错误')
         }
     });
-    $.hideIndicator();
     // window.location.href="jsp/main.jsp?ownerPhoneNumber="+ownerPhoneNumber;
     window.history.go(-2);
 }

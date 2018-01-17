@@ -43,12 +43,12 @@ public class OpenIdInterceptor extends AbstractInterceptor{
          */
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
-        String url= "https://lockwx.manxing1798.com/lockWechat/account/wxLogin.action";
+        String url= "https://lockwx.manxing1798.com/lockWechat/login/wxLogin.action";
         String urlFrom = request.getScheme() + "://" + request.getServerName() + request.getRequestURI();
-//        logger.info("网页授权请求发起url: "+urlFrom);
+        logger.info("网页授权请求发起url: "+urlFrom);
         HttpSession session = request.getSession();
         String code = request.getParameter("code");
-//        logger.info("网页授权code: "+code);
+        logger.info("网页授权code: "+code);
         String openid = (String) session.getAttribute("OPENID");
 
         if (null==openid) {
@@ -59,7 +59,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
                 String openId=wechatWebAccessToken.getOpenid();
                 String access_token=wechatWebAccessToken.getAccess_token();
                 if (StringUtil.bIsNotNull(openId)) {
-//                    logger.info("网页授权openId: "+openId);
+                    logger.info("网页授权openId: "+openId);
                     session.setAttribute("OPENID",openId);
                     openid=openId;
                 }else {
@@ -72,8 +72,8 @@ public class OpenIdInterceptor extends AbstractInterceptor{
             }
         }
 
-//        logger.info("网页授权code: "+code);
-//        logger.info("网页授权openid: "+openid);
+        logger.info("网页授权code: "+code);
+        logger.info("网页授权openid: "+openid);
         return actionInvocation.invoke();
     }
 }

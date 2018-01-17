@@ -39,7 +39,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
-        String url= "https://lockwx.manxing1798.com/lockWechat/account/wxLogin.action";
+        String url= "https://lockwx.manxing1798.com/lockWechat/login/wxLogin.action";
 //        String url = request.getScheme() + "://" + request.getServerName() + request.getRequestURI();
         logger.error("网页授权请求发起url: "+url);
         // String actionName = actionInvocation.getInvocationContext().getName();

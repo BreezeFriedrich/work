@@ -28,10 +28,10 @@ import java.util.Map;
  */
 public class AccountAction extends ActionSupport implements Parameterizable,SessionAware {
     public AccountAction() {
-        System.out.println(">>>Initialization AccountAction......................................");
-        logger.info(">>>Initialization AccountAction......................................");
+        System.out.println(">>>Initialization LoginAction......................................");
+        logger.info(">>>Initialization LoginAction......................................");
     }
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("AccountAction");
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("LoginAction");
 
     @Autowired
     IWechatService wechatService;

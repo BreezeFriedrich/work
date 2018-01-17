@@ -12,7 +12,7 @@ var json_theLock;
 var ul_authInfo;
 
 $(function(){
-    // FastClick.attach(document.body);
+    FastClick.attach(document.body);
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
@@ -39,19 +39,45 @@ $(function(){
     // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
 
     //添加开锁身份证授权
+    /*
     var div_addAuthById=document.getElementById("link_addAuthById");
     div_addAuthById.addEventListener('click',function(ev){
         // var target = ev.target || window.event.srcElement;
         url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
         window.location.href=encodeURI(url);
     });
+    */
+    var div_addAuthById=document.getElementById("link_addAuthById");
+    div_addAuthById.addEventListener('click',function(ev){
+        var target = ev.target || window.event.srcElement;
+        while(target !== div_addAuthById){
+            if(target.getAttribute('class')==='item-inner'){
+                url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
+                window.location.href=encodeURI(url);
+            }
+            target = target.parentNode;
+        }
+    });
 
     //添加开锁密码授权
+    /*
     var div_addAuthById=document.getElementById("link_addAuthByPwd");
     div_addAuthById.addEventListener('click',function(ev){
         // var target = ev.target || window.event.srcElement;
         url="jsp/unlock/unlock_authByPwd.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
         window.location.href=encodeURI(url);
+    });
+    */
+    var div_addAuthById=document.getElementById("link_addAuthByPwd");
+    div_addAuthById.addEventListener('click',function(ev){
+        var target = ev.target || window.event.srcElement;
+        while(target !== div_addAuthById){
+            if(target.getAttribute('class')==='item-inner'){
+                url="jsp/unlock/unlock_authByPwd.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
+                window.location.href=encodeURI(url);
+            }
+            target = target.parentNode;
+        }
     });
 
     //取消开锁授权
@@ -68,7 +94,6 @@ function getQueryString(name) {
     return null;
 }
 function prohibitUnlockAuth() {
-    $.showIndicator();
     var div_authInfo=document.getElementById('div_authInfo');
     div_authInfo.innerHTML = getAuthInfo();
 
@@ -122,7 +147,6 @@ function prohibitUnlockAuth() {
             target=target.parentNode;
         }
     });
-    $.hideIndicator();
 }
 function getAuthInfo() {
     ul_authInfo='';

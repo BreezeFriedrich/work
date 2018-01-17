@@ -45,7 +45,8 @@ public class SMSServiceImpl implements ISMSService {
     public Map sendVerifyCode(String phoneNumber) {
         reqSign=33;
         logger.info("sign:"+reqSign+" operation:openidExist");
-        reqData="{\"sign\":\""+reqSign+"\",\"sendSmsPhoneNumber\":\""+phoneNumber+"\",\"ownerPhoneNumber\":\""+"\"}";
+//        reqData="{\"sign\":\""+reqSign+"\",\"sendSmsPhoneNumber\":\""+phoneNumber+"\",\"ownerPhoneNumber\":\""+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"sendSmsPhoneNumber\":\""+phoneNumber+"\",\"ownerPhoneNumber\":\""+"\"}";
         Map resultMap=new HashMap();
         long time1=new Date().getTime();
         rawData = HttpUtil.httpsPostToQixu(reqData);

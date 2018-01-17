@@ -14,7 +14,6 @@ public interface IUserService {
     public User getUserWithSubordinate(String phoneNumber,int grade);
     public User getUserWithSubordinate(User user);
 
-    public User getUserWithSubordinateHierarchy(String phoneNumber,int grade,int juniorGrade);
     public User getSubordinateHierarchy(User user,int minGrade);
     public User getSubordinateHierarchyTillLock(User user);
 

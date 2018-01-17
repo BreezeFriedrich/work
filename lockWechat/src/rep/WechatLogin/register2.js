@@ -16,7 +16,7 @@ function registerPhoneByVerifyCode(){
         /*
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/checkVerifyCodeThenRegister.action",
+            url:projectPath+"/login/checkVerifyCodeThenRegister.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "verifyCode":verifyCode
@@ -30,7 +30,7 @@ function registerPhoneByVerifyCode(){
             }
         });
         */
-        var url=projectPath+"/account/checkVerifyCodeThenRegister.action?verifyCode="+verifyCode;
+        var url=projectPath+"/login/checkVerifyCodeThenRegister.action?verifyCode="+verifyCode;
         window.location.href=encodeURI(url);
     }else {
         $.toast('验证码为空，无法完成注册',1500);

@@ -1,5 +1,6 @@
 package com.yishu.controller;
 
+import com.yishu.pojo.UnlockAuthorization;
 import com.yishu.pojo.UnlockPwds;
 import com.yishu.service.IUnlockService;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ public class UnlockController {
     @RequestMapping("/getUnlockId.do")
     @ResponseBody
     public List getUnlockId(HttpServletRequest request){
+        String[] strs={"",null,""};
         if (LOG.isInfoEnabled()){
             LOG.info("-->>-- unlock/getUnlockId.do -->>--");
         }
@@ -154,5 +156,24 @@ public class UnlockController {
         String serviceNumb=request.getParameter("serviceNumb");
         resultBoolean=unlockService.prohibitUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,serviceNumb);
         return resultBoolean;
+    }
+
+    /**
+     * 获取(当期帐户、当前网关、当前门锁)已授权的开锁身份证信息
+     *
+     * @return resultList type:List<IdentityCard>
+     */
+    @RequestMapping("/getUnlockAuthorization.do")
+    @ResponseBody
+    public UnlockAuthorization getUnlockAuthorization(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- unlock/getUnlockAuthorization.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        UnlockAuthorization unlockAuthorization=unlockService.getUnlockAuthorization(ownerPhoneNumber,gatewayCode,lockCode);
+        return unlockAuthorization;
     }
 }

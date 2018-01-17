@@ -12,8 +12,10 @@ var name;
 var startTime;
 var endTime;
 var cardNumb;
+var gesturePassword;
+
 $(function(){
-    // FastClick.attach(document.body);
+    FastClick.attach(document.body);
 
     //初始化时间选择器
     var temptime = new Date();
@@ -41,19 +43,21 @@ function getQueryString(name) {
 }
 
 function authById() {
-    $.showIndicator();
-    name=document.getElementsByTagName('input')[0].value;
-    cardNumb=document.getElementsByTagName('input')[1].value;
-    // 错误的写法 startTime=document.getElementsByTagName('input')[2].value;
+    gesturePassword=document.getElementsByTagName('input')[0].value;
+    name=document.getElementsByTagName('input')[1].value;
+    cardNumb=document.getElementsByTagName('input')[2].value;
+    // 错误的写法 startTime=document.getElementsByTagName('input')[3].value;
     startTime=$("#datetime-picker-1").val();
     endTime=$("#datetime-picker-2").val();
 
-    if(''!=name && ''!=cardNumb && ''!=startTime && ''!=endTime){
+    if(''!=name && ''!=cardNumb && ''!=startTime && ''!=endTime && ''!=gesturePassword){
         if(validateIdCard(cardNumb)){
+            $.showIndicator();
+            /*
             $.ajax({
                 type:"POST",
                 url:projectPath+"/unlock/authUnlockById.action",
-                async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+                async:false,
                 data:{
                     // "ownerPhoneNumber":ownerPhoneNumber,
                     "gatewayCode":gatewayCode,
@@ -61,17 +65,56 @@ function authById() {
                     "name":name,
                     "startTime":startTime,
                     "endTime":endTime,
-                    "cardNumb":cardNumb
+                    "cardNumb":cardNumb,
+                    "gesturePassword":gesturePassword
                 },
-                dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+                dataType:'json',
                 success:function(data,status,xhr){
                     $.hideIndicator();
-                    ajaxResult = data;
-                    $.toast('开锁授权成功,正在刷新页面...',1500);
-                    // window.setTimeout("refreshPage()",2000);
-                    window.setTimeout("history.go(-1)",2000);
+                    if(data){
+                        $.toast('开锁授权成功,正在返回上一页...',1500);
+                        window.setTimeout("history.go(-1)",2000);
+                    }else {
+                        $.toast('开锁授权失败',1500);
+                    }
                 },
                 error:function(xhr,errorType,error){
+                    $.hideIndicator();
+                    console.log('错误');
+                    $.alert('开锁授权失败', '操作失败！');
+                }
+            });
+            */
+            $.ajax({
+                type:"POST",
+                url:projectPath+"/unlock/authUnlockById.action",
+                async:true,
+                data:{
+                    // "ownerPhoneNumber":ownerPhoneNumber,
+                    "gatewayCode":gatewayCode,
+                    "lockCode":lockCode,
+                    "name":name,
+                    "startTime":startTime,
+                    "endTime":endTime,
+                    "cardNumb":cardNumb,
+                    "gesturePassword":gesturePassword
+                },
+                dataType:'json',
+                success:function(data,status,xhr){
+                    $.hideIndicator();
+                    if(0==data.result){
+                        $.toast('开锁授权成功,正在返回上一页...',1500);
+                        window.setTimeout("history.go(-1)",2000);
+                    }else if(2==data.result){
+                        $.toast(data.msg,1500);
+                        url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+                        window.location.href=encodeURI(url);
+                    }else {
+                        $.toast(data.msg,1500);
+                    }
+                },
+                error:function(xhr,errorType,error){
+                    $.hideIndicator();
                     console.log('错误');
                     $.alert('开锁授权失败', '操作失败！');
                 }
@@ -80,7 +123,6 @@ function authById() {
             $.toast('身份证号码输入错误',1500);
         }
     }
-    $.hideIndicator();
 }
 function validateIdCard(idCard){
     //15位和18位身份证号码的正则表达式

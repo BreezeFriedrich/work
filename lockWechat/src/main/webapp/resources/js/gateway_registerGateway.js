@@ -45,10 +45,10 @@ function registerGateway() {
             window.setTimeout("refreshPage()",2000);
         },
         error:function(xhr,errorType,error){
+            $.hideIndicator();
             console.log('错误')
         }
     });
-    $.hideIndicator();
 }
 
 function getINPUT_gatewayProperty(){

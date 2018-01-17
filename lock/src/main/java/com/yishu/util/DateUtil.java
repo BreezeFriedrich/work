@@ -22,11 +22,11 @@ import java.util.List;
  * @since JDK1.7
  */
 public class DateUtil {
-    public static final SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static final SimpleDateFormat format2=new SimpleDateFormat("yyyyMMddHHmmss");
+    public static final SimpleDateFormat yyyy_MM_dd0HH$mm$ss =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// yyyy1MM1dd$HH2mm2ss yyyy_MM_dd0HH$mm$ss
+    public static final SimpleDateFormat yyyyMMddHHmmss =new SimpleDateFormat("yyyyMMddHHmmss");//yyyyMMddHHmmss
 
-    public static final SimpleDateFormat format1TillMin=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    public static final SimpleDateFormat format2TillMin=new SimpleDateFormat("yyyyMMddHHmm");
+    public static final SimpleDateFormat yyyy_MM_dd0HH$mm =new SimpleDateFormat("yyyy-MM-dd HH:mm");//yyyy_MM_dd0HH$mm
+    public static final SimpleDateFormat yyyyMMddHHmm =new SimpleDateFormat("yyyyMMddHHmm");
 
     /**
      * @discription 返回当前日期的几月后的一天
@@ -229,26 +229,26 @@ public class DateUtil {
     }
 
     public static Date StringToDateByformat1(String time) throws ParseException {
-        return format1.parse(time);
+        return yyyy_MM_dd0HH$mm$ss.parse(time);
     }
 
     public static String DateToStringByformat2(Date date){
-        return format2.format(date);
+        return yyyyMMddHHmmss.format(date);
     }
 
     public static String format1StringToformat2String(String dateStr) throws ParseException {
-        return format2.format(format1.parse(dateStr));
+        return yyyyMMddHHmmss.format(yyyy_MM_dd0HH$mm$ss.parse(dateStr));
     }
 
     public static String format1tillminStringToformat2tillminString(String dateStr) throws ParseException {
-        return format2TillMin.format(format1TillMin.parse(dateStr));
+        return yyyyMMddHHmm.format(yyyy_MM_dd0HH$mm.parse(dateStr));
     }
 
     public static String format2tillminStringToformat1tillminString(String dateStr) throws ParseException {
-        return format1TillMin.format(format2TillMin.parse(dateStr));
+        return yyyy_MM_dd0HH$mm.format(yyyyMMddHHmm.parse(dateStr));
     }
 
     public static String getFormat2TimetagStr(){
-        return format2.format(new Date());
+        return yyyyMMddHHmmss.format(new Date());
     }
 }

@@ -14,53 +14,114 @@ var opCode;
 var isCorrectGatewayVerificationCode;
 var url;
 $(function () {
+    clearIframe("frame1");
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
+    document.getElementsByTagName('input')[0].value='';
+    document.getElementsByTagName('input')[1].value='';
 
     $.init();
 });
-
-function getGatewayVerifyCode() {
-    $.showIndicator();
-    gatewayIp=null;
-    getGatewayIp();
-    LANaddr=null;
-    if(null!=gatewayIp && ''!==gatewayIp){
-        getGatewayLANaddr();
-        opCode=null;
-        if(null!=LANip && ''!==LANip){
-            document.getElementById("frame1").src=LANaddr;
-            $.hideIndicator();
-        }else {
-            //获取网关所在局域网地址失败,可能是网关已被添加过
-            $.hideIndicator();
-            $.toast('网关已被添加过');
+function clearIframe(id) {
+    var el_iframe = document.getElementById(id);
+    if (el_iframe) {
+        el_iframe.src = 'about:blank';
+        try {
+            el_iframe.contentWindow.document.write('');
+            el_iframe.contentWindow.document.clear();
+        } catch (e) {
         }
-    }else {
-        $.hideIndicator();
-        $.toast('获取网关所在数据服务器地址失败');
+    //以上可以清除大部分的内存和文档节点记录数了
+        document.body.removeChild(el_iframe);
     }
 }
+    /*
+    function getGatewayVerifyCode() {
+        gatewayIp=null;
+        getGatewayIp();
+        LANaddr=null;
+        if(null!=gatewayIp && ''!==gatewayIp){
+            getGatewayLANaddr();
+            opCode=null;
+            if(null!=LANip && ''!==LANip){
+                document.getElementById("frame1").src=LANaddr;
+            }else {
+                //获取网关所在局域网地址失败,可能是网关已被添加过
+                $.toast('网关已被添加过');
+            }
+        }else {
+            $.toast('获取网关所在数据服务器地址失败');
+        }
+    }
+    */
+function getGatewayVerifyCode() {
+    gatewayIp=null;
+    gatewayCode=document.getElementsByTagName('input')[0].value;
+    $.showIndicator();
+    $.ajax({
+        type:"POST",
+        url:projectPath+"/gateway/getGatewayIp.action",
+        async:true,//异步
+        data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
+        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        success:function(data,status,xhr){
+            $.hideIndicator();
+            gatewayIp=data;
+            LANaddr=null;
+            if(null!=gatewayIp && ''!==gatewayIp){
+                $.showIndicator();
+                $.ajax({
+                    type:"POST",
+                    url:projectPath+"/gateway/getGatewayLANIp.action",
+                    async:true,//异步
+                    data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
+                    dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+                    success:function(data,status,xhr){
+                        $.hideIndicator();
+                        LANip=data.ip;
+                        LANaddr='http://'+data.ip+':9018';
+                        opCode=null;
+                        if(null!=LANip && ''!==LANip){
+                            document.getElementById("frame1").src=LANaddr;
+                        }else {
+                            //获取网关所在局域网地址失败,可能是网关已被添加过
+                            $.toast('网关已被添加过');
+                        }
+                    },
+                    error:function(xhr,errorType,error){
+                        $.hideIndicator();
+                        console.log('ajax错误');
+                    }
+                });
+            }else {
+                $.toast('获取网关所在数据服务器地址失败');
+            }
+        },
+        error:function(xhr,errorType,error){
+            $.hideIndicator();
+            console.log('ajax错误');
+        }
+    });
+}
+
 function addGateway() {
     isCorrectGatewayVerificationCode=null;
     opCode=document.getElementsByTagName('input')[1].value;
     if(null!=opCode && ''!==opCode){
         correctGatewayVerificationCode();
         if(true===isCorrectGatewayVerificationCode){
-            $.hideIndicator();
             url="jsp/gateway/gateway_registerGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+gatewayCode+"&opCode="+opCode;
             window.location.href=encodeURI(url);
         }else {
-            $.hideIndicator();
             $.toast('校验网关验证码失败');
         }
     }else {
-        $.hideIndicator();
         $.toast('网关验证码不能为空');
     }
 }
 //获取网关的数据服务器ip
 function getGatewayIp() {
     gatewayCode=document.getElementsByTagName('input')[0].value;
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/gateway/getGatewayIp.action",
@@ -68,16 +129,19 @@ function getGatewayIp() {
         data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data,status,xhr){
+            $.hideIndicator();
             // alert('Action-getGatewayIp ajax-result : '+data);
             gatewayIp=data;
         },
         error:function(xhr,errorType,error){
+            $.hideIndicator();
             console.log('ajax错误');
         }
     });
 }
 //网关未被添加,获取网关的内网LANaddr
 function getGatewayLANaddr() {
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/gateway/getGatewayLANIp.action",
@@ -85,11 +149,13 @@ function getGatewayLANaddr() {
         data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data,status,xhr){
+            $.hideIndicator();
             // alert('Action-getGatewayLANIp ajax-result : '+data);
             LANip=data.ip;
             LANaddr='http://'+data.ip+':9018';
         },
         error:function(xhr,errorType,error){
+            $.hideIndicator();
             console.log('ajax错误');
         }
     });
@@ -97,6 +163,7 @@ function getGatewayLANaddr() {
 
 //验证网关验证码是否正确
 function correctGatewayVerificationCode() {
+    $.showIndicator();
     $.ajax({
         type:"POST",
         url:projectPath+"/gateway/isCorrectGatewayVerificationCode.action",
@@ -104,6 +171,7 @@ function correctGatewayVerificationCode() {
         data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode,"opCode":opCode},
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data,status,xhr){
+            $.hideIndicator();
             // alert('Action-isCorrectGatewayVerificationCode ajax-result : '+data);
             if(1==data){
                 isCorrectGatewayVerificationCode=true;
@@ -112,6 +180,7 @@ function correctGatewayVerificationCode() {
             }
         },
         error:function(xhr,errorType,error){
+            $.hideIndicator();
             console.log('ajax错误');
         }
     });

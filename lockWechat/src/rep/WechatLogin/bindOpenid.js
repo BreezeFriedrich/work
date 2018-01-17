@@ -17,7 +17,7 @@ function getVerifyCode(){
         /*
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/sendVerifyCode.action",
+            url:projectPath+"/login/sendVerifyCode.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "phoneNumber":phoneNumber
@@ -31,7 +31,7 @@ function getVerifyCode(){
             }
         });
         */
-        var url=projectPath+"/account/sendVerifyCodeWhenRegister.action?phoneNumber="+registerPhoneNumber;
+        var url=projectPath+"/login/sendVerifyCodeWhenRegister.action?phoneNumber="+registerPhoneNumber;
         window.location.href=encodeURI(url);
     }else {
         $.toast('手机号码为空，无法获取验证码',1500);

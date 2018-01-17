@@ -52,7 +52,8 @@ public class LoginServiceImpl implements ILoginService{
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=201;
 //        logger.info("sign:"+reqSign+" operation:openidExist");
-        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\",\"ownerPhoneNumber\":\""+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
+        logger.info("reqData:"+reqData);
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
         logger.info(rawData);
@@ -88,7 +89,8 @@ public class LoginServiceImpl implements ILoginService{
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=202;
         logger.info("sign:"+reqSign+" operation:bindOpenidToPhone");
-        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
+//        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
         logger.info(rawData);
@@ -119,7 +121,8 @@ public class LoginServiceImpl implements ILoginService{
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=203;
         logger.info("sign:"+reqSign+" operation:register");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
+//        reqData="{\"sign\":\""+reqSign+"\",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
         Map resultMap=new HashMap();
         rawData = HttpUtil.httpsPostToQixu(reqData);
         logger.info(rawData);

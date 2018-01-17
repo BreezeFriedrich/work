@@ -30,7 +30,7 @@ import java.util.*;
  */
 @Service("recordService")
 public class RecordServiceImpl implements IRecordService {
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("RecordServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(RecordServiceImpl.class);
     int reqSign;
     String reqData;
     /**
@@ -51,7 +51,7 @@ public class RecordServiceImpl implements IRecordService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-//        logger.info("respSign:"+String.valueOf(respSign));
+//        LOG.info("respSign:"+String.valueOf(respSign));
         return respSign;
     }
 
@@ -60,22 +60,22 @@ public class RecordServiceImpl implements IRecordService {
         reqSign=26;
         long startTimeL=Long.parseLong(startTime);
         long endTimeL=Long.parseLong(endTime);
-        String startTimeReqParam= DateUtil.format2TillMin.format(new Date(startTimeL));
-        String endTimeReqParam= DateUtil.format2TillMin.format(new Date(endTimeL));
+        String startTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(startTimeL));
+        String endTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(endTimeL));
 //        try {
 //            startTime=DateUtil.format1tillminStringToformat2tillminString(startTime);
 //            endTime=DateUtil.format1tillminStringToformat2tillminString(endTime);
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
-        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+"}");
+        LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+"}");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
-        Map resultMap=new HashMap();
+        LOG.info("reqData : "+reqData);
         rawData = HttpUtil.httpsPostToQixu(reqData);
-//        System.err.println(rawData);
-//        logger.info("获取unlock record信息,HTTP结果: "+rawData);
+//        LOG.info("rawData : "+rawData);
 
         respSign();
+        Map resultMap=new HashMap();
         resultMap.put("result",respSign);
         if (0==respSign){
             //获取开锁记录成功.
@@ -114,7 +114,7 @@ public class RecordServiceImpl implements IRecordService {
                 Date timetag= null;
                 long timetagL=0;
                 try {
-                    timetag = DateUtil.format2.parse(unlockRecord.getTimetag());
+                    timetag = DateUtil.yyyyMMddHHmmss.parse(unlockRecord.getTimetag());
                     timetagL=timetag.getTime();
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -188,11 +188,33 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
+    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, String startTime, String endTime, final String lockCode) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        //filter-recordList-Bytime,按时间&门锁过滤开锁记录.
+        List<UnlockRecord> recordList2=null;
+        recordList2= FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                return lockCode.equals(unlockRecord.getLockCode());
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        Records<UnlockRecord> records =new Records<>();
+        records.setTotalSize(recordList2.size());
+        records.setRows(recordList2);
+
+        return records;
+    }
+
+    @Override
     public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String lockCode, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
-        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        //filter-recordList-Bytime,按时间&门锁过滤开锁记录.
         List<UnlockRecord> recordList2=null;
         recordList2= FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
             @Override

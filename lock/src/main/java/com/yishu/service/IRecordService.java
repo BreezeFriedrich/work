@@ -23,6 +23,8 @@ public interface IRecordService {
 
     public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String gatewayCode, int pageNum, int pageSize);
 
+    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
+
     public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String lockCode, int pageNum, int pageSize);
 
     public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime);

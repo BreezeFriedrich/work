@@ -11,8 +11,10 @@ var lockCode;
 var password;
 var startTime;
 var endTime;
+var gesturePassword;
+
 $(function(){
-    // FastClick.attach(document.body);
+    FastClick.attach(document.body);
 
     //初始化时间选择器
     var temptime = new Date();
@@ -40,34 +42,74 @@ function getQueryString(name) {
 }
 
 function authByPwd() {
-    $.showIndicator();
-    password=document.getElementsByTagName('input')[0].value;
+    gesturePassword=document.getElementsByTagName('input')[0].value;
+    password=document.getElementsByTagName('input')[1].value;
     startTime=$("#datetime-picker-1").val();
     endTime=$("#datetime-picker-2").val();
 
-    if(''!=password && ''!=startTime && ''!=endTime){
+    if(''!=password && ''!=startTime && ''!=endTime && ''!=gesturePassword){
         if(validatePwd(password)){
+            $.showIndicator();
+            /*
             $.ajax({
                 type:"POST",
                 url:projectPath+"/unlock/authUnlockByPwd.action",
-                async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+                async:false,
                 data:{
                     // "ownerPhoneNumber":ownerPhoneNumber,
                     "gatewayCode":gatewayCode,
                     "lockCode":lockCode,
                     "password":password,
                     "startTime":startTime,
-                    "endTime":endTime
+                    "endTime":endTime,
+                    "gesturePassword":gesturePassword
                 },
-                dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+                dataType:'json',
                 success:function(data,status,xhr){
                     $.hideIndicator();
-                    ajaxResult = data;
-                    $.toast('开锁授权成功,正在刷新页面...',1500);
-                    // window.setTimeout("refreshPage()",2000);
-                    window.setTimeout("history.go(-1)",2000);
+                    if(data){
+                        $.toast('开锁授权成功,正在返回上一页...',1500);
+                        window.setTimeout("history.go(-1)",2000);
+                    }else {
+                        $.toast('开锁授权失败',1500);
+                    }
                 },
                 error:function(xhr,errorType,error){
+                    $.hideIndicator();
+                    console.log('错误');
+                    $.alert('开锁授权失败', '操作失败！');
+                }
+            });
+            */
+            $.ajax({
+                type:"POST",
+                url:projectPath+"/unlock/authUnlockByPwd.action",
+                async:true,
+                data:{
+                    // "ownerPhoneNumber":ownerPhoneNumber,
+                    "gatewayCode":gatewayCode,
+                    "lockCode":lockCode,
+                    "password":password,
+                    "startTime":startTime,
+                    "endTime":endTime,
+                    "gesturePassword":gesturePassword
+                },
+                dataType:'json',
+                success:function(data,status,xhr){
+                    $.hideIndicator();
+                    if(0==data.result){
+                        $.toast('开锁授权成功,正在返回上一页...',1500);
+                        window.setTimeout("history.go(-1)",2000);
+                    }else if(2==data.result){
+                        $.toast(data.msg,1500);
+                        url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+                        window.location.href=encodeURI(url);
+                    }else {
+                        $.toast(data.msg,1500);
+                    }
+                },
+                error:function(xhr,errorType,error){
+                    $.hideIndicator();
                     console.log('错误');
                     $.alert('开锁授权失败', '操作失败！');
                 }
@@ -76,7 +118,6 @@ function authByPwd() {
             $.toast('密码输入错误,请输入4~12位数字或字母',1500);
         }
     }
-    $.hideIndicator();
 }
 function validatePwd(password){
     //密码验证规则:4~12位数字和字母的组合

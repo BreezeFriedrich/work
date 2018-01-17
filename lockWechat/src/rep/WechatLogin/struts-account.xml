@@ -19,7 +19,7 @@
         -->
         <global-allowed-methods>login</global-allowed-methods>
 
-        <action name="wxLogin" class="com.yishu.action.AccountAction" method="wxLogin">
+        <action name="wxLogin" class="com.yishu.action.LoginAction" method="wxLogin">
             <!-- 参数设置 name：对应Action中的get/set方法 -->
             <!--<param name="salt">yishutech</param>-->
 
@@ -49,7 +49,7 @@
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
-        <action name="sendVerifyCode" class="com.yishu.action.AccountAction" method="sendVerifyCode">
+        <action name="sendVerifyCode" class="com.yishu.action.LoginAction" method="sendVerifyCode">
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
@@ -59,7 +59,7 @@
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
-        <action name="checkVerifyCode" class="com.yishu.action.AccountAction" method="checkVerifyCode">
+        <action name="checkVerifyCode" class="com.yishu.action.LoginAction" method="checkVerifyCode">
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>

@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Service("deviceService")
 public class DeviceServiceImpl implements IDeviceService {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("deviceService");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(DeviceServiceImpl.class);
 
     int reqSign;
     String reqData;
@@ -37,11 +37,11 @@ public class DeviceServiceImpl implements IDeviceService {
     @Override
     public List getUserGatewayIp(String ownerPhoneNumber) {
         reqSign=15;
-        System.err.println("sign:"+reqSign+" operation:getUserGatewayIp");
+        LOG.info("sign:"+reqSign+" operation:getUserGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        rawData=null;
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToQixu(reqData);
-//        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;
@@ -69,11 +69,11 @@ public class DeviceServiceImpl implements IDeviceService {
     @Override
     public List getDeviceInfo(String ownerPhoneNumber) {
         reqSign=16;
-        System.err.println("sign:"+reqSign+" operation:getDeviceInfo");
+        LOG.info("sign:"+reqSign+" operation:getDeviceInfo");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        rawData=null;
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToQixu(reqData);
-//        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;
@@ -100,7 +100,7 @@ public class DeviceServiceImpl implements IDeviceService {
 
     @Override
     public List getAbnormalDevice(String ownerPhoneNumber) {
-        System.err.println("sign:"+'空'+" operation:getDeviceInfo");
+        LOG.info("sign:"+'空'+" operation:getDeviceInfo");
         //rawData,获取原始数据:开锁记录的List.
         /*
         List<Device> rawList=null;

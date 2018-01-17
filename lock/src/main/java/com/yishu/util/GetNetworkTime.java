@@ -64,7 +64,7 @@ public class GetNetworkTime {
      * @param webUrl
      * @return
      */
-    public static String getWebsiteDatetime(String webUrl){
+    public static String getWebsiteTime(String webUrl){
         try {
             URL url = new URL(webUrl);// 取得资源对象
             URLConnection uc = url.openConnection();// 生成连接对象
@@ -81,11 +81,28 @@ public class GetNetworkTime {
         return null;
     }
 
+    public static Date getWebsiteDate(){
+        String webUrl=NT_ALI;
+        try {
+            URL url = new URL(webUrl);// 取得资源对象
+            URLConnection uc = url.openConnection();// 生成连接对象
+            uc.connect();// 发出连接
+            long ld = uc.getDate();// 读取网站日期时间
+            Date date = new Date(ld);// 转换为标准时间对象
+            return date;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String getWebsiteDatetimeFromAcademy(){
-        return getWebsiteDatetime(webUrl4);
+        return getWebsiteTime(webUrl4);
     }
 
     public static String getWebsiteDatetimeFromAli(){
-        return getWebsiteDatetime(NT_ALI);
+        return getWebsiteTime(NT_ALI);
     }
 }

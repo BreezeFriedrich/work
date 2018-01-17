@@ -60,7 +60,7 @@
 
     <%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
     <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/fixed-table.js"></script>
+    <%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
     <script type="text/javascript" src="resources/js/FixedTable.js"></script>
     <script language="javascript" type="text/javascript">
         //获得当前时间,刻度为一千分一秒
@@ -89,6 +89,7 @@
 <div id="cl-wrapper" class="fixed-menu">
     <div class="container-fluid table-odyssey ">
 
+        <%--
         <div class="fixed-table-box row-col-fixed">
             <!-- 表头 start -->
             <div class="fixed-table_header-wraper" style="margin: 0 15px 0 0;">
@@ -2156,6 +2157,9 @@
         <script>
             $(".fixed-table-box").fixedTable();
         </script>
+        --%>
+        <div id="test_fixedTable"></div>
+
         <div class="footer">2015-2016 南京亿数信息科技有限公司 版权所有</div>
         <div class="clearfix"></div>
     </div>
@@ -2219,7 +2223,7 @@
         </div>
     </div>
 </div>
-<div class="md-overlay"></div>
+<%--<div class="md-overlay"></div>--%>
 <!-- 已预订  end-->
 
 <!-- 被预订 -->
@@ -2278,7 +2282,7 @@
         </div>
     </div>
 </div>
-<div class="md-overlay"></div>
+<%--<div class="md-overlay"></div>--%>
 <!-- 被预订 end -->
 
 <!-- 添加密码开锁授权  -->
@@ -2326,7 +2330,7 @@
         </div>
     </div>
 </div>
-<div class="md-overlay"></div>
+<%--<div class="md-overlay"></div>--%>
 <!-- 添加密码开锁授权 end -->
 
 <!-- 身份证授权 -->
@@ -2377,7 +2381,7 @@
         </div>
     </div>
 </div>
-<div class="md-overlay"></div>
+<%--<div class="md-overlay"></div>--%>
 <!-- 身份证授权 end -->
 
 <!-- 开锁信息  -->
@@ -2457,109 +2461,11 @@
 <%--<script type="text/javascript" src="resources/js/jquery.contextmenu.r2.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.ui.position.js"></script>
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.js"></script>
-<script>
-    //所有class为demo1的span标签都会绑定此右键菜单
-    $('div.rightclick').contextMenu('myMenu1',{});
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".navbar-collapse ul:first li:eq(3)").addClass("active");
-
-        $.contextMenu({
-            // define which elements trigger this menu
-            selector: ".rightclick",
-            // define the elements of the menu
-            items: {
-                identity: {name: "身份证授权", callback: function(key, opt){
-                    $('#reply-identity').niftyModal();
-                }},
-                password: {name: "密码授权", callback: function(key, opt){
-                    $('#reply-password').niftyModal();
-                }},
-                unlocking: {name: "开锁信息", callback: function(key, opt){
-                    $('#reply-unlocking').niftyModal();
-                }}
-            }
-            // there's more, have a look at the demos and docs...
-        });
-        //initialize the javascript
-        App.init();
-
-        $('#reservation').daterangepicker();
-        $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            format: 'MM/DD/YYYY h:mm A'
-        });
-        $('#reservationtime2').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            format: 'MM/DD/YYYY h:mm A'
-        });
-
-        var cb = function (start, end) {
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-            alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + "]");
-        };
-
-        var optionSet1 = {
-            startDate: moment().subtract('days', 29),
-            endDate: moment(),
-            minDate: '01/01/2012',
-            maxDate: '12/31/2014',
-            dateLimit: {days: 60},
-            showDropdowns: true,
-            showWeekNumbers: true,
-            timePicker: false,
-            timePickerIncrement: 1,
-            timePicker12Hour: true,
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-                'Last 7 Days': [moment().subtract('days', 6), moment()],
-                'Last 30 Days': [moment().subtract('days', 29), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-            },
-            opens: 'left',
-            buttonClasses: ['btn'],
-            applyClass: 'btn-small btn-primary',
-            cancelClass: 'btn-small',
-            format: 'MM/DD/YYYY',
-            separator: ' to ',
-            locale: {
-                applyLabel: 'Submit',
-                cancelLabel: 'Clear',
-                fromLabel: 'From',
-                toLabel: 'To',
-                customRangeLabel: 'Custom',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1
-            }
-        };
-
-        var optionSet2 = {
-            startDate: moment().subtract('days', 7),
-            endDate: moment(),
-            opens: 'left',
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-                'Last 7 Days': [moment().subtract('days', 6), moment()],
-                'Last 30 Days': [moment().subtract('days', 29), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-            }
-        };
-
-        $('#reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-        $('#reportrange').daterangepicker(optionSet1, cb);
-
-    });
-</script>
+<%--<script>--%>
+    <%--//所有class为demo1的span标签都会绑定此右键菜单--%>
+    <%--$('div.rightclick').contextMenu('myMenu1',{});--%>
+<%--</script>--%>
+<script type="text/javascript" src="resources/js/house_landlord.js"></script>
 </body>
 
 </html>

@@ -32,7 +32,8 @@ public class DeviceServiceImpl implements IDeviceService{
     public List getUserGatewayIp(String ownerPhoneNumber) {
         reqSign=15;
         logger.info("sign:"+reqSign+" operation:getUserGatewayIp");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);
 //        logger.info(rawData);
@@ -80,7 +81,8 @@ public class DeviceServiceImpl implements IDeviceService{
     public List getDeviceInfo(String ownerPhoneNumber) {
         reqSign=16;
         logger.info("sign:"+reqSign+" operation:getDeviceInfo");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         rawData=null;
         rawData= HttpUtil.httpsPostToQixu(reqData);
 //        logger.info(rawData);

@@ -25,11 +25,11 @@ import java.util.Map;
 /**
  * @bottom Copyright &#169; {inceptionYear}&#x2013;{currentYear} {organizationName}. All rights reserved.
  */
-public class AccountAction extends ActionSupport implements Parameterizable,SessionAware {
-    public AccountAction() {
-        logger.info(">>>Initialization AccountAction......................................");
+public class LoginAction extends ActionSupport implements Parameterizable,SessionAware {
+    public LoginAction() {
+        logger.info(">>>Initialization LoginAction......................................");
     }
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("AccountAction");
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("LoginAction");
 
     @Autowired
     ILoginService loginService;
@@ -110,7 +110,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         logger.info("login&session ￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
 //        logger.info("wxLogin.action");
         openid= (String) session.getAttribute("OPENID");
-//        logger.info("openid :"+openid);
+        logger.info("openid :"+openid);
         Map map=loginService.openidExist(openid);
         //如果http返回的字段result=-1,则http请求查询openid遭遇失败.
         if (-1==(int)map.get("result")){
@@ -121,7 +121,7 @@ public class AccountAction extends ActionSupport implements Parameterizable,Sess
         //0==result,则openid存在,直接登录.
         if (0==(int)map.get("result")){
             ownerPhoneNumber= (String) map.get("ownerPhoneNumber");
-//            logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
+            logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
             session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
             /*使用struts2操作session,设置session.
             ActionContext.getContext().getSession().put("ownerPhoneNumber", ownerPhoneNumber);

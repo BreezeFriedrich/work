@@ -38,9 +38,11 @@ $(function(){
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
 
         success:function(data,status,xhr){
+            $.hideIndicator();
             json = data;
         },
         error:function(xhr,errorType,error){
+            $.hideIndicator();
             console.log('错误');
             console.log(xhr);
             console.log(errorType);
@@ -56,7 +58,6 @@ $(function(){
     });
     showDevices();
     initAlertBadge();
-    $.hideIndicator();
 
     <!-- 默认必须要执行$.init(),实际业务里一般不会在HTML文档里执行，通常是在业务页面代码的最后执行 -->
     $.init();
@@ -70,7 +71,11 @@ function initAlertBadge() {
         data:{},
         dataType:'json',
         success:function(data,status,xhr){
-            document.getElementsByClassName('badge')[0].innerText=data;
+            if(0==data){
+                $(".badge").eq(0).remove();
+            }else {
+                document.getElementsByClassName('badge')[0].innerText=data;
+            }
         },
         error:function(xhr,errorType,error){
             console.log('错误');

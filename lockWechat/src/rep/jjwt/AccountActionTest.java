@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.After; 
 
 /** 
-* AccountAction Tester. 
+* LoginAction Tester.
 * 
 * @author <Authors name> 
 * @since <pre>九月 6, 2017</pre> 

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Service("gatewayService")
 public class GatewayServiceImpl implements IGatewayService {
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("GatewayServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(GatewayServiceImpl.class);
 
     String gatewayIp=null;
     String timetag;
@@ -49,7 +49,7 @@ public class GatewayServiceImpl implements IGatewayService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
+        LOG.info("respSign:"+String.valueOf(respSign));
         if(0 == respSign){
             return false;
         }
@@ -63,7 +63,7 @@ public class GatewayServiceImpl implements IGatewayService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
+        LOG.info("respSign:"+String.valueOf(respSign));
         return respSign;
     }
 
@@ -76,10 +76,11 @@ public class GatewayServiceImpl implements IGatewayService {
     @Override
     public String getGatewayIp(String ownerPhoneNumber, String gatewayCode) {
         reqSign=5;
-        System.err.println("sign:"+reqSign+" operation:getGatewayIp");
+        LOG.info("sign:"+reqSign+" operation:getGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToQixu(reqData);
-//        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 
         if (respFail()){
             return null;
@@ -91,16 +92,17 @@ public class GatewayServiceImpl implements IGatewayService {
     @Override
     public Map hasGatewayAdded(String ownerPhoneNumber, String gatewayCode) {
         reqSign=6;
-        System.err.println("sign:"+reqSign+" operation:hasGatewayAdded");
+        LOG.info("sign:"+reqSign+" operation:hasGatewayAdded");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
-        Map resultMap=new HashMap();
+        LOG.info("reqData : "+reqData);
         rawData = HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }
 
         respSign();
+        Map resultMap=new HashMap();
         resultMap.put("result",respSign);
         if (0==respSign){
             resultMap.put("alreadyPhoneNumber","");
@@ -115,16 +117,17 @@ public class GatewayServiceImpl implements IGatewayService {
     @Override
     public Map getGatewayLANIp(String ownerPhoneNumber, String gatewayCode) {
         reqSign=30;
-        System.err.println("sign:"+reqSign+" operation:getGatewayLANIp");
+        LOG.info("sign:"+reqSign+" operation:getGatewayLANIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
-        Map resultMap=new HashMap();
+        LOG.info("reqData : "+reqData);
         rawData = HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }
 
         respSign();
+        Map resultMap=new HashMap();
         resultMap.put("result",respSign);
         if (0==respSign){
             resultMap.put("ip",rootNode.path("ip").asText());
@@ -147,10 +150,11 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=7;
-        System.err.println("sign:"+reqSign+" operation:isCorrectGatewayVerificationCode");
+        LOG.info("sign:"+reqSign+" operation:isCorrectGatewayVerificationCode");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"opCode\":\""+opCode+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
         return respSign();
     }
 
@@ -163,11 +167,12 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=8;
-        System.err.println("sign:"+reqSign+" operation:registerGatewayInfo");
+        LOG.info("sign:"+reqSign+" operation:registerGatewayInfo");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 
         if (respFail()){
             return false;
@@ -185,11 +190,12 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=9;
-        System.err.println("sign:"+reqSign+" operation:modifyGatewayInfo");
+        LOG.info("sign:"+reqSign+" operation:modifyGatewayInfo");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"timetag\":\""+timetag+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 
         if (respFail()){
             return false;
@@ -207,11 +213,12 @@ public class GatewayServiceImpl implements IGatewayService {
         reqData=null;
 
         reqSign=10;
-        System.err.println("sign:"+reqSign+" operation:deleteGateway");
+        LOG.info("sign:"+reqSign+" operation:deleteGateway");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 
         if (respFail()){
             return false;

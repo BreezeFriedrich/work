@@ -46,7 +46,16 @@
                 <ul>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">授权密码</div>
+                                <div class="item-input">
+                                    <input type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
                             <div class="item-inner">
                                 <div class="item-title label">密码</div>
                                 <div class="item-input">
@@ -87,6 +96,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/unlock_authByPwd.js?ver=3' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/unlock_authByPwd.js?ver=7' charset='utf-8'></script>
 </body>
 </html>

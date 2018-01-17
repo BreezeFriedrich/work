@@ -1183,7 +1183,6 @@
         var html='';
         html += '<th colspan="2">';
         html +=     '<div class="table-time table-header-hight58 table-butstyle">';
-//        html +=         '<div class="current-date">当前日期：<label id="show3" class="time3">日期</label></div>';
         html +=         '<div class="current-date">当前日期：<label id="show3" class="time3">'+today+'</label></div>';
         html +=         '<div class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">';
         html +=             '<input class="form-control" size="16" type="text" value="" readonly style="display:none">';
@@ -1390,28 +1389,6 @@
             success:function(data,status,xhr){
                 userHierarchy=data;
                 subordinates=data.subordinateList;
-                /*
-                $(".fixed-table-box").addRow(function (){
-                    var html = '';
-                    for(var i = 0; i < 5; i ++){
-                        html += '<tr>';
-                        html += '    <td class="w-150"><div class="table-cell"> 2016-05-03</div></td>';
-                        html += '    <td class="w-120"><div class="table-cell">王小虎</div></td>';
-                        html += '    <td class="w-120"><div class="table-cell">上海</div></td>';
-                        html += '    <td class="w-120"><div class="table-cell">普陀区</div></td>';
-                        html += '    <td class="w-300"><div class="table-cell">上海市普陀区金沙江路 1518 路</div></td>';
-                        html += '    <td class="w-120"><div class="table-cell">200333</div></td>';
-                        html += '    <td class="w-100">';
-                        html += '        <div class="table-cell">';
-                        html += '            <a href="###">查看</a>';
-                        html += '            <a href="###">编辑</a>';
-                        html += '        </div>';
-                        html += '    </td>';
-                        html += '</tr>';
-                    }
-                    return html;
-                });
-                */
             },
             error:function(xhr,errorType,error){
                 console.log('错误');

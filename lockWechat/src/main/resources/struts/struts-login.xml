@@ -12,13 +12,11 @@
         abstract:设置package的属性为抽象的 抽象的package不能定义action 值true:false
         namespace:定义package命名空间 该命名空间影响到url的地址，例如此命名空间为/test那么访问是的地址为http://localhost:8080/struts2/test/XX.action
      -->
-    <package name="account" namespace="/account" extends="default">
+    <package name="login" namespace="/login" extends="default">
 
         <!-- Action配置 一个Action可以被多次映射(只要action配置中的name不同)
              method: 调用Action中的方法名
         -->
-        <global-allowed-methods>login</global-allowed-methods>
-
         <action name="wxLogin" class="com.yishu.action.LoginAction" method="wxLogin">
             <!-- 参数设置 name：对应Action中的get/set方法 -->
             <!--<param name="salt">yishutech</param>-->

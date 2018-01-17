@@ -57,7 +57,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">网关编码</div>
                                 <div class="item-input">
-                                    <input type="text"/>
+                                    <input type="text" placeholder="请输入网关编码"/>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_addGateway.js' charset='utf-8'></script>
+<%--<script type='text/javascript' src='resources/js/fastclick.js'></script>--%>
+<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=3' charset='utf-8'></script>
 </body>
 </html>

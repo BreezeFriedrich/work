@@ -24,7 +24,7 @@ function sendVerifyCode(){
     if(''!==phoneNumber){
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/sendVerifyCode.action",
+            url:projectPath+"/login/sendVerifyCode.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "phoneNumber":phoneNumber
@@ -48,7 +48,7 @@ function checkVerifyCode() {
     if(''!==verifyCode){
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/checkVerifyCode.action",
+            url:projectPath+"/login/checkVerifyCode.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "verifyCode":verifyCode
@@ -75,7 +75,7 @@ function bindOpenid() {
     if (''!==phoneNumber && ''!==ownerPassword){
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/bindOpenid.action",
+            url:projectPath+"/login/bindOpenid.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "ownerPhoneNumber":phoneNumber,
@@ -105,7 +105,7 @@ function bindOpenid() {
     }else {
         $.toast('请先输入手机号和密码',1500);
     }
-    // var url=projectPath+"/account/bindOpenid.action?ownerPhoneNumber="+phoneNumber+"&ownerPassword="+ownerPassword;
+    // var url=projectPath+"/login/bindOpenid.action?ownerPhoneNumber="+phoneNumber+"&ownerPassword="+ownerPassword;
     // window.location.href=encodeURI(url);
 }
 */
@@ -116,15 +116,17 @@ function sendVerifyCode(){
     if(''!==phoneNumber){
         if (timerGate_sendCode) {
             timerGate_sendCode = false;
+            $.showPreloader('发送验证码...');
             $.ajax({
                 type:"POST",
                 url:projectPath+"/sms/sendVerifyCode.action",
-                async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+                async:true,//异步
                 data:{
                     "phoneNumber":phoneNumber
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
+                    $.hidePreloader();
                     // $.toast('data.result'+data.result);
                     // $.toast('data.verificationCode : '+data.verificationCode);
 
@@ -134,6 +136,7 @@ function sendVerifyCode(){
                     // }
                 },
                 error:function(xhr,errorType,error){
+                    $.hidePreloader();
                     console.log('错误')
                 }
             });
@@ -163,15 +166,17 @@ function scheduleINfo() {
 function checkVerifyCode() {
     verificationCode=document.getElementsByTagName('input')[1].value;
     if(''!==verificationCode){
+        $.showPreloader('校对验证码...');
         $.ajax({
             type:"POST",
             url:projectPath+"/sms/checkVerifyCode.action",
-            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            async:true,//异步
             data:{
                 "verificationCode":verificationCode
             },
             dataType:'json',
             success:function(data,status,xhr){
+                $.hidePreloader();
                 if(1===data.result){
                     //验证码有效
                     bindOpenid();
@@ -180,6 +185,7 @@ function checkVerifyCode() {
                 }
             },
             error:function(xhr,errorType,error){
+                $.hidePreloader();
                 console.log('错误')
             }
         });
@@ -191,18 +197,20 @@ function checkVerifyCode() {
 function bindOpenid() {
     ownerPassword=document.getElementsByTagName('input')[2].value;
     if (''!==ownerPassword){
+        $.showPreloader();
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/bindOpenid.action",
+            url:projectPath+"/login/bindOpenid.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "ownerPassword":ownerPassword
             },
             dataType:'json',
             success:function(data,status,xhr){
+                $.hidePreloader();
                 if (0===data.result){
                     //已绑定openid到phone,直接登录.
-                    window.location.href="jsp/main.jsp";
+                    window.location.href="jsp/main2.jsp";
                 }
                 if (2===data.result){
                     //手机号不存在，需要注册手机号.
@@ -216,12 +224,11 @@ function bindOpenid() {
                 }
             },
             error:function(xhr,errorType,error){
+                $.hidePreloader();
                 console.log('错误');
             }
         });
     }else {
         $.toast('请先输入密码',1500);
     }
-    // var url=projectPath+"/account/bindOpenid.action?ownerPhoneNumber="+phoneNumber+"&ownerPassword="+ownerPassword;
-    // window.location.href=encodeURI(url);
 }

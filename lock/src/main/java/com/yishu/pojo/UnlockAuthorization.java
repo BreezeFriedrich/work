@@ -7,7 +7,7 @@ import java.util.List;
  * @version 1.0.0.0 2018-01-17 10:27 admin
  * @since JDK1.7
  */
-public class UnlockAuth {
+public class UnlockAuthorization {
     private List<IdentityCard> unlockIds;
     private UnlockPwds unlockPwds;
     private int unlockIdSize;
@@ -45,7 +45,7 @@ public class UnlockAuth {
         this.unlockPwdSize = unlockPwdSize;
     }
 
-    public UnlockAuth getUnlockAuth(List<IdentityCard> unlockIds,UnlockPwds unlockPwds){
+    public UnlockAuthorization getUnlockAuthorization(List<IdentityCard> unlockIds, UnlockPwds unlockPwds){
         this.unlockIds=unlockIds;
         this.unlockPwds=unlockPwds;
         this.unlockIdSize=unlockIds.size();

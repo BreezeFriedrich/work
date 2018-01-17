@@ -127,8 +127,8 @@
                 <ul>
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title" id="link_addLock">
+                        <div class="item-inner" id="link_addLock">
+                            <div class="item-title">
                                 <img class="auto-zoom-1" src="resources/img/connectLock.png" alt=""/>
                                 增加关联门锁
                             </div>
@@ -185,6 +185,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/gateway_manage.js?ver=2' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_manage.js?ver=3' charset='utf-8'></script>
 </body>
 </html>

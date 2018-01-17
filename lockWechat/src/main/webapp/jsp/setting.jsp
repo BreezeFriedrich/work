@@ -79,6 +79,46 @@
 
         <!-- 这里是页面内容区 -->
         <div class="content">
+            <div class="content-block-title">帐号相关</div>
+            <div class="list-block">
+                <ul>
+                    <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner" id="link_modifyNickname">
+                            <div class="item-title">
+                                <img class="auto-zoom-1" src="resources/img/password_set.png" alt="用户昵称"/>
+                                修改用户昵称
+                            </div>
+                            <div class="item-after"></div>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner" id="link_modifyPassword">
+                            <div class="item-title">
+                                <img class="auto-zoom-1" src="resources/img/password_set.png" alt="登录密码"/>
+                                修改登录密码
+                            </div>
+                            <div class="item-after"></div>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner" id="link_setGesturePassword">
+                            <div class="item-title">
+                                <img class="auto-zoom-1" src="resources/img/password_set.png" alt="授权密码"/>
+                                设置授权密码
+                            </div>
+                            <div class="item-after"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--
             <div class="content-block">
                 <a href="javascript:void(0);" onclick="modifyNickname()" class="button button-big button-fill button-success">修改用户昵称</a>
             </div>
@@ -88,6 +128,7 @@
             <div class="content-block">
                 <a href="javascript:void(0);" onclick="setGesturePassword()" class="button button-big button-fill button-success">设置授权密码</a>
             </div>
+            -->
         </div>
     </div>
 </div>
@@ -95,6 +136,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/setting.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/setting.js?ver=2' charset='utf-8'></script>
 </body>
 </html>

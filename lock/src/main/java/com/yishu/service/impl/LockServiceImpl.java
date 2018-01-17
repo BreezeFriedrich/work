@@ -31,7 +31,7 @@ import java.util.Map;
  */
 @Service("lockService")
 public class LockServiceImpl implements ILockService {
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("LockServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(LockServiceImpl.class);
 
     @Autowired
     private IDeviceService deviceService;
@@ -61,7 +61,7 @@ public class LockServiceImpl implements ILockService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
+        LOG.info("respSign:"+String.valueOf(respSign));
         if(0 == respSign){
             return false;
         }
@@ -75,7 +75,7 @@ public class LockServiceImpl implements ILockService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
+        LOG.info("respSign:"+String.valueOf(respSign));
         return respSign;
     }
 
@@ -92,14 +92,14 @@ public class LockServiceImpl implements ILockService {
         reqData=null;
 
         reqSign=11;
-        System.err.println("sign:"+reqSign+" operation:hasLockAdded");
+        LOG.info("sign:"+reqSign+" operation:hasLockAdded");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
+        LOG.info("rawData : "+rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }
-
         respSign();
         resultMap.put("result",respSign);
         if (0==respSign){
@@ -115,12 +115,12 @@ public class LockServiceImpl implements ILockService {
     @Override
     public boolean addLock(String ownerPhoneNumber, String gatewayCode, String lockCode, String lockName, String lockLocation, String lockComment) {
         reqSign=12;
-        System.err.println("sign:"+reqSign+" operation:addLock");
+        LOG.info("sign:"+reqSign+" operation:addLock");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToQixu(reqData);
-        System.err.println(rawData);
-
+        LOG.info("rawData : "+rawData);
         if (respFail()){
             return false;
         }
@@ -137,12 +137,12 @@ public class LockServiceImpl implements ILockService {
         reqData=null;
 
         reqSign=13;
-        System.err.println("sign:"+reqSign+" operation:modifyLockInfo");
+        LOG.info("sign:"+reqSign+" operation:modifyLockInfo");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
-
+        LOG.info("rawData : "+rawData);
         if (respFail()){
             return false;
         }
@@ -159,12 +159,12 @@ public class LockServiceImpl implements ILockService {
         reqData=null;
 
         reqSign=14;
-        System.err.println("sign:"+reqSign+" operation:deleteLock");
+        LOG.info("sign:"+reqSign+" operation:deleteLock");
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
+        LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        System.err.println(rawData);
-
+        LOG.info("rawData : "+rawData);
         if (respFail()){
             return false;
         }

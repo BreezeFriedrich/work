@@ -14,23 +14,26 @@ $(function () {
 function register() {
     ownerName=document.getElementsByTagName('input')[0].value;
     if(''!==ownerName){
+        $.showPreloader();
         $.ajax({
             type:"POST",
-            url:projectPath+"/account/register.action",
+            url:projectPath+"/login/register.action",
             async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
             data:{
                 "ownerName":ownerName
             },
             dataType:'json',
             success:function(data,status,xhr){
+                $.hidePreloader();
                 if(true===data.result){
-                    window.location.href="main2.jsp";
+                    window.location.href=encodeURI("jsp/main2.jsp");
                 }else {
                     $.toast('注册失败',1500);
                     window.location.reload();
                 }
             },
             error:function(xhr,errorType,error){
+                $.hidePreloader();
                 console.log('错误')
             }
         });

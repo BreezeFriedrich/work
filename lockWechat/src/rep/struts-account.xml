@@ -18,7 +18,7 @@
              method: 调用Action中的方法名
         -->
         <global-allowed-methods>login</global-allowed-methods>
-        <action name="loginAccount" class="com.yishu.action.AccountAction" method="loginTest">
+        <action name="loginAccount" class="com.yishu.action.LoginAction" method="loginTest">
             <!-- 参数设置 name：对应Action中的get/set方法 -->
             <!--<param name="salt">yishutech</param>-->
 
@@ -50,7 +50,7 @@
             <result name="success">/jsp/main2.jsp</result>
             <result name="login" type="dispatcher">/jsp/login.jsp</result>
         </action>
-        <action name="wxLogin" class="com.yishu.action.AccountAction" method="wxLogin">
+        <action name="wxLogin" class="com.yishu.action.LoginAction" method="wxLogin">
             <interceptor-ref name="openidStack"/>
             <result name="main">/jsp/main.jsp</result>
             <result name="main2">/jsp/main2.jsp</result>

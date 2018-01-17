@@ -53,8 +53,7 @@ public class RecordController {
     /**
      * 获取用户ownerPhoneNumber的开锁记录,再将数据分页.
      *
-     * @param pageNum 第几页的页码数字.
-     * @param pageSize 每页可以展示多少条记录的数目.
+     * param pageNum 第几页的页码数字. param pageSize 每页可以展示多少条记录的数目.
      *
      */
     @RequestMapping("/getUnlockRecordPage.do")
@@ -87,6 +86,21 @@ public class RecordController {
         int pageNum= Integer.parseInt(request.getParameter("pageNum"));
         int pageSize= Integer.parseInt(request.getParameter("pageSize"));
         Records<UnlockRecord> records=recordService.getGatewayUnlockRecordPage(ownerPhoneNumber,startTime,endTime,gatewayCode,pageNum,pageSize);
+        return records;
+    }
+
+    @RequestMapping("/getLockUnlockRecord.do")
+    @ResponseBody
+    public Records<UnlockRecord> getLockUnlockRecord(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- record/getLockUnlockRecord.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String lockCode=request.getParameter("lockCode");
+        String startTime=request.getParameter("startTime");
+        String endTime=request.getParameter("endTime");
+        Records<UnlockRecord> records=recordService.getLockUnlockRecord(ownerPhoneNumber,startTime,endTime,lockCode);
         return records;
     }
 

@@ -35,7 +35,7 @@ public class WechatUtil {
         ViewButton button21=new ViewButton();
         button21.setName("view菜单");
         button21.setType("view");
-        button21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6234fc4a502ef625&redirect_uri=https://lockwx.manxing1798.com/lockWechat/account/wxLogin.action&response_type=code&scope=snsapi_base#wechat_redirect");
+        button21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6234fc4a502ef625&redirect_uri=https://lockwx.manxing1798.com/lockWechat/login/wxLogin.action&response_type=code&scope=snsapi_base#wechat_redirect");
 
         ClickButton button31=new ClickButton();
         button31.setName("扫码事件");

@@ -166,8 +166,8 @@
                 <ul>
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title" id="link_addAuthById">
+                        <div class="item-inner" id="link_addAuthById">
+                            <div class="item-title">
                                 <img class="auto-zoom-1" src="resources/img/user_authorize.png" alt="用户授权"/>
                                 增加授权用户
                             </div>
@@ -194,8 +194,8 @@
                 <ul>
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title" id="link_addAuthByPwd">
+                        <div class="item-inner" id="link_addAuthByPwd">
+                            <div class="item-title">
                                 <img class="auto-zoom-1" src="resources/img/password_set.png" alt="门锁密码"/>
                                 门锁密码设置
                             </div>
@@ -213,6 +213,6 @@
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
 <script type='text/javascript' src='resources/js/util/date.js'></script>
-<script type='text/javascript' src='resources/js/lock_manage.js'></script>
+<script type='text/javascript' src='resources/js/lock_manage.js?ver=2'></script>
 </body>
 </html>

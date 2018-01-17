@@ -20,9 +20,9 @@ import java.util.Map;
  */
 public class AccountAction extends ActionSupport implements Parameterizable,SessionAware {
     public AccountAction() {
-        System.out.println(">>>Initialization AccountAction......................................");
+        System.out.println(">>>Initialization LoginAction......................................");
     }
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("AccountAction");
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("LoginAction");
 
     @Autowired
     private IUserService userService;
