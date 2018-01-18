@@ -51,12 +51,12 @@ function modifyNickname() {
                     $.hideIndicator();
                     // alert('data:'+data);
                     if(data){
-                        $.toast('修改用户昵称成功,正在刷新页面...',1500);
-                        window.setTimeout("history.go(-2)",2000);
+                        $.toast('修改成功,返回上一页...',1500);
+                        window.setTimeout("history.go(-1)",2000);
                         // window.location.href="jsp/main.jsp?ownerPhoneNumber="+ownerPhoneNumber;
                         // window.history.go(-2);
                     }else {
-                        $.toast('修改用户昵称失败!',1500);
+                        $.toast('修改失败!',1500);
                     }
                 },
                 error:function(xhr,errorType,error){

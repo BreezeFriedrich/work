@@ -17,53 +17,47 @@ if ('addEventListener' in document) {
 
 //修改用户昵称
 var div_modifyNickname=document.getElementById("link_modifyNickname");
-/*
 div_modifyNickname.addEventListener('click',function(ev){
-    // var target = ev.target || window.event.srcElement;
     url="jsp/setting/set_modifyNickname.jsp?ownerPhoneNumber="+ownerPhoneNumber;
     window.location.href=encodeURI(url);
 });
-*/
+/*
 div_modifyNickname.addEventListener('click',function(ev){
     var target = ev.target || window.event.srcElement;
     while(target !== div_modifyNickname){
         if(target.getAttribute('class')==='item-inner'){
-            url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
+            url="jsp/setting/set_modifyNickname.jsp?ownerPhoneNumber="+ownerPhoneNumber;
             window.location.href=encodeURI(url);
         }
         target = target.parentNode;
     }
-    url="jsp/setting/set_modifyNickname.jsp?ownerPhoneNumber="+ownerPhoneNumber;
-    window.location.href=encodeURI(url);
 });
+*/
 //修改登录密码
 var div_modifyPassword=document.getElementById("link_modifyPassword");
-/*
 div_modifyPassword.addEventListener('click',function(ev){
     url="jsp/setting/set_modifyPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
     window.location.href=encodeURI(url);
 });
-*/
+/*
 div_modifyPassword.addEventListener('click',function(ev){
     var target = ev.target || window.event.srcElement;
     while(target !== div_modifyPassword){
         if(target.getAttribute('class')==='item-inner'){
-            url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
+            url="jsp/setting/set_modifyPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
             window.location.href=encodeURI(url);
         }
         target = target.parentNode;
     }
-    url="jsp/setting/set_modifyPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
-    window.location.href=encodeURI(url);
 });
+*/
 //设置授权密码
 var div_setGesturePassword=document.getElementById("link_setGesturePassword");
-/*
 div_setGesturePassword.addEventListener('click',function(ev){
     url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
     window.location.href=encodeURI(url);
 });
-*/
+/*
 div_setGesturePassword.addEventListener('click',function(ev){
     var target = ev.target || window.event.srcElement;
     while(target !== div_setGesturePassword){
@@ -74,6 +68,7 @@ div_setGesturePassword.addEventListener('click',function(ev){
         target = target.parentNode;
     }
 });
+*/
 
 $(function(){
     // FastClick.attach(document.body);

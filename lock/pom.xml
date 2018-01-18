@@ -241,7 +241,8 @@
       <id>development</id>
       <properties>
         <profiles.active>development</profiles.active>
-        <deploy.url>http://localhost:80/lock</deploy.url>
+        <!--<deploy.url>http://localhost:80/lock</deploy.url>-->
+        <deploy.url>http://localhost:80</deploy.url>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -371,7 +372,7 @@
           </archive>
           <webResources>
             <resource>
-              <directory>src/main/resources/config/${profiles.active}</directory>
+              <directory>src/main/resources/${profiles.active}</directory>
               <!-- target不能以/结尾 -->
               <targetPath>WEB-INF/classes</targetPath>
               <filtering>true</filtering>
@@ -388,7 +389,7 @@
         <configuration>
           <finalName>lock</finalName>
           <uriEncoding>UTF-8</uriEncoding>
-          <server>tomcat.server</server><!-- 在maven目录conf/setting.xml标签servers中定义 -->
+          <server>tomcat-local</server><!-- 在maven目录conf/setting.xml标签servers中定义 -->
           <url>${deploy.url}</url>
           <port>80</port>
           <path>/lock</path>

@@ -48,11 +48,24 @@
         <div class="content">
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
+                    <!--
                     <li>
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">登录密码</div>
+                                <div class="item-title label">原密码</div>
+                                <div class="item-input">
+                                    <input type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">新密码</div>
                                 <div class="item-input">
                                     <input type="text"/>
                                 </div>
@@ -71,6 +84,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/set_modifyPassword.js?ver=2' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/set_modifyPassword.js?ver=4' charset='utf-8'></script>
 </body>
 </html>

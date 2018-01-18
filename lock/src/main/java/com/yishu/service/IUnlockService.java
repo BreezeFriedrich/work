@@ -24,5 +24,5 @@ public interface IUnlockService {
     public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime);
     public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String serviceNumb);
     public UnlockAuthorization getUnlockAuthorization(String ownerPhoneNumber, String gatewayCode, String lockCode);
-    public UnlockAuthorization hasUnlockAuthorizedDailyArr(UnlockAuthorization unlockAuthorization,String endTime);
+    public UnlockAuthorization hasUnlockAuthorizedDailyArr(UnlockAuthorization unlockAuthorization,String startTime,String endTime);
 }

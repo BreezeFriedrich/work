@@ -1,4 +1,4 @@
-package test.com.yishu.util;
+package com.yishu.util;
 
 import static com.yishu.util.GetNetworkTime.getWebsiteDatetime;
 import static org.junit.Assert.*;

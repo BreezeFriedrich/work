@@ -12,7 +12,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <projet.reporting.outputEncoding>UTF-8</projet.reporting.outputEncoding>
     <project.build.directory>target</project.build.directory>
-    <project.reporting.outputDirectory>target</project.reporting.outputDirectory>
+    <project.build.outputDirectory>target/out</project.build.outputDirectory>
+    <project.build.testOutputDirectory>target/test</project.build.testOutputDirectory>
+    <project.reporting.outputDirectory>target/report</project.reporting.outputDirectory>
     <jdk-version>1.7</jdk-version>
     <spring-version>4.2.6.RELEASE</spring-version>
     <struts2-version>2.5.12</struts2-version>
@@ -20,6 +22,16 @@
     <log4j2-version>2.8.2</log4j2-version>
     <httpcomponents-version>4.2.5</httpcomponents-version>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>project_lib</id>
+      <name>Repository in project's lib dir</name>
+      <layout>default</layout>
+      <!--<url>file:///${project.basedir}/libs</url>-->
+      <url>file:///${project.basedir}/src/main/webapp/WEB-INF/libs</url>
+    </repository>
+  </repositories>
 
   <dependencies>
     <dependency>
@@ -318,21 +330,23 @@
       <version>2.9.9</version>
     </dependency>
 
+
     <dependency>
       <groupId>com.aliyun</groupId>
       <artifactId>aliyun-java-sdk-core</artifactId>
       <version>3.3.1</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/src/main/webapp/WEB-INF/libs/aliyun-java-sdk-core-3.3.1.jar</systemPath>
+      <!--<scope>system</scope>-->
+      <!--<systemPath>${project.basedir}/src/main/webapp/WEB-INF/libs/aliyun-java-sdk-core-3.3.1.jar</systemPath>-->
     </dependency>
 
     <dependency>
       <groupId>com.aliyun</groupId>
       <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
       <version>1.0.0</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/src/main/webapp/WEB-INF/libs/aliyun-java-sdk-dysmsapi-1.0.0.jar</systemPath>
+      <!--<scope>system</scope>-->
+      <!--<systemPath>${project.basedir}/src/main/webapp/WEB-INF/libs/aliyun-java-sdk-dysmsapi-1.0.0.jar</systemPath>-->
     </dependency>
+
 
   </dependencies>
 
@@ -342,10 +356,11 @@
       <id>development</id>
       <properties>
         <profiles.active>development</profiles.active>
-        <deploy.url>http://localhost:80/lockWechat</deploy.url>
+        <!--<deploy.url>http://localhost:80/lockWechat</deploy.url>-->
+        <deploy.url>http://localhost</deploy.url>
       </properties>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
     </profile>
     <!-- 测试环境 -->
@@ -361,8 +376,12 @@
       <id>production</id>
       <properties>
         <profiles.active>production</profiles.active>
-        <deploy.url>http://RemoteServer:port/lockWechat</deploy.url>
+        <!--<deploy.url>http://43.254.149.29:55128/lockWechat</deploy.url>-->
+        <deploy.url>http://43.254.149.29</deploy.url>
       </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
   </profiles>
 
@@ -380,7 +399,8 @@
           <include>**/*.txt</include>
         </includes>
         <excludes>
-          <exclude>config/production/jdbc.properties</exclude>
+          <!--<exclude>config/production/jdbc.properties</exclude>-->
+          <exclude>production/jdbc.properties</exclude>
         </excludes>
       </resource>
     </resources>
@@ -446,20 +466,28 @@
           <source>${jdk-version}</source>
           <target>${jdk-version}</target>
           <encoding>${project.build.sourceEncoding}</encoding>
+          <compilerArguments>
+            <!--<extdirs>${project.basedir}/src/main/webapp/WEB-INF/libs</extdirs>-->
+          </compilerArguments>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.0</version>
         <configuration>
           <archive>
             <addMavenDescriptor>false</addMavenDescriptor>
+            <manifest>
+              <addClasspath>true</addClasspath>
+            </manifest>
           </archive>
+          <!--<warSourceExcludes>WEB-INF/libs/aliyun-java-sdk-core-3.3.1.jar</warSourceExcludes>-->
           <webResources>
             <resource>
-              <directory>src/main/resources/config/${profiles.active}</directory>
-              <!-- target不能以/结尾 -->
+              <!--<directory>src/main/resources/config/${profiles.active}</directory>-->
+              <directory>src/main/resources/${profiles.active}</directory>
               <targetPath>WEB-INF/classes</targetPath>
               <filtering>true</filtering>
             </resource>
@@ -474,10 +502,11 @@
         <configuration>
           <finalName>lockWechat</finalName>
           <uriEncoding>UTF-8</uriEncoding>
-          <server>tomcat.server</server><!-- 在maven目录conf/setting.xml标签servers中定义 -->
-          <url>${deploy.url}</url>
+          <url>${deploy.url}/manager/text</url>
           <port>80</port>
           <path>/lockWechat</path>
+          <server>tomcat-43.254.149.29</server><!-- 在maven目录conf/setting.xml标签servers中定义,默认引用其username和password -->
+          <update>true</update>
         </configuration>
       </plugin>
 
@@ -506,5 +535,20 @@
         </executions>
       </plugin>
     </plugins>
+
+    <!--<extensions>-->
+      <!--<extension>-->
+        <!--<groupId>org.apache.maven.wagon</groupId>-->
+        <!--<artifactId>wagon-webdav-jackrabbit</artifactId>-->
+        <!--<version>1.0-beta-7</version>-->
+      <!--</extension>-->
+    <!--</extensions>-->
   </build>
+
+  <!--<distributionManagement>-->
+    <!--<site>-->
+      <!--<id>tomcat-local</id>-->
+      <!--<url>dav:http://127.0.0.1:80/lockWechat/sites</url>-->
+    <!--</site>-->
+  <!--</distributionManagement>-->
 </project>

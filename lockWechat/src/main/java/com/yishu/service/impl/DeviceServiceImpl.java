@@ -115,6 +115,8 @@ public class DeviceServiceImpl implements IDeviceService{
         logger.info("sign:"+'空'+" operation:getDeviceInfo");
         //rawData,获取原始数据:开锁记录的List.
         List<Device> rawList=getDeviceInfo(ownerPhoneNumber);
+        List<Device> deviceList=null;
+        /*
         //注入假数据用于测试.
         if (rawList.isEmpty()){
             try {
@@ -123,8 +125,10 @@ public class DeviceServiceImpl implements IDeviceService{
                 e.printStackTrace();
             }
         }
-
-        List<Device> deviceList=null;
+        */
+        if (rawList.isEmpty()){
+            return deviceList;
+        }
         Device device=null;
         List<Lock> lockLists=null;
         for (Iterator itr=rawList.iterator();itr.hasNext();){

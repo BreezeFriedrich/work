@@ -86,18 +86,27 @@ public class AccountAction {
         return "json";
     }
 
+    /**
+     * 修改用户登录密码(App登录、WEB登录所用)
+     * 1.判断session 中 openid. 2.用session中openid进行微信登录. 3.若登录成功则进行修改用户登录密码.
+     *
+     */
     public String modifyPassword(){
         logger.info("-->>-- account/modifyPassword.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
         boolean resultBoolean;
-        if (null==session.getAttribute("OPENID")){
-            resultBoolean=false;
-        }else{
-            resultBoolean=accountService.modifyPassword(ownerPhoneNumber,newPassword);
+        if (null!=session.getAttribute("OPENID")){
+            openid= (String) session.getAttribute("OPENID");
+            Map loginResultMap=accountService.wechatLogin(openid);
+            if(0 == (int) loginResultMap.get("result")){
+                resultBoolean=accountService.modifyPassword(ownerPhoneNumber,newPassword);
+                jsonResult=resultBoolean;
+                return "json";
+            }
         }
-        jsonResult=resultBoolean;
+        jsonResult=false;
         return "json";
     }
 

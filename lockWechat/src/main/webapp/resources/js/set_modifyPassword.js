@@ -48,10 +48,10 @@ function modifyPassword() {
                 success:function(data,status,xhr){
                     $.hideIndicator();
                     if(data){
-                        $.toast('修改用户登录密码成功,正在刷新页面...',1500);
+                        $.toast('修改成功,返回上一页...',1500);
                         window.setTimeout("history.go(-1)",2000);
                     }else {
-                        $.toast('修改用户登录密码失败!',1500);
+                        $.toast('修改失败!',1500);
                     }
                 },
                 error:function(xhr,errorType,error){

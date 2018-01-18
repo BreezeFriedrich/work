@@ -283,7 +283,7 @@ public class AccountServiceImpl implements IAccountService {
         reqSign=201;
 //        logger.info("sign:"+reqSign+" operation:wechatLogin");
 //        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
-        reqData="{\"sign\":"+reqSign+",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"openid\":"+openid+",\"timetag\":"+timetag+"}";
         logger.info("reqData:"+reqData);
         rawData = HttpUtil.httpsPostToQixu(reqData);
         logger.info("rawData:"+rawData);

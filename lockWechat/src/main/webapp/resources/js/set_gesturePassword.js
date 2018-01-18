@@ -78,7 +78,7 @@ function setGesturePassword() {
                 success:function(data,status,xhr){
                     $.hideIndicator();
                     if(0==data.result){
-                        $.toast('修改开锁授权密码成功,正在返回上一页...',1500);
+                        $.toast('修改成功,返回上一页...',1500);
                         window.setTimeout("history.go(-1)",2000);
                     }else if(2==data.result){
                         $.toast(data.msg,1500);

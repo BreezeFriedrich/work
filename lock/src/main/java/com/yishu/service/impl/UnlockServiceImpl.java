@@ -410,4 +410,52 @@ public class UnlockServiceImpl implements IUnlockService {
         UnlockAuthorization unlockAuthorization=new UnlockAuthorization();
         return unlockAuthorization.getUnlockAuthorization(unlockIdListLast,unlockPwds);
     }
+
+    @Override
+    public UnlockAuthorization hasUnlockAuthorizedDailyArr(UnlockAuthorization unlockAuthorization, String startTime, String endTime) {
+        long startTimeL=Long.parseLong(startTime);
+        long endTimeL=Long.parseLong(endTime);
+        if (startTimeL>endTimeL){
+            return null;
+        }
+        long timeDiff=getMillDiffFromTime("2018-01-18 12:00:00");
+//        startTimeL
+
+        int unlockIdSize=unlockAuthorization.getUnlockIdSize();
+        int unlockPwdSize=unlockAuthorization.getUnlockPwdSize();
+        if ((unlockIdSize+unlockPwdSize)>0){
+            List<IdentityCard> unlockIds=unlockAuthorization.getUnlockIds();
+            UnlockPwds unlockPwds=unlockAuthorization.getUnlockPwds();
+            List<UnlockPwd> passwordList=unlockPwds.getPasswordList();
+
+            //filter-unlockIds-Bytime,过滤身份证开锁授权.
+            List<IdentityCard> unlockIdListLast=null;
+            unlockIdListLast= FilterList.filter(unlockIds, new FilterListHook<IdentityCard>() {
+                @Override
+                public boolean test(IdentityCard identityCard) {
+                    try {
+                        long endTime=DateUtil.yyyyMMddHHmmss.parse(identityCard.getEndTime()).getTime();
+                        long now=GetNetworkTime.getWebsiteDate().getTime();
+                        return now < endTime;
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return false;
+                }
+            });
+        }
+
+        return null;
+    }
+
+    public long getMillDiffFromTime(String timeStr){
+        //timeStr="2018-01-18 12:00:00"
+        try {
+            long timeL=DateUtil.yyyy_MM_dd0HH$mm$ss.parse(timeStr).getTime();
+            return timeL % (1000*3600*24);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

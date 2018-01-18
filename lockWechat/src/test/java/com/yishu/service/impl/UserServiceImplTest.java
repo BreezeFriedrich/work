@@ -1,4 +1,4 @@
-package test.com.yishu.service.impl; 
+package com.yishu.service.impl;
 
 import static org.junit.Assert.*;
 import com.yishu.dao.SpringJUnit4ClassRunnerTemplate;
