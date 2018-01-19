@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>智能锁WEB管理平台</display-name>
 
   <!-- 加载顺序: context-param —>listener —>web —>servlet -->
   <context-param>
@@ -109,7 +109,7 @@
 
   <!-- 配置session域对象超时时间，单位分钟 -->
   <session-config>
-    <session-timeout>720</session-timeout>
+    <session-timeout>120</session-timeout>
   </session-config>
 
   <welcome-file-list>

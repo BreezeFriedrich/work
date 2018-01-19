@@ -356,8 +356,7 @@
       <id>development</id>
       <properties>
         <profiles.active>development</profiles.active>
-        <!--<deploy.url>http://localhost:80/lockWechat</deploy.url>-->
-        <deploy.url>http://localhost</deploy.url>
+        <deploy.url>http://localhost:80</deploy.url>
       </properties>
       <activation>
         <activeByDefault>false</activeByDefault>
@@ -368,19 +367,22 @@
       <id>test</id>
       <properties>
         <profiles.active>test</profiles.active>
-        <deploy.url>http://112.25.233.122:8000/lockWechat</deploy.url>
+        <!--<deploy.url>http://112.25.233.122:8000/lockWechat</deploy.url>-->
+        <deploy.url>http://47.96.25.55:8080</deploy.url>
       </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
     <!-- 生产环境 -->
     <profile>
       <id>production</id>
       <properties>
         <profiles.active>production</profiles.active>
-        <!--<deploy.url>http://43.254.149.29:55128/lockWechat</deploy.url>-->
-        <deploy.url>http://43.254.149.29</deploy.url>
+        <deploy.url>http://43.254.149.29:80</deploy.url>
       </properties>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
     </profile>
   </profiles>
@@ -503,9 +505,10 @@
           <finalName>lockWechat</finalName>
           <uriEncoding>UTF-8</uriEncoding>
           <url>${deploy.url}/manager/text</url>
-          <port>80</port>
           <path>/lockWechat</path>
-          <server>tomcat-43.254.149.29</server><!-- 在maven目录conf/setting.xml标签servers中定义,默认引用其username和password -->
+          <!-- 在maven目录conf/setting.xml标签servers中定义,默认引用其username和password -->
+          <!--<server>tomcat-43.254.149.29</server>-->
+          <server>tomcat-47.96.25.55</server>
           <update>true</update>
         </configuration>
       </plugin>
