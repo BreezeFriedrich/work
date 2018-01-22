@@ -133,6 +133,7 @@ public class HttpUtil
 
     public final static String hostName="lock.qixutech.com";
     public final static String ownerIp="lock.qixutech.com";
+    public final static String ADDR_QIXU="https://43.254.149.28:2017";
 
     public static String getIpFromDomain(String hostName){
 //        return "43.254.149.28";

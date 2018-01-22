@@ -379,7 +379,7 @@
       <id>production</id>
       <properties>
         <profiles.active>production</profiles.active>
-        <deploy.url>http://43.254.149.29:80</deploy.url>
+        <deploy.url>https://lockwx.manxing1798.com</deploy.url>
       </properties>
       <activation>
         <activeByDefault>false</activeByDefault>

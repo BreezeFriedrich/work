@@ -315,14 +315,12 @@ $(document).ready(function () {
                 field: '<th class="table-width1 "><div class="table-time table-header-hight58 table-cell table-width1 table-butstyle">当前日期：'+dateStrArr[14]+'</div></th>',
                 htmlDom: true,
                 fixed: true
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[0]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[1]+'</div></th>',
                 htmlDom: true,
@@ -352,82 +350,69 @@ $(document).ready(function () {
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[6]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[7]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[8]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[9]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[10]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[11]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[12]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[13]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[14]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[15]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[16]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[17]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[18]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
-                field: '<th class="table-width140 table-butstyle"><div class=table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[19]+'</div></th>',
+                field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[19]+'</div></th>',
                 htmlDom: true,
                 fixed: false
             },{
@@ -435,50 +420,42 @@ $(document).ready(function () {
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[20]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[21]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[22]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[23]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[24]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[25]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[26]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[27]+'</div></th>',
                 htmlDom: true,
                 fixed: false
-            },
-            {
+            },{
                 width: "140px",
                 field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle">'+dateStrArr[28]+'</div></th>',
                 htmlDom: true,
