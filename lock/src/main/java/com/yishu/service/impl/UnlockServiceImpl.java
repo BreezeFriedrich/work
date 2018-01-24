@@ -327,17 +327,25 @@ public class UnlockServiceImpl implements IUnlockService {
 
     @Override
     public UnlockAuthorization getUnlockAuthorization(String ownerPhoneNumber, String gatewayCode, String lockCode) {
-        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
-        if (null == gatewayIp) {
-            return null;
-        }
+//        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+//        if (null == gatewayIp) {
+//            return null;
+//        }
         //获取身份证开锁授权
-        final long now=GetNetworkTime.getWebsiteDate().getTime();
+        Date webDate=null;
+        webDate=GetNetworkTime.getWebsiteDate();
+        if (null==webDate){
+            LOG.warn("GetNetworkTime.getWebsiteDate() return:null");
+            webDate=new Date();
+        }
+        LOG.info("webDate:"+webDate);
+        final long now=webDate.getTime();
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=17;
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
+//        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
+        rawData= HttpUtil.httpsPostToQixu(reqData);
         LOG.info("rawData : "+rawData);
 
         if (respFail()){//请求数据失败
@@ -369,7 +377,8 @@ public class UnlockServiceImpl implements IUnlockService {
         reqSign=20;
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
+//        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
+        rawData= HttpUtil.httpsPostToQixu(reqData);
         LOG.info("rawData : "+rawData);
 
         if (respFail()){//请求数据失败
@@ -408,161 +417,142 @@ public class UnlockServiceImpl implements IUnlockService {
         return unlockAuthorization.getUnlockAuthorization(unlockIdListLast,unlockPwds);
     }
 
-    /*
     @Override
-    public UnlockAuthorization hasUnlockAuthorizedDailyArr(UnlockAuthorization unlockAuthorization, String startTime, String endTime) {
-        long now=GetNetworkTime.getWebsiteDate().getTime();
-        long startTimeL=Long.parseLong(startTime);
-        final long endTimeL=Long.parseLong(endTime);
-        if (endTimeL<now){
-            return null;
-        }
-        if (startTimeL>endTimeL){
-            return null;
-        }
-        startTimeL=startTimeL>now?startTimeL:now;
+    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, String startTime, String endTime) throws ParseException {
+        long startMoment;
+        long endMoment;
+        long moments[];
 
-        long timeDiff=getMillDiffFromTime("2018-01-18 12:00:00");
-//        startTimeL
+        long startTimeL=DateUtil.yyyyMMddHHmmss.parse(startTime).getTime();
+        long endTimeL= DateUtil.yyyyMMddHHmmss.parse(endTime).getTime();
 
+        moments=DateUtil.resetPeriod(startTimeL,endTimeL);
+        startMoment=moments[0];
+        endMoment=moments[1];
+        int periodSize= (int) ((endMoment-startMoment)/86400000);
+        //
         int unlockIdSize=unlockAuthorization.getUnlockIdSize();
         int unlockPwdSize=unlockAuthorization.getUnlockPwdSize();
-        if ((unlockIdSize+unlockPwdSize)>0){
-            List<IdentityCard> unlockIds=unlockAuthorization.getUnlockIds();
-            UnlockPwds unlockPwds=unlockAuthorization.getUnlockPwds();
-            List<UnlockPwd> passwordList=unlockPwds.getPasswordList();
-
-            //filter-unlockIds-Bytime,过滤身份证开锁授权.
-            List<IdentityCard> unlockIdListLast=null;
-            final long finalStartTimeL = startTimeL;
-            unlockIdListLast= FilterList.filter(unlockIds, new FilterListHook<IdentityCard>() {
-                @Override
-                public boolean test(IdentityCard identityCard) {
-                    try {
-                        long endTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getEndTime()).getTime();
-                        long startTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getStartTime()).getTime();
-                        long startTimetag=0;
-                        long endTimetag=0;
-                        if (startTime<endTime){
-                            return false;
-                        }
-                        if (endTime<finalStartTimeL){
-                            return false;
-                        }
-                        if (startTime>endTimeL){
-                            return false;
-                        }
-
-                        return false;
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    return false;
-                }
-            });
-        }
-
-        return null;
-    }
-    */
-    @Override
-    public UnlockAuthorization hasUnlockAuthorizedDailyArr(UnlockAuthorization unlockAuthorization, final String startTime, String endTime) {
-
-        Authinfo authinfo = null;
-        IdentityCard[] ids;
-        UnlockPwd[] pwds;
-
-        AuthinfoDaily[] authinfoDaily;
-        String date;
-        int[] idIndex;
-        int[] pwdIndex;
-
-        long now=GetNetworkTime.getWebsiteDate().getTime();
-        long startTimeL=Long.parseLong(startTime);
-        final long endTimeL=Long.parseLong(endTime);
-        if (endTimeL<now){
+        if (!(unlockIdSize+unlockPwdSize>0)){
             return null;
         }
-        if (startTimeL>endTimeL){
-            return null;
-        }
-        final long finalStartTimeL = startTimeL>now?startTimeL:now;
+        List<IdentityCard> unlockIds=unlockAuthorization.getUnlockIds();
+        List<UnlockPwd> unlockPwds=unlockAuthorization.getUnlockPwds().getPasswordList();
 
-        long timeDiff=getMillDiffFromTime("2018-01-18 12:00:00");
-//        startTimeL
-
-        int unlockIdSize=unlockAuthorization.getUnlockIdSize();
-        int unlockPwdSize=unlockAuthorization.getUnlockPwdSize();
-        if ((unlockIdSize+unlockPwdSize)>0){
-            List<IdentityCard> unlockIds=unlockAuthorization.getUnlockIds();
-            UnlockPwds unlockPwds=unlockAuthorization.getUnlockPwds();
-            List<UnlockPwd> passwordList=unlockPwds.getPasswordList();
-
-            //filter-unlockIds-Bytime,过滤身份证开锁授权.
-            List<IdentityCard> unlockIdListNext=null;
-            int i=0;
-            unlockIdListNext= FilterList.filter(unlockIds, new FilterListHook<IdentityCard>() {
-                @Override
-                public boolean test(IdentityCard identityCard) {
-                    try {
-                        long endTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getEndTime()).getTime();
-                        long startTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getStartTime()).getTime();
-                        long startTimetag=0;
-                        long endTimetag=0;
-                        if (startTime<endTime){
-                            return false;
-                        }
-                        if (endTime<finalStartTimeL){
-                            return false;
-                        }
-                        if (startTime>endTimeL){
-                            return false;
-                        }
-                        return true;
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    return false;
-                }
-            });
-
-            int size= (int) (1L*(endTimeL-startTimeL)/86400000);
-            authinfoDaily=new AuthinfoDaily[size];
-            ids=new IdentityCard[size];
-            //
-            List<IdentityCard> unlockIdListLast=null;
-            unlockIdListLast= FilterList.filter(unlockIds, new FilterListHook<IdentityCard>() {
-                @Override
-                public boolean test(IdentityCard identityCard) {
-                    try {
-                        long endTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getEndTime()).getTime();
-                        long startTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getStartTime()).getTime();
-                        long startTimetag=0;
-                        long endTimetag=0;
-                        startTimetag=startTime>finalStartTimeL?startTime:finalStartTimeL;
-                        endTimetag=endTime<endTimeL?endTime:endTimeL;
-
-
-                    } catch (ParseException e) {
-                        e.printStackTrace();
+        //filter-unlockIds-Bytime,过滤身份证开锁授权.
+        List<IdentityCard> unlockIdListNext=null;
+        unlockIdListNext= FilterList.filter(unlockIds, new FilterListHook<IdentityCard>() {
+            @Override
+            public boolean test(IdentityCard identityCard) {
+                try {
+                    long startTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getStartTime()).getTime();
+                    long endTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getEndTime()).getTime();
+                    if (startTime<endTime){
                         return false;
                     }
-                    return false;
+                    if (endTime<startMoment){
+                        return false;
+                    }
+                    if (startTime>endMoment){
+                        return false;
+                    }
+                    return true;
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            });
-        }
+                return false;
+            }
+        });
+        //filter-unlockPwds-Bytime,过滤密码开锁授权.
+        List<UnlockPwd> unlockPwdListNext=null;
+        unlockPwdListNext= FilterList.filter(unlockPwds, new FilterListHook<UnlockPwd>() {
+            @Override
+            public boolean test(UnlockPwd unlockPwd) {
+                try {
+                    long startTime=DateUtil.yyyyMMddHHmm.parse(unlockPwd.getStartTime()).getTime();
+                    long endTime=DateUtil.yyyyMMddHHmm.parse(unlockPwd.getEndTime()).getTime();
+                    if (startTime<endTime){
+                        return false;
+                    }
+                    if (endTime<startMoment){
+                        return false;
+                    }
+                    if (startTime>endMoment){
+                        return false;
+                    }
+                    return true;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return false;
+            }
+        });
 
-        return null;
-    }
-
-    public long getMillDiffFromTime(String timeStr){
-        //timeStr="2018-01-18 12:00:00"
-        try {
-            long timeL=DateUtil.yyyy_MM_dd0HH$mm$ss.parse(timeStr).getTime();
-            return timeL % (1000*3600*24);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        Authinfo authinfo=new Authinfo();
+        AuthinfoDaily[] authinfoPeriod=new AuthinfoDaily[periodSize];
+        long time;
+        for(int i=0;i<periodSize;i++){
+            time=86400000*1L*i+startMoment;
+            authinfoPeriod[i].setTime(time);
+            authinfoPeriod[i].setDate(DateUtil.yyyy_MM_dd.format(new Date(time)));
         }
-        return 0;
+        int idListNextSize=unlockIdListNext.size();
+        int pwdListNextSize=unlockPwdListNext.size();
+        IdentityCard[] ids=new IdentityCard[idListNextSize];
+        unlockIdListNext.toArray(ids);
+        UnlockPwd[] pwds=new UnlockPwd[pwdListNextSize];
+        unlockPwdListNext.toArray(pwds);
+        authinfo.setIds(ids);
+        authinfo.setPwds(pwds);
+        IdentityCard id=null;
+        UnlockPwd pwd=null;
+        /*
+        for(long timeTemp=startMoment;timeTemp<endMoment;timeTemp=timeTemp+86400000){
+            authinfoDaily.setTime(timeTemp);
+            authinfoDaily.setDate(DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(timeTemp)));
+            for(int i=0;i<idListNextSize;i++){
+                id=ids[i];
+            }
+        }
+        */
+        long startTimeTemp;
+        long endTimeTemp;
+        int startIndex;
+        int endIndex;
+        for(int i=0;i<idListNextSize;i++){
+            id=unlockIdListNext.get(i);
+            ids[i]=id;
+            startTimeTemp=DateUtil.yyyyMMddHHmm.parse(id.getStartTime()).getTime();
+            endTimeTemp=DateUtil.yyyyMMddHHmm.parse(id.getEndTime()).getTime();
+            moments=DateUtil.resetPeriod(startTimeTemp,endTimeTemp);
+            startTimeTemp=moments[0];
+            endTimeTemp=moments[1];
+            startTimeTemp=startTimeTemp>startMoment?startTimeTemp:startMoment;//取大
+            endTimeTemp=endTimeTemp<endMoment?endTimeTemp:endMoment;//取小
+            startIndex= (int) ((startTimeTemp-startMoment)/86400000);
+            endIndex= (int) ((endTimeTemp-startMoment)/86400000);
+            for (int j=startIndex;j<=endIndex;j++){
+                authinfoPeriod[j].getIdIndexes().add(i);
+            }
+        }
+        for(int i=0;i<pwdListNextSize;i++){
+            pwd=unlockPwdListNext.get(i);
+            pwds[i]=pwd;
+            startTimeTemp=DateUtil.yyyyMMddHHmm.parse(pwd.getStartTime()).getTime();
+            endTimeTemp=DateUtil.yyyyMMddHHmm.parse(pwd.getEndTime()).getTime();
+            moments=DateUtil.resetPeriod(startTimeTemp,endTimeTemp);
+            startTimeTemp=moments[0];
+            endTimeTemp=moments[1];
+            startTimeTemp=startTimeTemp>startMoment?startTimeTemp:startMoment;//取大
+            endTimeTemp=endTimeTemp<endMoment?endTimeTemp:endMoment;//取小
+            startIndex= (int) ((startTimeTemp-startMoment)/86400000);
+            endIndex= (int) ((endTimeTemp-startMoment)/86400000);
+            for (int j=startIndex;j<=endIndex;j++){
+                authinfoPeriod[j].getPwdIndexes().add(i);
+            }
+        }
+        authinfo.setAuthinfoDaily(authinfoPeriod);
+
+        return authinfo;
     }
 }

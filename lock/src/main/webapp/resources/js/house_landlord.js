@@ -4,6 +4,7 @@ var lock;
 var dateArr=new Array;
 var dateStrArr=new Array;
 var year,week,month,day,hours,minutes,seconds;
+var authinfo;
 
 var initializationTime = (new Date()).getTime();
 function showLeftTime() {
@@ -209,82 +210,30 @@ function getLocks() {
  $(".fixed-table-box").deleteRow($(".fixed-table-box").children('.fixed-table_fixed-left').children('.fixed-table_body-wraper').find('tr').eq(0));
  });
  */
-/*
-function getAuthInfo(specificGatewayCode,specificLockCode) {
-    var authInfo;
-    var authInfoById;
-    var authInfoByPwd;
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/unlock/getUnlockId.do",
-        async:false,
-        data:{
-            // "ownerPhoneNumber":ownerPhoneNumber,
-            "gatewayCode":specificGatewayCode,
-            "lockCode":specificLockCode
-        },
-        dataType:'json',
-        success:function(data,status,xhr){
-            if(data.length>0){
-            }
-            authInfoById=data;
-        },
-        error:function(xhr,errorType,error){
-            console.log('错误');
-        }
-    });
-    var pwdList;
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/unlock/getUnlockPwd.do",
-        async:false,
-        data:{
-            // "ownerPhoneNumber":ownerPhoneNumber,
-            "gatewayCode":specificGatewayCode,
-            "lockCode":specificLockCode
-        },
-        dataType:'json',
-        success:function(data,status,xhr){
-            if('null'!=data.defaultPassword1 || 'null'!=data.defaultPassword2){}
-            pwdList=data.passwordList;
-            authInfoByPwd=data.passwordList;
-        },
-        error:function(xhr,errorType,error){
-            console.log('错误');
-        }
-    });
-    authInfo={};
-    authInfo.num=authInfoById.length+authInfoByPwd.length;
-    authInfo.authInfoById=authInfoById;
-    authInfo.authInfoByPwd=authInfoByPwd;
-    return authInfo;
-}
-*/
 
-function getUnlockAuthorization(specificGatewayCode,specificLockCode) {
-    var unlockAuthorization={};
+function getAuthinfo(specificGatewayCode,specificLockCode,startTime,endTime) {
     $.ajax({
         type:"POST",
-        url:projectPath+"/unlock/getUnlockAuthorization.do",
+        url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
         async:false,
         data:{
             // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
-            "lockCode":specificLockCode
+            "lockCode":specificLockCode,
+            "startTime":startTime,
+            "endTime":endTime
         },
         dataType:'json',
         success:function(data,status,xhr){
-            unlockAuthorization=data;
+            authinfo=data;
         },
         error:function(xhr,errorType,error){
             console.log('错误');
         }
-    });
-    return unlockAuthorization;
+    })
 }
 
 function getDailyRecords(lockCode) {
-    // console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",lockNum:"+lockNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getLockUnlockRecord.do",
@@ -481,6 +430,10 @@ $(document).ready(function () {
         })();
         return html;
     });
+
+
+
+
     $.contextMenu({
         // define which elements trigger this menu
         selector: ".rightclick",

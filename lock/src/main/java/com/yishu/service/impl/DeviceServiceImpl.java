@@ -32,8 +32,6 @@ public class DeviceServiceImpl implements IDeviceService {
     String reqData;
     String rawData;
 
-    ObjectMapper objectMapper=new ObjectMapper();
-
     @Override
     public List getUserGatewayIp(String ownerPhoneNumber) {
         reqSign=15;

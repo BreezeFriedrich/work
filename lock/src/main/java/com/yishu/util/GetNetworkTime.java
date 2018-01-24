@@ -82,7 +82,7 @@ public class GetNetworkTime {
     }
 
     public static Date getWebsiteDate(){
-        String webUrl=NT_ALI;
+        String webUrl=webUrl2;
         try {
             URL url = new URL(webUrl);// 取得资源对象
             URLConnection uc = url.openConnection();// 生成连接对象

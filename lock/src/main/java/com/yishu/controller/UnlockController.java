@@ -1,5 +1,6 @@
 package com.yishu.controller;
 
+import com.yishu.pojo.Authinfo;
 import com.yishu.pojo.UnlockAuthorization;
 import com.yishu.pojo.UnlockPwds;
 import com.yishu.service.IUnlockService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -159,7 +161,7 @@ public class UnlockController {
     }
 
     /**
-     * 获取(当期帐户、当前网关、当前门锁)已授权的开锁身份证信息
+     * 获取(当期帐户、当前网关、当前门锁)开锁授权信息
      *
      * @return resultList type:List<IdentityCard>
      */
@@ -175,5 +177,34 @@ public class UnlockController {
         String lockCode=request.getParameter("lockCode");
         UnlockAuthorization unlockAuthorization=unlockService.getUnlockAuthorization(ownerPhoneNumber,gatewayCode,lockCode);
         return unlockAuthorization;
+    }
+
+    /**
+     * 先获取(当期帐户、当前网关、当前门锁)开锁授权信息,再处理授权信息.
+     *
+     */
+    @RequestMapping("/getUnlockAuthorizationDailyArr.do")
+    @ResponseBody
+    public Authinfo getUnlockAuthorizationDailyArr(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- unlock/getUnlockAuthorizationDailyArr.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        UnlockAuthorization unlockAuthorization=unlockService.getUnlockAuthorization(ownerPhoneNumber,gatewayCode,lockCode);
+        if(null==unlockAuthorization){
+            return null;
+        }
+        String startTime=request.getParameter("startTime");
+        String endTime=request.getParameter("endTime");
+        try {
+            Authinfo authinfo=unlockService.getUnlockAuthorizationDailyArr(unlockAuthorization,startTime,endTime);
+            return authinfo;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

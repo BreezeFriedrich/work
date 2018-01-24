@@ -28,6 +28,9 @@ public class DateUtil {
     public static final SimpleDateFormat yyyy_MM_dd0HH$mm =new SimpleDateFormat("yyyy-MM-dd HH:mm");//yyyy_MM_dd0HH$mm
     public static final SimpleDateFormat yyyyMMddHHmm =new SimpleDateFormat("yyyyMMddHHmm");
 
+    public static final SimpleDateFormat yyyy_MM_dd =new SimpleDateFormat("yyyy-MM-dd");//yyyy_MM_dd0HH$mm
+    public static final SimpleDateFormat yyyyMMdd =new SimpleDateFormat("yyyyMMdd");
+
     /**
      * @discription 返回当前日期的几月后的一天
      * @author 刘正义
@@ -250,5 +253,94 @@ public class DateUtil {
 
     public static String getFormat2TimetagStr(){
         return yyyyMMddHHmmss.format(new Date());
+    }
+
+    public static long[] resetPeriod(long startTimeL,long endTimeL) throws ParseException {
+//        String startTime="20180103111606";
+//        String endTime  ="20180107152556";
+        String timestamp="20180105120000";
+
+        String ZERO_TIME=DateUtil.yyyy_MM_dd0HH$mm$ss.format(0);
+        System.out.println("ZERO_TIME:"+ZERO_TIME);
+        long startTag=0;
+        long endTag=0;
+
+//        long startTimeL=yyyyMMddHHmmss.parse(startTime).getTime();
+//        long endTimeL= yyyyMMddHHmmss.parse(endTime).getTime();
+        long timestampL= yyyyMMddHHmmss.parse(timestamp).getTime();
+
+        System.out.println("startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(startTimeL));
+        System.out.println("endTime  :"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(endTimeL));
+        int boundary= (int) (timestampL%86400000);
+        System.out.println("timestamp-取余数-boundary:"+boundary);
+
+        int start_remainder= (int) (startTimeL%86400000);
+        System.out.println("start_remainder:"+start_remainder);
+        int start_round= (int) (startTimeL/86400000);
+        System.out.println("start_round:"+start_round);
+        if (start_remainder>=boundary){
+            startTag=start_round*1L*86400000+boundary;
+        }else {
+            startTag=(start_round-1)*1L*86400000+boundary;
+        }
+        System.out.println("startTag:"+startTag);
+        System.out.println("startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(startTag));
+
+        int end_remainder= (int) (endTimeL%86400000);
+        System.out.println("end_remainder:"+end_remainder);
+        int end_round= (int) (endTimeL/86400000);
+        System.out.println("end_round:"+end_round);
+        if (end_remainder<=boundary){
+            endTag=end_round*1L*86400000+boundary;
+        }else {
+            endTag=(end_round+1)*1L*86400000+boundary;
+        }
+        System.out.println("endTag:"+endTag);
+        System.out.println("endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(endTag));
+        int periodSize= (int) ((endTag-startTag)/86400000);
+        System.out.println("periodSize:"+periodSize);
+
+        return new long[] {startTag,endTag};
+
+        /*
+        String timestamp="20180105120000";
+        String ZERO_TIME=DateUtil.yyyy_MM_dd0HH$mm$ss.format(0);
+        long timestampL= DateUtil.yyyyMMddHHmmss.parse(timestamp).getTime();
+
+        long now=GetNetworkTime.getWebsiteDate().getTime();
+        if (endTimeL<now){
+            return null;
+        }
+        if (startTimeL>endTimeL){
+            return null;
+        }
+        startTimeL=startTimeL>now?startTimeL:now;
+
+//        System.out.println("startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(startTimeL));
+//        System.out.println("endTime  :"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(endTimeL));
+        int boundary= (int) (timestampL%86400000);
+//        System.out.println("timestamp-取余数-boundary:"+boundary);
+        int start_remainder= (int) (startTimeL%86400000);
+//        System.out.println("start_remainder:"+start_remainder);
+        int start_round= (int) (startTimeL/86400000);
+//        System.out.println("start_round:"+start_round);
+        if (start_remainder>=boundary){
+            startMoment=start_round*1L*86400000+boundary;
+        }else {
+            startMoment=(start_round-1)*1L*86400000+boundary;
+        }
+//        System.out.println("startTag:"+startTag);
+//        System.out.println("startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(startTag));
+
+        int end_remainder= (int) (endTimeL%86400000);
+//        System.out.println("end_remainder:"+end_remainder);
+        int end_round= (int) (endTimeL/86400000);
+//        System.out.println("end_round:"+end_round);
+        if (end_remainder<=boundary){
+            endMoment=end_round*1L*86400000+boundary;
+        }else {
+            endMoment=(end_round+1)*1L*86400000+boundary;
+        }
+        */
     }
 }

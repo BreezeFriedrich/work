@@ -5,10 +5,12 @@
 
 package com.yishu.service;
 
+import com.yishu.pojo.Authinfo;
 import com.yishu.pojo.IdentityCard;
 import com.yishu.pojo.UnlockAuthorization;
 import com.yishu.pojo.UnlockPwds;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -24,5 +26,5 @@ public interface IUnlockService {
     public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime);
     public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String serviceNumb);
     public UnlockAuthorization getUnlockAuthorization(String ownerPhoneNumber, String gatewayCode, String lockCode);
-    public UnlockAuthorization hasUnlockAuthorizedDailyArr(UnlockAuthorization unlockAuthorization,String startTime,String endTime);
+    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, String startTime, String endTime) throws ParseException;
 }

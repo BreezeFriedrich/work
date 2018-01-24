@@ -1,21 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.yishu</groupId>
   <artifactId>lock</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>lock Maven Webapp</name>
-  <url>http://yishutech.com</url>
+  <name>亿数智能锁WEB管理平台</name>
+  <url>http://www.yishutech.com/lock/web</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.directory>target</project.build.directory>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.reporting.outputDirectory>target</project.reporting.outputDirectory>
-    <jdk-version>1.7</jdk-version>
+    <jdk-version>1.8</jdk-version>
     <spring-version>4.2.6.RELEASE</spring-version>
     <slf4j-version>1.7.25</slf4j-version>
     <logback-version>1.2.3</logback-version>
+    <additionalparam>-Xdoclint:none</additionalparam>
   </properties>
 
   <dependencies>
@@ -137,9 +138,9 @@
     </dependency>
     <!--spring-web与spring-context都 include spring-aop-->
     <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-aop</artifactId>-->
-      <!--<version>3.2.0.RELEASE</version>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-aop</artifactId>-->
+    <!--<version>3.2.0.RELEASE</version>-->
     <!--</dependency>-->
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -236,7 +237,6 @@
   </dependencies>
 
   <profiles>
-    <!-- 开发环境 -->
     <profile>
       <id>development</id>
       <properties>
@@ -247,19 +247,16 @@
         <activeByDefault>false</activeByDefault>
       </activation>
     </profile>
-    <!-- 测试环境 -->
     <profile>
       <id>test</id>
       <properties>
         <profiles.active>test</profiles.active>
-        <!--<deploy.url>http://112.25.233.122:8000/lockWechat</deploy.url>-->
         <deploy.url>http://47.96.25.55:8080</deploy.url>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
     </profile>
-    <!-- 生产环境 -->
     <profile>
       <id>production</id>
       <properties>
@@ -286,7 +283,6 @@
           <include>**/*.txt</include>
         </includes>
         <excludes>
-          <!--<exclude>config/production/jdbc.properties</exclude>-->
           <exclude>production/jdbc.properties</exclude>
           <exclude>sql/**</exclude>
         </excludes>
@@ -294,7 +290,6 @@
     </resources>
 
     <plugins>
-      <!-- Eclipse project -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
@@ -338,28 +333,6 @@
         </executions>
       </plugin>
 
-      <!-- 测试 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19</version>
-        <configuration>
-          <skipTests>true</skipTests>
-          <parallel>methods</parallel><!-- 方法级并发 -->
-          <threadCount>10</threadCount><!-- 线程数 -->
-          <argLine>-Dfile.encoding=UTF-8</argLine><!-- 该插件依赖于操作系统的字符集 -->
-          <skip>true</skip><!-- 忽略测试 -->
-          <testFailureIgnore>true</testFailureIgnore><!-- 忽略测试异常 -->
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.surefire</groupId>
-            <artifactId>surefire-junit47</artifactId>
-            <version>2.19</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -388,7 +361,6 @@
           <!--<warSourceExcludes>WEB-INF/libs/aliyun-java-sdk-core-3.3.1.jar</warSourceExcludes>-->
           <webResources>
             <resource>
-              <!--<directory>src/main/resources/config/${profiles.active}</directory>-->
               <directory>src/main/resources/${profiles.active}</directory>
               <targetPath>WEB-INF/classes</targetPath>
               <filtering>true</filtering>
@@ -406,225 +378,203 @@
           <uriEncoding>UTF-8</uriEncoding>
           <url>${deploy.url}/manager/text</url>
           <path>/lock</path>
-          <!-- 在maven目录conf/setting.xml标签servers中定义,默认引用其username和password -->
           <!--<server>tomcat-43.254.149.29</server>-->
-          <server>tomcat-47.96.25.55</server>
+          <server>ip-47.96.25.55</server>
           <update>true</update>
         </configuration>
+      </plugin>
+
+      <!--parallel:methods 方法级并发; threadCount:10 线程数; argLine:-Dfile.encoding=UTF-8 该插件依赖于操作系统的字符集-->
+      <!--&lt;!&ndash;-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19</version>
+        <configuration>
+          <!--<skipTests>true</skipTests>-->
+          <parallel>methods</parallel>
+          <threadCount>10</threadCount>
+          <argLine>-Dfile.encoding=UTF-8</argLine>
+          <!--<skip>true</skip>-->
+          <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit47</artifactId>
+            <version>2.19</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0-M1</version>
-        <!-- 配置导出配置 -->
+        <version>3.0.0</version>
         <configuration>
-          <!--<outputDirectory>${project.build.directory}</outputDirectory>-->
-          <!--<reportOutputDirectory>${project.reporting.outputDirectory}</reportOutputDirectory>-->
-          <outputDirectory>target\javadoc</outputDirectory>
-          <reportOutputDirectory>target\javadoc</reportOutputDirectory>
+          <outputDirectory>${project.build.directory}\javadoc</outputDirectory>
+          <reportOutputDirectory>${project.reporting.outputDirectory}\javadoc</reportOutputDirectory>
           <show>private</show>
           <nohelp>true</nohelp>
           <bottom></bottom>
+          <!--<aggregate>true</aggregate>-->
+          <tags>
+            <tag>
+              <name>Description</name>
+              <placement>a</placement>
+              <head>用途</head>
+            </tag>
+          </tags>
         </configuration>
         <executions>
           <execution>
             <id>attach-javadocs</id>
-            <phase>site</phase>
+            <phase>install</phase>
             <goals>
               <goal>aggregate</goal>
             </goals>
           </execution>
         </executions>
       </plugin>
+      <!--&ndash;&gt;-->
 
       <!--
       -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19</version>
-      </plugin>
+      <!--<plugin>-->
+        <!--<groupId>org.apache.maven.plugins</groupId>-->
+        <!--<artifactId>maven-surefire-plugin</artifactId>-->
+        <!--<version>2.20.1</version>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <reportPlugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-              <version>2.6</version>
-            </plugin>
-            <!--代码风格-->
-            <plugin>
-              <artifactId>maven-checkstyle-plugin</artifactId>
-              <version>2.9.1</version>
-              <configuration>
-                <configLocation>esri_checkstyle.xml</configLocation>
-                <excludes>**/test/**</excludes>
-                <headerLocation>java_copyright_header.txt</headerLocation>
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-jxr-plugin</artifactId>
-              <version>2.3</version>
-              <configuration>
-                <aggregate>true</aggregate>
-              </configuration>
-            </plugin>
-            <plugin>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <version>2.8.1</version>
-              <configuration>
-                <source>${jdk-version}</source>
-                <aggregate>true</aggregate>
-                <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
-                <docletArtifact>
-                  <groupId>gr.spinellis</groupId>
-                  <artifactId>UmlGraph</artifactId>
-                  <version>4.6</version>
-                </docletArtifact>
-                <additionalparam>
-                  -inferrel -inferdep -quiet -hide java.*
-                  -collpackages java.util.* -qualify
-                  -postfixpackage -nodefontsize
-                  9
-                  -nodefontpackagesize 7
-                </additionalparam>
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-surefire-report-plugin</artifactId>
-              <version>2.12</version>
-            </plugin>
-            <!--测试覆盖率-->
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>cobertura-maven-plugin</artifactId>
-              <version>2.5.1</version>
-              <configuration>
-                <formats>
-                  <format>xml</format>
-                  <format>html</format>
-                </formats>
-              </configuration>
-            </plugin>
-            <!--
-            <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>emma-maven-plugin</artifactId>
-            <version>1.0-alpha-3</version>
-            </plugin>
-            -->
-            <!--检查代码bug-->
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>findbugs-maven-plugin</artifactId>
-              <version>2.4.0</version>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-pmd-plugin</artifactId>
-              <version>2.7</version>
-              <configuration>
-                <targetJdk>${jdk-version}</targetJdk>
-                <linkXref>true</linkXref>
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>taglist-maven-plugin</artifactId>
-              <version>2.4</version>
-              <configuration>
-                <tags>
-                  <tag>fixme</tag>
-                  <tag>FixMe</tag>
-                  <tag>FIXME</tag>
-                  <tag>@todo</tag>
-                  <tag>todo</tag>
-                  <tag>TODO</tag>
-                  <tag>@deprecated</tag>
-                </tags>
-              </configuration>
-            </plugin>
-          </reportPlugins>
-        </configuration>
-      </plugin>
-      <!--
-          <plugin>
-          <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
-          <artifactId>maven-java-formatter-plugin</artifactId>
-          <version>0.3.1</version>
-          <configuration>
-          <configFile>${project.basedir}/../eclipse_style.xml</configFile>
-          </configuration>
-          <executions>
+        <version>3.7</version>
+        <executions>
           <execution>
-          <goals>
-          <goal>format</goal>
-          </goals>
+            <id>attach-descriptor</id>
+            <goals>
+              <goal>attach-descriptor</goal>
+            </goals>
           </execution>
-          </executions>
-          </plugin>
-      -->
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.6</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.3</version>
+        </executions>
         <configuration>
           <locales>en,zh_CN</locales>
           <port>9000</port>
           <tempWebappDirectory>${basedir}/target/site/tempdir</tempWebappDirectory>
         </configuration>
-        <dependencies>
-          <dependency><!-- add support for ssh/scp -->
-            <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-ssh</artifactId>
-            <version>1.0</version>
-          </dependency>
-        </dependencies>
       </plugin>
 
+      <!--
+      <plugin>
+        <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+        <artifactId>maven-java-formatter-plugin</artifactId>
+        <version>0.3.1</version>
+        <configuration>
+          <configFile>${project.basedir}/../eclipse_style.xml</configFile>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      -->
     </plugins>
 
+    <!--ssh部署至服务器
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>3.0.0</version>
+      </extension>
+    </extensions>
+    -->
+    <!--an implementation of Wagon provider for FTP access
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ftp</artifactId>
+        <version>3.0.0</version>
+      </extension>
+    </extensions>
+    -->
+    <!--&lt;!&ndash; an implementation of Wagon provider for WebDAV server access-->
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav-jackrabbit</artifactId>
-        <!--<version>3.0.0</version>-->
-        <version>1.0-beta-7</version>
+        <version>3.0.0</version>
       </extension>
     </extensions>
+    <!--&ndash;&gt;-->
   </build>
 
   <reporting>
     <plugins>
+      <!--项目基本信息报告-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.9</version>
+        <configuration>
+          <dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+        </configuration>
         <reportSets>
           <reportSet>
-          <reports><!-- select reports -->
-            <report>index</report>
-          </reports>
+            <reports>
+              <report>dependencies</report>
+              <report>project-team</report>
+              <report>mailing-list</report>
+              <report>cim</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>scm</report>
+            </reports>
           </reportSet>
         </reportSets>
       </plugin>
+
+      <!--代码风格,检查代码规范报告-->
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.0.0</version>
+        <!--
+        <configuration>
+          <configLocation>esri_checkstyle.xml</configLocation>
+          <excludes>**/test/**</excludes>
+          <headerLocation>java_copyright_header.txt</headerLocation>
+        </configuration>
+        -->
+        <!--
+        <configuration>
+          <configLocation>config/sun_checks.xml</configLocation>
+        </configuration>
+        -->
+      </plugin>
+      <!--项目源代码报告-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.5</version>
+        <!--<configuration>-->
+        <!--<aggregate>true</aggregate>-->
+        <!--</configuration>-->
+      </plugin>
+      <!--项目API doc报告-->
+      <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0-M1</version>
+        <version>3.0.0</version>
+        <configuration>
+          <outputDirectory>${project.build.directory}\javadoc</outputDirectory>
+          <reportOutputDirectory>${project.reporting.outputDirectory}\javadoc</reportOutputDirectory>
+          <show>private</show>
+          <nohelp>true</nohelp>
+          <!--<bottom></bottom>-->
+        </configuration>
         <reportSets>
           <reportSet><!-- by default, id = "default" -->
             <reports><!-- select non-aggregate reports -->
@@ -632,7 +582,7 @@
               <report>test-javadoc</report>
             </reports>
           </reportSet>
-          <reportSet><!-- aggregate reportSet, to define in poms having modules -->
+          <reportSet>
             <id>aggregate</id>
             <inherited>false</inherited><!-- don't run aggregate in child modules -->
             <reports>
@@ -640,16 +590,277 @@
             </reports>
           </reportSet>
         </reportSets>
+        <!--
+        <configuration>
+          <source>${jdk-version}</source>
+          <aggregate>true</aggregate>
+          <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
+          <docletArtifact>
+            <groupId>gr.spinellis</groupId>
+            <artifactId>UmlGraph</artifactId>
+            <version>4.6</version>
+          </docletArtifact>
+          <additionalparam>
+            -inferrel -inferdep -quiet -hide java.*
+            -collpackages java.util.* -qualify
+            -postfixpackage -nodefontsize
+            9
+            -nodefontpackagesize 7
+          </additionalparam>
+        </configuration>
+        -->
+      </plugin>
+      <!--测试报告-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.20.1</version>
+      </plugin>
+      <!--代码覆盖率报告(单元测试和集成测试结果报告)-->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <formats>
+            <format>xml</format>
+            <format>html</format>
+          </formats>
+          <check>
+            <branchRate>0</branchRate>
+            <lineRate>0</lineRate>
+            <haltOnFailure>true</haltOnFailure>
+            <totalBranchRate>0</totalBranchRate>
+            <totalLineRate>0</totalLineRate>
+            <packageLineRate>0</packageLineRate>
+            <packageBranchRate>0</packageBranchRate>
+            <regexes>
+              <regex>
+                <pattern>com.yishu.service.impl.*</pattern>
+                <branchRate>0</branchRate>
+                <lineRate>0</lineRate>
+              </regex>
+            </regexes>
+          </check>
+        </configuration>
+      </plugin>
+      <!--
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>emma-maven-plugin</artifactId>
+        <version>1.0-alpha-3</version>
+      </plugin>
+      -->
+      <!--检查代码bug-->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <!--<version>3.0.4-SNAPSHOT</version>-->
+        <version>2.4.0</version>
+        <!--
+        <configuration>
+          <xmlOutput>true</xmlOutput>
+          <xmlOutputDirectory>${project.build.directory}/site</xmlOutputDirectory>
+          <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+          <includeFilterFile>findbugs-include.xml</includeFilterFile>
+          <visitors>FindDeadLocalStores,UnreadFields</visitors>//启用的错误检测器(bug detector由不带package的class名指定)
+          <omitVisitors>FindDeadLocalStores,UnreadFields</omitVisitors>//跳过的错误检测器
+          <onlyAnalyze>com.yishu.service.impl.*</onlyAnalyze>
+          <pluginList>myDetectors.jar, yourDetectors.jar</pluginList>//optional BugDetector Jar files
+        </configuration>
+        -->
+      </plugin>
+      <!--项目源代码分析报告-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.8</version>
+        <configuration>
+          <linkXRef>true</linkXRef>
+          <targetJdk>${jdk-version}</targetJdk>
+          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+          <!--自定义规则
+          <rulesets>
+            <ruleset>rulesets/braces.xml</ruleset>
+            <ruleset>rulesets/naming.xml</ruleset>
+            <ruleset>rulesets/String.xml</ruleset>
+          </rulesets>
+          -->
+        </configuration>
+      </plugin>
+      <!--生成在代码中发现的各种标记的报告-->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <sourceFileLocale>en</sourceFileLocale>
+          <emptyComments>false</emptyComments>
+          <tagListOptions>
+            <tagClasses>
+              <tagClass>
+                <displayName>Documentation Work</displayName>
+                <tags>
+                  <tag>
+                    <matchString>DOCUMENT_ME</matchString>
+                    <matchType>exact</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>NOT_YET_DOCUMENTED</matchString>
+                    <matchType>exact</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+              <tagClass>
+                <displayName>Code Work</displayName>
+                <tags>
+                  <tag>
+                    <matchString>FIXME</matchString>
+                    <matchType>exact</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>&lt;todo</matchString>
+                    <matchType>exact</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>todo</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+            </tagClasses>
+          </tagListOptions>
+          <!--向后兼容,之前版本tag配置
+          <tags>
+            <tag>fixme</tag>
+            <tag>FixMe</tag>
+            <tag>FIXME</tag>
+            <tag>@todo</tag>
+            <tag>todo</tag>
+            <tag>TODO</tag>
+            <tag>@deprecated</tag>
+          </tags>
+          -->
+        </configuration>
+      </plugin>
+      <!--generate a Linkcheck report of your project's documentation using the Doxia Linkcheck Tool-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-linkcheck-plugin</artifactId>
+        <version>1.2</version>
+        <!--<configuration></configuration>-->
+      </plugin>
+      <!--搭配scm-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId>
+        <version>2.3</version>
+        <!--默认30天-->
+        <configuration>
+          <type>range</type>
+          <range>60</range>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changes-plugin</artifactId>
+        <version>2.12.1</version>
+        <!--产生JIRA报告,搭配issueManagement-->
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>jira-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+        <!--<issueManagementSystems>-->
+        <!--<issueManagementSystem>changes.xml</issueManagementSystem>-->
+        <!--<issueManagementSystem>JIRA</issueManagementSystem>-->
+        <!--</issueManagementSystems>-->
       </plugin>
     </plugins>
   </reporting>
 
+  <!--项目描述-->
+  <description>智能锁WEB管理平台</description>
+  <!--项目创建年份，4位数字。当产生版权信息时需要使用这个值-->
+  <inceptionYear>2017</inceptionYear>
+  <licenses>
+    <license>
+      <!--license用于法律上的名称-->
+      <name>Apache License, Version 2.0</name>
+      <!--官方的license正文页面的URL-->
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <!--项目分发的主要方式：repo，可以从Maven库下载 manual， 用户必须手动下载和安装依赖-->
+      <distribution>repo</distribution>
+      <!--关于license的补充信息-->
+      <comments>lincese补充信息</comments>
+    </license>
+  </licenses>
+  <developers>
+    <!--某个开发者信息-->
+    <developer>
+      <id>KaiWang</id>
+      <name>汪凯</name>
+      <email>geysererupt@163.com</email>
+      <!--开发者的主页-->
+      <url>http://www.geyser.site</url>
+      <!--开发者在项目中的角色-->
+      <roles>
+        <role>Java Dev</role>
+        <role>Web UI</role>
+      </roles>
+      <!--开发者所属组织-->
+      <organization>南京亿数信息科技有限公司</organization>
+      <!--开发者所属组织的URL-->
+      <organizationUrl>www.yishutech.com</organizationUrl>
+      <!--开发者属性，如即时消息如何处理等-->
+      <properties>
+        <!-- 和主标签中的properties一样，可以随意定义子标签 -->
+      </properties>
+      <!--开发者所在时区， -11到12范围内的整数。-->
+      <timezone>8</timezone>
+    </developer>
+  </developers>
+  <contributors></contributors>
+
+  <issueManagement>
+    <system>JIRA</system>
+    <url>http://issues.geyser.site/lock</url>
+  </issueManagement>
+  <!-- 持续集成信息 -->
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>http://ci.geyser.site/lock</url>
+  </ciManagement>
+  <mailingLists></mailingLists>
+  <!--connection只读,developerConnection可写,url浏览器访问-->
+  <scm>
+    <connection>scm:git:http://name:password@git.geyser.site/KaiWang-work/master/lock</connection>
+    <developerConnection>scm:git:https://name:password@git.geyser.site/KaiWang-work/master/lock</developerConnection>
+    <url>http://git.geyser.site/KaiWang-work/master/lock</url><!--server+repository+branch+project-->
+  </scm>
+  <!--<prerequisites></prerequisites>-->
+  <!--<repositories></repositories>-->
+  <!--<pluginRepositories></pluginRepositories>-->
   <distributionManagement>
     <site>
       <!--<id>tomcat-local</id>-->
       <!--<url>dav:http://127.0.0.1:80/lock/sites</url>-->
       <id>tomcat-47.96.25.55</id>
-      <url>dav:http://47.96.25.55:8080/lock/sites</url>
+      <url>dav:http://47.96.25.55:8080/webdav</url>
     </site>
   </distributionManagement>
+  <!--搭配wagon-ftp插件使用ftp协议部署站点
+  <distributionManagement>
+    <site>
+      <id>ip-47.96.25.55</id>
+      <url>ftp://47.96.25.55:21</url>
+      <id>ftp.geyser.site</id>
+      <url>ftp://ftp.geyser.site</url>
+    </site>
+  </distributionManagement>
+  -->
 </project>
