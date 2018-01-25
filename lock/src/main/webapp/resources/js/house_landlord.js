@@ -3,8 +3,11 @@ var subordinates;
 var lock;
 var dateArr=new Array;
 var dateStrArr=new Array;
+var curDate,newDate;
 var year,week,month,day,hours,minutes,seconds;
 var authinfo;
+var startTime;
+var endTime;
 
 var initializationTime = (new Date()).getTime();
 function showLeftTime() {
@@ -22,8 +25,8 @@ function showLeftTime() {
 }
 
 function getDateArr() {
-    var curDate=new Date();
-    var newDate;
+    curDate=new Date();
+    newDate;
     dateArr.length=0;
     dateStrArr.length=0;
     for (var i=-14;i<15;i++){
@@ -212,6 +215,9 @@ function getLocks() {
  */
 
 function getAuthinfo(specificGatewayCode,specificLockCode,startTime,endTime) {
+    curDate=new Date();
+    startTime=curDate.getTime() -14*24*60*60*1000;
+    endTime=curDate.getTime() + 15*24*60*60*1000;
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
@@ -226,6 +232,7 @@ function getAuthinfo(specificGatewayCode,specificLockCode,startTime,endTime) {
         dataType:'json',
         success:function(data,status,xhr){
             authinfo=data;
+            console.log("authinfo:"+authinfo);
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -431,7 +438,7 @@ $(document).ready(function () {
         return html;
     });
 
-
+    getAuthinfo();
 
 
     $.contextMenu({

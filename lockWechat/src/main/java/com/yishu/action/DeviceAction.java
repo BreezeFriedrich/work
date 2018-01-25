@@ -155,7 +155,8 @@ public class DeviceAction extends ActionSupport {
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        int num=deviceService.countAbnormalDevice(ownerPhoneNumber);
+        int num=0;
+        num=deviceService.countAbnormalDevice(ownerPhoneNumber);
         jsonResult=num;
         return "json";
     }

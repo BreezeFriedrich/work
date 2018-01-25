@@ -115,7 +115,6 @@ public class DeviceServiceImpl implements IDeviceService{
         logger.info("sign:"+'空'+" operation:getDeviceInfo");
         //rawData,获取原始数据:开锁记录的List.
         List<Device> rawList=getDeviceInfo(ownerPhoneNumber);
-        List<Device> deviceList=null;
         /*
         //注入假数据用于测试.
         if (rawList.isEmpty()){
@@ -127,8 +126,9 @@ public class DeviceServiceImpl implements IDeviceService{
         }
         */
         if (rawList.isEmpty()){
-            return deviceList;
+            return null;
         }
+        List<Device> deviceList=null;
         Device device=null;
         List<Lock> lockLists=null;
         for (Iterator itr=rawList.iterator();itr.hasNext();){
@@ -157,6 +157,9 @@ public class DeviceServiceImpl implements IDeviceService{
         int num=0;
         Device device=null;
         List list=getAbnormalDevice(ownerPhoneNumber);
+        if(null==list){
+            return 0;
+        }
         for (Iterator itr=list.iterator();itr.hasNext();){
             device= (Device) itr.next();
             if (!device.getGatewayStatus().equals("4")){

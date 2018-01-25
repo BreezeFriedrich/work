@@ -419,8 +419,8 @@ public class UnlockServiceImpl implements IUnlockService {
 
     @Override
     public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, String startTime, String endTime) throws ParseException {
-        long startMoment;
-        long endMoment;
+        final long startMoment;
+        final long endMoment;
         long moments[];
 
         long startTimeL=DateUtil.yyyyMMddHHmmss.parse(startTime).getTime();

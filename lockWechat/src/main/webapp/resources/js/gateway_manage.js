@@ -50,6 +50,7 @@ $(function(){
     });
     //添加关联门锁
     var div_addLock=document.getElementById("link_addLock");
+    /*
     div_addLock.addEventListener('click',function(ev){
         var target = ev.target || window.event.srcElement;
         while(target !== div_addLock){
@@ -59,6 +60,11 @@ $(function(){
             }
             target = target.parentNode;
         }
+    });
+    */
+    div_addLock.addEventListener('click',function(ev){
+        url="jsp/gateway/gateway_addLock.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode;
+        window.location.href=encodeURI(url);
     });
 
     $.init();
