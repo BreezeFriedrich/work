@@ -348,11 +348,13 @@ public class UnlockServiceImpl implements IUnlockService {
         rawData= HttpUtil.httpsPostToQixu(reqData);
         LOG.info("rawData : "+rawData);
 
-        if (respFail()){//请求数据失败
+
+        if (respFail()){//0=result请求数据失败
             return null;
         }
         JsonNode unlockIdsNode=rootNode.path("userList");
-        List unlockIdListFirst=new ArrayList<IdentityCard>();
+//        List unlockIdListFirst=new ArrayList<IdentityCard>();
+        List unlockIdListFirst=null;
         try {
             unlockIdListFirst=objectMapper.readValue(unlockIdsNode.traverse(), new TypeReference<List<IdentityCard>>(){});
         } catch (IOException e) {
@@ -387,7 +389,8 @@ public class UnlockServiceImpl implements IUnlockService {
         String defaultPassword1 = rootNode.path("defaultPassword1").asText();
         String defaultPassword2 = rootNode.path("defaultPassword2").asText();
         JsonNode unlockPwdNode=rootNode.path("passwordList");
-        List unlockPwdListFirst=new ArrayList<UnlockPwd>();
+//        List unlockPwdListFirst=new ArrayList<UnlockPwd>();
+        List unlockPwdListFirst=null;
         try {
             unlockPwdListFirst=objectMapper.readValue(unlockPwdNode.traverse(), new TypeReference<List<UnlockPwd>>(){});
         } catch (IOException e) {
@@ -395,11 +398,11 @@ public class UnlockServiceImpl implements IUnlockService {
         }
         //filter-recordList-Bytime,过滤掉过时的开锁授权.
         List<UnlockPwd> unlockPwdListLast=null;
-        unlockPwdListLast= FilterList.filter(unlockPwdListFirst, new FilterListHook<IdentityCard>() {
+        unlockPwdListLast= FilterList.filter(unlockPwdListFirst, new FilterListHook<UnlockPwd>() {
             @Override
-            public boolean test(IdentityCard identityCard) {
+            public boolean test(UnlockPwd unlockPwd) {
                 try {
-                    long endTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getEndTime()).getTime();
+                    long endTime=DateUtil.yyyyMMddHHmm.parse(unlockPwd.getEndTime()).getTime();
                     long now=GetNetworkTime.getWebsiteDate().getTime();
                     return now < endTime;
                 } catch (ParseException e) {
@@ -408,6 +411,9 @@ public class UnlockServiceImpl implements IUnlockService {
                 return false;
             }
         });
+        if(unlockIdListLast.isEmpty()&&unlockPwdListLast.isEmpty()){
+            return null;
+        }
         UnlockPwds unlockPwds = new UnlockPwds();
         unlockPwds.setDefaultPassword1(defaultPassword1);
         unlockPwds.setDefaultPassword2(defaultPassword2);
@@ -418,17 +424,19 @@ public class UnlockServiceImpl implements IUnlockService {
     }
 
     @Override
-    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, String startTime, String endTime) throws ParseException {
+    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, long startTimeL, long endTimeL) throws ParseException {
         final long startMoment;
         final long endMoment;
         long moments[];
 
-        long startTimeL=DateUtil.yyyyMMddHHmmss.parse(startTime).getTime();
-        long endTimeL= DateUtil.yyyyMMddHHmmss.parse(endTime).getTime();
+//        long startTimeL=DateUtil.yyyyMMddHHmmss.parse(startTime).getTime();
+//        long endTimeL= DateUtil.yyyyMMddHHmmss.parse(endTime).getTime();
 
+        System.out.println("startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTimeL))+",endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTimeL)));
         moments=DateUtil.resetPeriod(startTimeL,endTimeL);
         startMoment=moments[0];
         endMoment=moments[1];
+        System.out.println("startMoment:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startMoment))+",endMoment:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endMoment)));
         int periodSize= (int) ((endMoment-startMoment)/86400000);
         //
         int unlockIdSize=unlockAuthorization.getUnlockIdSize();
@@ -447,7 +455,8 @@ public class UnlockServiceImpl implements IUnlockService {
                 try {
                     long startTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getStartTime()).getTime();
                     long endTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getEndTime()).getTime();
-                    if (startTime<endTime){
+                    System.out.println("filter-unlockIds-Bytime startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTime))+",endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTime)));
+                    if (startTime>endTime){
                         return false;
                     }
                     if (endTime<startMoment){
@@ -471,7 +480,7 @@ public class UnlockServiceImpl implements IUnlockService {
                 try {
                     long startTime=DateUtil.yyyyMMddHHmm.parse(unlockPwd.getStartTime()).getTime();
                     long endTime=DateUtil.yyyyMMddHHmm.parse(unlockPwd.getEndTime()).getTime();
-                    if (startTime<endTime){
+                    if (startTime>endTime){
                         return false;
                     }
                     if (endTime<startMoment){

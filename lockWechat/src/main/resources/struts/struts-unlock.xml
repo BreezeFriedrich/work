@@ -16,7 +16,7 @@
             <interceptor-ref name="openidStack"/>
             -->
             <result name="json" type="json">
-                <param name="root">jsonObject</param>
+                <param name="root">jsonResult</param>
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>

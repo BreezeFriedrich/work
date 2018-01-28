@@ -1,3 +1,5 @@
+var pathName=window.document.location.pathname;
+var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var userHierarchy;
 var subordinates;
 

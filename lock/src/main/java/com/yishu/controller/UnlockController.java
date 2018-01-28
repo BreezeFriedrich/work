@@ -4,6 +4,7 @@ import com.yishu.pojo.Authinfo;
 import com.yishu.pojo.UnlockAuthorization;
 import com.yishu.pojo.UnlockPwds;
 import com.yishu.service.IUnlockService;
+import com.yishu.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -197,9 +199,11 @@ public class UnlockController {
         if(null==unlockAuthorization){
             return null;
         }
-        String startTime=request.getParameter("startTime");
-        String endTime=request.getParameter("endTime");
+        long startTime=Long.parseLong(request.getParameter("startTime"));
+        long endTime=Long.parseLong(request.getParameter("endTime"));
         try {
+            LOG.info("startTime:"+ DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTime)));
+            LOG.info("endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTime)));
             Authinfo authinfo=unlockService.getUnlockAuthorizationDailyArr(unlockAuthorization,startTime,endTime);
             return authinfo;
         } catch (ParseException e) {

@@ -1,3 +1,5 @@
+var pathName=window.document.location.pathname;
+var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var userHierarchy;
 var subordinates;
 var lock;
@@ -8,6 +10,8 @@ var year,week,month,day,hours,minutes,seconds;
 var authinfo;
 var startTime;
 var endTime;
+var specificGatewayCode="GWH0081702000003";
+var specificLockCode="LCN0011721000001";
 
 var initializationTime = (new Date()).getTime();
 function showLeftTime() {
@@ -215,9 +219,6 @@ function getLocks() {
  */
 
 function getAuthinfo(specificGatewayCode,specificLockCode,startTime,endTime) {
-    curDate=new Date();
-    startTime=curDate.getTime() -14*24*60*60*1000;
-    endTime=curDate.getTime() + 15*24*60*60*1000;
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
@@ -257,6 +258,7 @@ function getDailyRecords(lockCode) {
 
 $(document).ready(function () {
     $(".navbar-collapse ul:first li:eq(3)").addClass("active");
+    console.log("projectPath:"+projectPath);
     getDateArr();
     getLocks();
 
@@ -438,7 +440,10 @@ $(document).ready(function () {
         return html;
     });
 
-    getAuthinfo();
+    curDate=new Date();
+    startTime=curDate.getTime() -14*24*60*60*1000;
+    endTime=curDate.getTime() + 15*24*60*60*1000;
+    getAuthinfo(specificGatewayCode,specificLockCode,startTime,endTime);
 
 
     $.contextMenu({

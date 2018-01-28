@@ -1,7 +1,5 @@
 package com.yishu.pojo;
 
-import java.util.ArrayList;
-
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
  * @version 1.0.0.0 2018-01-22 16:12 admin

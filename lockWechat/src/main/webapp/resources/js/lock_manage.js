@@ -31,12 +31,14 @@ $(function(){
             console.log('错误')
         }
     });
-    document.getElementsByClassName('property')[0].innerText=json_theLock.lockName;
-    document.getElementsByClassName('property')[1].innerText=json_theLock.lockLocation;
-    document.getElementsByClassName('property')[2].innerText=json_theLock.lockComment;
-    document.getElementsByClassName('property')[3].innerText=specificLockCode;
-    document.getElementsByClassName('property')[4].innerText=specificGatewayCode;
-    // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
+    if(undefined!==json_theLock){
+        document.getElementsByClassName('property')[0].innerText=json_theLock.lockName;
+        document.getElementsByClassName('property')[1].innerText=json_theLock.lockLocation;
+        document.getElementsByClassName('property')[2].innerText=json_theLock.lockComment;
+        document.getElementsByClassName('property')[3].innerText=specificLockCode;
+        document.getElementsByClassName('property')[4].innerText=specificGatewayCode;
+        // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
+    }
 
     //添加开锁身份证授权
     var div_addAuthById=document.getElementById("link_addAuthById");

@@ -163,9 +163,7 @@ public class UnlockAction extends ActionSupport {
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-//        jsonList.clear();
         List unlockIdList=unlockService.getUnlockId(ownerPhoneNumber,gatewayCode,lockCode);
-//        jsonList.addAll(unlockIdList);
         jsonResult=unlockIdList;
 //        System.err.println("jsonResult :"+jsonResult);
         return "json";

@@ -26,5 +26,5 @@ public interface IUnlockService {
     public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime);
     public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String serviceNumb);
     public UnlockAuthorization getUnlockAuthorization(String ownerPhoneNumber, String gatewayCode, String lockCode);
-    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, String startTime, String endTime) throws ParseException;
+    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, long startTime, long endTime) throws ParseException;
 }
