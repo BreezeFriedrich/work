@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -81,6 +82,38 @@ public class RecordServiceImpl implements IRecordService {
             //获取开锁记录成功.
 //            String recordListTemp=rootNode.path("recordList").asText();
             String recordListTemp=rootNode.path("recordList").toString();//!!!toString多了引号
+            List<UnlockRecord> recordList=null;
+            try {
+                recordList = objectMapper.readValue(recordListTemp, new TypeReference<List<UnlockRecord>>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Collections.reverse(recordList);
+            return recordList;
+        }
+        return null;
+    }
+
+    @Override
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate) {
+        reqSign=26;
+        long startTimeL=startDate.getTime();
+        long endTimeL=endDate.getTime();
+        String startTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(startTimeL));
+        String endTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(endTimeL));
+        LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startDate:"+startDate+";endDate:"+endDate+"}");
+        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
+        LOG.info("reqData : "+reqData);
+        rawData = HttpUtil.httpsPostToQixu(reqData);
+//        LOG.info("rawData : "+rawData);
+
+        respSign();
+        Map resultMap=new HashMap();
+        resultMap.put("result",respSign);
+        if (0==respSign){
+            //获取开锁记录成功.
+            String recordListTemp=rootNode.path("recordList").asText();
+//            String recordListTemp=rootNode.path("recordList").toString();//!!!toString多了引号
             List<UnlockRecord> recordList=null;
             try {
                 recordList = objectMapper.readValue(recordListTemp, new TypeReference<List<UnlockRecord>>() {});
@@ -207,6 +240,101 @@ public class RecordServiceImpl implements IRecordService {
         records.setRows(recordList2);
 
         return records;
+    }
+
+    @Override
+    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate, final String lockCode) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        recordList=getUnlockRecord(ownerPhoneNumber,startDate,endDate);
+        //filter-recordList-Bytime,按时间&门锁过滤开锁记录.
+        List<UnlockRecord> recordList2=null;
+        recordList2= FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                return lockCode.equals(unlockRecord.getLockCode());
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        Records<UnlockRecord> records =new Records<>();
+        records.setTotalSize(recordList2.size());
+        records.setRows(recordList2);
+        return records;
+    }
+
+    @Override
+    public Records<UnlockRecord>[] getLockUnlockRecordDaily(String ownerPhoneNumber, Date theDate, final String lockCode) {
+        int days= 16;
+        Calendar calendar=Calendar.getInstance();
+        Date endDate=theDate;
+        final long endMoment=endDate.getTime();
+        calendar.setTime(theDate);
+        calendar.add(Calendar.DAY_OF_MONTH,-15);
+        Date startDate=calendar.getTime();
+        final long startMoment=startDate.getTime();
+
+        Date[] dateArr=new Date[days];
+        for(int i=days-1;i>=0;i--){
+            calendar.setTime(theDate);
+            calendar.add(Calendar.DAY_OF_MONTH,-i);
+            dateArr[i]=calendar.getTime();
+        }
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        recordList=getUnlockRecord(ownerPhoneNumber,startDate,endDate);
+        //filter-recordList-Bytime,按时间&门锁过滤开锁记录.
+        List<UnlockRecord> recordList2=null;
+        recordList2= FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                return lockCode.equals(unlockRecord.getLockCode());
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        List<UnlockRecord> dailyRecordList=null;
+//        dailyRecordList= FilterList.filter(recordList2, new FilterListHook<UnlockRecord>() {
+//            @Override
+//            public boolean test(UnlockRecord unlockRecord) {
+//                String dateStr=unlockRecord.getTimetag();
+//                try {
+//                    long time=DateUtil.yyyyMMddHHmmss.parse(dateStr).getTime();
+//                    if(time>=startMoment && time<=endMoment){
+//                        return true;
+//                    }
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//                return false;
+//            }
+//        });
+        Records<UnlockRecord>[] dailyRecords=new Records[days];
+        for(int i=0;i<days;i++){
+            dailyRecords[days]=new Records<UnlockRecord>();
+        }
+        UnlockRecord unlockRecord;
+        long startTimeTemp;
+        long endTimeTemp;
+        int index = 0;
+        for(int i=0;i<recordList2.size();i++){
+            unlockRecord=recordList2.get(i);
+            String dateStr=unlockRecord.getTimetag();
+            long time= 0;
+            try {
+                time = DateUtil.yyyyMMddHHmmss.parse(dateStr).getTime();
+                if(time>=startMoment && time<=endMoment){
+                    index= (int) ((time-startMoment)/86400000);
+                }
+                dailyRecords[index].getRows().add(unlockRecord);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        for(int i=0;i<days;i++){
+            dailyRecords[i].setTotalSize(dailyRecords[i].getRows().size());
+        }
+        return dailyRecords;
     }
 
     @Override

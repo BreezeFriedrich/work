@@ -11,6 +11,7 @@ import com.yishu.pojo.UnlockAuthorization;
 import com.yishu.pojo.UnlockPwds;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,5 +27,6 @@ public interface IUnlockService {
     public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime);
     public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String serviceNumb);
     public UnlockAuthorization getUnlockAuthorization(String ownerPhoneNumber, String gatewayCode, String lockCode);
-    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, long startTime, long endTime) throws ParseException;
+    public Authinfo getUnlockAuthorizationDailyArr2(UnlockAuthorization unlockAuthorization, long startTime, long endTime) throws ParseException;
+    public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, Date theDate) throws ParseException;
 }

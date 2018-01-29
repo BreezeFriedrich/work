@@ -8,6 +8,7 @@ package com.yishu.service;
 import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,12 +19,17 @@ import java.util.Map;
  */
 public interface IRecordService {
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime);
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate);
 
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize);
 
     public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String gatewayCode, int pageNum, int pageSize);
 
     public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
+
+    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate, String lockCode);
+
+    public Records<UnlockRecord>[] getLockUnlockRecordDaily(String ownerPhoneNumber, Date theDate, String lockCode);
 
     public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String lockCode, int pageNum, int pageSize);
 

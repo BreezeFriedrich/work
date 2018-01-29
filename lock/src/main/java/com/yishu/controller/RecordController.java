@@ -3,6 +3,7 @@ package com.yishu.controller;
 import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
 import com.yishu.service.IRecordService;
+import com.yishu.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -89,6 +92,7 @@ public class RecordController {
         return records;
     }
 
+
     @RequestMapping("/getLockUnlockRecord.do")
     @ResponseBody
     public Records<UnlockRecord> getLockUnlockRecord(HttpServletRequest request){
@@ -102,6 +106,27 @@ public class RecordController {
         String endTime=request.getParameter("endTime");
         Records<UnlockRecord> records=recordService.getLockUnlockRecord(ownerPhoneNumber,startTime,endTime,lockCode);
         return records;
+    }
+
+    @RequestMapping("/getLockUnlockRecordDaily.do")
+    @ResponseBody
+    public Records<UnlockRecord>[] getLockUnlockRecordDaily(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- record/getLockUnlockRecordDaily.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String lockCode=request.getParameter("lockCode");
+        String theDateStr=request.getParameter("theDate");
+        Date theDate= null;
+        try {
+            theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+            Records<UnlockRecord>[] dailyRecords=recordService.getLockUnlockRecordDaily(ownerPhoneNumber,theDate,lockCode);
+            return dailyRecords;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping("/getLockUnlockRecordPage.do")

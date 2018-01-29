@@ -3,6 +3,7 @@ package com.yishu.controller;
 import com.yishu.pojo.Device;
 import com.yishu.service.IDeviceService;
 import com.yishu.service.IUserService;
+import com.yishu.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -83,4 +86,45 @@ public class DeviceController {
         resultInt=deviceService.countAbnormalDevice(ownerPhoneNumber);
         return resultInt;
     }
+
+//    @RequestMapping("/getDateArr.do")
+//    @ResponseBody
+//    public long[] getDateArr(HttpServletRequest request){
+//        if (LOG.isInfoEnabled()){
+//            LOG.info("-->>-- device/getDateArr.do -->>--");
+//        }
+//        HttpSession session=request.getSession(false);
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        Date today=new Date();
+//        Calendar calendar=Calendar.getInstance();
+//        Date theDate;
+////        calendar.setTime(today);
+////        calendar.set(Calendar.HOUR_OF_DAY,0);
+////        calendar.set(Calendar.MINUTE,0);
+////        calendar.set(Calendar.SECOND,0);
+////        calendar.set(Calendar.MILLISECOND,0);
+////        theDate=calendar.getTime();
+//        theDate=DateUtil.getStartOfDate(today);
+//        Date startDate;
+//        Date endDate;
+//        calendar.setTime(theDate);
+//        calendar.add(Calendar.DAY_OF_MONTH,-15);
+//        startDate=calendar.getTime();
+//        calendar.setTime(theDate);
+//        calendar.add(Calendar.DAY_OF_MONTH,15);
+//        endDate=calendar.getTime();
+//        Date[] dateArr=new Date[31];
+//        for(int i=-15;i<16;i++){
+//            calendar.setTime(theDate);
+//            calendar.add(Calendar.DAY_OF_MONTH,i);
+//            dateArr[i+15]=calendar.getTime();
+//        }
+//        long startTime=Long.parseLong(request.getParameter("startTime"));
+//        long endTime=Long.parseLong(request.getParameter("endTime"));
+//        LOG.info("startTime:"+ DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTime)));
+//        LOG.info("endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTime)));
+//
+//        resultInt=deviceService.countAbnormalDevice(ownerPhoneNumber);
+//        return resultInt;
+//    }
 }

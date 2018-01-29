@@ -260,8 +260,8 @@ public class DateUtil {
 //        String endTime  ="20180107152556";
         String timestamp="20180105120000";
 
-        String ZERO_TIME=DateUtil.yyyy_MM_dd0HH$mm$ss.format(0);
-        System.out.println("ZERO_TIME:"+ZERO_TIME);
+//        String ZERO_TIME=DateUtil.yyyy_MM_dd0HH$mm$ss.format(0);
+//        System.out.println("ZERO_TIME:"+ZERO_TIME);
         long startTag=0;
         long endTag=0;
 
@@ -275,15 +275,15 @@ public class DateUtil {
         System.out.println("timestamp-取余数-boundary:"+boundary);
 
         int start_remainder= (int) (startTimeL%86400000);
-        System.out.println("start_remainder:"+start_remainder);
+//        System.out.println("start_remainder:"+start_remainder);
         int start_round= (int) (startTimeL/86400000);
-        System.out.println("start_round:"+start_round);
+//        System.out.println("start_round:"+start_round);
         if (start_remainder>=boundary){
             startTag=start_round*1L*86400000+boundary;
         }else {
             startTag=(start_round-1)*1L*86400000+boundary;
         }
-        System.out.println("startTag:"+startTag);
+//        System.out.println("startTag:"+startTag);
         System.out.println("startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(startTag));
 
         int end_remainder= (int) (endTimeL%86400000);
@@ -295,8 +295,8 @@ public class DateUtil {
         }else {
             endTag=(end_round+1)*1L*86400000+boundary;
         }
-        System.out.println("endTag:"+endTag);
-        System.out.println("endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(endTag));
+//        System.out.println("endTag:"+endTag);
+        System.out.println("endTime  :"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(endTag));
         int periodSize= (int) ((endTag-startTag)/86400000);
         System.out.println("periodSize:"+periodSize);
 
@@ -342,5 +342,60 @@ public class DateUtil {
             endMoment=(end_round+1)*1L*86400000+boundary;
         }
         */
+    }
+
+    public static Date getStartOfDate(Date date){
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        return calendar.getTime();
+    }
+    public static Date getEndOfDate(Date date){
+        Calendar calendar=Calendar.getInstance();
+        /*
+        calendar.setTime(date);
+        calendar.set(Calendar.DATE,calendar.get(Calendar.DATE)+1);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        */
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
+        calendar.set(Calendar.MILLISECOND,999);
+        return calendar.getTime();
+    }
+    public static Date[] getDateArr(Date date){
+//        Date today=new Date();
+        Calendar calendar=Calendar.getInstance();
+        Date theDate;
+//        calendar.setTime(today);
+//        calendar.set(Calendar.HOUR_OF_DAY,0);
+//        calendar.set(Calendar.MINUTE,0);
+//        calendar.set(Calendar.SECOND,0);
+//        calendar.set(Calendar.MILLISECOND,0);
+//        theDate=calendar.getTime();
+        theDate=DateUtil.getStartOfDate(date);
+        /*
+        Date startDate;
+        Date endDate;
+        calendar.setTime(theDate);
+        calendar.add(Calendar.DAY_OF_MONTH,-15);
+        startDate=calendar.getTime();
+        calendar.setTime(theDate);
+        calendar.add(Calendar.DAY_OF_MONTH,15);
+        endDate=calendar.getTime();
+        */
+        Date[] dateArr=new Date[31];
+        for(int i=-15;i<16;i++){
+            calendar.setTime(theDate);
+            calendar.add(Calendar.DAY_OF_MONTH,i);
+            dateArr[i+15]=calendar.getTime();
+        }
+        return dateArr;
     }
 }

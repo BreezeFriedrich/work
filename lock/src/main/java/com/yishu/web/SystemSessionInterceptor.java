@@ -35,8 +35,7 @@ public class SystemSessionInterceptor implements HandlerInterceptor {
             out.close();
             return false;
              */
-//            return false;
-            return true;
+            return false;
         }
         return true;
     }

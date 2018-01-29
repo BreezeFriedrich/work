@@ -185,11 +185,11 @@ public class UnlockController {
      * 先获取(当期帐户、当前网关、当前门锁)开锁授权信息,再处理授权信息.
      *
      */
-    @RequestMapping("/getUnlockAuthorizationDailyArr.do")
+    @RequestMapping("/getUnlockAuthorizationDailyArr2.do")
     @ResponseBody
-    public Authinfo getUnlockAuthorizationDailyArr(HttpServletRequest request){
+    public Authinfo getUnlockAuthorizationDailyArr2(HttpServletRequest request){
         if (LOG.isInfoEnabled()){
-            LOG.info("-->>-- unlock/getUnlockAuthorizationDailyArr.do -->>--");
+            LOG.info("-->>-- unlock/getUnlockAuthorizationDailyArr2.do -->>--");
         }
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
@@ -204,7 +204,33 @@ public class UnlockController {
         try {
             LOG.info("startTime:"+ DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTime)));
             LOG.info("endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTime)));
-            Authinfo authinfo=unlockService.getUnlockAuthorizationDailyArr(unlockAuthorization,startTime,endTime);
+            Authinfo authinfo=unlockService.getUnlockAuthorizationDailyArr2(unlockAuthorization,startTime,endTime);
+            return authinfo;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @RequestMapping("/getUnlockAuthorizationDailyArr.do")
+    @ResponseBody
+    public Authinfo getUnlockAuthorizationDailyArr(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- unlock/getUnlockAuthorizationDailyArr.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        UnlockAuthorization unlockAuthorization=unlockService.getUnlockAuthorization(ownerPhoneNumber,gatewayCode,lockCode);
+        if(null==unlockAuthorization){
+            return null;
+        }
+        String theDateStr=request.getParameter("theDate");
+        Date theDate= null;
+        try {
+            theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+            Authinfo authinfo=unlockService.getUnlockAuthorizationDailyArr(unlockAuthorization,theDate);
             return authinfo;
         } catch (ParseException e) {
             e.printStackTrace();
