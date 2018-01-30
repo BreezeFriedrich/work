@@ -22,7 +22,7 @@
 .table-header{ border-top:1px solid #c8c8c8;   min-height:100px; font-size:14px; color:#333; float:left; position:absolute; left:20px }
 
 .table-header .table-time {width:316px;  float:left ; }
-.table-odyssey  .table-butstyle{-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none; -moz-border-top-colors: none; background-color: #f8f8f8; background-image: -moz-linear-gradient(center top, #ffffff 50%, #f8f8f8 100%); background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f8f8f8)); /* Chrome, Safari 4+ */background-image: -webkit-linear-gradient(top, #ffffff, #f8f8f8); /* Chrome 10-25, iOS 5+, Safari 5.1+ */ background-image: -o-linear-gradient(top, #ffffff, #f8f8f8);  /* Opera 11.10-12.00 */ background-image: linear-gradient(to bottom, #ffffff 50%, #f8f8f8 100%);  cursor: pointer; transition: border-color 0.21s ease-out 0s;}
+.table-odyssey  .table-butstyle{-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none; -moz-border-top-colors: none; background-color: #f8f8f8; background-image: -moz-linear-gradient(top, #ffffff 50%, #f8f8f8 100%); background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f8f8f8)); /* Chrome, Safari 4+ */background-image: -webkit-linear-gradient(top, #ffffff, #f8f8f8); /* Chrome 10-25, iOS 5+, Safari 5.1+ */ background-image: -o-linear-gradient(top, #ffffff, #f8f8f8);  /* Opera 11.10-12.00 */ background-image: linear-gradient(to bottom, #ffffff 50%, #f8f8f8 100%);  cursor: pointer; transition: border-color 0.21s ease-out 0s;}
 
 
 .table-odyssey .table-area{ float:left}

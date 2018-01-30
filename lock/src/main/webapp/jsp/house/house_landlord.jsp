@@ -62,6 +62,7 @@
     <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
     <%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
     <script type="text/javascript" src="resources/js/FixedTable.js"></script>
+    <%--
     <script language="javascript" type="text/javascript">
         //获得当前时间,刻度为一千分一秒
         var initializationTime = (new Date()).getTime();
@@ -74,11 +75,12 @@
             var hours = now.getHours();
             var minutes = now.getMinutes();
             var seconds = now.getSeconds();
-            document.all.show3.innerHTML = year + "-" + month + "-" + day;
+            document.all.show3[1].innerHTML = year + "-" + month + "-" + day;
             //一秒刷新一次显示时间
             var timeID = setTimeout(showLeftTime, 1000);
         }
     </script>
+    --%>
 </head>
 <body onload="showLeftTime()">
 

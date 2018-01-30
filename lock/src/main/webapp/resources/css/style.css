@@ -923,7 +923,7 @@ body.modal-open,
 }
 /*.sb-collapsed .cl-vnavigation li:hover ul{display: block !important;}
 	.sb-collapsed .cl-vnavigation li.ocult ul{display:none !important;}
-	
+
 */
 /*End Collapsed*/
 .cl-vnavigation li a i {
@@ -2069,11 +2069,11 @@ table.information > tbody > tr > td {
   overflow-x: auto;
 }
 /*ELEMENTS*/
-table thead th {
-  padding: 5px;
-  font-size: 14px;
-  font-weight:bold;
-}
+/*table thead th {*/
+  /*padding: 5px;*/
+  /*font-size: 14px;*/
+  /*font-weight:bold;*/
+/*}*/
 table tbody td {
   padding: 7px 8px;
   font-size: 13px;
@@ -2149,13 +2149,13 @@ table .left {
 table thead th span {
   color: #333;
 }
-table thead th {
-  /*vertical-align: bottom;*/
-  border-bottom: 1px solid #DADADA;
-  border-left: 1px solid #DADADA;
-  border-top: 1px solid #DADADA;
-  padding: 10px 8px 5px 8px;
-}
+/*table thead th {*/
+  /*!*vertical-align: bottom;*!*/
+  /*border-bottom: 1px solid #DADADA;*/
+  /*border-left: 1px solid #DADADA;*/
+  /*border-top: 1px solid #DADADA;*/
+  /*padding: 10px 8px 5px 8px;*/
+/*}*/
 table thead th:last-child {
   border-right: 1px solid #DADADA;
 }
@@ -2279,7 +2279,7 @@ div.dataTables_length label select {
 .table td .btn i {
   width: inherit;
 }
-/*Stats*/
+Stats
 .stats_bar {
   text-align: center;
   margin-top: 15px;
@@ -5644,7 +5644,7 @@ ul.timeline li > .date {
     padding-left: 15px;
   }
   .navbar-default .navbar-brand {
- 
+
   }
   .user-nav {
     margin: 7.5px -15px;

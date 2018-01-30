@@ -703,6 +703,10 @@ public class UnlockServiceImpl implements IUnlockService {
         final long startMoment=startDate.getTime();
         calendar.setTime(theDate);
         calendar.add(Calendar.DAY_OF_MONTH,15);
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
+        calendar.set(Calendar.MILLISECOND,999);
         Date endDate=calendar.getTime();
         final long endMoment=endDate.getTime();
 
@@ -801,7 +805,7 @@ public class UnlockServiceImpl implements IUnlockService {
             endTimeTemp=endTimeTemp<endMoment?endTimeTemp:endMoment;//取小
             startIndex= (int) ((startTimeTemp-startMoment)/86400000);
             endIndex= (int) ((endTimeTemp-startMoment)/86400000);
-            for (int j=startIndex;j<endIndex;j++){
+            for (int j=startIndex;j<=endIndex;j++){
                 authinfoPeriod[j].getIdIndexes().add(i);
             }
         }

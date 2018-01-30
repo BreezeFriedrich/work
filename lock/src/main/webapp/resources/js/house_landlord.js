@@ -8,6 +8,7 @@ var dateStrArr=new Array;
 var today,curDate,newDate;
 var year,week,month,day,hours,minutes,seconds;
 var authinfo;
+var recordinfo;
 var startTime;
 var endTime;
 var specificGatewayCode="GWH0081702000003";
@@ -24,7 +25,7 @@ function showLeftTime() {
     var hours = now.getHours();
     var minutes = now.getMinutes();
     var seconds = now.getSeconds();
-    // document.all.show3.innerHTML = year + "-" + month + "-" + day;
+    document.all.show3.innerHTML = year + "-" + month + "-" + day;
     //一秒刷新一次显示时间
     // var timeID = setTimeout(showLeftTime, 1000);
 }
@@ -64,8 +65,8 @@ function getDateArr() {
         var day = newDate.getDate();
         dateStrArr.push(year + "-" + month + "-" + day);
     }
-    console.log("dateArr:"+dateArr);
-    console.log("dateStrArr:"+dateStrArr);
+    // console.log("dateArr:"+dateArr);
+    // console.log("dateStrArr:"+dateStrArr);
 }
 function getDateStr(date) {
     return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
@@ -257,18 +258,18 @@ function getAuthinfo(specificGatewayCode,specificLockCode,date) {
         dataType:'json',
         success:function(data,status,xhr){
             authinfo=data;
-            console.log("authinfo:"+authinfo);
+            // console.log("authinfo:"+authinfo);
             var authinfodailyArr=authinfo.authinfoDaily;
-            for(var i=0;i<authinfodailyArr.length;i++){
-                console.log("index:"+i+",date:"+authinfodailyArr[i].date+",time:"+authinfodailyArr[i].time+",ids:"+authinfodailyArr[i].idIndexes+",pwds:"+authinfodailyArr[i].pwdIndexes);
-            }
+            // for(var i=0;i<authinfodailyArr.length;i++){
+            //     console.log("index:"+i+",date:"+authinfodailyArr[i].date+",time:"+authinfodailyArr[i].time+",ids:"+authinfodailyArr[i].idIndexes+",pwds:"+authinfodailyArr[i].pwdIndexes);
+            // }
             var authinfodaily;
             for(var i=0;i<authinfodailyArr.length;i++){
                 authinfodaily=authinfodailyArr[i];
                 if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
                     fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("cd-booked");
                     fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("rightclick");
-                    console.log("tbody tr (3)[0] :"+fixedTable.fixedTableBody.find("tbody tr").eq(3));
+                    // console.log("tbody tr (3)[0] :"+fixedTable.fixedTableBody.find("tbody tr").eq(3));
                 }
             }
         },
@@ -279,14 +280,24 @@ function getAuthinfo(specificGatewayCode,specificLockCode,date) {
 }
 
 
-function getDailyRecords(lockCode) {
+function getDailyRecords(lockCode,date) {
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getLockUnlockRecordDaily.do",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{"theDate":getDateStr(date),"lockCode":lockCode},
+        data:{"lockCode":lockCode,"theDate":getDateStr(date)},
         dataType:'json',
         success:function(data,status,xhr){
+            recordinfo=data;
+            console.log("recordinfo:"+recordinfo);
+            var recordDaily;
+            for(var i=0;i<recordinfo.length;i++){
+                recordDaily=recordinfo[i];
+                if(recordDaily.totalSize>0){
+                    fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-select");
+                    fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("rightclick");
+                }
+            }
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -304,6 +315,21 @@ $(document).ready(function () {
     today.setMilliseconds(0);
     getDateArr();
     getLocks();
+    var datehtml=
+        '<div class="current-date">当前日期：<label id="show3" class="time3">日期</label></div>'+
+        '<div class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">'+
+            '<input class="form-control" size="16" type="text" value="" readonly style="display:none">'+
+            '<span class="input-group-addon btn btn-primary calendar date-selection-span"><span class="glyphicon glyphicon-th date-selection-img"></span></span>'+
+        '</div>';
+    datehtml2='<th  colspan="1"  class=" table-width12">'+
+        '<div class="table-time table-header-hight58  table-butstyle">'+
+        '<div class="current-date">当前日期：<label id="show3" class="time3">日期</label></div>'+
+        '<div class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">'+
+        '<input class="form-control" size="16" type="text" value="" readonly  style="display:none">'+
+        '<span class="input-group-addon btn btn-primary calendar  date-selection-span"><span class="glyphicon glyphicon-th  date-selection-img"></span></span>'+
+        '</div>'+
+        '</div>'+
+        '</th>';
 
     fixedTable = new FixedTable({
         wrap: document.getElementById("test_fixedTable"),//生成的表格需要放到哪里
@@ -313,7 +339,9 @@ $(document).ready(function () {
         fields: [//表格的列
             {
                 width: "206px",
-                field: '<th class="table-width1 "><div class="table-time table-header-hight58 table-cell table-width1 table-butstyle">当前日期：'+dateStrArr[15]+'</div></th>',
+                // field: '<th class="table-width1 "><div class="table-time table-header-hight58 table-cell table-width1 table-butstyle">当前日期：'+dateStrArr[15]+'</div></th>',
+                field: '<th class="table-width190 table-butstyle"><div class="table-header-hight58 table-cell table-width190 table-butstyle">'+datehtml+'</div></th>',
+                // field: datehtml2,
                 htmlDom: true,
                 fixed: true
             },{
@@ -475,6 +503,7 @@ $(document).ready(function () {
         ],
         tableDefaultContent: "<div>我是一个默认的div</div>"
     });
+    showLeftTime();
 
     //添加数据
     fixedTable.addRow(function (){
@@ -483,7 +512,7 @@ $(document).ready(function () {
             for(var i in subordinates){
                 lock=subordinates[i];
                 html += '<tr>';
-                html += '<td class="table-width1"><div class="table-time table-cell table-hight1 table-width1 table-butstyle">'+lock.lockName+'</div></td>';
+                html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
                 for (var i=0; i<dateArr.length; i++){
                     html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
                 }
@@ -494,6 +523,7 @@ $(document).ready(function () {
     });
 
     getAuthinfo(specificGatewayCode,specificLockCode,today);
+    getDailyRecords(specificLockCode,today);
 
 
     $.contextMenu({
@@ -511,7 +541,6 @@ $(document).ready(function () {
                 $('#reply-unlocking').niftyModal();
             }}
         }
-        // there's more, have a look at the demos and docs...
     });
     //initialize the javascript
     App.init();
