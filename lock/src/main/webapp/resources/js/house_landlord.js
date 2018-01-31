@@ -65,7 +65,7 @@ function getLocks() {
             userHierarchy=data;
             subordinates=data.subordinateList;
 
-            if (subordinates.length===0){
+            // if (subordinates.length===0){
                 userHierarchy={
                     "phoneNumber": "17705155208",
                     "grade": 10,
@@ -253,7 +253,7 @@ function getLocks() {
                         "lockPower": "4"
                     }
                 ]
-            }
+            // }
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -262,42 +262,71 @@ function getLocks() {
 }
 
 /*
- //初始化FixedTable
- $(".fixed-table-box").fixedTable();
-
- //清空表格
- $("#empty_data").on("click", function (){
- $(".fixed-table-box").emptyTable();
- });
- //添加数据
- $("#add_data").on("click", function (){
- $(".fixed-table-box").addRow(function (){
- var html = '';
- for(var i = 0; i < 5; i ++){
- html += '<tr>';
- html += '    <td class="w-150"><div class="table-cell"> 2016-05-03</div></td>';
- html += '    <td class="w-120"><div class="table-cell">王小虎</div></td>';
- html += '    <td class="w-120"><div class="table-cell">上海</div></td>';
- html += '    <td class="w-120"><div class="table-cell">普陀区</div></td>';
- html += '    <td class="w-300"><div class="table-cell">上海市普陀区金沙江路 1518 路</div></td>';
- html += '    <td class="w-120"><div class="table-cell">200333</div></td>';
- html += '    <td class="w-100">';
- html += '        <div class="table-cell">';
- html += '            <a href="###">查看</a>';
- html += '            <a href="###">编辑</a>';
- html += '        </div>';
- html += '    </td>';
- html += '</tr>';
- }
- return html;
- });
- });
  //删除指定行
  $("#del_row").on("click", function (){
  $(".fixed-table-box").deleteRow($(".fixed-table-box").children('.fixed-table_fixed-left').children('.fixed-table_body-wraper').find('tr').eq(0));
  });
  */
 
+function renderRow(locks,date) {
+    (function () {
+        for(var i in locks){
+            lock=locks[i];
+            var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(1).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
+            //auth获取开锁授权信息
+            $.ajax({
+                type:"POST",
+                url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                async:false,
+                data:{
+                    "gatewayCode":lock.gatewayCode,
+                    "lockCode":lock.lockCode,
+                    "theDate":getDateStr(date)
+                },
+                dataType:'json',
+                success:function(data,status,xhr){
+                    authinfo=data;
+                    var authinfodailyArr=authinfo.authinfoDaily;
+                    var authinfodaily;
+                    for(var i=0;i<authinfodailyArr.length;i++){
+                        authinfodaily=authinfodailyArr[i];
+                        if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
+                            // fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("cd-booked");
+                            TDs_row.eq(i+15).addClass("cd-booked");
+                        }
+                    }
+                },
+                error:function(xhr,errorType,error){
+                    console.log('错误');
+                }
+            });
+            //record获取入住记录
+            $.ajax({
+                type:"POST",
+                url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                async:false,
+                data:{"lockCode":lock.lockCode,"theDate":getDateStr(date)},
+                dataType:'json',
+                success:function(data,status,xhr){
+                    recordinfo=data;
+                    (function () {
+                        var recordDaily;
+                        for(var i=0;i<recordinfo.length;i++){
+                            recordDaily=recordinfo[i];
+                            if(recordDaily.totalSize>0){
+                                // fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-select");
+                                TDs_row.eq(i).addClass("cd-select");
+                            }
+                        }
+                    })()
+                },
+                error:function(xhr,errorType,error){
+                    console.log('错误');
+                }
+            });
+        }
+    })();
+}
 function getAuthinfo(specificGatewayCode,specificLockCode,date) {
     $.ajax({
         type:"POST",
@@ -329,7 +358,7 @@ function getAuthinfo(specificGatewayCode,specificLockCode,date) {
         error:function(xhr,errorType,error){
             console.log('错误');
         }
-    })
+    });
 }
 
 function getDailyRecords(lockCode,date) {
@@ -387,8 +416,10 @@ function renderTable(date) {
         $('.current-date label')[1].innerText = getDateStr(date);
     }
 
-    getAuthinfo(specificGatewayCode,specificLockCode,date);
-    getDailyRecords(specificLockCode,date);
+    // getAuthinfo(specificGatewayCode,specificLockCode,date);
+    // getDailyRecords(specificLockCode,date);
+
+    renderRow(subordinates,date);
 }
 
 $(document).ready(function () {
