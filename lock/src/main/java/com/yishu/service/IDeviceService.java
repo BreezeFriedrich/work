@@ -1,5 +1,8 @@
 package com.yishu.service;
 
+import com.yishu.pojo.Device;
+import com.yishu.pojo.GatewayLock;
+
 import java.util.List;
 
 /**
@@ -12,4 +15,5 @@ public interface IDeviceService {
     public List getDeviceInfo(String ownerPhoneNumber);
     public List getAbnormalDevice(String ownerPhoneNumber);
     public int countAbnormalDevice(String ownerPhoneNumber);
+    public List<GatewayLock> convertDeviceToGatewayLock(Device device);
 }

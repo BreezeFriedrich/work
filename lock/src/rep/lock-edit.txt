@@ -25,3 +25,7 @@
 	
 	bootstrap
 	http://v3.bootcss.com/components/#input-groups
+
+bugs :
+    1.日期组件datetimepicker 第一次点击获得的时间值延后一天.
+    2.表格初始化之后,当天的class无cd-selected，只有cd-booked.

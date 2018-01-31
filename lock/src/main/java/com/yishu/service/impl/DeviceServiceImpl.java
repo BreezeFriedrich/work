@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.Device;
+import com.yishu.pojo.GatewayLock;
 import com.yishu.pojo.Lock;
 import com.yishu.service.IDeviceService;
 import com.yishu.util.DataInject;
@@ -146,5 +147,30 @@ public class DeviceServiceImpl implements IDeviceService {
             num+=device.getLockLists().size();
         }
         return num;
+    }
+
+    @Override
+    public List<GatewayLock> convertDeviceToGatewayLock(Device device) {
+        List gatewayLocks=new ArrayList<GatewayLock>();
+        Iterator itr=device.getLockLists().iterator();
+        GatewayLock gatewayLock=null;
+        Lock lock=null;
+        while (itr.hasNext()){
+            gatewayLock=new GatewayLock();
+            lock= (Lock) itr.next();
+            gatewayLock.setLockCode(lock.getLockCode());
+            gatewayLock.setLockName(lock.getLockName());
+            gatewayLock.setLockLocation(lock.getLockLocation());
+            gatewayLock.setLockComment(lock.getLockComment());
+            gatewayLock.setLockPower(lock.getLockPower());
+            gatewayLock.setLockStatus(lock.getLockStatus());
+            gatewayLock.setGatewayCode(device.getGatewayCode());
+            gatewayLock.setGatewayName(device.getGatewayName());
+            gatewayLock.setGatewayLocation(device.getGatewayLocation());
+            gatewayLock.setGatewayComment(device.getGatewayComment());
+            gatewayLock.setGatewayStatus(device.getGatewayStatus());
+            gatewayLocks.add(gatewayLock);
+        }
+        return gatewayLocks;
     }
 }

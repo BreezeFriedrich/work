@@ -5,7 +5,7 @@ var subordinates;
 var lock;
 var dateArr=new Array;
 var dateStrArr=new Array;
-var today,curDate,newDate;
+var today,theDate,newDate;
 var year,week,month,day,hours,minutes,seconds;
 var authinfo;
 var recordinfo;
@@ -25,51 +25,34 @@ function showLeftTime() {
     var hours = now.getHours();
     var minutes = now.getMinutes();
     var seconds = now.getSeconds();
-    document.all.show3.innerHTML = year + "-" + month + "-" + day;
+    // document.all.show3.innerHTML = year + "-" + month + "-" + day;
     //一秒刷新一次显示时间
     // var timeID = setTimeout(showLeftTime, 1000);
 }
-/*
-function getDateArr() {
-    curDate=new Date();
-    newDate;
-    dateArr.length=0;
-    dateStrArr.length=0;
-    for (var i=-15;i<16;i++){
-        newDate=new Date(curDate.getTime() + i*24*60*60*1000);
-        dateArr.push(newDate);
-        // dateStrArr.push(newDate.getFullYear()+ "-" + (newDate.getMonth()+1) + "-" + newDate.getDay());
-        var year = newDate.getFullYear();
-        var month = newDate.getMonth()+1;
-        var day = newDate.getDate();
-        dateStrArr.push(year + "-" + month + "-" + day);
-    }
-    console.log("dateArr:"+dateArr);
-    console.log("dateStrArr:"+dateStrArr);
-}
-*/
-function getDateArr() {
-    // today = new Date();
-    // today.setHours(0);
-    // today.setMinutes(0);
-    // today.setSeconds(0);
-    // today.setMilliseconds(0);
-    dateArr.length=0;
-    dateStrArr.length=0;
-    for (var i=-15;i<16;i++){
-        newDate=new Date(today.getTime() + i*24*60*60*1000);
-        dateArr.push(newDate);
-        // dateStrArr.push(newDate.getFullYear()+ "-" + (newDate.getMonth()+1) + "-" + newDate.getDate());
-        var year = newDate.getFullYear();
-        var month = newDate.getMonth()+1;
-        var day = newDate.getDate();
-        dateStrArr.push(year + "-" + month + "-" + day);
-    }
-    // console.log("dateArr:"+dateArr);
-    // console.log("dateStrArr:"+dateStrArr);
+
+function getZeroOfDate(date) {
+    date.setHours(0);
+    date.setMinutes(0);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+    return date;
 }
 function getDateStr(date) {
     return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
+}
+function getDateArr(date) {
+    dateArr.length=0;
+    dateStrArr.length=0;
+    (function () {
+        var newDate;
+        for (var i=-15;i<16;i++){
+            newDate=new Date(date.getTime() + i*24*60*60*1000);
+            dateArr.push(newDate);
+            dateStrArr.push(getDateStr(newDate));
+        }
+    })()
+    // console.log("dateArr:"+dateArr);
+    // console.log("dateStrArr:"+dateStrArr);
 }
 function getLocks() {
     $.ajax({
@@ -101,6 +84,11 @@ function getLocks() {
                 };
                 subordinates=[
                     {
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间1",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -108,6 +96,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间2",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -115,6 +108,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间3",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -122,6 +120,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间4",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -129,6 +132,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间5",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -136,6 +144,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间6",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -143,6 +156,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间7",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -150,6 +168,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间8",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -157,6 +180,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间9",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -164,6 +192,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间10",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -171,6 +204,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间11",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -178,6 +216,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间12",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -185,6 +228,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间13",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -192,6 +240,11 @@ function getLocks() {
                         "lockStatus": "1",
                         "lockPower": "4"
                     },{
+                        "gatewayName":"网关3",
+                        "gatewayCode":"GWH0081702000003",
+                        "gatewayLocation":"网关地址",
+                        "gatewayComment":"网关备注",
+                        "gatewayStatus":4,
                         "lockName": "房间14",
                         "lockCode": "LCN0011702000019",
                         "lockLocation": "bigdata",
@@ -249,7 +302,7 @@ function getAuthinfo(specificGatewayCode,specificLockCode,date) {
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
-        async:false,
+        async:true,
         data:{
             "gatewayCode":specificGatewayCode,
             "lockCode":specificLockCode,
@@ -268,7 +321,7 @@ function getAuthinfo(specificGatewayCode,specificLockCode,date) {
                 authinfodaily=authinfodailyArr[i];
                 if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
                     fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("cd-booked");
-                    fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("rightclick");
+                    // fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("rightclick");
                     // console.log("tbody tr (3)[0] :"+fixedTable.fixedTableBody.find("tbody tr").eq(3));
                 }
             }
@@ -279,25 +332,26 @@ function getAuthinfo(specificGatewayCode,specificLockCode,date) {
     })
 }
 
-
 function getDailyRecords(lockCode,date) {
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getLockUnlockRecordDaily.do",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:true,
         data:{"lockCode":lockCode,"theDate":getDateStr(date)},
         dataType:'json',
         success:function(data,status,xhr){
             recordinfo=data;
-            console.log("recordinfo:"+recordinfo);
-            var recordDaily;
-            for(var i=0;i<recordinfo.length;i++){
-                recordDaily=recordinfo[i];
-                if(recordDaily.totalSize>0){
-                    fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-select");
-                    fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("rightclick");
+            // console.log("recordinfo:"+recordinfo);
+            (function () {
+                var recordDaily;
+                for(var i=0;i<recordinfo.length;i++){
+                    recordDaily=recordinfo[i];
+                    if(recordDaily.totalSize>0){
+                        fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-select");
+                        // fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("rightclick");
+                    }
                 }
-            }
+            })()
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -305,31 +359,49 @@ function getDailyRecords(lockCode,date) {
     });
 }
 
+function renderTable(date) {
+    // getDateArr(date);
+    //表格标题-时间重设 function resetTableHeaderTxt
+    var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
+    for(var i=0;i<=30;i++){
+        DIV_header[i].innerText=dateStrArr[i];
+    }
+    //表格数据行-添加数据
+    fixedTable.addRow(function (){
+        var html = '';
+        (function () {
+            for(var i in subordinates){
+                lock=subordinates[i];//$(this).parent("tr").attr("roomid")
+                html += '<tr roomid="'+lock.gatewayCode+'-'+lock.lockCode+'">';
+                html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
+                for (var i=0; i<dateArr.length; i++){
+                    html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
+                }
+                html += '</tr>';
+            }
+        })();
+        return html;
+    });
+    //表格标题栏时间控件label值.
+    if($('.current-date label').length>1){
+        $('.current-date label')[1].innerText = getDateStr(date);
+    }
+
+    getAuthinfo(specificGatewayCode,specificLockCode,date);
+    getDailyRecords(specificLockCode,date);
+}
+
 $(document).ready(function () {
     $(".navbar-collapse ul:first li:eq(3)").addClass("active");
-    console.log("projectPath:"+projectPath);
-    today = new Date();
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
-    getDateArr();
     getLocks();
+    theDate=getZeroOfDate(new Date());
+    getDateArr(theDate);
     var datehtml=
         '<div class="current-date">当前日期：<label id="show3" class="time3">日期</label></div>'+
-        '<div class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">'+
+        '<div id="datetimepicker" class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">'+
             '<input class="form-control" size="16" type="text" value="" readonly style="display:none">'+
             '<span class="input-group-addon btn btn-primary calendar date-selection-span"><span class="glyphicon glyphicon-th date-selection-img"></span></span>'+
         '</div>';
-    datehtml2='<th  colspan="1"  class=" table-width12">'+
-        '<div class="table-time table-header-hight58  table-butstyle">'+
-        '<div class="current-date">当前日期：<label id="show3" class="time3">日期</label></div>'+
-        '<div class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">'+
-        '<input class="form-control" size="16" type="text" value="" readonly  style="display:none">'+
-        '<span class="input-group-addon btn btn-primary calendar  date-selection-span"><span class="glyphicon glyphicon-th  date-selection-img"></span></span>'+
-        '</div>'+
-        '</div>'+
-        '</th>';
 
     fixedTable = new FixedTable({
         wrap: document.getElementById("test_fixedTable"),//生成的表格需要放到哪里
@@ -341,7 +413,6 @@ $(document).ready(function () {
                 width: "206px",
                 // field: '<th class="table-width1 "><div class="table-time table-header-hight58 table-cell table-width1 table-butstyle">当前日期：'+dateStrArr[15]+'</div></th>',
                 field: '<th class="table-width190 table-butstyle"><div class="table-header-hight58 table-cell table-width190 table-butstyle">'+datehtml+'</div></th>',
-                // field: datehtml2,
                 htmlDom: true,
                 fixed: true
             },{
@@ -503,45 +574,96 @@ $(document).ready(function () {
         ],
         tableDefaultContent: "<div>我是一个默认的div</div>"
     });
-    showLeftTime();
+    // plugin datetimepicker event on changeDate 要在renderTable之前才有效.
+    $('#datetimepicker')
+        // .datetimepicker()
+        .on('changeDate', function(ev){
+            // console.log('ev.date.valueOf() : '+ev.date.valueOf());
+            if (ev.date.valueOf() !== theDate.getTime()+8*60*60*1000){
+                console.log('日期改变');
+                theDate=new Date(ev.date.valueOf());
+                theDate.setHours(0);
+                theDate.setMinutes(0);
+                theDate.setSeconds(0);
+                theDate.setMilliseconds(0);
 
-    //添加数据
-    fixedTable.addRow(function (){
-        var html = '';
-        (function () {
-            for(var i in subordinates){
-                lock=subordinates[i];
-                html += '<tr>';
-                html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
-                for (var i=0; i<dateArr.length; i++){
-                    html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
-                }
-                html += '</tr>';
+                getDateArr(theDate);
+                fixedTable.empty();
+                renderTable(theDate);
             }
-        })();
-        return html;
-    });
-
-    getAuthinfo(specificGatewayCode,specificLockCode,today);
-    getDailyRecords(specificLockCode,today);
-
-
+        });
+    renderTable(theDate);
+/*
     $.contextMenu({
         // define which elements trigger this menu
         selector: ".rightclick",
         // define the elements of the menu
         items: {
             identity: {name: "身份证授权", callback: function(key, opt){
-                $('#reply-identity').niftyModal();
+                // $('#reply-identity').niftyModal();
+                console.log($(this).parent("tr").attr("roomid"));
             }},
             password: {name: "密码授权", callback: function(key, opt){
-                $('#reply-password').niftyModal();
+                // $('#reply-password').niftyModal();
             }},
             unlocking: {name: "开锁信息", callback: function(key, opt){
-                $('#reply-unlocking').niftyModal();
+                // $('#reply-unlocking').niftyModal();
+            }}
+        },
+        callback: function(itemKey, opt){
+            // Alert the key of the item and the trigger element's id.
+            // console.log("Clicked on " + itemKey + " on element " + opt.$trigger.attr("id"));
+            console.log("Clicked on " + itemKey + " on element " + opt.$trigger.parent("tr").attr("roomid"));
+            console.log($(this).parent("tr").attr("roomid"));
+            // Do not close the menu after clicking an item
+            return false;
+        }
+    });
+*/
+    $.contextMenu({
+        selector: ".cd-select:not(.cd-booked)",
+        items: {
+            ticket: {name: "入住记录", callback: function(key, opt){
+                // $('#reply-ticket').niftyModal();
+                console.log($(this).parent("tr").attr("roomid"));
             }}
         }
     });
+    $.contextMenu({
+        selector: ".cd-booked:not(.cd-select)",
+        items: {
+            identity: {name: "身份证授权", callback: function(key, opt){
+                // $('#reply-identity').niftyModal();
+                console.log($(this).parent("tr").attr("roomid"));
+            }},
+            password: {name: "密码授权", callback: function(key, opt){
+                // $('#reply-password').niftyModal();
+            }},
+            unlocking: {name: "开锁信息", callback: function(key, opt){
+                // $('#reply-unlocking').niftyModal();
+            }}
+        }
+    });
+    $.contextMenu({
+        selector: ".cd-select.cd-booked",
+        items: {
+            ticket: {name: "入住记录", callback: function(key, opt){
+                // $('#reply-ticket').niftyModal();
+                console.log($(this).parent("tr").attr("roomid"));
+            }},
+            identity: {name: "身份证授权", callback: function(key, opt){
+                // $('#reply-identity').niftyModal();
+                console.log($(this).parent("tr").attr("roomid"));
+            }},
+            password: {name: "密码授权", callback: function(key, opt){
+                // $('#reply-password').niftyModal();
+            }},
+            unlocking: {name: "开锁信息", callback: function(key, opt){
+                // $('#reply-unlocking').niftyModal();
+            }}
+        }
+    });
+
     //initialize the javascript
     App.init();
 

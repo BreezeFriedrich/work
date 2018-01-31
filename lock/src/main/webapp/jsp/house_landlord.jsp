@@ -2441,6 +2441,7 @@
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <!--日历-->
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="resources/plugin/bootstrap.datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
 <!--日期时间选择器-->
 <script type="text/javascript" src="resources/plugin/bootstrap.daterangepicker/moment.min.js"></script>
