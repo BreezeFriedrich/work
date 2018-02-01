@@ -34,6 +34,8 @@ public class JsonDto {
         this.biz = biz;
     }
 
+    public JsonDto() {
+    }
     //流程正常success=true,errmsg=null;返回success&biz
     public JsonDto(BizDto biz) {
         this.success = true;

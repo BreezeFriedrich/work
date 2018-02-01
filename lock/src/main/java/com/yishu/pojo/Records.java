@@ -32,4 +32,12 @@ public class Records<X> {
     public void setRows(List<X> rows) {
         this.rows = rows;
     }
+
+    public Records() {
+    }
+
+    public Records(List<X> rows) {
+        this.rows = rows;
+        this.totalSize = rows.size();
+    }
 }

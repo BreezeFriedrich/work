@@ -18,26 +18,24 @@ import java.util.Map;
  * @since JDK1.7
  */
 public interface IRecordService {
-    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime);
-    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate);
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, long startTime, long endTime);
+    public List<UnlockRecord> getUnlockRecordFilter(String ownerPhoneNumber, long startTime, long endTime,Map<String,Object> filterparamMap);
 
-    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize);
+    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, int pageNum, int pageSize);
 
-    public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String gatewayCode, int pageNum, int pageSize);
+    public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, String gatewayCode, int pageNum, int pageSize);
 
-    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, String startTime, String endTime, String lockCode);
-
-    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate, String lockCode);
+    public List<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, long startTime, long endTime, String lockCode);
 
     public Records<UnlockRecord>[] getLockUnlockRecordDaily(String ownerPhoneNumber, Date theDate, String lockCode);
 
-    public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String lockCode, int pageNum, int pageSize);
+    public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, String lockCode, int pageNum, int pageSize);
 
-    public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime);
+    public Map getUnlockRecordDevice(String ownerPhoneNumber, long startTime, long endTime);
 
-    public Map getUnlockRecordDevicePage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize);
+    public Map getUnlockRecordDevicePage(String ownerPhoneNumber, long startTime, long endTime, int pageNum, int pageSize);
 
-    public Map getUnlockOperator(String ownerPhoneNumber, String startTime, String endTime);
+    public Map getUnlockOperator(String ownerPhoneNumber, long startTime, long endTime);
 
-    public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String cardNum, int pageNum, int pageSize);
+    public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, String cardNum, int pageNum, int pageSize);
 }

@@ -52,7 +52,7 @@ public class RecordController {
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
-        resultList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        resultList=recordService.getUnlockRecord(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime));
         return resultList;
     }
 
@@ -74,7 +74,7 @@ public class RecordController {
         String endTime=request.getParameter("endTime");
         int pageNum= Integer.parseInt(request.getParameter("pageNum"));
         int pageSize= Integer.parseInt(request.getParameter("pageSize"));
-        Records<UnlockRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
+        Records<UnlockRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime),pageNum,pageSize);
         return records;
     }
 
@@ -91,7 +91,7 @@ public class RecordController {
         String endTime=request.getParameter("endTime");
         int pageNum= Integer.parseInt(request.getParameter("pageNum"));
         int pageSize= Integer.parseInt(request.getParameter("pageSize"));
-        Records<UnlockRecord> records=recordService.getGatewayUnlockRecordPage(ownerPhoneNumber,startTime,endTime,gatewayCode,pageNum,pageSize);
+        Records<UnlockRecord> records=recordService.getGatewayUnlockRecordPage(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime),gatewayCode,pageNum,pageSize);
         return records;
     }
 
@@ -107,7 +107,10 @@ public class RecordController {
         String lockCode=request.getParameter("lockCode");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
-        Records<UnlockRecord> records=recordService.getLockUnlockRecord(ownerPhoneNumber,startTime,endTime,lockCode);
+        List recordList=recordService.getLockUnlockRecord(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime),lockCode);
+        Records<UnlockRecord> records=new Records<>();
+        records.setTotalSize(recordList.size());
+        records.setRows(recordList);
         return records;
     }
 
@@ -261,7 +264,7 @@ public class RecordController {
         String endTime=request.getParameter("endTime");
         int pageNum= Integer.parseInt(request.getParameter("pageNum"));
         int pageSize= Integer.parseInt(request.getParameter("pageSize"));
-        Records<UnlockRecord> records=recordService.getLockUnlockRecordPage(ownerPhoneNumber,startTime,endTime,lockCode,pageNum,pageSize);
+        Records<UnlockRecord> records=recordService.getLockUnlockRecordPage(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime),lockCode,pageNum,pageSize);
         return records;
     }
 
@@ -275,7 +278,7 @@ public class RecordController {
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
-        resultMap=recordService.getUnlockRecordDevice(ownerPhoneNumber,startTime,endTime);
+        resultMap=recordService.getUnlockRecordDevice(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime));
         return resultMap;
     }
 
@@ -291,7 +294,7 @@ public class RecordController {
         String endTime=request.getParameter("endTime");
         int pageNum= Integer.parseInt(request.getParameter("pageNum"));
         int pageSize= Integer.parseInt(request.getParameter("pageSize"));
-        resultMap=recordService.getUnlockRecordDevicePage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
+        resultMap=recordService.getUnlockRecordDevicePage(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime),pageNum,pageSize);
         return resultMap;
     }
 
@@ -305,7 +308,7 @@ public class RecordController {
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
-        resultMap=recordService.getUnlockOperator(ownerPhoneNumber,startTime,endTime);
+        resultMap=recordService.getUnlockOperator(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime));
         return resultMap;
     }
 
@@ -322,7 +325,7 @@ public class RecordController {
         String cardNum=request.getParameter("cardNum");
         int pageNum= Integer.parseInt(request.getParameter("pageNum"));
         int pageSize= Integer.parseInt(request.getParameter("pageSize"));
-        Records<UnlockRecord> records=recordService.getOperatorUnlockRecordPage(ownerPhoneNumber,startTime,endTime,cardNum,pageNum,pageSize);
+        Records<UnlockRecord> records=recordService.getOperatorUnlockRecordPage(ownerPhoneNumber,Long.parseLong(startTime),Long.parseLong(endTime),cardNum,pageNum,pageSize);
         return records;
     }
 }

@@ -45,6 +45,9 @@ public class BizDto<T> {
             this.data = data;
         }
     */
+
+    public BizDto() {
+    }
     public BizDto(T data) {
         this.code = 0;
         this.data = data;

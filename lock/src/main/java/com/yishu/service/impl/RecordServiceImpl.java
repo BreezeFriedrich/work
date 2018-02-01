@@ -54,12 +54,116 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, final long startTime, final long endTime) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        List<UnlockRecord> recordList2=null;
+        try {
+            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(null==recordList){
+            return null;
+        }
+        //filter-recordList-Bytime,按时间过滤开锁记录.
+        UnlockRecord unlockRecord=null;
+        recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                Date timetag= null;
+                long timetagL=0;
+                try {
+                    timetag = DateUtil.yyyyMMddHHmmss.parse(unlockRecord.getTimetag());
+                    timetagL=timetag.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+//                return Long.parseLong(startTime)<timetag.getTime() && Long.parseLong(endTime)>timetag.getTime();
+                return startTime<timetagL && endTime>timetagL;
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+        if(null!=recordList2){
+            Collections.reverse(recordList2);
+        }
+        return recordList2;
+    }
+
+    @Override
+    public List<UnlockRecord> getUnlockRecordFilter(String ownerPhoneNumber, long startTime, long endTime, final Map<String,Object> filterparamMap) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> recordList=null;
+        recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        if(null==recordList){
+            return null;
+        }
+        //filter过滤开锁记录.
+        List<UnlockRecord> recordList2=null;
+        recordList2= FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                String property=null;
+                boolean eligible=true;
+                //遍历filterparamMap
+                for (Map.Entry<String, Object> entry : filterparamMap.entrySet()) {
+//                    System.out.println(entry.getKey() + ":" + entry.getValue());
+                    if (!eligible){
+                        break;//跳出对于filterparamMap的for循环遍历
+                    }
+                    if(eligible){
+                        property=entry.getKey();
+                        switch (property) {
+                            case "lockCode":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getLockCode());
+                                break;
+                            case "gatewayCode":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getGatewayCode());
+                                break;
+                            case "openMode":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getOpenMode());
+                                break;
+                            case "period":
+                                long[] period= (long[]) entry.getValue();
+                                try {
+                                    long time = DateUtil.yyyyMMddHHmmss.parse(unlockRecord.getTimetag()).getTime();
+                                    eligible = period[0]<time && period[1]>time;
+                                } catch (ParseException e) {
+                                    eligible=false;
+                                    e.printStackTrace();
+                                }
+                                break;
+                            case "name":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getName());
+                                break;
+                            case "cardNumb":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getCardNumb());
+                                break;
+                            case "password":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getPasswordInfo().getPassword());
+                                break;
+                            case "serviceNumb":
+                                if(null!=unlockRecord.getCardInfo()){
+                                    eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getServiceNumb());
+                                }else{
+                                    eligible = ((String)entry.getValue()).equals(unlockRecord.getPasswordInfo().getServiceNumb());
+                                }
+                                break;
+                            default:break;
+                        }
+                    }
+                }
+                return eligible;
+            }
+        });
+        return recordList2;
+    }
+    /*
+    @Override
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, long startTime, long endTime) {
         reqSign=26;
-        long startTimeL=Long.parseLong(startTime);
-        long endTimeL=Long.parseLong(endTime);
-        String startTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(startTimeL));
-        String endTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(endTimeL));
+        String startTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(startTime));
+        String endTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(endTime));
 //        try {
 //            startTime=DateUtil.format1tillminStringToformat2tillminString(startTime);
 //            endTime=DateUtil.format1tillminStringToformat2tillminString(endTime);
@@ -92,6 +196,7 @@ public class RecordServiceImpl implements IRecordService {
         }
         return null;
     }
+    */
     /*
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate) {
@@ -133,49 +238,7 @@ public class RecordServiceImpl implements IRecordService {
     */
 
     @Override
-    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate) {
-//        final long startTimeL=Long.parseLong(startTime);
-//        final long endTimeL=Long.parseLong(endTime);
-        final long startTimeL=startDate.getTime();
-        final long endTimeL=endDate.getTime();
-        //rawData,获取原始数据:开锁记录的List.
-        List<UnlockRecord> recordList=null;
-        List<UnlockRecord> recordList2=null;
-        try {
-            recordList=objectMapper.readValue(DataInject.readFile2String("classpath:recordList.json"),new TypeReference<List<UnlockRecord>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if(null==recordList){
-            return null;
-        }
-        //filter-recordList-Bytime,按时间过滤开锁记录.
-        UnlockRecord unlockRecord=null;
-        recordList2=FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
-            @Override
-            public boolean test(UnlockRecord unlockRecord) {
-                Date timetag= null;
-                long timetagL=0;
-                try {
-                    timetag = DateUtil.yyyyMMddHHmmss.parse(unlockRecord.getTimetag());
-                    timetagL=timetag.getTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-//                return Long.parseLong(startTime)<timetag.getTime() && Long.parseLong(endTime)>timetag.getTime();
-                return startTimeL<timetagL && endTimeL>timetagL;
-            }
-        });
-        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-        if(null!=recordList2){
-            Collections.reverse(recordList2);
-        }
-        return recordList2;
-    }
-
-
-    @Override
-    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
+    public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
@@ -203,7 +266,7 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String gatewayCode, int pageNum, int pageSize) {
+    public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, final String gatewayCode, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
@@ -239,7 +302,7 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, String startTime, String endTime, final String lockCode) {
+    public List<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, long startTime, long endTime, final String lockCode) {
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
@@ -255,36 +318,12 @@ public class RecordServiceImpl implements IRecordService {
             }
         });
         //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-//        Collections.reverse(recordList2);
-        Records<UnlockRecord> records =new Records<>();
-        records.setTotalSize(recordList2.size());
-        records.setRows(recordList2);
-
-        return records;
-    }
-
-    @Override
-    public Records<UnlockRecord> getLockUnlockRecord(String ownerPhoneNumber, Date startDate, Date endDate, final String lockCode) {
-        //rawData,获取原始数据:开锁记录的List.
-        List<UnlockRecord> recordList=null;
-        recordList=getUnlockRecord(ownerPhoneNumber,startDate,endDate);
-        if(null==recordList){
-            return null;
-        }
-        //filter-recordList-Bytime,按时间&门锁过滤开锁记录.
-        List<UnlockRecord> recordList2=null;
-        recordList2= FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
-            @Override
-            public boolean test(UnlockRecord unlockRecord) {
-                return lockCode.equals(unlockRecord.getLockCode());
-            }
-        });
-        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-//        Collections.reverse(recordList2);
-        Records<UnlockRecord> records =new Records<>();
-        records.setTotalSize(recordList2.size());
-        records.setRows(recordList2);
-        return records;
+        //Collections.reverse(recordList2);
+//        Records<UnlockRecord> records =new Records<>();
+//        records.setTotalSize(recordList2.size());
+//        records.setRows(recordList2);
+//        return records;
+        return recordList2;
     }
 
     @Override
@@ -312,7 +351,7 @@ public class RecordServiceImpl implements IRecordService {
         }
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
-        recordList=getUnlockRecord(ownerPhoneNumber,startDate,endDate);
+        recordList=getUnlockRecord(ownerPhoneNumber,startDate.getTime(),endDate.getTime());
         if(null==recordList){
             return null;
         }
@@ -376,7 +415,7 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String lockCode, int pageNum, int pageSize) {
+    public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, final String lockCode, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
@@ -414,7 +453,7 @@ public class RecordServiceImpl implements IRecordService {
      * @return
      */
     @Override
-    public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime) {
+    public Map getUnlockRecordDevice(String ownerPhoneNumber, long startTime, long endTime) {
         List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         UnlockRecord unlockRecord=null;
         String gatewayCode=null;
@@ -485,7 +524,7 @@ public class RecordServiceImpl implements IRecordService {
 
     //未使用.引用的方法getUnlockRecordDevice()已被注释.
     @Override
-    public Map getUnlockRecordDevicePage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
+    public Map getUnlockRecordDevicePage(String ownerPhoneNumber, long startTime, long endTime, int pageNum, int pageSize) {
         Map<String,Map> deviceRecordsMap=null;
         deviceRecordsMap=getUnlockRecordDevice(ownerPhoneNumber,startTime,endTime);
         Map<String,Map> subMap=new HashMap<>();
@@ -510,7 +549,7 @@ public class RecordServiceImpl implements IRecordService {
      * @return
      */
     @Override
-    public Map getUnlockOperator(String ownerPhoneNumber, String startTime, String endTime) {
+    public Map getUnlockOperator(String ownerPhoneNumber, long startTime, long endTime) {
         List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         UnlockRecord unlockRecord=null;
         UnlockRecord.CardInfo cardInfo=null;
@@ -560,7 +599,7 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String cardNum, int pageNum, int pageSize) {
+    public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, final String cardNum, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
         List<UnlockRecord> recordList=null;
         recordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
