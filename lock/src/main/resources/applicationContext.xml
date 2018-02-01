@@ -23,6 +23,12 @@
     <context:component-scan base-package="com.yishu">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
+    <!--<context:component-scan base-package="com.yishu" use-default-filters="false">-->
+        <!--<context:include-filter type="regex" expression="com.yishu.service.*"/>-->
+        <!--<context:include-filter type="regex" expression="com.yishu.aspect"/>-->
+        <!--<context:include-filter type="regex" expression="com.yishu.util"/>-->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
+    <!--</context:component-scan>-->
 
     <!--javamelody与Spring集成-->
     <!--

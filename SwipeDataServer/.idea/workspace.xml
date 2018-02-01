@@ -7,14 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="2017.11.06-work">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/pojo/UnlockRecordInDevice.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/pojo/UnlockRecordInLock.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/util/datetimepicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/RecordAction.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/RecordAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/pojo/UnlockRecord.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/pojo/UnlockRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/service/IRecordService.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/service/IRecordService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/service/impl/RecordServiceImpl.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/service/impl/RecordServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/record/record.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/record/record.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lock/src/main/java/com/yishu/aspect/SpringExceptionHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lock/src/main/java/com/yishu/pojo/BizDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../lock/src/main/java/com/yishu/pojo/JsonDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lock/src/main/java/com/yishu/controller/RecordController.java" afterPath="$PROJECT_DIR$/../lock/src/main/java/com/yishu/controller/RecordController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lock/src/main/java/com/yishu/controller/UnlockController.java" afterPath="$PROJECT_DIR$/../lock/src/main/java/com/yishu/controller/UnlockController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lock/src/main/resources/applicationContext.xml" afterPath="$PROJECT_DIR$/../lock/src/main/resources/applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lock/src/main/webapp/jsp/error/error.jsp" afterPath="$PROJECT_DIR$/../lock/src/main/webapp/jsp/error/error.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lock/src/main/webapp/resources/js/house_landlord.js" afterPath="$PROJECT_DIR$/../lock/src/main/webapp/resources/js/house_landlord.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../swipe/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,8 +76,8 @@
       <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DataServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="258" column="59" lean-forward="true" selection-start-line="258" selection-start-column="59" selection-end-line="258" selection-end-column="59" />
+            <state relative-caret-position="272">
+              <caret line="28" column="25" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,7 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>httpServer</find>
       <find>getBean</find>
       <find>conf/default.properties</find>
       <find>classPath.getPath()</find>
@@ -155,6 +156,7 @@
       <find>2015/12/10 13:35:29</find>
       <find>2015/12/10 13:35</find>
       <find>2015/12/10</find>
+      <find>找不到或无法加载主类</find>
     </findStrings>
     <replaceStrings>
       <replace>swipeRecordResultMap</replace>
@@ -237,8 +239,8 @@
         <option value="$PROJECT_DIR$/resources/mappers/UserMapper.xml" />
         <option value="$PROJECT_DIR$/sql/shiro.sql" />
         <option value="$PROJECT_DIR$/sql/DataServer.java" />
-        <option value="$PROJECT_DIR$/src/DataServer.java" />
         <option value="$PROJECT_DIR$/sql/SAMRECORD.sql" />
+        <option value="$PROJECT_DIR$/src/DataServer.java" />
       </list>
     </option>
   </component>
@@ -255,8 +257,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="136" />
-    <option name="y" value="26" />
+    <option name="x" value="76" />
+    <option name="y" value="103" />
     <option name="width" value="1263" />
     <option name="height" value="877" />
   </component>
@@ -301,7 +303,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -309,29 +313,10 @@
               <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="shiro" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -386,7 +371,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.swipe-jar">
+  <component name="RunManager" selected="Application.SwipeDataServer">
     <configuration name="SwipeDataServer" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="DataServer" />
@@ -927,6 +912,8 @@
       <workItem from="1511771712730" duration="100000" />
       <workItem from="1511772232873" duration="973000" />
       <workItem from="1512554799344" duration="505000" />
+      <workItem from="1517472339366" duration="473000" />
+      <workItem from="1517473073725" duration="422000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -1100,7 +1087,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="802100000" />
+    <option name="totallyTimeSpent" value="802995000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1116,6 +1103,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2859155" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29090908" sideWeight="0.095115684" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925257" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1123,7 +1111,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35070422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24355671" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25128865" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17416452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1138,11 +1126,10 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3547486" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44084507" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2859155" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21297602" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29113925" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32816902" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1355,13 +1342,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/SwipeDataServer.jar!/META-INF/MANIFEST.MF" />
     <entry file="file://$PROJECT_DIR$/src/shiro/dao/RoleDao.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1441,18 +1421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="853">
           <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-          <folding>
-            <marker date="1509947703507" expanded="true" signature="296:419" ph="INSERT INTO t_user... " />
-            <marker date="1509947703507" expanded="true" signature="513:981" ph="UPDATE t_use... " />
-            <marker date="1509947703507" expanded="true" signature="1050:1093" ph="DELETE FROM " />
-            <marker date="1509947703507" expanded="true" signature="1425:1577" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="1646:1765" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="1863:2027" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="2118:2391" ph="SELECT tu.id... t_user" />
-            <marker date="1509947703507" expanded="true" signature="2539:2790" ph="SELECT tr.`i... t_resource" />
-            <marker date="1509947703507" expanded="true" signature="2926:3118" ph="SELECT tr.sn... t_role" />
-            <marker date="1509947703507" expanded="true" signature="3247:3477" ph="SELECT tr.`i... t_role" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1460,21 +1428,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-          <folding>
-            <marker date="1499327357103" expanded="true" signature="255:315" ph="INSERT INTO t_role... " />
-            <marker date="1499327357103" expanded="true" signature="384:427" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="740:838" ph="SELECT id, `... t_role" />
-            <marker date="1499327357103" expanded="true" signature="908:1151" ph="UPDATE t_rol... " />
-            <marker date="1499327357103" expanded="true" signature="1220:1293" ph="SELECT id, `... t_role" />
-            <marker date="1499327357103" expanded="true" signature="1390:1540" ph="SELECT id, u... t_user_role" />
-            <marker date="1499327357103" expanded="true" signature="1614:1696" ph="INSERT INTO `t_user_role`... " />
-            <marker date="1499327357103" expanded="true" signature="2058:2147" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="2230:2295" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="2433:2657" ph="SELECT tr.`i... t_resource" />
-            <marker date="1499327357103" expanded="true" signature="2735:2823" ph="INSERT INTO t_role_resource... " />
-            <marker date="1499327357103" expanded="true" signature="2904:3005" ph="DELETE FROM " />
-            <marker date="1499327357103" expanded="true" signature="3110:3276" ph="SELECT id, r... t_role_resource" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1482,13 +1435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="42" lean-forward="true" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-          <folding>
-            <marker date="1499327357087" expanded="true" signature="269:375" ph="SELECT `id`,... t_resource" />
-            <marker date="1499327357087" expanded="true" signature="446:535" ph="insert into t_resource... " />
-            <marker date="1499327357087" expanded="true" signature="609:956" ph="update t_res... " />
-            <marker date="1499327357087" expanded="true" signature="1025:1072" ph="DELETE FROM " />
-            <marker date="1499327357087" expanded="true" signature="1161:1292" ph="SELECT `id`,... t_resource" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1496,7 +1442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="734">
           <caret line="87" column="43" lean-forward="true" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1512,7 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1520,7 +1464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="54" lean-forward="false" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1538,27 +1481,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
           <caret line="113" column="34" lean-forward="true" selection-start-line="113" selection-start-column="34" selection-end-line="113" selection-end-column="34" />
-          <folding>
-            <marker date="1501124493896" expanded="true" signature="249:420" ph="INSERT INTO TABLE_SAMLIST... " />
-            <marker date="1501124493896" expanded="true" signature="499:897" ph="UPDATE TABLE... " />
-            <marker date="1501124493896" expanded="true" signature="976:1050" ph="DELETE FROM " />
-            <marker date="1501124493896" expanded="true" signature="1189:1249" ph="DELETE FROM " />
-            <marker date="1501124493896" expanded="true" signature="1356:1535" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="1637:1814" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="1916:2171" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="2257:2450" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="2568:3298" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="3381:3686" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="5136:5267" ph="DELETE FROM " />
-            <marker date="1501124493896" expanded="true" signature="5202:5266" ph="SELECT SEQ,M... TABLE_SAMLIST" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DataServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="258" column="59" lean-forward="true" selection-start-line="258" selection-start-column="59" selection-end-line="258" selection-end-column="59" />
+        <state relative-caret-position="272">
+          <caret line="28" column="25" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1624,7 +1561,6 @@
             <option name="proportions">
               <list>
                 <option value="0.13170272" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

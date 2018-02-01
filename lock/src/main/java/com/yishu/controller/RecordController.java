@@ -1,5 +1,7 @@
 package com.yishu.controller;
 
+import com.yishu.pojo.BizDto;
+import com.yishu.pojo.JsonDto;
 import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
 import com.yishu.service.IRecordService;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -108,6 +111,7 @@ public class RecordController {
         return records;
     }
 
+    /*
     @RequestMapping("/getLockUnlockRecordDaily.do")
     @ResponseBody
     public Records<UnlockRecord>[] getLockUnlockRecordDaily(HttpServletRequest request){
@@ -128,6 +132,121 @@ public class RecordController {
         }
         return null;
     }
+    */
+    @RequestMapping("/getLockUnlockRecordDaily.do")
+    @ResponseBody
+    public JsonDto getLockUnlockRecordDaily(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- record/getLockUnlockRecordDaily.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String lockCode=request.getParameter("lockCode");
+        String theDateStr=request.getParameter("theDate");
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+        Date theDate= null;
+        try {
+            theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+            Records<UnlockRecord>[] dailyRecords=recordService.getLockUnlockRecordDaily(ownerPhoneNumber,theDate,lockCode);
+            if(null==dailyRecords){
+                bizDto=BizDto.NO_RESULT;
+            }else {
+                bizDto=new BizDto(dailyRecords);
+            }
+            jsonDto=new JsonDto(bizDto);
+//            throw(new ParseException("parseError",157));
+        } catch (ParseException e) {
+//            e.printStackTrace();
+            LOG.error(null,e);
+            jsonDto=JsonDto.EXCEPTION;
+        }finally {
+            return jsonDto;
+        }
+    }
+
+    @RequestMapping("/getUnlockRecordLockDailyPage.do")
+    @ResponseBody
+    public Map getUnlockRecordLockDailyPage(HttpServletRequest request) throws ParseException {
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- record/getUnlockRecordLockDailyPage.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+
+        HashMap paramMap= new HashMap(15);
+        paramMap.put("ownerPhoneNumber",ownerPhoneNumber);
+        //直接返回前台
+        String draw = request.getParameter("draw");
+        //数据起始位置
+        String startIndex = request.getParameter("startIndex");
+        //每页显示的条数
+        String pageSize = request.getParameter("pageSize");
+        //获取排序字段
+        String orderColumn = request.getParameter("orderColumn");
+        if(orderColumn == null){
+            orderColumn = "timestamp";
+        }
+        paramMap.put("orderColumn",orderColumn);
+        //获取排序方式
+        String orderDir = request.getParameter("orderDir");
+        if(orderDir == null){
+            orderDir = "desc";
+        }
+        paramMap.put("orderDir",orderDir);
+        //查询条件
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        if(null != gatewayCode && !"".equals(gatewayCode)){
+            paramMap.put("gatewayCode",gatewayCode);
+        }
+        if(null != lockCode && !"".equals(lockCode)){
+            paramMap.put("lockCode",lockCode);
+        }
+        String theDateStr=request.getParameter("date");
+        Date theDate= null;
+        theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+        if(null != theDateStr && !"".equals(theDateStr)){
+            paramMap.put("date",theDate);
+        }
+        Records<UnlockRecord>[] dailyRecords=recordService.getLockUnlockRecordDaily(ownerPhoneNumber,theDate,lockCode);
+
+        List<DeviceStatus> deviceStatuses = moduleService.listAllWithStrategy(paramMap);
+        Map<String, Object> info = new HashMap<String, Object>();
+        if(deviceStatuses==null){
+            info.put("pageData",null);
+            info.put("total",0);
+        }else{
+            PageUtil<DeviceStatus> pageUtil=new PageUtil<DeviceStatus>(deviceStatuses);
+            pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
+            info.put("pageData", pageUtil.getList());
+            info.put("total", pageUtil.getTotal());
+        }
+        info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+//        return JSONObject.fromObject(info)+"";
+        return info;
+    }
+    /*
+    @Override
+    public List<DeviceStatus> listAllWithStrategy(HashMap paramMap) {
+
+        paramMap.put("sign",3);
+        try {
+            postdata=objectMapper.writeValueAsString(paramMap);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+//        logger.info("postdata:"+postdata);
+        getdata=HttpUtil.postData(postdata);
+//        logger.info("#DATA     ~ "+getdata);
+
+        deviceStatusList=getDataListFromJson(getdata);
+        if(deviceStatusList.size()>0){
+            return deviceStatusList;
+        }
+        return null;
+    }
+    */
 
     @RequestMapping("/getLockUnlockRecordPage.do")
     @ResponseBody

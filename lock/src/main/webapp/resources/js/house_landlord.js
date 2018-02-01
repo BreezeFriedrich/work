@@ -65,7 +65,45 @@ function getLocks() {
             userHierarchy=data;
             subordinates=data.subordinateList;
 
-            // if (subordinates.length===0){
+            subordinates=[
+                {
+                    "gatewayName":"网关3",
+                    "gatewayCode":"GWH0081702000003",
+                    "gatewayLocation":"网关地址",
+                    "gatewayComment":"网关备注",
+                    "gatewayStatus":4,
+                    "lockName": "房间1",
+                    "lockCode": "LCN0011721000001",
+                    "lockLocation": "bigdata",
+                    "lockComment": "bigdata",
+                    "lockStatus": "1",
+                    "lockPower": "4"
+                },{
+                    "gatewayName":"网关3",
+                    "gatewayCode":"GWH0081702000003",
+                    "gatewayLocation":"网关地址",
+                    "gatewayComment":"网关备注",
+                    "gatewayStatus":4,
+                    "lockName": "房间2",
+                    "lockCode": "LCN0011702000003",
+                    "lockLocation": "bigdata",
+                    "lockComment": "bigdata",
+                    "lockStatus": "1",
+                    "lockPower": "4"
+                },{
+                    "gatewayName":"网关3",
+                    "gatewayCode":"GWH0081702000003",
+                    "gatewayLocation":"网关地址",
+                    "gatewayComment":"网关备注",
+                    "gatewayStatus":4,
+                    "lockName": "房间3",
+                    "lockCode": "LCN0011721000001",
+                    "lockLocation": "bigdata",
+                    "lockComment": "bigdata",
+                    "lockStatus": "1",
+                    "lockPower": "4"
+                }];
+            if (subordinates.length===0){
                 userHierarchy={
                     "phoneNumber": "17705155208",
                     "grade": 10,
@@ -253,7 +291,7 @@ function getLocks() {
                         "lockPower": "4"
                     }
                 ]
-            // }
+            }
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -267,12 +305,12 @@ function getLocks() {
  $(".fixed-table-box").deleteRow($(".fixed-table-box").children('.fixed-table_fixed-left').children('.fixed-table_body-wraper').find('tr').eq(0));
  });
  */
-
+/*
 function renderRow(locks,date) {
     (function () {
-        for(var i in locks){
-            lock=locks[i];
-            var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(1).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
+        for(var j in locks){
+            lock=locks[j];
+            var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(j-1).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
             //auth获取开锁授权信息
             $.ajax({
                 type:"POST",
@@ -325,6 +363,78 @@ function renderRow(locks,date) {
                 }
             });
         }
+    })();
+}
+*/
+function renderRow(locks,date) {
+    (function () {
+        var time1=new Date();
+        for(var j in locks){
+            // console.log('j:'+j);
+            lock=locks[j];
+            var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(j).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
+            //auth获取开锁授权信息
+            $.ajax({
+                type:"POST",
+                url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                async:false,
+                data:{
+                    "gatewayCode":lock.gatewayCode,
+                    "lockCode":lock.lockCode,
+                    "theDate":getDateStr(date)
+                },
+                dataType:'json',
+                success:function(data,status,xhr){
+                    if(data.success){
+                        if(data.biz.code===0){
+                            authinfo=data.biz.data;
+                            var authinfodailyArr=authinfo.authinfoDaily;
+                            var authinfodaily;
+                            var authinfodailyArrLength=authinfodailyArr.length;
+                            for(var i=0;i<authinfodailyArrLength;i++){
+                                authinfodaily=authinfodailyArr[i];
+                                if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
+                                    // fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("cd-booked");
+                                    TDs_row.eq(i+15).addClass("cd-booked");
+                                }
+                            }
+                        }
+                    }
+                },
+                error:function(xhr,errorType,error){
+                    console.log('错误');
+                }
+            });
+            //record获取入住记录
+            $.ajax({
+                type:"POST",
+                url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                async:false,
+                data:{"lockCode":lock.lockCode,"theDate":getDateStr(date)},
+                dataType:'json',
+                success:function(data,status,xhr){
+                    if(data.success){
+                        if(data.biz.code===0){
+                            recordinfo=data.biz.data;
+                            var recordinfoLength=recordinfo.length;
+                            var recordDaily;
+                            for(var i=0;i<recordinfoLength;i++){
+                                recordDaily=recordinfo[i];
+                                if(recordDaily.totalSize>0){
+                                    // fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-select");
+                                    TDs_row.eq(i).addClass("cd-select");
+                                }
+                            }
+                        }
+                    }
+                },
+                error:function(xhr,errorType,error){
+                    console.log('错误');
+                }
+            });
+        }
+        var time2=new Date();
+        console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
     })();
 }
 function getAuthinfo(specificGatewayCode,specificLockCode,date) {
@@ -655,7 +765,7 @@ $(document).ready(function () {
         selector: ".cd-select:not(.cd-booked)",
         items: {
             ticket: {name: "入住记录", callback: function(key, opt){
-                // $('#reply-ticket').niftyModal();
+                $('#reply-ticket').niftyModal();
                 console.log($(this).parent("tr").attr("roomid"));
             }}
         }
@@ -664,14 +774,14 @@ $(document).ready(function () {
         selector: ".cd-booked:not(.cd-select)",
         items: {
             identity: {name: "身份证授权", callback: function(key, opt){
-                // $('#reply-identity').niftyModal();
+                $('#reply-identity').niftyModal();
                 console.log($(this).parent("tr").attr("roomid"));
             }},
             password: {name: "密码授权", callback: function(key, opt){
-                // $('#reply-password').niftyModal();
+                $('#reply-password').niftyModal();
             }},
             unlocking: {name: "开锁信息", callback: function(key, opt){
-                // $('#reply-unlocking').niftyModal();
+                $('#reply-unlocking').niftyModal();
             }}
         }
     });
@@ -679,18 +789,18 @@ $(document).ready(function () {
         selector: ".cd-select.cd-booked",
         items: {
             ticket: {name: "入住记录", callback: function(key, opt){
-                // $('#reply-ticket').niftyModal();
+                $('#reply-ticket').niftyModal();
                 console.log($(this).parent("tr").attr("roomid"));
             }},
             identity: {name: "身份证授权", callback: function(key, opt){
-                // $('#reply-identity').niftyModal();
+                $('#reply-identity').niftyModal();
                 console.log($(this).parent("tr").attr("roomid"));
             }},
             password: {name: "密码授权", callback: function(key, opt){
-                // $('#reply-password').niftyModal();
+                $('#reply-password').niftyModal();
             }},
             unlocking: {name: "开锁信息", callback: function(key, opt){
-                // $('#reply-unlocking').niftyModal();
+                $('#reply-unlocking').niftyModal();
             }}
         }
     });

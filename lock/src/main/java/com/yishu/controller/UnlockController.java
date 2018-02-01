@@ -1,8 +1,6 @@
 package com.yishu.controller;
 
-import com.yishu.pojo.Authinfo;
-import com.yishu.pojo.UnlockAuthorization;
-import com.yishu.pojo.UnlockPwds;
+import com.yishu.pojo.*;
 import com.yishu.service.IUnlockService;
 import com.yishu.util.DateUtil;
 import org.slf4j.LoggerFactory;
@@ -212,6 +210,7 @@ public class UnlockController {
         return null;
     }
 
+    /*
     @RequestMapping("/getUnlockAuthorizationDailyArr.do")
     @ResponseBody
     public Authinfo getUnlockAuthorizationDailyArr(HttpServletRequest request){
@@ -236,5 +235,44 @@ public class UnlockController {
             e.printStackTrace();
         }
         return null;
+    }
+    */
+    @RequestMapping("/getUnlockAuthorizationDailyArr.do")
+    @ResponseBody
+    public JsonDto getUnlockAuthorizationDailyArr(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- unlock/getUnlockAuthorizationDailyArr.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+        UnlockAuthorization unlockAuthorization=unlockService.getUnlockAuthorization(ownerPhoneNumber,gatewayCode,lockCode);
+        if(null==unlockAuthorization){
+//            return null;
+            bizDto= BizDto.NO_RESULT;
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        }
+        String theDateStr=request.getParameter("theDate");
+        Date theDate= null;
+        try {
+            theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+            Authinfo authinfo=unlockService.getUnlockAuthorizationDailyArr(unlockAuthorization,theDate);
+            if(null==authinfo){
+                bizDto= BizDto.NO_RESULT;
+            }else {
+                bizDto=new BizDto<Authinfo>(authinfo);
+            }
+            jsonDto=new JsonDto(bizDto);
+        } catch (ParseException e) {
+//            e.printStackTrace();
+            LOG.error(null,e);
+            jsonDto= JsonDto.EXCEPTION;
+        }finally {
+            return jsonDto;
+        }
     }
 }

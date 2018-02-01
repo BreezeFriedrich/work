@@ -9,6 +9,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page  isELIgnored="false"%>
 <html>
 <head>
     <base href="<%=basePath%>">
@@ -18,13 +19,7 @@
 <div>
     <p>Exception.jsp</p>
     <h2>错误信息</h2>
-    <p>
-        <%--<s:if test="#attr.errMsg!=null">--%>
-            <%--<s:property value="#attr.errMsg" />--%>
-        <%--</s:if>--%>
-    </p>
-    <h2>调试Struts2</h2>
-    <p><s debug/></p>
+    <p>${throwable}</p>
 </div>
 </body>
 </html>
