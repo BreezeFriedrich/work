@@ -26,6 +26,20 @@
     <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
     <!--右键菜单-->
     <link rel="stylesheet" href="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.css" />
+    <link rel="stylesheet" href="resources/plugin/dataTables/css/jquery.dataTables.css" />
+    <style>
+        .md-content table thead th{
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .md-content table tbody td{
+            /*font-size: 1.15em;*/
+            font-size: 15px;
+            font-weight: 200;
+            line-height: 30px;
+            height: 30px;
+        }
+    </style>
 
     <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
@@ -56,9 +70,11 @@
     <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.ui.position.js"></script>
     <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.js"></script>
     <script type="text/javascript" src="resources/js/contextmenu.js"></script>
+    <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 </head>
 <body>
-<div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket">
+<button style="width: 300px;height: 200px">右键菜单</button>
+<div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket" style="width: 680px;">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
@@ -67,13 +83,14 @@
             </div>
 
             <div class="content">
+                <%--<button type="button" class="btn btn-primary" id="btn_search">查询</button>--%>
                 <table id="table-moduleStatus" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th width="100px">type</th>
-                        <th width="160px">timestamp</th>
-                        <th width="220px">credential</th>
-                        <th width="150px">name</th>
+                        <th width="150px">开锁类型</th>
+                        <th width="200px">开锁时刻</th>
+                        <th width="180px">开锁凭据</th>
+                        <th width="100px">开锁人</th>
                         <%--<th width="200px">edit</th>--%>
                     </tr>
                     </thead>

@@ -8,10 +8,7 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yishu.pojo.DataWithNote;
-import com.yishu.pojo.DataWithSize;
-import com.yishu.pojo.Records;
-import com.yishu.pojo.UnlockRecord;
+import com.yishu.pojo.*;
 import com.yishu.service.IRecordService;
 import com.yishu.util.*;
 import org.slf4j.LoggerFactory;
@@ -83,10 +80,6 @@ public class RecordServiceImpl implements IRecordService {
                 return startTime<timetagL && endTime>timetagL;
             }
         });
-        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
-        if(null!=recordList2){
-            Collections.reverse(recordList2);
-        }
         return recordList2;
     }
 
@@ -157,6 +150,103 @@ public class RecordServiceImpl implements IRecordService {
             }
         });
         return recordList2;
+    }
+
+    @Override
+    public List<UnlockRecord> filterUnlockRecord(List<UnlockRecord> unlockRecords, final Map<String, Object> filterparamMap) {
+        //filter过滤开锁记录.
+        List<UnlockRecord> recordList=null;
+        recordList= FilterList.filter(unlockRecords, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                String property=null;
+                boolean eligible=true;
+                //遍历filterparamMap
+                for (Map.Entry<String, Object> entry : filterparamMap.entrySet()) {
+//                    System.out.println(entry.getKey() + ":" + entry.getValue());
+                    if (!eligible){
+                        break;//跳出对于filterparamMap的for循环遍历
+                    }
+                    if(eligible){
+                        property=entry.getKey();
+                        switch (property) {
+                            case "lockCode":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getLockCode());
+                                break;
+                            case "gatewayCode":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getGatewayCode());
+                                break;
+                            case "openMode":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getOpenMode());
+                                break;
+                            case "period":
+                                long[] period= (long[]) entry.getValue();
+                                try {
+                                    long time = DateUtil.yyyyMMddHHmmss.parse(unlockRecord.getTimetag()).getTime();
+                                    eligible = period[0]<time && period[1]>time;
+                                } catch (ParseException e) {
+                                    eligible=false;
+                                    e.printStackTrace();
+                                }
+                                break;
+                            case "name":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getName());
+                                break;
+                            case "cardNumb":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getCardNumb());
+                                break;
+                            case "password":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getPasswordInfo().getPassword());
+                                break;
+                            case "serviceNumb":
+                                if(null!=unlockRecord.getCardInfo()){
+                                    eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getServiceNumb());
+                                }else{
+                                    eligible = ((String)entry.getValue()).equals(unlockRecord.getPasswordInfo().getServiceNumb());
+                                }
+                                break;
+                            default:break;
+                        }
+                    }
+                }
+                return eligible;
+            }
+        });
+        return recordList;
+    }
+
+    @Override
+    public List<UnlockRecord> orderUnlockRecord(List<UnlockRecord> unlockRecords, Map<String, Object> orderparamMap) {
+        return null;
+    }
+
+    @Override
+    public List<UnlockRecordTableData> convertUnlockRecordToTabularData(List<UnlockRecord> unlockRecords) {
+        List<UnlockRecordTableData> recordTableDataList=new ArrayList<>();
+        int recordSize=unlockRecords.size();
+        UnlockRecord unlockRecord=new UnlockRecord();
+        UnlockRecordTableData recordTableData=null;
+        String timetag=null;
+        for(int i=0;i<recordSize;i++){
+            recordTableData=new UnlockRecordTableData();
+            unlockRecord=unlockRecords.get(i);
+            timetag=unlockRecord.getTimetag();
+            try {
+                timetag=DateUtil.yyyy_MM_dd0HH$mm$ss.format(DateUtil.yyyyMMddHHmmss.parse(unlockRecord.getTimetag()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            recordTableData.setTimestamp(timetag);
+            recordTableData.setOpenMode(unlockRecord.getOpenMode());
+            if(1==unlockRecord.getOpenMode()){
+                recordTableData.setCredential(unlockRecord.getCardInfo().getCardNumb());
+                recordTableData.setName(unlockRecord.getCardInfo().getName());
+            }else if(2==unlockRecord.getOpenMode()){
+                recordTableData.setCredential(unlockRecord.getPasswordInfo().getPassword());
+            }
+            recordTableDataList.add(recordTableData);
+        }
+        return recordTableDataList;
     }
     /*
     @Override

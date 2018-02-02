@@ -12,6 +12,15 @@ $(function () {
     specificGatewayCode="GWH0081702000003";
     specificLockCode="LCN0011721000001";
 
+    $.contextMenu({
+        selector: "button",
+        items: {
+            ticket: {name: "入住记录", callback: function(key, opt){
+                $('#reply-ticket').niftyModal();
+                console.log($(this).parent("tr").attr("roomid"));
+            }}
+        }
+    });
     var $table = $("#table-moduleStatus");
     var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
         ajax: function (data, callback, settings) {
@@ -19,17 +28,25 @@ $(function () {
             param = userManage.getQueryCondition(data);
             $.ajax({
                 type: "POST",
-                url: projectName+'/moduleStatus/listAllWithStrategy.do',
+                url: projectName+'/record/getDailyUnlockRecordLockPage.do',
                 cache: false,  //禁用缓存
                 data: param,  //传入组装的参数
                 dataType: "json",
-                success: function (result) {
-                    //封装返回数据
+                success: function (data) {
                     var returnData = {};
-                    returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
-                    returnData.recordsTotal = result.total;//总记录数
-                    returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
-                    returnData.data = result.pageData;
+                    if(data.success){
+                        if(data.biz.code===0){
+                            var result=data.biz.data;
+                            returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
+                            returnData.recordsTotal = result.total;//总记录数
+                            returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                            returnData.data = result.pageData;
+                        }else{
+                            console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                        }
+                    }else{
+                        console.log("errmsg:"+data.errmsg);
+                    }
                     //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
                     //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
                     if(null===returnData.data){
@@ -45,8 +62,19 @@ $(function () {
         //绑定数据
         columns: [
             {
-                data: "type",
-                orderable: false
+                data: "openMode",
+                orderable: false,
+                render: function (data, type, row, meta) {
+                    if(1==data){
+                        return "身份证开锁"
+                    }else if(2==data){
+                        return "密码开锁"
+                    }else if(3==data){
+                        return "门卡开锁"
+                    }else{
+                        return null;
+                    }
+                }
             },{
                 data: "timestamp",
                 render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
@@ -70,44 +98,9 @@ $(function () {
         ],
         "drawCallback": function (settings) {}
     })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
-    //查询
     $("#btn_search").click(function () {
         _table.draw();
     });
-
-    /*
-    //行点击事件
-    $("tbody", $table).on("click", "tr", function (event) {
-        $(this).addClass("active").siblings().removeClass("active");
-        //获取该行对应的数据
-        var item = _table.row($(this).closest('tr')).data();
-        userManage.showItemDetail(item);
-    });
-    //按钮点击事件
-    $table.on("click", ".btn-edit", function () {
-        //点击编辑按钮
-        var item = _table.row($(this).closest('tr')).data();
-        userManage.editItemInit(item);
-    }).on("click", ".btn-del", function () {
-        //点击删除按钮
-        var row = _table.row($(this).closest('tr'));
-        var item = row.data();
-        userManage.deleteItem(item);
-        row.remove().draw(false);
-    });
-    //隐藏列
-    $('a').on('click', function (e) {
-        var cut = $(this).text();
-        if (cut.indexOf("显示") > -1) {
-            $(this).text("隐藏" + cut.split("示")[1])
-        } else {
-            $(this).text("显示" + cut.split("藏")[1])
-        }
-        e.preventDefault();
-        var column = _table.column($(this).attr('data-column'));
-        column.visible(!column.visible());
-    });
-    */
 
 });
 
@@ -148,7 +141,7 @@ var CONSTANT = {
             // bProcessing: true,
             // bServerSide: true,
             iDisplayLength : 5,//默认每页数量
-            bLengthChange : true, //改变每页显示数据数量
+            bLengthChange : false, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
             lengthMenu : [5,10,15],
             ordering : true,
             stateSave : true,
@@ -187,7 +180,7 @@ var userManage = {
         if (data.order && data.order.length && data.order[0]) {
             switch (data.order[0].column) {
                 case 0:
-                    param.orderColumn = "type";
+                    param.orderColumn = "openMode";
                     break;
                 case 1:
                     param.orderColumn = "timestamp";
@@ -212,7 +205,7 @@ var userManage = {
         // param.endTime=endTime;
 
         // param.ownerPhoneNumber="18255683932";
-        param.date=getZeroOfDate(new Date());//yyyy_MM_dd格式的日期字符串.
+        param.date=getDateStr(new Date((new Date().getTime()-86400000*4)));//yyyy_MM_dd格式的日期字符串.
         param.gatewayCode=specificGatewayCode;
         param.lockCode=specificLockCode;
         //组装分页参数
@@ -236,11 +229,40 @@ var userManage = {
         alert("点击" + item.deviceid + "  " + item.timestamp);
     }
 };
+/*
+    //行点击事件
+    $("tbody", $table).on("click", "tr", function (event) {
+        $(this).addClass("active").siblings().removeClass("active");
+        //获取该行对应的数据
+        var item = _table.row($(this).closest('tr')).data();
+        userManage.showItemDetail(item);
+    });
+    //按钮点击事件
+    $table.on("click", ".btn-edit", function () {
+        //点击编辑按钮
+        var item = _table.row($(this).closest('tr')).data();
+        userManage.editItemInit(item);
+    }).on("click", ".btn-del", function () {
+        //点击删除按钮
+        var row = _table.row($(this).closest('tr'));
+        var item = row.data();
+        userManage.deleteItem(item);
+        row.remove().draw(false);
+    });
+    //隐藏列
+    $('a').on('click', function (e) {
+        var cut = $(this).text();
+        if (cut.indexOf("显示") > -1) {
+            $(this).text("隐藏" + cut.split("示")[1])
+        } else {
+            $(this).text("显示" + cut.split("藏")[1])
+        }
+        e.preventDefault();
+        var column = _table.column($(this).attr('data-column'));
+        column.visible(!column.visible());
+    });
+    */
 
-function getZeroOfDate(date) {
-    date.setHours(0);
-    date.setMinutes(0);
-    date.setSeconds(0);
-    date.setMilliseconds(0);
-    return date;
+function getDateStr(date) {
+    return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
 }

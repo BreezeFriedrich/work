@@ -15,7 +15,7 @@ public class UnlockRecord {
 
     private String lockCode;
     private String gatewayCode;
-    private int openMode;
+    private int openMode;//1身份证开锁,2密码开锁.
     private String timetag;
 
     private CardInfo cardInfo;

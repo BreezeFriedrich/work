@@ -36,6 +36,7 @@
     <!-- table-->
     <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
     <link rel="stylesheet" href="resources/css/fixed-table.css" />
+    <link rel="stylesheet" href="resources/plugin/dataTables/css/jquery.dataTables.css" />
     <style>
         .fixed-table-box {
             position: absolute;
@@ -44,22 +45,31 @@
             bottom: 60px;
             top: 70px;
         }
-
         .fixed-table_body-wraper {}
         .fixed-table_fixed {}
-
         .fixed-table-box > .fixed-table_body-wraper { /*内容了表格主体内容有纵向滚动条*/
             height: 88%
         }
-
         .fixed-table_fixed > .fixed-table_body-wraper { /*为了让两侧固定列能够同步表格主体内容滚动*/
             height: 88%;
             padding: 0 0 0 0
         }
+
+        .md-content table thead th{
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .md-content table tbody td{
+            /*font-size: 1.15em;*/
+            font-size: 15px;
+            font-weight: 200;
+            line-height: 30px;
+            height: 30px;
+        }
     </style>
 
-    <%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
-    <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
+    <%--<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>--%>
     <%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
     <script type="text/javascript" src="resources/js/FixedTable.js"></script>
     <%--
@@ -2167,7 +2177,79 @@
     </div>
 </div>
 
-<!-- 已预订-->
+<div class="md-overlay"></div>
+<div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket" style="width: 680px;">
+    <div class="md-content">
+        <div class="block-flat">
+            <div class="header">
+                <h3>入住记录</h3>
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="content">
+                <%--<button type="button" class="btn btn-primary" id="btn_search">查询</button>--%>
+                <table id="table-unlockrecord" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th width="150px">开锁类型</th>
+                        <th width="200px">开锁时刻</th>
+                        <th width="180px">开锁凭据</th>
+                        <th width="100px">开锁人</th>
+                        <%--<th width="200px">edit</th>--%>
+                    </tr>
+                    </thead>
+                </table>
+                <!--
+                <div class="tc-table">
+                    <div class="tc-table-th">
+                        <div class="col-sm-2">姓名</div>
+                        <div class="col-sm-2">籍贯</div>
+                        <div class="col-sm-3">身份证</div>
+                        <div class="col-sm-5">入住时间</div>
+                    </div>
+                    <div class="tc-table-td">
+                        <div class="col-sm-2">陆帧</div>
+                        <div class="col-sm-2">广西省柳州市</div>
+                        <div class="col-sm-3">256142576936541254</div>
+                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
+                    </div>
+                    <div class="tc-table-td2">
+                        <div class="col-sm-2">陆帧</div>
+                        <div class="col-sm-2">广西省柳州市</div>
+                        <div class="col-sm-3">256142576936541254</div>
+                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
+                    </div>
+                    <div class="tc-table-td">
+                        <div class="col-sm-2">陆帧</div>
+                        <div class="col-sm-2">广西省柳州市</div>
+                        <div class="col-sm-3">256142576936541254</div>
+                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
+                    </div>
+                    <div class="tc-table-td2">
+                        <div class="col-sm-2">陆帧</div>
+                        <div class="col-sm-2">广西省柳州市</div>
+                        <div class="col-sm-3">256142576936541254</div>
+                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
+                    </div>
+                </div>
+                <div>
+                    <ul class="pagination pag-left ">
+                        <li class="disabled"><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+                -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 已入住
 <div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket">
     <div class="md-content">
         <div class="block-flat">
@@ -2225,8 +2307,7 @@
         </div>
     </div>
 </div>
-<%--<div class="md-overlay"></div>--%>
-<!-- 已预订  end-->
+已预订  end-->
 
 <!-- 被预订 -->
 <div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket2">
@@ -2284,7 +2365,6 @@
         </div>
     </div>
 </div>
-<%--<div class="md-overlay"></div>--%>
 <!-- 被预订 end -->
 
 <!-- 添加密码开锁授权  -->
@@ -2332,7 +2412,6 @@
         </div>
     </div>
 </div>
-<%--<div class="md-overlay"></div>--%>
 <!-- 添加密码开锁授权 end -->
 
 <!-- 身份证授权 -->
@@ -2383,7 +2462,6 @@
         </div>
     </div>
 </div>
-<%--<div class="md-overlay"></div>--%>
 <!-- 身份证授权 end -->
 
 <!-- 开锁信息  -->
@@ -2429,7 +2507,6 @@
 
     </div>
 </div>
-<div class="md-overlay"></div>
 <!-- 开锁信息 end -->
 
 <!--下拉菜单-->
@@ -2468,6 +2545,7 @@
     <%--//所有class为demo1的span标签都会绑定此右键菜单--%>
     <%--$('div.rightclick').contextMenu('myMenu1',{});--%>
 <%--</script>--%>
+<script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/house_landlord.js"></script>
 </body>
 

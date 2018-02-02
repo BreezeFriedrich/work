@@ -1,11 +1,9 @@
 package com.yishu.controller;
 
-import com.yishu.pojo.BizDto;
-import com.yishu.pojo.JsonDto;
-import com.yishu.pojo.Records;
-import com.yishu.pojo.UnlockRecord;
+import com.yishu.pojo.*;
 import com.yishu.service.IRecordService;
 import com.yishu.util.DateUtil;
+import com.yishu.util.PageUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -153,7 +148,7 @@ public class RecordController {
             theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
             Records<UnlockRecord>[] dailyRecords=recordService.getLockUnlockRecordDaily(ownerPhoneNumber,theDate,lockCode);
             if(null==dailyRecords){
-                bizDto=BizDto.NO_RESULT;
+                bizDto=BizDto.EMPTY_RESULT;
             }else {
                 bizDto=new BizDto(dailyRecords);
             }
@@ -168,66 +163,91 @@ public class RecordController {
         }
     }
 
-    @RequestMapping("/getUnlockRecordLockDailyPage.do")
+    @RequestMapping("/getDailyUnlockRecordLockPage.do")
     @ResponseBody
-    public Map getUnlockRecordLockDailyPage(HttpServletRequest request) throws ParseException {
+    public JsonDto getDailyUnlockRecordLockPage(HttpServletRequest request) throws ParseException {
         if (LOG.isInfoEnabled()){
-            LOG.info("-->>-- record/getUnlockRecordLockDailyPage.do -->>--");
+            LOG.info("-->>-- record/getDailyUnlockRecordLockPage.do -->>--");
         }
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String theDateStr=request.getParameter("date");
+        if(null==theDateStr){
+            jsonDto=JsonDto.WRONG_REQUEST_PARAM;
+            return jsonDto;
+        }
+        Date theDate= null;
+        theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(theDate);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        final long startTime=calendar.getTime().getTime();
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
+        calendar.set(Calendar.MILLISECOND,999);
+        final long endTime=calendar.getTime().getTime();
+        long[] period={startTime,endTime};
 
-        HashMap paramMap= new HashMap(15);
-        paramMap.put("ownerPhoneNumber",ownerPhoneNumber);
-        //直接返回前台
-        String draw = request.getParameter("draw");
-        //数据起始位置
-        String startIndex = request.getParameter("startIndex");
-        //每页显示的条数
-        String pageSize = request.getParameter("pageSize");
+        HashMap filterMap= new HashMap(10);
+        //过滤条件
+//        filterMap.put("period",period);
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        filterMap.put("gatewayCode",gatewayCode);
+        filterMap.put("lockCode",lockCode);
         //获取排序字段
+        HashMap orderMap= new HashMap(2);
         String orderColumn = request.getParameter("orderColumn");
         if(orderColumn == null){
             orderColumn = "timestamp";
         }
-        paramMap.put("orderColumn",orderColumn);
+        orderMap.put("orderColumn",orderColumn);
         //获取排序方式
         String orderDir = request.getParameter("orderDir");
         if(orderDir == null){
             orderDir = "desc";
         }
-        paramMap.put("orderDir",orderDir);
-        //查询条件
-        String gatewayCode=request.getParameter("gatewayCode");
-        String lockCode=request.getParameter("lockCode");
-        if(null != gatewayCode && !"".equals(gatewayCode)){
-            paramMap.put("gatewayCode",gatewayCode);
-        }
-        if(null != lockCode && !"".equals(lockCode)){
-            paramMap.put("lockCode",lockCode);
-        }
-        String theDateStr=request.getParameter("date");
-        Date theDate= null;
-        theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
-        if(null != theDateStr && !"".equals(theDateStr)){
-            paramMap.put("date",theDate);
-        }
-        Records<UnlockRecord>[] dailyRecords=recordService.getLockUnlockRecordDaily(ownerPhoneNumber,theDate,lockCode);
+        orderMap.put("orderDir",orderDir);
+        String draw = request.getParameter("draw");//防跨站脚本随机数,直接返回前台
+        //数据起始位置
+        String startIndex = request.getParameter("startIndex");
+        //每页显示的条数
+        String pageSize = request.getParameter("pageSize");
 
-        List<DeviceStatus> deviceStatuses = moduleService.listAllWithStrategy(paramMap);
+
+        List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        if(null==recordList){
+            bizDto=BizDto.EMPTY_RESULT;
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        }
+        List<UnlockRecord> recordList2=recordService.filterUnlockRecord(recordList,filterMap);
         Map<String, Object> info = new HashMap<String, Object>();
-        if(deviceStatuses==null){
+        if(recordList2==null){
             info.put("pageData",null);
             info.put("total",0);
         }else{
-            PageUtil<DeviceStatus> pageUtil=new PageUtil<DeviceStatus>(deviceStatuses);
+            /*
+            PageUtil<UnlockRecord> pageUtil=new PageUtil<UnlockRecord>(recordList2);
             pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
             info.put("pageData", pageUtil.getList());
             info.put("total", pageUtil.getTotal());
+            */
+            List<UnlockRecord> recordList3=PageUtil.page(recordList2,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+            List<UnlockRecordTableData> recordTableDataList=recordService.convertUnlockRecordToTabularData(recordList3);
+            info.put("pageData", recordTableDataList);
+            info.put("total", recordTableDataList.size());
         }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
-//        return JSONObject.fromObject(info)+"";
-        return info;
+        bizDto=new BizDto(info);
+        jsonDto=new JsonDto(bizDto);
+        return jsonDto;
     }
     /*
     @Override

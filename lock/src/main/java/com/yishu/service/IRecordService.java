@@ -7,6 +7,7 @@ package com.yishu.service;
 
 import com.yishu.pojo.Records;
 import com.yishu.pojo.UnlockRecord;
+import com.yishu.pojo.UnlockRecordTableData;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,9 @@ import java.util.Map;
 public interface IRecordService {
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, long startTime, long endTime);
     public List<UnlockRecord> getUnlockRecordFilter(String ownerPhoneNumber, long startTime, long endTime,Map<String,Object> filterparamMap);
+    public List<UnlockRecord> filterUnlockRecord(List<UnlockRecord> unlockRecords,Map<String,Object> filterparamMap);
+    public List<UnlockRecord> orderUnlockRecord(List<UnlockRecord> unlockRecords,Map<String,Object> orderparamMap);
+    public List<UnlockRecordTableData> convertUnlockRecordToTabularData(List<UnlockRecord> unlockRecords);
 
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, int pageNum, int pageSize);
 

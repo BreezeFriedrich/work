@@ -78,6 +78,7 @@ public class LoginController {
         }
         return "redirect:/jsp/error.jsp";
         */
+//        return "redirect:/jsp/rep/contextmenu.jsp";
         return "redirect:/user/dispatcherHouseStatus.do";
     }
 

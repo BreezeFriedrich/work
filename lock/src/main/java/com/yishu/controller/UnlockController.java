@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
@@ -252,7 +251,7 @@ public class UnlockController {
         UnlockAuthorization unlockAuthorization=unlockService.getUnlockAuthorization(ownerPhoneNumber,gatewayCode,lockCode);
         if(null==unlockAuthorization){
 //            return null;
-            bizDto= BizDto.NO_RESULT;
+            bizDto= BizDto.EMPTY_RESULT;
             jsonDto=new JsonDto(bizDto);
             return jsonDto;
         }
@@ -262,7 +261,7 @@ public class UnlockController {
             theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
             Authinfo authinfo=unlockService.getUnlockAuthorizationDailyArr(unlockAuthorization,theDate);
             if(null==authinfo){
-                bizDto= BizDto.NO_RESULT;
+                bizDto= BizDto.EMPTY_RESULT;
             }else {
                 bizDto=new BizDto<Authinfo>(authinfo);
             }

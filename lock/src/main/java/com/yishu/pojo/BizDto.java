@@ -56,5 +56,5 @@ public class BizDto<T> {
         this.code = code;
         this.msg = msg;
     }
-    public static final BizDto NO_RESULT= new BizDto(1,"没有符合当前检索条件的结果");
+    public static final BizDto EMPTY_RESULT = new BizDto(1,"没有符合当前检索条件的结果");
 }
