@@ -2177,6 +2177,7 @@
     </div>
 </div>
 
+<%--入住记录--%>
 <div class="md-overlay"></div>
 <div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket" style="width: 680px;">
     <div class="md-content">
@@ -2249,7 +2250,7 @@
         </div>
     </div>
 </div>
-<!-- 已入住
+<!-- 入住记录
 <div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket">
     <div class="md-content">
         <div class="block-flat">
@@ -2367,12 +2368,57 @@
 </div>
 <!-- 被预订 end -->
 
-<!-- 添加密码开锁授权  -->
+<!-- 开锁授权信息 -->
+<div class="md-modal colored-header custom-width md-effect-9" id="reply-unlocking">
+    <div class="md-content">
+        <div class="block-flat">
+            <div class="header">
+                <h3>开锁授权信息</h3>
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="content">
+                <div class="tc-table">
+                    <div class="tc-table-th">
+                        <div class="col-sm-2">姓名</div>
+                        <div class="col-sm-3">身份证</div>
+                        <div class="col-sm-2">密码</div>
+                        <div class="col-sm-5">预定时间段</div>
+                    </div>
+                    <div class="tc-table-td">
+                        <div class="col-sm-2">陆帧</div>
+                        <div class="col-sm-3">256142576936541254</div>
+                        <div class="col-sm-2">yishutech</div>
+                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
+                    </div>
+                    <div class="tc-table-td2">
+                        <div class="col-sm-2">陆帧</div>
+                        <div class="col-sm-3">256142576936541254</div>
+                        <div class="col-sm-2">yishutech</div>
+                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">提交授权</button>
+                        <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取 消</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 开锁信息 end -->
+
+<!-- 添加密码开锁授权 -->
 <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-password">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
-                <h3>添加密码开锁授权 </h3>
+                <h3>添加密码开锁授权</h3>
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
@@ -2463,51 +2509,6 @@
     </div>
 </div>
 <!-- 身份证授权 end -->
-
-<!-- 开锁信息  -->
-<div class="md-modal colored-header custom-width md-effect-9" id="reply-unlocking">
-    <div class="md-content">
-        <div class="block-flat">
-            <div class="header">
-                <h3>开锁授权信息 </h3>
-                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-
-            <div class="content">
-                <div class="tc-table">
-                    <div class="tc-table-th">
-                        <div class="col-sm-2">姓名</div>
-                        <div class="col-sm-3">身份证</div>
-                        <div class="col-sm-2">密码</div>
-                        <div class="col-sm-5">预定时间段</div>
-                    </div>
-                    <div class="tc-table-td">
-                        <div class="col-sm-2">陆帧</div>
-                        <div class="col-sm-3">256142576936541254</div>
-                        <div class="col-sm-2">yishutech</div>
-                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
-                    </div>
-                    <div class="tc-table-td2">
-                        <div class="col-sm-2">陆帧</div>
-                        <div class="col-sm-3">256142576936541254</div>
-                        <div class="col-sm-2">yishutech</div>
-                        <div class="col-sm-5">2017-11-07 11:25-2017-11-07 11:25</div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">提交授权</button>
-                        <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取 消</button>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- 开锁信息 end -->
 
 <!--下拉菜单-->
 <!--<script type="text/javascript" src="resources/plugin/jquery.select2/select2.min.js"></script>-->

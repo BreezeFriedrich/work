@@ -6,13 +6,14 @@ var lock;
 var dateArr=new Array;
 var dateStrArr=new Array;
 var today,theDate,theTime,newDate;
-var year,week,month,day,hours,minutes,seconds;
+// var year,week,month,day,hours,minutes,seconds;
 var authinfo;
 var recordinfo;
 var startTime;
 var endTime;
 var specificGatewayCode="GWH0081702000003";
 var specificLockCode="LCN0011721000001";
+var index;
 var fixedTable;
 
 var initializationTime = (new Date()).getTime();
@@ -511,8 +512,8 @@ function renderTable(date) {
     fixedTable.addRow(function (){
         var html = '';
         (function () {
-            for(var i in subordinates){
-                lock=subordinates[i];//$(this).parent("tr").attr("roomid")
+            for(var j in subordinates){
+                lock=subordinates[j];//$(this).parent("tr").attr("roomid")
                 html += '<tr roomid="'+lock.gatewayCode+'-'+lock.lockCode+'">';
                 html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
                 for (var i=0; i<dateArr.length; i++){
@@ -534,6 +535,15 @@ function renderTable(date) {
     renderRow(subordinates,date);
 }
 
+//获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
+function getCellParam(element) {
+    var roomid=element.parent("tr").attr("roomid").split("-");
+    specificGatewayCode=roomid[0];
+    specificLockCode=roomid[1];
+    index=element.index();//index==0是房间cell.
+    var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");//第0个thead的th即房间号cell.
+    theTime=TH_header.eq(index).attr("time");
+}
 $(document).ready(function () {
     $(".navbar-collapse ul:first li:eq(3)").addClass("active");
     getLocks();
@@ -769,14 +779,15 @@ $(document).ready(function () {
             ticket: {name: "入住记录", callback: function(key, opt){
                 $('#reply-ticket').niftyModal();
                 console.log($(this).parent("tr").attr("roomid"));
-                console.log("siblings:"+$(this).parent("td").siblings());
-                var index=$(this).parent("td").index();//index==0是房间cell.
+                var roomid=$(this).parent("tr").attr("roomid").split("-");
+                specificGatewayCode=roomid[0];
+                specificLockCode=roomid[1];
+                var index=$(this).index();//index==0是房间cell.
                 console.log($(this).parent("tr").children("td").index($(this).parent("td")));
                 console.log("index:"+index);
-                var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th:gt(1)");
-                theTime=TH_header.eq(index).attr("time");
+                var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th:gt(0)");//去除第0个thead的th即房间号cell.
+                theTime=TH_header.eq(index-1).attr("time");
                 console.log("theTime:"+theTime);
-                // _table.draw();
                 var $table = $("#table-unlockrecord");
                 var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
                     ajax: function (data, callback, settings) {
@@ -854,9 +865,10 @@ $(document).ready(function () {
                     ],
                     "drawCallback": function (settings) {}
                 })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
-                $("#btn_search").click(function () {
-                    _table.draw();
-                });
+                _table.draw();
+                // $("#btn_search").click(function () {
+                //     _table.draw();
+                // });
             }}
         }
     });
@@ -880,7 +892,85 @@ $(document).ready(function () {
         items: {
             ticket: {name: "入住记录", callback: function(key, opt){
                 $('#reply-ticket').niftyModal();
-                console.log($(this).parent("tr").attr("roomid"));
+                getCellParam($(this));
+                var $table = $("#table-unlockrecord");
+                var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
+                    ajax: function (data, callback, settings) {
+                        //封装请求参数
+                        param = userManage.getQueryCondition(data);
+                        $.ajax({
+                            type: "POST",
+                            url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
+                            cache: false,  //禁用缓存
+                            data: param,  //传入组装的参数
+                            dataType: "json",
+                            success: function (data) {
+                                var returnData = {};
+                                if(data.success){
+                                    if(data.biz.code===0){
+                                        var result=data.biz.data;
+                                        returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
+                                        returnData.recordsTotal = result.total;//总记录数
+                                        returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                                        returnData.data = result.pageData;
+                                    }else{
+                                        console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                    }
+                                }else{
+                                    console.log("errmsg:"+data.errmsg);
+                                }
+                                //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                                //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                                if(null===returnData.data){
+                                    returnData.data={};
+                                }
+                                callback(returnData);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert("查询失败");
+                            }
+                        });
+                    },
+                    //绑定数据
+                    columns: [
+                        {
+                            data: "openMode",
+                            orderable: false,
+                            render: function (data, type, row, meta) {
+                                if(1==data){
+                                    return "身份证开锁"
+                                }else if(2==data){
+                                    return "密码开锁"
+                                }else if(3==data){
+                                    return "门卡开锁"
+                                }else{
+                                    return null;
+                                }
+                            }
+                        },{
+                            data: "timestamp",
+                            render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
+                        },{
+                            data: "credential"
+                        },{
+                            data: "name"
+                        }
+                        // ,{
+                        //     data: "status",
+                        //     render: function (data, type, row, meta) {
+                        //         return (data == 0 ? "模块正常" :  "模块异常");
+                        //     }
+                        // }
+                    ],
+                    "columnDefs": [
+                        {
+                            "defaultContent": "",
+                            "targets": "_all"
+                        }
+                    ],
+                    "drawCallback": function (settings) {}
+                })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
+                _table.draw();
             }},
             identity: {name: "身份证授权", callback: function(key, opt){
                 $('#reply-identity').niftyModal();

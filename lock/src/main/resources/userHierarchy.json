@@ -1,0 +1,28 @@
+{"phoneNumber": "17705155208",
+  "grade": 20,
+  "name": "测试手机",
+  "location": null,
+  "subordinateList": [
+    {
+      "phoneNumber": "18255683932",
+      "grade": 10,
+      "name": "业主用户",
+      "location": "良渚",
+      "subordinateList": [
+        {
+          "gatewayName": "网关3_25",
+          "gatewayCode": "GWH0081702000003",
+          "gatewayLocation": "地址",
+          "gatewayComment": "备注",
+          "gatewayStatus": "6",
+          "lockName": "门锁1",
+          "lockCode": "LCN0011721000001",
+          "lockLocation": "地址",
+          "lockComment": "备注",
+          "lockStatus": "0",
+          "lockPower": "0"
+        }
+      ]
+    }
+  ]
+}
