@@ -3,6 +3,7 @@ var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var userHierarchy;
 var subordinates;
 var landlords;
+var landlord;
 var locks;
 var lock;
 var dateArr=new Array;
@@ -12,8 +13,8 @@ var authinfo;
 var recordinfo;
 var startTime;
 var endTime;
-var specificGatewayCode="GWH0081702000003";
-var specificLockCode="LCN0011721000001";
+var specificGatewayCode;
+var specificLockCode;
 var index;
 var fixedTable;
 
@@ -103,13 +104,13 @@ function getLocks() {
                             "lockName":"房间A3","lockCode":"LK001003","lockLocation":"南京市雨花台区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         }]},
                         {"phoneNumber":"18858865706","grade":10,"name":"鼓楼区","location":"第2个业主地址","subordinateList":[{
-                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
+                            "gatewayName":"网关3","gatewayCode":"GWH0081702000004","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
                             "lockName":"房间B1","lockCode":"LK001001","lockLocation":"南京市鼓楼区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
-                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
+                            "gatewayName":"网关3","gatewayCode":"GWH0081702000005","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
                             "lockName":"房间B2","lockCode":"LK001002","lockLocation":"南京市鼓楼区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
-                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
+                            "gatewayName":"网关3","gatewayCode":"GWH0081702000006","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
                             "lockName":"房间B3","lockCode":"LK001003","lockLocation":"南京市鼓楼区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         }]}
                     ]};
@@ -214,26 +215,7 @@ function renderTable(date) {
         TH_header.eq(i+1).attr("time",dateStrArr[i]);
     }
     //表格数据行-添加数据
-    /*
     fixedTable.addRow(function (){
-        var html = '';
-        (function () {
-            for(var j in subordinates){
-                lock=subordinates[j];//$(this).parent("tr").attr("roomid")
-                html += '<tr roomid="'+lock.gatewayCode+'-'+lock.lockCode+'">';
-                html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
-                for (var i=0; i<dateArr.length; i++){
-                    html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
-                }
-                html += '</tr>';
-            }
-        })();
-        return html;
-    });
-    */
-    fixedTable.addRow(function (){
-        landlords=userHierarchy.subordinateList;
-        var landlordNum=landlords.length;
         var landlord;
         var lock;
         var html = '';
@@ -241,29 +223,39 @@ function renderTable(date) {
             console.log('k : '+k);
             landlord=landlords[k];
             locks=landlord.subordinateList;
-
-            lock=locks[0];
-            html += '<tr roomid="'+lock.gatewayCode+'-'+lock.lockCode+'">';
-            html +=     '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+landlord.name+'</div></td>';
-            html +=     '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
-            for(var l=0; l<dateArr.length; l++){
-                html += '<td  class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[l]+'</div></td>';
-            }
-            html += '</tr>';
-
-            for(var j=1,length=locks.length;j<length;j++){
+            for(var j=0,length=locks.length;j<length;j++){
                 lock=locks[j];
-                html += '<tr roomid="'+lock.gatewayCode+'-'+lock.lockCode+'">';
-                html +=     '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
-                // html +=     '<td ><div class="table-hight1 table-width105 table-butstyle">'+lock.lockName+'</div></td>';
+                html += '<tr landlord="'+landlord.phoneNumber+'" gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
+                // html +=     '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+landlord.name+'</div></td>';
+                html +=     '<td><div class="table-hight1 table-width210 table-butstyle">'+lock.lockName+'</div></td>';
                 for(var i=0; i<dateArr.length; i++){
-                    html += '<td  class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
+                    html += '<td><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
                 }
                 html += '</tr>';
             }
         }
         return html;
     });
+    //固定列.
+    (function () {
+        var DIV;
+        DIV=$(".fixed-table_fixed-left tbody tr td div");
+        DIV.removeClass("table-width210");
+        DIV.addClass("table-width105");
+        var locksLength;
+        var lineHeight;
+        var HTML_landlord;
+        var TR_fixedlefttbody;
+        for(var k in landlords){
+            landlord=landlords[k];
+            locks=landlord.subordinateList;
+            locksLength=locks.length;
+            lineHeight=44*locksLength;
+            HTML_landlord='<td rowspan="'+locksLength+'"><div style="line-height: '+lineHeight+'px" class="table-width105 table-butstyle">'+landlord.name+'</div></td>';
+            TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"]");
+            TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
+        }
+    })();
     //表格标题栏时间控件label值.
     if($('.current-date label').length>1){
         $('.current-date label')[1].innerText = getDateStr(date);
@@ -273,9 +265,11 @@ function renderTable(date) {
 
 //获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
 function getCellParam(element) {
-    var roomid=element.parent("tr").attr("roomid").split("-");
-    specificGatewayCode=roomid[0];
-    specificLockCode=roomid[1];
+    // var roomid=element.parent("tr").attr("id").split("-");
+    // specificGatewayCode=roomid[0];
+    // specificLockCode=roomid[1];
+    specificGatewayCode=element.parent("tr").attr("gatewayid");
+    specificLockCode=element.parent("tr").attr("lockid");
     index=element.index();//index==0是房间cell.
     var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");//第0个thead的th即房间号cell.
     theTime=TH_header.eq(index).attr("time");
@@ -310,146 +304,147 @@ $(document).ready(function(){
     // html += '</th>';
 
     fixedTable = new FixedTable({
-        wrap : document.getElementsByClassName("fixed-table-box")[0],
+        wrap : document.getElementsByClassName("container-table")[0],
         type : "row-col-fixed",
-        extraClass: ["table-width140","table-time","table-header-hight58","table-butstyle","current-date","input-group","date","datetime","date-selection"],
+        // extraClass: ["table-width140","table-time","table-header-hight58","table-butstyle","current-date","input-group","date","datetime","date-selection"],
+        extraClass: "",
         maxHeight : true,
         fields : [
             {
-                width: "206px",
+                width: "210px",
 //                field: '<th   class="table-width2" ><div class="table-time table-cell table-header-hight58 table-width2 table-butstyle">当前日期：'+today+'</div></th>',
-//                 field: html,colspan="2" class="table-width22"
-                field: '<th class="table-width190 table-butstyle"><div class="table-header-hight58 table-cell table-width190 table-butstyle">'+html+'</div></th>',
+//                 field: html,
+                field: '<th class="table-width210"><div class="table-header-hight58 table-cell table-width210 table-butstyle">'+html+'</div></th>',
                 htmlDom:true,
                 fixed:true,
                 fixedDirection:"left"
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-02</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-02</div></th>',
                 htmlDom:true,
                 fixed:false
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-03</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-03</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-04</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-04</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-05</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-05</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-06</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-06</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-07</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-07</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-08</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-08</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-09</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-09</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-10</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-10</div></th>',
                 htmlDom:true
             },{
                 // 11
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-11</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-11</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-12</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-12</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-13</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-13</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-14</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-14</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-15</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-15</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-16</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-16</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-17</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-17</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-18</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-18</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-19</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-19</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-20</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-20</div></th>',
                 htmlDom:true
             },{
                 // 21
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-21</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-21</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-22</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-22</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-23</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-23</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-24</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-24</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-25</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-25</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-26</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-26</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-27</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-27</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-28</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-28</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-29</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-29</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-30</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-30</div></th>',
                 htmlDom:true
             },{
                 // 31
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-31</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">01-31</div></th>',
                 htmlDom:true
             },{
                 width: "140px",
-                field: '<th   class="table-width140 table-butstyle" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">02-01</div></th>',
+                field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">02-01</div></th>',
                 htmlDom:true
             }],
         tableDefaultContent: "<div>我是一个默认的div</div>"
@@ -475,16 +470,7 @@ $(document).ready(function(){
         items: {
             ticket: {name: "入住记录", callback: function(key, opt){
                 $('#reply-ticket').niftyModal();
-                console.log($(this).parent("tr").attr("roomid"));
-                var roomid=$(this).parent("tr").attr("roomid").split("-");
-                specificGatewayCode=roomid[0];
-                specificLockCode=roomid[1];
-                var index=$(this).index();//index==0是房间cell.
-                console.log($(this).parent("tr").children("td").index($(this).parent("td")));
-                console.log("index:"+index);
-                var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th:gt(0)");//去除第0个thead的th即房间号cell.
-                theTime=TH_header.eq(index-1).attr("time");
-                console.log("theTime:"+theTime);
+                getCellParam($(this));
                 var $table = $("#table-unlockrecord");
                 var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
                     ajax: function (data, callback, settings) {
@@ -574,7 +560,7 @@ $(document).ready(function(){
         items: {
             identity: {name: "身份证授权", callback: function(key, opt){
                 $('#reply-identity').niftyModal();
-                console.log($(this).parent("tr").attr("roomid"));
+                console.log($(this).parent("tr").attr("id"));
             }},
             password: {name: "密码授权", callback: function(key, opt){
                 $('#reply-password').niftyModal();
@@ -671,7 +657,7 @@ $(document).ready(function(){
             }},
             identity: {name: "身份证授权", callback: function(key, opt){
                 $('#reply-identity').niftyModal();
-                console.log($(this).parent("tr").attr("roomid"));
+                console.log($(this).parent("tr").attr("id"));
             }},
             password: {name: "密码授权", callback: function(key, opt){
                 $('#reply-password').niftyModal();

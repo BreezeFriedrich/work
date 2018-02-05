@@ -30,7 +30,6 @@ function showLeftTime() {
     //一秒刷新一次显示时间
     // var timeID = setTimeout(showLeftTime, 1000);
 }
-
 function getZeroOfDate(date) {
     date.setHours(0);
     date.setMinutes(0);
@@ -39,7 +38,16 @@ function getZeroOfDate(date) {
     return date;
 }
 function getDateStr(date) {
-    return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
+    // (function () {
+    //     var year,week,month,day,hours,minutes,seconds;
+        year=date.getFullYear();
+        month=date.getMonth()+1;
+        day=date.getDate();
+        if(month<10){month='0'+month}
+        if(day<10){day='0'+day}
+        return year+'-'+month+'-'+day;
+    // })();
+    // return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
 }
 function getDateArr(date) {
     dateArr.length=0;
@@ -371,7 +379,6 @@ function renderRow(locks,date) {
     (function () {
         var time1=new Date();
         for(var j in locks){
-            // console.log('j:'+j);
             lock=locks[j];
             var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(j).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
             //auth获取开锁授权信息
@@ -471,7 +478,6 @@ function getAuthinfo(specificGatewayCode,specificLockCode,date) {
         }
     });
 }
-
 function getDailyRecords(lockCode,date) {
     $.ajax({
         type:"POST",
@@ -557,7 +563,8 @@ $(document).ready(function () {
         '</div>';
 
     fixedTable = new FixedTable({
-        wrap: document.getElementById("test_fixedTable"),//生成的表格需要放到哪里
+        wrap: document.getElementById("theFixedTable"),
+        // wrap: document.getElementsByClassName("container-table")[0],//生成的表格需要放到哪里
         type: "row-col-fixed",//表格类型，有：head-fixed、col-fixed、row-col-fixed
         extraClass: "",//需要添加到表格中的额外class
         maxHeight: true,

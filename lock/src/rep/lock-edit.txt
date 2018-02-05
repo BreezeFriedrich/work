@@ -19,6 +19,10 @@
 		  padding: 10px 8px 5px 8px;
 		}
 	 $$
+
+文件 index.css
+	line-48
+	新增: .table-width210{ width:210px; text-align:center}
 	 
 组件 bootstrap datetimepicker
 	http://www.bootcss.com/p/bootstrap-datetimepicker/

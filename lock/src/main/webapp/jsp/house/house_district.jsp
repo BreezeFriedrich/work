@@ -93,8 +93,9 @@
     </div>
 
     <div class="container-fluid table-odyssey" id="pcont">
+        <div class="container-table"></div>
+        <%--
         <div class="fixed-table-box row-col-fixed" >
-            <%--
             <!-- 表头 start -->
             <div class="fixed-table_header-wraper" style="margin: 0 15px 0  0 " >
                 <table class="fixed-table_header table-butstyle" cellspacing="0" cellpadding="0" border="0"  >
@@ -952,10 +953,10 @@
                 </div>
             </div>
             <!-- 固定列 end -->
-            --%>
         </div>
+        --%>
 
-        <div class="footer">2015-2016 南京亿数信息科技有限公司 版权所有</div>
+        <div class="footer">&copy;2015-2016 南京亿数信息科技有限公司 版权所有</div>
 
         <div class="clearfix"></div>
     </div>
