@@ -1,7 +1,8 @@
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-var userHierarchy;
-var subordinates;
+// var userHierarchy;
+// var subordinates;
+var district;
 var landlords;
 var landlord;
 var locks;
@@ -63,11 +64,11 @@ function getLocks() {
         data:{},
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data,status,xhr){
-            userHierarchy=data;
-            landlords=data.subordinateList;
+            district=data;
+            landlords=district.subordinateList;
             // if (landlords.length===0){
                 /*
-                userHierarchy={
+                district={
                     "phoneNumber":"18255683932","grade":20,"name":"测试用户","location":null,"subordinateList":[{
                         "phoneNumber":"17705155208","grade":10,"name":"雨花台区","location":"第1个业主地址","subordinateList":[{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
@@ -91,30 +92,30 @@ function getLocks() {
                         }]}
                     ]};
                 */
-                userHierarchy={
-                    "phoneNumber":"18255683932","grade":20,"name":"测试用户","location":null,"subordinateList":[{
-                        "phoneNumber":"17705155208","grade":10,"name":"雨花台区","location":"第1个业主地址","subordinateList":[{
+                district={
+                    "phoneNumber":"17705155208","grade":20,"name":"雨花台区","location":null,"subordinateList":[{
+                        "phoneNumber":"18255683932","grade":10,"name":"业主1","location":"第1个业主地址","subordinateList":[{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间A1","lockCode":"LK001001","lockLocation":"南京市雨花台区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                            "lockName":"房间A1","lockCode":"LCN0011721000001","lockLocation":"南京市雨花台区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间A2","lockCode":"LK001002","lockLocation":"南京市雨花台区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                            "lockName":"房间A2","lockCode":"LCN0011721000002","lockLocation":"南京市雨花台区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间A3","lockCode":"LK001003","lockLocation":"南京市雨花台区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                            "lockName":"房间A3","lockCode":"LCN0011721000003","lockLocation":"南京市雨花台区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         }]},
-                        {"phoneNumber":"18858865706","grade":10,"name":"鼓楼区","location":"第2个业主地址","subordinateList":[{
-                            "gatewayName":"网关3","gatewayCode":"GWH0081702000004","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间B1","lockCode":"LK001001","lockLocation":"南京市鼓楼区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                        {"phoneNumber":"18352478654","grade":10,"name":"业主2","location":"第2个业主地址","subordinateList":[{
+                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
+                            "lockName":"房间B1","lockCode":"LCN0011721000001","lockLocation":"南京市鼓楼区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000005","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间B2","lockCode":"LK001002","lockLocation":"南京市鼓楼区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                            "lockName":"房间B2","lockCode":"LCN0011721000005","lockLocation":"南京市鼓楼区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000006","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间B3","lockCode":"LK001003","lockLocation":"南京市鼓楼区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                            "lockName":"房间B3","lockCode":"LCN0011721000006","lockLocation":"南京市鼓楼区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         }]}
                     ]};
-                landlords=userHierarchy.subordinateList;
+                landlords=district.subordinateList;
             // }
         },
         error:function(xhr,errorType,error){
@@ -126,7 +127,7 @@ function showNavSide() {
     (function () {
         var landlord;
         var html_nav_left = '';
-        html_nav_left += '<li><a><i class="fa inco-ctiy"></i><span class="selected">'+userHierarchy.name+'</span></a></li>';
+        html_nav_left += '<li><a><i class="fa inco-ctiy"></i><span class="selected">'+district.name+'</span></a></li>';
         for(var i in landlords){
             landlord=landlords[i];
             html_nav_left += '<li><a href="#"><i class="fa inco-map"></i><span>'+landlord.name+'</span></a></li>';
@@ -134,72 +135,80 @@ function showNavSide() {
         $('ul.cl-vnavigation').append(html_nav_left);
     })()
 }
-function renderRow(locks,date) {
+function renderRow(landlords,date) {
     (function () {
         var time1=new Date();
-        for(var j in locks){
-            // console.log('j:'+j);
-            lock=locks[j];
-            var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(j).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
-            //auth获取开锁授权信息
-            $.ajax({
-                type:"POST",
-                url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
-                async:false,
-                data:{
-                    "gatewayCode":lock.gatewayCode,
-                    "lockCode":lock.lockCode,
-                    "theDate":getDateStr(date)
-                },
-                dataType:'json',
-                success:function(data,status,xhr){
-                    if(data.success){
-                        if(data.biz.code===0){
-                            authinfo=data.biz.data;
-                            var authinfodailyArr=authinfo.authinfoDaily;
-                            var authinfodaily;
-                            var authinfodailyArrLength=authinfodailyArr.length;
-                            for(var i=0;i<authinfodailyArrLength;i++){
-                                authinfodaily=authinfodailyArr[i];
-                                if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
-                                    // fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("cd-booked");
-                                    TDs_row.eq(i+15).addClass("cd-booked");
+        var tr_num=0;
+        for(var k in landlords){
+            landlord=landlords[k];
+            locks=landlord.subordinateList;
+            for(var j in locks){
+                // console.log('j:'+j);
+                lock=locks[j];
+                var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(tr_num).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
+                // var TDs_row=fixedTable.fixedTableBody.find("tbody tr[gatewayid="+lock.gatewayCode+"][lockid="+lock.lockCode+"]").find("td:not(:first)");//多个同gatewayCode和lockCode的门锁对应的tbody->tr只有第一个会被选中并渲染.
+                //auth获取开锁授权信息
+                $.ajax({
+                    type:"POST",
+                    url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                    async:false,
+                    data:{
+                        "ownerPhoneNumber":landlord.phoneNumber,
+                        "gatewayCode":lock.gatewayCode,
+                        "lockCode":lock.lockCode,
+                        "theDate":getDateStr(date)
+                    },
+                    dataType:'json',
+                    success:function(data,status,xhr){
+                        if(data.success){
+                            if(data.biz.code===0){
+                                authinfo=data.biz.data;
+                                var authinfodailyArr=authinfo.authinfoDaily;
+                                var authinfodaily;
+                                var authinfodailyArrLength=authinfodailyArr.length;
+                                for(var i=0;i<authinfodailyArrLength;i++){
+                                    authinfodaily=authinfodailyArr[i];
+                                    if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
+                                        // fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("cd-booked");
+                                        TDs_row.eq(i+15).addClass("cd-booked");
+                                    }
                                 }
                             }
                         }
+                    },
+                    error:function(xhr,errorType,error){
+                        console.log('错误');
                     }
-                },
-                error:function(xhr,errorType,error){
-                    console.log('错误');
-                }
-            });
-            //record获取入住记录
-            $.ajax({
-                type:"POST",
-                url:projectPath+"/record/getLockUnlockRecordDaily.do",
-                async:false,
-                data:{"lockCode":lock.lockCode,"theDate":getDateStr(date)},
-                dataType:'json',
-                success:function(data,status,xhr){
-                    if(data.success){
-                        if(data.biz.code===0){
-                            recordinfo=data.biz.data;
-                            var recordinfoLength=recordinfo.length;
-                            var recordDaily;
-                            for(var i=0;i<recordinfoLength;i++){
-                                recordDaily=recordinfo[i];
-                                if(recordDaily.totalSize>0){
-                                    // fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-select");
-                                    TDs_row.eq(i).addClass("cd-select");
+                });
+                //record获取入住记录
+                $.ajax({
+                    type:"POST",
+                    url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                    async:false,
+                    data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
+                    dataType:'json',
+                    success:function(data,status,xhr){
+                        if(data.success){
+                            if(data.biz.code===0){
+                                recordinfo=data.biz.data;
+                                var recordinfoLength=recordinfo.length;
+                                var recordDaily;
+                                for(var i=0;i<recordinfoLength;i++){
+                                    recordDaily=recordinfo[i];
+                                    if(recordDaily.totalSize>0){
+                                        // fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-unlockrecord");
+                                        TDs_row.eq(i).addClass("cd-unlockrecord");
+                                    }
                                 }
                             }
                         }
+                    },
+                    error:function(xhr,errorType,error){
+                        console.log('错误');
                     }
-                },
-                error:function(xhr,errorType,error){
-                    console.log('错误');
-                }
-            });
+                });
+                tr_num=tr_num+1;
+            }
         }
         var time2=new Date();
         console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
@@ -216,8 +225,6 @@ function renderTable(date) {
     }
     //表格数据行-添加数据
     fixedTable.addRow(function (){
-        var landlord;
-        var lock;
         var html = '';
         for(var k in landlords){
             console.log('k : '+k);
@@ -260,7 +267,7 @@ function renderTable(date) {
     if($('.current-date label').length>1){
         $('.current-date label')[1].innerText = getDateStr(date);
     }
-    // renderRow(subordinates,date);
+    renderRow(landlords,date);
 }
 
 //获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
@@ -466,7 +473,7 @@ $(document).ready(function(){
         });
     renderTable(theDate);
     $.contextMenu({
-        selector: ".cd-select:not(.cd-booked)",
+        selector: ".cd-unlockrecord:not(.cd-booked)",
         items: {
             ticket: {name: "入住记录", callback: function(key, opt){
                 $('#reply-ticket').niftyModal();
@@ -556,7 +563,7 @@ $(document).ready(function(){
         }
     });
     $.contextMenu({
-        selector: ".cd-booked:not(.cd-select)",
+        selector: ".cd-booked:not(.cd-unlockrecord)",
         items: {
             identity: {name: "身份证授权", callback: function(key, opt){
                 $('#reply-identity').niftyModal();
@@ -571,7 +578,7 @@ $(document).ready(function(){
         }
     });
     $.contextMenu({
-        selector: ".cd-select.cd-booked",
+        selector: ".cd-unlockrecord.cd-booked",
         items: {
             ticket: {name: "入住记录", callback: function(key, opt){
                 $('#reply-ticket').niftyModal();

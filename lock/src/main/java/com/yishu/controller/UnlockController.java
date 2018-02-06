@@ -59,12 +59,13 @@ public class UnlockController {
      */
     @RequestMapping("/authUnlockById.do")
     @ResponseBody
-    public boolean authUnlockById(HttpServletRequest request){
+    public boolean authUnlockById(HttpServletRequest request) throws ParseException {
         if (LOG.isInfoEnabled()){
             LOG.info("-->>-- unlock/authUnlockById.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String gatewayCode=request.getParameter("gatewayCode");
         String lockCode=request.getParameter("lockCode");
         String name=request.getParameter("name");
@@ -72,7 +73,9 @@ public class UnlockController {
         String dnCode=request.getParameter("dnCode");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
-        resultBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
+        long startTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(startTime).getTime();
+        long endTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(endTime).getTime();
+        resultBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTimeL,endTimeL);
         return resultBoolean;
     }
 
@@ -89,7 +92,8 @@ public class UnlockController {
             LOG.info("-->>-- unlock/prohibitUnlockById.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String lockCode=request.getParameter("lockCode");
         String cardNumb=request.getParameter("cardNumb");
         String serviceNumb=request.getParameter("serviceNumb");
@@ -123,18 +127,21 @@ public class UnlockController {
      */
     @RequestMapping("/authUnlockByPwd.do")
     @ResponseBody
-    public boolean authUnlockByPwd(HttpServletRequest request){
+    public boolean authUnlockByPwd(HttpServletRequest request) throws ParseException {
         if (LOG.isInfoEnabled()){
             LOG.info("-->>-- unlock/authUnlockByPwd.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String gatewayCode=request.getParameter("gatewayCode");
         String lockCode=request.getParameter("lockCode");
         String password=request.getParameter("password");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
-        resultBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
+        long startTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(startTime).getTime();
+        long endTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(endTime).getTime();
+        resultBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTimeL,endTimeL);
         return resultBoolean;
     }
 
@@ -151,7 +158,8 @@ public class UnlockController {
             LOG.info("-->>-- unlock/prohibitUnlockByPwd.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String gatewayCode=request.getParameter("gatewayCode");
         String lockCode=request.getParameter("lockCode");
         String serviceNumb=request.getParameter("serviceNumb");
@@ -243,7 +251,8 @@ public class UnlockController {
             LOG.info("-->>-- unlock/getUnlockAuthorizationDailyArr.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String gatewayCode=request.getParameter("gatewayCode");
         String lockCode=request.getParameter("lockCode");
         JsonDto jsonDto=null;

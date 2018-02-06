@@ -144,7 +144,7 @@
                     <tr>
                         <td  class="table-width2" data-fixed="true"><div class="table-time table-cell table-width2 table-butstyle">当前日期：2017-11-09</div></td>
                         <td  class="table-width140"><div class="cd table-hight1 table-width140">2</div></td>
-                        <td  class="table-width140 cd-select"><div class="cd table-hight1 table-width140 btn-rad md-trigger" data-modal="reply-ticket">已预订</div></td>
+                        <td  class="table-width140 cd-unlockrecord"><div class="cd table-hight1 table-width140 btn-rad md-trigger" data-modal="reply-ticket">已预订</div></td>
                         <!-- 已预订-->
                         <div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket">
                             <div class="md-content">

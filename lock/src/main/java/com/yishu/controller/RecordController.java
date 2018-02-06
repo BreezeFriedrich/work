@@ -138,7 +138,8 @@ public class RecordController {
             LOG.info("-->>-- record/getLockUnlockRecordDaily.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String lockCode=request.getParameter("lockCode");
         String theDateStr=request.getParameter("theDate");
         JsonDto jsonDto=null;

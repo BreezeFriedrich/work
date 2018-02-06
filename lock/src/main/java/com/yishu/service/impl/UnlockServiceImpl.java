@@ -139,7 +139,7 @@ public class UnlockServiceImpl implements IUnlockService {
      * @return 操作结果
      */
     @Override
-    public boolean authUnlockById(String ownerPhoneNumber, String gatewayCode, String lockCode, String name, String cardNumb, String dnCode, String startTime, String endTime) {
+    public boolean authUnlockById(String ownerPhoneNumber, String gatewayCode, String lockCode, String name, String cardNumb, String dnCode, long startTimeL, long endTimeL) {
         gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
         if (null == gatewayIp) {
             return false;
@@ -148,17 +148,21 @@ public class UnlockServiceImpl implements IUnlockService {
         reqSign=18;
         timetag= DateUtil.getFormat2TimetagStr();
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-        LOG.info("startTime-1 : "+startTime);
-        LOG.info("endTime-1   : "+endTime);
-        try {
-            startTime= DateUtil.format1tillminStringToformat2tillminString(startTime);
-            endTime= DateUtil.format1tillminStringToformat2tillminString(endTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        LOG.info("startTimeL-1 : "+startTimeL);
+        LOG.info("endTimeL-1   : "+endTimeL);
+        String startTime;
+        String endTime;
+//        try {
+//            startTime= DateUtil.format1tillminStringToformat2tillminString(startTime);
+//            endTime= DateUtil.format1tillminStringToformat2tillminString(endTime);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        startTime=DateUtil.yyyyMMddHHmm.format(startTimeL);
+        endTime=DateUtil.yyyyMMddHHmm.format(endTimeL);
         LOG.info("startTime-2 : "+startTime);
         LOG.info("endTime-2   : "+endTime);
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);
@@ -257,7 +261,7 @@ public class UnlockServiceImpl implements IUnlockService {
      * @return
      */
     @Override
-    public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime) {
+    public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, long startTimeL, long endTimeL) {
         gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
         if (null == gatewayIp) {
             return false;
@@ -266,14 +270,18 @@ public class UnlockServiceImpl implements IUnlockService {
         reqSign=21;
         timetag= DateUtil.getFormat2TimetagStr();
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-        LOG.info("startTime-1 : "+startTime);
-        LOG.info("endTime-1   : "+endTime);
-        try {
-            startTime= DateUtil.format1tillminStringToformat2tillminString(startTime);
-            endTime= DateUtil.format1tillminStringToformat2tillminString(endTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        LOG.info("startTimeL-1 : "+startTimeL);
+        LOG.info("endTimeL-1   : "+endTimeL);
+        String startTime;
+        String endTime;
+//        try {
+//            startTime= DateUtil.format1tillminStringToformat2tillminString(startTime);
+//            endTime= DateUtil.format1tillminStringToformat2tillminString(endTime);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        startTime=DateUtil.yyyyMMddHHmm.format(startTimeL);
+        endTime=DateUtil.yyyyMMddHHmm.format(endTimeL);
         LOG.info("startTime-2 : "+startTime);
         LOG.info("endTime-2   : "+endTime);
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"password\":\""+password+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
@@ -343,7 +351,7 @@ public class UnlockServiceImpl implements IUnlockService {
         final long now=webDate.getTime();
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=17;
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         LOG.info("reqData : "+reqData);
 //        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         rawData= HttpUtil.httpsPostToQixu(reqData);

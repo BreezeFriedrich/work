@@ -217,7 +217,7 @@
                         <td class="table-width140">
                             <div class="cd table-hight1 table-width140"></div>
                         </td>
-                        <td class="table-width140 cd-select">
+                        <td class="table-width140 cd-unlockrecord">
                             <div class="cd table-hight1 table-width140 btn-rad md-trigger" data-modal="reply-ticket">
                                 已预订
                             </div>
@@ -2179,7 +2179,7 @@
 
 <%--入住记录--%>
 <div class="md-overlay"></div>
-<div class="md-modal colored-header custom-width md-effect-9" id="reply-ticket" style="width: 680px;">
+<div class="md-modal colored-header custom-width md-effect-9" id="md-record" style="width: 680px;">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
@@ -2414,7 +2414,7 @@
 <!-- 开锁信息 end -->
 
 <!-- 添加密码开锁授权 -->
-<div class="md-modal2 colored-header custom-width md-effect-9" id="reply-password">
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-password">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
@@ -2436,7 +2436,7 @@
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="input-prepend ">
-                                            <input type="text" name="reservation" id="reservationtime2"
+                                            <input type="text" name="reservation" id="time-book-pwd"
                                                    class="form-control span4" value="02/01/2014 1:00 PM - 02/05/2014 2:30 PM" />
                                         </div>
                                     </div>
@@ -2461,7 +2461,7 @@
 <!-- 添加密码开锁授权 end -->
 
 <!-- 身份证授权 -->
-<div class="md-modal2 colored-header custom-width md-effect-9" id="reply-identity">
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-identity">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
@@ -2469,15 +2469,27 @@
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <form class="form-horizontal" role="form">
+                <form id="form-identity" class="form-horizontal">
+                <%--<form id="form-identity" class="form-horizontal" method="post" action="unlock/authUnlockById.do">--%>
+                <%--<form class="form-horizontal" role="form">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<div class="col-sm-12">--%>
+                            <%--<input type="email" class="form-control" placeholder="地区名称">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<div class="col-sm-12">--%>
+                            <%--<input type="password" class="form-control" placeholder="地址">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" placeholder="地区名称">
+                            <input type="text" class="form-control" name="name" placeholder="用户名">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="password" class="form-control" placeholder="地址">
+                            <input type="text" class="form-control" name="cardNumb" placeholder="身份证号码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -2486,21 +2498,19 @@
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="input-prepend ">
-                                            <input type="text" name="reservation" id="reservationtime"
-                                                   class="form-control" value="02/01/2017 1:00 PM - 02/05/2017 2:30 PM"
-                                                   class="span4"/>
+                                            <input type="text" name="reservation" id="time-book-identity" class="form-control span4" value="02/01/2017 1:00 PM - 02/05/2017 2:30 PM" />
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
-
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">提交授权</button>
-                            <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取 消
-                            </button>
+                            <%--<button type="submit" class="btn btn-primary">提交授权</button>--%>
+                            <%--<button class="btn btn-default md-close" data-dismiss="modal">取 消</button>--%>
+                            <button id="submit-identity" type="button" class="btn btn-primary">提交授权</button>
+                            <button type="button" class="btn btn-default md-close" data-dismiss="modal">关 闭</button>
                         </div>
                     </div>
                 </form>
