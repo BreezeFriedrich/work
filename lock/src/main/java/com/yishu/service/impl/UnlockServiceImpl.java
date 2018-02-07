@@ -357,7 +357,6 @@ public class UnlockServiceImpl implements IUnlockService {
         rawData= HttpUtil.httpsPostToQixu(reqData);
         LOG.info("rawData : "+rawData);
 
-
         if (respFail()){//0=result请求数据失败
             return null;
         }
@@ -705,6 +704,138 @@ public class UnlockServiceImpl implements IUnlockService {
 
     @Override
     public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, Date theDate) throws ParseException {
+        int days= 16;
+        Calendar calendar=Calendar.getInstance();
+        Date startDate=theDate;
+        final long startMoment=startDate.getTime();
+        calendar.setTime(theDate);
+        calendar.add(Calendar.DAY_OF_MONTH,15);
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
+        calendar.set(Calendar.MILLISECOND,999);
+        Date endDate=calendar.getTime();
+        final long endMoment=endDate.getTime();
+
+        Date[] dateArr=new Date[days];
+        for(int i=0;i<days;i++){
+            calendar.setTime(theDate);
+            calendar.add(Calendar.DAY_OF_MONTH,i);
+            dateArr[i]=calendar.getTime();
+        }
+        List<IdentityCard> unlockIds=unlockAuthorization.getUnlockIds();
+        List<UnlockPwd> unlockPwds=unlockAuthorization.getUnlockPwds().getPasswordList();
+
+        //filter-unlockIds-Bytime,过滤身份证开锁授权.
+        List<IdentityCard> unlockIdListNext=null;
+        unlockIdListNext= FilterList.filter(unlockIds, new FilterListHook<IdentityCard>() {
+            @Override
+            public boolean test(IdentityCard identityCard) {
+                try {
+                    long startTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getStartTime()).getTime();
+                    long endTime=DateUtil.yyyyMMddHHmm.parse(identityCard.getEndTime()).getTime();
+                    System.out.println("filter-unlockIds-Bytime startTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTime))+",endTime:"+DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTime)));
+                    if (startTime>endTime){
+                        return false;
+                    }
+                    if (endTime<startMoment){
+                        return false;
+                    }
+                    if (startTime>endMoment){
+                        return false;
+                    }
+                    return true;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return false;
+            }
+        });
+        //filter-unlockPwds-Bytime,过滤密码开锁授权.
+        List<UnlockPwd> unlockPwdListNext=null;
+        unlockPwdListNext= FilterList.filter(unlockPwds, new FilterListHook<UnlockPwd>() {
+            @Override
+            public boolean test(UnlockPwd unlockPwd) {
+                try {
+                    long startTime=DateUtil.yyyyMMddHHmm.parse(unlockPwd.getStartTime()).getTime();
+                    long endTime=DateUtil.yyyyMMddHHmm.parse(unlockPwd.getEndTime()).getTime();
+                    if (startTime>endTime){
+                        return false;
+                    }
+                    if (endTime<startMoment){
+                        return false;
+                    }
+                    if (startTime>endMoment){
+                        return false;
+                    }
+                    return true;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return false;
+            }
+        });
+
+        Authinfo authinfo=new Authinfo();
+        AuthinfoDaily[] authinfoPeriod=new AuthinfoDaily[days];
+        for(int i=0;i<days;i++){
+            authinfoPeriod[i]=new AuthinfoDaily();
+            authinfoPeriod[i].setIdIndexes(new ArrayList<Integer>());
+            authinfoPeriod[i].setPwdIndexes(new ArrayList<Integer>());
+        }
+        long time;
+        for(int i=0;i<days;i++){
+            time=86400000*1L*i+startMoment;
+            authinfoPeriod[i].setTime(time);
+            authinfoPeriod[i].setDate(DateUtil.yyyy_MM_dd.format(new Date(time)));
+        }
+        int idListNextSize=unlockIdListNext.size();
+        int pwdListNextSize=unlockPwdListNext.size();
+        IdentityCard[] ids=new IdentityCard[idListNextSize];
+//        ids=unlockIdListNext.toArray(ids);
+        UnlockPwd[] pwds=new UnlockPwd[pwdListNextSize];
+//        pwds=unlockPwdListNext.toArray(pwds);
+        authinfo.setIds(ids);
+        authinfo.setPwds(pwds);
+        IdentityCard id=null;
+        UnlockPwd pwd=null;
+        long startTimeTemp;
+        long endTimeTemp;
+        int startIndex;
+        int endIndex;
+        for(int i=0;i<idListNextSize;i++){
+            id=unlockIdListNext.get(i);
+            ids[i]=id;
+            startTimeTemp=DateUtil.yyyyMMddHHmm.parse(id.getStartTime()).getTime();
+            endTimeTemp=DateUtil.yyyyMMddHHmm.parse(id.getEndTime()).getTime();
+            startTimeTemp=startTimeTemp>startMoment?startTimeTemp:startMoment;//取大
+            endTimeTemp=endTimeTemp<endMoment?endTimeTemp:endMoment;//取小
+            startIndex= (int) ((startTimeTemp-startMoment)/86400000);
+            endIndex= (int) ((endTimeTemp-startMoment)/86400000);
+            for (int j=startIndex;j<=endIndex;j++){
+                authinfoPeriod[j].getIdIndexes().add(i);
+            }
+        }
+        for(int i=0;i<pwdListNextSize;i++){
+            pwd=unlockPwdListNext.get(i);
+            pwds[i]=pwd;
+            startTimeTemp=DateUtil.yyyyMMddHHmm.parse(pwd.getStartTime()).getTime();
+            endTimeTemp=DateUtil.yyyyMMddHHmm.parse(pwd.getEndTime()).getTime();
+            startTimeTemp=startTimeTemp>startMoment?startTimeTemp:startMoment;//取大
+            endTimeTemp=endTimeTemp<endMoment?endTimeTemp:endMoment;//取小
+            startIndex= (int) ((startTimeTemp-startMoment)/86400000);
+            endIndex= (int) ((endTimeTemp-startMoment)/86400000);
+            for (int j=startIndex;j<endIndex;j++){
+                authinfoPeriod[j].getPwdIndexes().add(i);
+            }
+        }
+        authinfo.setAuthinfoDaily(authinfoPeriod);
+
+        return authinfo;
+    }
+
+    @Override
+    public UnlockAuthorization getDailyUnlockAuthorization(UnlockAuthorization unlockAuthorization, Date theDate) {
         int days= 16;
         Calendar calendar=Calendar.getInstance();
         Date startDate=theDate;

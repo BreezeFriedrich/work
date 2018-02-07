@@ -16,6 +16,8 @@ var authinfo;
 var recordinfo;
 var startTime;
 var endTime;
+var districtPhoneNumber;
+var landlordPhoneNumber;
 var specificGatewayCode;
 var specificLockCode;
 var index;
@@ -56,8 +58,6 @@ function getDateArr(date) {
             dateStrArr.push(getDateStr(newDate));
         }
     })()
-    // console.log("dateArr:"+dateArr);
-    // console.log("dateStrArr:"+dateStrArr);
 }
 function getLocks() {
     $.ajax({
@@ -144,11 +144,8 @@ function renderRow(districts,date) {
                 landlord=landlords[k];
                 locks=landlord.subordinateList;
                 for(var j in locks){
-                    // console.log('j:'+j);
                     lock=locks[j];
-                    var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(tr_num).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
-                    // var TDs_row=fixedTable.fixedTableBody.find("tbody tr[gatewayid="+lock.gatewayCode+"][lockid="+lock.lockCode+"]").find("td:not(:first)");//多个同gatewayCode和lockCode的门锁对应的tbody->tr只有第一个会被选中并渲染.
-                    //auth获取开锁授权信息
+                    var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(tr_num).find("td:not(:first)");
                     $.ajax({
                         type:"POST",
                         url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
@@ -170,7 +167,6 @@ function renderRow(districts,date) {
                                     for(var i=0;i<authinfodailyArrLength;i++){
                                         authinfodaily=authinfodailyArr[i];
                                         if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
-                                            // fixedTable.fixedTableBody.find("tbody tr td").eq(i+16).addClass("cd-booked");
                                             TDs_row.eq(i+15).addClass("cd-booked");
                                         }
                                     }
@@ -181,7 +177,6 @@ function renderRow(districts,date) {
                             console.log('错误');
                         }
                     });
-                    //record获取入住记录
                     $.ajax({
                         type:"POST",
                         url:projectPath+"/record/getLockUnlockRecordDaily.do",
@@ -197,7 +192,6 @@ function renderRow(districts,date) {
                                     for(var i=0;i<recordinfoLength;i++){
                                         recordDaily=recordinfo[i];
                                         if(recordDaily.totalSize>0){
-                                            // fixedTable.fixedTableBody.find("tbody tr td").eq(i+1).addClass("cd-unlockrecord");
                                             TDs_row.eq(i).addClass("cd-unlockrecord");
                                         }
                                     }
@@ -292,9 +286,10 @@ function renderTable(date) {
 
 //获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
 function getCellParam(element) {
-    var roomid=element.parent("tr").attr("id").split("-");
-    specificGatewayCode=roomid[0];
-    specificLockCode=roomid[1];
+    districtPhoneNumber=element.parent("tr").attr("district");
+    landlordPhoneNumber=element.parent("tr").attr("landlord");
+    specificGatewayCode=element.parent("tr").attr("gatewayid");
+    specificLockCode=element.parent("tr").attr("lockid");
     index=element.index();//index==0是房间cell.
     var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");//第0个thead的th即房间号cell.
     theTime=TH_header.eq(index).attr("time");
@@ -776,3 +771,109 @@ $(document).ready(function(){
     });
 
 });
+
+var CONSTANT = {
+    DATA_TABLES : {
+        DEFAULT_OPTION : {
+            language: {
+                "sProcessing":   "处理中...",
+                "sLengthMenu":   "每页 _MENU_ 项",
+                "sZeroRecords":  "没有匹配结果",
+                "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix":  "",
+                "sSearch":       "搜索:",
+                "sUrl":          "",
+                "sEmptyTable":     "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands":  ",",
+                "oPaginate": {
+                    "sFirst":    "首页",
+                    "sPrevious": "上页",
+                    "sNext":     "下页",
+                    "sLast":     "末页",
+                    "sJump":     "跳转"
+                },
+                "oAria": {
+                    "sSortAscending":  ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            autoWidth: false,   //禁用自动调整列宽
+            stripeClasses: ["odd", "even"],//为奇偶行加上样式，兼容不支持CSS伪类的场合
+            order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
+            processing: false,  //隐藏加载提示,自行处理
+            serverSide: true,   //启用服务器端分页
+            searching: false,    //禁用原生搜索
+            // bProcessing: true,
+            // bServerSide: true,
+            iDisplayLength : 5,//默认每页数量
+            bLengthChange : false, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
+            lengthMenu : [5,10,15],
+            ordering : true,
+            stateSave : true,
+            retrieve : true
+            //bPaginate: true, //翻页功能
+            //bFilter : true, //过滤功能
+            // bSort : false, //排序功能
+            //bInfo : true,//页脚信息
+            //bAutoWidth : true,//自动宽度
+            //bPaginate : true,
+            //bProcessing: true//服务器端进行分页处理的意思
+        },
+        COLUMN: {
+            CHECKBOX: { //复选框单元格
+                className: "td-checkbox",
+                orderable: false,
+                width: "30px",
+                data: null,
+                render: function (data, type, row, meta) {
+                    return '<input type="checkbox" class="iCheck">';
+                }
+            }
+        },
+        RENDER: {   //常用render可以抽取出来，如日期时间、头像等
+            ELLIPSIS: function (data, type, row, meta) {
+                data = data||"";
+                return '<span title="' + data + '">' + data + '</span>';
+            }
+        }
+    }
+};
+var userManage = {
+    getQueryCondition: function (data) {
+        var param = {};
+        //组装排序参数
+        if (data.order && data.order.length && data.order[0]) {
+            switch (data.order[0].column) {
+                case 0:
+                    param.orderColumn = "openMode";
+                    break;
+                case 1:
+                    param.orderColumn = "timestamp";
+                    break;
+                case 2:
+                    param.orderColumn = "credential";
+                    break;
+                case 3:
+                    param.orderColumn = "name";
+                    break;
+                default:
+                    param.orderColumn = "timestamp";
+                    break;
+            }
+            //排序方式asc或者desc
+            param.orderDir = data.order[0].dir;
+        }
+
+        param.ownerPhoneNumber=landlordPhoneNumber;
+        param.date=theTime;
+        param.gatewayCode=specificGatewayCode;
+        param.lockCode=specificLockCode;
+        param.startIndex = data.start;
+        param.pageSize = data.length;
+        param.draw = data.draw;
+        return param;
+    }
+};

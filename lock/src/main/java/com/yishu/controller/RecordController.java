@@ -173,7 +173,8 @@ public class RecordController {
         JsonDto jsonDto=null;
         BizDto bizDto=null;
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String theDateStr=request.getParameter("date");
         if(null==theDateStr){
             jsonDto=JsonDto.WRONG_REQUEST_PARAM;

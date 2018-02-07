@@ -73,6 +73,9 @@ public class UnlockController {
         String dnCode=request.getParameter("dnCode");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
+        if(null==ownerPhoneNumber || null==gatewayCode || null==lockCode || null==name || null==cardNumb || null==startTime || null==endTime){
+            return false;
+        }
         long startTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(startTime).getTime();
         long endTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(endTime).getTime();
         resultBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTimeL,endTimeL);
@@ -139,6 +142,9 @@ public class UnlockController {
         String password=request.getParameter("password");
         String startTime=request.getParameter("startTime");
         String endTime=request.getParameter("endTime");
+        if(null==ownerPhoneNumber || null==gatewayCode || null==lockCode || null==password || null==startTime || null==endTime){
+            return false;
+        }
         long startTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(startTime).getTime();
         long endTimeL=DateUtil.yyyy_MM_dd0HH$mm.parse(endTime).getTime();
         resultBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTimeL,endTimeL);
@@ -282,5 +288,128 @@ public class UnlockController {
         }finally {
             return jsonDto;
         }
+    }
+
+    @RequestMapping("/getDailyUnlockAuthorization.do")
+    @ResponseBody
+    public JsonDto getDailyUnlockAuthorization(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- unlock/getDailyUnlockAuthorization.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+        UnlockAuthorization unlockAuthorization=unlockService.getUnlockAuthorization(ownerPhoneNumber,gatewayCode,lockCode);
+        if(null==unlockAuthorization){
+//            return null;
+            bizDto= BizDto.EMPTY_RESULT;
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        }
+        String theDateStr=request.getParameter("theDate");
+        Date theDate= null;
+        try {
+            theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+            Authinfo authinfo=unlockService.getDailyUnlockAuthorization(unlockAuthorization,theDate);
+            if(null==authinfo){
+                bizDto= BizDto.EMPTY_RESULT;
+            }else {
+                bizDto=new BizDto<Authinfo>(authinfo);
+            }
+            jsonDto=new JsonDto(bizDto);
+        } catch (ParseException e) {
+//            e.printStackTrace();
+            LOG.error(null,e);
+            jsonDto= JsonDto.EXCEPTION;
+        }finally {
+            return jsonDto;
+        }
+        ////////////
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- record/getDailyUnlockRecordLockPage.do -->>--");
+        }
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String theDateStr=request.getParameter("date");
+        if(null==theDateStr){
+            jsonDto=JsonDto.WRONG_REQUEST_PARAM;
+            return jsonDto;
+        }
+        Date theDate= null;
+        theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(theDate);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        final long startTime=calendar.getTime().getTime();
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
+        calendar.set(Calendar.MILLISECOND,999);
+        final long endTime=calendar.getTime().getTime();
+        long[] period={startTime,endTime};
+
+        HashMap filterMap= new HashMap(10);
+        //过滤条件
+//        filterMap.put("period",period);
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        filterMap.put("gatewayCode",gatewayCode);
+        filterMap.put("lockCode",lockCode);
+        //获取排序字段
+        HashMap orderMap= new HashMap(2);
+        String orderColumn = request.getParameter("orderColumn");
+        if(orderColumn == null){
+            orderColumn = "timestamp";
+        }
+        orderMap.put("orderColumn",orderColumn);
+        //获取排序方式
+        String orderDir = request.getParameter("orderDir");
+        if(orderDir == null){
+            orderDir = "desc";
+        }
+        orderMap.put("orderDir",orderDir);
+        String draw = request.getParameter("draw");//防跨站脚本随机数,直接返回前台
+        //数据起始位置
+        String startIndex = request.getParameter("startIndex");
+        //每页显示的条数
+        String pageSize = request.getParameter("pageSize");
+
+
+        List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        if(null==recordList){
+            bizDto=BizDto.EMPTY_RESULT;
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        }
+        List<UnlockRecord> recordList2=recordService.filterUnlockRecord(recordList,filterMap);
+        Map<String, Object> info = new HashMap<String, Object>();
+        if(recordList2==null){
+            info.put("pageData",null);
+            info.put("total",0);
+        }else{
+            /*
+            PageUtil<UnlockRecord> pageUtil=new PageUtil<UnlockRecord>(recordList2);
+            pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
+            info.put("pageData", pageUtil.getList());
+            info.put("total", pageUtil.getTotal());
+            */
+            List<UnlockRecord> recordList3=PageUtil.page(recordList2,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+            List<UnlockRecordTableData> recordTableDataList=recordService.convertUnlockRecordToTabularData(recordList3);
+            info.put("pageData", recordTableDataList);
+            info.put("total", recordTableDataList.size());
+        }
+        info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+        bizDto=new BizDto(info);
+        jsonDto=new JsonDto(bizDto);
+        return jsonDto;
     }
 }

@@ -2369,6 +2369,7 @@
 <!-- 被预订 end -->
 
 <!-- 开锁授权信息 -->
+<!--
 <div class="md-modal colored-header custom-width md-effect-9" id="reply-unlocking">
     <div class="md-content">
         <div class="block-flat">
@@ -2411,9 +2412,137 @@
 
     </div>
 </div>
+-->
+<div class="md-modal colored-header custom-width md-effect-9" id="md-authorization" style="width: 880px;">
+    <div class="md-content">
+        <div class="block-flat">
+            <div class="header">
+                <h3>开锁授权信息</h3>
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="content">
+                <table id="table-authorization" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th width="150px">开锁类型</th>
+                        <th width="180px">开锁凭据</th>
+                        <th width="100px">开锁人</th>
+                        <th width="200px">生效时间</th>
+                        <th width="200px">失效时间</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- 开锁信息 end -->
 
+<!-- 身份证授权 -->
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-identity">
+    <div class="md-content">
+        <div class="block-flat">
+            <div class="header">
+                <h3>添加身份证开锁授权</h3>
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="content">
+                <form id="form-identity" class="form-horizontal">
+                <%--<form id="form-identity" class="form-horizontal" method="post" action="unlock/authUnlockById.do">--%>
+                <%--<form class="form-horizontal" role="form">--%>
+                    <%--<div class="form-group">--%>
+                    <%--<div class="col-sm-12">--%>
+                    <%--<input type="email" class="form-control" placeholder="地区名称">--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<div class="col-sm-12">--%>
+                    <%--<input type="password" class="form-control" placeholder="地址">--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="name" placeholder="用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="cardNumb" placeholder="身份证号码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-prepend ">
+                                            <%--<input type="text" name="reservation" id="time-book-identity" class="form-control span4" value="02/01/2017 1:00 PM - 02/05/2017 2:30 PM" />--%>
+                                            <input type="text" name="reservation" id="time-book-identity" class="form-control span4" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <%--<button type="submit" class="btn btn-primary">提交授权</button>--%>
+                            <%--<button class="btn btn-default md-close" data-dismiss="modal">取 消</button>--%>
+                            <button id="submit-identity" type="button" class="btn btn-primary">提交授权</button>
+                            <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">关 闭</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 身份证授权 end -->
+
 <!-- 添加密码开锁授权 -->
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-pwd">
+    <div class="md-content">
+        <div class="block-flat">
+            <div class="header">
+                <h3>添加密码开锁授权</h3>
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="content">
+                <form id="form-pwd" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="password" placeholder="开锁密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-prepend ">
+                                            <input type="text" name="reservation" id="time-book-pwd" class="form-control span4" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <button id="submit-pwd" type="button" class="btn btn-primary">提交授权</button>
+                            <button type="button" class="btn btn-default md-close" data-dismiss="modal">关 闭</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
 <div class="md-modal2 colored-header custom-width md-effect-9" id="md-password">
     <div class="md-content">
         <div class="block-flat">
@@ -2431,7 +2560,6 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <!--直接选择区域，每添加一个时间选择，js需要增加一个-->
                             <fieldset>
                                 <div class="control-group">
                                     <div class="controls">
@@ -2458,67 +2586,8 @@
         </div>
     </div>
 </div>
+-->
 <!-- 添加密码开锁授权 end -->
-
-<!-- 身份证授权 -->
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-identity">
-    <div class="md-content">
-        <div class="block-flat">
-            <div class="header">
-                <h3>添加身份证开锁授权</h3>
-                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="content">
-                <form id="form-identity" class="form-horizontal">
-                <%--<form id="form-identity" class="form-horizontal" method="post" action="unlock/authUnlockById.do">--%>
-                <%--<form class="form-horizontal" role="form">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<div class="col-sm-12">--%>
-                            <%--<input type="email" class="form-control" placeholder="地区名称">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<div class="col-sm-12">--%>
-                            <%--<input type="password" class="form-control" placeholder="地址">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="name" placeholder="用户名">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="cardNumb" placeholder="身份证号码">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <fieldset>
-                                <div class="control-group">
-                                    <div class="controls">
-                                        <div class="input-prepend ">
-                                            <input type="text" name="reservation" id="time-book-identity" class="form-control span4" value="02/01/2017 1:00 PM - 02/05/2017 2:30 PM" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <%--<button type="submit" class="btn btn-primary">提交授权</button>--%>
-                            <%--<button class="btn btn-default md-close" data-dismiss="modal">取 消</button>--%>
-                            <button id="submit-identity" type="button" class="btn btn-primary">提交授权</button>
-                            <button type="button" class="btn btn-default md-close" data-dismiss="modal">关 闭</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 身份证授权 end -->
 
 <!--下拉菜单-->
 <!--<script type="text/javascript" src="resources/plugin/jquery.select2/select2.min.js"></script>-->

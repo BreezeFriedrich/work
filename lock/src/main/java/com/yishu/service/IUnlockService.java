@@ -5,10 +5,7 @@
 
 package com.yishu.service;
 
-import com.yishu.pojo.Authinfo;
-import com.yishu.pojo.IdentityCard;
-import com.yishu.pojo.UnlockAuthorization;
-import com.yishu.pojo.UnlockPwds;
+import com.yishu.pojo.*;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -29,4 +26,6 @@ public interface IUnlockService {
     public UnlockAuthorization getUnlockAuthorization(String ownerPhoneNumber, String gatewayCode, String lockCode);
     public Authinfo getUnlockAuthorizationDailyArr2(UnlockAuthorization unlockAuthorization, long startTime, long endTime) throws ParseException;
     public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, Date theDate) throws ParseException;
+    public Authinfo getDailyUnlockAuthorization(UnlockAuthorization unlockAuthorization,Date theDate);
+    public List<UnlockAuthorizationTableData> convertUnlockAuthorizationToTabularData(UnlockAuthorization unlockAuthorization);
 }

@@ -20,8 +20,9 @@ var fixedTable;
 var TH_header;
 var name;
 var cardNumb;
-var startTime;
-var endTime;
+// var startTime;
+// var endTime;
+var password;
 
 var initializationTime = (new Date()).getTime();
 function showLeftTime() {
@@ -145,114 +146,114 @@ function getLocks() {
                         "lockComment": "bigdata",
                         "lockStatus": "1",
                         "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间6",
-                        "lockCode": "LCN0011702000006",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间7",
-                        "lockCode": "LCN0011702000007",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间8",
-                        "lockCode": "LCN0011702000008",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间9",
-                        "lockCode": "LCN0011702000009",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间10",
-                        "lockCode": "LCN0011702000010",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间11",
-                        "lockCode": "LCN0011702000011",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间12",
-                        "lockCode": "LCN0011702000012",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间13",
-                        "lockCode": "LCN0011702000013",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
-                    },{
-                        "gatewayName":"网关3",
-                        "gatewayCode":"GWH0081702000003",
-                        "gatewayLocation":"网关地址",
-                        "gatewayComment":"网关备注",
-                        "gatewayStatus":4,
-                        "lockName": "房间14",
-                        "lockCode": "LCN0011702000014",
-                        "lockLocation": "bigdata",
-                        "lockComment": "bigdata",
-                        "lockStatus": "1",
-                        "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间6",
+                    //     "lockCode": "LCN0011702000006",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间7",
+                    //     "lockCode": "LCN0011702000007",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间8",
+                    //     "lockCode": "LCN0011702000008",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间9",
+                    //     "lockCode": "LCN0011702000009",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间10",
+                    //     "lockCode": "LCN0011702000010",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间11",
+                    //     "lockCode": "LCN0011702000011",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间12",
+                    //     "lockCode": "LCN0011702000012",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间13",
+                    //     "lockCode": "LCN0011702000013",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
+                    // },{
+                    //     "gatewayName":"网关3",
+                    //     "gatewayCode":"GWH0081702000003",
+                    //     "gatewayLocation":"网关地址",
+                    //     "gatewayComment":"网关备注",
+                    //     "gatewayStatus":4,
+                    //     "lockName": "房间14",
+                    //     "lockCode": "LCN0011702000014",
+                    //     "lockLocation": "bigdata",
+                    //     "lockComment": "bigdata",
+                    //     "lockStatus": "1",
+                    //     "lockPower": "4"
                     }
                 ]
             };
@@ -674,106 +675,201 @@ $(document).ready(function () {
     $.contextMenu({
         selector: ".cd-unlockrecord:not(.cd-booked)",
         items: {
-            ticket: {name: "入住记录", callback: function(key, opt){
-                $('#md-record').niftyModal();
-                getCellParam($(this));
-                var $table = $("#table-unlockrecord");
-                var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
-                    ajax: function (data, callback, settings) {
-                        //封装请求参数
-                        param = userManage.getQueryCondition(data);
-                        $.ajax({
-                            type: "POST",
-                            url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
-                            cache: false,  //禁用缓存
-                            data: param,  //传入组装的参数
-                            dataType: "json",
-                            success: function (data) {
-                                var returnData = {};
-                                if(data.success){
-                                    if(data.biz.code===0){
-                                        var result=data.biz.data;
-                                        returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
-                                        returnData.recordsTotal = result.total;//总记录数
-                                        returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
-                                        returnData.data = result.pageData;
+            record: {
+                name: "入住记录", callback: function(key, opt){
+                    $('#md-record').niftyModal();
+                    getCellParam($(this));
+                    var $table = $("#table-unlockrecord");
+                    var _table = $table.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
+                        ajax: function (data, callback, settings) {
+                            //封装请求参数
+                            // param = datatableSet.getQueryCondition(data);
+                            param = datatableSet.function_authorization.getQueryParams(data);
+                            $.ajax({
+                                type: "POST",
+                                url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
+                                cache: false,  //禁用缓存
+                                data: param,  //传入组装的参数
+                                dataType: "json",
+                                success: function (data) {
+                                    var returnData = {};
+                                    if(data.success){
+                                        if(data.biz.code===0){
+                                            var result=data.biz.data;
+                                            returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
+                                            returnData.recordsTotal = result.total;//总记录数
+                                            returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                                            returnData.data = result.pageData;
+                                        }else{
+                                            console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                        }
                                     }else{
-                                        console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                        console.log("errmsg:"+data.errmsg);
                                     }
-                                }else{
-                                    console.log("errmsg:"+data.errmsg);
+                                    //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                                    //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                                    if(null===returnData.data){
+                                        returnData.data={};
+                                    }
+                                    callback(returnData);
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    alert("查询失败");
                                 }
-                                //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
-                                //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
-                                if(null===returnData.data){
-                                    returnData.data={};
+                            });
+                        },
+                        //绑定数据
+                        columns: [
+                            {
+                                data: "openMode",
+                                orderable: false,
+                                render: function (data, type, row, meta) {
+                                    if(1==data){
+                                        return "身份证开锁"
+                                    }else if(2==data){
+                                        return "密码开锁"
+                                    }else if(3==data){
+                                        return "门卡开锁"
+                                    }else{
+                                        return null;
+                                    }
                                 }
-                                callback(returnData);
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                alert("查询失败");
+                            },{
+                                data: "timestamp",
+                                render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                            },{
+                                data: "credential"
+                            },{
+                                data: "name"
                             }
-                        });
-                    },
-                    //绑定数据
-                    columns: [
-                        {
-                            data: "openMode",
-                            orderable: false,
-                            render: function (data, type, row, meta) {
-                                if(1==data){
-                                    return "身份证开锁"
-                                }else if(2==data){
-                                    return "密码开锁"
-                                }else if(3==data){
-                                    return "门卡开锁"
-                                }else{
-                                    return null;
-                                }
+                            // ,{
+                            //     data: "status",
+                            //     render: function (data, type, row, meta) {
+                            //         return (data == 0 ? "模块正常" :  "模块异常");
+                            //     }
+                            // }
+                        ],
+                        "columnDefs": [
+                            {
+                                "defaultContent": "",
+                                "targets": "_all"
                             }
-                        },{
-                            data: "timestamp",
-                            render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
-                        },{
-                            data: "credential"
-                        },{
-                            data: "name"
-                        }
-                        // ,{
-                        //     data: "status",
-                        //     render: function (data, type, row, meta) {
-                        //         return (data == 0 ? "模块正常" :  "模块异常");
-                        //     }
-                        // }
-                    ],
-                    "columnDefs": [
-                        {
-                            "defaultContent": "",
-                            "targets": "_all"
-                        }
-                    ],
-                    "drawCallback": function (settings) {}
-                })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
-                _table.draw();
-                // $("#btn_search").click(function () {
-                //     _table.draw();
-                // });
-            }}
+                        ],
+                        "drawCallback": function (settings) {}
+                    })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
+                    _table.draw();
+                    // $("#btn_search").click(function () {
+                    //     _table.draw();
+                    // });
+                }
+            }
         }
     });
     $.contextMenu({
         selector: ".cd-booked:not(.cd-unlockrecord)",
         items: {
-            identity: {name: "身份证授权", callback: function(key, opt){
-                $('#md-identity').niftyModal();
-                console.log($(this).parent("tr").attr("lockid"));
-            }},
-            password: {name: "密码授权", callback: function(key, opt){
-                $('#md-password').niftyModal();
-            }},
-            unlocking: {name: "开锁信息", callback: function(key, opt){
-                $('#reply-unlocking').niftyModal();
-            }}
+            identity: {
+                name: "身份证授权", callback: function (key, opt) {
+                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
+                    specificLockCode = $(this).parent("tr").attr("lockid");
+                    $('#md-identity').niftyModal();
+                }
+            },
+            password: {
+                name: "密码授权", callback: function (key, opt) {
+                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
+                    specificLockCode = $(this).parent("tr").attr("lockid");
+                    $('#md-pwd').niftyModal();
+                }
+            },
+            authorization : {
+                name: "开锁信息", callback: function(key, opt){
+                    $('#md-authorization').niftyModal();
+                    getCellParam($(this));
+                    var $table = $("#table-authorization");
+                    var _table = $table.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
+                        ajax: function (data, callback, settings) {
+                            //封装请求参数
+                            // param = datatableSet.getQueryCondition(data);
+                            param = datatableSet.function_authorization.getQueryParams(data);
+                            $.ajax({
+                                type: "POST",
+                                url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
+                                cache: false,  //禁用缓存
+                                data: param,  //传入组装的参数
+                                dataType: "json",
+                                success: function (data) {
+                                    var returnData = {};
+                                    if(data.success){
+                                        if(data.biz.code===0){
+                                            var result=data.biz.data;
+                                            returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
+                                            returnData.recordsTotal = result.total;//总记录数
+                                            returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                                            returnData.data = result.pageData;
+                                        }else{
+                                            console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                        }
+                                    }else{
+                                        console.log("errmsg:"+data.errmsg);
+                                    }
+                                    //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                                    //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                                    if(null===returnData.data){
+                                        returnData.data={};
+                                    }
+                                    callback(returnData);
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    alert("查询失败");
+                                }
+                            });
+                        },
+                        //绑定数据
+                        columns: [
+                            {
+                                data: "openMode",
+                                orderable: false,
+                                render: function (data, type, row, meta) {
+                                    if(1==data){
+                                        return "身份证开锁"
+                                    }else if(2==data){
+                                        return "密码开锁"
+                                    }else if(3==data){
+                                        return "门卡开锁"
+                                    }else{
+                                        return null;
+                                    }
+                                }
+                            },{
+                                data: "timestamp",
+                                render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                            },{
+                                data: "credential"
+                            },{
+                                data: "name"
+                            }
+                            // ,{
+                            //     data: "status",
+                            //     render: function (data, type, row, meta) {
+                            //         return (data == 0 ? "模块正常" :  "模块异常");
+                            //     }
+                            // }
+                        ],
+                        "columnDefs": [
+                            {
+                                "defaultContent": "",
+                                "targets": "_all"
+                            }
+                        ],
+                        "drawCallback": function (settings) {}
+                    })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
+                    _table.draw();
+                    // $("#btn_search").click(function () {
+                    //     _table.draw();
+                    // });
+                }
+            }
         }
     });
     $.contextMenu({
@@ -783,10 +879,11 @@ $(document).ready(function () {
                 $('#md-record').niftyModal();
                 getCellParam($(this));
                 var $table = $("#table-unlockrecord");
-                var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
+                var _table = $table.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
                     ajax: function (data, callback, settings) {
                         //封装请求参数
-                        param = userManage.getQueryCondition(data);
+                        // param = datatableSet.getQueryCondition(data);
+                        param = datatableSet.function_authorization.getQueryParams(data);
                         $.ajax({
                             type: "POST",
                             url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
@@ -838,7 +935,7 @@ $(document).ready(function () {
                             }
                         },{
                             data: "timestamp",
-                            render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
+                            render: datatableSet.options.RENDER.ELLIPSIS//alt效果
                         },{
                             data: "credential"
                         },{
@@ -877,195 +974,37 @@ $(document).ready(function () {
     $.contextMenu({
         selector: ".cd-vacant",
         items: {
-            identity: {name: "身份证授权", callback: function(key, opt){
-                // getCellParam($(this));
-                specificGatewayCode=$(this).parent("tr").attr("gatewayid");
-                specificLockCode=$(this).parent("tr").attr("lockid");
-                $('#md-identity').niftyModal();
-                $('#submit-identity').click(function () {
-                    name=$("form#form-identity input[name='name']").val();
-                    cardNumb=$("form#form-identity input[name='cardNumb']").val();
-                    var params = {
-                        "ownerPhoneNumber":landlord.phoneNumber,
-                        "gatewayCode":specificGatewayCode,
-                        "lockCode":specificLockCode,
-                        "name":name,
-                        "cardNumb":cardNumb,
-                        "startTime":startTime,
-                        "endTime":endTime
-                    };
-                    $.ajax({
-                        type:"POST",
-                        url:"unlock/authUnlockById.do",
-                        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-                        data:params,
-                        dataType:'json',
-                        success:function(data,status,xhr){
-                            alert('data:'+data);
-                        },
-                        error:function(xhr,errorType,error){
-                            console.log('错误');
-                        }
-                    });
-                });
-            }},
-            password: {name: "密码授权", callback: function(key, opt){
-                $('#md-password').niftyModal();
-            }}
+            identity: {
+                name: "身份证授权", callback: function (key, opt) {
+                    // getCellParam($(this));
+                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
+                    specificLockCode = $(this).parent("tr").attr("lockid");
+                    $('#md-identity').niftyModal();
+                }
+            },
+            password: {
+                name: "密码授权", callback: function (key, opt) {
+                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
+                    specificLockCode = $(this).parent("tr").attr("lockid");
+                    $('#md-pwd').niftyModal();
+                    //$('#submit-pwd').click(function(){}),事件click不能嵌入其他事件之中,会造成多次绑定.
+                }
+            }
         }
     });
 
-    // $('#reservation').daterangepicker();
-    // $('#time-book-identity').daterangepicker({
-    //     timePicker: true,
-    //     timePickerIncrement: 30,
-    //     format: 'MM/DD/YYYY h:mm A'
-    // });
-    // $('#time-book-pwd').daterangepicker({
-    //     timePicker: true,
-    //     timePickerIncrement: 30,
-    //     format: 'MM/DD/YYYY h:mm A'
-    // });
     /*
+    // $('#reservation').daterangepicker();
     $('#time-book-identity').daterangepicker({
-        "timePicker": true,
-        "timePicker24Hour": true,
-        "timePickerIncrement": 30,//min
-        "dateLimit": {
-            "days": 31
-        },
-        "ranges": {
-            "Today": [
-                "2018-02-06T07:43:43.034Z",
-                "2018-02-06T07:43:43.034Z"
-            ],
-            "Yesterday": [
-                "2018-02-05T07:43:43.034Z",
-                "2018-02-05T07:43:43.034Z"
-            ],
-            "Last 7 Days": [
-                "2018-01-31T07:43:43.034Z",
-                "2018-02-06T07:43:43.034Z"
-            ],
-            "Last 30 Days": [
-                "2018-01-08T07:43:43.034Z",
-                "2018-02-06T07:43:43.035Z"
-            ],
-            "This Month": [
-                "2018-01-31T16:00:00.000Z",
-                "2018-02-28T15:59:59.999Z"
-            ],
-            "Last Month": [
-                "2017-12-31T16:00:00.000Z",
-                "2018-01-31T15:59:59.999Z"
-            ]
-        },
-        "showCustomRangeLabel": false,
-        "alwaysShowCalendars": true,
-        "autoUpdateInput": false,//默认为true
-        "startDate": "06/02/2018",
-        "endDate": "02/07/2018",
-        "minDate": "02/06/2018",
-        "maxDate": "04/06/2018",
-        "opens": "center",
-        "drops": "up"
-    }, function(start, end, label) {
-        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        timePicker: true,
+        timePickerIncrement: 30,
+        format: 'MM/DD/YYYY h:mm A'
     });
-    */
-    // var datetimerangelocale={
-    //     "format": "MM/DD/YYYY",
-    //     "separator": " - ",
-    //     "applyLabel": "Apply",
-    //     "cancelLabel": "Cancel",
-    //     "fromLabel": "From",
-    //     "toLabel": "To",
-    //     "customRangeLabel": "Custom",
-    //     "weekLabel": "W",
-    //     "daysOfWeek": ["Su","Mo","Tu","We","Th","Fr","Sa"],
-    //     "monthNames": ["January","February","March","April","May","June","July","August","September","October","November","December"],
-    //     "firstDay": 1
-    // };
-    var datetimerangelocale = {
-        direction: 'ltr',
-        format: 'MM/DD/YYYY HH:mm',
-        separator: ' - ',
-        applyLabel: 'Apply',
-        cancelLabel: 'Cancel',
-        fromLabel: 'From',
-        toLabel: 'To',
-        customRangeLabel: 'Custom',
-        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        firstDay: 1
-    };
-    // options.locale = {
-    //     direction: $('#rtl').is(':checked') ? 'rtl' : 'ltr',
-    //     format: 'MM/DD/YYYY HH:mm',
-    //     separator: ' - ',
-    //     applyLabel: 'Apply',
-    //     cancelLabel: 'Cancel',
-    //     fromLabel: 'From',
-    //     toLabel: 'To',
-    //     customRangeLabel: 'Custom',
-    //     daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-    //     monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    //     firstDay: 1
-    // };
-    $('#time-book-identity').daterangepicker({
-        "timePicker": true,
-        "timePicker24Hour": true,
-        "timePickerIncrement": 30,//min
-        "dateLimit": {
-            "days": 31
-        },
-        // "ranges": {
-        //     "Today": [
-        //         "2018-02-06T07:43:43.034Z",
-        //         "2018-02-06T07:43:43.034Z"
-        //     ],
-        //     "Yesterday": [
-        //         "2018-02-05T07:43:43.034Z",
-        //         "2018-02-05T07:43:43.034Z"
-        //     ],
-        //     "Last 7 Days": [
-        //         "2018-01-31T07:43:43.034Z",
-        //         "2018-02-06T07:43:43.034Z"
-        //     ],
-        //     "Last 30 Days": [
-        //         "2018-01-08T07:43:43.034Z",
-        //         "2018-02-06T07:43:43.035Z"
-        //     ],
-        //     "This Month": [
-        //         "2018-01-31T16:00:00.000Z",
-        //         "2018-02-28T15:59:59.999Z"
-        //     ],
-        //     "Last Month": [
-        //         "2017-12-31T16:00:00.000Z",
-        //         "2018-01-31T15:59:59.999Z"
-        //     ]
-        // },
-        "showCustomRangeLabel": false,
-        "alwaysShowCalendars": false,
-        "autoUpdateInput": false,//默认为true
-        "locale":datetimerangelocale,
-        "startDate": "02/06/2018",
-        "endDate": "02/07/2018",
-        "minDate": "02/06/2018",
-        "maxDate": "04/06/2018",
-        "opens": "center",
-        "drops": "up"
-        // "opens": "right",
-        // "drops": "left"
-    }, function(start, end, label) {
-        startTime=start.format('YYYY-MM-DD HH:mm');
-        endTime=end.format('YYYY-MM-DD HH:mm');
-        console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
+    $('#time-book-pwd').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        format: 'MM/DD/YYYY h:mm A'
     });
-
-    //initialize the javascript
-    App.init();
-
     var cb = function (start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + "]");
@@ -1125,9 +1064,390 @@ $(document).ready(function () {
     $('#reportrange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 
     $('#reportrange').daterangepicker(optionSet1, cb);
+    */
+    /*
+    $('#time-book-identity').daterangepicker({
+        "timePicker": true,
+        "timePicker24Hour": true,
+        "timePickerIncrement": 30,//min
+        "dateLimit": {
+            "days": 31
+        },
+        "ranges": {
+            "Today": [
+                "2018-02-06T07:43:43.034Z",
+                "2018-02-06T07:43:43.034Z"
+            ],
+            "Yesterday": [
+                "2018-02-05T07:43:43.034Z",
+                "2018-02-05T07:43:43.034Z"
+            ],
+            "Last 7 Days": [
+                "2018-01-31T07:43:43.034Z",
+                "2018-02-06T07:43:43.034Z"
+            ],
+            "Last 30 Days": [
+                "2018-01-08T07:43:43.034Z",
+                "2018-02-06T07:43:43.035Z"
+            ],
+            "This Month": [
+                "2018-01-31T16:00:00.000Z",
+                "2018-02-28T15:59:59.999Z"
+            ],
+            "Last Month": [
+                "2017-12-31T16:00:00.000Z",
+                "2018-01-31T15:59:59.999Z"
+            ]
+        },
+        "showCustomRangeLabel": false,
+        "alwaysShowCalendars": true,
+        "autoUpdateInput": false,//默认为true
+        "startDate": "06/02/2018",
+        "endDate": "02/07/2018",
+        "minDate": "02/06/2018",
+        "maxDate": "04/06/2018",
+        "opens": "center",
+        "drops": "up"
+    }, function(start, end, label) {
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+    });
+    */
+    var options_daterange={
+        "format": 'YYYY-MM-DD HH:mm',// format: 'MM/DD/YYYY', // format: 'MM/DD/YYYY h:mm A',
+        "separator":'  ~  ',
+        "timePicker": true,
+        "timePicker12Hour": false,//24小时制
+        // "timePicker24Hour": true,//无效
+        "timePickerIncrement": 30,//min
+        "dateLimit": {"days": 366},
+        // "ranges": {
+        //     'Today': [moment(), moment()],
+        //     'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+        //     'Last 7 Days': [moment().subtract('days', 6), moment()],
+        //     'Last 30 Days': [moment().subtract('days', 29), moment()],
+        //     'This Month': [moment().startOf('month'), moment().endOf('month')],
+        //     'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+        // },
+        "showCustomRangeLabel": true,
+        "alwaysShowCalendars": true,
+        "autoUpdateInput": true,//默认为true
+        // "locale":datetimerangelocale,
+        "startDate": moment(),
+        "endDate": moment().add(1,'days'),
+        "minDate": moment(),
+        "maxDate": moment().add(1,'years'),
+        "opens": "right",
+        "drops": "down",
+        "showDropdowns": true,
+        "showWeekNumbers": true,
+        "buttonClasses": ['btn'],
+        "applyClass": 'btn-small btn-primary',
+        "cancelClass": 'btn-small'
+    };
+    options_daterange.ranges={
+        // 'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+        // 'Last 7 Days': [moment().subtract('days', 6), moment()],
+        // 'Last 30 Days': [moment().subtract('days', 29), moment()],
+        // 'Today': [moment(), moment()],
+        // 'This Month': [moment().startOf('month'), moment().endOf('month')],
+        // 'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
+        '明日中午': [
+            moment(),
+            moment().set('date',moment().get('date')+1).set('hour',12).set('minute',0).set('second',0)
+        ],
+        '一天': [moment(),moment().add(1,'days')],
+        '一周': [moment(),moment().add(7,'days')],
+        '一月': [moment(),moment().add(1,'month')]
+    };
+    options_daterange.locale= {
+        // direction: 'ltr',
+        // format: 'YYYY-MM-DD HH:mm',//无效// format: 'MM/DD/YYYY', // format: 'MM/DD/YYYY h:mm A', // format: 'MM/DD/YYYY HH:mm',
+        // separator: ' - ',//无效
+        applyLabel: '确定',
+        cancelLabel: '取消',
+        fromLabel: '起始',
+        toLabel: '结束',
+        customRangeLabel: '选取',
+        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+        monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        firstDay: 1
+    };
+    /*
+    $('#time-book-identity').daterangepicker({
+        "format": 'YYYY-MM-DD HH:mm',
+        "startDate": moment(),
+        "endDate": moment().add(1,'days'),
+        "minDate": moment(),
+        "maxDate": moment().add(1,'years'),
+        "timePicker": true,
+        "timePicker24Hour": true,
+        "timePickerIncrement": 30,//min
+        "dateLimit": {"days": 31},
 
+        "showCustomRangeLabel": false,
+        "alwaysShowCalendars": false,
+        "autoUpdateInput": false,
+        "locale":options_daterange.locale,
+        "ranges":options_daterange.ranges,
+        "opens": "right",
+        "drops": "down",
+        "showDropdowns": true,
+        "showWeekNumbers": true,
+        "buttonClasses": ['btn'],
+        "applyClass": 'btn-small btn-primary',
+        "cancelClass": 'btn-small'
+    });
+    $('#reportrange').daterangepicker(options_daterange, function(start, end, label) {
+        startTime=start.format('YYYY-MM-DD HH:mm');
+        endTime=end.format('YYYY-MM-DD HH:mm');
+        console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
+    });
+    */
+    $('#time-book-identity').daterangepicker(options_daterange,function (start, end, label) {
+        startTime=start.format('YYYY-MM-DD HH:mm');
+        endTime=end.format('YYYY-MM-DD HH:mm');
+        console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
+    });
+    $('#time-book-pwd').daterangepicker(options_daterange,function (start, end, label) {
+        startTime=start.format('YYYY-MM-DD HH:mm');
+        endTime=end.format('YYYY-MM-DD HH:mm');
+        console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
+    });
+
+    $('#submit-identity').click(function () {
+        name = $("form#form-identity input[name='name']").val();
+        cardNumb = $("form#form-identity input[name='cardNumb']").val();
+        var params = {
+            "ownerPhoneNumber": landlord.phoneNumber,
+            "gatewayCode": specificGatewayCode,
+            "lockCode": specificLockCode,
+            "name": name,
+            "cardNumb": cardNumb,
+            "startTime": startTime,
+            "endTime": endTime
+        };
+        $.ajax({
+            type: "POST",
+            url: "unlock/authUnlockById.do",
+            async: false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data: params,
+            dataType: 'json',
+            success: function (data, status, xhr) {
+                alert('data:' + data);
+            },
+            error: function (xhr, errorType, error) {
+                console.log('错误');
+            }
+        });
+    });
+    $('#submit-pwd').click(function () {
+        password = $("form#form-pwd input[name='password']").val();
+        var params = {
+            "ownerPhoneNumber": landlord.phoneNumber,
+            "gatewayCode": specificGatewayCode,
+            "lockCode": specificLockCode,
+            "password": password,
+            "startTime": startTime,
+            "endTime": endTime
+        };
+        $.ajax({
+            type: "POST",
+            url: "unlock/authUnlockByPwd.do",
+            async: false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+            data: params,
+            dataType: 'json',
+            success: function (data, status, xhr) {
+                alert('data:' + data);
+            },
+            error: function (xhr, errorType, error) {
+                console.log('错误');
+            }
+        });
+    });
+
+    //initialize the javascript
+    App.init();
 });
 
+var datatableSet = {
+        options : {
+            DEFAULT_OPTION : { //DataTables初始化选项
+                language: {
+                    "sProcessing":   "处理中...",
+                    "sLengthMenu":   "每页 _MENU_ 项",
+                    "sZeroRecords":  "没有匹配结果",
+                    "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                    "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "搜索:",
+                    "sUrl":          "",
+                    "sEmptyTable":     "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands":  ",",
+                    "oPaginate": {
+                        "sFirst":    "首页",
+                        "sPrevious": "上页",
+                        "sNext":     "下页",
+                        "sLast":     "末页",
+                        "sJump":     "跳转"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                },
+                autoWidth: false,   //禁用自动调整列宽
+                stripeClasses: ["odd", "even"],//为奇偶行加上样式，兼容不支持CSS伪类的场合
+                order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
+                processing: false,  //隐藏加载提示,自行处理
+                serverSide: true,   //启用服务器端分页
+                searching: false,    //禁用原生搜索
+                // bProcessing: true,
+                // bServerSide: true,
+                iDisplayLength : 5,//默认每页数量
+                bLengthChange : false, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
+                lengthMenu : [5,10,15],
+                ordering : true,
+                stateSave : true,
+                retrieve : true
+                //bPaginate: true, //翻页功能
+                //bFilter : true, //过滤功能
+                // bSort : false, //排序功能
+                //bInfo : true,//页脚信息
+                //bAutoWidth : true,//自动宽度
+                //bPaginate : true,
+                //bProcessing: true//服务器端进行分页处理的意思
+            },
+            COLUMN: {
+                CHECKBOX: { //复选框单元格
+                    className: "td-checkbox",
+                    orderable: false,
+                    width: "30px",
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return '<input type="checkbox" class="iCheck">';
+                    }
+                }
+            },
+            RENDER: {   //常用render可以抽取出来，如日期时间、头像等
+                ELLIPSIS: function (data, type, row, meta) {
+                    data = data||"";
+                    return '<span title="' + data + '">' + data + '</span>';
+                }
+            }
+        },
+        function_record : {
+            getQueryParams: function (data) {
+                var param = {};
+                //组装排序参数
+                if (data.order && data.order.length && data.order[0]) {
+                    switch (data.order[0].column) {
+                        case 0:
+                            param.orderColumn = "openMode";
+                            break;
+                        case 1:
+                            param.orderColumn = "timestamp";
+                            break;
+                        case 2:
+                            param.orderColumn = "credential";
+                            break;
+                        case 3:
+                            param.orderColumn = "name";
+                            break;
+                        default:
+                            param.orderColumn = "timestamp";
+                            break;
+                    }
+                    //排序方式asc或者desc
+                    param.orderDir = data.order[0].dir;
+                }
+                // param.deviceid = $("#deviceid-search").val();
+                // param.deviceip = $("#deviceip-search").val();
+                // param.status = $("#status-search").val();
+                // param.startTime=startTime;
+                // param.endTime=endTime;
+
+                param.ownerPhoneNumber=landlord.phoneNumber;
+                param.date=theTime;//yyyy_MM_dd格式的日期字符串.
+                param.gatewayCode=specificGatewayCode;
+                param.lockCode=specificLockCode;
+                //组装分页参数
+                param.startIndex = data.start;
+                param.pageSize = data.length;
+                param.draw = data.draw;
+                return param;
+            },
+            editItemInit: function (item) {
+                console.log(item);
+                //编辑方法
+                alert("编辑" + item.deviceid + "  " + item.timestamp);
+            },
+            deleteItem: function (item) {
+                console.log(item);
+                //删除
+                alert("删除" + item.deviceid + "  " + item.timestamp);
+            },
+            showItemDetail: function (item) {
+                //点击行
+                alert("点击" + item.deviceid + "  " + item.timestamp);
+            }
+        },
+        function_authorization : {
+            getQueryParams: function (data) {
+                var param = {};
+                //组装排序参数
+                if (data.order && data.order.length && data.order[0]) {
+                    switch (data.order[0].column) {
+                        case 0:
+                            param.orderColumn = "openMode";
+                            break;
+                        case 1:
+                            param.orderColumn = "credential";
+                            break;
+                        case 2:
+                            param.orderColumn = "name";
+                            break;
+                        case 3:
+                            param.orderColumn = "startTime";
+                            break;
+                        case 4:
+                            param.orderColumn = "endTime";
+                            break;
+                        default:
+                            param.orderColumn = "openMode";
+                            break;
+                    }
+                    //排序方式asc或者desc
+                    param.orderDir = data.order[0].dir;
+                }
+                param.ownerPhoneNumber=landlord.phoneNumber;
+                param.date=theTime;//yyyy_MM_dd格式的日期字符串.
+                param.gatewayCode=specificGatewayCode;
+                param.lockCode=specificLockCode;
+                //组装分页参数
+                param.startIndex = data.start;
+                param.pageSize = data.length;
+                param.draw = data.draw;
+                return param;
+            },
+            editItemInit: function (item) {
+                console.log(item);
+                //编辑方法
+                alert("编辑" + item.deviceid + "  " + item.timestamp);
+            },
+            deleteItem: function (item) {
+                console.log(item);
+                //删除
+                alert("删除" + item.deviceid + "  " + item.timestamp);
+            },
+            showItemDetail: function (item) {
+                //点击行
+                alert("点击" + item.deviceid + "  " + item.timestamp);
+            }
+        }
+    };
+/*
 var CONSTANT = {
     DATA_TABLES : {
         DEFAULT_OPTION : { //DataTables初始化选项
@@ -1228,7 +1548,7 @@ var userManage = {
         // param.startTime=startTime;
         // param.endTime=endTime;
 
-        // param.ownerPhoneNumber="18255683932";
+        param.ownerPhoneNumber=landlord.phoneNumber;
         param.date=theTime;//yyyy_MM_dd格式的日期字符串.
         param.gatewayCode=specificGatewayCode;
         param.lockCode=specificLockCode;
@@ -1253,6 +1573,7 @@ var userManage = {
         alert("点击" + item.deviceid + "  " + item.timestamp);
     }
 };
+*/
 /*
     //行点击事件
     $("tbody", $table).on("click", "tr", function (event) {
