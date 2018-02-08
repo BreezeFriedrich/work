@@ -23,6 +23,10 @@ var cardNumb;
 // var startTime;
 // var endTime;
 var password;
+var tableWrapper;
+var tableElement;
+var tableInstance;
+var countTable=0;
 
 var initializationTime = (new Date()).getTime();
 function showLeftTime() {
@@ -645,33 +649,7 @@ $(document).ready(function () {
             }
         });
     renderTable(theDate);
-/*
-    $.contextMenu({
-        // define which elements trigger this menu
-        selector: ".rightclick",
-        // define the elements of the menu
-        items: {
-            identity: {name: "身份证授权", callback: function(key, opt){
-                // $('#reply-identity').niftyModal();
-                console.log($(this).parent("tr").attr("roomid"));
-            }},
-            password: {name: "密码授权", callback: function(key, opt){
-                // $('#reply-password').niftyModal();
-            }},
-            unlocking: {name: "开锁信息", callback: function(key, opt){
-                // $('#reply-unlocking').niftyModal();
-            }}
-        },
-        callback: function(itemKey, opt){
-            // Alert the key of the item and the trigger element's id.
-            // console.log("Clicked on " + itemKey + " on element " + opt.$trigger.attr("id"));
-            console.log("Clicked on " + itemKey + " on element " + opt.$trigger.parent("tr").attr("roomid"));
-            console.log($(this).parent("tr").attr("roomid"));
-            // Do not close the menu after clicking an item
-            return false;
-        }
-    });
-*/
+
     $.contextMenu({
         selector: ".cd-unlockrecord:not(.cd-booked)",
         items: {
@@ -679,12 +657,13 @@ $(document).ready(function () {
                 name: "入住记录", callback: function(key, opt){
                     $('#md-record').niftyModal();
                     getCellParam($(this));
+                    /*
                     var $table = $("#table-unlockrecord");
                     var _table = $table.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
                         ajax: function (data, callback, settings) {
                             //封装请求参数
                             // param = datatableSet.getQueryCondition(data);
-                            param = datatableSet.function_authorization.getQueryParams(data);
+                            param = datatableSet.function_record.getQueryParams(data);
                             $.ajax({
                                 type: "POST",
                                 url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
@@ -761,6 +740,9 @@ $(document).ready(function () {
                     // $("#btn_search").click(function () {
                     //     _table.draw();
                     // });
+                    */
+                    tableElement=$("#table-unlockrecord");
+                    datatableSet.function_record.drawtable(tableElement);
                 }
             }
         }
@@ -786,88 +768,8 @@ $(document).ready(function () {
                 name: "开锁信息", callback: function(key, opt){
                     $('#md-authorization').niftyModal();
                     getCellParam($(this));
-                    var $table = $("#table-authorization");
-                    var _table = $table.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
-                        ajax: function (data, callback, settings) {
-                            //封装请求参数
-                            // param = datatableSet.getQueryCondition(data);
-                            param = datatableSet.function_authorization.getQueryParams(data);
-                            $.ajax({
-                                type: "POST",
-                                url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
-                                cache: false,  //禁用缓存
-                                data: param,  //传入组装的参数
-                                dataType: "json",
-                                success: function (data) {
-                                    var returnData = {};
-                                    if(data.success){
-                                        if(data.biz.code===0){
-                                            var result=data.biz.data;
-                                            returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
-                                            returnData.recordsTotal = result.total;//总记录数
-                                            returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
-                                            returnData.data = result.pageData;
-                                        }else{
-                                            console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
-                                        }
-                                    }else{
-                                        console.log("errmsg:"+data.errmsg);
-                                    }
-                                    //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
-                                    //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
-                                    if(null===returnData.data){
-                                        returnData.data={};
-                                    }
-                                    callback(returnData);
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                    alert("查询失败");
-                                }
-                            });
-                        },
-                        //绑定数据
-                        columns: [
-                            {
-                                data: "openMode",
-                                orderable: false,
-                                render: function (data, type, row, meta) {
-                                    if(1==data){
-                                        return "身份证开锁"
-                                    }else if(2==data){
-                                        return "密码开锁"
-                                    }else if(3==data){
-                                        return "门卡开锁"
-                                    }else{
-                                        return null;
-                                    }
-                                }
-                            },{
-                                data: "timestamp",
-                                render: datatableSet.options.RENDER.ELLIPSIS//alt效果
-                            },{
-                                data: "credential"
-                            },{
-                                data: "name"
-                            }
-                            // ,{
-                            //     data: "status",
-                            //     render: function (data, type, row, meta) {
-                            //         return (data == 0 ? "模块正常" :  "模块异常");
-                            //     }
-                            // }
-                        ],
-                        "columnDefs": [
-                            {
-                                "defaultContent": "",
-                                "targets": "_all"
-                            }
-                        ],
-                        "drawCallback": function (settings) {}
-                    })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
-                    _table.draw();
-                    // $("#btn_search").click(function () {
-                    //     _table.draw();
-                    // });
+                    tableElement=$("#table-authorization");
+                    datatableSet.function_authorization.drawtable(tableElement);
                 }
             }
         }
@@ -875,88 +777,11 @@ $(document).ready(function () {
     $.contextMenu({
         selector: ".cd-unlockrecord.cd-booked",
         items: {
-            ticket: {name: "入住记录", callback: function(key, opt){
+            record: {name: "入住记录", callback: function(key, opt){
                 $('#md-record').niftyModal();
                 getCellParam($(this));
-                var $table = $("#table-unlockrecord");
-                var _table = $table.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
-                    ajax: function (data, callback, settings) {
-                        //封装请求参数
-                        // param = datatableSet.getQueryCondition(data);
-                        param = datatableSet.function_authorization.getQueryParams(data);
-                        $.ajax({
-                            type: "POST",
-                            url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
-                            cache: false,  //禁用缓存
-                            data: param,  //传入组装的参数
-                            dataType: "json",
-                            success: function (data) {
-                                var returnData = {};
-                                if(data.success){
-                                    if(data.biz.code===0){
-                                        var result=data.biz.data;
-                                        returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
-                                        returnData.recordsTotal = result.total;//总记录数
-                                        returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
-                                        returnData.data = result.pageData;
-                                    }else{
-                                        console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
-                                    }
-                                }else{
-                                    console.log("errmsg:"+data.errmsg);
-                                }
-                                //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
-                                //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
-                                if(null===returnData.data){
-                                    returnData.data={};
-                                }
-                                callback(returnData);
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                alert("查询失败");
-                            }
-                        });
-                    },
-                    //绑定数据
-                    columns: [
-                        {
-                            data: "openMode",
-                            orderable: false,
-                            render: function (data, type, row, meta) {
-                                if(1==data){
-                                    return "身份证开锁"
-                                }else if(2==data){
-                                    return "密码开锁"
-                                }else if(3==data){
-                                    return "门卡开锁"
-                                }else{
-                                    return null;
-                                }
-                            }
-                        },{
-                            data: "timestamp",
-                            render: datatableSet.options.RENDER.ELLIPSIS//alt效果
-                        },{
-                            data: "credential"
-                        },{
-                            data: "name"
-                        }
-                        // ,{
-                        //     data: "status",
-                        //     render: function (data, type, row, meta) {
-                        //         return (data == 0 ? "模块正常" :  "模块异常");
-                        //     }
-                        // }
-                    ],
-                    "columnDefs": [
-                        {
-                            "defaultContent": "",
-                            "targets": "_all"
-                        }
-                    ],
-                    "drawCallback": function (settings) {}
-                })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
-                _table.draw();
+                tableElement=$("#table-unlockrecord");
+                datatableSet.function_record.drawtable(tableElement);
             }},
             identity: {name: "身份证授权", callback: function(key, opt){
                 $('#md-identity').niftyModal();
@@ -1378,6 +1203,94 @@ var datatableSet = {
                 param.draw = data.draw;
                 return param;
             },
+            drawtable: function (element) {
+                //element代表table元素. element = $("#table-unlockrecord");
+                if(undefined!=tableInstance){
+                    tableInstance.destroy();
+                }
+                tableInstance = element.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
+                    ajax: function (data, callback, settings) {
+                        //封装请求参数
+                        // param = datatableSet.getQueryCondition(data);
+                        param = datatableSet.function_record.getQueryParams(data);
+                        console.log('contextMenu --> unlockrecord index:'+countTable++);
+                        $.ajax({
+                            type: "POST",
+                            url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
+                            cache: false,  //禁用缓存
+                            data: param,  //传入组装的参数
+                            dataType: "json",
+                            success: function (data) {
+                                var returnData = {};
+                                if(data.success){
+                                    if(data.biz.code===0){
+                                        var result=data.biz.data;
+                                        returnData.draw = result.draw;//后台返回draw计数器转int,防止跨站脚本(XSS)攻击
+                                        returnData.recordsTotal = result.total;//总记录数
+                                        returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
+                                        returnData.data = result.pageData;
+                                    }else{
+                                        console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                    }
+                                }else{
+                                    console.log("errmsg:"+data.errmsg);
+                                }
+                                //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                                //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                                if(null===returnData.data){
+                                    returnData.data={};
+                                }
+                                callback(returnData);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert("查询失败");
+                            }
+                        });
+                    },
+                    //绑定数据
+                    columns: [
+                        {
+                            data: "openMode",
+                            orderable: false,
+                            render: function (data, type, row, meta) {
+                                if(1==data){
+                                    return "身份证开锁"
+                                }else if(2==data){
+                                    return "密码开锁"
+                                }else if(3==data){
+                                    return "门卡开锁"
+                                }else{
+                                    return null;
+                                }
+                            }
+                        },{
+                            data: "timestamp",
+                            render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                        },{
+                            data: "credential"
+                        },{
+                            data: "name"
+                        }
+                        // ,{
+                        //     data: "status",
+                        //     render: function (data, type, row, meta) {
+                        //         return (data == 0 ? "模块正常" :  "模块异常");
+                        //     }
+                        // }
+                    ],
+                    "columnDefs": [
+                        {
+                            "defaultContent": "",
+                            "targets": "_all"
+                        }
+                    ],
+                    "drawCallback": function (settings) {}
+                })).api();//此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
+                // tableInstance.draw();
+                // $("#btn_search").click(function () {
+                //     tableInstance.draw();
+                // });
+            },
             editItemInit: function (item) {
                 console.log(item);
                 //编辑方法
@@ -1425,25 +1338,128 @@ var datatableSet = {
                 param.date=theTime;//yyyy_MM_dd格式的日期字符串.
                 param.gatewayCode=specificGatewayCode;
                 param.lockCode=specificLockCode;
-                //组装分页参数
                 param.startIndex = data.start;
                 param.pageSize = data.length;
                 param.draw = data.draw;
                 return param;
             },
-            editItemInit: function (item) {
-                console.log(item);
-                //编辑方法
-                alert("编辑" + item.deviceid + "  " + item.timestamp);
+            drawtable: function (element) {
+                tableWrapper= $('#table-authorization').parent('div .content').eq(0);
+                if(undefined!=tableInstance){
+                    tableInstance.destroy();
+                }
+                tableInstance = element.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
+                    ajax: function (data, callback, settings) {
+                        tableWrapper.spinModal();
+                        param = datatableSet.function_authorization.getQueryParams(data);
+                        console.log('contextMenu --> authorization index:'+countTable++);
+                        $.ajax({
+                            type: "POST",
+                            url: projectPath+'/unlock/getDailyUnlockAuthorizationRecord.do',
+                            cache: false,
+                            data: param,
+                            dataType: "json",
+                            success: function (data) {
+                                setTimeout(function () {
+                                    var returnData = {};
+                                    if(data.success){
+                                        if(data.biz.code===0){
+                                            var result=data.biz.data;
+                                            returnData.draw = result.draw;
+                                            returnData.recordsTotal = result.total;
+                                            returnData.recordsFiltered = result.total;
+                                            returnData.data = result.pageData;
+                                        }else{
+                                            console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                        }
+                                    }else{
+                                        console.log("errmsg:"+data.errmsg);
+                                    }
+                                    //调用DataTables提供的callback方法,代表数据已封装完成并传回DataTables进行渲染. 此时的数据需确保正确无误,异常判断应在执行此回调前自行处理完毕.
+                                    if(null===returnData.data){
+                                        returnData.data={};
+                                    }
+                                    tableWrapper.spinModal(false);
+                                    callback(returnData);
+                                },200);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert("查询失败");
+                                tableWrapper.spinModal(false);
+                            }
+                        });
+                    },
+                    //绑定数据
+                    columns: [
+                        {
+                            data: "openMode",
+                            orderable: false,
+                            render: function (data, type, row, meta) {
+                                if(1==data){
+                                    return "身份证"
+                                }else if(2==data){
+                                    return "密码"
+                                }else if(3==data){
+                                    return "门卡"
+                                }else{
+                                    return null;
+                                }
+                            }
+                        },{
+                            data: "credential"
+                        },{
+                            data: "name"
+                        },{
+                            data: "startTime",
+                            render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                        },{
+                            data: "endTime",
+                            render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                        },
+                        {
+                            // className : "td-operation",
+                            data: null,
+                            defaultContent:"",
+                            orderable : false,
+                            width : "50px"
+                        }
+                    ],
+                    "columnDefs": [
+                        {
+                            "defaultContent": "",
+                            "targets": "_all"
+                        }
+                    ],
+                    "createdRow": function ( row, data, index ) {
+                        //行渲染回调,在这里可以对该行dom元素进行任何操作
+                        //给当前行加样式
+                        if (data.role) {
+                            $(row).addClass("info");
+                        }
+                        //给当前行某列加样式
+                        // $('td', row).eq(3).addClass(data.status?"text-success":"text-error");
+                        // //不使用render，改用jquery文档操作呈现单元格
+                        // var $btnDel = $('<button type="button" class="btn btn-small btn-danger btn-del">删除</button>');
+                    // '<a class="label label-danger btn btn-danger btn-xs" onclick="delJunior(13998892002);"><i class="fa fa-times"></i></a>
+                        var $btnDel = $('<button type="button" class="btn btn-xs btn-danger btn-del">删除</button>');
+                        $('td', row).eq(5).append($btnDel);
+                    },
+                    "drawCallback": function (settings) {}
+                })).api();
+                // tableInstance.draw();
+                tableElement.on("click", ".btn-del", function () {
+                    //点击删除按钮
+                    var row = tableInstance.row($(this).closest('tr'));
+                    var item = row.data();
+                    datatableSet.function_authorization.deleteItem(item);
+                    row.remove().draw(false);
+                });
+                console.log('table count:'+countTable);
             },
             deleteItem: function (item) {
                 console.log(item);
                 //删除
                 alert("删除" + item.deviceid + "  " + item.timestamp);
-            },
-            showItemDetail: function (item) {
-                //点击行
-                alert("点击" + item.deviceid + "  " + item.timestamp);
             }
         }
     };

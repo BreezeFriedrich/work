@@ -2413,7 +2413,7 @@
     </div>
 </div>
 -->
-<div class="md-modal colored-header custom-width md-effect-9" id="md-authorization" style="width: 880px;">
+<div class="md-modal colored-header custom-width md-effect-9" id="md-authorization" style="width: 930px;">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
@@ -2430,6 +2430,7 @@
                         <th width="100px">开锁人</th>
                         <th width="200px">生效时间</th>
                         <th width="200px">失效时间</th>
+                        <th width="50px">操作</th>
                     </tr>
                     </thead>
                 </table>
@@ -2626,6 +2627,7 @@
     <%--$('div.rightclick').contextMenu('myMenu1',{});--%>
 <%--</script>--%>
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
 <script type="text/javascript" src="resources/js/house_landlord.js"></script>
 </body>
 

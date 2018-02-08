@@ -6,11 +6,12 @@ package com.yishu.pojo;
  * @since JDK1.7
  */
 public class UnlockAuthorizationTableData {
-    private int openMode;
+    private int openMode;//与开锁记录对应 1 身份证开锁, 2 password开锁, 3 门卡, 4 护照, 5 指纹.
     private String credential;
     private String name;
     private String startTime;
     private String endTime;
+    private String serviceNumb;
 
     public int getOpenMode() {
         return openMode;
@@ -50,5 +51,13 @@ public class UnlockAuthorizationTableData {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getServiceNumb() {
+        return serviceNumb;
+    }
+
+    public void setServiceNumb(String serviceNumb) {
+        this.serviceNumb = serviceNumb;
     }
 }

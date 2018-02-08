@@ -10,6 +10,7 @@ import com.yishu.pojo.*;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -26,6 +27,6 @@ public interface IUnlockService {
     public UnlockAuthorization getUnlockAuthorization(String ownerPhoneNumber, String gatewayCode, String lockCode);
     public Authinfo getUnlockAuthorizationDailyArr2(UnlockAuthorization unlockAuthorization, long startTime, long endTime) throws ParseException;
     public Authinfo getUnlockAuthorizationDailyArr(UnlockAuthorization unlockAuthorization, Date theDate) throws ParseException;
-    public Authinfo getDailyUnlockAuthorization(UnlockAuthorization unlockAuthorization,Date theDate);
+    public UnlockAuthorization filterUnlockAuthorization(UnlockAuthorization unlockAuthorization,Map<String,Object> filterparamMap);
     public List<UnlockAuthorizationTableData> convertUnlockAuthorizationToTabularData(UnlockAuthorization unlockAuthorization);
 }
