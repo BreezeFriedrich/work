@@ -1,7 +1,6 @@
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-// var userHierarchy;
-// var subordinates;
+
 var district;
 var landlords;
 var landlord;
@@ -9,7 +8,8 @@ var locks;
 var lock;
 var dateArr=new Array;
 var dateStrArr=new Array;
-var today,theDate,theTime,newDate;
+var theadDateStrArr=new Array;
+var today,theDate,theTime;
 var authinfo;
 var recordinfo;
 var startTime;
@@ -18,22 +18,10 @@ var landlordPhoneNumber;
 var specificGatewayCode;
 var specificLockCode;
 var index;
+var html;
 var fixedTable;
 
-function showLeftTime() {
-    var now = new Date();
-    var year = now.getFullYear();
-    var week = now.getDay();
-    var month = now.getMonth()+1;
-    var day = now.getDate();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
-    // document.all.show3.innerHTML = year + "-" + month + "-" + day;
-    //一秒刷新一次显示时间
-    // var timeID = setTimeout(showLeftTime, 1000);
-}
-function getZeroOfDate(date) {
+function getStartOfDate(date) {
     date.setHours(0);
     date.setMinutes(0);
     date.setSeconds(0);
@@ -43,27 +31,38 @@ function getZeroOfDate(date) {
 function getDateStr(date) {
     return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
 }
+function getTheadDateStr(date) {
+    var year,month,day;
+    year=date.getFullYear();
+    month=date.getMonth()+1;
+    day=date.getDate();
+    if(month<10){month='0'+month}
+    if(day<10){day='0'+day}
+    if(month==1 && day==1){//01==1为true,只能用双等于号.
+        return year+'-'+month+'-'+day;
+    }
+    return month+'-'+day;
+}
 function getDateArr(date) {
+    date=getStartOfDate(date);
     dateArr.length=0;
     dateStrArr.length=0;
-    (function () {
-        var newDate;
-        for (var i=-15;i<16;i++){
-            newDate=new Date(date.getTime() + i*24*60*60*1000);
-            dateArr.push(newDate);
-            dateStrArr.push(getDateStr(newDate));
-        }
-    })()
-    // console.log("dateArr:"+dateArr);
-    // console.log("dateStrArr:"+dateStrArr);
+    theadDateStrArr.length=0;
+    var newDate;
+    for (var i=-15;i<16;i++){
+        newDate=new Date(date.getTime() + i*24*60*60*1000);
+        dateArr.push(newDate);
+        dateStrArr.push(getDateStr(newDate));
+        theadDateStrArr.push(getTheadDateStr(newDate));
+    }
 }
 function getLocks() {
     $.ajax({
         type:"POST",
         url:"user/getSubordinateHierarchyTillLock.do",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:false,//同步，即浏览器等待服务器返回数据再执行下一步.
         data:{},
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        dataType:'json',
         success:function(data,status,xhr){
             district=data;
             landlords=district.subordinateList;
@@ -127,18 +126,74 @@ function getLocks() {
 function showNavSide() {
     (function () {
         var landlord;
-        var html_nav_left = '';
-        html_nav_left += '<li><a><i class="fa inco-ctiy"></i><span class="selected">'+district.name+'</span></a></li>';
+        html = '';
+        html += '<li><a><i class="fa inco-ctiy"></i><span class="selected">'+district.name+'</span></a></li>';
         for(var i in landlords){
             landlord=landlords[i];
-            html_nav_left += '<li><a href="#"><i class="fa inco-map"></i><span>'+landlord.name+'</span></a></li>';
+            // html += '<li><a href="#"><i class="fa inco-map"></i><span>'+landlord.name+'</span></a></li>';
+            html += '<li><a><i class="fa inco-map"></i><span>'+landlord.name+'</span></a></li>';
         }
-        $('ul.cl-vnavigation').append(html_nav_left);
+        $('ul.cl-vnavigation').append(html);
     })()
+}
+function renderTableHead(date) {
+    getDateArr(date);
+    //表格标题-时间重设 function resetTableHeaderTxt
+    var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
+    var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");
+    for(var i=0;i<31;i++){
+        DIV_header[i].innerText=theadDateStrArr[i];
+        TH_header.eq(i+1).attr("time",dateStrArr[i]);
+    }
+}
+function renderTableBody() {
+    //表格数据行-添加数据
+    fixedTable.addRow(function (){
+        html = '';
+        for(var k in landlords){
+            landlord=landlords[k];
+            locks=landlord.subordinateList;
+            for(var j=0,length=locks.length;j<length;j++){
+                lock=locks[j];
+                html += '<tr landlord="'+landlord.phoneNumber+'" gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
+                html +=     '<td><div class="table-hight1 table-width210 table-butstyle">'+lock.lockName+'</div></td>';
+                for(var i=0; i<31; i++){
+                    // html += '<td><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
+                    html += '<td><div class="cd table-hight1 table-width140"></div></td>';
+                }
+                html += '</tr>';
+            }
+        }
+        return html;
+    });
+}
+function renderFixedColumn(date) {//固定列.
+        //表格标题栏时间控件label值.()
+        if($('.current-date label').length>1){
+            $('.current-date label')[1].innerText = getDateStr(date);
+        }
+
+        var DIV;
+        DIV=$(".fixed-table_fixed-left tbody tr td div");
+        DIV.removeClass("table-width210");
+        DIV.addClass("table-width105");
+        var locksLength;
+        var lineHeight;
+        var HTML_landlord;
+        var TR_fixedlefttbody;
+        for(var k in landlords){
+            landlord=landlords[k];
+            locks=landlord.subordinateList;
+            locksLength=locks.length;
+            lineHeight=44*locksLength;
+            HTML_landlord='<td rowspan="'+locksLength+'"><div style="line-height: '+lineHeight+'px" class="table-width105 table-butstyle">'+landlord.name+'</div></td>';
+            TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"]");
+            TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
+        }
 }
 function renderRow(landlords,date) {
     (function () {
-        var time1=new Date();
+        // var time1=new Date();
         var tr_num=0;
         for(var k in landlords){
             landlord=landlords[k];
@@ -206,71 +261,18 @@ function renderRow(landlords,date) {
                 tr_num=tr_num+1;
             }
         }
-        var time2=new Date();
-        console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
+        // var time2=new Date();
+        // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
     })();
 }
 function renderTable(date) {
-    // getDateArr(date);
-    //表格标题-时间重设 function resetTableHeaderTxt
-    var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
-    var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");
-    for(var i=0;i<31;i++){
-        DIV_header[i].innerText=dateStrArr[i];
-        TH_header.eq(i+1).attr("time",dateStrArr[i]);
-    }
-    //表格数据行-添加数据
-    fixedTable.addRow(function (){
-        var html = '';
-        for(var k in landlords){
-            console.log('k : '+k);
-            landlord=landlords[k];
-            locks=landlord.subordinateList;
-            for(var j=0,length=locks.length;j<length;j++){
-                lock=locks[j];
-                html += '<tr landlord="'+landlord.phoneNumber+'" gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
-                // html +=     '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+landlord.name+'</div></td>';
-                html +=     '<td><div class="table-hight1 table-width210 table-butstyle">'+lock.lockName+'</div></td>';
-                for(var i=0; i<dateArr.length; i++){
-                    html += '<td><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
-                }
-                html += '</tr>';
-            }
-        }
-        return html;
-    });
-    //固定列.
-    (function () {
-        var DIV;
-        DIV=$(".fixed-table_fixed-left tbody tr td div");
-        DIV.removeClass("table-width210");
-        DIV.addClass("table-width105");
-        var locksLength;
-        var lineHeight;
-        var HTML_landlord;
-        var TR_fixedlefttbody;
-        for(var k in landlords){
-            landlord=landlords[k];
-            locks=landlord.subordinateList;
-            locksLength=locks.length;
-            lineHeight=44*locksLength;
-            HTML_landlord='<td rowspan="'+locksLength+'"><div style="line-height: '+lineHeight+'px" class="table-width105 table-butstyle">'+landlord.name+'</div></td>';
-            TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"]");
-            TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
-        }
-    })();
-    //表格标题栏时间控件label值.
-    if($('.current-date label').length>1){
-        $('.current-date label')[1].innerText = getDateStr(date);
-    }
+    renderTableHead(date);
+    renderTableBody();
+    renderFixedColumn(date);
     renderRow(landlords,date);
 }
-
 //获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
 function getCellParam(element) {
-    // var roomid=element.parent("tr").attr("id").split("-");
-    // specificGatewayCode=roomid[0];
-    // specificLockCode=roomid[1];
     landlordPhoneNumber=element.parent("tr").attr("landlord");
     specificGatewayCode=element.parent("tr").attr("gatewayid");
     specificLockCode=element.parent("tr").attr("lockid");
@@ -283,8 +285,6 @@ $(document).ready(function(){
     $(".navbar-collapse ul:first li:eq(3)").addClass("active");
     getLocks();
     showNavSide();
-    theDate=getZeroOfDate(new Date());
-    getDateArr(theDate);
     var html='';
     // html += '<th class="table-width190 table-butstyle">';
     // html +=     '<div class="table-header-hight58 table-cell table-width190 table-butstyle">';
@@ -295,29 +295,14 @@ $(document).ready(function(){
     html +=         '</div>';
     // html +=     '</div>';
     // html += '</th>';
-
-    // var html='';
-    // html += '<th colspan="2">';
-    // html +=     '<div class="table-time table-header-hight58 table-butstyle">';
-    // html +=         '<div class="current-date">当前日期：<label id="show3" class="time3">'+today+'</label></div>';
-    // html +=         '<div class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">';
-    // html +=             '<input class="form-control" size="16" type="text" value="" readonly style="display:none">';
-    // html +=             '<span class="input-group-addon btn btn-primary calendar date-selection-span"><span class="glyphicon glyphicon-th date-selection-img"></span></span>';
-    // html +=         '</div>';
-    // html +=     '</div>';
-    // html += '</th>';
-
     fixedTable = new FixedTable({
         wrap : document.getElementsByClassName("container-table")[0],
         type : "row-col-fixed",
-        // extraClass: ["table-width140","table-time","table-header-hight58","table-butstyle","current-date","input-group","date","datetime","date-selection"],
         extraClass: "",
         maxHeight : true,
         fields : [
             {
                 width: "210px",
-//                field: '<th   class="table-width2" ><div class="table-time table-cell table-header-hight58 table-width2 table-butstyle">当前日期：'+today+'</div></th>',
-//                 field: html,
                 field: '<th class="table-width210"><div class="table-header-hight58 table-cell table-width210 table-butstyle">'+html+'</div></th>',
                 htmlDom:true,
                 fixed:true,
@@ -454,403 +439,16 @@ $(document).ready(function(){
         tableDefaultContent: "<div>我是一个默认的div</div>"
     });
 
-
     $('#datetimepicker').on('changeDate', function(ev){
-            if (ev.date.valueOf() !== theDate.getTime()+8*60*60*1000){
-                console.log('日期改变');
-                theDate=new Date(ev.date.valueOf());
-                theDate.setHours(0);
-                theDate.setMinutes(0);
-                theDate.setSeconds(0);
-                theDate.setMilliseconds(0);
-                getDateArr(theDate);
-                fixedTable.empty();
-                renderTable(theDate);
-            }
-        });
-    renderTable(theDate);
-    $.contextMenu({
-        selector: ".cd-unlockrecord:not(.cd-booked)",
-        items: {
-            ticket: {name: "入住记录", callback: function(key, opt){
-                $('#reply-ticket').niftyModal();
-                getCellParam($(this));
-                var $table = $("#table-unlockrecord");
-                var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
-                    ajax: function (data, callback, settings) {
-                        param = userManage.getQueryCondition(data);
-                        $.ajax({
-                            type: "POST",
-                            url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
-                            cache: false,
-                            data: param,
-                            dataType: "json",
-                            success: function (data) {
-                                var returnData = {};
-                                if(data.success){
-                                    if(data.biz.code===0){
-                                        var result=data.biz.data;
-                                        returnData.draw = result.draw;
-                                        returnData.recordsTotal = result.total;
-                                        returnData.recordsFiltered = result.total;
-                                        returnData.data = result.pageData;
-                                    }else{
-                                        console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
-                                    }
-                                }else{
-                                    console.log("errmsg:"+data.errmsg);
-                                }
-                                //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染.此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
-                                if(null===returnData.data){
-                                    returnData.data={};
-                                }
-                                callback(returnData);
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                alert("查询失败");
-                            }
-                        });
-                    },
-                    columns: [
-                        {
-                            data: "openMode",
-                            orderable: false,
-                            render: function (data, type, row, meta) {
-                                if(1==data){
-                                    return "身份证开锁"
-                                }else if(2==data){
-                                    return "密码开锁"
-                                }else if(3==data){
-                                    return "门卡开锁"
-                                }else{
-                                    return null;
-                                }
-                            }
-                        },{
-                            data: "timestamp",
-                            render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
-                        },{
-                            data: "credential"
-                        },{
-                            data: "name"
-                        }
-                    ],
-                    "columnDefs": [
-                        {
-                            "defaultContent": "",
-                            "targets": "_all"
-                        }
-                    ],
-                    "drawCallback": function (settings) {}
-                })).api();
-                _table.draw();
-            }}
-        }
+        theDate=new Date(ev.date.valueOf());
+        fixedTable.empty();
+        renderTable(theDate);
     });
-    $.contextMenu({
-        selector: ".cd-booked:not(.cd-unlockrecord)",
-        items: {
-            identity: {name: "身份证授权", callback: function(key, opt){
-                $('#reply-identity').niftyModal();
-                console.log($(this).parent("tr").attr("id"));
-            }},
-            password: {name: "密码授权", callback: function(key, opt){
-                $('#reply-password').niftyModal();
-            }},
-            unlocking: {name: "开锁信息", callback: function(key, opt){
-                $('#reply-unlocking').niftyModal();
-            }}
-        }
-    });
-    $.contextMenu({
-        selector: ".cd-unlockrecord.cd-booked",
-        items: {
-            ticket: {name: "入住记录", callback: function(key, opt){
-                $('#reply-ticket').niftyModal();
-                getCellParam($(this));
-                var $table = $("#table-unlockrecord");
-                var _table = $table.dataTable($.extend(true, {}, CONSTANT.DATA_TABLES.DEFAULT_OPTION, {
-                    ajax: function (data, callback, settings) {
-                        param = userManage.getQueryCondition(data);
-                        $.ajax({
-                            type: "POST",
-                            url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
-                            cache: false,
-                            data: param,
-                            dataType: "json",
-                            success: function (data) {
-                                var returnData = {};
-                                if(data.success){
-                                    if(data.biz.code===0){
-                                        var result=data.biz.data;
-                                        returnData.draw = result.draw;
-                                        returnData.recordsTotal = result.total;
-                                        returnData.recordsFiltered = result.total;
-                                        returnData.data = result.pageData;
-                                    }else{
-                                        console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
-                                    }
-                                }else{
-                                    console.log("errmsg:"+data.errmsg);
-                                }
-                                if(null===returnData.data){
-                                    returnData.data={};
-                                }
-                                callback(returnData);
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                alert("查询失败");
-                            }
-                        });
-                    },
-                    columns: [
-                        {
-                            data: "openMode",
-                            orderable: false,
-                            render: function (data, type, row, meta) {
-                                if(1==data){
-                                    return "身份证开锁"
-                                }else if(2==data){
-                                    return "密码开锁"
-                                }else if(3==data){
-                                    return "门卡开锁"
-                                }else{
-                                    return null;
-                                }
-                            }
-                        },{
-                            data: "timestamp",
-                            render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//alt效果
-                        },{
-                            data: "credential"
-                        },{
-                            data: "name"
-                        }
-                    ],
-                    "columnDefs": [
-                        {
-                            "defaultContent": "",
-                            "targets": "_all"
-                        }
-                    ],
-                    "drawCallback": function (settings) {}
-                })).api();
-                _table.draw();
-            }},
-            identity: {name: "身份证授权", callback: function(key, opt){
-                $('#reply-identity').niftyModal();
-                console.log($(this).parent("tr").attr("id"));
-            }},
-            password: {name: "密码授权", callback: function(key, opt){
-                $('#reply-password').niftyModal();
-            }},
-            unlocking: {name: "开锁信息", callback: function(key, opt){
-                $('#reply-unlocking').niftyModal();
-            }}
-        }
+    renderTable(new Date());
+
+    $("ul.cl-vnavigation li a:not(first)").click(function(){
+        alert($(this));
     });
 
-    //initialize the javascript
     App.init();
-    //App.dashBoard();
-    /*Sparklines*/
-    $(".spk1").sparkline([2,4,3,6,7,5,8,9,4,2,6,8,8,9,10], { type: 'bar', width: '80px', barColor: '#4A8CF7'});
-    $(".spk2").sparkline([4,6,7,7,4,3,2,1,4,4 ,5,6,5], { type: 'discrete', width: '80', lineColor: '#4A8CF7',thresholdValue: 4,thresholdColor: '#ff0000'});
-    $(".spk4").sparkline([2,4,3,6,7,5,8,9,4,2,10], { type: 'bar', width: '80px', height: '30px',barColor: '#EA6153'});
-    $(".spk5").sparkline([5,3,5,6,5,7,4,8,6,9,8], { type: 'bar', width: '80px', height: '30px',barColor: '#4AA3DF'});
-
-    $(".spk3").sparkline([5,6,7,9,9,5,3,2,2,4,6,7], {
-        type: 'line',
-        lineColor: '#258FEC',
-        fillColor: '#4A8CF7',
-        spotColor: false,
-        width: '80px',
-        minSpotColor: false,
-        maxSpotColor: false,
-        highlightSpotColor: '#1e7ac6',
-        highlightLineColor: '#1e7ac6'});
-
-    //Maps
-    $('#world-map').vectorMap({
-        map: 'world_mill_en',
-        backgroundColor: 'transparent',
-        regionStyle: {
-            initial: {
-                fill: '#38c3c1',
-            },
-            hover: {
-                "fill-opacity": 0.8
-            }
-        },
-        markerStyle:{
-            initial:{
-                r: 10
-            },
-            hover: {
-                r: 12,
-                stroke: 'rgba(255,255,255,0.8)',
-                "stroke-width": 4
-            }
-        },
-        markers: [
-            {latLng: [41.90, 12.45], name: '1.512 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-            {latLng: [1.3, 103.8], name: '940 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-            {latLng: [51.511214, -0.119824], name: '530 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-            {latLng: [40.714353, -74.005973], name: '340 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-            {latLng: [-22.913395, -43.200710], name: '1.800 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}}
-        ]
-    });
-
-    /*Pie Chart*/
-    var data = [
-        { label: "Google", data: 50},
-        { label: "Dribbble", data: 15},
-        { label: "Twitter", data: 12},
-        { label: "Youtube", data: 14},
-        { label: "Microsoft", data: 14}
-    ];
-
-    $.plot('#ticket-chart', data, {
-        series: {
-            pie: {
-                show: true,
-                innerRadius: 0.5,
-                shadow:{
-                    top: 5,
-                    left: 15,
-                    alpha:0.3
-                },
-                stroke:{
-                    width:0
-                },
-                label: {
-                    show: false
-                },
-                highlight:{
-                    opacity: 0.08
-                }
-            }
-        },
-        grid: {
-            hoverable: true,
-            clickable: true
-        },
-        colors: ["#5793f3", "#19B698","#dd4444","#fd9c35","#fec42c","#d4df5a","#5578c2"],
-        legend: {
-            show: false
-        }
-    });
-
-    $("table td .legend").each(function(){
-        var el = $(this);
-        var color = el.data("color");
-        el.css("background",color);
-    });
-
 });
-
-var CONSTANT = {
-    DATA_TABLES : {
-        DEFAULT_OPTION : {
-            language: {
-                "sProcessing":   "处理中...",
-                "sLengthMenu":   "每页 _MENU_ 项",
-                "sZeroRecords":  "没有匹配结果",
-                "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
-                "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
-                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-                "sInfoPostFix":  "",
-                "sSearch":       "搜索:",
-                "sUrl":          "",
-                "sEmptyTable":     "表中数据为空",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands":  ",",
-                "oPaginate": {
-                    "sFirst":    "首页",
-                    "sPrevious": "上页",
-                    "sNext":     "下页",
-                    "sLast":     "末页",
-                    "sJump":     "跳转"
-                },
-                "oAria": {
-                    "sSortAscending":  ": 以升序排列此列",
-                    "sSortDescending": ": 以降序排列此列"
-                }
-            },
-            autoWidth: false,   //禁用自动调整列宽
-            stripeClasses: ["odd", "even"],//为奇偶行加上样式，兼容不支持CSS伪类的场合
-            order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
-            processing: false,  //隐藏加载提示,自行处理
-            serverSide: true,   //启用服务器端分页
-            searching: false,    //禁用原生搜索
-            // bProcessing: true,
-            // bServerSide: true,
-            iDisplayLength : 5,//默认每页数量
-            bLengthChange : false, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
-            lengthMenu : [5,10,15],
-            ordering : true,
-            stateSave : true,
-            retrieve : true
-            //bPaginate: true, //翻页功能
-            //bFilter : true, //过滤功能
-            // bSort : false, //排序功能
-            //bInfo : true,//页脚信息
-            //bAutoWidth : true,//自动宽度
-            //bPaginate : true,
-            //bProcessing: true//服务器端进行分页处理的意思
-        },
-        COLUMN: {
-            CHECKBOX: { //复选框单元格
-                className: "td-checkbox",
-                orderable: false,
-                width: "30px",
-                data: null,
-                render: function (data, type, row, meta) {
-                    return '<input type="checkbox" class="iCheck">';
-                }
-            }
-        },
-        RENDER: {   //常用render可以抽取出来，如日期时间、头像等
-            ELLIPSIS: function (data, type, row, meta) {
-                data = data||"";
-                return '<span title="' + data + '">' + data + '</span>';
-            }
-        }
-    }
-};
-var userManage = {
-    getQueryCondition: function (data) {
-        var param = {};
-        //组装排序参数
-        if (data.order && data.order.length && data.order[0]) {
-            switch (data.order[0].column) {
-                case 0:
-                    param.orderColumn = "openMode";
-                    break;
-                case 1:
-                    param.orderColumn = "timestamp";
-                    break;
-                case 2:
-                    param.orderColumn = "credential";
-                    break;
-                case 3:
-                    param.orderColumn = "name";
-                    break;
-                default:
-                    param.orderColumn = "timestamp";
-                    break;
-            }
-            //排序方式asc或者desc
-            param.orderDir = data.order[0].dir;
-        }
-
-        param.ownerPhoneNumber=landlordPhoneNumber;
-        param.date=theTime;
-        param.gatewayCode=specificGatewayCode;
-        param.lockCode=specificLockCode;
-        param.startIndex = data.start;
-        param.pageSize = data.length;
-        param.draw = data.draw;
-        return param;
-    }
-};

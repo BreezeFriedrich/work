@@ -20,8 +20,8 @@
     <meta name="author" content="">
     <title>漫行智能锁管理系统</title>
 
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css" /><!--Font Awesome,为Bootstrap而创造的图标字体-->
     <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="resources/css/font-awesome.min.css" /><!--Font Awesome,为Bootstrap而创造的图标字体-->
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="resources/css/index.css" />
 
