@@ -210,7 +210,7 @@ function renderRow(districts,date) {
         console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
     })();
 }
-function renderTable(date) {
+function drawTable(date) {
     // getDateArr(date);
     //表格标题-时间重设 function resetTableHeaderTxt
     var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
@@ -462,10 +462,10 @@ $(document).ready(function(){
             theDate.setMilliseconds(0);
             getDateArr(theDate);
             fixedTable.empty();
-            renderTable(theDate);
+            drawTable(theDate);
         }
     });
-    renderTable(theDate);
+    drawTable(theDate);
     $.contextMenu({
         selector: ".cd-unlockrecord:not(.cd-booked)",
         items: {

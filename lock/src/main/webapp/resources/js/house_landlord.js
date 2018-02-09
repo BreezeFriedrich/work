@@ -266,7 +266,7 @@ function getLocks() {
         }
     });
 }
-function renderTableHead(date) {
+function drawTableHead(date) {
     getDateArr(date);
     //表格标题-时间重设 function resetTableHeaderTxt
     var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
@@ -277,7 +277,7 @@ function renderTableHead(date) {
         TH_header.eq(i+1).attr("time",dateStrArr[i]);
     }
 }
-function renderTableBody() {
+function fillTable() {
     //表格数据行-添加数据
     fixedTable.addRow(function (){
         html = '';
@@ -297,7 +297,7 @@ function renderTableBody() {
         return html;
     });
 }
-function renderFixedColumn() {
+function drawFixedColumn(date) {
     //表格标题栏时间控件label值.
     if($('.current-date label').length>1){
         $('.current-date label')[1].innerText = getDateStr(date);
@@ -377,10 +377,10 @@ function renderRow(landlord,date) {
         // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
     })();
 }
-function renderTable(date) {
-    renderTableHead(date);
-    renderTableBody();
-    renderFixedColumn(date);
+function drawTable(date) {
+    drawTableHead(date);
+    fillTable();
+    drawFixedColumn(date);
     renderRow(landlord,date);
 }
 //获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
@@ -590,17 +590,17 @@ $(document).ready(function () {
         fields: fields,
         tableDefaultContent: "<div>我是一个默认的div</div>"
     });
-    // plugin datetimepicker event on changeDate 要在renderTable之前才有效.
+    // plugin datetimepicker event on changeDate 要在drawTable之前才有效.
     $('#datetimepicker')
         .datetimepicker()
         .on('changeDate', function(ev){
             // if (ev.date.valueOf() !== theDate.getTime()+8*60*60*1000){
                 theDate=new Date(ev.date.valueOf());
                 fixedTable.empty();
-                renderTable(theDate);
+                drawTable(theDate);
             // }
         });
-    renderTable(new Date());
+    drawTable(new Date());
 
     $.contextMenu({
         selector: ".cd-unlockrecord:not(.cd-booked)",

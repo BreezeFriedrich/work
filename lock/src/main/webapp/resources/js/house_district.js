@@ -20,6 +20,7 @@ var specificLockCode;
 var index;
 var html;
 var fixedTable;
+var phoneNumber;
 
 function getStartOfDate(date) {
     date.setHours(0);
@@ -127,150 +128,277 @@ function showNavSide() {
     (function () {
         var landlord;
         html = '';
-        html += '<li><a><i class="fa inco-ctiy"></i><span class="selected">'+district.name+'</span></a></li>';
+        html += '<li><a href="javascript:void(0);"><i class="fa inco-ctiy"></i><span class="selected">'+district.name+'</span></a></li>';
         for(var i in landlords){
             landlord=landlords[i];
             // html += '<li><a href="#"><i class="fa inco-map"></i><span>'+landlord.name+'</span></a></li>';
-            html += '<li><a><i class="fa inco-map"></i><span>'+landlord.name+'</span></a></li>';
+            html += '<li><a phone="'+landlord.phoneNumber+'" href="javascript:void(0);"><i class="fa inco-map"></i><span>'+landlord.name+'</span></a></li>';
         }
         $('ul.cl-vnavigation').append(html);
     })()
 }
-function renderTableHead(date) {
-    getDateArr(date);
-    //表格标题-时间重设 function resetTableHeaderTxt
-    var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
-    var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");
-    for(var i=0;i<31;i++){
-        DIV_header[i].innerText=theadDateStrArr[i];
-        TH_header.eq(i+1).attr("time",dateStrArr[i]);
-    }
-}
-function renderTableBody() {
-    //表格数据行-添加数据
-    fixedTable.addRow(function (){
-        html = '';
-        for(var k in landlords){
-            landlord=landlords[k];
-            locks=landlord.subordinateList;
-            for(var j=0,length=locks.length;j<length;j++){
-                lock=locks[j];
-                html += '<tr landlord="'+landlord.phoneNumber+'" gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
-                html +=     '<td><div class="table-hight1 table-width210 table-butstyle">'+lock.lockName+'</div></td>';
-                for(var i=0; i<31; i++){
-                    // html += '<td><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
-                    html += '<td><div class="cd table-hight1 table-width140"></div></td>';
-                }
-                html += '</tr>';
-            }
-        }
-        return html;
-    });
-}
-function renderFixedColumn(date) {//固定列.
-        //表格标题栏时间控件label值.()
-        if($('.current-date label').length>1){
-            $('.current-date label')[1].innerText = getDateStr(date);
-        }
 
-        var DIV;
-        DIV=$(".fixed-table_fixed-left tbody tr td div");
-        DIV.removeClass("table-width210");
-        DIV.addClass("table-width105");
-        var locksLength;
-        var lineHeight;
-        var HTML_landlord;
-        var TR_fixedlefttbody;
-        for(var k in landlords){
-            landlord=landlords[k];
-            locks=landlord.subordinateList;
-            locksLength=locks.length;
-            lineHeight=44*locksLength;
-            HTML_landlord='<td rowspan="'+locksLength+'"><div style="line-height: '+lineHeight+'px" class="table-width105 table-butstyle">'+landlord.name+'</div></td>';
-            TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"]");
-            TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
-        }
-}
-function renderRow(landlords,date) {
-    (function () {
-        // var time1=new Date();
-        var tr_num=0;
-        for(var k in landlords){
-            landlord=landlords[k];
-            locks=landlord.subordinateList;
-            for(var j in locks){
-                lock=locks[j];
-                var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(tr_num).find("td:not(:first)");
-                // var TDs_row=fixedTable.fixedTableBody.find("tbody tr[gatewayid="+lock.gatewayCode+"][lockid="+lock.lockCode+"]").find("td:not(:first)");//多个同gatewayCode和lockCode的门锁对应的tbody->tr只有第一个会被选中并渲染.
-                $.ajax({
-                    type:"POST",
-                    url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
-                    async:false,
-                    data:{
-                        "ownerPhoneNumber":landlord.phoneNumber,
-                        "gatewayCode":lock.gatewayCode,
-                        "lockCode":lock.lockCode,
-                        "theDate":getDateStr(date)
-                    },
-                    dataType:'json',
-                    success:function(data,status,xhr){
-                        if(data.success){
-                            if(data.biz.code===0){
-                                authinfo=data.biz.data;
-                                var authinfodailyArr=authinfo.authinfoDaily;
-                                var authinfodaily;
-                                var authinfodailyArrLength=authinfodailyArr.length;
-                                for(var i=0;i<authinfodailyArrLength;i++){
-                                    authinfodaily=authinfodailyArr[i];
-                                    if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
-                                        TDs_row.eq(i+15).addClass("cd-booked");
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    error:function(xhr,errorType,error){
-                        console.log('错误');
-                    }
-                });
-                $.ajax({
-                    type:"POST",
-                    url:projectPath+"/record/getLockUnlockRecordDaily.do",
-                    async:false,
-                    data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
-                    dataType:'json',
-                    success:function(data,status,xhr){
-                        if(data.success){
-                            if(data.biz.code===0){
-                                recordinfo=data.biz.data;
-                                var recordinfoLength=recordinfo.length;
-                                var recordDaily;
-                                for(var i=0;i<recordinfoLength;i++){
-                                    recordDaily=recordinfo[i];
-                                    if(recordDaily.totalSize>0){
-                                        TDs_row.eq(i).addClass("cd-unlockrecord");
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    error:function(xhr,errorType,error){
-                        console.log('错误');
-                    }
-                });
-                tr_num=tr_num+1;
+var tableFunc={
+    common:{
+        drawTableHead:function drawTableHead(date) {
+            getDateArr(date);
+            //表格标题-时间重设 function resetTableHeaderTxt
+            var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
+            var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");
+            for(var i=0;i<31;i++){
+                DIV_header[i].innerText=theadDateStrArr[i];
+                TH_header.eq(i+1).attr("time",dateStrArr[i]);
             }
         }
-        // var time2=new Date();
-        // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
-    })();
-}
-function renderTable(date) {
-    renderTableHead(date);
-    renderTableBody();
-    renderFixedColumn(date);
-    renderRow(landlords,date);
-}
+    },
+    district:{
+        fillTable:function fillTable() {
+            //表格数据行-添加数据
+            fixedTable.addRow(function (){
+                html = '';
+                for(var k in landlords){
+                    landlord=landlords[k];
+                    locks=landlord.subordinateList;
+                    for(var j=0,length=locks.length;j<length;j++){
+                        lock=locks[j];
+                        html += '<tr landlord="'+landlord.phoneNumber+'" gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
+                        html +=     '<td><div class="table-hight1 table-width210 table-butstyle">'+lock.lockName+'</div></td>';
+                        for(var i=0; i<31; i++){
+                            // html += '<td><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
+                            html += '<td><div class="cd table-hight1 table-width140"></div></td>';
+                        }
+                        html += '</tr>';
+                    }
+                }
+                return html;
+            });
+        },
+        drawFixedColumn:function drawFixedColumn(date) {//固定列.
+            //表格标题栏时间控件label值.()
+            if($('.current-date label').length>1){
+                $('.current-date label')[1].innerText = getDateStr(date);
+            }
+
+            var DIV;
+            DIV=$(".fixed-table_fixed-left tbody tr td div");
+            DIV.removeClass("table-width210");
+            DIV.addClass("table-width105");
+            var locksLength;
+            var lineHeight;
+            var HTML_landlord;
+            var TR_fixedlefttbody;
+            for(var k in landlords){
+                landlord=landlords[k];
+                locks=landlord.subordinateList;
+                locksLength=locks.length;
+                lineHeight=44*locksLength;
+                HTML_landlord='<td rowspan="'+locksLength+'"><div style="line-height: '+lineHeight+'px" class="table-width105 table-butstyle">'+landlord.name+'</div></td>';
+                TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"]");
+                TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
+            }
+        },
+        renderRow:function renderRow(landlords,date) {
+            (function () {
+                // var time1=new Date();
+                var tr_num=0;
+                for(var k in landlords){
+                    landlord=landlords[k];
+                    locks=landlord.subordinateList;
+                    for(var j in locks){
+                        lock=locks[j];
+                        var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(tr_num).find("td:not(:first)");
+                        // var TDs_row=fixedTable.fixedTableBody.find("tbody tr[gatewayid="+lock.gatewayCode+"][lockid="+lock.lockCode+"]").find("td:not(:first)");//多个同gatewayCode和lockCode的门锁对应的tbody->tr只有第一个会被选中并渲染.
+                        $.ajax({
+                            type:"POST",
+                            url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                            async:false,
+                            data:{
+                                "ownerPhoneNumber":landlord.phoneNumber,
+                                "gatewayCode":lock.gatewayCode,
+                                "lockCode":lock.lockCode,
+                                "theDate":getDateStr(date)
+                            },
+                            dataType:'json',
+                            success:function(data,status,xhr){
+                                if(data.success){
+                                    if(data.biz.code===0){
+                                        authinfo=data.biz.data;
+                                        var authinfodailyArr=authinfo.authinfoDaily;
+                                        var authinfodaily;
+                                        var authinfodailyArrLength=authinfodailyArr.length;
+                                        for(var i=0;i<authinfodailyArrLength;i++){
+                                            authinfodaily=authinfodailyArr[i];
+                                            if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
+                                                TDs_row.eq(i+15).addClass("cd-booked");
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            error:function(xhr,errorType,error){
+                                console.log('错误');
+                            }
+                        });
+                        $.ajax({
+                            type:"POST",
+                            url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                            async:false,
+                            data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
+                            dataType:'json',
+                            success:function(data,status,xhr){
+                                if(data.success){
+                                    if(data.biz.code===0){
+                                        recordinfo=data.biz.data;
+                                        var recordinfoLength=recordinfo.length;
+                                        var recordDaily;
+                                        for(var i=0;i<recordinfoLength;i++){
+                                            recordDaily=recordinfo[i];
+                                            if(recordDaily.totalSize>0){
+                                                TDs_row.eq(i).addClass("cd-unlockrecord");
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            error:function(xhr,errorType,error){
+                                console.log('错误');
+                            }
+                        });
+                        tr_num=tr_num+1;
+                    }
+                }
+                // var time2=new Date();
+                // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
+            })();
+        },
+        drawTable:function drawTable(landlords,date) {
+            tableFunc.common.drawTableHead(date);
+            tableFunc.district.fillTable();
+            tableFunc.district.drawFixedColumn(date);
+            tableFunc.district.renderRow(landlords,date);
+        },
+        redrawTableOnDateChange://datechange事件的handler.
+            function(event){
+                theDate=new Date(event.date.valueOf());
+                fixedTable.empty();
+                tableFunc.district.drawTable(landlords,theDate);
+            }
+    },
+    landlord:{
+        fillTable:function fillTable() {
+            //表格数据行-添加数据
+            fixedTable.addRow(function (){
+                html = '';
+                (function () {
+                    locks=landlord.subordinateList;
+                    for(var j in locks){
+                        lock=locks[j];
+                        html += '<tr gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
+                        html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
+                        for (var i=0; i<dateArr.length; i++){
+                            // html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
+                            html += '<td class="table-width140"><div class="cd table-hight1 table-width140"></div></td>';
+                        }
+                        html += '</tr>';
+                    }
+                })();
+                return html;
+            });
+        },
+        drawFixedColumn:function drawFixedColumn(date) {
+            //表格标题栏时间控件label值.
+            if($('.current-date label').length>1){
+                $('.current-date label')[1].innerText = getDateStr(date);
+            }
+        },
+        renderRow:function renderRow(landlord,date) {
+            (function () {
+                // var time1=new Date();
+                locks=landlord.subordinateList;
+                for(var j in locks){
+                    lock=locks[j];
+                    var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(j).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
+                    //auth获取开锁授权信息
+                    $.ajax({
+                        type:"POST",
+                        url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                        async:false,
+                        data:{
+                            "ownerPhoneNumber":landlord.phoneNumber,
+                            "gatewayCode":lock.gatewayCode,
+                            "lockCode":lock.lockCode,
+                            "theDate":getDateStr(date)
+                        },
+                        dataType:'json',
+                        success:function(data,status,xhr){
+                            if(data.success){
+                                if(data.biz.code===0){
+                                    authinfo=data.biz.data;
+                                    var authinfodailyArr=authinfo.authinfoDaily;
+                                    var authinfodaily;
+                                    var authinfodailyArrLength=authinfodailyArr.length;
+                                    for(var i=0;i<authinfodailyArrLength;i++){
+                                        authinfodaily=authinfodailyArr[i];
+                                        if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
+                                            TDs_row.eq(i+15).addClass("cd-booked");
+                                        }else {
+                                            TDs_row.eq(i+15).addClass("cd-vacant");
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        error:function(xhr,errorType,error){
+                            console.log('错误');
+                        }
+                    });
+                    //record获取入住记录
+                    $.ajax({
+                        type:"POST",
+                        url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                        async:false,
+                        data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
+                        dataType:'json',
+                        success:function(data,status,xhr){
+                            if(data.success){
+                                if(data.biz.code===0){
+                                    recordinfo=data.biz.data;
+                                    var recordinfoLength=recordinfo.length;
+                                    var recordDaily;
+                                    for(var i=0;i<recordinfoLength-1;i++){//i<recordinfoLength-1表示当天的刷卡记录不渲染表格cell.
+                                        recordDaily=recordinfo[i];
+                                        if(recordDaily.totalSize>0){
+                                            TDs_row.eq(i).addClass("cd-unlockrecord");
+                                        }else{
+                                            TDs_row.eq(i).addClass("cd-blank");
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        error:function(xhr,errorType,error){
+                            console.log('错误');
+                        }
+                    });
+                }
+                // var time2=new Date();
+                // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
+            })();
+        },
+        drawTable:function drawTable(landlord,date) {
+            tableFunc.common.drawTableHead(date);
+            tableFunc.landlord.fillTable();
+            tableFunc.landlord.drawFixedColumn(date);
+            tableFunc.landlord.renderRow(landlord,date);
+        },
+        redrawTableOnDateChange:function(event){
+            theDate=new Date(event.date.valueOf());
+            fixedTable.empty();
+            tableFunc.landlord.drawTable(landlord,theDate);
+        }
+    }
+};
+
 //获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
 function getCellParam(element) {
     landlordPhoneNumber=element.parent("tr").attr("landlord");
@@ -439,15 +567,33 @@ $(document).ready(function(){
         tableDefaultContent: "<div>我是一个默认的div</div>"
     });
 
-    $('#datetimepicker').on('changeDate', function(ev){
-        theDate=new Date(ev.date.valueOf());
-        fixedTable.empty();
-        renderTable(theDate);
-    });
-    renderTable(new Date());
+    // $('#datetimepicker').on('changeDate', function(ev){
+    //     theDate=new Date(ev.date.valueOf());
+    //     fixedTable.empty();
+    //     tableFunc.district.drawTable(landlords,theDate);
+    // });
+    $('#datetimepicker').on('changeDate', tableFunc.district.redrawTableOnDateChange);
+    tableFunc.district.drawTable(landlords,new Date());
 
+    $("ul.cl-vnavigation li a:first").click(function(){
+        alert('district.name:'+district.name+';district.phone:'+district.phoneNumber);
+        fixedTable.empty();
+        tableFunc.district.drawTable(landlords,new Date());
+    });
     $("ul.cl-vnavigation li a:not(first)").click(function(){
-        alert($(this));
+        phoneNumber=$(this).attr('phone');
+        alert(phoneNumber);
+        landlord=null;
+        for (var index = 0; index < landlords.length; index++) {
+            if(phoneNumber==landlords[index].phoneNumber){
+                landlord=landlords[index];
+                break;
+            }
+        }
+        if(null!=landlord){
+            fixedTable.empty();
+            tableFunc.landlord.drawTable(landlord,new Date());
+        }
     });
 
     App.init();
