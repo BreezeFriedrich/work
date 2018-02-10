@@ -111,9 +111,6 @@
             /*border-bottom: 1px solid #e6e6e6;*/
         }
     </style>
-
-    <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="resources/js/FixedTable.js"></script>
 </head>
 <body>
 
@@ -273,6 +270,8 @@
 </div>
 <div class="md-overlay"></div>
 
+<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="resources/js/FixedTable.js"></script>
 <!--下拉菜单-->
 <!--<script type="text/javascript" src="resources/plugin/jquery.select2/select2.min.js"></script>-->
 <!--滚动条-->

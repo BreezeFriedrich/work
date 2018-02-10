@@ -168,6 +168,8 @@ function renderRow(districts,date) {
                                         authinfodaily=authinfodailyArr[i];
                                         if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
                                             TDs_row.eq(i+15).addClass("cd-booked");
+                                        }else {
+                                            TDs_row.eq(i+15).addClass("cd-vacant");
                                         }
                                     }
                                 }
@@ -189,10 +191,12 @@ function renderRow(districts,date) {
                                     recordinfo=data.biz.data;
                                     var recordinfoLength=recordinfo.length;
                                     var recordDaily;
-                                    for(var i=0;i<recordinfoLength;i++){
+                                    for(var i=0;i<recordinfoLength-1;i++){
                                         recordDaily=recordinfo[i];
                                         if(recordDaily.totalSize>0){
                                             TDs_row.eq(i).addClass("cd-unlockrecord");
+                                        }else{
+                                            TDs_row.eq(i).addClass("cd-blank");
                                         }
                                     }
                                 }

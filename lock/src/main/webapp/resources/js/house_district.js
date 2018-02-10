@@ -21,6 +21,8 @@ var index;
 var html;
 var fixedTable;
 var phoneNumber;
+var datetimepicker;
+var tableType;
 
 function getStartOfDate(date) {
     date.setHours(0);
@@ -99,18 +101,18 @@ function getLocks() {
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
                             "lockName":"房间A1","lockCode":"LCN0011721000001","lockLocation":"南京市雨花台区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
-                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
+                            "gatewayName":"网关3","gatewayCode":"GWH0081702000002","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
                             "lockName":"房间A2","lockCode":"LCN0011721000002","lockLocation":"南京市雨花台区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
                             "lockName":"房间A3","lockCode":"LCN0011721000003","lockLocation":"南京市雨花台区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         }]},
                         {"phoneNumber":"18352478654","grade":10,"name":"业主2","location":"第2个业主地址","subordinateList":[{
-                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间B1","lockCode":"LCN0011721000001","lockLocation":"南京市鼓楼区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                            "gatewayName":"网关3","gatewayCode":"GWH0081702000004","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
+                            "lockName":"房间B1","lockCode":"LCN0011721000004","lockLocation":"南京市鼓楼区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
-                            "gatewayName":"网关3","gatewayCode":"GWH0081702000005","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                            "lockName":"房间B2","lockCode":"LCN0011721000005","lockLocation":"南京市鼓楼区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
+                            "lockName":"房间B2","lockCode":"LCN0011721000001","lockLocation":"南京市鼓楼区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
                         },{
                             "gatewayName":"网关3","gatewayCode":"GWH0081702000006","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
                             "lockName":"房间B3","lockCode":"LCN0011721000006","lockLocation":"南京市鼓楼区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
@@ -142,6 +144,8 @@ var tableFunc={
     common:{
         drawTableHead:function drawTableHead(date) {
             getDateArr(date);
+            // $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width105");
+            // $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").addClass("table-width210");
             //表格标题-时间重设 function resetTableHeaderTxt
             var DIV_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th div:gt(2)");//表格标题栏第一天元素序号为3.
             var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");
@@ -178,6 +182,7 @@ var tableFunc={
             if($('.current-date label').length>1){
                 $('.current-date label')[1].innerText = getDateStr(date);
             }
+            // $('.fixed-table-box').children('.fixed-table_header-wraper').find('#datetimepicker').remove();//headdatetimepicker.删除这个div会导致DIV_header[]32->31,drawTableHead会出错.
 
             var DIV;
             DIV=$(".fixed-table_fixed-left tbody tr td div");
@@ -230,6 +235,8 @@ var tableFunc={
                                             authinfodaily=authinfodailyArr[i];
                                             if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
                                                 TDs_row.eq(i+15).addClass("cd-booked");
+                                            }else {
+                                                TDs_row.eq(i+15).addClass("cd-vacant");
                                             }
                                         }
                                     }
@@ -251,10 +258,12 @@ var tableFunc={
                                         recordinfo=data.biz.data;
                                         var recordinfoLength=recordinfo.length;
                                         var recordDaily;
-                                        for(var i=0;i<recordinfoLength;i++){
+                                        for(var i=0;i<recordinfoLength-1;i++){
                                             recordDaily=recordinfo[i];
                                             if(recordDaily.totalSize>0){
                                                 TDs_row.eq(i).addClass("cd-unlockrecord");
+                                            }else{
+                                                TDs_row.eq(i).addClass("cd-blank");
                                             }
                                         }
                                     }
@@ -281,8 +290,15 @@ var tableFunc={
             function(event){
                 theDate=new Date(event.date.valueOf());
                 fixedTable.empty();
-                tableFunc.district.drawTable(landlords,theDate);
-            }
+                tableFunc.district.drawTable(event.data.landlords,theDate);
+            },
+        completeTable:function (landlords,date) {
+            tableFunc.district.drawTable(landlords,date);
+            //元素$(".fixed-table_fixed-left").find("div#datetimepicker")左边固定栏是在fixedTable.addRow()之后产生的.所以事件要放在fillTable()之后.
+            $(".fixed-table_fixed-left").find("div#datetimepicker").off('changeDate');
+            $(".fixed-table_fixed-left").find("div#datetimepicker").on('changeDate',{landlords:landlords},tableFunc.district.redrawTableOnDateChange);
+            tableType="district";
+        }
     },
     landlord:{
         fillTable:function fillTable() {
@@ -294,7 +310,7 @@ var tableFunc={
                     for(var j in locks){
                         lock=locks[j];
                         html += '<tr gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
-                        html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
+                        html += '<td class="table-width210"><div class="table-hight1 table-cell table-width210 table-butstyle">'+lock.lockName+'</div></td>';
                         for (var i=0; i<dateArr.length; i++){
                             // html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
                             html += '<td class="table-width140"><div class="cd table-hight1 table-width140"></div></td>';
@@ -391,17 +407,23 @@ var tableFunc={
             tableFunc.landlord.drawFixedColumn(date);
             tableFunc.landlord.renderRow(landlord,date);
         },
-        redrawTableOnDateChange:function(event){
-            theDate=new Date(event.date.valueOf());
-            fixedTable.empty();
-            tableFunc.landlord.drawTable(landlord,theDate);
+        redrawTableOnDateChange:
+            function(event){
+                theDate=new Date(event.date.valueOf());
+                fixedTable.empty();
+                tableFunc.landlord.drawTable(event.data.landlord,theDate);
+            },
+        completeTable:function (landlord,date) {
+            tableFunc.landlord.drawTable(landlord,date);
+            $(".fixed-table_fixed-left").find("div#datetimepicker").off('changeDate');
+            $(".fixed-table_fixed-left").find("div#datetimepicker").on('changeDate',{landlord:landlord},tableFunc.landlord.redrawTableOnDateChange);
+            tableType="landlord";
         }
     }
 };
 
 //获取某个房间某天的请求参数,element是tbody->tr->td,element==0是房间号cell.
 function getCellParam(element) {
-    landlordPhoneNumber=element.parent("tr").attr("landlord");
     specificGatewayCode=element.parent("tr").attr("gatewayid");
     specificLockCode=element.parent("tr").attr("lockid");
     index=element.index();//index==0是房间cell.
@@ -411,23 +433,38 @@ function getCellParam(element) {
 
 $(document).ready(function(){
     $(".navbar-collapse ul:first li:eq(3)").addClass("active");
+    theDate=new Date();
     getLocks();
     showNavSide();
     var html='';
-    // html += '<th class="table-width190 table-butstyle">';
-    // html +=     '<div class="table-header-hight58 table-cell table-width190 table-butstyle">';
-    html +=         '<div class="current-date">当前日期：<label id="show3" class="time3">日期</label></div>';
-    html +=         '<div id="datetimepicker" class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">';
-    html +=             '<input class="form-control" size="16" type="text" value="" readonly style="display:none">';
-    html +=             '<span class="input-group-addon btn btn-primary calendar date-selection-span"><span class="glyphicon glyphicon-th date-selection-img"></span></span>';
-    html +=         '</div>';
-    // html +=     '</div>';
-    // html += '</th>';
+    html += '<div class="current-date">当前日期：<label id="show3" class="time3">日期</label></div>';
+    html += '<div id="datetimepicker" class="input-group date datetime date-selection" data-min-view="2" data-date-format="yyyy-mm-dd">';
+    html +=     '<input class="form-control" size="16" type="text" value="" readonly style="display:none">';
+    html +=     '<span class="input-group-addon btn btn-primary calendar date-selection-span"><span class="glyphicon glyphicon-th date-selection-img"></span></span>';
+    html += '</div>';
+
+    var fields=new Array;
+    fields[0]={
+        width: "210px",
+        field: '<th><div class="table-header-hight58 table-cell table-width210 table-butstyle">'+html+'</div></th>',
+        htmlDom:true,
+        fixed:true,
+        // fixedDirection:"left"
+    };
+    for(var i=1;i<32;i++){
+        fields[i]={
+            width: "140px",
+            field: '<th><div class="rq table-header-hight58 table-cell table-width140 table-butstyle"></div></th>',
+            htmlDom:true,
+            // fixed:false
+        }
+    }
     fixedTable = new FixedTable({
         wrap : document.getElementsByClassName("container-table")[0],
         type : "row-col-fixed",
         extraClass: "",
         maxHeight : true,
+        /*
         fields : [
             {
                 width: "210px",
@@ -564,25 +601,20 @@ $(document).ready(function(){
                 field: '<th   class="table-width140" data-fixed><div class="rq table-header-hight58 table-cell table-width140 table-butstyle">02-01</div></th>',
                 htmlDom:true
             }],
+        */
+        fields : fields,
         tableDefaultContent: "<div>我是一个默认的div</div>"
     });
-
-    // $('#datetimepicker').on('changeDate', function(ev){
-    //     theDate=new Date(ev.date.valueOf());
-    //     fixedTable.empty();
-    //     tableFunc.district.drawTable(landlords,theDate);
-    // });
-    $('#datetimepicker').on('changeDate', tableFunc.district.redrawTableOnDateChange);
-    tableFunc.district.drawTable(landlords,new Date());
+    tableFunc.district.completeTable(landlords,theDate);
 
     $("ul.cl-vnavigation li a:first").click(function(){
         alert('district.name:'+district.name+';district.phone:'+district.phoneNumber);
         fixedTable.empty();
-        tableFunc.district.drawTable(landlords,new Date());
+        tableFunc.district.completeTable(landlords,theDate);
     });
-    $("ul.cl-vnavigation li a:not(first)").click(function(){
+    $("ul.cl-vnavigation li a:not(:first)").click(function(){
         phoneNumber=$(this).attr('phone');
-        alert(phoneNumber);
+        alert('landlord.phoneNumber:'+phoneNumber);
         landlord=null;
         for (var index = 0; index < landlords.length; index++) {
             if(phoneNumber==landlords[index].phoneNumber){
@@ -592,9 +624,350 @@ $(document).ready(function(){
         }
         if(null!=landlord){
             fixedTable.empty();
-            tableFunc.landlord.drawTable(landlord,new Date());
+            tableFunc.landlord.completeTable(landlord,theDate);
+        }
+    });
+
+    $.contextMenu({
+        selector: ".cd-unlockrecord:not(.cd-booked)",
+        items: {
+            record: {
+                name: "入住记录", callback: function(key, opt){
+                    $('#md-record').niftyModal();
+                    if("district"==tableType){
+                        landlordPhoneNumber=$(this).parent("tr").attr("landlord");
+                        phoneNumber=landlordPhoneNumber;
+                    }else{
+                        phoneNumber=landlord.phoneNumber;
+                    }
+                    getCellParam($(this));
+                    tableElement=$("#table-unlockrecord");
+                    datatableSet.function_record.drawtable(tableElement);
+                }
+            }
+        }
+    });
+    $.contextMenu({
+        selector: ".cd-booked:not(.cd-unlockrecord)",
+        items: {
+            authorization : {
+                name: "开锁信息", callback: function(key, opt){
+                    $('#md-authorization').niftyModal();
+                    if("district"==tableType){
+                        landlordPhoneNumber=$(this).parent("tr").attr("landlord");
+                        phoneNumber=landlordPhoneNumber;
+                    }else{
+                        phoneNumber=landlord.phoneNumber;
+                    }
+                    getCellParam($(this));
+                    tableElement=$("#table-authorization");
+                    datatableSet.function_authorization.drawtable(tableElement);
+                }
+            }
         }
     });
 
     App.init();
 });
+
+var datatableSet = {
+    options : {
+        DEFAULT_OPTION : { //DataTables初始化选项
+            language: {
+                "sProcessing":   "处理中...",
+                "sLengthMenu":   "每页 _MENU_ 项",
+                "sZeroRecords":  "没有匹配结果",
+                "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix":  "",
+                "sSearch":       "搜索:",
+                "sUrl":          "",
+                "sEmptyTable":     "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands":  ",",
+                "oPaginate": {
+                    "sFirst":    "首页",
+                    "sPrevious": "上页",
+                    "sNext":     "下页",
+                    "sLast":     "末页",
+                    "sJump":     "跳转"
+                },
+                "oAria": {
+                    "sSortAscending":  ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            },
+            autoWidth: false,   //禁用自动调整列宽
+            stripeClasses: ["odd", "even"],//为奇偶行加上样式，兼容不支持CSS伪类的场合
+            order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
+            processing: false,  //隐藏加载提示,自行处理
+            serverSide: true,   //启用服务器端分页
+            searching: false,    //禁用原生搜索
+            // bProcessing: true,
+            // bServerSide: true,
+            iDisplayLength : 5,//默认每页数量
+            bLengthChange : false, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
+            lengthMenu : [5,10,15],
+            ordering : true,
+            stateSave : true,
+            retrieve : true
+            //bPaginate: true, //翻页功能
+            //bFilter : true, //过滤功能
+            // bSort : false, //排序功能
+            //bInfo : true,//页脚信息
+            //bAutoWidth : true,//自动宽度
+            //bPaginate : true,
+            //bProcessing: true//服务器端进行分页处理的意思
+        },
+        COLUMN: {
+            CHECKBOX: { //复选框单元格
+                className: "td-checkbox",
+                orderable: false,
+                width: "30px",
+                data: null,
+                render: function (data, type, row, meta) {
+                    return '<input type="checkbox" class="iCheck">';
+                }
+            }
+        },
+        RENDER: {   //常用render可以抽取出来，如日期时间、头像等
+            ELLIPSIS: function (data, type, row, meta) {
+                data = data||"";
+                return '<span title="' + data + '">' + data + '</span>';
+            }
+        }
+    },
+    function_record : {
+        getQueryParams: function (data) {
+            var param = {};
+            //组装排序参数
+            if (data.order && data.order.length && data.order[0]) {
+                switch (data.order[0].column) {
+                    case 0:
+                        param.orderColumn = "openMode";
+                        break;
+                    case 1:
+                        param.orderColumn = "timestamp";
+                        break;
+                    case 2:
+                        param.orderColumn = "credential";
+                        break;
+                    case 3:
+                        param.orderColumn = "name";
+                        break;
+                    default:
+                        param.orderColumn = "timestamp";
+                        break;
+                }
+                //排序方式asc或者desc
+                param.orderDir = data.order[0].dir;
+            }
+            param.ownerPhoneNumber=phoneNumber;
+            param.date=theTime;//yyyy_MM_dd格式的日期字符串.
+            param.gatewayCode=specificGatewayCode;
+            param.lockCode=specificLockCode;
+            //组装分页参数
+            param.startIndex = data.start;
+            param.pageSize = data.length;
+            param.draw = data.draw;
+            return param;
+        },
+        drawtable: function (element) {
+            //element代表table元素. element===$("#table-unlockrecord");
+            tableWrapper= element.parent('div .content').eq(0);
+            $.fn.dataTable.tables({api: true}).destroy();
+            tableInstance = element.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
+                ajax: function (data, callback, settings) {
+                    param = datatableSet.function_record.getQueryParams(data);
+                    tableWrapper.spinModal();
+                    $.ajax({
+                        type: "POST",
+                        url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
+                        cache: false,
+                        data: param,
+                        dataType: "json",
+                        success: function (data) {
+                            var returnData = {};
+                            if(data.success){
+                                if(data.biz.code===0){
+                                    var result=data.biz.data;
+                                    returnData.draw = result.draw;
+                                    returnData.recordsTotal = result.total;
+                                    returnData.recordsFiltered = result.total;
+                                    returnData.data = result.pageData;
+                                }else{
+                                    console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                }
+                            }else{
+                                console.log("errmsg:"+data.errmsg);
+                            }
+                            if(null===returnData.data){
+                                returnData.data={};
+                            }
+                            tableWrapper.spinModal(false);
+                            callback(returnData);
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("查询失败");
+                            tableWrapper.spinModal(false);
+                        }
+                    });
+                },
+                //绑定数据
+                columns: [
+                    {
+                        data: "openMode",
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            if(1==data){
+                                return "身份证开锁"
+                            }else if(2==data){
+                                return "密码开锁"
+                            }else if(3==data){
+                                return "门卡开锁"
+                            }else{
+                                return null;
+                            }
+                        }
+                    },{
+                        data: "timestamp",
+                        // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                    },{
+                        data: "credential"
+                    },{
+                        data: "name"
+                    }
+                ],
+                "columnDefs": [
+                    {
+                        "defaultContent": "",
+                        "targets": "_all"
+                    }
+                ],
+                "drawCallback": function (settings) {}
+            })).api();
+        }
+    },
+    function_authorization : {
+        getQueryParams: function (data) {
+            var param = {};
+            //组装排序参数
+            if (data.order && data.order.length && data.order[0]) {
+                switch (data.order[0].column) {
+                    case 0:
+                        param.orderColumn = "openMode";
+                        break;
+                    case 1:
+                        param.orderColumn = "credential";
+                        break;
+                    case 2:
+                        param.orderColumn = "name";
+                        break;
+                    case 3:
+                        param.orderColumn = "startTime";
+                        break;
+                    case 4:
+                        param.orderColumn = "endTime";
+                        break;
+                    default:
+                        param.orderColumn = "openMode";
+                        break;
+                }
+                //排序方式asc或者desc
+                param.orderDir = data.order[0].dir;
+            }
+            param.ownerPhoneNumber=phoneNumber;
+            param.date=theTime;//yyyy_MM_dd格式的日期字符串.
+            param.gatewayCode=specificGatewayCode;
+            param.lockCode=specificLockCode;
+            param.startIndex = data.start;
+            param.pageSize = data.length;
+            param.draw = data.draw;
+            return param;
+        },
+        drawtable: function (element) {//element===$('#table-authorization');
+            tableWrapper= element.parent('div .content').eq(0);
+            $.fn.dataTable.tables({api: true}).destroy();
+            tableInstance = element.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
+                ajax: function (data, callback, settings) {
+                    param = datatableSet.function_authorization.getQueryParams(data);
+                    tableWrapper.spinModal();
+                    $.ajax({
+                        type: "POST",
+                        url: projectPath+'/unlock/getDailyUnlockAuthorizationRecord.do',
+                        cache: false,
+                        data: param,
+                        dataType: "json",
+                        success: function (data) {
+                            var returnData = {};
+                            if(data.success){
+                                if(data.biz.code===0){
+                                    var result=data.biz.data;
+                                    returnData.draw = result.draw;
+                                    returnData.recordsTotal = result.total;
+                                    returnData.recordsFiltered = result.total;
+                                    returnData.data = result.pageData;
+                                }else{
+                                    console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                }
+                            }else{
+                                console.log("errmsg:"+data.errmsg);
+                            }
+                            if(null===returnData.data){
+                                returnData.data={};
+                            }
+                            tableWrapper.spinModal(false);
+                            callback(returnData);
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("查询失败");
+                            tableWrapper.spinModal(false);
+                        }
+                    });
+                },
+                //绑定数据
+                columns: [
+                    {
+                        data: "openMode",
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            if(1==data){
+                                return "身份证"
+                            }else if(2==data){
+                                return "密码"
+                            }else if(3==data){
+                                return "门卡"
+                            }else{
+                                return null;
+                            }
+                        }
+                    },{
+                        data: "credential"
+                    },{
+                        data: "name"
+                    },{
+                        data: "startTime",
+                        // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                    },{
+                        data: "endTime",
+                        // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                    }
+                ],
+                "columnDefs": [
+                    {
+                        "defaultContent": "",
+                        "targets": "_all"
+                    }
+                ],
+                "createdRow": function ( row, data, index ) {
+                    //行渲染回调,在这里可以对该行dom元素进行任何操作
+                    if (data.role) {
+                        $(row).addClass("info");
+                    }
+                },
+                "drawCallback": function (settings) {}
+            })).api();
+        }
+    }
+};

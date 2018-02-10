@@ -25,47 +25,59 @@
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="resources/css/index.css" />
 
+    <link rel="stylesheet" href="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.css" />
     <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
     <link rel="stylesheet" href="resources/css/fixed-table.css" />
     <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="resources/plugin/dataTables/css/jquery.dataTables.css" />
-
-    <%--<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>--%>
-    <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
-    <%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
-    <script type="text/javascript" src="resources/js/FixedTable.js"></script>
-    <%--<script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>--%>
-    <%--<script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>--%>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px; min-height:500px;}
         .fixed-table_body-wraper{}
         .fixed-table_fixed{}
         .fixed-table-box>.fixed-table_body-wraper{/*内容了表格主体内容有纵向滚动条*/height: 88%;}
         .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/height: 88%;}
-    </style>
 
-    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
-    <script language="javascript" type="text/javascript">
-        <!--
-        //获得当前时间,刻度为一千分一秒
-        var initializationTime=(new Date()).getTime();
-        function showLeftTime(){
-            var now=new Date();
-            var year=now.getFullYear();
-            var week=now.getDay();
-            var month=now.getMonth();
-            var day=now.getDate();
-            var hours=now.getHours();
-            var minutes=now.getMinutes();
-            var seconds=now.getSeconds();
-//            document.all.show3.innerHTML=year+"-"+month+"-"+day;
-            //一秒刷新一次显示时间
-//            var timeID=setTimeout(showLeftTime,1000);
-            }
-        //-->
-    </script>
+        .md-content table thead th{
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .md-content table tbody td{
+            font-size: 15px;
+            font-weight: 200;
+            line-height: 30px;
+            height: 30px;
+        }
+        .fixed-table_body .cd-blank{
+            background: #c2c2c2 !important;
+            color: #fff;
+            font-size:14px;
+            opacity: 50;
+        }
+        /*重写contextMenu.css部分内容*/
+        .context-menu-list {
+            min-width: 7.5em;
+            max-width: 8em;
+            padding: .2em 0;
+            margin: 0;
+            background: #2494f2;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .context-menu-item {
+            padding: .2em 1em;
+            color: #fff;
+            background-color: #2494f2;
+        }
+        .context-menu-item.context-menu-hover {
+            background-color: #36a3ff;
+        }
+        .context-menu-separator {
+            margin: 0;
+        }
+    </style>
 </head>
-<body onload="showLeftTime()">
+<body>
 <!-- header -->
 <jsp:include page="/jsp/header.jsp"/>
 <!--header end-->
@@ -105,16 +117,71 @@
     </div>
 
     <div class="container-fluid table-odyssey " id="pcont" >
-
         <div class="container-table"></div>
 
         <div class="footer">&copy;2015-2016  南京亿数信息科技有限公司 版权所有</div>
 
         <div class="clearfix"></div>
     </div>
-
 </div>
 
+<%--入住记录--%>
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-record" style="width: 680px;">
+    <div class="md-content">
+        <div class="block-flat">
+            <div class="header">
+                <h3>入住记录</h3>
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="content">
+                <table id="table-unlockrecord" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th width="150px">开锁类型</th>
+                        <th width="200px">开锁时刻</th>
+                        <th width="180px">开锁凭据</th>
+                        <th width="100px">开锁人</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<%-- 开锁信息 --%>
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-authorization" style="width: 880px;">
+    <div class="md-content">
+        <div class="block-flat">
+            <div class="header">
+                <h3>开锁授权信息</h3>
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="content">
+                <table id="table-authorization" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th width="150px">开锁类型</th>
+                        <th width="180px">开锁凭据</th>
+                        <th width="100px">开锁人</th>
+                        <th width="200px">生效时间</th>
+                        <th width="200px">失效时间</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="md-overlay"></div>
+
+<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
+<%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
+<script type="text/javascript" src="resources/js/FixedTable.js"></script>
+<%--<script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script><!--滚动条-->
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script><!--弹出框-->
@@ -135,8 +202,8 @@
 <!--鼠标右键菜单-->
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.ui.position.js"></script>
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.js"></script>
-
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
 <script type="text/javascript" src="resources/js/house_city.js"></script>
 </body>
 

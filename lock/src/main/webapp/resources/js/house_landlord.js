@@ -286,7 +286,7 @@ function fillTable() {
             for(var j in locks){
                 lock=locks[j];
                 html += '<tr gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
-                html += '<td class="table-width190"><div class="table-hight1 table-cell table-width190 table-butstyle">'+lock.lockName+'</div></td>';
+                html += '<td class="table-width210"><div class="table-hight1 table-cell table-width210 table-butstyle">'+lock.lockName+'</div></td>';
                 for (var i=0; i<dateArr.length; i++){
                     // html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
                     html += '<td class="table-width140"><div class="cd table-hight1 table-width140"></div></td>';
@@ -405,14 +405,14 @@ $(document).ready(function () {
     var fields=new Array;
     fields[0]={
         width: "206px",
-        field: '<th class="table-width190 table-butstyle"><div class="table-header-hight58 table-cell table-width190 table-butstyle">'+html+'</div></th>',
+        field: '<th class="table-width210"><div class="table-header-hight58 table-cell table-width210 table-butstyle">'+html+'</div></th>',
         htmlDom: true,
         fixed: true
     };
     for(var i=1;i<32;i++){
         fields[i]={
             width: "140px",
-            field: '<th class="table-width140 table-butstyle"><div class="table-header-hight58 table-cell table-width140 table-butstyle"></div></th>',
+            field: '<th class="table-width140"><div class="table-header-hight58 table-cell table-width140 table-butstyle"></div></th>',
             htmlDom: true,
             fixed: false
         }
@@ -1147,7 +1147,7 @@ var datatableSet = {
                 });
             },
             deleteItem: function (item) {
-                console.log("item:"+item+" --> {\"openMode\":"+item.openMode + ";\"credential\":" + item.credential+"}");
+                // console.log("item:"+item+" --> {\"openMode\":"+item.openMode + ";\"credential\":" + item.credential+"}");
                 if(1==item.openMode){
                     params = {
                         "ownerPhoneNumber":landlord.phoneNumber,
