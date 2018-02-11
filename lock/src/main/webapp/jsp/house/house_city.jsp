@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="resources/css/font-awesome.min.css" /><!--Font Awesome,为Bootstrap而创造的图标字体-->
-    <link rel="stylesheet" href="resources/css/style.css" />
+    <link rel="stylesheet" href="resources/css/style.css?v=5" />
     <link rel="stylesheet" href="resources/css/index.css" />
 
     <link rel="stylesheet" href="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.css" />
@@ -178,23 +178,24 @@
 <div class="md-overlay"></div>
 
 <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
-<%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
+<script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/js/FixedTable.js"></script>
-<%--<script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>--%>
 <%--<script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>--%>
-<script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script><!--滚动条-->
-<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script><!--弹出框-->
 
-<script type="text/javascript" src="resources/plugin/jquery.icheck/icheck.min.js"></script>
-<script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>
-<script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script><!--滚动条-->
+<%--<script type="text/javascript" src="resources/plugin/jquery.nestable/jquery.nestable.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script><!--switch-->--%>
+<%--<script type="text/javascript" src="resources/plugin/jquery.select2/select2.min.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/bootstrap.slider/js/bootstrap-slider.js"></script>--%>
 
-<script type="text/javascript" src="resources/plugin/jquery.parsley/dist/parsley.js"></script><!--表单验证-->
-<script type="text/javascript" src="resources/plugin/jquery.nestable/jquery.nestable.js"></script>
+<%--<script type="text/javascript" src="resources/plugin/jquery.icheck/icheck.min.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/jquery.parsley/dist/parsley.js"></script><!--表单验证-->--%>
+
 <script type="text/javascript" src="resources/plugin/jquery.ui/jquery-ui.js"></script>
-<script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script><!--switch-->
-<script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script><!--日历-->
+<!--日历-->
+<script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" charset="UTF-8" src="resources/plugin/bootstrap.datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <!--日期时间选择器-->
 <script type="text/javascript" src="resources/plugin/bootstrap.daterangepicker/moment.min.js"></script>
@@ -202,9 +203,11 @@
 <!--鼠标右键菜单-->
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.ui.position.js"></script>
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="resources/plugin/behaviour/general.js?ver=10"></script>
+
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/house_city.js"></script>
+<script type="text/javascript" src="resources/js/house_city.js?v=6"></script>
 </body>
 
 </html>

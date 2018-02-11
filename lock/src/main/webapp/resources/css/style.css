@@ -717,6 +717,9 @@ body.modal-open,
   border-bottom: 1px solid #2f323a;
 }
 .cl-vnavigation .parent a {
+  /*background: url("../images/arrow.png") no-repeat scroll right 14px top 18px transparent;*/
+}
+.icon-caret-down{
   background: url("../images/arrow.png") no-repeat scroll right 14px top 18px transparent;
 }
 .cl-vnavigation li a {

@@ -404,7 +404,7 @@ $(document).ready(function () {
 
     var fields=new Array;
     fields[0]={
-        width: "206px",
+        width: "210",
         field: '<th class="table-width210"><div class="table-header-hight58 table-cell table-width210 table-butstyle">'+html+'</div></th>',
         htmlDom: true,
         fixed: true
@@ -946,8 +946,10 @@ var datatableSet = {
                                 }
                                 //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
                                 //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
-                                if(null===returnData.data){
-                                    returnData.data={};
+                                if(undefined==returnData.data || null==returnData.data){
+                                    returnData.recordsTotal=0;
+                                    returnData.recordsFiltered=0;
+                                    returnData.data=[];
                                 }
                                 tableWrapper.spinModal(false);
                                 callback(returnData);
@@ -1069,8 +1071,10 @@ var datatableSet = {
                                     console.log("errmsg:"+data.errmsg);
                                 }
                                 //调用DataTables提供的callback方法,代表数据已封装完成并传回DataTables进行渲染. 此时的数据需确保正确无误,异常判断应在执行此回调前自行处理完毕.
-                                if(null===returnData.data){
-                                    returnData.data={};
+                                if(undefined==returnData.data || null==returnData.data){
+                                    returnData.recordsTotal=0;
+                                    returnData.recordsFiltered=0;
+                                    returnData.data=[];
                                 }
                                 tableWrapper.spinModal(false);
                                 callback(returnData);

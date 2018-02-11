@@ -23,6 +23,11 @@
 文件 index.css
 	line-48
 	新增: .table-width210{ width:210px; text-align:center}
+
+文件 general.js
+    line-1306
+        $(".cl-vnavigation").delegate(".parent > a","mouseover",function(e){}
+    修改事件click为mouseover.
 	 
 组件 bootstrap datetimepicker
 	http://www.bootcss.com/p/bootstrap-datetimepicker/

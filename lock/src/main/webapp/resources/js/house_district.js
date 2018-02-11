@@ -21,7 +21,6 @@ var index;
 var html;
 var fixedTable;
 var phoneNumber;
-var datetimepicker;
 var tableType;
 
 function getStartOfDate(date) {
@@ -128,7 +127,6 @@ function getLocks() {
 }
 function showNavSide() {
     (function () {
-        var landlord;
         html = '';
         html += '<li><a href="javascript:void(0);"><i class="fa inco-ctiy"></i><span class="selected">'+district.name+'</span></a></li>';
         for(var i in landlords){
@@ -281,6 +279,7 @@ var tableFunc={
             })();
         },
         drawTable:function drawTable(landlords,date) {
+            tableType="district";
             tableFunc.common.drawTableHead(date);
             tableFunc.district.fillTable();
             tableFunc.district.drawFixedColumn(date);
@@ -297,7 +296,6 @@ var tableFunc={
             //元素$(".fixed-table_fixed-left").find("div#datetimepicker")左边固定栏是在fixedTable.addRow()之后产生的.所以事件要放在fillTable()之后.
             $(".fixed-table_fixed-left").find("div#datetimepicker").off('changeDate');
             $(".fixed-table_fixed-left").find("div#datetimepicker").on('changeDate',{landlords:landlords},tableFunc.district.redrawTableOnDateChange);
-            tableType="district";
         }
     },
     landlord:{
@@ -402,6 +400,7 @@ var tableFunc={
             })();
         },
         drawTable:function drawTable(landlord,date) {
+            tableType="landlord";
             tableFunc.common.drawTableHead(date);
             tableFunc.landlord.fillTable();
             tableFunc.landlord.drawFixedColumn(date);
@@ -417,7 +416,6 @@ var tableFunc={
             tableFunc.landlord.drawTable(landlord,date);
             $(".fixed-table_fixed-left").find("div#datetimepicker").off('changeDate');
             $(".fixed-table_fixed-left").find("div#datetimepicker").on('changeDate',{landlord:landlord},tableFunc.landlord.redrawTableOnDateChange);
-            tableType="landlord";
         }
     }
 };
@@ -802,8 +800,10 @@ var datatableSet = {
                             }else{
                                 console.log("errmsg:"+data.errmsg);
                             }
-                            if(null===returnData.data){
-                                returnData.data={};
+                            if(undefined==returnData.data || null==returnData.data){
+                                returnData.recordsTotal=0;
+                                returnData.recordsFiltered=0;
+                                returnData.data=[];
                             }
                             tableWrapper.spinModal(false);
                             callback(returnData);
@@ -914,8 +914,10 @@ var datatableSet = {
                             }else{
                                 console.log("errmsg:"+data.errmsg);
                             }
-                            if(null===returnData.data){
-                                returnData.data={};
+                            if(undefined==returnData.data || null==returnData.data){
+                                returnData.recordsTotal=0;
+                                returnData.recordsFiltered=0;
+                                returnData.data=[];
                             }
                             tableWrapper.spinModal(false);
                             callback(returnData);

@@ -169,20 +169,18 @@
 <div class="md-overlay"></div>
 
 <script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
-<%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
+<script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/js/FixedTable.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
-<script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
-
-<script type="text/javascript" src="resources/plugin/jquery.icheck/icheck.min.js"></script>
-<script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>
-<script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="resources/plugin/jquery.parsley/dist/parsley.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nestable/jquery.nestable.js"></script>
-<script type="text/javascript" src="resources/plugin/jquery.ui/jquery-ui.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
+<script type="text/javascript" src="resources/plugin/jquery.select2/select2.min.js"></script>
+<script type="text/javascript" src="resources/plugin/bootstrap.slider/js/bootstrap-slider.js"></script>
+<%--<script type="text/javascript" src="resources/plugin/jquery.icheck/icheck.min.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/jquery.parsley/dist/parsley.js"></script>--%>
+<script type="text/javascript" src="resources/plugin/jquery.ui/jquery-ui.js"></script>
 <!--日历-->
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" charset="UTF-8" src="resources/plugin/bootstrap.datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -193,6 +191,8 @@
 <%--<script type="text/javascript" src="resources/js/jquery.contextmenu.r2.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.ui.position.js"></script>
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
+
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
 <script type="text/javascript" src="resources/js/house_district.js"></script>
