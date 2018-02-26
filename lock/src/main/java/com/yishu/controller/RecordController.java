@@ -272,6 +272,105 @@ public class RecordController {
         return null;
     }
     */
+    @RequestMapping("/unlockRecordFilterOrderPage.do")
+    @ResponseBody
+    public JsonDto unlockRecordFilterOrderPage(HttpServletRequest request) throws ParseException {
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- record/unlockRecordFilterOrderPage.do -->>--");
+        }
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
+        if(null==ownerPhoneNumber || "".equals(ownerPhoneNumber)){
+            jsonDto=JsonDto.WRONG_REQUEST_PARAM;
+            return jsonDto;
+        }
+        String startTimeStr=request.getParameter("startTime");
+        String endTimeStr=request.getParameter("endTime");
+        long startTime;
+        long endTime=new Date().getTime();
+
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(new Date());
+        endTime=calendar.getTime().getTime();
+        calendar.set(Calendar.YEAR,calendar.get(Calendar.YEAR)-1);
+        startTime=calendar.getTime().getTime();
+//        long[] period={startTime,endTime};
+        if(null!=startTimeStr){
+            calendar.setTime(DateUtil.yyyy_MM_dd0HH$mm.parse(startTimeStr));
+            startTime=calendar.getTime().getTime();
+        }
+        if(null!=endTimeStr){
+            calendar.setTime(DateUtil.yyyy_MM_dd0HH$mm.parse(endTimeStr));
+            endTime=calendar.getTime().getTime();
+        }
+
+        HashMap filterMap= new HashMap(10);
+        //过滤条件
+//        filterMap.put("period",period);
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        if(!"".equals(gatewayCode)){
+            filterMap.put("gatewayCode",gatewayCode);
+        }
+        if(!"".equals(lockCode)){
+            filterMap.put("lockCode",lockCode);
+        }
+        String openModeStr=request.getParameter("openMode");
+        if(!"".equals(openModeStr)){
+            int openMode= Integer.parseInt(request.getParameter("openMode"));
+            filterMap.put("openMode",openMode);
+        }
+
+        //获取排序字段
+        HashMap orderMap= new HashMap(2);
+        String orderColumn = request.getParameter("orderColumn");
+        if(orderColumn == null){
+            orderColumn = "timestamp";
+        }
+        orderMap.put("orderColumn",orderColumn);
+        //获取排序方式
+        String orderDir = request.getParameter("orderDir");
+        if(orderDir == null){
+            orderDir = "desc";
+        }
+        orderMap.put("orderDir",orderDir);
+        String draw = request.getParameter("draw");//防跨站脚本随机数,直接返回前台
+        //数据起始位置
+        String startIndex = request.getParameter("startIndex");
+        //每页显示的条数
+        String pageSize = request.getParameter("pageSize");
+
+        List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        if(null==recordList){
+            bizDto=BizDto.EMPTY_RESULT;
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        }
+        List<UnlockRecord> recordList2=recordService.filterUnlockRecord(recordList,filterMap);
+        Map<String, Object> info = new HashMap<String, Object>();
+        if(recordList2==null){
+            info.put("pageData",null);
+            info.put("total",0);
+        }else{
+            /*
+            PageUtil<UnlockRecord> pageUtil=new PageUtil<UnlockRecord>(recordList2);
+            pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
+            info.put("pageData", pageUtil.getList());
+            info.put("total", pageUtil.getTotal());
+            */
+            List<UnlockRecord> recordList3=PageUtil.page(recordList2,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+            List<UnlockRecordTableData> recordTableDataList=recordService.convertUnlockRecordToTabularData(recordList3);
+            info.put("pageData", recordTableDataList);
+            info.put("total", recordList2.size());
+        }
+        info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+        bizDto=new BizDto(info);
+        jsonDto=new JsonDto(bizDto);
+        return jsonDto;
+    }
 
     @RequestMapping("/getLockUnlockRecordPage.do")
     @ResponseBody

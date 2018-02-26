@@ -177,7 +177,7 @@ public class RecordServiceImpl implements IRecordService {
                                 eligible = ((String)entry.getValue()).equals(unlockRecord.getGatewayCode());
                                 break;
                             case "openMode":
-                                eligible = ((String)entry.getValue()).equals(unlockRecord.getOpenMode());
+                                eligible = (int)entry.getValue()==unlockRecord.getOpenMode();
                                 break;
                             case "period":
                                 long[] period= (long[]) entry.getValue();

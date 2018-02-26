@@ -237,6 +237,10 @@ var tableFunc={
                                                 TDs_row.eq(i+15).addClass("cd-vacant");
                                             }
                                         }
+                                    }else if(data.biz.code===1){
+                                        for(var i=0;i<16;i++){
+                                            TDs_row.eq(i+15).addClass("cd-vacant");
+                                        }
                                     }
                                 }
                             },
@@ -358,6 +362,10 @@ var tableFunc={
                                         }else {
                                             TDs_row.eq(i+15).addClass("cd-vacant");
                                         }
+                                    }
+                                }else if(data.biz.code===1){
+                                    for(var i=0;i<16;i++){
+                                        TDs_row.eq(i+15).addClass("cd-vacant");
                                     }
                                 }
                             }

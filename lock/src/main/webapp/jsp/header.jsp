@@ -18,7 +18,7 @@
                     <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/deviceManage.jsp');">设备管理</a>
                 </li>
                 <li>
-                    <a href="#">查询与统计</a>
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/swipeRecords.jsp');">查询与统计</a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/dispatcherHouseStatus.do');">房  态</a>
@@ -35,7 +35,7 @@
 
             <ul class="nav navbar-nav navbar-right user-nav">
                 <li class="dropdown profile_menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="resources/images/avatar2.jpg" />张三<b class="caret"></b></a>
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="resources/images/avatar2.jpg" />未名<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/userManage.jsp');">设置</a></li>
                         <li><a href="#">退出系统</a></li>
@@ -45,6 +45,26 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
+<script>
+    $.ajax({
+        type:"GET",
+        url:"user/getUserFromSession.do",
+        async:false,
+        data:{},
+        dataType:'json',
+        success:function(data,status,xhr){
+            ownerPhoneNumber=data.phoneNumber;
+            grade=data.grade;
+//            console.log('{ ownerPhoneNumber:'+ownerPhoneNumber+' ; grade:'+grade+' }');
+            $('.user-nav a.dropdown-toggle').html('<img alt="Avatar" src="resources/images/avatar2.jpg" />'+ownerPhoneNumber+'<b class="caret"></b>');
+        },
+        error:function(xhr,errorType,error){
+            console.log('会话过期,请重新登录');
+            window.location.href=('user/login.do');
+        }
+    });
+</script>
 <!--header end-->
 <!--
 <script>
