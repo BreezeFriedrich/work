@@ -168,7 +168,7 @@
 </div>
 <div class="md-overlay"></div>
 
-<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
+<%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/js/FixedTable.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>

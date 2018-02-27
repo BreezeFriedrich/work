@@ -43,7 +43,6 @@ public class UnlockController {
     @RequestMapping("/getUnlockId.do")
     @ResponseBody
     public List getUnlockId(HttpServletRequest request){
-        String[] strs={"",null,""};
         if (LOG.isInfoEnabled()){
             LOG.info("-->>-- unlock/getUnlockId.do -->>--");
         }

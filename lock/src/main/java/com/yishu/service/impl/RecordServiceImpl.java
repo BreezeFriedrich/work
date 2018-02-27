@@ -216,8 +216,53 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public List<UnlockRecord> orderUnlockRecord(List<UnlockRecord> unlockRecords, Map<String, Object> orderparamMap) {
-        return null;
+    public List<UnlockRecord> orderUnlockRecord(final List<UnlockRecord> unlockRecords, final List<Order> orderList) {
+        List<UnlockRecord> recordList=null;
+        recordList= FilterList.filter(unlockRecords, new FilterListHook<UnlockRecord>() {
+            @Override
+            public boolean test(UnlockRecord unlockRecord) {
+                String property=null;
+                boolean eligible=true;
+                //遍历filterparamMap
+                for(final Order order:orderList){
+                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                        @Override
+                        public int compare(UnlockRecord o1, UnlockRecord o2) {
+                            if("asc".equals(order.getOrderDir())){
+                                switch (order.getOrderColumn()) {
+                                    case "lockCode":
+                                        break;
+                                    case "gatewayCode":
+                                        break;
+                                    case "openMode":
+                                        break;
+                                    case "credential":
+                                        eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getName());
+                                        break;
+                                    case "name":
+                                        eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getCardNumb());
+                                        break;
+                                    default:break;
+                                }
+                            }
+                            return 0;
+                        }
+                    });
+                    Collections.sort(students, new Comparator<Students>() {
+                        @Override
+                        public int compare(Students o1, Students o2) {
+                            int i = o1.getScore() - o2.getScore();
+                            if(i == 0){
+                                return o1.getAge() - o2.getAge();
+                            }
+                            return i;
+                        }
+                    });
+                }
+                return eligible;
+            }
+        });
+        return recordList;
     }
 
     @Override

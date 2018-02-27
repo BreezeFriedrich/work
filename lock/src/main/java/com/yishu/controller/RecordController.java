@@ -1,5 +1,8 @@
 package com.yishu.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.*;
 import com.yishu.service.IRecordService;
 import com.yishu.util.DateUtil;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
@@ -324,6 +328,7 @@ public class RecordController {
             filterMap.put("openMode",openMode);
         }
 
+        /*
         //获取排序字段
         HashMap orderMap= new HashMap(2);
         String orderColumn = request.getParameter("orderColumn");
@@ -337,6 +342,34 @@ public class RecordController {
             orderDir = "desc";
         }
         orderMap.put("orderDir",orderDir);
+        */
+
+//        String[] order=request.getParameterValues("order");
+        String orderStr=request.getParameter("order");
+        System.out.println("order:"+orderStr);
+        ObjectMapper objectMapper=new ObjectMapper();
+        JsonNode rootNode= null;
+        List orderList=new ArrayList(2);
+//        Order[] orders;
+        try {
+            rootNode = objectMapper.readTree(orderStr);
+            orderList=objectMapper.readValue(rootNode.traverse(), new TypeReference<List<Order>>(){});
+//            orders=objectMapper.treeToValue(rootNode,Order[].class);
+
+            /*
+            Iterator<JsonNode> elements = rootNode.elements();
+            Order order;
+            while(elements.hasNext()){
+                JsonNode orderNode = elements.next();
+                order=objectMapper.readValue(orderNode.traverse(),Order.class);
+                orderList.add(order);
+            }
+            */
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("orderList:"+orderList);
+
         String draw = request.getParameter("draw");//防跨站脚本随机数,直接返回前台
         //数据起始位置
         String startIndex = request.getParameter("startIndex");

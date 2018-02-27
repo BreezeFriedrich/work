@@ -31,19 +31,11 @@ $(function () {
         "cancelClass": 'btn-small'
     };
     options_daterange.ranges={
-        // 'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-        // 'Last 7 Days': [moment().subtract('days', 6), moment()],
-        // 'Last 30 Days': [moment().subtract('days', 29), moment()],
-        // 'Today': [moment(), moment()],
-        // 'This Month': [moment().startOf('month'), moment().endOf('month')],
-        // 'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
-        '明日中午': [
-            moment(),
-            moment().set('date',moment().get('date')+1).set('hour',12).set('minute',0).set('second',0)
-        ],
-        '一天': [moment(),moment().add(1,'days')],
-        '一周': [moment(),moment().add(7,'days')],
-        '一月': [moment(),moment().add(1,'month')]
+        '今天': [moment().set('hour',0).set('minute',0).set('second',0), moment()],
+        '昨天': [moment().subtract('days', 1).set('hour',0).set('minute',0).set('second',0), moment().subtract('days', 1).set('hour',23).set('minute',59).set('second',59)],
+        '过去7天': [moment().subtract('days', 6).set('hour',0).set('minute',0).set('second',0), moment()],
+        '本月': [moment().startOf('month'), moment()],
+        '上个月': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
     };
     options_daterange.locale= {
         // direction: 'ltr',
@@ -113,7 +105,7 @@ var datatableSet = {
         DEFAULT_OPTION : { //DataTables初始化选项
             language: {
                 "sProcessing":   "处理中...",
-                "sLengthMenu":   "每页 _MENU_ 项",
+                "sLengthMenu":   "显示 _MENU_ 项结果",
                 "sZeroRecords":  "没有匹配结果",
                 "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
                 "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
@@ -144,12 +136,21 @@ var datatableSet = {
             searching: false,    //禁用原生搜索
             // bProcessing: true,
             // bServerSide: true,
-            iDisplayLength : 5,//默认每页数量
+            iDisplayLength : 10,//默认每页数量
             bLengthChange : true, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
-            lengthMenu : [5,10,15],
+            lengthMenu : [10,20,30,50],
             ordering : true,
             stateSave : true,
-            retrieve : true
+            retrieve : true,
+            // paginationType:"scrolling",
+            // pagingType:"scrolling",
+            // orderMulti: true,//默认可以多列排序
+            orderClasses: true,//高亮排序列
+            orderFixed: {
+                "pre": [ 0, 'asc' ],
+                "post": [ 1, 'desc' ]
+                // "post": [[ 0, 'asc' ], [ 1, 'asc' ]]
+            }
             //bPaginate: true, //翻页功能
             //bFilter : true, //过滤功能
             // bSort : false, //排序功能
@@ -181,6 +182,8 @@ var datatableSet = {
             var param = {};
             //组装排序参数
             if (data.order && data.order.length && data.order[0]) {
+                console.log('data.order.length:'+data.order.length);
+                /*
                 switch (data.order[0].column) {
                     case 0:
                         param.orderColumn = "openMode";
@@ -200,6 +203,54 @@ var datatableSet = {
                 }
                 //排序方式asc或者desc
                 param.orderDir = data.order[0].dir;
+                */
+                var order=new Array();
+                // for(var index in data.order){
+                //     param.order[index]={};
+                //     param.order[index].orderDir = data.order[index].dir;
+                //     switch (data.order[index].column) {
+                //         case 0:
+                //             param.order[index].orderColumn = "openMode";
+                //             break;
+                //         case 1:
+                //             param.order[index].orderColumn = "timestamp";
+                //             break;
+                //         case 2:
+                //             param.order[index].orderColumn = "credential";
+                //             break;
+                //         case 3:
+                //             param.order[index].orderColumn = "name";
+                //             break;
+                //         default:
+                //             param.order[index].orderColumn = "timestamp";
+                //             break;
+                //     }
+                // }
+                for(var index in data.order){
+                    order[index]={};
+                    order[index].orderDir = data.order[index].dir;
+                    switch (data.order[index].column) {
+                        case 0:
+                            order[index].orderColumn = "openMode";
+                            break;
+                        case 1:
+                            order[index].orderColumn = "timestamp";
+                            break;
+                        case 2:
+                            order[index].orderColumn = "credential";
+                            break;
+                        case 3:
+                            order[index].orderColumn = "name";
+                            break;
+                        default:
+                            order[index].orderColumn = "timestamp";
+                            break;
+                    }
+                }
+                // order.push("haha");
+                // order.push("heihei");
+                param.order=JSON.stringify(order);
+                // param.order=escape(toJSON(order));
             }
             // param.ownerPhoneNumber=phoneNumber;
             // param.date=theTime;//yyyy_MM_dd格式的日期字符串.
@@ -262,7 +313,7 @@ var datatableSet = {
                 columns: [
                     {
                         data: "openMode",
-                        orderable: false,
+                        orderable: true,
                         render: function (data, type, row, meta) {
                             if(1==data){
                                 return "身份证开锁"

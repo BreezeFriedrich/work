@@ -251,7 +251,7 @@
     <div class="clearfix"></div>
 </div>
 
-<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
+<%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>

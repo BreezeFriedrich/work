@@ -54,10 +54,12 @@
         data:{},
         dataType:'json',
         success:function(data,status,xhr){
-            ownerPhoneNumber=data.phoneNumber;
-            grade=data.grade;
+            sessionuser={};
+            sessionuser.phone=data.phoneNumber;
+            sessionuser.grade=data.grade;
+            sessionuser.name=data.name;
 //            console.log('{ ownerPhoneNumber:'+ownerPhoneNumber+' ; grade:'+grade+' }');
-            $('.user-nav a.dropdown-toggle').html('<img alt="Avatar" src="resources/images/avatar2.jpg" />'+ownerPhoneNumber+'<b class="caret"></b>');
+            $('.user-nav a.dropdown-toggle').html('<img alt="Avatar" src="resources/images/avatar2.jpg" />'+sessionuser.name+'<b class="caret"></b>');
         },
         error:function(xhr,errorType,error){
             console.log('会话过期,请重新登录');
