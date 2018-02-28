@@ -5,8 +5,36 @@ var startTime;
 var endTime;
 var tableElement;
 var tableInstance;
+var gatewaysAndLocks;
+var gateways;
+var locks;
+var isNameNotCode_gateway;
+var isNameNotCode_lock;
+
 $(function () {
     $(".navbar-collapse ul:first li:eq(2)").addClass("active");
+
+    $("[name='switchbox']").bootstrapSwitch();
+    $("[name='switchbox']").eq(0).bootstrapSwitch('setState', false);
+    $("[name='switchbox']").eq(1).bootstrapSwitch('setState', true);
+    // $("[name='switchbox']").on('switch-change', function (e, data) {
+    //     var $el = $(data.el)
+    //         , value = data.value;
+    //     console.log(e, $el, value);
+    // });
+    // $("[name='switchbox']")[0].on('switch-change', function (e, data) {
+    //     isNameNotCode_gateway=data.value;
+    //     console.log("isNameNotCode_gateway:"+isNameNotCode_gateway);
+    // });
+    // $("[name='switchbox']").eq(1).on('switch-change', function (e, data) {
+    //     isNameNotCode_lock=data.value;
+    //     console.log("isNameNotCode_lock:"+isNameNotCode_lock);
+    // });
+    $('input[name="switchbox"]').eq(0).on('switchChange.bootstrapSwitch', function(event, state) {
+        console.log(this); // DOM element
+        console.log(event); // jQuery event
+        console.log(state); // true | false
+    });
 
     var options_daterange={
         "format": 'YYYY-MM-DD HH:mm',// format: 'MM/DD/YYYY', // format: 'MM/DD/YYYY h:mm A',
@@ -56,6 +84,271 @@ $(function () {
         console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
     });
 
+    getGatewaysAndLocks();
+    var datatableSet = {
+        OPTIONS : {
+            DEFAULT_OPTION : { //DataTables初始化选项
+                language: {
+                    "sProcessing":   "处理中...",
+                    "sLengthMenu":   "显示 _MENU_ 项结果",
+                    "sZeroRecords":  "没有匹配结果",
+                    "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                    "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "搜索:",
+                    "sUrl":          "",
+                    "sEmptyTable":     "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands":  ",",
+                    "oPaginate": {
+                        "sFirst":    "首页",
+                        "sPrevious": "上页",
+                        "sNext":     "下页",
+                        "sLast":     "末页",
+                        "sJump":     "跳转"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                },
+                autoWidth: false,   //禁用自动调整列宽
+                stripeClasses: ["odd", "even"],//为奇偶行加上样式，兼容不支持CSS伪类的场合
+                order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
+                processing: false,  //隐藏加载提示,自行处理
+                serverSide: true,   //启用服务器端分页
+                searching: false,    //禁用原生搜索
+                // bProcessing: true,
+                // bServerSide: true,
+                iDisplayLength : 10,//默认每页数量
+                bLengthChange : true, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
+                lengthMenu : [10,20,30,50],
+                ordering : true,
+                stateSave : true,
+                retrieve : true,
+                // paginationType:"scrolling",
+                // pagingType:"scrolling",
+                // orderMulti: true,//默认可以多列排序
+                orderClasses: true,//高亮排序列
+                // orderFixed: {
+                    // "pre": [ 2, 'asc' ],
+                    // "post": [ 3, 'desc' ]
+                    // "post": [[ 0, 'asc' ], [ 1, 'asc' ]]
+                // }
+                //bPaginate: true, //翻页功能
+                //bFilter : true, //过滤功能
+                // bSort : false, //排序功能
+                //bInfo : true,//页脚信息
+                //bAutoWidth : true,//自动宽度
+                //bPaginate : true,
+                //bProcessing: true//服务器端进行分页处理的意思
+            },
+            COLUMN: {
+                CHECKBOX: { //复选框单元格
+                    className: "td-checkbox",
+                    orderable: false,
+                    width: "30px",
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return '<input type="checkbox" class="iCheck">';
+                    }
+                }
+            },
+            RENDER: {   //常用render可以抽取出来，如日期时间、头像等
+                ELLIPSIS: function (data, type, row, meta) {
+                    data = data||"";
+                    return '<span title="' + data + '">' + data + '</span>';
+                }
+            }
+        },
+        function : {
+            getQueryParams: function (data) {
+                var param = {};
+                //组装排序参数
+                if (data.order && data.order.length && data.order[0]) {
+                    console.log('data.order.length:'+data.order.length);
+                    /*
+                    switch (data.order[0].column) {
+                        case 0:
+                            param.orderColumn = "openMode";
+                            break;
+                        case 1:
+                            param.orderColumn = "timestamp";
+                            break;
+                        case 2:
+                            param.orderColumn = "credential";
+                            break;
+                        case 3:
+                            param.orderColumn = "name";
+                            break;
+                        default:
+                            param.orderColumn = "timestamp";
+                            break;
+                    }
+                    //排序方式asc或者desc
+                    param.orderDir = data.order[0].dir;
+                    */
+                    var order=new Array();
+                    // for(var index in data.order){
+                    //     param.order[index]={};
+                    //     param.order[index].orderDir = data.order[index].dir;
+                    //     switch (data.order[index].column) {
+                    //         case 0:
+                    //             param.order[index].orderColumn = "openMode";
+                    //             break;
+                    //         case 1:
+                    //             param.order[index].orderColumn = "timestamp";
+                    //             break;
+                    //         case 2:
+                    //             param.order[index].orderColumn = "credential";
+                    //             break;
+                    //         case 3:
+                    //             param.order[index].orderColumn = "name";
+                    //             break;
+                    //         default:
+                    //             param.order[index].orderColumn = "timestamp";
+                    //             break;
+                    //     }
+                    // }
+                    for(var index in data.order){
+                        order[index]={};
+                        order[index].orderDir = data.order[index].dir;
+                        switch (data.order[index].column) {
+                            case 0:
+                                order[index].orderColumn = "gatewayCode";
+                                break;
+                            case 1:
+                                order[index].orderColumn = "lockCode";
+                                break;
+                            case 2:
+                                order[index].orderColumn = "openMode";
+                                break;
+                            case 3:
+                                order[index].orderColumn = "timestamp";
+                                break;
+                            case 4:
+                                order[index].orderColumn = "credential";
+                                break;
+                            case 5:
+                                order[index].orderColumn = "name";
+                                break;
+                            // default:
+                            //     order[index].orderColumn = "timestamp";
+                            //     break;
+                        }
+                    }
+                    param.order=JSON.stringify(order);
+                }
+                param.startTime=startTime;
+                param.endTime=endTime;
+                param.gatewayCode=$("#form-gatewayCode").val();
+                param.lockCode=$("#form-lockCode").val();
+                param.openMode=$("#form-openMode").val();
+                //组装分页参数
+                param.startIndex = data.start;
+                param.pageSize = data.length;
+                param.draw = data.draw;
+                return param;
+            },
+            drawtable: function (element) {
+                //element代表table元素. element===$("#table");
+                // tableWrapper= element.parent('div .col-lg-12').eq(0);
+                tableWrapper=element.parent('div .table-container').eq(0);
+                $.fn.dataTable.tables({api: true}).destroy();
+                tableInstance = element.dataTable($.extend(true, {}, datatableSet.OPTIONS.DEFAULT_OPTION, {
+                    ajax: function (data, callback, settings) {
+                        param = datatableSet.function.getQueryParams(data);
+                        tableWrapper.spinModal();
+                        $.ajax({
+                            type: "POST",
+                            url: projectPath+'/record/unlockRecordFilterOrderPage.do',
+                            cache: false,
+                            data: param,
+                            dataType: "json",
+                            success: function (data) {
+                                var returnData = {};
+                                if(data.success){
+                                    if(data.biz.code===0){
+                                        var result=data.biz.data;
+                                        returnData.draw = result.draw;
+                                        returnData.recordsTotal = result.total;
+                                        returnData.recordsFiltered = result.total;
+                                        returnData.data = result.pageData;
+                                    }else{
+                                        console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
+                                    }
+                                }else{
+                                    console.log("errmsg:"+data.errmsg);
+                                }
+                                if(undefined==returnData.data || null==returnData.data){
+                                    returnData.recordsTotal=0;
+                                    returnData.recordsFiltered=0;
+                                    returnData.data=[];
+                                }
+                                tableWrapper.spinModal(false);
+                                callback(returnData);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert("查询失败");
+                                tableWrapper.spinModal(false);
+                            }
+                        });
+                    },
+                    //绑定数据
+                    columns: [
+                        {
+                            data: "gatewayCode",
+                            orderable: true,
+                            render: function (data) {
+                                if(gateways[data]){
+                                    return gateways[data].gatewayName;
+                                }
+                                return data;
+                            }
+                        },{
+                            data: "lockCode",
+                            render: function (data) {
+                                if(locks[data]){
+                                    return locks[data].lockName;
+                                }
+                                return data;
+                            }
+                        },{
+                            data: "openMode",
+                            orderable: true,
+                            render: function (data, type, row, meta) {
+                                if(1==data){
+                                    return "身份证开锁"
+                                }else if(2==data){
+                                    return "密码开锁"
+                                }else if(3==data){
+                                    return "门卡开锁"
+                                }else{
+                                    return data;
+                                }
+                            }
+                        },{
+                            data: "timestamp",
+                            // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                        },{
+                            data: "credential"
+                        },{
+                            data: "name"
+                        }
+                    ],
+                    "columnDefs": [
+                        {
+                            "defaultContent": "",
+                            "targets": "_all"
+                        }
+                    ],
+                    "drawCallback": function (settings) {}
+                })).api();
+            }
+        }
+    };
+
     tableElement=$("#table");
     datatableSet.function.drawtable(tableElement);
     //查询
@@ -100,248 +393,21 @@ $(function () {
     App.init({nanoScroller:false,dateTime:false});
 });
 
-var datatableSet = {
-    OPTIONS : {
-        DEFAULT_OPTION : { //DataTables初始化选项
-            language: {
-                "sProcessing":   "处理中...",
-                "sLengthMenu":   "显示 _MENU_ 项结果",
-                "sZeroRecords":  "没有匹配结果",
-                "sInfo":         "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
-                "sInfoEmpty":    "当前显示第 0 至 0 项，共 0 项",
-                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-                "sInfoPostFix":  "",
-                "sSearch":       "搜索:",
-                "sUrl":          "",
-                "sEmptyTable":     "表中数据为空",
-                "sLoadingRecords": "载入中...",
-                "sInfoThousands":  ",",
-                "oPaginate": {
-                    "sFirst":    "首页",
-                    "sPrevious": "上页",
-                    "sNext":     "下页",
-                    "sLast":     "末页",
-                    "sJump":     "跳转"
-                },
-                "oAria": {
-                    "sSortAscending":  ": 以升序排列此列",
-                    "sSortDescending": ": 以降序排列此列"
-                }
-            },
-            autoWidth: false,   //禁用自动调整列宽
-            stripeClasses: ["odd", "even"],//为奇偶行加上样式，兼容不支持CSS伪类的场合
-            order: [],          //取消默认排序查询,否则复选框一列会出现小箭头
-            processing: false,  //隐藏加载提示,自行处理
-            serverSide: true,   //启用服务器端分页
-            searching: false,    //禁用原生搜索
-            // bProcessing: true,
-            // bServerSide: true,
-            iDisplayLength : 10,//默认每页数量
-            bLengthChange : true, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
-            lengthMenu : [10,20,30,50],
-            ordering : true,
-            stateSave : true,
-            retrieve : true,
-            // paginationType:"scrolling",
-            // pagingType:"scrolling",
-            // orderMulti: true,//默认可以多列排序
-            orderClasses: true,//高亮排序列
-            orderFixed: {
-                "pre": [ 0, 'asc' ],
-                "post": [ 1, 'desc' ]
-                // "post": [[ 0, 'asc' ], [ 1, 'asc' ]]
-            }
-            //bPaginate: true, //翻页功能
-            //bFilter : true, //过滤功能
-            // bSort : false, //排序功能
-            //bInfo : true,//页脚信息
-            //bAutoWidth : true,//自动宽度
-            //bPaginate : true,
-            //bProcessing: true//服务器端进行分页处理的意思
+function getGatewaysAndLocks() {
+    $.ajax({
+        type:"POST",
+        url:"device/getGatewaysAndLocks.do",
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        data:{},
+        dataType:'json',
+        success:function(data,status,xhr){
+            console.log("GatewaysAndLocks:"+data);
+            gatewaysAndLocks=data;
+            gateways=data.gateways;
+            locks=data.locks;
         },
-        COLUMN: {
-            CHECKBOX: { //复选框单元格
-                className: "td-checkbox",
-                orderable: false,
-                width: "30px",
-                data: null,
-                render: function (data, type, row, meta) {
-                    return '<input type="checkbox" class="iCheck">';
-                }
-            }
-        },
-        RENDER: {   //常用render可以抽取出来，如日期时间、头像等
-            ELLIPSIS: function (data, type, row, meta) {
-                data = data||"";
-                return '<span title="' + data + '">' + data + '</span>';
-            }
+        error:function(xhr,errorType,error){
+            console.log('错误');
         }
-    },
-    function : {
-        getQueryParams: function (data) {
-            var param = {};
-            //组装排序参数
-            if (data.order && data.order.length && data.order[0]) {
-                console.log('data.order.length:'+data.order.length);
-                /*
-                switch (data.order[0].column) {
-                    case 0:
-                        param.orderColumn = "openMode";
-                        break;
-                    case 1:
-                        param.orderColumn = "timestamp";
-                        break;
-                    case 2:
-                        param.orderColumn = "credential";
-                        break;
-                    case 3:
-                        param.orderColumn = "name";
-                        break;
-                    default:
-                        param.orderColumn = "timestamp";
-                        break;
-                }
-                //排序方式asc或者desc
-                param.orderDir = data.order[0].dir;
-                */
-                var order=new Array();
-                // for(var index in data.order){
-                //     param.order[index]={};
-                //     param.order[index].orderDir = data.order[index].dir;
-                //     switch (data.order[index].column) {
-                //         case 0:
-                //             param.order[index].orderColumn = "openMode";
-                //             break;
-                //         case 1:
-                //             param.order[index].orderColumn = "timestamp";
-                //             break;
-                //         case 2:
-                //             param.order[index].orderColumn = "credential";
-                //             break;
-                //         case 3:
-                //             param.order[index].orderColumn = "name";
-                //             break;
-                //         default:
-                //             param.order[index].orderColumn = "timestamp";
-                //             break;
-                //     }
-                // }
-                for(var index in data.order){
-                    order[index]={};
-                    order[index].orderDir = data.order[index].dir;
-                    switch (data.order[index].column) {
-                        case 0:
-                            order[index].orderColumn = "openMode";
-                            break;
-                        case 1:
-                            order[index].orderColumn = "timestamp";
-                            break;
-                        case 2:
-                            order[index].orderColumn = "credential";
-                            break;
-                        case 3:
-                            order[index].orderColumn = "name";
-                            break;
-                        default:
-                            order[index].orderColumn = "timestamp";
-                            break;
-                    }
-                }
-                // order.push("haha");
-                // order.push("heihei");
-                param.order=JSON.stringify(order);
-                // param.order=escape(toJSON(order));
-            }
-            // param.ownerPhoneNumber=phoneNumber;
-            // param.date=theTime;//yyyy_MM_dd格式的日期字符串.
-            param.startTime=startTime;
-            param.endTime=endTime;
-            param.gatewayCode=$("#form-gatewayCode").val();
-            param.lockCode=$("#form-lockCode").val();
-            param.openMode=$("#form-openMode").val();
-            //组装分页参数
-            param.startIndex = data.start;
-            param.pageSize = data.length;
-            param.draw = data.draw;
-            return param;
-        },
-        drawtable: function (element) {
-            //element代表table元素. element===$("#table");
-            // tableWrapper= element.parent('div .col-lg-12').eq(0);
-            tableWrapper=element.parent('div .table-container').eq(0);
-            $.fn.dataTable.tables({api: true}).destroy();
-            tableInstance = element.dataTable($.extend(true, {}, datatableSet.OPTIONS.DEFAULT_OPTION, {
-                ajax: function (data, callback, settings) {
-                    param = datatableSet.function.getQueryParams(data);
-                    tableWrapper.spinModal();
-                    $.ajax({
-                        type: "POST",
-                        url: projectPath+'/record/unlockRecordFilterOrderPage.do',
-                        cache: false,
-                        data: param,
-                        dataType: "json",
-                        success: function (data) {
-                            var returnData = {};
-                            if(data.success){
-                                if(data.biz.code===0){
-                                    var result=data.biz.data;
-                                    returnData.draw = result.draw;
-                                    returnData.recordsTotal = result.total;
-                                    returnData.recordsFiltered = result.total;
-                                    returnData.data = result.pageData;
-                                }else{
-                                    console.log("biz.code:"+data.biz.code+",biz.msg:"+data.biz.msg);
-                                }
-                            }else{
-                                console.log("errmsg:"+data.errmsg);
-                            }
-                            if(undefined==returnData.data || null==returnData.data){
-                                returnData.recordsTotal=0;
-                                returnData.recordsFiltered=0;
-                                returnData.data=[];
-                            }
-                            tableWrapper.spinModal(false);
-                            callback(returnData);
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("查询失败");
-                            tableWrapper.spinModal(false);
-                        }
-                    });
-                },
-                //绑定数据
-                columns: [
-                    {
-                        data: "openMode",
-                        orderable: true,
-                        render: function (data, type, row, meta) {
-                            if(1==data){
-                                return "身份证开锁"
-                            }else if(2==data){
-                                return "密码开锁"
-                            }else if(3==data){
-                                return "门卡开锁"
-                            }else{
-                                return null;
-                            }
-                        }
-                    },{
-                        data: "timestamp",
-                        // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
-                    },{
-                        data: "credential"
-                    },{
-                        data: "name"
-                    }
-                ],
-                "columnDefs": [
-                    {
-                        "defaultContent": "",
-                        "targets": "_all"
-                    }
-                ],
-                "drawCallback": function (settings) {}
-            })).api();
-        }
-    }
-};
+    });
+}

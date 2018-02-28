@@ -29,7 +29,8 @@
     <link rel="stylesheet"  href="resources/plugin/bootstrap.daterangepicker/daterangepicker-bs3.css" />
     <%--<link rel="stylesheet" href="resources/plugin/DataTables-Bootstrap3/datatables.min.css"/>--%>
     <link rel="stylesheet" href="resources/plugin/dataTables/css/jquery.dataTables.css" />
-    <%--<link rel="stylesheet" type="text/css" href="resources/plugin/dataTables/css/dataTables.bootstrap.min.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="resources/plugin/dataTables/css/dataTables.bootstrap.min.css"/>--%>
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap-switch/bootstrap-switch.min.css"/>
 </head>
 <body>
 <jsp:include page="/jsp/header.jsp"/>
@@ -38,40 +39,44 @@
 <div id="cl-wrapper" class="fixed-menu">
     <div class="container-fluid table-odyssey ">
         <div class="row-fluid" style="padding-top: 15px">
-            <div class="col-lg-offset-3 col-lg-2">
+            <div class="col-lg-offset-2 col-lg-2">
                 <div class="btn btn-default" data-toggle="collapse" href="#collapseOne">查询条件</div>
             </div>
-            <div class="col-lg-7"></div>
-            <div class="col-lg-offset-3 col-lg-9">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-offset-2 col-lg-10">
                 <div id="collapseOne" class="collapse in">
-                    <%--<form>--%>
-                    <%--<span>设备编号:</span> <input type="text" placeholder="设备编号" id="deviceid-search">--%>
-                    <%--<span>刷卡时间:</span> <input type="text" placeholder="刷卡时间" id="endTime-search">--%>
-                    <%--<span>刷卡结果:</span>--%>
-                    <%--<select id="result-search">--%>
-                    <%--<option value="">全部</option>--%>
-                    <%--<option value="0">成功</option>--%>
-                    <%--<option value="1">失败</option>--%>
-                    <%--</select>--%>
-                    <%--<button type="button" id="btn_search">查询</button>--%>
-                    <%--</form>--%>
-
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
+                            <%--
                             <label for="form-gatewayCode" class="col-lg-2 control-label">网关编码</label>
                             <div class="col-lg-4">
                                 <input type="text" class="form-control" id="form-gatewayCode"
                                        placeholder="请输入网关编码">
                             </div>
                             <div class="col-lg-6"></div>
+                            --%>
+                            <label for="form-gatewayCode" class="col-lg-2 control-label">网关</label>
+                            <div class="col-lg-2">
+                                <div class="switch switch-mini" data-on-label="名称" data-off-label="编码" data-on="primary" data-off="info">
+                                    <input type="checkbox" name="switchbox" checked data-on-text="名称" data-off-text="编码"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="form-gatewayCode" placeholder="请输入网关">
+                            </div>
+                            <div class="col-lg-4"></div>
                         </div>
                         <div class="form-group">
-                            <label for="form-lockCode" class="col-lg-2 control-label">门锁编码</label>
-                            <div class="col-lg-4">
-                                <input type="text" class="form-control" id="form-lockCode"
-                                       placeholder="请输入门锁编码">
+                            <label for="form-lockCode" class="col-lg-2 control-label">门锁</label>
+                            <div class="col-lg-2">
+                                <div class="switch switch-large" data-on-label="名称" data-off-label="编码" data-on="primary" data-off="info">
+                                    <input type="checkbox" name="switchbox" checked data-on-text="名称" data-off-text="编码"/>
+                                </div>
                             </div>
-                            <div class="col-lg-6"></div>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="form-lockCode" placeholder="请输入门锁">
+                            </div>
+                            <div class="col-lg-4"></div>
                         </div>
                         <div class="form-group">
                             <label for="form-gatewayCode" class="col-lg-2 control-label">开锁时间</label>
@@ -108,10 +113,12 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-offset-3 col-lg-6 table-container" ><!--style="background-color: #ffffff"-->
+            <div class="col-lg-offset-2 col-lg-8 table-container" ><!--style="background-color: #ffffff"-->
                 <table id="table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                     <thead>
                     <tr>
+                        <th width="200px">网关编号</th>
+                        <th width="200px">门锁编号</th>
                         <th width="150px">开锁类型</th>
                         <th width="200px">开锁时刻</th>
                         <th width="180px">开锁凭据</th>
@@ -121,7 +128,7 @@
                     </thead>
                 </table>
             </div>
-            <div class="col-lg-3"></div>
+            <div class="col-lg-2"></div>
             <div class="col-lg-12" style="height: 38px;"></div>
         </div>
         <div class="footer">&copy;2015-2016 南京亿数信息科技有限公司 版权所有</div>
@@ -129,7 +136,7 @@
     </div>
 </div>
 
-<%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
+<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
 <%--<script type="text/javascript" src="resources/plugin/DataTables-Bootstrap3/Bootstrap-3.3.7/js/bootstrap.min.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
@@ -141,7 +148,8 @@
 <script type="text/javascript" src="resources/plugin/dataTables/pagination/scrolling.js"></script>
 <%--<script type="text/javascript" src="resources/plugin/dataTables/js/dataTables.bootstrap.min.js"></script>--%>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
+<script type="text/javascript" src="resources/plugin/bootstrap-switch/bootstrap-switch.min.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
-<script type="text/javascript" src="resources/js/swipeRecords.js?v=3"></script>
+<script type="text/javascript" src="resources/js/swipeRecords.js?v=9"></script>
 </body>
 </html>

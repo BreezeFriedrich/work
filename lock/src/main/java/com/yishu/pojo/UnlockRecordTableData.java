@@ -6,10 +6,28 @@ package com.yishu.pojo;
  * @since JDK1.7
  */
 public class UnlockRecordTableData {
+    private String gatewayCode;
+    private String lockCode;
     private int openMode;
     private String timestamp;
     private String credential;
     private String name;
+
+    public String getGatewayCode() {
+        return gatewayCode;
+    }
+
+    public void setGatewayCode(String gatewayCode) {
+        this.gatewayCode = gatewayCode;
+    }
+
+    public String getLockCode() {
+        return lockCode;
+    }
+
+    public void setLockCode(String lockCode) {
+        this.lockCode = lockCode;
+    }
 
     public int getOpenMode() {
         return openMode;

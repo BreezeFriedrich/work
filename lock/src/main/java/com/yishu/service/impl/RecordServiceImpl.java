@@ -217,53 +217,356 @@ public class RecordServiceImpl implements IRecordService {
 
     @Override
     public List<UnlockRecord> orderUnlockRecord(final List<UnlockRecord> unlockRecords, final List<Order> orderList) {
-        List<UnlockRecord> recordList=null;
-        recordList= FilterList.filter(unlockRecords, new FilterListHook<UnlockRecord>() {
-            @Override
-            public boolean test(UnlockRecord unlockRecord) {
-                String property=null;
-                boolean eligible=true;
-                //遍历filterparamMap
-                for(final Order order:orderList){
-                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
-                        @Override
-                        public int compare(UnlockRecord o1, UnlockRecord o2) {
-                            if("asc".equals(order.getOrderDir())){
-                                switch (order.getOrderColumn()) {
-                                    case "lockCode":
-                                        break;
-                                    case "gatewayCode":
-                                        break;
-                                    case "openMode":
-                                        break;
-                                    case "credential":
-                                        eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getName());
-                                        break;
-                                    case "name":
-                                        eligible = ((String)entry.getValue()).equals(unlockRecord.getCardInfo().getCardNumb());
-                                        break;
-                                    default:break;
-                                }
+        for(final Order order:orderList) {
+            Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                @Override
+                public int compare(UnlockRecord o1, UnlockRecord o2) {
+                    int compareNum=1;
+                    switch (order.getOrderColumn()) {
+                        case "gatewayCode":
+                            compareNum=o1.getGatewayCode().compareTo(o2.getGatewayCode());
+                            break;
+                        case "lockCode":
+                            compareNum=o1.getLockCode().compareTo(o2.getLockCode());
+                            break;
+                        case "openMode":
+                            compareNum=o1.getOpenMode()-o2.getOpenMode();
+                            break;
+                        case "timestamp":
+                            /*
+                            try {
+                                compareNum=DateUtil.yyyyMMddHHmmss.parse(o1.getTimetag()).getTime()-DateUtil.yyyyMMddHHmmss.parse(o2.getTimetag()).getTime();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
                             }
+                             */
+                            compareNum=o1.getTimetag().compareTo(o2.getTimetag());
+                            break;
+                        case "credential":
+                            if(o1.getOpenMode()==o2.getOpenMode()){
+                                if(null!=o1.getPasswordInfo() && null!=o2.getPasswordInfo()){
+                                    compareNum=o1.getPasswordInfo().getPassword().compareTo(o2.getPasswordInfo().getPassword());
+                                }
+                                if (null!=o1.getCardInfo() && null!=o2.getCardInfo()){
+                                    compareNum=o1.getCardInfo().getCardNumb().compareTo(o2.getCardInfo().getCardNumb());
+                                }
+                            }else{
+                                compareNum=1;
+                            }
+                            break;
+                        case "name":
+                            break;
+                        default:
+                            break;
+                    }
+                    if ("asc".equals(order.getOrderDir())) {
+                        return compareNum;
+                    }else{
+                        return -1*compareNum;
+                    }
+                }
+            });
+        }
+        return unlockRecords;
+    }
+
+    @Override
+    public List<UnlockRecordTableData> orderUnlockRecordTableData(final List<UnlockRecordTableData> recordTableDataList, List<Order> orderList) {
+        Collections.reverse(orderList);
+        for(final Order order:orderList) {
+            orderUnlockRecordTableData(recordTableDataList,order);
+//            switch (order.getOrderColumn()) {
+//                case "gatewayCode":
+//                    Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+//                        @Override
+//                        public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+//                            int compareNum=0;
+//                            compareNum=o1.getGatewayCode().compareTo(o2.getGatewayCode());
+//                            if ("asc".equals(order.getOrderDir())) {
+//                                return compareNum;
+//                            }else{
+//                                return -1*compareNum;
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case "lockCode":
+//                    Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+//                        @Override
+//                        public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+//                            int compareNum=0;
+//                            compareNum=o1.getLockCode().compareTo(o2.getLockCode());
+//                            if ("asc".equals(order.getOrderDir())) {
+//                                return compareNum;
+//                            }else{
+//                                return -1*compareNum;
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case "openMode":
+//                    Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+//                        @Override
+//                        public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+//                            int compareNum=0;
+//                            compareNum=o1.getOpenMode()-o2.getOpenMode();
+//                            if ("asc".equals(order.getOrderDir())) {
+//                                return compareNum;
+//                            }else{
+//                                return -1*compareNum;
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case "timestamp":
+//                    Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+//                        @Override
+//                        public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+//                            int compareNum=0;
+//                            compareNum=o1.getTimestamp().compareTo(o2.getTimestamp());
+//                            if ("asc".equals(order.getOrderDir())) {
+//                                return compareNum;
+//                            }else{
+//                                return -1*compareNum;
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case "credential":
+////                    Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+////                        @Override
+////                        public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+////                            int compareNum=0;
+////                            compareNum=o1.getOpenMode()-o2.getOpenMode();
+////                            return compareNum;
+////                        }
+////                    });
+//                    Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+//                        @Override
+//                        public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+//                            int compareNum=0;
+//                            if(o1.getOpenMode()==o2.getOpenMode()){
+//                                if(null!=o1.getCredential() && null!=o2.getCredential()){
+//                                    compareNum=o1.getCredential().compareTo(o2.getCredential());
+//                                }
+//                                if(null==o1.getCredential() && null!=o2.getCredential()){
+//                                    compareNum=1;
+//                                }
+//                            }
+//                            if ("asc".equals(order.getOrderDir())) {
+//                                return compareNum;
+//                            }else{
+//                                return -1*compareNum;
+//                            }
+//                        }
+//                    });
+//                    break;
+//                case "name":
+//                    Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+//                        @Override
+//                        public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+//                            if(null!=o1.getName() && null!=o2.getName()){
+//                                int compareNum=0;
+//                                compareNum=o1.getName().compareTo(o2.getName());
+//                                if ("asc".equals(order.getOrderDir())) {
+//                                    return compareNum;
+//                                }else{
+//                                    return -1*compareNum;
+//                                }
+//                            }else {
+//                                return 0;
+//                            }
+//                        }
+//                    });
+//                    break;
+//                default:
+//                    break;
+//            }
+        }
+        return recordTableDataList;
+    }
+
+    @Override
+    public List<UnlockRecordTableData> orderUnlockRecordTableData(List<UnlockRecordTableData> recordTableDataList, final Order order) {
+        switch (order.getOrderColumn()) {
+            case "gatewayCode":
+                Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+                    @Override
+                    public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                        int compareNum=0;
+                        compareNum=o1.getGatewayCode().compareTo(o2.getGatewayCode());
+                        if ("asc".equals(order.getOrderDir())) {
+                            return compareNum;
+                        }else{
+                            return -1*compareNum;
+                        }
+                    }
+                });
+                break;
+            case "lockCode":
+                Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+                    @Override
+                    public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                        int compareNum=0;
+                        compareNum=o1.getLockCode().compareTo(o2.getLockCode());
+                        if ("asc".equals(order.getOrderDir())) {
+                            return compareNum;
+                        }else{
+                            return -1*compareNum;
+                        }
+                    }
+                });
+                break;
+            case "openMode":
+                Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+                    @Override
+                    public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                        int compareNum=0;
+                        compareNum=o1.getOpenMode()-o2.getOpenMode();
+                        if ("asc".equals(order.getOrderDir())) {
+                            return compareNum;
+                        }else{
+                            return -1*compareNum;
+                        }
+                    }
+                });
+                break;
+            case "timestamp":
+                Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+                    @Override
+                    public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                        int compareNum=0;
+                        compareNum=o1.getTimestamp().compareTo(o2.getTimestamp());
+                        if ("asc".equals(order.getOrderDir())) {
+                            return compareNum;
+                        }else{
+                            return -1*compareNum;
+                        }
+                    }
+                });
+                break;
+            case "credential":
+                Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+                    @Override
+                    public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                        int compareNum=0;
+                        compareNum=o1.getOpenMode()-o2.getOpenMode();
+                        return compareNum;
+                    }
+                });
+                Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+                    @Override
+                    public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                        int compareNum=0;
+                        if(o1.getOpenMode()==o2.getOpenMode()){
+                            if(null!=o1.getCredential() && null!=o2.getCredential()){
+                                compareNum=o1.getCredential().compareTo(o2.getCredential());
+                            }
+                            if(null==o1.getCredential() && null!=o2.getCredential()){
+                                compareNum=1;
+                            }
+                        }
+                        if ("asc".equals(order.getOrderDir())) {
+                            return compareNum;
+                        }else{
+                            return -1*compareNum;
+                        }
+                    }
+                });
+                break;
+            case "name":
+                Collections.sort(recordTableDataList, new Comparator<UnlockRecordTableData>() {
+                    @Override
+                    public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                        if(null!=o1.getName() && null!=o2.getName()){
+                            int compareNum=0;
+                            compareNum=o1.getName().compareTo(o2.getName());
+                            if ("asc".equals(order.getOrderDir())) {
+                                return compareNum;
+                            }else{
+                                return -1*compareNum;
+                            }
+                        }else {
                             return 0;
                         }
-                    });
-                    Collections.sort(students, new Comparator<Students>() {
-                        @Override
-                        public int compare(Students o1, Students o2) {
-                            int i = o1.getScore() - o2.getScore();
-                            if(i == 0){
-                                return o1.getAge() - o2.getAge();
-                            }
-                            return i;
-                        }
-                    });
-                }
-                return eligible;
-            }
-        });
-        return recordList;
+                    }
+                });
+                break;
+            default:
+                break;
+        }
+        return recordTableDataList;
     }
+    /*
+    @Override
+    public List<UnlockRecordTableData> orderUnlockRecordTableData(final List<UnlockRecordTableData> unlockRecordTableDataList, List<Order> orderList) {
+        for(final Order order:orderList) {
+            Collections.sort(unlockRecordTableDataList, new Comparator<UnlockRecordTableData>() {
+                @Override
+                public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                    int compareNum=0;
+                    switch (order.getOrderColumn()) {
+                        case "gatewayCode":
+                            compareNum=o1.getGatewayCode().compareTo(o2.getGatewayCode());
+                            break;
+                        case "lockCode":
+                            compareNum=o1.getLockCode().compareTo(o2.getLockCode());
+                            break;
+                        case "openMode":
+                            compareNum=o1.getOpenMode()-o2.getOpenMode();
+                            break;
+                        case "timestamp":
+
+//                            try {
+//                                compareNum=DateUtil.yyyyMMddHHmmss.parse(o1.getTimetag()).getTime()-DateUtil.yyyyMMddHHmmss.parse(o2.getTimetag()).getTime();
+//                            } catch (ParseException e) {
+//                                e.printStackTrace();
+//                            }
+
+                            compareNum=o1.getTimestamp().compareTo(o2.getTimestamp());
+                            break;
+                        case "credential":
+                            if(o1.getOpenMode()==o2.getOpenMode()){
+                                if(null!=o1.getCredential() && null!=o2.getCredential()){
+                                    compareNum=o1.getCredential().compareTo(o2.getCredential());
+                                }
+                                if(null==o1.getCredential() && null!=o2.getCredential()){
+                                    compareNum=1;
+                                }
+                            }
+                            else{
+                                Order orderTemp=new Order();
+                                orderTemp.setOrderColumn("openMode");
+                                orderTemp.setOrderDir("asc");
+                                List<Order> listTemp=new ArrayList<>(1);
+                                listTemp.add(orderTemp);
+                                List<UnlockRecordTableData> unlockRecordTableDataList2=orderUnlockRecordTableData(unlockRecordTableDataList,listTemp);
+                                orderTemp.setOrderColumn("credential");
+                                listTemp=new ArrayList<>(1);
+                                listTemp.add(orderTemp);
+                                List<UnlockRecordTableData> unlockRecordTableDataList3=orderUnlockRecordTableData(unlockRecordTableDataList,listTemp);
+                                return unlockRecordTableDataList3;
+                            }
+                            break;
+                        case "name":
+                            if(null!=o1.getName() && null!=o2.getName()){
+                                compareNum=o1.getName().compareTo(o2.getName());
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    if ("asc".equals(order.getOrderDir())) {
+                        return compareNum;
+                    }else{
+                        return -1*compareNum;
+                    }
+                }
+            });
+        }
+        return unlockRecordTableDataList;
+    }
+    */
 
     @Override
     public List<UnlockRecordTableData> convertUnlockRecordToTabularData(List<UnlockRecord> unlockRecords) {
@@ -275,6 +578,8 @@ public class RecordServiceImpl implements IRecordService {
         for(int i=0;i<recordSize;i++){
             recordTableData=new UnlockRecordTableData();
             unlockRecord=unlockRecords.get(i);
+            recordTableData.setGatewayCode(unlockRecord.getGatewayCode());
+            recordTableData.setLockCode(unlockRecord.getLockCode());
             timetag=unlockRecord.getTimetag();
             try {
                 timetag=DateUtil.yyyy_MM_dd0HH$mm$ss.format(DateUtil.yyyyMMddHHmmss.parse(unlockRecord.getTimetag()));

@@ -24,7 +24,8 @@ public interface IRecordService {
     public List<UnlockRecord> getUnlockRecordFilter(String ownerPhoneNumber, long startTime, long endTime,Map<String,Object> filterparamMap);
     public List<UnlockRecord> filterUnlockRecord(List<UnlockRecord> unlockRecords,Map<String,Object> filterparamMap);
     public List<UnlockRecord> orderUnlockRecord(List<UnlockRecord> unlockRecords,List<Order> orderList);
-
+    public List<UnlockRecordTableData> orderUnlockRecordTableData(List<UnlockRecordTableData> recordTableDataList,List<Order> orderList);
+    public List<UnlockRecordTableData> orderUnlockRecordTableData(List<UnlockRecordTableData> recordTableDataList,Order order);
     public List<UnlockRecordTableData> convertUnlockRecordToTabularData(List<UnlockRecord> unlockRecords);
 
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, long startTime, long endTime, int pageNum, int pageSize);

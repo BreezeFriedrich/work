@@ -1,6 +1,8 @@
 package com.yishu.controller;
 
 import com.yishu.pojo.Device;
+import com.yishu.pojo.Gateway;
+import com.yishu.pojo.Lock;
 import com.yishu.service.IDeviceService;
 import com.yishu.service.IUserService;
 import com.yishu.util.DateUtil;
@@ -14,9 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -61,6 +61,46 @@ public class DeviceController {
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         resultList=deviceService.getDeviceInfo(ownerPhoneNumber);
         return resultList;
+    }
+
+    @RequestMapping("/getGatewaysAndLocks.do")
+    @ResponseBody
+    public Map getGatewaysAndLocks(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- device/getGatewaysAndLocks.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        List<Device> deviceList=deviceService.getDeviceInfo(ownerPhoneNumber);
+        if (null==deviceList){
+            return null;
+        }
+//        resultList=new ArrayList(2);
+        HashMap<String,Gateway> gatewayMap=new HashMap();
+        HashMap<String,Lock> lockMap=new HashMap();
+        Gateway gateway;
+        Lock lock;
+        List<Lock> lockList;
+        Device device;
+        for(int i=0;i<deviceList.size();i++){
+            device=deviceList.get(i);
+            gateway=new Gateway();
+            gateway.setGatewayCode(device.getGatewayCode());
+            gateway.setGatewayName(device.getGatewayName());
+            gateway.setGatewayLocation(device.getGatewayLocation());
+            gateway.setGatewayStatus(device.getGatewayStatus());
+            gateway.setGatewayComment(device.getGatewayComment());
+            gatewayMap.put(gateway.getGatewayCode(),gateway);
+            lockList=device.getLockLists();
+            for (int j=0;j<lockList.size();j++){
+                lock=lockList.get(i);
+                lockMap.put(lock.getLockCode(),lock);
+            }
+        }
+        HashMap resultMap=new HashMap(2);
+        resultMap.put("gateways",gatewayMap);
+        resultMap.put("locks",lockMap);
+        return resultMap;
     }
 
     @RequestMapping("/getAbnormalDevice.do")

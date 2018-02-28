@@ -355,7 +355,6 @@ public class RecordController {
             rootNode = objectMapper.readTree(orderStr);
             orderList=objectMapper.readValue(rootNode.traverse(), new TypeReference<List<Order>>(){});
 //            orders=objectMapper.treeToValue(rootNode,Order[].class);
-
             /*
             Iterator<JsonNode> elements = rootNode.elements();
             Order order;
@@ -369,6 +368,12 @@ public class RecordController {
             e.printStackTrace();
         }
         System.out.println("orderList:"+orderList);
+        if(orderList.isEmpty()){
+            Order order=new Order();
+            order.setOrderColumn("timestamp");
+            order.setOrderDir("desc");
+            orderList.add(order);
+        }
 
         String draw = request.getParameter("draw");//防跨站脚本随机数,直接返回前台
         //数据起始位置
@@ -383,21 +388,22 @@ public class RecordController {
             return jsonDto;
         }
         List<UnlockRecord> recordList2=recordService.filterUnlockRecord(recordList,filterMap);
+        List<UnlockRecordTableData> recordTableDataList=recordService.convertUnlockRecordToTabularData(recordList2);
+        List<UnlockRecordTableData> recordTableDataList2=recordService.orderUnlockRecordTableData(recordTableDataList,orderList);
         Map<String, Object> info = new HashMap<String, Object>();
-        if(recordList2==null){
+        if(recordTableDataList2==null){
             info.put("pageData",null);
             info.put("total",0);
         }else{
             /*
-            PageUtil<UnlockRecord> pageUtil=new PageUtil<UnlockRecord>(recordList2);
+            PageUtil<UnlockRecordTableData> pageUtil=new PageUtil<UnlockRecord>(recordTableDataList2);
             pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
             info.put("pageData", pageUtil.getList());
             info.put("total", pageUtil.getTotal());
             */
-            List<UnlockRecord> recordList3=PageUtil.page(recordList2,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
-            List<UnlockRecordTableData> recordTableDataList=recordService.convertUnlockRecordToTabularData(recordList3);
-            info.put("pageData", recordTableDataList);
-            info.put("total", recordList2.size());
+            List<UnlockRecordTableData> recordTableDataList3=PageUtil.page(recordTableDataList2,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+            info.put("pageData", recordTableDataList3);
+            info.put("total", recordTableDataList2.size());
         }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
         bizDto=new BizDto(info);
