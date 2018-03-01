@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.Device;
+import com.yishu.pojo.Gateway;
 import com.yishu.pojo.GatewayLock;
 import com.yishu.pojo.Lock;
 import com.yishu.service.IDeviceService;
@@ -15,10 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -95,6 +93,40 @@ public class DeviceServiceImpl implements IDeviceService {
         }
 
         return accountDeviceList;
+    }
+
+    @Override
+    public Map getGatewaysAndLocks(String ownerPhoneNumber) {
+        List<Device> deviceList=getDeviceInfo(ownerPhoneNumber);
+        if (null==deviceList){
+            return null;
+        }
+//        resultList=new ArrayList(2);
+        HashMap<String,Gateway> gatewayMap=new HashMap();
+        HashMap<String,Lock> lockMap=new HashMap();
+        Gateway gateway;
+        Lock lock;
+        List<Lock> lockList;
+        Device device;
+        for(int i=0;i<deviceList.size();i++){
+            device=deviceList.get(i);
+            gateway=new Gateway();
+            gateway.setGatewayCode(device.getGatewayCode());
+            gateway.setGatewayName(device.getGatewayName());
+            gateway.setGatewayLocation(device.getGatewayLocation());
+            gateway.setGatewayStatus(device.getGatewayStatus());
+            gateway.setGatewayComment(device.getGatewayComment());
+            gatewayMap.put(gateway.getGatewayCode(),gateway);
+            lockList=device.getLockLists();
+            for (int j=0;j<lockList.size();j++){
+                lock=lockList.get(i);
+                lockMap.put(lock.getLockCode(),lock);
+            }
+        }
+        HashMap resultMap=new HashMap(2);
+        resultMap.put("gateways",gatewayMap);
+        resultMap.put("locks",lockMap);
+        return resultMap;
     }
 
     @Override

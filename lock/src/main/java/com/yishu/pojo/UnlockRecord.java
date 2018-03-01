@@ -13,13 +13,23 @@ package com.yishu.pojo;
 public class UnlockRecord {
     //确保存在默认无参构造,用于JACKSON解析.
 
-    private String lockCode;
     private String gatewayCode;
+    private String lockCode;
+    private String gatewayName;
+    private String lockName;
     private int openMode;//1身份证开锁,2密码开锁.
     private String timetag;
 
     private CardInfo cardInfo;
     private PasswordInfo passwordInfo;
+
+    public String getGatewayCode() {
+        return gatewayCode;
+    }
+
+    public void setGatewayCode(String gatewayCode) {
+        this.gatewayCode = gatewayCode;
+    }
 
     public String getLockCode() {
         return lockCode;
@@ -29,12 +39,20 @@ public class UnlockRecord {
         this.lockCode = lockCode;
     }
 
-    public String getGatewayCode() {
-        return gatewayCode;
+    public String getGatewayName() {
+        return gatewayName;
     }
 
-    public void setGatewayCode(String gatewayCode) {
-        this.gatewayCode = gatewayCode;
+    public void setGatewayName(String gatewayName) {
+        this.gatewayName = gatewayName;
+    }
+
+    public String getLockName() {
+        return lockName;
+    }
+
+    public void setLockName(String lockName) {
+        this.lockName = lockName;
     }
 
     public int getOpenMode() {
@@ -71,9 +89,14 @@ public class UnlockRecord {
 
     @Override
     public String toString() {
-        return "UnlockRecord [lockCode=" + lockCode + ", gatewayCode="
-                + gatewayCode + ", openMode=" + openMode + ", timetag="
-                + timetag + "]";
+        return "UnlockRecord [" +
+                "gatewayCode=" + gatewayCode +
+                ",lockCode=" + lockCode +
+                ",gatewayName=" + gatewayName +
+                ",lockName=" + lockName +
+                ",openMode=" + openMode +
+                ",timetag=" + timetag +
+                "]";
     }
 
     public class CardInfo{

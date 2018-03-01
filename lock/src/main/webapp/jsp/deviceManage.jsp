@@ -21,28 +21,18 @@
     <!-- Bootstrap core CSS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.4.6.0.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
-    <!-- Custom styles for this template -->
 
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css">
+    <%--<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.4.6.0.css">--%>
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css">
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="resources/css/index.css" />
 
-    <!-- DateRange -->
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.daterangepicker/daterangepicker-bs3.css" />
 
-    <!-- 弹出-->
-    <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
-
-    <!-- table-->
+    <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" /><!-- 弹出框-->
     <link rel="stylesheet" href="resources/css/fixed-table.css" />
-    <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/fixed-table.js"></script>
-    <script type="text/javascript" src="resources/js/gatewayJs.js"></script>
-
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
         .fixed-table_body-wraper{}
@@ -50,8 +40,6 @@
         .fixed-table-box>.fixed-table_body-wraper{/*内容了表格主体内容有纵向滚动条*/height: 90% }
         .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/height: 90% ;}
     </style>
-    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
-
 </head>
 <body>
 <!-- header -->
@@ -234,7 +222,7 @@
                                         <div class="form-group" >
                                             <div class="col-sm-10" >
                                                 <button type="button" class="btn btn-primary" onclick="addGateway(this.form)">确认新增</button>
-                                                <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                                <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>
                                     </form>
@@ -277,7 +265,7 @@
                                         <div class="form-group" >
                                             <div class="col-sm-12" >
                                                 <button type="button" class="btn btn-primary" onclick="doPwdAuth(this.form)">确认授权</button>
-                                                <button class="btn btn-default  md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                                <button type="button" class="btn btn-default  md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>
                                     </form>
@@ -325,7 +313,7 @@
                                         <div class="form-group" >
                                             <div class="col-sm-10" >
                                                 <button type="button" class="btn btn-primary" onclick="doIDAuth(this.form)">提交授权</button>
-                                                <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                                <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>
                                     </form>
@@ -379,13 +367,12 @@
     <div class="footer">2015-2016  南京亿数信息科技有限公司 版权所有</div>
     <div class="clearfix"></div>
 </div>
-<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
-<script type="text/javascript" src="resources/plugin/jquery.js"></script>
+<%--<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>--%>
+<%--<script type="text/javascript" src="resources/plugin/jquery.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jquery.select2/select2.min.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.slider/js/bootstrap-slider.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.icheck/icheck.min.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>
@@ -395,14 +382,12 @@
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.daterangepicker/daterangepicker.js"></script>
-
 <script type="text/javascript" src="resources/js/jquery.contextmenu.r2.js"></script>
-<script>
-    //所有class为demo1的span标签都会绑定此右键菜单
-    $('div.rightclick').contextMenu('myMenu1',{
-
-    });
-</script>
+<script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>
+<script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/fixed-table.js"></script>
+<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
+<script type="text/javascript" src="resources/js/gatewayJs.js?v=6"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -482,11 +467,6 @@
         $('#reportrange').daterangepicker(optionSet1, cb);
     });
 </script>
-
-<!-- Bootstrap core JavaScript ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>
-<script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

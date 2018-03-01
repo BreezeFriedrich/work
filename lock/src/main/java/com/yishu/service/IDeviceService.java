@@ -4,6 +4,7 @@ import com.yishu.pojo.Device;
 import com.yishu.pojo.GatewayLock;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -13,6 +14,7 @@ import java.util.List;
 public interface IDeviceService {
     public List getUserGatewayIp(String ownerPhoneNumber);
     public List getDeviceInfo(String ownerPhoneNumber);
+    public Map getGatewaysAndLocks(String ownerPhoneNumber);
     public List getAbnormalDevice(String ownerPhoneNumber);
     public int countAbnormalDevice(String ownerPhoneNumber);
     public List<GatewayLock> convertDeviceToGatewayLock(Device device);

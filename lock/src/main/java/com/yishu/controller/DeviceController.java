@@ -71,6 +71,7 @@ public class DeviceController {
         }
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        /*
         List<Device> deviceList=deviceService.getDeviceInfo(ownerPhoneNumber);
         if (null==deviceList){
             return null;
@@ -100,6 +101,8 @@ public class DeviceController {
         HashMap resultMap=new HashMap(2);
         resultMap.put("gateways",gatewayMap);
         resultMap.put("locks",lockMap);
+        */
+        Map resultMap=deviceService.getGatewaysAndLocks(ownerPhoneNumber);
         return resultMap;
     }
 

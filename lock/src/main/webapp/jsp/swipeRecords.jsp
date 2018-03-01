@@ -57,8 +57,8 @@
                             --%>
                             <label for="form-gatewayCode" class="col-lg-2 control-label">网关</label>
                             <div class="col-lg-2">
-                                <div class="switch switch-mini" data-on-label="名称" data-off-label="编码" data-on="primary" data-off="info">
-                                    <input type="checkbox" name="switchbox" checked data-on-text="名称" data-off-text="编码"/>
+                                <div class="switch">
+                                    <input type="checkbox" name="switchbox" checked data-label-width="auto" data-handle-width="25" data-label-text="&nbsp;" data-on-text="编号" data-off-text="名称" data-size="small" data-on-color="primary" data-off-color="default"/>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -69,8 +69,8 @@
                         <div class="form-group">
                             <label for="form-lockCode" class="col-lg-2 control-label">门锁</label>
                             <div class="col-lg-2">
-                                <div class="switch switch-large" data-on-label="名称" data-off-label="编码" data-on="primary" data-off="info">
-                                    <input type="checkbox" name="switchbox" checked data-on-text="名称" data-off-text="编码"/>
+                                <div class="switch">
+                                    <input type="checkbox" name="switchbox" checked data-label-width="auto" data-handle-width="auto" data-label-text="&nbsp;" data-on-text="编号" data-off-text="名称" data-size="small" data-on-color="primary" data-off-color="default"/>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -117,8 +117,8 @@
                 <table id="table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th width="200px">网关编号</th>
-                        <th width="200px">门锁编号</th>
+                        <th width="200px">网关</th>
+                        <th width="200px">门锁</th>
                         <th width="150px">开锁类型</th>
                         <th width="200px">开锁时刻</th>
                         <th width="180px">开锁凭据</th>
@@ -150,6 +150,6 @@
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap-switch/bootstrap-switch.min.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
-<script type="text/javascript" src="resources/js/swipeRecords.js?v=9"></script>
+<script type="text/javascript" src="resources/js/swipeRecords.js?v=13"></script>
 </body>
 </html>

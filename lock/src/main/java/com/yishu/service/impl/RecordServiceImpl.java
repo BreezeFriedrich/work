@@ -9,9 +9,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.*;
+import com.yishu.service.IDeviceService;
 import com.yishu.service.IRecordService;
 import com.yishu.util.*;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,6 +28,8 @@ import java.util.*;
 @Service("recordService")
 public class RecordServiceImpl implements IRecordService {
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(RecordServiceImpl.class);
+    @Autowired
+    private IDeviceService deviceService;
     int reqSign;
     String reqData;
     /**
@@ -80,6 +84,23 @@ public class RecordServiceImpl implements IRecordService {
                 return startTime<timetagL && endTime>timetagL;
             }
         });
+        Map gatewaysAndLocks=deviceService.getGatewaysAndLocks(ownerPhoneNumber);
+        HashMap gatewayMap=(HashMap)gatewaysAndLocks.get("gateways");
+        HashMap lockMap=(HashMap)gatewaysAndLocks.get("locks");
+        Gateway gateway=null;
+        Lock lock=null;
+        Iterator itr=recordList2.iterator();
+        while (itr.hasNext()){
+            unlockRecord= (UnlockRecord) itr.next();
+            if(null!=gatewayMap.get(unlockRecord.getGatewayCode())){
+                gateway= (Gateway) gatewayMap.get(unlockRecord.getGatewayCode());
+                unlockRecord.setGatewayName(gateway.getGatewayName());
+            }
+            if(null!=lockMap.get(unlockRecord.getLockCode())){
+                lock= (Lock) lockMap.get(unlockRecord.getLockCode());
+                unlockRecord.setLockName(lock.getLockName());
+            }
+        }
         return recordList2;
     }
 
@@ -154,6 +175,9 @@ public class RecordServiceImpl implements IRecordService {
 
     @Override
     public List<UnlockRecord> filterUnlockRecord(List<UnlockRecord> unlockRecords, final Map<String, Object> filterparamMap) {
+        if(filterparamMap.isEmpty()){
+            return unlockRecords;
+        }
         //filter过滤开锁记录.
         List<UnlockRecord> recordList=null;
         recordList= FilterList.filter(unlockRecords, new FilterListHook<UnlockRecord>() {
@@ -170,11 +194,25 @@ public class RecordServiceImpl implements IRecordService {
                     if(eligible){
                         property=entry.getKey();
                         switch (property) {
+                            case "gatewayCode":
+                                eligible = ((String)entry.getValue()).equals(unlockRecord.getGatewayCode());
+                                break;
+                            case "gatewayName":
+                                if(null==unlockRecord.getGatewayName()){
+                                    eligible=false;
+                                }else {
+                                    eligible = ((String)entry.getValue()).equals(unlockRecord.getGatewayName());
+                                }
+                                break;
                             case "lockCode":
                                 eligible = ((String)entry.getValue()).equals(unlockRecord.getLockCode());
                                 break;
-                            case "gatewayCode":
-                                eligible = ((String)entry.getValue()).equals(unlockRecord.getGatewayCode());
+                            case "lockName":
+                                if(null==unlockRecord.getLockName()){
+                                    eligible=false;
+                                }else {
+                                    eligible = ((String)entry.getValue()).equals(unlockRecord.getLockName());
+                                }
                                 break;
                             case "openMode":
                                 eligible = (int)entry.getValue()==unlockRecord.getOpenMode();
@@ -385,6 +423,76 @@ public class RecordServiceImpl implements IRecordService {
         }
         return recordTableDataList;
     }
+    /*
+    @Override
+    public List<UnlockRecordTableData> orderUnlockRecordTableData(final List<UnlockRecordTableData> unlockRecordTableDataList, List<Order> orderList) {
+        for(final Order order:orderList) {
+            Collections.sort(unlockRecordTableDataList, new Comparator<UnlockRecordTableData>() {
+                @Override
+                public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
+                    int compareNum=0;
+                    switch (order.getOrderColumn()) {
+                        case "gatewayCode":
+                            compareNum=o1.getGatewayCode().compareTo(o2.getGatewayCode());
+                            break;
+                        case "lockCode":
+                            compareNum=o1.getLockCode().compareTo(o2.getLockCode());
+                            break;
+                        case "openMode":
+                            compareNum=o1.getOpenMode()-o2.getOpenMode();
+                            break;
+                        case "timestamp":
+
+//                            try {
+//                                compareNum=DateUtil.yyyyMMddHHmmss.parse(o1.getTimetag()).getTime()-DateUtil.yyyyMMddHHmmss.parse(o2.getTimetag()).getTime();
+//                            } catch (ParseException e) {
+//                                e.printStackTrace();
+//                            }
+
+                            compareNum=o1.getTimestamp().compareTo(o2.getTimestamp());
+                            break;
+                        case "credential":
+                            if(o1.getOpenMode()==o2.getOpenMode()){
+                                if(null!=o1.getCredential() && null!=o2.getCredential()){
+                                    compareNum=o1.getCredential().compareTo(o2.getCredential());
+                                }
+                                if(null==o1.getCredential() && null!=o2.getCredential()){
+                                    compareNum=1;
+                                }
+                            }
+                            else{
+                                Order orderTemp=new Order();
+                                orderTemp.setOrderColumn("openMode");
+                                orderTemp.setOrderDir("asc");
+                                List<Order> listTemp=new ArrayList<>(1);
+                                listTemp.add(orderTemp);
+                                List<UnlockRecordTableData> unlockRecordTableDataList2=orderUnlockRecordTableData(unlockRecordTableDataList,listTemp);
+                                orderTemp.setOrderColumn("credential");
+                                listTemp=new ArrayList<>(1);
+                                listTemp.add(orderTemp);
+                                List<UnlockRecordTableData> unlockRecordTableDataList3=orderUnlockRecordTableData(unlockRecordTableDataList,listTemp);
+                                return unlockRecordTableDataList3;
+                            }
+                            break;
+                        case "name":
+                            if(null!=o1.getName() && null!=o2.getName()){
+                                compareNum=o1.getName().compareTo(o2.getName());
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    if ("asc".equals(order.getOrderDir())) {
+                        return compareNum;
+                    }else{
+                        return -1*compareNum;
+                    }
+                }
+            });
+        }
+        return unlockRecordTableDataList;
+    }
+    */
 
     @Override
     public List<UnlockRecordTableData> orderUnlockRecordTableData(List<UnlockRecordTableData> recordTableDataList, final Order order) {
@@ -497,76 +605,6 @@ public class RecordServiceImpl implements IRecordService {
         }
         return recordTableDataList;
     }
-    /*
-    @Override
-    public List<UnlockRecordTableData> orderUnlockRecordTableData(final List<UnlockRecordTableData> unlockRecordTableDataList, List<Order> orderList) {
-        for(final Order order:orderList) {
-            Collections.sort(unlockRecordTableDataList, new Comparator<UnlockRecordTableData>() {
-                @Override
-                public int compare(UnlockRecordTableData o1, UnlockRecordTableData o2) {
-                    int compareNum=0;
-                    switch (order.getOrderColumn()) {
-                        case "gatewayCode":
-                            compareNum=o1.getGatewayCode().compareTo(o2.getGatewayCode());
-                            break;
-                        case "lockCode":
-                            compareNum=o1.getLockCode().compareTo(o2.getLockCode());
-                            break;
-                        case "openMode":
-                            compareNum=o1.getOpenMode()-o2.getOpenMode();
-                            break;
-                        case "timestamp":
-
-//                            try {
-//                                compareNum=DateUtil.yyyyMMddHHmmss.parse(o1.getTimetag()).getTime()-DateUtil.yyyyMMddHHmmss.parse(o2.getTimetag()).getTime();
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-
-                            compareNum=o1.getTimestamp().compareTo(o2.getTimestamp());
-                            break;
-                        case "credential":
-                            if(o1.getOpenMode()==o2.getOpenMode()){
-                                if(null!=o1.getCredential() && null!=o2.getCredential()){
-                                    compareNum=o1.getCredential().compareTo(o2.getCredential());
-                                }
-                                if(null==o1.getCredential() && null!=o2.getCredential()){
-                                    compareNum=1;
-                                }
-                            }
-                            else{
-                                Order orderTemp=new Order();
-                                orderTemp.setOrderColumn("openMode");
-                                orderTemp.setOrderDir("asc");
-                                List<Order> listTemp=new ArrayList<>(1);
-                                listTemp.add(orderTemp);
-                                List<UnlockRecordTableData> unlockRecordTableDataList2=orderUnlockRecordTableData(unlockRecordTableDataList,listTemp);
-                                orderTemp.setOrderColumn("credential");
-                                listTemp=new ArrayList<>(1);
-                                listTemp.add(orderTemp);
-                                List<UnlockRecordTableData> unlockRecordTableDataList3=orderUnlockRecordTableData(unlockRecordTableDataList,listTemp);
-                                return unlockRecordTableDataList3;
-                            }
-                            break;
-                        case "name":
-                            if(null!=o1.getName() && null!=o2.getName()){
-                                compareNum=o1.getName().compareTo(o2.getName());
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                    if ("asc".equals(order.getOrderDir())) {
-                        return compareNum;
-                    }else{
-                        return -1*compareNum;
-                    }
-                }
-            });
-        }
-        return unlockRecordTableDataList;
-    }
-    */
 
     @Override
     public List<UnlockRecordTableData> convertUnlockRecordToTabularData(List<UnlockRecord> unlockRecords) {
@@ -631,6 +669,24 @@ public class RecordServiceImpl implements IRecordService {
             }
             if(null!=recordList){
                 Collections.reverse(recordList);
+            }
+            UnlockRecord unlockRecord=null;
+            Map gatewaysAndLocks=deviceService.getGatewaysAndLocks(ownerPhoneNumber);
+            HashMap gatewayMap=(HashMap)gatewaysAndLocks.get("gateways");
+            HashMap lockMap=(HashMap)gatewaysAndLocks.get("locks");
+            Gateway gateway=null;
+            Lock lock=null;
+            Iterator itr=recordList.iterator();
+            while (itr.hasNext()){
+                unlockRecord= (UnlockRecord) itr.next();
+                if(null!=gatewayMap.get(unlockRecord.getGatewayCode())){
+                    gateway= (Gateway) gatewayMap.get(unlockRecord.getGatewayCode());
+                    unlockRecord.setGatewayName(gateway.getGatewayName());
+                }
+                if(null!=lockMap.get(unlockRecord.getLockCode())){
+                    lock= (Lock) lockMap.get(unlockRecord.getLockCode());
+                    unlockRecord.setLockName(lock.getLockName());
+                }
             }
             return recordList;
         }

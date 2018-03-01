@@ -2,7 +2,7 @@ var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 
 //当前用户手机和级别
-var ownerPhoneNumber="17705155208";
+var ownerPhoneNumber;
 // var grade=10;
 
 var PageSize = 10; //每页个数
@@ -90,28 +90,31 @@ function  showDevices() {
             var a3=document.createElement("a");
 
             // $('#home_keleyi_com').attr('href','http://keleyi.com');
-            a1.setAttribute('href','#');
+            // a1.setAttribute('href','#');
+            a1.href="javascript:void(0);";
             a1.setAttribute("class","md-trigger");
             a1.setAttribute("data-modal","reply-identity");
             a1.setAttribute("gatewayCode",gatewayCode);
             a1.setAttribute("lockCode",lockLists[j].lockCode);
-            a1.setAttribute("onclick","setIDAuthFormAttribute(\""+gatewayCode+"\",\""+lockLists[j].lockCode+"\");");
+            a1.setAttribute("onclick","setIDAuthFormAttribute(\'"+gatewayCode+"\',\'"+lockLists[j].lockCode+"\');");
             a1.innerHTML= "身份证授权";
 
-            a2.setAttribute('href','#');
+            // a2.setAttribute('href','#');
+            a2.href="javascript:void(0);";
             a2.setAttribute("class","md-trigger");//a2.addClass('md-trigger');
             a2.setAttribute("data-modal","reply-password");
             a2.setAttribute("gatewayCode",gatewayCode);
             a2.setAttribute("lockCode",lockLists[j].lockCode);
-            a2.setAttribute("onclick","setPwdAuthFormAttribute(\""+gatewayCode+"\",\""+lockLists[j].lockCode+"\");");
+            a2.setAttribute("onclick","setPwdAuthFormAttribute(\'"+gatewayCode+"\',\'"+lockLists[j].lockCode+"\');");
             a2.innerHTML="密码授权";
 
-            a3.setAttribute('href','#');
+            // a3.setAttribute('href','#');
+            a3.href="javascript:void(0);";
             a3.setAttribute("class","md-trigger");
             a3.setAttribute("data-modal","reply-unlocking");
             a3.setAttribute("gatewayCode",gatewayCode);
             a3.setAttribute("lockCode",lockLists[j].lockCode);
-            a3.setAttribute("onclick","showAuth(\""+gatewayCode+"\",\""+lockLists[j].lockCode+"\");");
+            a3.setAttribute("onclick","showAuth(\'"+gatewayCode+"\',\'"+lockLists[j].lockCode+"\');");
             a3.innerHTML= "查看授权信息";
 
             li1.appendChild(a1);
@@ -127,11 +130,10 @@ function  showDevices() {
             td.appendChild(div);
         }
 
-
         var a=document.createElement("a");
         var ai=document.createElement("i");
         a.setAttribute("class","label label-danger btn btn-danger btn-xs");
-        a.setAttribute("onclick","delGateway(\""+gatewayCode+"\");");
+        a.setAttribute("onclick","delGateway(\'"+gatewayCode+"\');");
 
         ai.setAttribute("class","fa fa-times");
         a.appendChild(ai);
@@ -153,6 +155,7 @@ function setIDAuthFormAttribute(gatewayCode,lockCode) {
     var form=document.getElementById("doIDAuth");
     form.setAttribute("gatewayCode",gatewayCode);
     form.setAttribute("lockCode",lockCode);
+    $('#reply-identity').niftyModal();
 }
 
 /**
@@ -164,6 +167,7 @@ function setPwdAuthFormAttribute(gatewayCode,lockCode) {
     var form=document.getElementById("doPwdAuth");
     form.setAttribute("gatewayCode",gatewayCode);
     form.setAttribute("lockCode",lockCode);
+    $('#reply-password').niftyModal();
 }
 
 /**
@@ -253,7 +257,6 @@ function delGateway(gatewayCode) {
             }
         });
     }
-
 }
 
 /**
@@ -310,7 +313,6 @@ function addGateway(form) {
     }
 }
 
-
 /**
  * 取消身份证授权
  * @param lockCode
@@ -354,7 +356,6 @@ function delIDAuth(lockCode,serviceNumb,cardNumb) {
             }
         });
     }
-
 }
 
 /**
@@ -364,7 +365,6 @@ function delIDAuth(lockCode,serviceNumb,cardNumb) {
  * @param serviceNumb
  */
 function delPwdAuth(gatewayCode,lockCode,serviceNumb) {
-
     if(confirm("是否确认删除？")) {
         $.ajax({
             type: "POST",
@@ -413,7 +413,6 @@ function delPwdAuth(gatewayCode,lockCode,serviceNumb) {
     }
 }
 
-
 /**
  * 获取身份证开锁授权
  * @param gatewayCode
@@ -456,7 +455,6 @@ function getIDAuth(gatewayCode,lockCode) {
         }
     });
     var timetag=gettimetag(new Date());
-    alert(timetag);
     for(var i=0;i<userList.length;i++){
         if( parseInt(userList[i].endTime) > parseInt(timetag) ){
             usl.push(userList[i]);
@@ -630,7 +628,6 @@ function doPwdAuth(form) {
     }
 }
 
-
 /**
  * 改变授权时间格式
  * @param time
@@ -778,7 +775,7 @@ function showAuth(gatewayCode,lockCode) {
 
         showAuth.appendChild(divtd);
     }
-
+    $('#reply-unlocking').niftyModal();
 }
 
 /**

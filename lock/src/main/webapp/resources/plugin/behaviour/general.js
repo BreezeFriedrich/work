@@ -1303,7 +1303,7 @@ var App = function () {
             //setTimeout(function(){updateHeight();},200);
         });
 
-        $(".cl-vnavigation").delegate(".parent > a","mouseover",function(e){
+        $(".cl-vnavigation").delegate(".parent > a","click",function(e){
             $(".cl-vnavigation .parent.open > ul").not($(this).parent().find("ul")).slideUp(300, 'swing',function(){
                 $(this).parent().removeClass("open");
             });

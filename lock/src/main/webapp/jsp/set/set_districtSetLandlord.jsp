@@ -65,15 +65,13 @@
         <div class="col-sm-9 table0">
 
             <div class="block-flat table0-top">
-
-                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket"><i class="fa fa-plus "></i> 新增业主</button>
-
-                <!-- 新增地区-->
+                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket"><i class="fa fa-plus "></i>新增业主</button>
+                <!-- 新增业主-->
                 <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-ticket">
                     <div class="md-content">
                         <div class="block-flat">
                             <div class="header">
-                                <h3>新增地区 </h3>
+                                <h3>新增业主</h3>
                                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="content">
@@ -97,11 +95,10 @@
                                         </div>
                                     </div>
                                     <!--新增按钮-->
-                                    <div class="form-group" >
-
+                                    <div class="form-group">
                                         <div class="col-sm-10" >
                                             <button type="button" class="btn btn-primary" onclick="addJunior(this.form)">确认新增</button>
-                                            <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                            <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                         </div>
                                     </div>
                                 </form>

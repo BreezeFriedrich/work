@@ -8,33 +8,46 @@ var tableInstance;
 var gatewaysAndLocks;
 var gateways;
 var locks;
-var isNameNotCode_gateway;
-var isNameNotCode_lock;
+var isCodeNotName_gateway;
+var isCodeNotName_lock;
 
 $(function () {
     $(".navbar-collapse ul:first li:eq(2)").addClass("active");
 
-    $("[name='switchbox']").bootstrapSwitch();
-    $("[name='switchbox']").eq(0).bootstrapSwitch('setState', false);
-    $("[name='switchbox']").eq(1).bootstrapSwitch('setState', true);
+    // $.fn.bootstrapSwitch.defaults.size = 'small';
+    // $.fn.bootstrapSwitch.defaults.onColor = 'success';
+    // $.fn.bootstrapSwitch.defaults.offColor = 'warning';
+    $("[name='switchbox']").bootstrapSwitch('state', false);
+    $('input[name="switchbox"]').eq(0).on('init.bootstrapSwitch', function(event, state) {
+        console.log('event:'+event+',state:'+state);
+        isCodeNotName_gateway=state;
+        console.log('isCodeNotName_gateway:'+isCodeNotName_gateway);
+    });
+    $('input[name="switchbox"]').eq(1).on('init.bootstrapSwitch', function(event, state) {
+        console.log('event:'+event+',state:'+state);
+        isCodeNotName_lock=state;
+        console.log('isCodeNotName_lock:'+isCodeNotName_lock);
+    });
+    $('input[name="switchbox"]').eq(0).on('switchChange.bootstrapSwitch', function(event, state) {
+        console.log('event:'+event+',state:'+state);
+        isCodeNotName_gateway=state;
+        console.log('isCodeNotName_gateway:'+isCodeNotName_gateway);
+    });
+    $('input[name="switchbox"]').eq(1).on('switchChange.bootstrapSwitch', function(event, state) {
+        console.log('event:'+event+',state:'+state);
+        isCodeNotName_lock=state;
+        console.log('isCodeNotName_lock:'+isCodeNotName_lock);
+    });
+    // $("[name='switchbox']").eq(0).bootstrapSwitch('setState', false);
     // $("[name='switchbox']").on('switch-change', function (e, data) {
     //     var $el = $(data.el)
     //         , value = data.value;
     //     console.log(e, $el, value);
     // });
     // $("[name='switchbox']")[0].on('switch-change', function (e, data) {
-    //     isNameNotCode_gateway=data.value;
-    //     console.log("isNameNotCode_gateway:"+isNameNotCode_gateway);
+    //     isCodeNotName_gateway=data.value;
+    //     alert("isCodeNotName_gateway:"+isCodeNotName_gateway);
     // });
-    // $("[name='switchbox']").eq(1).on('switch-change', function (e, data) {
-    //     isNameNotCode_lock=data.value;
-    //     console.log("isNameNotCode_lock:"+isNameNotCode_lock);
-    // });
-    $('input[name="switchbox"]').eq(0).on('switchChange.bootstrapSwitch', function(event, state) {
-        console.log(this); // DOM element
-        console.log(event); // jQuery event
-        console.log(state); // true | false
-    });
 
     var options_daterange={
         "format": 'YYYY-MM-DD HH:mm',// format: 'MM/DD/YYYY', // format: 'MM/DD/YYYY h:mm A',
@@ -131,11 +144,11 @@ $(function () {
                 // pagingType:"scrolling",
                 // orderMulti: true,//默认可以多列排序
                 orderClasses: true,//高亮排序列
-                // orderFixed: {
+                orderFixed: {
                     // "pre": [ 2, 'asc' ],
                     // "post": [ 3, 'desc' ]
                     // "post": [[ 0, 'asc' ], [ 1, 'asc' ]]
-                // }
+                }
                 //bPaginate: true, //翻页功能
                 //bFilter : true, //过滤功能
                 // bSort : false, //排序功能
@@ -233,17 +246,27 @@ $(function () {
                             case 5:
                                 order[index].orderColumn = "name";
                                 break;
-                            // default:
-                            //     order[index].orderColumn = "timestamp";
-                            //     break;
+                            default:
+                                order[index].orderColumn = "timestamp";
+                                break;
                         }
                     }
                     param.order=JSON.stringify(order);
                 }
                 param.startTime=startTime;
                 param.endTime=endTime;
-                param.gatewayCode=$("#form-gatewayCode").val();
-                param.lockCode=$("#form-lockCode").val();
+                // param.gatewayCode=$("#form-gatewayCode").val();
+                // param.lockCode=$("#form-lockCode").val();
+                if(isCodeNotName_gateway){
+                    param.gatewayCode=$("#form-gatewayCode").val();
+                }else{
+                    param.gatewayName=$("#form-gatewayCode").val();
+                }
+                if(isCodeNotName_lock){
+                    param.lockCode=$("#form-lockCode").val();
+                }else{
+                    param.lockName=$("#form-lockCode").val();
+                }
                 param.openMode=$("#form-openMode").val();
                 //组装分页参数
                 param.startIndex = data.start;

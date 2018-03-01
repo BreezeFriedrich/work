@@ -22,22 +22,17 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="resources/css/font-awesome.4.6.0.css"/>
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css" /><!--Font Awesome,为Bootstrap而创造的图标字体-->
     <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css" />
+    <%--<link rel="stylesheet" href="resources/css/font-awesome.4.6.0.css"/>--%>
+    <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
     <link rel="stylesheet" href="resources/css/style.css" />
     <link rel="stylesheet" href="resources/css/index.css" />
 
-    <!-- 弹出-->
-    <link rel="stylesheet" href="resources/plugin/jquery.niftymodals/css/component.css" />
-
+    <link rel="stylesheet" href="resources/plugin/jquery.niftymodals/css/component.css" /><!-- 弹出框-->
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <!--锁定表头和固定列插件FixedTable-->
     <link rel="stylesheet" href="resources/css/fixed-table.css" />
     <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
-    <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/fixed-table.js"></script>
-    <script type="text/javascript" src="resources/js/manageJs.js"></script>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
         .fixed-table_body-wraper{}
@@ -45,7 +40,6 @@
         .fixed-table-box>.fixed-table_body-wraper{/*内容了表格主体内容有纵向滚动条*/height: 90% }
         .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/height: 90% ; }
     </style>
-    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
 </head>
 <body>
 <!-- header -->
@@ -66,15 +60,12 @@
             <div class="block-flat table0-top">
                 <!--新增地区按钮-->
                 <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket"><i class="fa fa-plus"></i>新增地区</button>
-
                 <!-- 新增地区-->
                 <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-ticket">
-
                     <div class="md-content">
-
                         <div class="block-flat">
                             <div class="header">
-                                <h3>新增地区 </h3>
+                                <h3>新增地区</h3>
                                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="content">
@@ -101,7 +92,7 @@
                                     <div class="form-group" >
                                         <div class="col-sm-10">
                                             <button type="button" class="btn btn-primary" onclick="addJunior(this.form)">确认新增</button>
-                                            <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                            <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                         </div>
                                     </div>
                                 </form>
@@ -131,12 +122,12 @@
                         </tbody>
                     </table>
 
-                    <!-- 修改-->
+                    <!-- 修改
                     <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-ticket2">
                         <div class="md-content">
                             <div class="block-flat">
                                 <div class="header">
-                                    <h3>修改地区信息 </h3>
+                                    <h3>修改地区信息</h3>
                                     <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
                                 <div class="content">
@@ -154,7 +145,7 @@
                                         <div class="form-group" >
                                             <div class="col-sm-12" >
                                                 <button type="submit" class="btn btn-primary">确认修改</button>
-                                                <button class="btn btn-default  md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                                <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>
                                     </form>
@@ -164,7 +155,7 @@
                         </div>
                     </div>
                     <div class="md-overlay"></div>
-                    <!-- 修改  end-->
+                    修改 -->
 
                     <!--分页-->
                     <!--<ul class="pagination pag-left ">
@@ -192,6 +183,7 @@
     <div class="clearfix"></div>
 </div>
 <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/fixed-table.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
@@ -205,10 +197,8 @@
 <script type="text/javascript" src="resources/plugin/jquery.ui/jquery-ui.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="resources/js/manageJs.js"></script>
 
-<!-- Bootstrap core JavaScript
-  ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript">
     $(document).ready(function(){
         $(".navbar-collapse ul:first li:eq(4)").addClass("active");

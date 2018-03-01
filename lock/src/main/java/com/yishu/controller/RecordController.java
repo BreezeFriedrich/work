@@ -94,7 +94,6 @@ public class RecordController {
         return records;
     }
 
-
     @RequestMapping("/getLockUnlockRecord.do")
     @ResponseBody
     public Records<UnlockRecord> getLockUnlockRecord(HttpServletRequest request){
@@ -258,7 +257,6 @@ public class RecordController {
     /*
     @Override
     public List<DeviceStatus> listAllWithStrategy(HashMap paramMap) {
-
         paramMap.put("sign",3);
         try {
             postdata=objectMapper.writeValueAsString(paramMap);
@@ -311,19 +309,27 @@ public class RecordController {
             endTime=calendar.getTime().getTime();
         }
 
-        HashMap filterMap= new HashMap(10);
+        HashMap filterMap= new HashMap(4);
         //过滤条件
 //        filterMap.put("period",period);
         String gatewayCode=request.getParameter("gatewayCode");
+        String gatewayName=request.getParameter("gatewayName");
         String lockCode=request.getParameter("lockCode");
-        if(!"".equals(gatewayCode)){
+        String lockName=request.getParameter("lockName");
+        if(null!=gatewayCode && !"".equals(gatewayCode)){
             filterMap.put("gatewayCode",gatewayCode);
         }
-        if(!"".equals(lockCode)){
+        if(null!=gatewayName && !"".equals(gatewayName)){
+            filterMap.put("gatewayName",gatewayName);
+        }
+        if(null!=lockCode && !"".equals(lockCode)){
             filterMap.put("lockCode",lockCode);
         }
+        if(null!=lockName && !"".equals(lockName)){
+            filterMap.put("lockName",lockName);
+        }
         String openModeStr=request.getParameter("openMode");
-        if(!"".equals(openModeStr)){
+        if(null!=openModeStr && !"".equals(openModeStr)){
             int openMode= Integer.parseInt(request.getParameter("openMode"));
             filterMap.put("openMode",openMode);
         }
@@ -350,10 +356,11 @@ public class RecordController {
         ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;
         List orderList=new ArrayList(2);
+        if(null!=orderStr){
 //        Order[] orders;
-        try {
-            rootNode = objectMapper.readTree(orderStr);
-            orderList=objectMapper.readValue(rootNode.traverse(), new TypeReference<List<Order>>(){});
+            try {
+                rootNode = objectMapper.readTree(orderStr);
+                orderList=objectMapper.readValue(rootNode.traverse(), new TypeReference<List<Order>>(){});
 //            orders=objectMapper.treeToValue(rootNode,Order[].class);
             /*
             Iterator<JsonNode> elements = rootNode.elements();
@@ -364,10 +371,10 @@ public class RecordController {
                 orderList.add(order);
             }
             */
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println("orderList:"+orderList);
         if(orderList.isEmpty()){
             Order order=new Order();
             order.setOrderColumn("timestamp");

@@ -799,7 +799,7 @@ $(document).ready(function(){
         fixedTable.empty();
         tableFunc.city.completeTable(districts,theDate);
     });
-    $("ul.cl-vnavigation").children('li:not(:first)').find('a').click(function(){
+    $("ul.cl-vnavigation").children('li:not(:first)').find('a').dblclick(function(){
         phoneNumber=$(this).attr('phone');
         alert('district.phoneNumber:'+phoneNumber);
         district=null;
@@ -814,6 +814,26 @@ $(document).ready(function(){
             tableFunc.district.completeTable(landlords,theDate);
         }
     });
+    /*
+    $("ul.cl-vnavigation").children('li:not(:first)').find('a').mousedown(function(event){
+        if (event.which == 3) {
+            // alert('我单击了右键');
+            phoneNumber=$(this).attr('phone');
+            alert('district.phoneNumber:'+phoneNumber);
+            district=null;
+            for (var index = 0; index < districts.length; index++) {
+                if(phoneNumber==districts[index].phoneNumber){
+                    district=districts[index];
+                    break;
+                }
+            }
+            if(null!=district){
+                fixedTable.empty();
+                tableFunc.district.completeTable(landlords,theDate);
+            }
+        }
+    });
+    */
     $("ul.cl-vnavigation").children('li:not(:first)').children('ul').find('li a').click(function(){
         phoneNumber=$(this).attr('phone');
         // alert('landlord.phoneNumber:'+phoneNumber);

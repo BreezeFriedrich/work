@@ -120,7 +120,6 @@
         <div class="container-table"></div>
 
         <div class="footer">&copy;2015-2016  南京亿数信息科技有限公司 版权所有</div>
-
         <div class="clearfix"></div>
     </div>
 </div>
@@ -146,7 +145,6 @@
                     </thead>
                 </table>
             </div>
-
         </div>
     </div>
 </div>
@@ -203,7 +201,7 @@
 <!--鼠标右键菜单-->
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.ui.position.js"></script>
 <script type="text/javascript" src="resources/plugin/jQuery-contextMenu/dist/jquery.contextMenu.js"></script>
-<script type="text/javascript" src="resources/plugin/behaviour/general.js?ver=10"></script>
+<script type="text/javascript" src="resources/plugin/behaviour/general.js?ver=11"></script>
 
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>

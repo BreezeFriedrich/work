@@ -24,22 +24,16 @@
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800'/>
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Raleway:300,200,100'/>
 
-    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.4.6.0.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css"/>
-
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.4.6.0.css"/>--%>
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="resources/css/style.css"/>
     <link rel="stylesheet" href="resources/css/index.css"/>
 
     <!-- 弹出-->
     <link rel="stylesheet" href="resources/plugin/jquery.niftymodals/css/component.css"/>
-
-    <!-- table-->
     <link rel="stylesheet" href="resources/css/fixed-table.css"/>
-    <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
-    <script type="text/javascript" src="resources/js/manageJs.js"></script>
-    <script type="text/javascript" src="resources/js/fixed-table.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <style>
         .fixed-table-box {
             position: absolute;
@@ -62,9 +56,6 @@
             height: 90%;
         }
     </style>
-    <!-- table  end-->
-    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
-
 </head>
 
 <body>
@@ -83,21 +74,16 @@
         <div class="col-sm-9 table0 ">
 
             <div class="block-flat table0-top">
-
-                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket" onclick="loadGatewayCode();"><i class="fa fa-plus "  >  </i> 新增房间</button>
-
+                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket" onclick="loadGatewayCode();"><i class="fa fa-plus"></i>新增房间</button>
                 <!-- 新增地区-->
                 <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-ticket">
-
                     <div class="md-content">
-
                         <div class="block-flat">
                             <div class="header">
                                 <h3>新增房间</h3>
                                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="content">
-
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
                                         <div class="col-sm-12">
@@ -128,11 +114,10 @@
 
                                         <div class="col-sm-10">
                                             <button type="button" class="btn btn-primary" onclick="addRoom(this.form)">确认新增</button>
-                                            <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                            <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -179,13 +164,13 @@
             </div>
         </div>
         <!--管理内容END-->
-
     </div>
 
     <div class="footer">2015-2016 南京亿数信息科技有限公司 版权所有</div>
     <div class="clearfix"></div>
 </div>
-<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
+<%--<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>--%>
+<script type="text/javascript" src="resources/js/fixed-table.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
@@ -199,10 +184,8 @@
 <script type="text/javascript" src="resources/plugin/jquery.ui/jquery-ui.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="resources/js/manageJs.js"></script>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript">
     $(document).ready(function() {
         $(".navbar-collapse ul:first li:eq(4)").addClass("active");
