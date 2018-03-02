@@ -230,7 +230,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="md-overlay"></div>
+                    <%--<div class="md-overlay"></div>--%>
                     <!-- 新增网关  end-->
 
                     <!-- 添加密码开锁授权  -->
@@ -274,7 +274,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="md-overlay"></div>
+                    <%--<div class="md-overlay"></div>--%>
                     <!-- 添加密码开锁授权   end -->
 
                     <!-- 身份证授权 -->
@@ -322,7 +322,7 @@
 
                         </div>
                     </div>
-                    <div class="md-overlay"></div>
+                    <%--<div class="md-overlay"></div>--%>
                     <!-- 身份证授权  end -->
 
                     <!-- 开锁授权信息  -->
@@ -357,7 +357,7 @@
                         </div>
                     </div>
                     <div class="md-overlay"></div>
-                    <!-- 开锁信息   end -->
+                    <!-- 开锁信息  end -->
                 </div>
                 <div class="clearfix"></div>
             </div>
