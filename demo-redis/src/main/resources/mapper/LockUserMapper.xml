@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yishu.dao.LockUserDao">
+    <!--
+    int : id,superior,grade;
+    String : ownername,ownerpassword,phonenumber,mail,wechat,qq,dbip,superip,timetag;
+    -->
+    <select id="listAllByPhone" resultType="LockUser">
+        SELECT `SEQ` AS id,`superior`,`grade`,`ownername`,`ownerpassword`,`phonenumber`,`mail`,`wechat`,`qq`,`dbip`,`superip`,`timetag`
+        FROM ownerinfo
+        WHERE phonenumber=#{phonenumber}
+    </select>
+    <insert id="add" parameterType="LockUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ownerinfo(`superior`,`grade`,`ownername`,`ownerpassword`,`phonenumber`,`mail`,`wechat`,`qq`,`dbip`,`superip`,`timetag`)
+                VALUES (#{superior},#{grade},#{ownername},#{ownerpassword},#{phonenumber},#{mail},#{wechat},#{qq},#{dbip},#{superip},#{timetag})
+    </insert>
+    <update id="updateByPhonenumber" parameterType="LockUser">
+        UPDATE ownerinfo
+        <set>
+            <if test="superior !=null">superior=#{superior}</if>
+            <if test="grade !=null">grade=#{grade}</if>
+            <if test="ownername !=null">=#{ownername}</if>
+            <if test="ownerpassword !=null">=#{ownerpassword}</if>
+            <if test="mail !=null">=#{mail}</if>
+            <if test="wechat !=null">=#{wechat}</if>
+            <if test="qq !=null">=#{qq}</if>
+            <if test="dbip !=null">=#{dbip}</if>
+            <if test="superip !=null">=#{superip}</if>
+            <if test="timetag !=null">=#{timetag}</if>
+        </set>
+        WHERE phonenumber=#{phonenumber}
+    </update>
+    <select id="findLockUserById" resultType="LockUser">
+        SELECT `SEQ` AS id,`superior`,`grade`,`ownername`,`ownerpassword`,`phonenumber`,`mail`,`wechat`,`qq`,`dbip`,`superip`,`timetag`
+        FROM ownerinfo
+        WHERE `SEQ`=#{id}
+    </select>
+
+</mapper>
