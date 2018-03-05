@@ -153,11 +153,10 @@ Redis的用户权限管理
 	chmod 755 /usr/local/redis/bin
 	chown -R redis:redis /usr/local/redis
 
-	su -c systemctl start redis-server
-	usermod -s /sbin/nologin redis
-	或者
-	su redis
-	systemctl start redis-server
+	usermod -s /bin/bash redis
+	查看redis-server进程 ps aux|grep redis
+	su redis -c systemctl restart redis-server
+	再次查看redis-server进程 ps aux|grep redis
 	usermod -s /sbin/nologin redis
 	
 MySQL的用户权限管理
