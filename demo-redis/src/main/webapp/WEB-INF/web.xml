@@ -10,8 +10,7 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:applicationContext.xml,
-      classpath:net/bull/javamelody/monitoring-spring.xml,
+      classpath:applicationContext.xml
     </param-value>
     <!--
     <param-value>
@@ -21,22 +20,6 @@
     </param-value>
     -->
   </context-param>
-
-  <!-- 添加监控器 --><!-- 据说必须是第一个filter,才生效 -->
-  <!--
-  <filter>
-    <filter-name>monitoring</filter-name>
-    <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
-    <init-param>
-      <param-name>log</param-name>
-      <param-value>true</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>monitoring</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  -->
 
   <!--跨域资源共享CORS-->
   <filter>
@@ -101,11 +84,6 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <!--
-  <listener>
-    <listener-class>net.bull.javamelody.SessionListener</listener-class>
-  </listener>
-  -->
 
   <!-- 配置session域对象超时时间，单位分钟 -->
   <session-config>

@@ -1,5 +1,5 @@
 #Links
-[Linux基础知识之用户和用户组以及 Linux 权限管理](https://www.linuxidc.com/Linux/2016-10/136251.htm)
+[Linux基础知识之用户和用户组以及 Linux 权限管理](https://www.linuxidc.com/Linux/2016-10/136251.htm)  
 [【linux相识相知】用户及权限管理](https://www.cnblogs.com/liubinsh/p/7148274.html)
 
 + 查看
@@ -140,4 +140,69 @@ options: u //文件所属 ,g //组 ,o //其他人 ,a 所有
 ---
 	grep mysql /etc/passwd
 	id
+	id mysql
+	tree usr/local/redis -gp
 [Linux 中将用户添加到组的指令](http://blog.csdn.net/u013078295/article/details/52485434)
+
+---
+Redis的用户权限管理
+
+	groupadd -g 2001 redis
+	useradd -u2001 -g2001 -credis redis
+
+	chmod 755 /usr/local/redis/bin
+	chown -R redis:redis /usr/local/redis
+
+	su -c systemctl start redis-server
+	usermod -s /sbin/nologin redis
+	或者
+	su redis
+	systemctl start redis-server
+	usermod -s /sbin/nologin redis
+	
+MySQL的用户权限管理
+
+	groupadd mysql
+	useradd -g mysql mysql -s /sbin/nologin
+	chmod 755 /apps/DB/mysql/scripts/mysql_install_db
+	chown -R mysql.mysql /apps/DB/mysql/
+
+#问题
+一、useradd 与 adduser的区别
+
+ 添加用户
+
+1. 在root权限下，useradd只是创建了一个用户名，如 （useradd  +用户名 ），它并没有在/home目录下创建同名文件夹，也没有创建密码，因此利用这个用户登录系统，是登录不了的，为了避免这样的情况出现，可以用 （useradd -m +用户名）的方式创建，它会在/home目录下创建同名文件夹，然后利用（ passwd + 用户名）为指定的用户名设置密码。
+
+添加用户：useradd -m 用户名  然后设置密码  passwd 用户名
+
+
+
+2. 可以直接利用adduser创建新用户（adduser +用户名）这样在/home目录下会自动创建同名文件夹（创建用户的家目录），会建立同名组，建立新用户密码，还会从/etc/SKEL目录下拷贝文件到家目录，完成初始化。是否加密主目录等等。
+
+添加用户：adduser + 用户名  
+
+删除用户
+
+删除用户，“userdel 用户名”即可。最好将它留在系统上的文件也删除掉，可以使用“userdel -r 用户名”来实现。 
+
+删除用户：userdel  -r  用户名 
+
+二、/sbin/nologin 与 /bin/bash    更改用户是否可ssh登录
+
+	usermod -s /sbin/nologin + 用户名
+	usermod -s /bin/bash + 用户名  
+
+nologin命令
+
+用户和工作组管理 nologin命令可以实现礼貌地拒绝用户登录系统，同时给出信息。如果尝试以这类用户登录，就在log里添加记录，然后在终端输出This account is currently not available信息，就是这样。一般设置这样的帐号是给启动服务的账号所用的，这只是让服务启动起来，但是不能登录系统。  
+语法 nologin 实例 Linux禁止用户登录： 禁止用户登录后，用户不能登录系统，但可以登录ftp、SAMBA等。  
+我们在Linux下做系统维护的时候，希望个别用户或者所有用户不能登录系统，保证系统在维护期间正常运行。这个时候我们就要禁止用户登录。  
+1、禁止个别用户登录，比如禁止lynn用户登录。  
+
+	passwd -l lynn // 锁定lynn用户，这样该用户就不能登录了。 
+	passwd -u lynn // 对锁定的用户lynn进行解锁，用户可登录了。
+2、我们通过修改/etc/passwd文件中用户登录的shell vi /etc/passwd 更改为： lynn:x:500:500::/home/lynn:/sbin/nologin 该用户就无法登录了。  
+3、禁止所有用户登录。
+
+	touch /etc/nologin // 除root以外的用户不能登录了。

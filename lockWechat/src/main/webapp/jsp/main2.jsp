@@ -95,6 +95,7 @@
     <div class="page page-current">
         <!-- 标题栏 -->
         <header class="bar bar-nav">
+            <a class="icon icon-menu pull-left open-panel" data-panel='#panel-left-menu'></a>
             <h1 class="title">主页</h1>
         </header>
 
@@ -167,6 +168,73 @@
         </div>
     </div>
 
+</div>
+
+<div class="panel panel-left panel-reveal" id="panel-left-menu">
+    <div class="content-block content-padded grid-demo">
+        <div style="height: 1rem;"></div>
+        <!--
+        <div class="row">
+            <div class="col-50">
+                <img class="auto-zoom-5" src="resources/img/username.png"/>
+            </div>
+            <div class="col-50">
+                <p><span>北极星</span></p>
+                <p><span>18255683932</span></p>
+            </div>
+        </div>
+        -->
+        <div>
+            <img class="auto-zoom-5" src="resources/img/username.png" alt="用户图像"/>
+        </div>
+        <div>
+            <p>
+                <%--<span>18255683932</span>--%>
+                <s:if test="#attr.ownerPhoneNumber!=null">
+                    <s:property value="#attr.ownerPhoneNumber" />
+                </s:if>
+                <s:else>
+                    获取手机号码失败
+                </s:else>
+            </p>
+        </div>
+        <div style="height: 2rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/add_gateway.png"/>
+            </div>
+            <div class="col-80" id="div_addGateway">
+                添加网关
+            </div>
+        </div>
+        <div style="height: 0.7rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/statistics.png"/>
+            </div>
+            <div class="col-80" id="div_statistics">
+                查询统计
+            </div>
+        </div>
+        <div style="height: 0.7rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/alert.png"/>
+            </div>
+            <div class="col-80">
+                异常警示
+            </div>
+        </div>
+        <div style="height: 0.7rem;"></div>
+        <div class="row pad-left">
+            <div class="col-20">
+                <img class='auto-zoom-1' src="resources/img/system_configure.png"/>
+            </div>
+            <div class="col-80">
+                系统设置
+            </div>
+        </div>
+    </div>
 </div>
 
 <input type="hidden" id="INPUT_hidden" value="${ownerPhoneNumber}" />

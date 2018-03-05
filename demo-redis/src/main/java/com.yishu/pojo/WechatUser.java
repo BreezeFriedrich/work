@@ -3,7 +3,7 @@
  * Nanjing yishu information technology co., LTD. All Rights Reserved.
  */
 
-package com.yishu.domain;
+package com.yishu.pojo;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
