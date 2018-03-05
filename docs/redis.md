@@ -336,7 +336,28 @@ ps -ef|grep 6379
 netstat -tunpl|grep redis  
 journalctl|grep redis-server  
 
-#Redis Commands
+#Redis commands
++ 配置外网访问
+
+1). 修改配置,允许远程访问,添加连接密码:  
+
+	vim /usr/local/redis/etc/redis.conf
+>\#bind 127.0.0.1  
+protectedmode no
+
+添加密码
+>requirepass yourredispassword
+
+	systemctl restart redis-server
+
+2). (iptable白名单、路由、)阿里云要开放6379端口  
+3). 远程登录:
+
+	redis-cli -h 47.96.25.55 -p 6379 -a yourredispassword
++ database表示redis数据库实例
++ redis用户
+
+#Redis database Commands
 1.SET、GET
 
 	> SET company yishu  
