@@ -26,7 +26,7 @@ function register() {
             success:function(data,status,xhr){
                 $.hidePreloader();
                 if(true===data.result){
-                    window.location.href=encodeURI("jsp/main2.jsp");
+                    window.location.href=encodeURI("jsp/main.jsp");
                 }else {
                     $.toast('注册失败',1500);
                     window.location.reload();

@@ -84,7 +84,7 @@
             关于window.location.href的URL路径
             ${pageContext.request.contextPath}会访问jsp的内置对象pageContext 本例中pageContext.request.contextPath代表'lockWechat/',即绝对路径指向webapp目录.
             -->
-            <a class="icon icon-home pull-left" href="javascript:window.location.href='${pageContext.request.contextPath}/jsp/main2.jsp';"></a>
+            <a class="icon icon-home pull-left" href="javascript:window.location.href='${pageContext.request.contextPath}/jsp/main.jsp';"></a>
             <h1 class="title">网关管理</h1>
             <!-- 直接用相对路径也可以,是否与<base href="<%=basePath%>">有关? -->
             <a class="icon icon-edit pull-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('jsp/gateway/gateway_property.jsp?ownerPhoneNumber='+ownerPhoneNumber+'&specificGatewayCode='+specificGatewayCode);"></a>

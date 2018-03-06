@@ -1,0 +1,39 @@
+/*
+ * Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
+ * Nanjing yishu information technology co., LTD. All Rights Reserved.
+ */
+
+/* 网关*/
+.item-gateway{min-height:4rem !important}
+.item-gateway .item-inner{padding-top:0.8rem !important}
+.item-gateway .item-media{border-right:1px solid  #dddddd; padding-right:0.5rem}
+.item-gateway .gateway-red{ color:#fe0c00}
+.item-gateway .gateway-green{ color:#01bb7a}
+.item-gateway .item-none{ background:none !important}
+.item-battery{ background:url(../images/inco-battery.png) no-repeat  95% !important;background-size:1.5rem !important;}
+.gateway-linegreen{ border:1px solid #89deba}
+.gateway-linered{ border:1px solid #ffbcbb}
+/* 网关 end*/
+
+
+/* 网关*/
+.list-my ul:after{background-color:#2a2a2a !important}
+.list-my ul:before{background-color:#2a2a2a !important}
+.list-my .item-inner:after{background-color:#2a2a2a !important}
+.list-my .item-inner:before{background-color:#2a2a2a !important}
+
+.my-yonghu{ margin: 2rem 0  3rem 0}
+.my-yonghu .my-tx{ width: 60px; height: 60px; border-radius: 60px; height: 60px; margin:0 auto; display:block}
+.my-yonghu .my-iphone{ text-align: center;color: #fff; line-height: 2.2rem; }
+
+.list-my  .my-inner{position:static}
+.list-my ul{ background:none !important; color:#fff}
+.content-block-my{margin: 0px}
+.my-close{height:2.2rem;margin: 0px; line-height: 2.2rem}
+.my-close a{ color: #fff; font-size:0.8rem }
+
+.icon-my1{width:1.45rem;height:1.45rem;background-image:url("../images/wy-1-1.png")}
+.icon-my2{width:1.45rem;height:1.45rem;background-image:url("../images/wy-1-2.png")}
+.icon-my3{width:1.45rem;height:1.45rem;background-image:url("../images/wy-1-3.png")}
+.icon-my4{width:1.45rem;height:1.45rem;background-image:url("../images/wy-1-4.png")}
+/* 网关 end*/

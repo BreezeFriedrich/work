@@ -5,8 +5,8 @@
 
 <%--
   User: admin
-  Date: 2017/12/4
-  Time: 17:34
+  Date: 2017/9/18
+  Time: 16:05
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -67,25 +67,6 @@
             /*上下 ,左右*/
             padding: 0 0.75rem;
         }
-
-        /*徽章badge*/
-        .badge {
-            display: inline-block;
-            min-width: 10px;
-            padding: 3px 7px;
-            font-size: 12px;
-            font-weight: bold;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            white-space: nowrap;
-            /*vertical-align: baseline;*/
-            background-color: #999;
-            border-radius: 10px;
-        }
-        .badge:empty {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -97,31 +78,26 @@
         <header class="bar bar-nav">
             <a class="icon icon-menu pull-left open-panel" data-panel='#panel-left-menu'></a>
             <h1 class="title">主页</h1>
+            <%--<a class="icon icon-me pull-right" href="#account"></a>--%>
         </header>
 
         <!-- 工具栏 -->
+        <!--
         <nav class="bar bar-tab">
-            <a class="tab-item external active" href="jsp/main2.jsp">
+            <a class="tab-item external active" href="#">
                 <span class="icon icon-home"></span>
                 <span class="tab-label">首页</span>
             </a>
-            <a class="tab-item external" href="jsp/gateway/gateway_addGateway.jsp">
-                <span class="icon icon-edit"></span>
-                <span class="tab-label">网关</span>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-star"></span>
+                <span class="tab-label">收藏</span>
             </a>
-            <a class="tab-item external" href="jsp/record/record.jsp">
-                <span class="icon icon-search"></span>
-                <span class="tab-label">记录</span>
-            </a>
-            <a class="tab-item external" href="jsp/alert.jsp">
-                <span class="icon icon-phone"></span>
-                <span class="tab-label">告警<span class="badge" style="vertical-align: -50%;"></span></span>
-            </a>
-            <a class="tab-item external" href="jsp/setting.jsp">
+            <a class="tab-item external" href="#">
                 <span class="icon icon-settings"></span>
                 <span class="tab-label">设置</span>
             </a>
         </nav>
+        -->
 
         <!-- 这里是页面内容区 -->
         <div class="content">
@@ -168,8 +144,39 @@
         </div>
     </div>
 
+    <!-- 其他的单个page内联页（如果有） -->
+    <div class="page">...</div>
+
+    <div class="page" id="account">
+        <!-- 标题栏 -->
+        <header class="bar bar-nav">
+            <h1 class="title">帐户操作</h1>
+        </header>
+
+        <!-- 工具栏 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="#">
+                <span class="icon icon-edit"></span>
+                <span class="tab-label">修改密码</span>
+            </a>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-star"></span>
+                <span class="tab-label">收藏</span>
+            </a>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-settings"></span>
+                <span class="tab-label">设置</span>
+            </a>
+        </nav>
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <div class="content-block">这里是content</div>
+        </div>
+    </div>
 </div>
 
+<!-- Left Panel with Reveal effect -->
 <div class="panel panel-left panel-reveal" id="panel-left-menu">
     <div class="content-block content-padded grid-demo">
         <div style="height: 1rem;"></div>
@@ -242,7 +249,7 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='resources/js/main2.js?ver=3' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/main.js' charset='utf-8'></script>
 </body>
 </html>
 

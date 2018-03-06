@@ -13,6 +13,7 @@
 
 >[redis整合spring(redisTemplate工具类)](http://blog.csdn.net/qq_34021712/article/details/75949706)  
 >[spring集成redis](https://www.cnblogs.com/hello-daocaoren/p/7891907.html)  
+
 >[java之redis篇(spring-data-redis整合)](https://www.cnblogs.com/tankaixiong/p/3660075.html)  
 >[Spring整合Redis(第一篇)—SDR简述](https://www.cnblogs.com/zjrodger/p/5800593.html)  
 >[Spring集成Redis步骤](http://blog.csdn.net/jrn1012/article/details/70344776)  
@@ -24,7 +25,10 @@
 + [Linux下Redis的安装和部署](https://www.cnblogs.com/wangchunniu1314/p/6339416.html)
 
 #Installation
-1.linux环境
+一. Windows环境  
+[微软维护github下载地址](https://github.com/MicrosoftArchive/redis/releases)  
+
+二. linux环境
 
 	[root@izbp1d9xxma2xabonszbi2z local]# hostnamectl
 >
@@ -43,7 +47,7 @@
 改个主机名
 
 	[root@izbp1d9xxma2xabonszbi2z local]# hostnamectl set-hostname geyser
-1.下载安装
+1. 下载安装
 
 	$ wget http://download.redis.io/releases/redis-4.0.8.tar.gz  
 	$ tar xzf redis-4.0.8.tar.gz  
@@ -51,7 +55,7 @@
 	$ make  
 ...compile->src directory  
 
-2.Run Redis with:
+2. Run Redis with:
 
     $ src/redis-server
 interact with Redis using the built-in client:
@@ -61,7 +65,7 @@ interact with Redis using the built-in client:
 	OK
 	redis> get foo
 	"bar"
-3./home/admin/install/redis-4.0.8
+3. /home/admin/install/redis-4.0.8
 
 	mv /home/admin/install/redis-4.0.8/redis.conf /usr/local/redis/etc
 	mv /home/admin/install/redis-4.0.8/src/redis-benchmark /usr/local/redis/bin
@@ -72,13 +76,13 @@ interact with Redis using the built-in client:
 	/usr/local/redis/bin/redis-server
 	netstat -tunpl|grep 6379
 	/usr/local/redis/bin/redis-cli
-4.将Redis的命令所在目录添加到系统参数PATH中
+4. 将Redis的命令所在目录添加到系统参数PATH中
 
 	vi /etc/profile
 末尾添加: export PATH="$PATH:/usr/local/redis/bin"
 
 	source /etc/profile
-5.后台启动redis服务
+5. 后台启动redis服务
 
 	vi /usr/local/redis/etc/redis.conf
 编辑redis.conf文件:
@@ -97,7 +101,7 @@ b)再次启动redis服务，并指定启动服务配置文件
 关闭redis-server进程:
 
 	pkill redis-server
-6.将redis-server注册为系统服务  
+6. 将redis-server注册为系统服务  
 
 1).centos6环境下
 
@@ -343,7 +347,7 @@ journalctl|grep redis-server
 
 	vim /usr/local/redis/etc/redis.conf
 >\#bind 127.0.0.1  
-protectedmode no
+protectedmode yes
 
 添加密码
 >requirepass yourredispassword
@@ -355,7 +359,20 @@ protectedmode no
 
 	redis-cli -h 47.96.25.55 -p 6379 -a yourredispassword
 + database表示redis数据库实例
-+ redis用户
++ Redis的用户权限管理  
+目标：创建有限权限的redis用户,用redis用户开启redis-server对外网服务,禁止redis用户登录系统.
+
+		groupadd -g 2001 redis
+		useradd -u2001 -g2001 -credis redis
+	
+		chmod 755 /usr/local/redis/bin
+		chown -R redis:redis /usr/local/redis
+	
+		usermod -s /bin/bash redis
+		查看redis-server进程 ps aux|grep redis
+		su redis -c systemctl restart redis-server
+		再次查看redis-server进程 ps aux|grep redis
+		usermod -s /sbin/nologin redis
 
 #Redis database Commands
 1.SET、GET

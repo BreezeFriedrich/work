@@ -210,7 +210,7 @@ function bindOpenid() {
                 $.hidePreloader();
                 if (0===data.result){
                     //已绑定openid到phone,直接登录.
-                    window.location.href="jsp/main2.jsp";
+                    window.location.href="jsp/main.jsp";
                 }
                 if (2===data.result){
                     //手机号不存在，需要注册手机号.
