@@ -63,8 +63,7 @@
     <div class="page-group">
       <div class="page page-current" id="page-index">
           <header class="bar bar-nav">
-              <a class="icon icon-me pull-left open-panel" data-panel=".panel-left"></a>
-              <a class="icon icon-remove pull-right"></a>
+              <a class="icon icon-home pull-left open-panel" data-panel=".panel-left"></a>
               <h1 class="title">主页</h1>
           </header>
           <!-- 工具栏 -->
@@ -98,8 +97,9 @@
           <div class="content native-scroll">
               <div class="list-block media-list tjrzxx">
                   <ul>
+                      <!--
                       <li>
-                          <a href="javascript:void(0);" onclick="javascript:console.log('gateway')" class="item-link item-content item-gateway">
+                          <a href="javascript:void(0);" class="item-link item-content item-gateway">
                               <div class="item-media"><img src="resources/images/inco-gateway.png" width="44"></div>
                               <div class="item-inner">
                                   <div class="item-title-row">
@@ -109,8 +109,8 @@
                               </div>
                           </a>
                       </li>
-                      <li class="inset">
-                          <a href="javascript:void(0);" onclick="javascript:console.log('lock1')" class="item-link item-content item-gateway gateway-linegreen">
+                      <li>
+                          <a href="javascript:void(0);" class="item-link item-content item-gateway gateway-linegreen">
                               <div class="item-media"><img src="resources/images/inco-doorlock.png" width="44"></div>
                               <div class="item-inner  item-none">
                                   <div class="item-title-row">
@@ -120,8 +120,10 @@
                               </div>
                           </a>
                       </li>
+                      -->
                   </ul>
               </div>
+              <!--
               <div class="list-block media-list inset">
                   <ul>
                       <li>
@@ -137,6 +139,7 @@
                       </li>
                   </ul>
               </div>
+              -->
           </div>
       </div>
     </div>
@@ -180,7 +183,8 @@
 
     <input type="hidden" id="INPUT_hidden" value="${ownerPhoneNumber}"/>
 
-    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <%--<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>--%>
+    <script type="text/javascript" src="resources/js/zepto.min.js"></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='resources/js/main.js' charset='utf-8'></script>

@@ -15,11 +15,12 @@ $(function(){
     }
 
     if (""!==ownerPhoneNumber){
-        $.toast('通过隐藏输入框获取手机号码:'+ownerPhoneNumber,3000);
+        // $.toast('通过隐藏输入框获取手机号码:'+ownerPhoneNumber,3000);
     }else {
         $.toast('无法通过隐藏输入框获取手机号码');
         ownerPhoneNumber=18255683932
     }
+    ownerPhoneNumber=18255683932;
 
     $.showIndicator();
     $.ajax({
@@ -27,14 +28,24 @@ $(function(){
         url:projectPath+"/device/getDeviceInfo.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         // headers:{"Access-Control-Allow-Origin":"*"},
-        // data:{"ownerPhoneNumber":ownerPhoneNumber},
-        data:{},
+        data:{"ownerPhoneNumber":ownerPhoneNumber},
         // timeout:3000,
         dataType:'json',
 
         success:function(data,status,xhr){
             $.hideIndicator();
             json = data;
+            var jsonStr='[{"gatewayCode":"GWH0081702000003","gatewayComment":"备注","gatewayLocation":"地址","gatewayName":"网关3_25","gatewayStatus":"6","lockLists":[' +
+                '{"lockCode":"LCN0011721000001","lockComment":"备注","lockLocation":"地址","lockName":"门锁1","lockPower":"0","lockStatus":"0"},' +
+                '{"lockCode":"LCN0011721000002","lockComment":"备注","lockLocation":"地址","lockName":"门锁2","lockPower":"0","lockStatus":"0"},' +
+                '{"lockCode":"LCN0011721000003","lockComment":"备注","lockLocation":"地址","lockName":"门锁3","lockPower":"0","lockStatus":"0"},' +
+                ']},' +
+                '{"gatewayCode":"GWH0081702000002","gatewayComment":"备注","gatewayLocation":"地址","gatewayName":"网关2","gatewayStatus":"6","lockLists":[' +
+                    '{"lockCode":"LCN0011721000004","lockComment":"备注","lockLocation":"地址","lockName":"门锁4","lockPower":"0","lockStatus":"0"},' +
+                    '{"lockCode":"LCN0011721000005","lockComment":"备注","lockLocation":"地址","lockName":"门锁5","lockPower":"0","lockStatus":"0"},' +
+                    ']}' +
+                ']';
+            json=eval(jsonStr);
         },
         error:function(xhr,errorType,error){
             $.hideIndicator();
@@ -47,99 +58,125 @@ $(function(){
     showDevices();
 
     //给左边栏绑定事件
-    var div_addGateway=document.getElementById("div_addGateway");
-    div_addGateway.addEventListener('click',function(ev){
+    $('.nav a').eq(1).click(function () {
         url="jsp/gateway/gateway_addGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
-    var div_statistics=document.getElementById("div_statistics");
-    div_statistics.addEventListener('click',function(ev){
+    $('.nav a').eq(2).click(function () {
         url="jsp/record/record.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
+    // var div_addGateway=document.getElementById("div_addGateway");
+    // div_addGateway.addEventListener('click',function(ev){
+    //     url="jsp/gateway/gateway_addGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+    //     window.location.href=encodeURI(url);
+    // });
+    // var div_statistics=document.getElementById("div_statistics");
+    // div_statistics.addEventListener('click',function(ev){
+    //     url="jsp/record/record.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+    //     window.location.href=encodeURI(url);
+    // });
 
     $.init();
 });
 
+// function showDevices(){
+//     $('.content ul:first').html(createGatewayNode);
+//     // createGatewayNode($('.content ul:first'));
+//     var toggleDisplay=false;
+//     // $('.content li > a').on("click",'a:first',function (event) {
+//     $('.content li').on("click",'a.gateway',function (event) {
+//         console.log('this:'+$(this));
+//         // var $el=event.target.children('a');
+//         var $el=$(this);
+//         if(0==$el.siblings().length){
+//             $el.after(createLockNode($el.attr('id')));
+//         }else {
+//             // $el.siblings().toggle();
+//             if(toggleDisplay){
+//                 $el.siblings().fadeIn();
+//                 toggleDisplay=false;
+//             }else {
+//                 $el.siblings().fadeOut();
+//                 toggleDisplay=true;
+//             }
+//         }
+//         return false;
+//     });
+//     $('.content li').on("click",'a.lock',function (event) {
+//         var $el=$(this);
+//         var lockCode=$el.id;
+//         var gatewayCode=$el.siblings(':first').id;
+//         url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode+"&specificLockCode="+lockCode;
+//         window.location.href=encodeURI(url);
+//         return false;
+//     });
+// }
 function showDevices(){
-    var html='';
-    html +='';
-
-    var UL_gateway=document.createElement('ul');
-    UL_gateway.id="UL_gateway";
-    document.getElementById('cardList').appendChild(UL_gateway);
-    // UL_gateway=document.getElementById('UL_gateway');
-    var UL_lockList=document.createElement('ul');
-    UL_lockList.id="UL_lockList";
-    UL_lockList.style.paddingLeft='0';
-    UL_lockList.style.marginTop='0.5rem';
-    UL_lockList.style.background='rgba(0,0,0,0.3)';
-    // document.getElementById('cardList').appendChild(UL_lockList);
-
-    UL_gateway.innerHTML = createGatewayNode();
-    //事件代理
-    UL_gateway.addEventListener('click',function(ev){
-        var target = ev.target || window.event.srcElement;
-        while(target !== UL_gateway){
-            if(target.getAttribute('class')==='card-content' && target.parentNode.className==='card gateway'){
-                var gatewayCode=target.parentNode.id;
-                url="jsp/gateway/gateway_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode;
-                window.location.href=encodeURI(url);
-                break;
-            }
-            if(target.className==='card-footer' && target.parentNode.className==='card gateway'){
-                //向下扩展DOM,门锁card
-                selectedGateway=target.parentNode;
-                // alert(selectedGateway.id);
-                // $(target).parent('li').siblings('li').remove();
-
-                /*
-                //门锁节点是网关节点子节点.
-                if(selectedGateway.contains(UL_lockList)){
-                    selectedGateway.removeChild(UL_lockList);
-                }else{
-                    UL_lockList.innerHTML = createLockNode(selectedGateway.id);
-                    selectedGateway.appendChild(UL_lockList);
-                }
-                */
-                //门锁节点与网关节点同级.
-                if(UL_lockList===selectedGateway.nextSibling){
-                    selectedGateway.parentNode.removeChild(UL_lockList);
-                }else{
-                    UL_lockList.innerHTML = createLockNode(selectedGateway.id);
-                    selectedGateway.parentNode.insertBefore(UL_lockList,selectedGateway.nextSibling);
-                }
-                break;
-            }
-            target = target.parentNode;
+    $('.content ul:first').html(createGatewayNode);
+    $('.content li a.gateway').on("click",'img',function (e) {
+        var gatewayCode=$(this).parent().parent('a').attr('id');
+        url="jsp/gateway/gateway_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode;
+        window.location.href=encodeURI(url);
+    });
+    $('.content li').on("click",'a.gateway',function (event) {
+        var $el=$(this);
+        if(0==$el.siblings().length){
+            $el.after(createLockNode($el.attr('id')));
+        }else {
+            $el.siblings().remove();
+            // $el.siblings().toggle();
+            // if(toggleDisplay){
+            //     $el.siblings().fadeIn();
+            //     toggleDisplay=false;
+            // }else {
+            //     $el.siblings().fadeOut();
+            //     toggleDisplay=true;
+            // }
         }
-    })
+        return false;
+    });
+    $('.content li').on("click",'a.lock',function (event) {
+        var $el=$(this);
+        var lockCode=$el.id;
+        var gatewayCode=$el.siblings(':first').id;
+        url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode+"&specificLockCode="+lockCode;
+        window.location.href=encodeURI(url);
+        return false;
+    });
 }
 function createGatewayNode(){
-    var LI_gateway="";
-    for(x in json){
-        if('4'===json[x].gatewayStatus){json[x].gatewayStatus="正常"}
-        if('5'===json[x].gatewayStatus){json[x].gatewayStatus="异常"}
-        if('6'===json[x].gatewayStatus){json[x].gatewayStatus="连接失败"}
-
-        LI_gateway += "<li class='card gateway' id='"+json[x].gatewayCode+"' style='border: 0.3rem outset rgba(100,100,0,0.5);'>";
-        LI_gateway += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+json[x].gatewayName+"</div>";
-        LI_gateway += 	"<div class='card-content' style='background-color: #EEFFFF;'>";
-        LI_gateway += 		"<div class='card-content-inner'>";
-        LI_gateway += 			"<img class='auto-zoom-4' src='resources/img/gateway.png' />";
-        LI_gateway += 		"</div>";
-        LI_gateway += 	"</div>";
-        LI_gateway += 	"<div class='card-footer' style='background-color: #F3FAF3;'>";
-        LI_gateway += 		"<p style='color: #00B83F;'>"+json[x].gatewayStatus+"</p><a href='#' class='icon icon-down'></a>";
-        LI_gateway += 	"</div>";
-        LI_gateway += "</li>"+"<br/>";
+    var html='';
+    for(x in json) {
+        if ('4' === json[x].gatewayStatus) {
+            json[x].gatewayStatus = "正常"
+        }
+        if ('5' === json[x].gatewayStatus) {
+            json[x].gatewayStatus = "异常"
+        }
+        if ('6' === json[x].gatewayStatus) {
+            json[x].gatewayStatus = "连接失败"
+        }
+        html += '<li>';
+        html +=     '<a id="'+json[x].gatewayCode+'" href="javascript:void(0);" class="gateway item-content item-gateway gateway-linegreen">';
+        html +=         '<div class="item-media"><img src="resources/images/inco-gateway.png" width="44"></div>';
+        html +=         '<div class="item-inner">';
+        html +=             '<div class="item-title-row">';
+        html +=                 '<div class="item-title">'+json[x].gatewayName+'</div>';
+        html +=             '</div>';
+        html +=             '<div class="item-subtitle gateway-red">'+json[x].gatewayStatus+'</div>';
+        html +=         '</div>';
+        html += '<div style="float: right">';
+        html +=     '<img src="resources/img/right_arrow.png" style="height: 40px;width: 40px;"/>';
+        html += '</div>';
+        html +=     '</a>';
+        html += '</li>';
     }
-    return LI_gateway;
+    return html;
 }
 
 function createLockNode(gatewayCode){
-    var LI_lock="";
-    var lockLists=null;
+    var html='';
     for(x in json){
         if(json[x].gatewayCode===gatewayCode){
             lockLists=json[x].lockLists;
@@ -151,19 +188,17 @@ function createLockNode(gatewayCode){
         if('2'===lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
         if('3'===lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
 
-        LI_lock += "<li class='card lock' id='"+lockLists[x].lockCode+"' style='margin: 0 0.5rem;border: 0.3rem outset rgba(100,100,0,0.5);border-top-width:'0.2rem';'>";
-        LI_lock += 	"<div class='card-header' style='background-color: #FAF1FC;'>"+lockLists[x].lockName+"</div>";
-        LI_lock += 	"<div class='card-content' style='background-color: #EEFFFF;'>";
-        LI_lock += 		"<div class='card-content-inner'>";
-        LI_lock += 			"<img class='auto-zoom-3' src='resources/img/lock.png' />";
-        LI_lock += 		"</div>";
-        LI_lock += 	"</div>";
-        LI_lock += 	"<div class='card-footer' style='background-color: #F3FAF3;'>";
-        LI_lock += 		"<p style='color: #00B83F;'>"+lockLists[x].lockStatus+"</p>";
-        LI_lock += 	"</div>";
-        LI_lock += "</li>";
+        html +=     '<a id="'+lockLists[x].lockCode+'" href="javascript:void(0);" class="lock item-link item-content item-gateway">';
+        html +=         '<div class="item-media"><img src="resources/images/inco-doorlock.png" width="44"></div>';
+        html +=         '<div class="item-inner item-none">';
+        html +=             '<div class="item-title-row">';
+        html +=                 '<div class="item-title">'+lockLists[x].lockName+'</div>';
+        html +=             '</div>';
+        html +=             '<div class="item-subtitle gateway-green">'+lockLists[x].lockStatus+'</div>';
+        html +=         '</div>';
+        html +=     '</a>';
     }
-    return LI_lock;
+    return html;
 }
 
 //获取链接参数
