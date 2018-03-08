@@ -9,6 +9,7 @@ import com.yishu.domain.WechatUser;
 import com.yishu.domain.WechatWebAccessToken;
 import net.sf.json.JSONObject;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -18,9 +19,9 @@ import java.io.UnsupportedEncodingException;
 public class WechatWebAccessTokenUtil {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger("WechatWebAccessTokenUtil");
 
-//    @Value("${APPID}")
+    @Value("${APPID}")
     private String APPID="wx6234fc4a502ef625";// 微信公众号下的AppID
-//    @Value("${APPSECRET}")
+    @Value("${APPSECRET}")
     private String SECRET="897c9b5b60804e4c9f4609cd00dd875c";// 微信公众号下的secret
 
     public String getAPPID() {

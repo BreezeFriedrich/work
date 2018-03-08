@@ -127,7 +127,7 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
             ActionContext.getContext().getSession().put("ownerPhoneNumber", ownerPhoneNumber);
              */
             logger.warn("openid存在,即将登录");
-            return "main2";
+            return "main";
         }
         //如果http返回的字段result=1,则openid不存在,进入注册流程.
         if (1==(int)map.get("result")){
@@ -153,7 +153,7 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
         SendSmsResponse smsResponse=null;
         String sms_BizId=null;
         smsResponse=SmsUtil.sendVerifyCode(phoneNumber,verifyCodeStr);
-        session.setAttribute("phoneNumber",phoneNumber);
+        session.setAttribute("ownerPhoneNumber",phoneNumber);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         session.setAttribute("sendDateStr",dateFormat.format(new Date()));
         session.setAttribute("verifyCode",verifyCodeStr);
@@ -182,7 +182,7 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
         logger.warn("checkVerifyCode.action");
         String sms_BizId=null;
         sms_BizId= (String) session.getAttribute("sms_BizId");
-        String phoneNumber= (String) session.getAttribute("phoneNumber");
+        String phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         logger.info("查询 已发送短信 流水号为："+sms_BizId);
         SendSmsResponse smsResponse=null;
         QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(phoneNumber,sms_BizId);
@@ -211,7 +211,7 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
         if (null != phoneNum){
             logger.warn("获得短信回执,短信发送目标手机 : "+ phoneNum);
         }else {
-            phoneNum= (String) session.getAttribute("phoneNumber");
+            phoneNum= (String) session.getAttribute("ownerPhoneNumber");
             logger.info("短信发送目标手机 : "+phoneNum);
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -238,7 +238,7 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
     public String bindOpenid(){
         logger.info("bindOpenid.action");
         openid= (String) session.getAttribute("OPENID");
-        phoneNumber= (String) session.getAttribute("phoneNumber");
+        phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int result=loginService.bindOpenidToPhone(openid,phoneNumber,ownerPassword);
         Map resultMap=new HashMap<String,Object>(1);
         resultMap.put("result",result);
@@ -275,9 +275,9 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
     public String register(){
         logger.info("register.action");
         openid= (String) session.getAttribute("OPENID");
-        phoneNumber= (String) session.getAttribute("phoneNumber");
+        phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         ownerPassword=(String) session.getAttribute("ownerPassword");
-        session.removeAttribute("phoneNumber");
+        session.removeAttribute("ownerPhoneNumber");
         session.removeAttribute("ownerPassword");
         boolean booleanResult=loginService.register(ownerName,phoneNumber,ownerPassword,openid);
         logger.info("register结果为: "+booleanResult);

@@ -5,6 +5,7 @@
 
 package com.yishu.action;
 
+import com.yishu.domain.WechatUser;
 import com.yishu.service.IAccountService;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,7 @@ public class AccountAction {
 
     private String openid;
     private String ownerPhoneNumber;
+    private String ownerPassword;
     private String newName;
     private String newPassword;
     private String gesturePassword;
@@ -180,6 +182,20 @@ public class AccountAction {
             openid= (String) session.getAttribute("OPENID");
         }
         Map resultMap=accountService.wechatLogin(openid);
+        jsonResult=resultMap;
+        return "json";
+    }
+
+    public String getUserFromSession(){
+        logger.info("-->>-- account/getUserFromSession.action -->>--");
+        openid= (String) session.getAttribute("OPENID");
+        ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        ownerPassword=(String) session.getAttribute("ownerPassword");
+        WechatUser wechatUser=new WechatUser();
+        wechatUser.setOpenid(openid);
+        wechatUser.setPhonenumber(ownerPhoneNumber);
+        Map resultMap=new HashMap();
+        resultMap.put("wechatUser",wechatUser);
         jsonResult=resultMap;
         return "json";
     }

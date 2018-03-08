@@ -42,7 +42,7 @@
                 <!--<param name="excludeProperties">SUCCESS</param>-->
             </result>
             <!--<result name="main">/jsp/main.jsp</result>-->
-            <result name="main2">/jsp/main2.jsp</result>
+            <result name="main">/jsp/main.jsp</result>
             <result name="SMSVerifyCode">/jsp/SMSVerifyCode.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>

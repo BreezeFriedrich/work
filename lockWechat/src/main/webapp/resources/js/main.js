@@ -5,11 +5,29 @@
 
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-var json;
+var device;
 var ownerPhoneNumber;
 var url;
 $(function(){
-    ownerPhoneNumber = document.getElementById("INPUT_hidden").value;
+    $.ajax({
+        type:"POST",
+        url:projectPath+"/account/getUserFromSession.action",
+        async:false,
+        data:{},
+        dataType:'json',
+        success:function(data,status,xhr){
+            ownerPhoneNumber=data.wechatUser.phonenumber;
+        },
+        error:function(xhr,errorType,error){
+            console.log('错误');
+            console.log(xhr);
+            console.log(errorType);
+            console.log(error)
+        }
+    });
+    if(null==ownerPhoneNumber){
+        ownerPhoneNumber = document.getElementById("INPUT_hidden").value;
+    }
     if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     }
@@ -22,6 +40,8 @@ $(function(){
     }
     ownerPhoneNumber=18255683932;
 
+    $('.my-iphone').html(ownerPhoneNumber);
+
     $.showIndicator();
     $.ajax({
         type:"POST",
@@ -31,10 +51,10 @@ $(function(){
         data:{"ownerPhoneNumber":ownerPhoneNumber},
         // timeout:3000,
         dataType:'json',
-
         success:function(data,status,xhr){
             $.hideIndicator();
-            json = data;
+            device = data;
+
             var jsonStr='[{"gatewayCode":"GWH0081702000003","gatewayComment":"备注","gatewayLocation":"地址","gatewayName":"网关3_25","gatewayStatus":"6","lockLists":[' +
                 '{"lockCode":"LCN0011721000001","lockComment":"备注","lockLocation":"地址","lockName":"门锁1","lockPower":"0","lockStatus":"0"},' +
                 '{"lockCode":"LCN0011721000002","lockComment":"备注","lockLocation":"地址","lockName":"门锁2","lockPower":"0","lockStatus":"0"},' +
@@ -45,7 +65,8 @@ $(function(){
                     '{"lockCode":"LCN0011721000005","lockComment":"备注","lockLocation":"地址","lockName":"门锁5","lockPower":"0","lockStatus":"0"},' +
                     ']}' +
                 ']';
-            json=eval(jsonStr);
+            device=eval(jsonStr);
+
         },
         error:function(xhr,errorType,error){
             $.hideIndicator();
@@ -58,60 +79,30 @@ $(function(){
     showDevices();
 
     //给左边栏绑定事件
-    $('.nav a').eq(1).click(function () {
+    $('.panel-left ul li').eq(0).click(function () {
+        url="jsp/room/roomStatus.jsp";
+        window.location.href=encodeURI(url);
+    });
+    $('.panel-left ul li').eq(1).click(function () {
         url="jsp/gateway/gateway_addGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
-    $('.nav a').eq(2).click(function () {
+    $('.panel-left ul li').eq(2).click(function () {
         url="jsp/record/record.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
-    // var div_addGateway=document.getElementById("div_addGateway");
-    // div_addGateway.addEventListener('click',function(ev){
-    //     url="jsp/gateway/gateway_addGateway.jsp?ownerPhoneNumber="+ownerPhoneNumber;
-    //     window.location.href=encodeURI(url);
-    // });
-    // var div_statistics=document.getElementById("div_statistics");
-    // div_statistics.addEventListener('click',function(ev){
-    //     url="jsp/record/record.jsp?ownerPhoneNumber="+ownerPhoneNumber;
-    //     window.location.href=encodeURI(url);
-    // });
+    $('.panel-left ul li').eq(3).click(function () {
+        url="jsp/alert.jsp";
+        window.location.href=encodeURI(url);
+    });
+    $('.panel-left ul li').eq(4).click(function () {
+        url="jsp/setting.jsp";
+        window.location.href=encodeURI(url);
+    });
 
     $.init();
 });
 
-// function showDevices(){
-//     $('.content ul:first').html(createGatewayNode);
-//     // createGatewayNode($('.content ul:first'));
-//     var toggleDisplay=false;
-//     // $('.content li > a').on("click",'a:first',function (event) {
-//     $('.content li').on("click",'a.gateway',function (event) {
-//         console.log('this:'+$(this));
-//         // var $el=event.target.children('a');
-//         var $el=$(this);
-//         if(0==$el.siblings().length){
-//             $el.after(createLockNode($el.attr('id')));
-//         }else {
-//             // $el.siblings().toggle();
-//             if(toggleDisplay){
-//                 $el.siblings().fadeIn();
-//                 toggleDisplay=false;
-//             }else {
-//                 $el.siblings().fadeOut();
-//                 toggleDisplay=true;
-//             }
-//         }
-//         return false;
-//     });
-//     $('.content li').on("click",'a.lock',function (event) {
-//         var $el=$(this);
-//         var lockCode=$el.id;
-//         var gatewayCode=$el.siblings(':first').id;
-//         url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode+"&specificLockCode="+lockCode;
-//         window.location.href=encodeURI(url);
-//         return false;
-//     });
-// }
 function showDevices(){
     $('.content ul:first').html(createGatewayNode);
     $('.content li a.gateway').on("click",'img',function (e) {
@@ -138,8 +129,8 @@ function showDevices(){
     });
     $('.content li').on("click",'a.lock',function (event) {
         var $el=$(this);
-        var lockCode=$el.id;
-        var gatewayCode=$el.siblings(':first').id;
+        var lockCode=$el.attr('id');
+        var gatewayCode=$el.siblings().eq(0).attr('id');
         url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+gatewayCode+"&specificLockCode="+lockCode;
         window.location.href=encodeURI(url);
         return false;
@@ -147,24 +138,24 @@ function showDevices(){
 }
 function createGatewayNode(){
     var html='';
-    for(x in json) {
-        if ('4' === json[x].gatewayStatus) {
-            json[x].gatewayStatus = "正常"
+    for(x in device) {
+        if ('4' === device[x].gatewayStatus) {
+            device[x].gatewayStatus = "正常"
         }
-        if ('5' === json[x].gatewayStatus) {
-            json[x].gatewayStatus = "异常"
+        if ('5' === device[x].gatewayStatus) {
+            device[x].gatewayStatus = "异常"
         }
-        if ('6' === json[x].gatewayStatus) {
-            json[x].gatewayStatus = "连接失败"
+        if ('6' === device[x].gatewayStatus) {
+            device[x].gatewayStatus = "连接失败"
         }
         html += '<li>';
-        html +=     '<a id="'+json[x].gatewayCode+'" href="javascript:void(0);" class="gateway item-content item-gateway gateway-linegreen">';
+        html +=     '<a id="'+device[x].gatewayCode+'" href="javascript:void(0);" class="gateway item-content item-gateway gateway-linegreen">';
         html +=         '<div class="item-media"><img src="resources/images/inco-gateway.png" width="44"></div>';
         html +=         '<div class="item-inner">';
         html +=             '<div class="item-title-row">';
-        html +=                 '<div class="item-title">'+json[x].gatewayName+'</div>';
+        html +=                 '<div class="item-title">'+device[x].gatewayName+'</div>';
         html +=             '</div>';
-        html +=             '<div class="item-subtitle gateway-red">'+json[x].gatewayStatus+'</div>';
+        html +=             '<div class="item-subtitle gateway-red">'+device[x].gatewayStatus+'</div>';
         html +=         '</div>';
         html += '<div style="float: right">';
         html +=     '<img src="resources/img/right_arrow.png" style="height: 40px;width: 40px;"/>';
@@ -177,9 +168,9 @@ function createGatewayNode(){
 
 function createLockNode(gatewayCode){
     var html='';
-    for(x in json){
-        if(json[x].gatewayCode===gatewayCode){
-            lockLists=json[x].lockLists;
+    for(x in device){
+        if(device[x].gatewayCode===gatewayCode){
+            lockLists=device[x].lockLists;
             break;
         }
     }

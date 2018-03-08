@@ -57,7 +57,7 @@ public class SMSAction {
 //        session.setAttribute("OPENID","oaxT-szv3F0hz8ZCy6Ke5kTe8QNA");
 //        logger.info("sendVerifyCode.action");
         long time1=new Date().getTime();
-        session.setAttribute("phoneNumber",phoneNumber);
+        session.setAttribute("ownerPhoneNumber",phoneNumber);
         Map resultMap=smsService.sendVerifyCode(phoneNumber);
         SMSVerificationCode smsVerificationCode= (SMSVerificationCode) resultMap.get("verificationCode");
         if (null!=smsVerificationCode){
@@ -88,8 +88,8 @@ public class SMSAction {
     public String checkVerifyCode(){
         logger.info("checkVerifyCode.action");
         Map <String,Object> resultMap=new HashMap<>(1);
-        phoneNumber= (String) session.getAttribute("phoneNumber");
-//        session.removeAttribute("phoneNumber");
+        phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        session.removeAttribute("ownerPhoneNumber");
         SMSVerificationCode smsVerificationCode= (SMSVerificationCode) session.getAttribute("smsVerificationCode");
 //        session.removeAttribute("smsVerificationCode");
         logger.info("smsVerificationCode : "+smsVerificationCode);
@@ -98,7 +98,7 @@ public class SMSAction {
                 if (new Date().getTime() - smsVerificationCode.getCreateTime() < ISMSService.EXPIRE_TIME){
                     //验证码有效
                     logger.info("验证码有效");
-                    session.setAttribute("phoneNumber",phoneNumber);
+                    session.setAttribute("ownerPhoneNumber",phoneNumber);
                     resultMap.put("result",1);
                 }else {
                     logger.info("短信验证码超时");

@@ -31,27 +31,6 @@ public class HttpUtil
 
     public final static String hostName="lock.qixutech.com";
 
-    public static void httpURLConectionGET(String urlStr) {
-        try {
-            URL url = new URL(urlStr);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
-            connection.setRequestProperty("Content-Type", "text/html; charset=UTF-8");
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
-            String line;
-            StringBuilder sb = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            br.close();
-            connection.disconnect();
-            logger.info(sb.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.info("失败!");
-        }
-    }
-
     public static String httpToGateway(String urlStr){
         HttpURLConnection connection;
         BufferedReader in=null;
@@ -173,105 +152,6 @@ public class HttpUtil
             e.printStackTrace();
         }
         return result;
-    }
-
-    /**
-     * 发起post请求并获取结果
-     * 
-     * @param url
-     *            请求地址
-     * @param json
-     *            请求json数据
-     * 
-     */
-    public static String doPost(String url, String json)
-    {
-        String responseContent = null; // 响应内容
-        try{
-            HttpPost request = new HttpPost(url); // 根据地址获取请求
-            StringEntity myEntity = new StringEntity(json, ContentType.APPLICATION_JSON);// 构造请求数据
-            request.setEntity(myEntity);
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpResponse response = httpClient.execute(request);
-            // 判断网络连接状态码是否正常(0--200都数正常)
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
-            {
-                HttpEntity entity = response.getEntity();
-                responseContent = EntityUtils.toString(entity, "UTF-8");
-                return responseContent;
-            }
-        }
-        catch (IOException e)
-        {
-            System.err.println("! Exception : post request error");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 发起https请求并获取结果
-     * 
-     * @param requestUrl
-     *            请求地址
-     * @param requestMethod
-     *            请求方式（GET、POST）
-     * @param outputStr
-     *            提交的数据
-     * 
-     */
-    public static String doHttps(String requestUrl, String requestMethod, String outputStr)
-    {
-        StringBuffer buffer = new StringBuffer();
-        try{
-            // 创建SSLContext对象，并使用我们指定的信任管理器初始化
-            TrustManager[] tm ={ new MyTrustManager() };
-            SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
-            sslContext.init(null, tm, new java.security.SecureRandom());
-            // 从上述SSLContext对象中得到SSLSocketFactory对象
-            SSLSocketFactory ssf = sslContext.getSocketFactory();
-            URL url = new URL(requestUrl);
-            HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
-            httpUrlConn.setSSLSocketFactory(ssf);
-            httpUrlConn.setDoOutput(true);
-            httpUrlConn.setDoInput(true);
-            httpUrlConn.setUseCaches(false);
-            // 设置请求方式（GET/POST）
-            httpUrlConn.setRequestMethod(requestMethod);
-            if ("GET".equalsIgnoreCase(requestMethod)) httpUrlConn.connect();
-
-            // 当有数据需要提交时
-            if (null != outputStr)
-            {
-                OutputStream outputStream = httpUrlConn.getOutputStream();
-                // 注意编码格式，防止中文乱码
-                outputStream.write(outputStr.getBytes("UTF-8"));
-                outputStream.close();
-            }
-
-            // 将返回的输入流转换成字符串
-            InputStream inputStream = httpUrlConn.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String str = null;
-            while ((str = bufferedReader.readLine()) != null)
-            {
-                buffer.append(str);
-            }
-            bufferedReader.close();
-            inputStreamReader.close();
-            // 释放资源
-            inputStream.close();
-            inputStream = null;
-            httpUrlConn.disconnect();
-            return buffer.toString();
-        }
-        catch (Exception e)
-        {
-            System.out.println("HttpsConnectException");
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**

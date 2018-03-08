@@ -72,6 +72,10 @@
                   <span class="icon icon-home"></span>
                   <span class="tab-label">首页</span>
               </a>
+              <a class="tab-item external" href="jsp/room/roomStatus.jsp">
+                  <span class="icon icon-search"></span>
+                  <span class="tab-label">房态</span>
+              </a>
               <a class="tab-item external" href="jsp/gateway/gateway_addGateway.jsp">
                   <span class="icon icon-edit"></span>
                   <span class="tab-label">网关</span>
@@ -79,10 +83,6 @@
               <a class="tab-item external" href="jsp/record/record.jsp">
                   <span class="icon icon-search"></span>
                   <span class="tab-label">记录</span>
-              </a>
-              <a class="tab-item external" href="jsp/room/roomStatus.jsp">
-                  <span class="icon icon-search"></span>
-                  <span class="tab-label">房态</span>
               </a>
               <a class="tab-item external" href="jsp/alert.jsp">
                   <span class="icon icon-phone"></span>
@@ -152,6 +152,12 @@
             </div>
             <div class="list-block list-my">
                 <ul>
+                    <li class="item-content">
+                        <div class="item-media"><i class="icon icon-my5"></i></div>
+                        <div class="item-inner my-inner">
+                            <div class="item-title">房态</div>
+                        </div>
+                    </li>
                     <li class="item-content">
                         <div class="item-media"><i class="icon icon-my1"></i></div>
                         <div class="item-inner my-inner">

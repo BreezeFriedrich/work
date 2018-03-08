@@ -155,46 +155,48 @@ function getAuthInfo() {
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockId.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:false,
         data:{
             // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
             "lockCode":specificLockCode
         },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        dataType:'json',
         success:function(data,status,xhr){
-            if(data.length>0){
-                ul_authInfo += "<div class='content-block-title'>已授权开锁身份证</div>";
-            }
-            for(x in data){
-                ul_authInfo += "<div class='list-block'>";
-                ul_authInfo += "<ul class='ul_authById' id='"+data[x].cardNumb+'-'+data[x].serviceNumb+"'>";
-                ul_authInfo += "<li class='item-content'>";
-                ul_authInfo +=    "<div class='item-inner'>";
-                ul_authInfo +=        "<div class='item-title'>姓名</div>";
-                ul_authInfo +=        "<div class='item-after'>"+data[x].name+"</div>";
-                ul_authInfo +=    "</div>";
-                ul_authInfo += "</li>";
-                ul_authInfo += "<li class='item-content'>";
-                ul_authInfo +=    "<div class='item-inner'>";
-                ul_authInfo +=        "<div class='item-title'>身份证号码</div>";
-                ul_authInfo +=        "<div class='item-after'>"+data[x].cardNumb+"</div>";
-                ul_authInfo +=    "</div>";
-                ul_authInfo += "</li>";
-                ul_authInfo += "<li class='item-content'>";
-                ul_authInfo +=    "<div class='item-inner'>";
-                ul_authInfo +=        "<div class='item-title'>授权起始时间</div>";
-                ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(data[x].startTime)+"</div>";
-                ul_authInfo +=    "</div>";
-                ul_authInfo += "</li>";
-                ul_authInfo += "<li class='item-content'>";
-                ul_authInfo +=    "<div class='item-inner'>";
-                ul_authInfo +=        "<div class='item-title'>授权结束时间</div>";
-                ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(data[x].endTime)+"</div>";
-                ul_authInfo +=    "</div>";
-                ul_authInfo += "</li>";
-                ul_authInfo += "</ul>";
-                ul_authInfo += "</div>";
+            if(null!=data){
+                if(data.length>0){
+                    ul_authInfo += "<div class='content-block-title'>已授权开锁身份证</div>";
+                }
+                for(x in data){
+                    ul_authInfo += "<div class='list-block'>";
+                    ul_authInfo += "<ul class='ul_authById' id='"+data[x].cardNumb+'-'+data[x].serviceNumb+"'>";
+                    ul_authInfo += "<li class='item-content'>";
+                    ul_authInfo +=    "<div class='item-inner'>";
+                    ul_authInfo +=        "<div class='item-title'>姓名</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+data[x].name+"</div>";
+                    ul_authInfo +=    "</div>";
+                    ul_authInfo += "</li>";
+                    ul_authInfo += "<li class='item-content'>";
+                    ul_authInfo +=    "<div class='item-inner'>";
+                    ul_authInfo +=        "<div class='item-title'>身份证号码</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+data[x].cardNumb+"</div>";
+                    ul_authInfo +=    "</div>";
+                    ul_authInfo += "</li>";
+                    ul_authInfo += "<li class='item-content'>";
+                    ul_authInfo +=    "<div class='item-inner'>";
+                    ul_authInfo +=        "<div class='item-title'>授权起始时间</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(data[x].startTime)+"</div>";
+                    ul_authInfo +=    "</div>";
+                    ul_authInfo += "</li>";
+                    ul_authInfo += "<li class='item-content'>";
+                    ul_authInfo +=    "<div class='item-inner'>";
+                    ul_authInfo +=        "<div class='item-title'>授权结束时间</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(data[x].endTime)+"</div>";
+                    ul_authInfo +=    "</div>";
+                    ul_authInfo += "</li>";
+                    ul_authInfo += "</ul>";
+                    ul_authInfo += "</div>";
+                }
             }
         },
         error:function(xhr,errorType,error){
@@ -205,64 +207,66 @@ function getAuthInfo() {
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockPwd.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:false,
         data:{
             // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
             "lockCode":specificLockCode
         },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        dataType:'json',
         success:function(data,status,xhr){
-            if('null'!=data.defaultPassword1 || 'null'!=data.defaultPassword2){
-                ul_authInfo += "<div class='content-block-title'>默认密码</div>";
-                ul_authInfo += "<div class='list-block'>";
-                ul_authInfo += "<ul>";
-                if('null'!=data.defaultPassword1){
+            if(null!=data){
+                if('null'!=data.defaultPassword1 || 'null'!=data.defaultPassword2){
+                    ul_authInfo += "<div class='content-block-title'>默认密码</div>";
+                    ul_authInfo += "<div class='list-block'>";
+                    ul_authInfo += "<ul>";
+                    if('null'!=data.defaultPassword1){
+                        ul_authInfo += "<li class='item-content'>";
+                        ul_authInfo +=    "<div class='item-inner'>";
+                        ul_authInfo +=        "<div class='item-title'>默认密码1</div>";
+                        ul_authInfo +=        "<div class='item-after'>"+data.defaultPassword1+"</div>";
+                        ul_authInfo +=    "</div>";
+                        ul_authInfo += "</li>";
+                    }
+                    if('null'!=data.defaultPassword2){
+                        ul_authInfo += "<li class='item-content'>";
+                        ul_authInfo +=    "<div class='item-inner'>";
+                        ul_authInfo +=        "<div class='item-title'>默认密码2</div>";
+                        ul_authInfo +=        "<div class='item-after'>"+data.defaultPassword2+"</div>";
+                        ul_authInfo +=    "</div>";
+                        ul_authInfo += "</li>";
+                    }
+                    ul_authInfo += "</ul>";
+                    ul_authInfo += "</div>";
+                }
+                var pwdList=data.passwordList;
+                if(pwdList.length>0){
+                    ul_authInfo += "<div class='content-block-title'>已授权开锁密码</div>";
+                }
+                for(x in pwdList){
+                    ul_authInfo += "<div class='list-block'>";
+                    ul_authInfo += "<ul class='ul_authByPwd' id='"+pwdList[x].serviceNumb+"'>";
                     ul_authInfo += "<li class='item-content'>";
                     ul_authInfo +=    "<div class='item-inner'>";
-                    ul_authInfo +=        "<div class='item-title'>默认密码1</div>";
-                    ul_authInfo +=        "<div class='item-after'>"+data.defaultPassword1+"</div>";
+                    ul_authInfo +=        "<div class='item-title'>密码</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+pwdList[x].password+"</div>";
                     ul_authInfo +=    "</div>";
                     ul_authInfo += "</li>";
-                }
-                if('null'!=data.defaultPassword2){
                     ul_authInfo += "<li class='item-content'>";
                     ul_authInfo +=    "<div class='item-inner'>";
-                    ul_authInfo +=        "<div class='item-title'>默认密码2</div>";
-                    ul_authInfo +=        "<div class='item-after'>"+data.defaultPassword2+"</div>";
+                    ul_authInfo +=        "<div class='item-title'>授权起始时间</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(pwdList[x].startTime)+"</div>";
                     ul_authInfo +=    "</div>";
                     ul_authInfo += "</li>";
+                    ul_authInfo += "<li class='item-content'>";
+                    ul_authInfo +=    "<div class='item-inner'>";
+                    ul_authInfo +=        "<div class='item-title'>授权结束时间</div>";
+                    ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(pwdList[x].endTime)+"</div>";
+                    ul_authInfo +=    "</div>";
+                    ul_authInfo += "</li>";
+                    ul_authInfo += "</ul>";
+                    ul_authInfo += "</div>";
                 }
-                ul_authInfo += "</ul>";
-                ul_authInfo += "</div>";
-            }
-            var pwdList=data.passwordList;
-            if(pwdList.length>0){
-                ul_authInfo += "<div class='content-block-title'>已授权开锁密码</div>";
-            }
-            for(x in pwdList){
-                ul_authInfo += "<div class='list-block'>";
-                ul_authInfo += "<ul class='ul_authByPwd' id='"+pwdList[x].serviceNumb+"'>";
-                ul_authInfo += "<li class='item-content'>";
-                ul_authInfo +=    "<div class='item-inner'>";
-                ul_authInfo +=        "<div class='item-title'>密码</div>";
-                ul_authInfo +=        "<div class='item-after'>"+pwdList[x].password+"</div>";
-                ul_authInfo +=    "</div>";
-                ul_authInfo += "</li>";
-                ul_authInfo += "<li class='item-content'>";
-                ul_authInfo +=    "<div class='item-inner'>";
-                ul_authInfo +=        "<div class='item-title'>授权起始时间</div>";
-                ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(pwdList[x].startTime)+"</div>";
-                ul_authInfo +=    "</div>";
-                ul_authInfo += "</li>";
-                ul_authInfo += "<li class='item-content'>";
-                ul_authInfo +=    "<div class='item-inner'>";
-                ul_authInfo +=        "<div class='item-title'>授权结束时间</div>";
-                ul_authInfo +=        "<div class='item-after'>"+formatTimetillminString(pwdList[x].endTime)+"</div>";
-                ul_authInfo +=    "</div>";
-                ul_authInfo += "</li>";
-                ul_authInfo += "</ul>";
-                ul_authInfo += "</div>";
             }
         },
         error:function(xhr,errorType,error){
