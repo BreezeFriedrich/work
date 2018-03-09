@@ -5,6 +5,8 @@
 
 package com.yishu.util;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -18,7 +20,17 @@ import java.util.TreeSet;
  * @since JDK1.7
  */
 public class WechatCheckSignature {
-    private static final String token = "yishutech";//与微信开发者基本配置服务器配置token一致,参考https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1472017492_58YV5
+//    private static final String token = "yishutech";//与微信开发者基本配置服务器配置token一致,参考https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1472017492_58YV5
+    private static String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    @Value("${token:yishutech}")
+    public void setToken(String token) {
+        WechatCheckSignature.token = token;
+    }
 
     /**
      * 加密/校验流程如下：

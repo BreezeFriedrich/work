@@ -11,15 +11,47 @@ import com.yishu.domain.ViewButton;
 import com.yishu.pojo.OperationalError;
 import com.yishu.util.HttpComponent;
 import net.sf.json.JSONObject;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
  * @version 1.0.0.0 2017-09-28 14:56 admin
  * @since JDK1.7
  */
+@Component("wechatUtil")
 public class WechatUtil {
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(WechatUtil.class);
 
     private static final String CREATE_MENU_URL="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+
+
+    private static String APPID;
+    private static String redirectURL;
+
+    public String getAPPID() {
+        return APPID;
+    }
+
+    @Value("${APPID:wx6234fc4a502ef625}")
+    public void setAPPID(String APPID) {
+        WechatUtil.APPID = APPID;
+    }
+
+    public String getRedirectURL() {
+        return redirectURL;
+    }
+
+    @Value("${redirectURL:https://lockwx.manxing1798.com/lockWechat/login/wxLogin.action}")
+    public void setRedirectURL(String redirectURL) {
+        WechatUtil.redirectURL = redirectURL;
+    }
+
+    public void printConfig(){
+        LOG.info("APPID:"+APPID);
+        LOG.info("redirectURL:"+redirectURL);
+    }
 
     /**
      * 组装菜单
@@ -35,7 +67,8 @@ public class WechatUtil {
         ViewButton button21=new ViewButton();
         button21.setName("view菜单");
         button21.setType("view");
-        button21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6234fc4a502ef625&redirect_uri=https://lockwx.manxing1798.com/lockWechat/login/wxLogin.action&response_type=code&scope=snsapi_base#wechat_redirect");
+//        button21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6234fc4a502ef625&redirect_uri=https://lockwx.manxing1798.com/lockWechat/login/wxLogin.action&response_type=code&scope=snsapi_base#wechat_redirect");
+        button21.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APPID+"&redirect_uri="+redirectURL+"&response_type=code&scope=snsapi_base#wechat_redirect");
 
         ClickButton button31=new ClickButton();
         button31.setName("扫码事件");

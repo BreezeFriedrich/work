@@ -45,7 +45,7 @@
         <interceptors>
             <!-- 定义拦截器 -->
             <interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
-            <interceptor name="OpenIdInterceptor" class="com.yishu.web.OpenIdInterceptor" />
+            <interceptor name="openIdInterceptor" class="com.yishu.web.OpenIdInterceptor" />
             <!-- 定义拦截器栈 -->
             <interceptor-stack name="monitor_Stack">
                 <!-- 引用拦截器 name:拦截器名称或拦截器栈名称 -->
@@ -57,7 +57,7 @@
             </interceptor-stack>
             <interceptor-stack name="openidStack">
                 <!--<interceptor-ref name="monitoring" />-->
-                <interceptor-ref name="OpenIdInterceptor"/>
+                <interceptor-ref name="openIdInterceptor"/>
                 <interceptor-ref name="defaultStack">
                     <param name="exception.logEnabled">true</param>
                     <param name="exception.logLevel">error</param>

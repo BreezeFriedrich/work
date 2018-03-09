@@ -18,17 +18,28 @@ import java.io.UnsupportedEncodingException;
 //获取token的
 @Component("getToken")
 public class GetToken {
-    /*
-    @Value("${APPID}")
-    private static String APPID;// 微信公众号下的AppID
-    @Value("${APPSECRET}")
-    private static String APPSECRET;// 微信公众号下的secret
-    */
-
-    private static String APPID = "wx6234fc4a502ef625";
-    private static String APPSECRET = "897c9b5b60804e4c9f4609cd00dd875c";
+    private static String APPID;
+    private static String APPSECRET;
 
     public static String TOKEN="WechatApiTokenAndTicket";
+
+    public String getAPPID() {
+        return APPID;
+    }
+
+    @Value("${APPID:wx6234fc4a502ef625}")
+    public void setAPPID(String APPID) {
+        GetToken.APPID = APPID;
+    }
+
+    public String getAPPSECRET() {
+        return APPSECRET;
+    }
+
+    @Value("${APPSECRET:897c9b5b60804e4c9f4609cd00dd875c}")
+    public void setAPPSECRET(String APPSECRET) {
+        GetToken.APPSECRET = APPSECRET;
+    }
 
     private static String gettoken() {
         JSONObject jsonObject = null;
@@ -49,7 +60,6 @@ public class GetToken {
         return access_token;
     }
 
-    //
     public static String getAccessToken() {
         WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         ServletContext servletContext = webApplicationContext.getServletContext();

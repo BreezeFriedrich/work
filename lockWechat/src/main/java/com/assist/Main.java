@@ -6,6 +6,7 @@
 package com.assist;
 
 import com.yishu.util.WechatWebAccessTokenUtil;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component("main")
 public class Main {
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(Main.class);
 
     @Value("${APPID}")
     public String APPID;
@@ -20,18 +22,18 @@ public class Main {
     public String APPSECRET;
     @Value("${assignURL}")
     public String assignURL;
-    @Value("${ownerURL}")
+    @Value("${ownerURL:192.168.0.1}")
     public String ownerURL;
-    @Value("gatewayURL")
+    @Value("${gatewayURL}")
     public String gatewayURL;
 
     public void printConfig() {
         //@Value("${}")搭配component-scan 、@Component读取配置.
-        System.out.println("APPID:"+APPID);
-        System.out.println("APPSECRET : " + APPSECRET);
-        System.out.println("assignURL:"+assignURL);
-        System.out.println("ownerURL:"+ownerURL);
-        System.out.println("gatewayURL:"+gatewayURL);
+        LOG.info("APPID:"+APPID);
+        LOG.info("APPSECRET:" + APPSECRET);
+        LOG.info("assignURL:"+assignURL);
+        LOG.info("ownerURL:"+ownerURL);
+        LOG.info("gatewayURL:"+gatewayURL);
     }
 
     public static void main(String[] args) throws Exception {
@@ -49,10 +51,11 @@ public class Main {
         */
 
         ApplicationContext context=new ClassPathXmlApplicationContext("spring/spring.xml");
-//        System.out.println("APPSECRET : "+((WechatWebAccessTokenUtil)(context.getBean("getOpenidByCode"))).SECRET);
-        ((WechatWebAccessTokenUtil)(context.getBean("getOpenid"))).printConfig();
+        ((WechatWebAccessTokenUtil)(context.getBean("wechatWebAccessTokenUtil"))).printConfig();
+        ((Main)(context.getBean("main"))).printConfig();
 
-        String urlStr = "http://192.168.1.47:9018";
-        System.err.println(urlStr);
+//        String urlStr = "http://192.168.1.47:9018";
+//        LOG.info(urlStr);
+        ((WechatUtil)(context.getBean("wechatUtil"))).printConfig();
     }
 }

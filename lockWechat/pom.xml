@@ -401,7 +401,6 @@
           <include>**/*.txt</include>
         </includes>
         <excludes>
-          <!--<exclude>config/production/jdbc.properties</exclude>-->
           <exclude>production/jdbc.properties</exclude>
         </excludes>
       </resource>
@@ -512,8 +511,78 @@
           <username>manager</username>
           <password>yishutech</password>
           <update>true</update>
+          <!--<httpsPort>443</httpsPort>-->
+          <!--<keystoreFile>C:/Program Files/Java/jre7/lib/security/lockwx.manxing1798.com.keystore</keystoreFile>-->
+          <!--<keystorePass>yishutech</keystorePass>-->
+          <!--<connectorHttpProtocol></connectorHttpProtocol>-->
         </configuration>
+        <!--<configuration>-->
+          <!--<path>/${project.build.finalName}</path>-->
+          <!--<contextFile>${basedir}/context.xml</contextFile>-->
+          <!--<httpsPort>8443</httpsPort>-->
+          <!--<keystoreFile>${basedir}/certificates/keystore.jks</keystoreFile>-->
+          <!--<keystorePass>password</keystorePass>-->
+        <!--</configuration>-->
+        <!--<configuration>-->
+          <!--<server>tomcat-43.254.149.29</server>-->
+          <!--<url>${deploy.url}/manager/text</url>-->
+          <!--&lt;!&ndash;<contextFile>https://lockwx.manxing1798.com/context.xml</contextFile>&ndash;&gt;-->
+          <!--<path>/lockWechat</path>-->
+          <!--<httpsPort>443</httpsPort>-->
+          <!--<keystoreFile>C:/Program Files/Java/jre7/lib/security/lockwx.manxing1798.com.jks</keystoreFile>-->
+          <!--<keystorePass>yishutech</keystorePass>-->
+        <!--</configuration>-->
       </plugin>
+
+      <!--<plugin>-->
+        <!--<groupId>org.apache.tomcat.maven</groupId>-->
+        <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+        <!--<version>2.2</version>-->
+        <!--<configuration>-->
+          <!--&lt;!&ndash;  application path always starts with / &ndash;&gt;-->
+          <!--<path>/</path>-->
+          <!--&lt;!&ndash;  http port  &ndash;&gt;-->
+          <!--<port>8080</port>-->
+          <!--<httpsPort>8443</httpsPort>-->
+          <!--<keystoreFile>${project.build.directory}/tomcat-ssl.keystore</keystoreFile>-->
+          <!--<keystorePass>tomcat-learn</keystorePass>-->
+          <!--&lt;!&ndash;  optional path to a context file  &ndash;&gt;-->
+          <!--<contextFile>${project.basedir}/src/test/resources/context.xml</contextFile>-->
+          <!--&lt;!&ndash;  optional system properties you want to add  &ndash;&gt;-->
+          <!--<systemProperties>-->
+            <!--<appserver.base>${project.build.directory}/appserver-base</appserver.base>-->
+            <!--<appserver.home>${project.build.directory}/appserver-home</appserver.home>-->
+            <!--<derby.system.home>${project.build.directory}/appserver-base/logs</derby.system.home>-->
+            <!--<java.io.tmpdir>${project.build.directory}</java.io.tmpdir>-->
+          <!--</systemProperties>-->
+          <!--&lt;!&ndash;-->
+           <!--if you want to use test dependencies rather than only runtime-->
+          <!--&ndash;&gt;-->
+          <!--<useTestClasspath>false</useTestClasspath>-->
+          <!--&lt;!&ndash;-->
+           <!--optional if you want to add some extra directories into the classloader-->
+          <!--&ndash;&gt;-->
+          <!--&lt;!&ndash; <additionalClasspathDirs> &ndash;&gt;-->
+          <!--&lt;!&ndash; <additionalClasspathDir></additionalClasspathDir> &ndash;&gt;-->
+          <!--&lt;!&ndash; </additionalClasspathDirs> &ndash;&gt;-->
+        <!--</configuration>-->
+        <!--&lt;!&ndash;-->
+         <!--For any extra dependencies needed when running embedded Tomcat (not WAR dependencies) add them below-->
+        <!--&ndash;&gt;-->
+        <!--<dependencies>-->
+          <!--&lt;!&ndash;  Support JNDI defined data source  &ndash;&gt;-->
+          <!--<dependency>-->
+            <!--<groupId>com.h2database</groupId>-->
+            <!--<artifactId>h2</artifactId>-->
+            <!--<version>1.4.178</version>-->
+          <!--</dependency>-->
+          <!--<dependency>-->
+            <!--<groupId>biz.freshcode.learn.tomcat.realm.salted</groupId>-->
+            <!--<artifactId>tomcat-salted-passwords</artifactId>-->
+            <!--<version>${tomcat.salted.password.version}</version>-->
+          <!--</dependency>-->
+        <!--</dependencies>-->
+      <!--</plugin>-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
