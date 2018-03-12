@@ -21,22 +21,17 @@
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Raleway:300,200,100'/>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.4.6.0.css"/>
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css" /><!--Font Awesome,为Bootstrap而创造的图标字体-->
-    <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="resources/css/style.css" />
-    <link rel="stylesheet" href="resources/css/index.css" />
+    <link rel="stylesheet" href="resources/css/font-awesome.min.css"/><!--Font Awesome,为Bootstrap而创造的图标字体-->
+    <link rel="stylesheet" href="resources/plugin/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="resources/css/style.css"/>
+    <link rel="stylesheet" href="resources/css/index.css"/>
 
     <!-- 弹出-->
-    <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css" />
-
+    <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css"/>
     <!--锁定表头和固定列插件FixedTable-->
-    <link rel="stylesheet" href="resources/css/fixed-table.css" />
+    <link rel="stylesheet" href="resources/css/fixed-table.css"/>
     <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
-    <script type="text/javascript" src="resources/plugin/jquery.min.js"></script>
-    <%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
-    <%--<script type="text/javascript" src="resources/js/FixedTable.js"></script>--%>
-    <script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>
-    <script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
         .fixed-table_body-wraper{}
@@ -44,8 +39,6 @@
         .fixed-table-box>.fixed-table_body-wraper{/*内容了表格主体内容有纵向滚动条*/height: 90%;}
         .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/height: 90%;}
     </style>
-
-    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />
 </head>
 <body>
 <!-- header -->
@@ -90,8 +83,8 @@
                                             <input type="text" class="form-control" name="juniorLocation" placeholder="地址">
                                         </div>
                                     </div>
-                                    <div class="form-group" >
-                                        <div class="col-sm-10" >
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
                                             <button type="submit" class="btn btn-primary">确认新增</button>
                                             <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                         </div>
@@ -251,6 +244,7 @@
     <div class="clearfix"></div>
 </div>
 
+<%--<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>--%>
 <%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
@@ -266,7 +260,11 @@
 <script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
 <script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
-<!-- Placed at the end of the document so the pages load faster -->
+<%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
+<%--<script type="text/javascript" src="resources/js/FixedTable.js"></script>--%>
+<script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>
+<script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>
+
 <script type="text/javascript">
     var pathName=window.document.location.pathname;
     var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
@@ -366,96 +364,7 @@
     $(document).ready(function(){
         completeTable();
 
-        //initialize the javascript
         App.init();
-        //App.dashBoard();
-        /*Sparklines*/
-        $(".spk1").sparkline([2,4,3,6,7,5,8,9,4,2,6,8,8,9,10], { type: 'bar', width: '80px', barColor: '#4A8CF7'});
-        $(".spk2").sparkline([4,6,7,7,4,3,2,1,4,4 ,5,6,5], { type: 'discrete', width: '80', lineColor: '#4A8CF7',thresholdValue: 4,thresholdColor: '#ff0000'});
-        $(".spk4").sparkline([2,4,3,6,7,5,8,9,4,2,10], { type: 'bar', width: '80px', height: '30px',barColor: '#EA6153'});
-        $(".spk5").sparkline([5,3,5,6,5,7,4,8,6,9,8], { type: 'bar', width: '80px', height: '30px',barColor: '#4AA3DF'});
-
-        $(".spk3").sparkline([5,6,7,9,9,5,3,2,2,4,6,7], {
-            type: 'line',
-            lineColor: '#258FEC',
-            fillColor: '#4A8CF7',
-            spotColor: false,
-            width: '80px',
-            minSpotColor: false,
-            maxSpotColor: false,
-            highlightSpotColor: '#1e7ac6',
-            highlightLineColor: '#1e7ac6'});
-
-        //Maps
-        $('#world-map').vectorMap({
-            map: 'world_mill_en',
-            backgroundColor: 'transparent',
-            regionStyle: {
-                initial: {
-                    fill: '#38c3c1',
-                },
-                hover: {
-                    "fill-opacity": 0.8
-                }
-            },
-            markerStyle:{
-                initial:{
-                    r: 10
-                },
-                hover: {
-                    r: 12,
-                    stroke: 'rgba(255,255,255,0.8)',
-                    "stroke-width": 4
-                }
-            },
-            markers: [
-                {latLng: [41.90, 12.45], name: '1.512 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-                {latLng: [1.3, 103.8], name: '940 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-                {latLng: [51.511214, -0.119824], name: '530 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-                {latLng: [40.714353, -74.005973], name: '340 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}},
-                {latLng: [-22.913395, -43.200710], name: '1.800 Visits', style: {fill: '#E44C34',stroke:'rgba(255,255,255,0.7)',"stroke-width": 3}}
-            ]
-        });
-
-        /*Pie Chart*/
-        var data = [
-            { label: "Google", data: 50},
-            { label: "Dribbble", data: 15},
-            { label: "Twitter", data: 12},
-            { label: "Youtube", data: 14},
-            { label: "Microsoft", data: 14}
-        ];
-
-        $.plot('#ticket-chart', data, {
-            series: {
-                pie: {
-                    show: true,
-                    innerRadius: 0.5,
-                    shadow:{
-                        top: 5,
-                        left: 15,
-                        alpha:0.3
-                    },
-                    stroke:{
-                        width:0
-                    },
-                    label: {
-                        show: false
-                    },
-                    highlight:{
-                        opacity: 0.08
-                    }
-                }
-            },
-            grid: {
-                hoverable: true,
-                clickable: true
-            },
-            colors: ["#5793f3", "#19B698","#dd4444","#fd9c35","#fec42c","#d4df5a","#5578c2"],
-            legend: {
-                show: false
-            }
-        });
 
         $("table td .legend").each(function(){
             var el = $(this);

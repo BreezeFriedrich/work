@@ -146,6 +146,145 @@ public class HttpUtil
         }
         return null;
     }
+    /*
+    public static String httpsPostToGatewayip(String data){
+//        long time1=new Date().getTime();
+        String qixuIp= HttpUtil.getIpFromDomain(hostName);
+        String gatewayip="";
+        URL url = null;
+        try {
+            url=new URL("https://"+gatewayip+":2017/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+//        return HttpUtil.doPost(url.toString(),data);
+        long time2=new Date().getTime();
+//        LOG.warn("getIpFromDomain     用时: "+(time2-time1));
+        String result= HttpUtil.httpsPostToURL(url,data);
+        long time3=new Date().getTime();
+        LOG.warn("httpsPostToIp 用时: "+(time3-time2));
+
+//        LOG.info("HTTPS RESPONSE : "+result);
+        return result;
+    }
+
+    public static String httpsPostToURL(URL url,String data){
+        if(LOG.isDebugEnabled()){
+            LOG.debug("-- httpsPostToURL() > Got url: {}", url);
+        }
+        HttpsURLConnection httpsURLConnection=null;
+        OutputStream outputStream=null;
+        DataOutputStream dataOutputStream=null;
+        InputStream inputStream=null;
+        InputStreamReader inputStreamReader;
+        BufferedReader bufferedReader=null;
+        String result="";
+        String line;
+        //https-http(
+        try {
+            X509TrustManager xtm = new X509TrustManager() {
+                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+                public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            };
+            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                public boolean verify(String arg0, SSLSession arg1) {
+                    return true;
+                }
+            };
+            SSLContext ctx = SSLContext.getInstance("TLS");
+            ctx.init(null, new TrustManager[] { xtm }, null);
+            SSLSocketFactory socketFactory =ctx.getSocketFactory();
+            //https-http)
+
+            if(LOG.isDebugEnabled()){
+                LOG.debug("-- httpsPostToIp() > HTTPS", url);
+            }
+            httpsURLConnection=(HttpsURLConnection)url.openConnection();
+
+            httpsURLConnection.setSSLSocketFactory(socketFactory);//https-http
+            httpsURLConnection.setHostnameVerifier(hostnameVerifier);//https-http
+            httpsURLConnection.setRequestMethod("POST");
+            httpsURLConnection.setConnectTimeout(3000);
+            httpsURLConnection.setDoOutput(true);
+            httpsURLConnection.setDoInput(true);
+            httpsURLConnection.setRequestProperty("Content-Type","text/json");
+            httpsURLConnection.connect();
+            outputStream=httpsURLConnection.getOutputStream();
+            dataOutputStream=new DataOutputStream(outputStream);
+            dataOutputStream.write(data.getBytes());
+            inputStream=httpsURLConnection.getInputStream();
+            inputStreamReader=new InputStreamReader(inputStream,"GBK");
+            bufferedReader=new BufferedReader(inputStreamReader);
+            while((line=bufferedReader.readLine())!=null){
+                result+=line+"\n";
+            }
+            if(LOG.isTraceEnabled()){
+                LOG.trace("<< httpsPostToIp()");
+            }
+            return result;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } finally {
+            if(outputStream!=null){
+                try {
+                    outputStream.flush();
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(inputStream!=null){
+                try {
+                    inputStream.close();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            if(bufferedReader!=null){
+                try {
+                    bufferedReader.close();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            if(dataOutputStream!=null){
+                try{
+                    dataOutputStream.close();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            if(httpsURLConnection!=null){
+                httpsURLConnection.disconnect();
+            }
+            if ("".equals(result)) {
+                try {
+                    throw new Exception("https连接返回空串");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    LOG.error(e.getMessage());
+                }
+            }
+        }
+        if(LOG.isTraceEnabled()){
+            LOG.trace("<< httpsPostToIp()");
+        }
+        return null;
+    }
+
+    */
 
     public static String httpsPostToQixu(String data){
 //        long time1=new Date().getTime();
@@ -290,7 +429,6 @@ public class HttpUtil
         }
         return null;
     }
-
 }
 
 /**

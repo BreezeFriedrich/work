@@ -20,8 +20,8 @@ public class UnlockRecord {
     private int openMode;//1身份证开锁,2密码开锁.
     private String timetag;
 
-    private CardInfo cardInfo;
-    private PasswordInfo passwordInfo;
+    private CardAuthInfo cardInfo;
+    private PwdAuthInfo passwordInfo;
 
     public String getGatewayCode() {
         return gatewayCode;
@@ -71,19 +71,19 @@ public class UnlockRecord {
         this.timetag = timetag;
     }
 
-    public CardInfo getCardInfo() {
+    public CardAuthInfo getCardInfo() {
         return cardInfo;
     }
 
-    public void setCardInfo(CardInfo cardInfo) {
+    public void setCardInfo(CardAuthInfo cardInfo) {
         this.cardInfo = cardInfo;
     }
 
-    public PasswordInfo getPasswordInfo() {
+    public PwdAuthInfo getPasswordInfo() {
         return passwordInfo;
     }
 
-    public void setPasswordInfo(PasswordInfo passwordInfo) {
+    public void setPasswordInfo(PwdAuthInfo passwordInfo) {
         this.passwordInfo = passwordInfo;
     }
 
@@ -99,7 +99,7 @@ public class UnlockRecord {
                 "]";
     }
 
-    public class CardInfo{
+    public class CardAuthInfo{
         private String name;
         private String cardNumb;
         private String dnCode;
@@ -137,7 +137,7 @@ public class UnlockRecord {
             this.serviceNumb = serviceNumb;
         }
     }
-    public class PasswordInfo{
+    public class PwdAuthInfo{
         private String password;
         private String serviceNumb;
 

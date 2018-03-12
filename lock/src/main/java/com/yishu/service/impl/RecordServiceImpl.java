@@ -1048,7 +1048,7 @@ public class RecordServiceImpl implements IRecordService {
     public Map getUnlockOperator(String ownerPhoneNumber, long startTime, long endTime) {
         List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         UnlockRecord unlockRecord=null;
-        UnlockRecord.CardInfo cardInfo=null;
+        UnlockRecord.CardAuthInfo cardInfo=null;
         String cardNumb=null;
         String name=null;
         List<UnlockRecord> unlockRecordList=null;
@@ -1104,7 +1104,7 @@ public class RecordServiceImpl implements IRecordService {
         recordList2= FilterList.filter(recordList, new FilterListHook<UnlockRecord>() {
             @Override
             public boolean test(UnlockRecord unlockRecord) {
-                UnlockRecord.CardInfo cardInfo=unlockRecord.getCardInfo();
+                UnlockRecord.CardAuthInfo cardInfo=unlockRecord.getCardInfo();
                 if (null!=cardInfo){
                     return cardNum.equals(cardInfo.getCardNumb());
                 }

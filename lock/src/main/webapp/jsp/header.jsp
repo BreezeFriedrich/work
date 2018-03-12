@@ -27,10 +27,12 @@
                 <li>
                     <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/user/dispatcherJuniorSetting.do');">分级管理</a>
                 </li>
-                <!--
-                <li><a href="#">设置</a></li>
-                <li><a href="#"><i class="inco-exit"></i>退出系统</a></li>
-                -->
+                <li>
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/room/roomType.jsp');">房型管理</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/room/roomManage.jsp');">房间管理</a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right user-nav">
