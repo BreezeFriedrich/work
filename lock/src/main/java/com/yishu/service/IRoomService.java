@@ -17,7 +17,7 @@ public interface IRoomService {
     public boolean deleteRoomType(String ownerPhoneNumber,String roomTypeId);
 
     public boolean addRoom(String ownerPhoneNumber,String roomTypeId,String roomName,String gatewayCode,String lockCode);
-    public boolean editRoom(String ownerPhoneNumber,String roomTypeId,String roomId,String newLockCode,String newRoomName);
+    public boolean editRoom(String ownerPhoneNumber,String roomTypeId,String roomId,String newRoomName,String newLockCode);
     public boolean deleteRoom(String ownerPhoneNumber,String roomId);
     public List<Map> getUnusedDeviceList(String ownerPhoneNumber);
 }

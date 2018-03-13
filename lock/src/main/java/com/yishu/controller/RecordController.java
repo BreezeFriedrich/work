@@ -27,7 +27,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/record")
 public class RecordController {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(RecordController.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordController");
 
     @Autowired
     private IRecordService recordService;

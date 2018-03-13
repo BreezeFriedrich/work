@@ -8,7 +8,7 @@
     <timestamp key="now" datePattern="yyyy-MM-dd HH:mm:ss" />
     <contextName>lock</contextName>
     <!-- 定义日志的根目录 -->
-    <property name="LOG_HOME" value="C://Users/WindSpring/Desktop/logs" />
+    <property name="LOG_HOME" value="C://Users/admin/Desktop/logs" />
     <!--<property file="properties/project.properties"/>-->
     <!-- 定义日志文件名称 -->
     <property name="appName" value="lock" />

@@ -119,7 +119,7 @@
 <!--header end-->
 
 <div id="cl-wrapper" class="fixed-menu">
-    <div class="container-fluid table-odyssey ">
+    <div class="container-fluid table-odyssey">
         <div id="theFixedTable"></div>
 
         <div class="footer">&copy;2015-2016 南京亿数信息科技有限公司 版权所有</div>
@@ -149,7 +149,6 @@
                     </thead>
                 </table>
             </div>
-
         </div>
     </div>
 </div>

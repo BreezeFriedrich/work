@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Service("orderService")
 public class OrderServiceImpl implements IOrderService{
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(OrderServiceImpl.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("OrderServiceImpl");
 
     int reqSign;
     String reqData;

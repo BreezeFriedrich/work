@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="resources/css/style.css"/>
     <link rel="stylesheet" href="resources/css/index.css"/>
 
-    <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css"/><!-- 弹出框-->
+    <link rel="stylesheet" href="resources/plugin/jquery.niftymodals/css/component.css"/><!-- 弹出框-->
     <link rel="stylesheet" href="resources/css/fixed-table.css"/>
     <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
-    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="resources/plugin/dataTables/css/jquery.dataTables.css"/>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
         .fixed-table_body-wraper{}
@@ -49,6 +50,7 @@
                 <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="md-addRoomType"><i class="fa fa-plus"></i>添加房型</button>
 
                 <div class="content">
+                    <!--
                     <table>
                         <thead>
                         <tr>
@@ -71,6 +73,16 @@
                         <li><a href="#">&raquo;</a></li>
                     </ul>
                     <div class="clearfix"></div>
+                    -->
+                    <table id="table-roomType" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th width="150px">房型ID</th>
+                            <th width="200px">房型名称</th>
+                            <th width="100px">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
@@ -155,70 +167,8 @@
 <%--<script type="text/javascript" src="resources/js/FixedTable.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>
 <script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>
-
-<script type="text/javascript">
-    var pathName=window.document.location.pathname;
-    var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-    var juniorPhoneNumber;
-    var juniorName;
-    var juniorLocation;
-    var userHierarchy;
-
-    function completeTable() {
-        $.ajax({
-            type:"POST",
-            url:"room/getRoom.do",
-            async:false,
-            data:{},
-            dataType:'json',
-            success:function(data,status,xhr){
-            },
-            error:function(xhr,errorType,error){
-                console.log('错误');
-            }
-        });
-    }
-
-    $(document).ready(function(){
-        completeTable();
-
-        //添加下级用户的弹出框,js方式实现弹出
-        //    $('.md-trigger:first').on('click',function(){
-        //        $('#reply-ticket').niftyModal();
-        //    });
-        $('.md-trigger:gt(0)').on('click',function(){
-            var tds=$(this).closest('td').siblings();
-            juniorPhoneNumber=tds.eq(0).text();
-            juniorName=tds.eq(1).text();
-            juniorLocation=tds.eq(2).text();
-            $('#reply-ticket2').niftyModal();
-        });
-        $('#btn-cancleSubordinate').on('click',function(){
-            console.log("projectPath : "+projectPath);
-            console.log({"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation});
-            $.ajax({
-                type:"POST",
-                url:"user/cancleSubordinate.do",
-                async:false,
-                data:{"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation},
-                dataType:'json',
-                success:function(data,status,xhr){
-                    ajaxResult = data;
-                },
-                error:function(xhr,errorType,error){
-                    console.log('错误');
-                }
-            });
-        });
-
-        $("table td .legend").each(function(){
-            var el = $(this);
-            var color = el.data("color");
-            el.css("background",color);
-        });
-
-        App.init();
-    });
-</script>
+<script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
+<script type="text/javascript" src="resources/js/roomType.js?v=3"></script>
 </body>
 </html>

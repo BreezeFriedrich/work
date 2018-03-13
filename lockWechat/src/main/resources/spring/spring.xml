@@ -34,7 +34,7 @@
 
 	<!--javamelody与Spring集成-->
 	<bean id= "facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor" >
-		<property name ="pointcut" >
+		<property name ="pointcut">
 			<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut" >
 				<property name ="pattern" value="com.yishu.service.*" /><!--正则表达式-->
 			</bean>

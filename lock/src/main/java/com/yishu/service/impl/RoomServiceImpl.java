@@ -21,7 +21,7 @@ import java.util.*;
  */
 @Service("roomService")
 public class RoomServiceImpl implements IRoomService {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(RoomServiceImpl.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RoomServiceImpl");
 
     int reqSign;
     String reqData;
@@ -150,7 +150,7 @@ public class RoomServiceImpl implements IRoomService {
     }
 
     @Override
-    public boolean editRoom(String ownerPhoneNumber, String roomTypeId, String roomId, String newLockCode, String newRoomName) {
+    public boolean editRoom(String ownerPhoneNumber, String roomTypeId, String roomId, String newRoomName, String newLockCode) {
         reqSign=2010;
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\",\"roomId\":\""+roomId+"\",\"newLockCode\":\""+newLockCode+"\",\"newRoomName\":\""+newRoomName+"\",\"timetag\":\""+timetag+"\"}";

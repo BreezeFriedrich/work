@@ -23,7 +23,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/room")
 public class RoomController {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(RoomController.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RoomController");
 
     @Autowired
     private IRoomService roomService;
@@ -54,7 +54,6 @@ public class RoomController {
         return jsonDto;
     }
 
-    /////////////////////////////////////////////////
     @RequestMapping("/addRoomType.do")
     @ResponseBody
     public boolean addRoomType(HttpServletRequest request) {
@@ -93,5 +92,71 @@ public class RoomController {
         String roomTypeId=request.getParameter("roomTypeId");
         resultBoolean=roomService.deleteRoomType(ownerPhoneNumber,roomTypeId);
         return resultBoolean;
+    }
+
+    @RequestMapping("/addRoom.do")
+    @ResponseBody
+    public boolean addRoom(HttpServletRequest request) {
+        if (LOG.isInfoEnabled()) {
+            LOG.info("-->>-- room/addRoom.do -->>--");
+        }
+        HttpSession session = request.getSession(false);
+        String ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+        String roomTypeId=request.getParameter("roomTypeId");
+        String roomName=request.getParameter("roomName");
+        String gatewayCode=request.getParameter("gatewayCode");
+        String lockCode=request.getParameter("lockCode");
+        resultBoolean=roomService.addRoom(ownerPhoneNumber,roomTypeId,roomName,gatewayCode,lockCode);
+        return resultBoolean;
+    }
+
+    @RequestMapping("/editRoom.do")
+    @ResponseBody
+    public boolean editRoom(HttpServletRequest request) {
+        if (LOG.isInfoEnabled()) {
+            LOG.info("-->>-- room/editRoom.do -->>--");
+        }
+        HttpSession session = request.getSession(false);
+        String ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+        String roomTypeId=request.getParameter("roomTypeId");
+        String roomId=request.getParameter("roomId");
+        String newRoomName=request.getParameter("newRoomName");
+        String newLockCode=request.getParameter("newLockCode");
+        resultBoolean=roomService.editRoom(ownerPhoneNumber,roomTypeId,roomId,newRoomName,newLockCode);
+        return resultBoolean;
+    }
+
+    @RequestMapping("/deleteRoom.do")
+    @ResponseBody
+    public boolean deleteRoom(HttpServletRequest request) {
+        if (LOG.isInfoEnabled()) {
+            LOG.info("-->>-- room/deleteRoom.do -->>--");
+        }
+        HttpSession session = request.getSession(false);
+        String ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+        String roomId=request.getParameter("roomId");
+        resultBoolean=roomService.deleteRoom(ownerPhoneNumber,roomId);
+        return resultBoolean;
+    }
+
+    @RequestMapping("/getUnusedDeviceList.do")
+    @ResponseBody
+    public JsonDto getUnusedDeviceList(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- room/getUnusedDeviceList.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+
+        List<Map> unusedDeviceList=roomService.getUnusedDeviceList(ownerPhoneNumber);
+        if(null==unusedDeviceList || unusedDeviceList.isEmpty()){
+            bizDto=BizDto.EMPTY_RESULT;
+        }else {
+            bizDto=new BizDto(unusedDeviceList);
+        }
+        jsonDto=new JsonDto(bizDto);
+        return jsonDto;
     }
 }

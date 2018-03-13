@@ -123,7 +123,7 @@ public class HttpUtil
         return null;
     }
 
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(HttpUtil.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("HttpUtil");
 
     public HttpUtil() {
         if(LOG.isTraceEnabled()){
@@ -300,7 +300,7 @@ public class HttpUtil
 //        LOG.warn("getIpFromDomain     用时: "+(time2-time1));
         String result= HttpUtil.httpsPostToIp(qixuIp,data);
         long time3=new Date().getTime();
-        LOG.warn("httpsPostToIp 用时: "+(time3-time2));
+//        LOG.warn("httpsPostToIp 用时: "+(time3-time2));
 
 //        LOG.info("HTTPS RESPONSE : "+result);
         return result;
@@ -310,11 +310,9 @@ public class HttpUtil
      * 向指定ip地址发起https连接. By ChengXinLang
      */
     public static String httpsPostToIp(String ip,String data){
-        if(LOG.isTraceEnabled()){
-            LOG.trace(">> httpsPostToIp()");
-        }
-        if(LOG.isDebugEnabled()){
-            LOG.debug("-- httpsPostToIp() > Got ip: {}", ip);
+        if(LOG.isInfoEnabled()){
+//            LOG.info("-- httpsPostToIp() > Got ip: {}", ip);
+            LOG.info("{-->>--ip:"+ip+"-->>--,data:"+data+"}");
         }
         URL url;
         HttpsURLConnection httpsURLConnection=null;
