@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.Room;
-import com.yishu.pojo.RoomType;
+import com.yishu.pojo.RoomTableData;
+import com.yishu.pojo.RoomTypeContainRoom;
+import com.yishu.pojo.RoomTypeTableData;
 import com.yishu.service.IRoomService;
 import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
@@ -29,7 +31,7 @@ public class RoomServiceImpl implements IRoomService {
     String timetag;
 
     @Override
-    public List<RoomType> getRoom(String ownerPhoneNumber) {
+    public List<RoomTypeContainRoom> getRoom(String ownerPhoneNumber) {
         reqSign=2005;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData : "+reqData);
@@ -48,13 +50,13 @@ public class RoomServiceImpl implements IRoomService {
             return null;
         }
         JsonNode roomListNode=rootNode.path("roomList");
-        List<RoomType> roomTypeList = null;
+        List<RoomTypeContainRoom> roomTypeCRList = null;
         try {
-            roomTypeList=objectMapper.readValue(roomListNode.traverse(), new TypeReference<List<RoomType>>(){});
+            roomTypeCRList =objectMapper.readValue(roomListNode.traverse(), new TypeReference<List<RoomTypeContainRoom>>(){});
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return roomTypeList;
+        return roomTypeCRList;
     }
 
     @Override
@@ -233,6 +235,58 @@ public class RoomServiceImpl implements IRoomService {
             return list;
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<RoomTypeTableData> convertRoomTypeToTabularData(List<RoomTypeContainRoom> roomTypeCRList) {
+        List<RoomTypeTableData> tableDataList=new ArrayList<>();
+        int size= roomTypeCRList.size();
+        RoomTypeContainRoom roomTypeCR=null;
+        RoomTypeTableData tableData=null;
+        Map rowAttrMap=null;
+        for(int i=0;i<size;i++){
+            roomTypeCR = roomTypeCRList.get(i);
+            tableData=new RoomTypeTableData();
+            tableData.setRoomTypeId(roomTypeCR.getRoomTypeId());
+            tableData.setRoomType(roomTypeCR.getRoomType());
+            rowAttrMap=new HashMap(1);
+            rowAttrMap.put("rowTypeId", roomTypeCR.getRoomTypeId());
+            tableData.setDT_RowAttr(rowAttrMap);
+            tableDataList.add(tableData);
+        }
+        return tableDataList;
+    }
+
+    @Override
+    public List<RoomTableData> convertRoomTypeCRToRoomTableData(List<RoomTypeContainRoom> roomTypeCRList) {
+        List<RoomTableData> tableDataList=new ArrayList<>();
+        int rtcrlSize= roomTypeCRList.size();
+        RoomTypeContainRoom roomTypeCR=null;
+        List<Room> roomList=null;
+        Room room=null;
+        RoomTableData tableData=null;
+        Map rowAttrMap=null;
+        for(int i=0;i<rtcrlSize;i++){
+            roomTypeCR = roomTypeCRList.get(i);
+            roomList=roomTypeCR.getRoomInfoList();
+            int roomListSize=roomList.size();
+            for(int j=0;j<roomListSize;j++){
+                room=roomList.get(i);
+                tableData=new RoomTableData();
+                tableData.setRoomTypeId(roomTypeCR.getRoomTypeId());
+                tableData.setRoomType(roomTypeCR.getRoomType());
+                tableData.setRoomId(room.getRoomId());
+                tableData.setRoomName(room.getRoomName());
+                tableData.setGatewayCode(room.getGatewayCode());
+                tableData.setLockCode(room.getLockCode());
+                rowAttrMap=new HashMap(2);
+                rowAttrMap.put("rowTypeId", roomTypeCR.getRoomTypeId());
+                rowAttrMap.put("rowId",room.getRoomId());
+                tableData.setDT_RowAttr(rowAttrMap);
+                tableDataList.add(tableData);
             }
         }
         return null;

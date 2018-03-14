@@ -1,7 +1,7 @@
 <%--
   User: admin
-  Date: 2018/3/12
-  Time: 9:50
+  Date: 2018/3/14
+  Time: 16:24
 --%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
@@ -26,9 +26,6 @@
     <link rel="stylesheet" href="resources/css/index.css"/>
 
     <link rel="stylesheet" href="resources/plugin/jquery.niftymodals/css/component.css"/><!-- 弹出框-->
-    <link rel="stylesheet" href="resources/css/fixed-table.css"/>
-    <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
-    <link rel="stylesheet" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" href="resources/plugin/dataTables/css/jquery.dataTables.css"/>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
@@ -44,41 +41,17 @@
 <div id="cl-wrapper" class="fixed-menu">
 
     <div class="container-fluid" id="pcont">
-        <div class="page-head"><img src="resources/images/lb.png" class="inco-lb"><h3>房型管理</h3></div>
+        <div class="page-head"><img src="resources/images/lb.png" class="inco-lb"><h3>房间管理</h3></div>
         <div class="col-sm-9 table0">
             <div class="block-flat table0-top">
-                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="md-addRoomType"><i class="fa fa-plus"></i>添加房型</button>
+                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="md-addRoom"><i class="fa fa-plus"></i>添加房间</button>
 
                 <div class="content">
-                    <!--
-                    <table>
+                    <table id="table-room" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th style="width:30%;">手机号码</th>
-                            <th>昵称</th>
-                            <th>地址</th>
-                            <th class="text-center">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tbody"></tbody>
-                    </table>
-
-                    <ul class="pagination pag-left ">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    -->
-                    <table id="table-roomType" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th width="150px">房型ID</th>
-                            <th width="200px">房型名称</th>
+                            <th width="150px">房间ID</th>
+                            <th width="200px">房间名称</th>
                             <th width="100px">操作</th>
                         </tr>
                         </thead>
@@ -87,29 +60,29 @@
             </div>
         </div>
     </div>
-    <div class="footer">2015-2016  南京亿数信息科技有限公司 版权所有</div>
+    <div class="footer">2015-2016 南京亿数信息科技有限公司 版权所有</div>
     <div class="clearfix"></div>
 </div>
 
-<!--添加房型-->
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-addRoomType">
+<!--添加房间-->
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-addRoom">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
-                <h3>添加房型</h3>
+                <h3>添加房间</h3>
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <%--<form class="form-horizontal" id="form-addRoomType" method="post" action="room/addRoomType.do">--%>
-                <form class="form-horizontal" id="form-addRoomType">
+                <form class="form-horizontal" id="form-addRoom">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" name="roomType" placeholder="房型名称"/>
+                            <input type="text" class="form-control" name="roomName" placeholder="房间名称"/>
                         </div>
+                        <%--3个input options--%>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button id="submit-addRoomType" type="submit" class="btn btn-primary">确认新增</button>
+                            <button id="submit-addRoom" type="submit" class="btn btn-primary">确认新增</button>
                             <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                         </div>
                     </div>
@@ -120,29 +93,29 @@
 </div>
 <div class="md-overlay"></div>
 
-<!--修改房型-->
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-editRoomType">
+<!--修改房间-->
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-editRoom">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
-                <h3>修改房型</h3>
+                <h3>修改房间</h3>
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <form class="form-horizontal" id="form-editRoomType">
+                <form class="form-horizontal" id="form-editRoom">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="hidden" class="form-control" name="roomTypeId" placeholder="房型ID"/>
+                            <input type="hidden" class="form-control" name="roomTypeId" placeholder="房间ID"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" name="newRoomType" placeholder="新房型名称"/>
+                            <input type="text" class="form-control" name="newRoom" placeholder="新房间名称"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button id="submit-editRoomType" type="submit" class="btn btn-primary">确认修改</button>
+                            <button id="submit-editRoom" type="submit" class="btn btn-primary">确认修改</button>
                             <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                         </div>
                     </div>
@@ -153,28 +126,12 @@
 </div>
 <div class="md-overlay"></div>
 
-<%--<script type="text/javascript" src="resources/plugin/jquery.min.js"></script>--%>
 <%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
-
-<script type="text/javascript" src="resources/plugin/jquery.icheck/icheck.min.js"></script>
-<script type="text/javascript" src="resources/plugin/behaviour/voice-commands.js"></script>
-<script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="resources/plugin/jquery.parsley/dist/parsley.js"></script>
-<script type="text/javascript" src="resources/plugin/jquery.nestable/jquery.nestable.js"></script>
-<script type="text/javascript" src="resources/plugin/jquery.ui/jquery-ui.js"></script>
-<script type="text/javascript" src="resources/plugin/bootstrap.switch/bootstrap-switch.js"></script>
-<script type="text/javascript" src="resources/plugin/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-
-<%--<script type="text/javascript" src="resources/js/fixed-table.js"></script>--%>
-<%--<script type="text/javascript" src="resources/js/FixedTable.js"></script>--%>
-<script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>
-<script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/roomType.js"></script>
+<script type="text/javascript" src="resources/js/room.js"></script>
 </body>
 </html>

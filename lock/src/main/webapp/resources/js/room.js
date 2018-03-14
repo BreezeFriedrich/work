@@ -1,6 +1,3 @@
-var pathName=window.document.location.pathname;
-var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-
 var datatableSet = {
     options : {
         DEFAULT_OPTION : { //DataTables初始化选项
@@ -69,7 +66,7 @@ var datatableSet = {
             }
         }
     },
-    function_roomType : {
+    function_room : {
         getQueryParams: function (data) {
             var param = {};
             //组装排序参数
@@ -100,12 +97,11 @@ var datatableSet = {
             $.fn.dataTable.tables({api: true}).destroy();
             tableInstance = element.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
                 ajax: function (data, callback, settings) {
-                    param = datatableSet.function_roomType.getQueryParams(data);
+                    param = datatableSet.function_room.getQueryParams(data);
                     tableWrapper.spinModal();
                     $.ajax({
                         type: "POST",
-                        // url: 'https://8066da8b-4ae7-4543-97f8-159935ef6889.mock.pstmn.io/lock/room/getRoomType.do',
-                        url: 'room/getRoomTypeTableData.do',
+                        url: 'room/getRoomTableData.do',
                         cache: false,
                         data: param,
                         dataType: "json",
@@ -140,17 +136,17 @@ var datatableSet = {
                 },
                 //绑定数据
                 columns: [{
-                        data: "roomTypeId",
-                        // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
-                    },{
-                        data: "roomType"
-                    },{
-                        className:"td-operation",
-                        data:null,
-                        defaultContent:"",
-                        orderable:false,
-                        width:"100px"
-                    }
+                    data: "roomTypeId",
+                    // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
+                },{
+                    data: "roomType"
+                },{
+                    className:"td-operation",
+                    data:null,
+                    defaultContent:"",
+                    orderable:false,
+                    width:"100px"
+                }
                 ],
                 "columnDefs": [
                     {
@@ -173,13 +169,13 @@ var datatableSet = {
             tableElement.on("click", ".btn-del", function () {
                 var row = tableInstance.row($(this).closest('tr'));
                 var item = row.data();
-                datatableSet.function_roomType.deleteItem(item);
+                datatableSet.function_room.deleteItem(item);
                 row.remove().draw(false);
             });
             tableElement.on("click", ".btn-edit", function () {
                 var row = tableInstance.row($(this).closest('tr'));
                 var item = row.data();
-                datatableSet.function_roomType.editItem(item);
+                datatableSet.function_room.editItem(item);
                 tableInstance.draw(false);
             });
         },
@@ -189,12 +185,12 @@ var datatableSet = {
             };
             $.ajax({
                 type: "POST",
-                url: "room/deleteRoomType.do",
+                url: "room/deleteRoom.do",
                 async: false,
                 data: params,
                 dataType: 'json',
                 success: function (data, status, xhr) {
-                    alert('deleteRoomType:' + data);
+                    alert('deleteRoom:' + data);
                 },
                 error: function (xhr, errorType, error) {
                     console.log('错误');
@@ -202,8 +198,8 @@ var datatableSet = {
             });
         },
         editItem: function (item) {
-            $("form#form-editRoomType input[name='roomTypeId']").val(item.roomTypeId);
-            $('#md-editRoomType').niftyModal();
+            $("form#form-editRoom input[name='roomTypeId']").val(item.roomTypeId);
+            $('#md-editRoom').niftyModal();
         },
         showItemDetail: function (item) {
             //点击行
@@ -213,41 +209,41 @@ var datatableSet = {
 };
 
 $(document).ready(function(){
-    tableElement=$("#table-roomType");
-    datatableSet.function_roomType.drawtable(tableElement);
+    tableElement=$("#table-room");
+    datatableSet.function_room.drawtable(tableElement);
 
-    $('#submit-addRoomType').click(function () {
-        roomType = $("form#form-addRoomType input[name='roomType']").val();
+    $('#submit-addRoom').click(function () {
+        roomType = $("form#form-addRoom input[name='roomType']").val();
         params = {
             "roomType": roomType
         };
         $.ajax({
             type: "POST",
-            url: "room/addRoomType.do",
+            url: "room/addRoom.do",
             async: false,
             data: params,
             dataType: 'json',
             success: function (data, status, xhr) {
-                alert('addRoomType:' + data);
+                alert('addRoom:' + data);
             },
             error: function (xhr, errorType, error) {
                 console.log('错误');
             }
         });
     });
-    $('#submit-editRoomType').click(function () {
+    $('#submit-editRoom').click(function () {
         params = {
-            "roomTypeId":$("form#form-editRoomType input[name='roomTypeId']").val(),
-            "newRoomType":$("form#form-editRoomType input[name='newRoomType']").val()
+            "roomTypeId":$("form#form-editRoom input[name='roomTypeId']").val(),
+            "newRoom":$("form#form-editRoom input[name='newRoom']").val()
         };
         $.ajax({
             type: "POST",
-            url: "room/editRoomType.do",
+            url: "room/editRoom.do",
             async: false,
             data: params,
             dataType: 'json',
             success: function (data, status, xhr) {
-                alert('editRoomType:' + data);
+                alert('editRoom:' + data);
             },
             error: function (xhr, errorType, error) {
                 console.log('错误');

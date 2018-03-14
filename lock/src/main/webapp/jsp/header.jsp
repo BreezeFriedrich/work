@@ -31,7 +31,7 @@
                     <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/room/roomType.jsp');">房型管理</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/room/roomManage.jsp');">房间管理</a>
+                    <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/room/room.jsp');">房间管理</a>
                 </li>
             </ul>
 

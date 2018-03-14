@@ -49,61 +49,62 @@
 	[root@izbp1d9xxma2xabonszbi2z local]# hostnamectl set-hostname geyser
 1. 下载安装
 
-	$ wget http://download.redis.io/releases/redis-4.0.8.tar.gz  
-	$ tar xzf redis-4.0.8.tar.gz  
-	$ cd redis-4.0.8  
-	$ make  
+		$ wget http://download.redis.io/releases/redis-4.0.8.tar.gz  
+		$ tar xzf redis-4.0.8.tar.gz  
+		$ cd redis-4.0.8  
+		$ make  
 ...compile->src directory  
 
 2. Run Redis with:
 
-    $ src/redis-server
+    $ src/redis-server  
 interact with Redis using the built-in client:
 
-	$ src/redis-cli
-	redis> set foo bar
-	OK
-	redis> get foo
-	"bar"
+	$ src/redis-cli  
+	redis> set foo bar  
+	OK  
+	redis> get foo  
+	"bar"  
 3. /home/admin/install/redis-4.0.8
 
-	mv /home/admin/install/redis-4.0.8/redis.conf /usr/local/redis/etc
-	mv /home/admin/install/redis-4.0.8/src/redis-benchmark /usr/local/redis/bin
-	cd /home/admin/install/redis-4.0.8/src
-	cp -i mkreleasehdr.sh redis-benchmark redis-check-aof redis-server redis-cli /usr/local/redis/bin
-	ps -ef|grep redis
-	netstat -tunpl|grep redis
-	/usr/local/redis/bin/redis-server
-	netstat -tunpl|grep 6379
-	/usr/local/redis/bin/redis-cli
+		mv /home/admin/install/redis-4.0.8/redis.conf /usr/local/redis/etc
+		mv /home/admin/install/redis-4.0.8/src/redis-benchmark /usr/local/redis/bin
+		cd /home/admin/install/redis-4.0.8/src
+		cp -i mkreleasehdr.sh redis-benchmark redis-check-aof redis-server redis-cli /usr/local/redis/bin
+		ps -ef|grep redis
+		netstat -tunpl|grep redis
+		/usr/local/redis/bin/redis-server
+		netstat -tunpl|grep 6379
+		/usr/local/redis/bin/redis-cli
 4. 将Redis的命令所在目录添加到系统参数PATH中
 
-	vi /etc/profile
+		vi /etc/profile
 末尾添加: export PATH="$PATH:/usr/local/redis/bin"
 
-	source /etc/profile
+		source /etc/profile
 5. 后台启动redis服务
 
-	vi /usr/local/redis/etc/redis.conf
-编辑redis.conf文件:
+		vi /usr/local/redis/etc/redis.conf
+ + 编辑redis.conf文件:
 
-+ 将daemonize属性改为yes（表明需要在后台运行）  
-+ 修改pid文件路径，此处可选，使用默认路径也可以。  
+     - 将daemonize属性改为yes（表明需要在后台运行）  
+     - 修改pid文件路径，此处可选，使用默认路径也可以。  
 pidfile /usr/local/redis/redis.pid
-+ 取消保护模式，此处可选。取消了便不要求使用密码验证了。  
+     - 取消保护模式，此处可选。取消了便不要求使用密码验证了。  
 protected-mode no
-+ 配置日志文件路径  
+     - 配置日志文件路径  
 logfile "/usr/local/redis/logs/redis.log"  
 
-b)再次启动redis服务，并指定启动服务配置文件
+ + 再次启动redis服务，并指定启动服务配置文件
 
-	redis-server /usr/local/redis/etc/redis.conf
-关闭redis-server进程:
+			redis-server /usr/local/redis/etc/redis.conf
+ + 关闭redis-server进程:
 
-	pkill redis-server
-6. 将redis-server注册为系统服务  
+			pkill redis-server
 
-1).centos6环境下
+#将redis-server注册为系统服务  
+
+###centos6环境下注册redis-server.service
 
 	vim /etc/init.d/redis
 
@@ -196,7 +197,7 @@ vm.overcommit_memory = 1
 注册系统服务
 
 	chkconfig --add redis
-2).centos7 注册系统服务
+###centos环境下注册redis-server.service
 
 	vim /usr/lib/systemd/system/redis-server.service
 文件redis-server.service :

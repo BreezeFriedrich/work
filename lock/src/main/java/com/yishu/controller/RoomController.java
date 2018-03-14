@@ -1,17 +1,18 @@
 package com.yishu.controller;
 
-import com.yishu.pojo.BizDto;
-import com.yishu.pojo.JsonDto;
-import com.yishu.pojo.RoomType;
+import com.yishu.pojo.*;
 import com.yishu.service.IRoomService;
+import com.yishu.util.PageUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,12 +45,90 @@ public class RoomController {
         JsonDto jsonDto=null;
         BizDto bizDto=null;
 
-        List<RoomType> roomTypeList=roomService.getRoom(ownerPhoneNumber);
-        if(null==roomTypeList || roomTypeList.isEmpty()){
+        List<RoomTypeContainRoom> roomTypeCRList =roomService.getRoom(ownerPhoneNumber);
+        if(null== roomTypeCRList || roomTypeCRList.isEmpty()){
             bizDto=BizDto.EMPTY_RESULT;
         }else {
-            bizDto=new BizDto(roomTypeList);
+            bizDto=new BizDto(roomTypeCRList);
         }
+        jsonDto=new JsonDto(bizDto);
+        return jsonDto;
+    }
+
+    @RequestMapping("/getRoomTableData.do")
+    @ResponseBody
+    public JsonDto getRoomTableData(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- room/getRoomTableData.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String draw = request.getParameter("draw");
+        String startIndex = request.getParameter("startIndex");
+        String pageSize = request.getParameter("pageSize");
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+
+        List<RoomTypeContainRoom> roomTypeCRList =roomService.getRoom(ownerPhoneNumber);
+
+        Map<String, Object> info = new HashMap<String, Object>(3);
+        if(null== roomTypeCRList){//可能是与后台通信异常
+            bizDto=BizDto.EMPTY_RESULT;
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        }
+        if (roomTypeCRList.isEmpty()){
+            info.put("pageData",null);
+            info.put("total",0);
+        }else {
+            List<RoomTableData> tableDataList=roomService.convertRoomTypeCRToRoomTableData(roomTypeCRList);
+            if (null==tableDataList||tableDataList.isEmpty()){
+                info.put("pageData",null);
+                info.put("total",0);
+            }else{
+                List<RoomTableData> tableDataList1 =PageUtil.page(tableDataList,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+                info.put("pageData", tableDataList1);
+                info.put("total", tableDataList1.size());
+            }
+        }
+        info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+        bizDto=new BizDto(info);
+        jsonDto=new JsonDto(bizDto);
+        return jsonDto;
+    }
+
+    @RequestMapping(value="/getRoomTypeTableData.do", method= RequestMethod.POST)
+    @ResponseBody
+    public JsonDto getRoomTypeTableData(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- room/getRoomTypeTableData.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String draw = request.getParameter("draw");
+        String startIndex = request.getParameter("startIndex");
+        String pageSize = request.getParameter("pageSize");
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+
+        List<RoomTypeContainRoom> roomTypeCRList =roomService.getRoom(ownerPhoneNumber);
+        Map<String, Object> info = new HashMap<String, Object>(3);
+        if(null== roomTypeCRList){//可能是与后台通信异常
+            bizDto=BizDto.EMPTY_RESULT;
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        }
+        if (roomTypeCRList.isEmpty()){
+            info.put("pageData",null);
+            info.put("total",0);
+        }else {
+            List<RoomTypeContainRoom> roomTypeCRList1 =PageUtil.page(roomTypeCRList,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+            List<RoomTypeTableData> tableDataList=roomService.convertRoomTypeToTabularData(roomTypeCRList1);
+            info.put("pageData", tableDataList);
+            info.put("total", tableDataList.size());
+        }
+        info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+        bizDto=new BizDto(info);
         jsonDto=new JsonDto(bizDto);
         return jsonDto;
     }
@@ -76,7 +155,7 @@ public class RoomController {
         HttpSession session = request.getSession(false);
         String ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
         String roomTypeId=request.getParameter("roomTypeId");
-        String newRoomType=request.getParameter("roomType");
+        String newRoomType=request.getParameter("newRoomType");
         resultBoolean=roomService.editRoomType(ownerPhoneNumber,roomTypeId,newRoomType);
         return resultBoolean;
     }

@@ -7,7 +7,7 @@ import java.util.List;
  * @version 1.0.0.0 2018-03-12 11:31 admin
  * @since JDK1.7
  */
-public class RoomType {
+public class RoomTypeContainRoom {
     private String roomTypeId;
     private String roomType;
     private List<Room> roomInfoList;

@@ -88,10 +88,10 @@
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <form class="form-horizontal" id="form-addSubordinate" method="post" action="roomType/addRoomType.do">
+                <form class="form-horizontal" id="form-addSubordinate" method="post" action="roomTypeContainRoom/addRoomType.do">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" name="roomType" placeholder="房型名称"/>
+                            <input type="text" class="form-control" name="roomTypeContainRoom" placeholder="房型名称"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -116,10 +116,10 @@
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <form class="form-horizontal" method="post" action="roomType/addRoomType.do">
+                <form class="form-horizontal" method="post" action="roomTypeContainRoom/addRoomType.do">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" name="roomType" placeholder="房型名称"/>
+                            <input type="text" class="form-control" name="roomTypeContainRoom" placeholder="房型名称"/>
                         </div>
                     </div>
                     <div class="form-group">

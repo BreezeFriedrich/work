@@ -1115,8 +1115,7 @@ var datatableSet = {
                         },{
                             data: "endTime",
                             // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
-                        },
-                        {
+                        },{
                             // className : "td-operation",
                             data: null,
                             defaultContent:"",

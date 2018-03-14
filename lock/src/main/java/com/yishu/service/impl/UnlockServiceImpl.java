@@ -437,15 +437,13 @@ public class UnlockServiceImpl implements IUnlockService {
         final long startMoment;
         final long endMoment;
         long moments[];
-
 //        long startTimeL=DateUtil.yyyyMMddHHmmss.parse(startTime).getTime();
 //        long endTimeL= DateUtil.yyyyMMddHHmmss.parse(endTime).getTime();
-
-        System.out.println("startTime:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTimeL)) + ",endTime:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTimeL)));
+//        System.out.println("startTime:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startTimeL)) + ",endTime:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endTimeL)));
         moments = DateUtil.resetPeriod(startTimeL, endTimeL);
         startMoment = moments[0];
         endMoment = moments[1];
-        System.out.println("startMoment:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startMoment)) + ",endMoment:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endMoment)));
+//        System.out.println("startMoment:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(startMoment)) + ",endMoment:" + DateUtil.yyyy_MM_dd0HH$mm$ss.format(new Date(endMoment)));
         int periodSize = 0;
         periodSize = (int) ((endMoment - startMoment) / 86400000);
         //
