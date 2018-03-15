@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="footer">2015-2016 南京亿数信息科技有限公司 版权所有</div>
+    <div class="footer">&copy;2015-2016 南京亿数信息科技有限公司 版权所有</div>
     <div class="clearfix"></div>
 </div>
 
@@ -75,10 +75,30 @@
             <div class="content">
                 <form class="form-horizontal" id="form-addRoom">
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="roomName" placeholder="房间名称"/>
+                        <label for="select-gateway" class="col-sm-2 control-label">网关</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-gateway">
+                                <option value="GWT001001">网关1</option>
+                                <option value="GWT001002">网关2</option>
+                            </select>
                         </div>
-                        <%--3个input options--%>
+                        <div class="col-sm-6"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-lock" class="col-sm-2 control-label">门锁</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-lock">
+                                <option value="LCK001001">门锁1</option>
+                                <option value="LCK001002">门锁2</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-roomName" class="col-sm-2 control-label">房间名称</label>
+                        <div class="col-sm-10">
+                            <input id="input-roomName" type="text" class="form-control" name="roomName" placeholder="房间名称"/>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -128,8 +148,8 @@
 
 <%--<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js"></script>
+<script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
 <script type="text/javascript" src="resources/js/room.js"></script>

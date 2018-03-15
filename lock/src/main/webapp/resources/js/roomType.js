@@ -213,6 +213,8 @@ var datatableSet = {
 };
 
 $(document).ready(function(){
+    $(".navbar-collapse ul:first li:eq(5)").addClass("active");
+
     tableElement=$("#table-roomType");
     datatableSet.function_roomType.drawtable(tableElement);
 

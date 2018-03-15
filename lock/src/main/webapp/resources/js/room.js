@@ -208,10 +208,127 @@ var datatableSet = {
     }
 };
 
+var lockList=[
+    {
+        gatewayCode:"GWT001001",
+        lockCode:"LCK001001",
+        gatewayName:"网关1",
+        lockName:"门锁1"
+    },{
+        gatewayCode:"GWT001001",
+        lockCode:"LCK001001",
+        gatewayName:"网关1",
+        lockName:"门锁2"
+    },{
+        gatewayCode:"GWT001002",
+        lockCode:"LCK002001",
+        gatewayName:"网关2",
+        lockName:"门锁3"
+    },{
+        gatewayCode:"GWT001002",
+        lockCode:"LCK002002",
+        gatewayName:"网关2",
+        lockName:"门锁4"
+    }
+];
+function convertDevice(devices) {
+    // (function () {
+        var device;
+        var gatewayDevice;
+        var gatewayDevices=new Array();
+        var gatewayCode;
+        var gatewayCodes=new Array();
+        var lockCode;
+        // gatewayCodes.clear();
+        for(var i=0;i<lockList.length;i++) {
+            device=lockList[i];
+            gatewayCode=device.gatewayCode;
+            lockCode=device.lockCode;
+            if(gatewayCodes.indexOf(gatewayCode)==-1){
+                gatewayCodes.push(gatewayCode);
+            }
+        }
+        // gatewayDevices.clear();
+        for(var i=0;i<gatewayCodes.length;i++){
+            gatewayDevice=new Object();
+            gatewayDevice.gatewayCode=gatewayCodes[i];
+            gatewayDevices.push(gatewayDevice);
+        }
+        for(var i=0;i<lockList.length;i++) {
+            device = lockList[i];
+            gatewayCode = device.gatewayCode;
+            lockCode = device.lockCode;
+            for(var j=0;j<gatewayDevices.length;j++){
+                gatewayDevice=gatewayDevices[i];
+                if(gatewayCode===gatewayDevice.gatewayCode){
+            //         if(undefined===gatewayDevice.locks||null===gatewayDevice.locks){
+            //             gatewayDevice.locks=new Array();
+            //         }
+            //         gatewayDevice.locks.push(device);
+                    break;
+                }
+            }
+        }
+        console.log("gatewayDevices:"+gatewayDevices);
+    // })()
+}
+
+
 $(document).ready(function(){
+    $(".navbar-collapse ul:first li:eq(6)").addClass("active");
+
     tableElement=$("#table-room");
     datatableSet.function_room.drawtable(tableElement);
+    convertDevice(lockList);
 
+    // $('#select-gateway').empty();
+    // $('#select-gateway').append("<option value='GTW001001'>网关1</option>")
+    //     .append("<option value='GTW001002'>网关2</option>")
+    //     .append("<option value='GTW001003'>网关3</option>");
+    // $('#select-gateway').change(function () {
+    //     gatewayTxt=$('#select-gateway').find("option:selected").text();
+    //     gatewayVal=$('#select-gateway').val();
+    //     console.log("gatewayTxt:"+gatewayTxt+",gatewayVal:"+gatewayVal);
+    // });
+    // $.ajax({
+    //     type: "GET",
+    //     url: "room/getUnusedDeviceList.do",
+    //     async: false,
+    //     data: {},
+    //     dataType: 'json',
+    //     success: function (data, status, xhr) {
+    //         console.log('getUnusedDeviceList:' + data);
+    //     },
+    //     error: function (xhr, errorType, error) {
+    //         console.log('错误');
+    //     }
+    // });
+    $('#select-gateway').empty();
+    var device;
+    for(var i=0;i<lockList.length;i++){
+        device=lockList[i];
+        $('#select-gateway').append("<option value="+device.gatewayCode+">"+device.gatewayName+"</option>");
+        // $('#select-lock').append("<option value="+device.gatewayCode+">"+device.gatewayName+"</option>")
+    };
+    $('#select-gateway').change(function () {
+        gatewayTxt=$('#select-gateway').find("option:selected").text();
+        gatewayVal=$('#select-gateway').val();
+        console.log("gatewayTxt:"+gatewayTxt+",gatewayVal:"+gatewayVal);
+        $('#select-lock').empty();
+        var device;
+        for(var i=0;i<lockList.length;i++){
+            device=lockList[i];
+            if(device.gatewayCode===gatewayVal){
+                var option = $("<option>").val(device.lockCode).text(device.lockName);
+                $('#select-lock').append(option);
+            }
+        }
+    });
+    $('#select-lock').change(function () {
+        gatewayTxt=$('#select-gateway').find("option:selected").text();
+        gatewayVal=$('#select-gateway').val();
+        console.log("gatewayTxt:"+gatewayTxt+",gatewayVal:"+gatewayVal);
+    });
     $('#submit-addRoom').click(function () {
         roomType = $("form#form-addRoom input[name='roomType']").val();
         params = {
@@ -251,5 +368,5 @@ $(document).ready(function(){
         });
     });
 
-    App.init();
+    App.init({nanoScroller:false,dateTime:false,datepicker:false});
 });

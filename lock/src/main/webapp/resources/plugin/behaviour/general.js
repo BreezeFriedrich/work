@@ -1,8 +1,8 @@
 var App = function () {
 
   var config = {//Basic Config
-    tooltip: true,
-    popover: true,
+    tooltip: false,
+    popover: false,
     nanoScroller: true,
     nestableLists: false,
     hiddenElements: true,
@@ -1465,8 +1465,10 @@ var App = function () {
             return false;
         });
 
-        /*Datepicker UI*/
-        $( ".ui-datepicker" ).datepicker();
+        if(config.datepicker){
+            /*Datepicker UI*/
+            $( ".ui-datepicker" ).datepicker();
+        }
 
         /*Tooltips*/
         if(config.tooltip){
