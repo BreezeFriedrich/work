@@ -50,7 +50,7 @@
                     <table id="table-room" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th width="150px">房间ID</th>
+                            <th width="200px">房型</th>
                             <th width="200px">房间名称</th>
                             <th width="100px">操作</th>
                         </tr>
@@ -75,6 +75,16 @@
             <div class="content">
                 <form class="form-horizontal" id="form-addRoom">
                     <div class="form-group">
+                        <label for="select-roomType" class="col-sm-2 control-label">房型</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-roomType">
+                                <option value="GWT001001">房型1</option>
+                                <option value="GWT001002">房型2</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6"></div>
+                    </div>
+                    <div class="form-group">
                         <label for="select-gateway" class="col-sm-2 control-label">网关</label>
                         <div class="col-sm-4">
                             <select class="form-control" id="select-gateway">
@@ -96,15 +106,18 @@
                     </div>
                     <div class="form-group">
                         <label for="input-roomName" class="col-sm-2 control-label">房间名称</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-6">
                             <input id="input-roomName" type="text" class="form-control" name="roomName" placeholder="房间名称"/>
                         </div>
+                        <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-10">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
                             <button id="submit-addRoom" type="submit" class="btn btn-primary">确认新增</button>
                             <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                         </div>
+                        <div class="col-sm-2"></div>
                     </div>
                 </form>
             </div>
@@ -125,8 +138,23 @@
                 <form class="form-horizontal" id="form-editRoom">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="hidden" class="form-control" name="roomTypeId" placeholder="房间ID"/>
+                            <input type="hidden" class="form-control" name="roomTypeId" placeholder="房型ID"/>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="hidden" class="form-control" name="roomId" placeholder="房间ID"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-lock2" class="col-sm-2 control-label">新门锁</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="select-lock2">
+                                <option value="LCK001001">门锁1</option>
+                                <option value="LCK001002">门锁2</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -152,6 +180,6 @@
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/room.js"></script>
+<script type="text/javascript" src="resources/js/room.js?v=1"></script>
 </body>
 </html>
