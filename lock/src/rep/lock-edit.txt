@@ -28,7 +28,19 @@
     line-1306
         $(".cl-vnavigation").delegate(".parent > a","mouseover",function(e){}
     修改事件click为mouseover.
-	 
+
+    line-1497
+    原文:
+    /*DateTime Picker*/
+    $(".datetime").datetimepicker({autoclose: true});
+    改为:
+    /*DateTime Picker*/
+    if(config.dateTime){
+        $(".datetime").datetimepicker({autoclose: true});
+    }
+
+    line-4 修改初始化config参数(即组件是否开启的参数),几乎全部初始化为false.
+
 组件 bootstrap datetimepicker
 	http://www.bootcss.com/p/bootstrap-datetimepicker/
 	

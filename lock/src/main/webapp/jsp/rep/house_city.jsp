@@ -1005,7 +1005,7 @@
             });
         </script>
 
-        <div class="footer">2015-2016  南京亿数信息科技有限公司 版权所有</div>
+        <div class="footer">&copy;2015-2016 南京亿数信息科技有限公司 版权所有</div>
 
         <div class="clearfix"></div>
     </div>

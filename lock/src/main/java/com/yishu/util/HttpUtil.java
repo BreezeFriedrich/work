@@ -1,6 +1,9 @@
 package com.yishu.util;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.net.ssl.*;
 import java.io.*;
@@ -16,10 +19,9 @@ public class HttpUtil
 
     public static String postData(String data){
         String ip=HttpUtil.getIpFromDomain(hostName);
-        LOG.info("postdata:"+data);
+        LOG.info("ip:"+ip+", request data:"+data);
         String infos=HttpUtil.postData(data, ip);
-        LOG.info(ip);
-        LOG.info(infos);
+        LOG.info("response:"+infos);
         return infos;
     }
 
@@ -52,7 +54,6 @@ public class HttpUtil
             ctx.init(null, new TrustManager[] { xtm }, null);
             SSLSocketFactory socketFactory =ctx.getSocketFactory();
             //https-http)
-
             url=new URL("https://"+ip+":2017/");
             System.out.println("Https");
             httpsURLConnection=(HttpsURLConnection)url.openConnection();
@@ -146,31 +147,54 @@ public class HttpUtil
         }
         return null;
     }
-    /*
-    public static String httpsPostToGatewayip(String data){
-//        long time1=new Date().getTime();
-        String qixuIp= HttpUtil.getIpFromDomain(hostName);
-        String gatewayip="";
-        URL url = null;
+//    /*
+    @Value("${gatewayURL:https://43.254.149.28/2017}")
+    private static String gatewayUrl;
+    private static long lastFetchMillis=new Date().getTime();
+    private static int expireMillis=1000*60*5;
+    public static String getGatewayIp(String ownerPhoneNumber, String gatewayCode) {
+        int reqSign=5;
+        LOG.info("sign:"+reqSign+" operation:getGatewayIp");
+        String reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        LOG.info("reqData : "+reqData);
+        String rawData= HttpUtil.httpsPostToQixu(reqData);
+        LOG.info("rawData : "+rawData);
+
+        ObjectMapper objectMapper=new ObjectMapper();
+        JsonNode rootNode = null;
         try {
-            url=new URL("https://"+gatewayip+":2017/");
-        } catch (MalformedURLException e) {
+            rootNode = objectMapper.readTree(rawData);
+            int respSign=rootNode.path("result").asInt();
+            LOG.info("respSign:"+String.valueOf(respSign));
+            if(0!=respSign){
+                return null;
+            }
+            String gatewayIp = rootNode.path("gatewayIp").asText();
+            return gatewayIp;
+        } catch (IOException e) {
             e.printStackTrace();
+            return null;
+        }
+    }
+    public static String httpsPostToGateway(String data,String ownerPhoneNumber, String gatewayCode) throws MalformedURLException {
+        URL url = null;
+        if(null==gatewayUrl || lastFetchMillis+expireMillis<new Date().getTime()){
+            String gatewayip=getGatewayIp(ownerPhoneNumber,gatewayCode);
+            url=new URL("https://"+gatewayip+":2017/");
         }
 //        return HttpUtil.doPost(url.toString(),data);
-        long time2=new Date().getTime();
-//        LOG.warn("getIpFromDomain     用时: "+(time2-time1));
-        String result= HttpUtil.httpsPostToURL(url,data);
-        long time3=new Date().getTime();
-        LOG.warn("httpsPostToIp 用时: "+(time3-time2));
-
-//        LOG.info("HTTPS RESPONSE : "+result);
+        String result=null;
+        if(null!=url){
+            result= HttpUtil.httpsPostToURL(url,data);
+        }else {
+            result= HttpUtil.httpsPostToURL(new URL(gatewayUrl),data);
+        }
         return result;
     }
 
     public static String httpsPostToURL(URL url,String data){
-        if(LOG.isDebugEnabled()){
-            LOG.debug("-- httpsPostToURL() > Got url: {}", url);
+        if(LOG.isInfoEnabled()){
+            LOG.info("-- httpsPostToURL() > Got url: {}", "-->--[url:"+url+"]-->--  data:"+data);
         }
         HttpsURLConnection httpsURLConnection=null;
         OutputStream outputStream=null;
@@ -198,12 +222,7 @@ public class HttpUtil
             ctx.init(null, new TrustManager[] { xtm }, null);
             SSLSocketFactory socketFactory =ctx.getSocketFactory();
             //https-http)
-
-            if(LOG.isDebugEnabled()){
-                LOG.debug("-- httpsPostToIp() > HTTPS", url);
-            }
             httpsURLConnection=(HttpsURLConnection)url.openConnection();
-
             httpsURLConnection.setSSLSocketFactory(socketFactory);//https-http
             httpsURLConnection.setHostnameVerifier(hostnameVerifier);//https-http
             httpsURLConnection.setRequestMethod("POST");
@@ -220,9 +239,6 @@ public class HttpUtil
             bufferedReader=new BufferedReader(inputStreamReader);
             while((line=bufferedReader.readLine())!=null){
                 result+=line+"\n";
-            }
-            if(LOG.isTraceEnabled()){
-                LOG.trace("<< httpsPostToIp()");
             }
             return result;
         } catch (MalformedURLException e) {
@@ -278,13 +294,9 @@ public class HttpUtil
                 }
             }
         }
-        if(LOG.isTraceEnabled()){
-            LOG.trace("<< httpsPostToIp()");
-        }
         return null;
     }
-
-    */
+//    */
 
     public static String httpsPostToQixu(String data){
 //        long time1=new Date().getTime();

@@ -9,7 +9,7 @@
     <contextName>lock</contextName>
     <!-- 定义日志的根目录 -->
     <property name="LOG_HOME" value="C://Users/admin/Desktop/logs" />
-    <!--<property file="properties/project.properties"/>-->
+    <!--<property file="properties/application.properties"/>-->
     <!-- 定义日志文件名称 -->
     <property name="appName" value="lock" />
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->

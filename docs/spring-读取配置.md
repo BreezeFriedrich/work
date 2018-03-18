@@ -1,16 +1,9 @@
 #Links
-[spring官网](https://spring.io/projects) --> [spring-framework-reference](https://docs.spring.io/spring/docs/4.3.14.RELEASE/spring-framework-reference/htmlsingle/)参考其Resources模块  
-[Spring加载properties文件的两种方式](http://blog.csdn.net/eson_15/article/details/51365707)  
 [五种方式让你在java中读取properties文件内容不再是难题](https://www.cnblogs.com/hafiz/p/5876243.html)  
-[org.springframework.core.io.support.PropertiesLoaderUtils类](http://outofmemory.cn/code-snippet/2770/Spring-usage-program-mode-duqu-properties-file)  
-[Spring加载Properties配置文件的四种方式](http://blog.csdn.net/haha_sir/article/details/79105951)  
-
->[Spring中加载外部资源文件的几种方式](http://blog.csdn.net/a617332635/article/details/72236280)  
->[使用@Import和@ImportResource进行Spring Java config和xml的混合配置](http://blog.csdn.net/jiaobuchong/article/details/50530027)
 
 ##spring-framework中的Resource模块
 [spring官网](https://spring.io/projects) --> [spring-framework-reference](https://docs.spring.io/spring/docs/4.3.14.RELEASE/spring-framework-reference/htmlsingle/)参考其Resources模块-->翻译[Spring 框架概述(三)之Resources](http://blog.csdn.net/xiangjai/article/details/53954252)
-## Java工具类
+### Java工具类
 工具类PropertyUtil的static静态代码块中读取properties文件内容保存在static属性中  
 
 	import com.yishu.util.PropertyUtil
@@ -67,7 +60,7 @@
 	    }
 	}
 
-## spring-framework
+### spring-framework
 基于xml配置方式中的PropertyPlaceholderConfigurer类和这里基于注解方式的PropertiesFactoryBean类都是继承PropertiesLoaderSupport，都是用来加载properties配置文件的。  
 
 + org.springframework.beans.factory.config.***PropertyPlaceholderConfigurer***  
@@ -162,5 +155,38 @@ applicationContext.xml头部schema和<util:properties>:
 [Spring中@PropertySouce注解的使用](http://blog.csdn.net/l153097889/article/details/52476219)  
 [Spring的@PropertySource和@Value注解例子](http://blog.csdn.net/BalterNotz/article/details/53585888)  
 
-##Spring4自定义@Value功能##
-[Spring4自定义@Value功能](http://blog.csdn.net/mn960mn/article/details/77430685)
+		@PropertySource(value={"classpath:redis-key.properties"})
+		public class ReadProperties {
+		    @Value(value="${jdbc.username}")
+		    private String USER_NAME;
+		}
+
+### 先读取配置文件.properties
++ ResourceUtils
+
+		File files = ResourceUtils.getFile("classpath:config/file.txt"); 
+		System.out.println(files.isFile()); 
+		String httpFilePath = "file:D:/Spring/app/src/config/file.txt"; 
+		File httpFile = ResourceUtils.getFile(httpFilePath);
+
++ org.springframework.core.io.support.***PropertiesLoaderUtils***
+
+		Properties props = PropertiesLoaderUtils.loadAllProperties("jdbc.properties");
+		System.out.println(props.getProperty("jdbc.driverClassName"));
+
++ Resource
+
+		String filePath = "D:/Spring/the/web/WEB-INF/config/file.txt";
+		Resource res1 = new FileSystemResource(filePath);
+		Resource res2 = new ClassPathResource("config/file.txt");
+		Properties props = PropertiesLoaderUtils.loadProperties(res2);
+		InputStream ins1 = res1.getInputStream();
+		File file = res1.getFile();
+
++ 通过ServletContextResource方式进行访问web应用根目录
+
+## Spring4自定义@Value功能##
+[Spring4自定义@Value功能](http://blog.csdn.net/mn960mn/article/details/77430685)  
+@Value("${key:default}")  
+@Value("#{'${server.id}'.split(',')}")  
+@Value("${server.host:127.0.0.1}")  
