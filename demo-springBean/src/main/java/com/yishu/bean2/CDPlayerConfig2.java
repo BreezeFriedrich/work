@@ -16,33 +16,36 @@ public class CDPlayerConfig2 {
     public CompactDisc sgtPeppers(){
         return new SgtPeppers();
     }
-    @Bean
-    public CompactDisc randomBeatlesCD(){
-        int choice=(int)Math.floor(Math.random()*4);
-        if(choice==0){
-            return new SgtPeppers();
-        }else if(choice==1){
-            return new WhiteAlbum();
-        }else if(choice==2){
-            return new HardDaysNight();
-        }
-        else {
-//            return new Revolver();
-            return new HardDaysNight();
-        }
-    }
-    @Bean
-    public MediaPlayer cdPlayer(){
-        return new CDPlayer(sgtPeppers());//JavaConfig注入方式1.调用产生bean的方法注入该bean.
-    }
+
+//    @Bean
+//    public CompactDisc randomBeatlesCD(){
+//        int choice=(int)Math.floor(Math.random()*4);
+//        if(choice==0){
+//            return new SgtPeppers();
+//        }else if(choice==1){
+//            return new WhiteAlbum();
+//        }else if(choice==2){
+//            return new HardDaysNight();
+//        }
+//        else {
+////            return new Revolver();
+//            return new HardDaysNight();
+//        }
+//    }
+
+//    @Bean
+//    public MediaPlayer cdPlayer(){
+//        return new CDPlayer(sgtPeppers());//JavaConfig注入方式1.调用产生bean的方法注入该bean.
+//    }
+//    @Bean
+//    public MediaPlayer cdPlayer(CompactDisc cd){
+//        return new CDPlayer(cd);//JavaConfig注入方式2.请求bean参数注入.//构造器实现DI.
+//    }
     @Bean
     public MediaPlayer cdPlayer(CompactDisc cd){
-        return new CDPlayer(cd);//JavaConfig注入方式2.请求bean参数注入.//构造器实现DI.
-    }
-    @Bean
-    public MediaPlayer cdPlayer(CompactDisc cd){
-        CDPlayer cdPlayer=new CDPlayer(cd);
-        cdPlayer.setCompactDisc(cd);//Setter方法实现DI.怎么实现DI其实没有限制.
-        return cdPlayer;
+        CDPlayer player=new CDPlayer();
+//        player.setCompactDisc(cd);
+        player.insertCompactDisc(cd);//JavaConfig注入方式3.请求bean参数注入.//任意方法返回该bean(包括Setter)实现DI.
+        return player;
     }
 }

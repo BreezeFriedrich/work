@@ -1,0 +1,1 @@
+[使用@Import和@ImportResource进行Spring Java config和xml的混合配置](http://blog.csdn.net/jiaobuchong/article/details/50530027)

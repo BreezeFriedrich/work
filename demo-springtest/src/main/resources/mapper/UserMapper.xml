@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yishu.dao.UserDao">
+
+    <insert id="add" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_user(`username`,`password`,`nickname`,`status`)
+        VALUES(#{username},#{password},#{nickname},#{status});
+    </insert>
+
+    <!-- 动态更新对象的写法 -->
+    <update id="update" parameterType="User">
+        UPDATE t_user
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                `password` = #{password},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname},
+            </if>
+            <if test="status != null">
+                `status` = #{status}
+            </if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM t_user
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteByUserName" parameterType="string">
+        DELETE FROM t_user
+        where username = #{username}
+    </delete>
+
+    <!--  批量删除 -->
+    <delete id="batchDelete" parameterType="list">
+        DELETE FROM t_user
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="load" parameterType="int" resultType="User">
+        SELECT
+        id,
+        username,
+        `password`,
+        nickname,
+        `status`
+        FROM
+        t_user
+        WHERE
+        id = #{id}
+    </select>
+
+    <select id="listUser" resultType="User">
+        SELECT
+        id,
+        username,
+        `password`,
+        nickname,
+        `status`
+        FROM
+        t_user
+    </select>
+
+    <select id="loadByUserName" parameterType="string" resultType="User">
+        SELECT
+        id,
+        username,
+        `password`,
+        nickname,
+        `status`
+        FROM
+        t_user
+        WHERE
+        username = #{username}
+    </select>
+</mapper>
