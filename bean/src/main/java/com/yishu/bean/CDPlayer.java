@@ -21,16 +21,16 @@ public class CDPlayer implements MediaPlayer {
     }
 
 //    @Autowired
-//    public CDPlayer(CompactDisc compactDisc) {
-//        this.compactDisc = compactDisc;
-//    }
+    public CDPlayer(CompactDisc compactDisc) {
+        this.compactDisc = compactDisc;
+    }
 
 //    @Autowired
-//    public void setCompactDisc(CompactDisc compactDisc) {
-//        this.compactDisc = compactDisc;
-//    }
+    public void setCompactDisc(CompactDisc compactDisc) {
+        this.compactDisc = compactDisc;
+    }
 
-    @Autowired
+//    @Autowired
 //    @Inject
 //    @Resource
     public void insertCompactDisc(CompactDisc compactDisc){

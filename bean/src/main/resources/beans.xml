@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <!--http://www.springframework.org/schema/context-->
 
-    <bean class="com.yishu.bean.CDPlayer" />
-    <bean class="com.yishu.bean.SgtPeppers" />
+    <!--<bean class="com.yishu.bean.SgtPeppers" />-->
+    <!--<bean id="compactDisc" class="com.yishu.bean.SgtPeppers" />-->
+
+    <!--<bean class="com.yishu.bean.CDPlayer">-->
+        <!--<constructor-arg ref="compactDisc" />-->
+    <!--</bean>-->
+    <!--<bean class="com.yishu.bean.CDPlayer"-->
+          <!--c:compactDisc-ref="compactDisc" />-->
+    <!--<bean id="cdPlayer" class="com.yishu.bean.CDPlayer"-->
+          <!--c:_0-ref="compactDisc" />-->
+
+    <!--<bean id="blankDisc" class="com.yishu.bean3.BlankDisc">-->
+        <!--<constructor-arg value="Sgt.Pepper's Lonely Hearts Club Band" />-->
+        <!--<constructor-arg value="The Beatles" />-->
+    <!--</bean>-->
+    <!--<bean id="blankDisc" class="com.yishu.bean3.BlankDisc"-->
+          <!--c:title="Sgt.Pepper's Lonely Hearts Club Band"-->
+          <!--c:artist="The Beatles" />-->
+    <!--<bean class="com.yishu.bean3.BlankDisc"-->
+          <!--c:_0="Sgt.Pepper's Lonely Hearts Club Band"-->
+          <!--c:_1="The Beatles" />-->
+
+    <!--<bean id="compactDisc" class="com.yishu.bean3.BlankDiscWithTracks">-->
+        <!--<constructor-arg value="Sgt.Pepper's Lonely Hearts Club Band" />-->
+        <!--<constructor-arg value="The Beatles" />-->
+        <!--<constructor-arg>-->
+            <!--<list>-->
+                <!--<value>Sgt.Pepper's Lonely Hearts Club Band</value>-->
+                <!--<value>With a Little Help from My Friends</value>-->
+                <!--<value>Lucy in the Sky with Diamonds</value>-->
+                <!--<value>Getting Better</value>-->
+                <!--<value>Fixing a Hole</value>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+    <!--<bean class="com.yishu.bean3.BlankDiscWithTracks"-->
+          <!--c:title="Sgt.Pepper's Lonely Hearts Club Band"-->
+          <!--c:artist="The Beatles">-->
+        <!--<constructor-arg>-->
+            <!--<list>-->
+                <!--&lt;!&ndash;列表元素是字面量&ndash;&gt;-->
+                <!--<value>Sgt. Pepper's Lonely Hearts Club Band</value>-->
+                <!--<value>With a Little Help from My Friends</value>-->
+                <!--<value>Lucy in the Sky with Diamonds</value>-->
+                <!--<value>Getting Better</value>-->
+                <!--<value>Fixing a Hole</value>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
+    <!--<bean class="com.yishu.bean.CDPlayer">-->
+        <!--<property name="compactDisc" ref="compactDisc" />-->
+    <!--</bean>-->
+    <!--<bean class="com.yishu.bean.CDPlayer"-->
+          <!--p:compactDisc-ref="compactDisc" />-->
+
+    <!--<bean class="com.yishu.bean3.BlankDiscWithTracks2">-->
+        <!--<property name="title" value="Sgt. Pepper's Lonely Hearts Club Band" />-->
+        <!--<property name="artist" value="The Beatles" />-->
+        <!--<property name="tracks">-->
+            <!--<list>-->
+                <!--<value>Sgt. Pepper's Lonely Hearts Club Band</value>-->
+                <!--<value>With a Little Help from My Friends</value>-->
+                <!--<value>Lucy in the Sky with Diamonds</value>-->
+                <!--<value>Getting Better</value>-->
+                <!--<value>Fixing a Hole</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<bean class="com.yishu.bean3.BlankDiscWithTracks2"-->
+          <!--p:title="Sgt. Pepper's Lonely Hearts Club Band"-->
+          <!--p:artist="The Beatles">-->
+        <!--<property name="tracks">-->
+            <!--<list>-->
+                <!--<value>Sgt. Pepper's Lonely Hearts Club Band</value>-->
+                <!--<value>With a Little Help from My Friends</value>-->
+                <!--<value>Lucy in the Sky with Diamonds</value>-->
+                <!--<value>Getting Better</value>-->
+                <!--<value>Fixing a Hole</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <util:list id="tracks">
+        <value>Sgt. Pepper's Lonely Hearts Club Band</value>
+        <value>With a Little Help from My Friends</value>
+        <value>Lucy in the Sky with Diamonds</value>
+        <value>Getting Better</value>
+        <value>Fixing a Hole</value>
+    </util:list>
+    <bean class="com.yishu.bean3.BlankDiscWithTracks2"
+          p:title="Sgt. Pepper's Lonely Hearts Club Band"
+          p:artist="The Beatles"
+          p:tracks-ref="tracks" />
 </beans>

@@ -4,7 +4,7 @@
        xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <!--装配机制 3.XML显示装配-->
+    <!--装配机制 3.XML显示装配(a.构造器注入成员变量,使用constructor-arg或c-命名空间; b.Setter注入成员变量,使用property或p-命名空间)-->
 
     <bean class="com.yishu.bean.SgtPeppers" /><!--bean的id为com.yishu.bean.SgtPeppers#0-->
     <bean id="compactDisc" class="com.yishu.bean.SgtPeppers" />
@@ -16,34 +16,34 @@
         <constructor-arg ref="compactDisc" />
     </bean>
     <!--方式2.c-命名空间-->
-    <bean id="cdPlayer" class="com.yishu.bean.CDPlayer"
-          c:cd-ref="compactDisc" /><!--cd为注入的参数名称-->
-    <bean id="cdPlayer" class="com.yishu.bean.CDPlayer"
+    <bean class="com.yishu.bean.CDPlayer"
+          c:compactDisc-ref="compactDisc" /><!--cd为注入的参数名称-->
+    <bean class="com.yishu.bean.CDPlayer"
           c:_0-ref="compactDisc" /><!--0代表第一个参数,数字不能成为属性的第一个字符所以用下划线做前缀-->
-    <bean id="cdPlayer" class="com.yishu.bean.CDPlayer"
+    <bean class="com.yishu.bean.CDPlayer"
           c:_-ref="compactDisc" /><!--只有一个参数所以不用标识了-->
 
     <!--构造器注入字面量-->
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDisc">
+    <bean class="com.yishu.bean3.BlankDisc">
         <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band" />
         <constructor-arg value="The Beatles" />
     </bean>
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDisc"
-        c:_title="Sgt. Pepper's Lonely Hearts Club Band"
-        c:_artist="The Beatles" />
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDisc"
+    <bean class="com.yishu.bean3.BlankDisc"
+        c:title="Sgt. Pepper's Lonely Hearts Club Band"
+        c:artist="The Beatles" />
+    <bean class="com.yishu.bean3.BlankDisc"
           c:_0="Sgt. Pepper's Lonely Hearts Club Band"
           c:_1="The Beatles" />
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDisc"
-          c:_="Sgt. Pepper's Lonely Hearts Club Band" /><!--构造器只有一个参数可以只使用下划线-->
+    <!--<bean class="com.yishu.bean3.BlankDisc"-->
+          <!--c:_="Sgt. Pepper's Lonely Hearts Club Band" />--><!--如果构造器只有一个参数可以只使用下划线-->
 
     <!--构造器装配集合, 只能使用<constructor-arg/>元素,c-命名空间无法做到-->
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDiscWithTracks">
+    <bean class="com.yishu.bean3.BlankDiscWithTracks">
         <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band" />
         <constructor-arg value="The Beatles" />
         <constructor-arg><null/></constructor-arg><!--给构造器List参数传递null,在注入期正常执行,但调用play()时产生NullPointerException-->
     </bean>
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDiscWithTracks">
+    <bean class="com.yishu.bean3.BlankDiscWithTracks">
         <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band" />
         <constructor-arg value="The Beatles" />
         <constructor-arg>
@@ -58,6 +58,20 @@
             </list>
         </constructor-arg>
     </bean>
+    <bean class="com.yishu.bean3.BlankDiscWithTracks"
+          c:title="Sgt.Pepper's Lonely Hearts Club Band"
+          c:artist="The Beatles">
+        <constructor-arg>
+            <list>
+                <value>Sgt. Pepper's Lonely Hearts Club Band</value>
+                <value>With a Little Help from My Friends</value>
+                <value>Lucy in the Sky with Diamonds</value>
+                <value>Getting Better</value>
+                <value>Fixing a Hole</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
     <bean id="beatlesDiscography" class="com.yishu.bean3.Discography">
         <constructor-arg value="The Beatles" />
         <constructor-arg>
@@ -70,7 +84,7 @@
             </list>
         </constructor-arg>
     </bean>
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDiscWithTracks">
+    <bean class="com.yishu.bean3.BlankDiscWithTracks">
         <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band" />
         <constructor-arg value="The Beatles" />
         <constructor-arg>
@@ -88,15 +102,15 @@
 
     <!--属性注入,调用bean的Setter-->
     <!--注入bean,方式1.使用<property>元素-->
-    <bean id="cdPlayer" class="com.yishu.bean3.CDPlayer">
+    <bean class="com.yishu.bean.CDPlayer">
         <property name="compactDisc" ref="compactDisc" />
     </bean>
     <!--注入bean,方式2.使用p-命名空间-->
-    <bean id="cdPlayer" class="com.yishu.bean3.CDPlayer"
+    <bean class="com.yishu.bean.CDPlayer"
           p:compactDisc-ref="compactDisc" /><!--p:属性名-ref="bean的ID"-->
     <!--注入字面量-->
     <!--方式1,使用<property>元素-->
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDiscWithTracks2">
+    <bean class="com.yishu.bean3.BlankDiscWithTracks2">
         <property name="title" value="Sgt. Pepper's Lonely Hearts Club Band" />
         <property name="artist" value="The Beatles" />
         <property name="tracks">
@@ -110,7 +124,7 @@
         </property>
     </bean>
     <!--方式2,同时使用<property>元素和p-命名空间-->
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDiscWithTracks2"
+    <bean class="com.yishu.bean3.BlankDiscWithTracks2"
           p:title="Sgt. Pepper's Lonely Hearts Club Band"
           p:artist="The Beatles">
         <property name="tracks">
@@ -133,7 +147,7 @@
         <value>Getting Better</value>
         <value>Fixing a Hole</value>
     </util:list>
-    <bean id="compactDisc" class="com.yishu.bean3.BlankDiscWithTracks2"
+    <bean class="com.yishu.bean3.BlankDiscWithTracks2"
           p:title="Sgt. Pepper's Lonely Hearts Club Band"
           p:artist="The Beatles"
           p:tracks-ref="trackList" />
