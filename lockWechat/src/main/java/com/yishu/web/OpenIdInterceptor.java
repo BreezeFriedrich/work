@@ -33,9 +33,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
     private WechatWebAccessTokenUtil wechatWebAccessTokenUtil;
 
     public OpenIdInterceptor() {
-//        System.out.println(">>>Initialization OpenIdInterceptor......................................");
         LOG.info(">>>Initialization OpenIdInterceptor......................................");
-        LOG.info("APPID:"+APPID+",redirectURL:"+redirectURL);
     }
     private static String APPID;
     private static String redirectURL;
@@ -106,4 +104,8 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         LOG.info("网页授权openid: "+openid);
         return actionInvocation.invoke();
     }
+
+//    public void printConfig(){
+//        LOG.info("APPID:"+APPID+",redirectURL:"+redirectURL);
+//    }
 }

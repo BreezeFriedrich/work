@@ -103,9 +103,11 @@
                 <%--<form class="form-horizontal" id="form-addRoomType" method="post" action="room/addRoomType.do">--%>
                 <form class="form-horizontal" id="form-addRoomType">
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="roomType" placeholder="房型名称"/>
+                        <label for="input-roomType" class="col-sm-2 control-label">房型</label>
+                        <div class="col-sm-6">
+                            <input id="input-roomType" type="text" class="form-control" name="roomType" placeholder="房型名称"/>
                         </div>
+                        <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -136,9 +138,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="newRoomType" placeholder="新房型名称"/>
+                        <label for="input-newRoomType" class="col-sm-2 control-label">新房型</label>
+                        <div class="col-sm-6">
+                            <input id="input-newRoomType" type="text" class="form-control" name="newRoomType" placeholder="新房型名称"/>
                         </div>
+                        <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">

@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="resources/css/style.css"/>
     <link rel="stylesheet" href="resources/css/index.css"/>
 
-    <link rel="stylesheet" type="text/css" href="resources/plugin/jquery.niftymodals/css/component.css"/><!-- 弹出框-->
+    <link rel="stylesheet" href="resources/plugin/jquery.niftymodals/css/component.css"/><!-- 弹出框-->
     <link rel="stylesheet" href="resources/css/fixed-table.css"/>
     <%--<link rel="stylesheet" href="resources/plugin/FixedTable/fixed-table.css" />--%>
-    <link rel="stylesheet" type="text/css" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="resources/plugin/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="resources/plugin/dataTables/css/jquery.dataTables.css"/>
     <style>
         .fixed-table-box{position:absolute; right: 0px; left: 20px; bottom: 60px; top: 20px;}
         .fixed-table_body-wraper{}
@@ -49,6 +50,7 @@
                 <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="md-addRoomType"><i class="fa fa-plus"></i>添加房型</button>
 
                 <div class="content">
+                    <!--
                     <table>
                         <thead>
                         <tr>
@@ -71,6 +73,16 @@
                         <li><a href="#">&raquo;</a></li>
                     </ul>
                     <div class="clearfix"></div>
+                    -->
+                    <table id="table-roomType" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th width="150px">房型ID</th>
+                            <th width="200px">房型名称</th>
+                            <th width="100px">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
@@ -88,15 +100,16 @@
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <form class="form-horizontal" id="form-addSubordinate" method="post" action="roomTypeContainRoom/addRoomType.do">
+                <%--<form class="form-horizontal" id="form-addRoomType" method="post" action="room/addRoomType.do">--%>
+                <form class="form-horizontal" id="form-addRoomType">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" name="roomTypeContainRoom" placeholder="房型名称"/>
+                            <input type="text" class="form-control" name="roomType" placeholder="房型名称"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">确认新增</button>
+                            <button id="submit-addRoomType" type="submit" class="btn btn-primary">确认新增</button>
                             <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                         </div>
                     </div>
@@ -107,24 +120,29 @@
 </div>
 <div class="md-overlay"></div>
 
-<!-- 删除房型-->
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-deleteRoomType">
+<!--修改房型-->
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-editRoomType">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
-                <h3>删除房型</h3>
+                <h3>修改房型</h3>
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <form class="form-horizontal" method="post" action="roomTypeContainRoom/addRoomType.do">
+                <form class="form-horizontal" id="form-editRoomType">
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" name="roomTypeContainRoom" placeholder="房型名称"/>
+                            <input type="hidden" class="form-control" name="roomTypeId" placeholder="房型ID"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="newRoomType" placeholder="新房型名称"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">确认删除</button>
+                            <button id="submit-editRoomType" type="submit" class="btn btn-primary">确认修改</button>
                             <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                         </div>
                     </div>
@@ -155,91 +173,8 @@
 <%--<script type="text/javascript" src="resources/js/FixedTable.js"></script>--%>
 <script type="text/javascript" src="resources/plugin/FixedTable/fixed-table.js"></script>
 <script type="text/javascript" src="resources/plugin/FixedTable/FixedTable.js"></script>
-
-<script type="text/javascript">
-    var pathName=window.document.location.pathname;
-    var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-    var juniorPhoneNumber;
-    var juniorName;
-    var juniorLocation;
-    var userHierarchy;
-
-    function completeTable() {
-        $.ajax({
-            type:"POST",
-            url:"user/getUserHierarchy.do",
-            async:false,
-            data:{},
-            dataType:'json',
-            success:function(data,status,xhr){
-                userHierarchy = data;
-                console.log('data : '+data);
-                createTbody(userHierarchy);
-            },
-            error:function(xhr,errorType,error){
-                console.log('错误');
-            }
-        });
-    }
-    function createTbody(data) {
-        var subordinates=data.subordinateList;
-        //第一种：动态创建表格的方式，使用拼接html的方式 （推荐）
-        //清空所有的子节点
-        $("#tbody").empty();
-        var html = "";
-        for( var i = 0; i < subordinates.length; i++ ) {
-            html += '<tr>';
-            html +=     '<td style="width:30%;">'+subordinates[i].phoneNumber+'</td>';
-            html +=     '<td>'+subordinates[i].name+'</td>';
-            html +=     '<td>'+subordinates[i].location+'</td>';
-            html +=     '<td class="text-center">';
-            html +=         '<a class="label label-danger btn btn-danger btn-xs md-trigger"><i class="fa fa-times"></i></a>';
-            html +=     '</td>';
-            html += '</tr>';
-        }
-        $("#tbody").html(html);
-    }
-
-    $(document).ready(function(){
-        completeTable();
-
-        //添加下级用户的弹出框,js方式实现弹出
-        //    $('.md-trigger:first').on('click',function(){
-        //        $('#reply-ticket').niftyModal();
-        //    });
-        $('.md-trigger:gt(0)').on('click',function(){
-            var tds=$(this).closest('td').siblings();
-            juniorPhoneNumber=tds.eq(0).text();
-            juniorName=tds.eq(1).text();
-            juniorLocation=tds.eq(2).text();
-            $('#reply-ticket2').niftyModal();
-        });
-        $('#btn-cancleSubordinate').on('click',function(){
-            console.log("projectPath : "+projectPath);
-            console.log({"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation});
-            $.ajax({
-                type:"POST",
-                url:"user/cancleSubordinate.do",
-                async:false,
-                data:{"juniorPhoneNumber":juniorPhoneNumber,"juniorName":juniorName,"juniorLocation":juniorLocation},
-                dataType:'json',
-                success:function(data,status,xhr){
-                    ajaxResult = data;
-                },
-                error:function(xhr,errorType,error){
-                    console.log('错误');
-                }
-            });
-        });
-
-        $("table td .legend").each(function(){
-            var el = $(this);
-            var color = el.data("color");
-            el.css("background",color);
-        });
-
-        App.init();
-    });
-</script>
+<script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
+<script type="text/javascript" src="resources/js/roomType.js"></script>
 </body>
 </html>

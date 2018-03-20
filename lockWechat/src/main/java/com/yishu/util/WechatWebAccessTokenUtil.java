@@ -42,7 +42,7 @@ public class WechatWebAccessTokenUtil {
 
     public void printConfig(){
         //@Value("${}")搭配setters、component-scan 、@Component读取配置.
-        LOG.info("WechatWebAccessTokenUtil:{APPID : "+APPID+", APPSECRET : "+APPSECRET+"}");
+        LOG.info("APPID : "+APPID+", APPSECRET : "+APPSECRET);
     }
 
     public String getOpenidByCode(String code) {

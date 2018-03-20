@@ -3,10 +3,7 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yishu.pojo.Room;
-import com.yishu.pojo.RoomTableData;
-import com.yishu.pojo.RoomTypeContainRoom;
-import com.yishu.pojo.RoomTypeTableData;
+import com.yishu.pojo.*;
 import com.yishu.service.IRoomService;
 import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
@@ -215,9 +212,12 @@ public class RoomServiceImpl implements IRoomService {
         }
         int respSign=rootNode.path("result").asInt();
         if(0==respSign){
-            List<Map<String, Object>> list = null;
+//            List<Map<String, Object>> list = null;
+//            try {
+//                list = objectMapper.readValue(rootNode.path("lockList").traverse(), List.class);
+            List<GatewayinfoAndLockinfo> list = null;
             try {
-                list = objectMapper.readValue(rootNode.path("lockList").traverse(), List.class);
+                list = objectMapper.readValue(rootNode.path("lockList").traverse(), new TypeReference<List<GatewayinfoAndLockinfo>>() {});
             /*
             for (int i = 0; i < list.size(); i++) {
                 Map<String, Object> map = list.get(i);
@@ -240,6 +240,12 @@ public class RoomServiceImpl implements IRoomService {
         return null;
     }
 
+    /**
+     * 将roomType数据转变为适合datatables的结构.
+     *
+     * @param roomTypeCRList
+     * @return
+     */
     @Override
     public List<RoomTypeTableData> convertRoomTypeToTabularData(List<RoomTypeContainRoom> roomTypeCRList) {
         List<RoomTypeTableData> tableDataList=new ArrayList<>();
@@ -260,6 +266,12 @@ public class RoomServiceImpl implements IRoomService {
         return tableDataList;
     }
 
+    /**
+     * 将room数据转变为适合datatables的结构.
+     *
+     * @param roomTypeCRList
+     * @return
+     */
     @Override
     public List<RoomTableData> convertRoomTypeCRToRoomTableData(List<RoomTypeContainRoom> roomTypeCRList) {
         List<RoomTableData> tableDataList=new ArrayList<>();
@@ -274,7 +286,7 @@ public class RoomServiceImpl implements IRoomService {
             roomList=roomTypeCR.getRoomInfoList();
             int roomListSize=roomList.size();
             for(int j=0;j<roomListSize;j++){
-                room=roomList.get(i);
+                room=roomList.get(j);
                 tableData=new RoomTableData();
                 tableData.setRoomTypeId(roomTypeCR.getRoomTypeId());
                 tableData.setRoomType(roomTypeCR.getRoomType());
@@ -289,6 +301,6 @@ public class RoomServiceImpl implements IRoomService {
                 tableDataList.add(tableData);
             }
         }
-        return null;
+        return tableDataList;
     }
 }

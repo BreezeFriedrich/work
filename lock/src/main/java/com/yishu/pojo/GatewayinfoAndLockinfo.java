@@ -1,26 +1,14 @@
 package com.yishu.pojo;
 
-public class Room{
-    private String roomId;
-    private String roomName;
+/**
+ * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
+ * @version 1.0.0.0 2018-03-20 16:07 admin
+ * @since JDK1.7
+ */
+public class GatewayinfoAndLockinfo {
     private String gatewayCode;
     private String lockCode;
-
-    public String getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
+    private String lockName;
 
     public String getGatewayCode() {
         return gatewayCode;
@@ -36,5 +24,13 @@ public class Room{
 
     public void setLockCode(String lockCode) {
         this.lockCode = lockCode;
+    }
+
+    public String getLockName() {
+        return lockName;
+    }
+
+    public void setLockName(String lockName) {
+        this.lockName = lockName;
     }
 }

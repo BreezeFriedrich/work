@@ -13,7 +13,7 @@ import java.util.Map;
 public class RoomTableData {
     private String roomTypeId;
     private String roomType;
-    private int roomId;
+    private String roomId;
     private String roomName;
     private String gatewayCode;
     private String lockCode;
@@ -36,11 +36,11 @@ public class RoomTableData {
         this.roomType = roomType;
     }
 
-    public int getRoomId() {
+    public String getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
 

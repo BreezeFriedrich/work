@@ -148,7 +148,7 @@ public class HttpUtil
         return null;
     }
 //    /*
-    @Value("${gatewayURL:https://43.254.149.28/2017}")
+    @Value("${gatewayURL:https://43.254.149.28:2017}")
     private static String gatewayUrl;
     private static long lastFetchMillis=new Date().getTime();
     private static int expireMillis=1000*60*5;

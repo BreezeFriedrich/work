@@ -49,8 +49,7 @@ public class WechatUtil {
     }
 
     public void printConfig(){
-        LOG.info("APPID:"+APPID);
-        LOG.info("redirectURL:"+redirectURL);
+        LOG.info("APPID:"+APPID+",redirectURL:"+redirectURL);
     }
 
     /**

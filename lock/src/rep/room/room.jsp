@@ -44,8 +44,7 @@
         <div class="page-head"><img src="resources/images/lb.png" class="inco-lb"><h3>房间管理</h3></div>
         <div class="col-sm-9 table0">
             <div class="block-flat table0-top">
-                <%--<button type="button" class="btn btn-success btn-rad md-trigger" data-modal="md-addRoom"><i class="fa fa-plus"></i>添加房间</button>--%>
-                <button id="btn-addRoom" type="button" class="btn btn-success btn-rad md-trigger"><i class="fa fa-plus"></i>添加房间</button>
+                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="md-addRoom"><i class="fa fa-plus"></i>添加房间</button>
 
                 <div class="content">
                     <table id="table-room" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -85,7 +84,6 @@
                         </div>
                         <div class="col-sm-6"></div>
                     </div>
-                    <!--
                     <div class="form-group">
                         <label for="select-gateway" class="col-sm-2 control-label">网关</label>
                         <div class="col-sm-4">
@@ -96,7 +94,6 @@
                         </div>
                         <div class="col-sm-6"></div>
                     </div>
-                    -->
                     <div class="form-group">
                         <label for="select-lock" class="col-sm-2 control-label">门锁</label>
                         <div class="col-sm-4">
@@ -160,11 +157,9 @@
                         <div class="col-sm-6"></div>
                     </div>
                     <div class="form-group">
-                        <label for="input-newRoomName" class="col-sm-2 control-label">房间名称</label>
-                        <div class="col-sm-6">
-                            <input id="input-newRoomName" type="text" class="form-control" name="newRoom" placeholder="新房间名称"/>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="newRoom" placeholder="新房间名称"/>
                         </div>
-                        <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
