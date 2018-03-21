@@ -141,18 +141,23 @@
         </header>
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <%--<div class="list-block cards-list" id="cardList"></div>--%>
-            <div class="list-block media-list tjrzxx">
-                <ul></ul>
+            <%--
+            <div class="content-block" style="background-color: #A3CE82;margin: 0px;padding: 0px;">
+                <div id="mescroll" class="mescroll">
+                    <ul id="dataList" class="data-list">
+                    </ul>
+                </div>
+            </div>
+            --%>
+            <div class="list-block cards-list" id="cardList">
             </div>
         </div>
     </div>
 </div>
-<%--<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>--%>
-<script type="text/javascript" src="resources/js/zepto.min.js"></script>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/mescroll.min.js'></script>
-<script type='text/javascript' src='resources/js/alert.js?v=1' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/alert.js' charset='utf-8'></script>
 </body>
 </html>

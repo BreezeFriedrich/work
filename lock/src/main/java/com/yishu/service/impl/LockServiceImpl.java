@@ -119,7 +119,7 @@ public class LockServiceImpl implements ILockService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
         if (respFail()){
             return false;

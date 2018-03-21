@@ -79,7 +79,7 @@ public class GatewayServiceImpl implements IGatewayService {
         LOG.info("sign:"+reqSign+" operation:getGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         if (respFail()){
@@ -95,7 +95,7 @@ public class GatewayServiceImpl implements IGatewayService {
         LOG.info("sign:"+reqSign+" operation:hasGatewayAdded");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
+        rawData = HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 //        if ("".equals(rawData)) {
 //            return null;
@@ -120,7 +120,7 @@ public class GatewayServiceImpl implements IGatewayService {
         LOG.info("sign:"+reqSign+" operation:getGatewayLANIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
+        rawData = HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 //        if ("".equals(rawData)) {
 //            return null;

@@ -38,7 +38,8 @@ $(function(){
     UL_theSpecificGateway.addEventListener('click',function(ev){
         var target = ev.target || window.event.srcElement;
         while(target !== UL_theSpecificGateway){
-            if(target.getAttribute('class')==='card-content' && target.parentNode.className==='card lock'){
+            // if(target.getAttribute('class')==='card-content' && target.parentNode.className==='card lock'){
+            if(target.tagName==='A'){
                 //页面跳转并传递参数
                 specificLockCode=target.parentNode.id;
                 url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode+"&specificLockCode="+specificLockCode;
@@ -111,6 +112,7 @@ function getGatewayDetails(){
     return LI_gatewayProperty;
 }
 
+/*
 function createLockNode(){
     var LI_lock="";
     var lockLists;
@@ -133,4 +135,26 @@ function createLockNode(){
         LI_lock += "</li>";
     }
     return LI_lock;
+}
+*/
+function createLockNode(gatewayCode){
+    var html='';
+    var lockLists=json_theGateway.lockLists;
+    for(x in lockLists){
+        if('0'===lockLists[x].lockStatus){lockLists[x].lockStatus="无消息"}
+        if('1'===lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
+        if('2'===lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
+        if('3'===lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
+
+        html +=     '<a id="'+lockLists[x].lockCode+'" href="javascript:void(0);" class="lock item-link item-content item-gateway">';
+        html +=         '<div class="item-media"><img src="resources/images/inco-doorlock.png" width="44"></div>';
+        html +=         '<div class="item-inner item-none">';
+        html +=             '<div class="item-title-row">';
+        html +=                 '<div class="item-title">'+lockLists[x].lockName+'</div>';
+        html +=             '</div>';
+        html +=             '<div class="item-subtitle gateway-green">'+lockLists[x].lockStatus+'</div>';
+        html +=         '</div>';
+        html +=     '</a>';
+    }
+    return html;
 }

@@ -651,7 +651,7 @@ public class RecordServiceImpl implements IRecordService {
         LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+"}");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
+        rawData = HttpUtil.httpsPostToGateway(reqData);
 //        LOG.info("rawData : "+rawData);
 
         respSign();
@@ -704,7 +704,7 @@ public class RecordServiceImpl implements IRecordService {
         LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startDate:"+startDate+";endDate:"+endDate+"}");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
+        rawData = HttpUtil.httpsPostToGateway(reqData);
 //        LOG.info("rawData : "+rawData);
 
         respSign();

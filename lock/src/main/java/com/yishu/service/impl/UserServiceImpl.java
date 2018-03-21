@@ -3,11 +3,9 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yishu.pojo.Device;
-import com.yishu.pojo.GatewayLock;
-import com.yishu.pojo.Lock;
-import com.yishu.pojo.User;
+import com.yishu.pojo.*;
 import com.yishu.service.IDeviceService;
+import com.yishu.service.IRoomService;
 import com.yishu.service.IUserService;
 import com.yishu.util.DateUtil;
 import com.yishu.util.HttpUtil;
@@ -29,6 +27,8 @@ public class UserServiceImpl implements IUserService {
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
     private IDeviceService deviceService;
+    @Autowired
+    private IRoomService roomService;
 
     String timetag;
     /**
@@ -70,12 +70,8 @@ public class UserServiceImpl implements IUserService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+username+"\",\"ownerPassword\":\""+password+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
+        rawData= HttpUtil.httpsPostToOwner(reqData);
         LOG.info("rawData : "+rawData);
-//        if (LOG.isInfoEnabled()){
-//            LOG.info("reqData : "+reqData);
-//            LOG.info("rawData : "+rawData);
-//        }
         resultMap=new HashMap();
         try {
             rootNode = objectMapper.readTree(rawData);
@@ -97,7 +93,7 @@ public class UserServiceImpl implements IUserService {
         reqSign=304;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+phoneNumber+"\",\"grade\":"+grade+"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
+        rawData= HttpUtil.httpsPostToOwner(reqData);
         LOG.info("rawData : "+rawData);
         resultMap=new HashMap();
         try {
@@ -107,7 +103,8 @@ public class UserServiceImpl implements IUserService {
         }
         respSign=rootNode.path("result").asInt();
         LOG.info("respSign:"+String.valueOf(respSign));
-        List<User> subordinateList = new ArrayList<>();
+//        List<User> subordinateList = new ArrayList<>();
+        List<User> subordinateList = null;
         User subordinate = null;
         if (0==respSign){//获取下级用户成功.
             User user=new User();
@@ -117,6 +114,9 @@ public class UserServiceImpl implements IUserService {
 
             Iterator<JsonNode> iterator = subordinateListNode.elements();
             JsonNode subordinateNode=null;
+            if(iterator.hasNext()){
+                subordinateList = new ArrayList<>();
+            }
             while (iterator.hasNext()) {
                 subordinateNode = iterator.next();
                 subordinate=new User();
@@ -143,7 +143,7 @@ public class UserServiceImpl implements IUserService {
         reqSign=304;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+phoneNumber+"\",\"grade\":"+grade+"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
+        rawData= HttpUtil.httpsPostToOwner(reqData);
         LOG.info("rawData : "+rawData);
         resultMap=new HashMap();
         try {
@@ -153,13 +153,17 @@ public class UserServiceImpl implements IUserService {
         }
         respSign=rootNode.path("result").asInt();
         LOG.info("respSign:"+String.valueOf(respSign));
-        List<User> subordinateList = new ArrayList<>();
+//        List<User> subordinateList = new ArrayList<>();
+        List<User> subordinateList=null;
         User subordinate = null;
         if (0==respSign){//获取下级用户成功.
             JsonNode subordinateListNode=rootNode.path("juniorList");
 
             Iterator<JsonNode> iterator = subordinateListNode.elements();
             JsonNode subordinateNode=null;
+            if(iterator.hasNext()){
+                subordinateList = new ArrayList<>();
+            }
             while (iterator.hasNext()) {
                 subordinateNode = iterator.next();
                 subordinate=new User();
@@ -179,6 +183,9 @@ public class UserServiceImpl implements IUserService {
         String phoneNumber;
         int grade;
         List subordinateList = user.getSubordinateList();
+        if (null==subordinateList||subordinateList.isEmpty()){
+            return user;
+        }
         List newSubordinateList = new ArrayList();
         User subordinate = null;
         for (Object obj : subordinateList) {
@@ -276,6 +283,7 @@ public class UserServiceImpl implements IUserService {
                 for (Object y : subordinateList_10) {
                     subordinate_10 = (User) y;
                     phoneNumber = subordinate_10.getPhoneNumber();
+                    //设置subordinateList,对于等级10用户,代表的是网关和门锁的设备信息.
                     List deviceList=deviceService.getDeviceInfo(phoneNumber);
                     lockList=new ArrayList<>();
                     for (Object x : deviceList){
@@ -283,6 +291,11 @@ public class UserServiceImpl implements IUserService {
                         lockList.addAll(deviceService.convertDeviceToGatewayLock(device));
                     }
                     subordinate_10.setSubordinateList(lockList);
+                    //设置roomTypeContainRoomList
+                    List<RoomTypeContainRoom> roomTypeCRList =roomService.getRoom(phoneNumber);
+                    if(null!=roomTypeCRList){
+                        subordinate_10.setRoomTypeContainRoomList(roomTypeCRList);
+                    }
                 }
             }
         }
@@ -297,6 +310,11 @@ public class UserServiceImpl implements IUserService {
                     lockList.addAll(deviceService.convertDeviceToGatewayLock(device));
                 }
                 subordinate_10.setSubordinateList(lockList);
+                //设置roomTypeContainRoomList
+                List<RoomTypeContainRoom> roomTypeCRList =roomService.getRoom(phoneNumber);
+                if(null!=roomTypeCRList){
+                    subordinate_10.setRoomTypeContainRoomList(roomTypeCRList);
+                }
             }
         }
         if (10==grade){
@@ -307,6 +325,11 @@ public class UserServiceImpl implements IUserService {
                 lockList.addAll(deviceService.convertDeviceToGatewayLock(device));
             }
             user.setSubordinateList(lockList);
+            //设置roomTypeContainRoomList
+            List<RoomTypeContainRoom> roomTypeCRList =roomService.getRoom(phoneNumber);
+            if(null!=roomTypeCRList){
+                user.setRoomTypeContainRoomList(roomTypeCRList);
+            }
         }
         return user;
     }
@@ -316,7 +339,7 @@ public class UserServiceImpl implements IUserService {
         reqSign=303;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"juniorName\":\""+juniorName+"\",\"juniorLocation\":\""+juniorLocation+"\",\"grade\":"+grade+"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
+        rawData= HttpUtil.httpsPostToOwner(reqData);
         LOG.info("rawData : "+rawData);
         resultMap=new HashMap();
         try {
@@ -340,7 +363,7 @@ public class UserServiceImpl implements IUserService {
         reqSign=305;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"grade\":"+grade+"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToIp(HttpUtil.ownerIp,reqData);
+        rawData= HttpUtil.httpsPostToOwner(reqData);
         LOG.info("rawData : "+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);

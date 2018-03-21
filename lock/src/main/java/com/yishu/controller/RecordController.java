@@ -264,7 +264,7 @@ public class RecordController {
             e.printStackTrace();
         }
 //        logger.info("postdata:"+postdata);
-        getdata=HttpUtil.postData(postdata);
+        getdata=HttpUtil.httpsPostToGateway(postdata);
 //        logger.info("#DATA     ~ "+getdata);
 
         deviceStatusList=getDataListFromJson(getdata);
@@ -352,7 +352,6 @@ public class RecordController {
 
 //        String[] order=request.getParameterValues("order");
         String orderStr=request.getParameter("order");
-        System.out.println("order:"+orderStr);
         ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;
         List orderList=new ArrayList(2);

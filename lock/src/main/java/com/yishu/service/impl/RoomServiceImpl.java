@@ -32,7 +32,7 @@ public class RoomServiceImpl implements IRoomService {
         reqSign=2005;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -62,7 +62,7 @@ public class RoomServiceImpl implements IRoomService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomType\":\""+roomType+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -85,7 +85,7 @@ public class RoomServiceImpl implements IRoomService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\",\"newRoomType\":\""+newRoomType+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -108,7 +108,7 @@ public class RoomServiceImpl implements IRoomService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -131,7 +131,7 @@ public class RoomServiceImpl implements IRoomService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\",\"roomName\":\""+roomName+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -154,7 +154,7 @@ public class RoomServiceImpl implements IRoomService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\",\"roomId\":\""+roomId+"\",\"newLockCode\":\""+newLockCode+"\",\"newRoomName\":\""+newRoomName+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -177,7 +177,7 @@ public class RoomServiceImpl implements IRoomService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomId\":\""+roomId+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -200,7 +200,7 @@ public class RoomServiceImpl implements IRoomService {
         timetag= DateUtil.getFormat2TimetagStr();
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();

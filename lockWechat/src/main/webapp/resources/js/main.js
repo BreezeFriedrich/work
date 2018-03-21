@@ -31,14 +31,7 @@ $(function(){
     if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     }
-
-    if (""!==ownerPhoneNumber){
-        // $.toast('通过隐藏输入框获取手机号码:'+ownerPhoneNumber,3000);
-    }else {
-        $.toast('无法通过隐藏输入框获取手机号码');
-        ownerPhoneNumber=18255683932
-    }
-    ownerPhoneNumber=18255683932;
+    // ownerPhoneNumber=18255683932;
 
     $('.my-iphone').html(ownerPhoneNumber);
 
@@ -54,7 +47,7 @@ $(function(){
         success:function(data,status,xhr){
             $.hideIndicator();
             device = data;
-
+            /*
             var jsonStr='[{"gatewayCode":"GWH0081702000003","gatewayComment":"备注","gatewayLocation":"地址","gatewayName":"网关3_25","gatewayStatus":"6","lockLists":[' +
                 '{"lockCode":"LCN0011721000001","lockComment":"备注","lockLocation":"地址","lockName":"门锁1","lockPower":"0","lockStatus":"0"},' +
                 '{"lockCode":"LCN0011721000002","lockComment":"备注","lockLocation":"地址","lockName":"门锁2","lockPower":"0","lockStatus":"0"},' +
@@ -66,7 +59,7 @@ $(function(){
                     ']}' +
                 ']';
             device=eval(jsonStr);
-
+            */
         },
         error:function(xhr,errorType,error){
             $.hideIndicator();
@@ -175,6 +168,7 @@ function createLockNode(gatewayCode){
         }
     }
     for(x in lockLists){
+        if('0'===lockLists[x].lockStatus){lockLists[x].lockStatus="无消息"}
         if('1'===lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
         if('2'===lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
         if('3'===lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}

@@ -6,7 +6,7 @@
 <struts>
 
     <!-- 是否启用开发模式 -->
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
     <!-- 让struts2支持动态方法调用 -->
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
     <!-- Action名称中是否还是用斜线 -->

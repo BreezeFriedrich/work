@@ -63,7 +63,7 @@
     <div class="page-group">
       <div class="page page-current" id="page-index">
           <header class="bar bar-nav">
-              <a class="icon icon-home pull-left open-panel" data-panel=".panel-left"></a>
+              <a class="icon icon-menu pull-left open-panel" data-panel=".panel-left"></a>
               <h1 class="title">主页</h1>
           </header>
           <!-- 工具栏 -->
@@ -73,11 +73,11 @@
                   <span class="tab-label">首页</span>
               </a>
               <a class="tab-item external" href="jsp/room/roomStatus.jsp">
-                  <span class="icon icon-search"></span>
+                  <span class="icon icon-code"></span>
                   <span class="tab-label">房态</span>
               </a>
               <a class="tab-item external" href="jsp/gateway/gateway_addGateway.jsp">
-                  <span class="icon icon-edit"></span>
+                  <span class="icon icon-browser"></span>
                   <span class="tab-label">网关</span>
               </a>
               <a class="tab-item external" href="jsp/record/record.jsp">
@@ -148,12 +148,12 @@
         <div class="content-block content-block-my">
             <div class="my-yonghu">
                 <img src="resources/images/my-tx.png" class="my-tx">
-                <div class="my-iphone">18255683932</div>
+                <div class="my-iphone"></div>
             </div>
             <div class="list-block list-my">
                 <ul>
                     <li class="item-content">
-                        <div class="item-media"><i class="icon icon-my5"></i></div>
+                        <div class="item-media"><i class="icon icon-code"></i></div>
                         <div class="item-inner my-inner">
                             <div class="item-title">房态</div>
                         </div>
@@ -193,6 +193,6 @@
     <script type="text/javascript" src="resources/js/zepto.min.js"></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='resources/js/main.js' charset='utf-8'></script>
+    <script type='text/javascript' src='resources/js/main.js?v=1' charset='utf-8'></script>
 </body>
 </html>

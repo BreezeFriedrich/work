@@ -8,7 +8,6 @@ import com.yishu.pojo.Gateway;
 import com.yishu.pojo.GatewayLock;
 import com.yishu.pojo.Lock;
 import com.yishu.service.IDeviceService;
-import com.yishu.util.DataInject;
 import com.yishu.util.FilterList;
 import com.yishu.util.FilterListHook;
 import com.yishu.util.HttpUtil;
@@ -37,7 +36,7 @@ public class DeviceServiceImpl implements IDeviceService {
         LOG.info("sign:"+reqSign+" operation:getUserGatewayIp");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -69,7 +68,7 @@ public class DeviceServiceImpl implements IDeviceService {
         LOG.info("sign:"+reqSign+" operation:getDeviceInfo");
         reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();

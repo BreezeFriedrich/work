@@ -244,8 +244,7 @@ public class LoginController {
         String juniorPhoneNumber=request.getParameter("juniorPhoneNumber");
         String juniorName=request.getParameter("juniorName");
         String juniorLocation=request.getParameter("juniorLocation");
-        LOG.info("ownerPhoneNumber : "+ownerPhoneNumber);
-        LOG.info("grade : "+grade);
+        LOG.info("ownerPhoneNumber : "+ownerPhoneNumber+", grade : "+grade);
         LOG.info("juniorPhoneNumber : "+juniorPhoneNumber+" ; juniorName : "+juniorName+" ; juniorLocation : "+juniorLocation);
         Map resultMap=userService.addSubordinate(ownerPhoneNumber,juniorPhoneNumber,juniorName,juniorLocation,grade);
         int result=0;

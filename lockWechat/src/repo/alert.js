@@ -11,7 +11,6 @@ var endTime;
 var mescroll;
 var gatewayCode;
 var lockCode;
-var device;
 
 $(function () {
     $.showIndicator();
@@ -23,9 +22,7 @@ $(function () {
         data:{},
         dataType:'json',
         success:function(data,status,xhr){
-            // showAbnormalDevice(data);
-            device=data;
-            showDevices();
+            showAbnormalDevice(data);
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -38,102 +35,6 @@ $(function () {
 
     $.init();
 });
-function showDevices(){
-    $('.content ul:first').html(createGatewayNode);
-    $('.content li').on("click",'a.gateway',function (event) {
-        var $el=$(this);
-        if(0==$el.siblings().length){
-            $el.after(createLockNode($el.attr('id')));
-        }else {
-            $el.siblings().remove();
-        }
-        return false;
-    });
-}
-function createGatewayNode(){
-    var html='';
-    for(x in device) {
-        // if ('4' === device[x].gatewayStatus) {
-        //     device[x].gatewayStatus = "正常"
-        // }
-        // if ('5' === device[x].gatewayStatus) {
-        //     device[x].gatewayStatus = "异常"
-        // }
-        // if ('6' === device[x].gatewayStatus) {
-        //     device[x].gatewayStatus = "连接失败"
-        // }
-        html += '<li>';
-        html +=     '<a id="'+device[x].gatewayCode+'" href="javascript:void(0);" class="gateway item-content item-gateway gateway-linegreen">';
-        html +=         '<div class="item-media"><img src="resources/images/inco-gateway.png" width="44"></div>';
-        html +=         '<div class="item-inner">';
-        html +=             '<div class="item-title-row">';
-        html +=                 '<div class="item-title">'+device[x].gatewayName+'</div>';
-        html +=             '</div>';
-        html +=             '<div class="item-subtitle gateway-red">';
-        // +device[x].gatewayStatus+
-        if('4'===device[x].gatewayStatus){
-            html += 		"<p style='color: #00B83F;'>"+"正常"+"</p><a href='#' class='icon icon-down'></a>";
-        }else if('5'===device[x].gatewayStatus){
-            html += 		"<p style='color: RED;'>"+"异常"+"</p><a href='#'><img src='resources/img/caution.png' style='max-width: 30px;max-height: 30px;'/></a>";
-        }
-        else if('6'===device[x].gatewayStatus){
-            html += 		"<p style='color: RED;'>"+"连接失败"+"</p><a href='#'><img src='resources/img/caution.png' style='max-width: 30px;max-height: 30px;'/></a>";
-        }
-        html +=             '</div>';
-        html +=         '</div>';
-        html +=     '</a>';
-        html += '</li>';
-    }
-    return html;
-}
-
-function createLockNode(gatewayCode){
-    var html='';
-    for(x in device){
-        if(device[x].gatewayCode===gatewayCode){
-            lockLists=device[x].lockLists;
-            break;
-        }
-    }
-    for(x in lockLists){
-        // if('0'===lockLists[x].lockStatus){lockLists[x].lockStatus="无消息"}
-        // if('1'===lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
-        // if('2'===lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
-        // if('3'===lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
-
-        html +=     '<a id="'+lockLists[x].lockCode+'" href="javascript:void(0);" class="lock item-link item-content item-gateway">';
-        html +=         '<div class="item-media"><img src="resources/images/inco-doorlock.png" width="44"></div>';
-        html +=         '<div class="item-inner item-none">';
-        html +=             '<div class="item-title-row">';
-        html +=                 '<div class="item-title">'+lockLists[x].lockName+'</div>';
-        html +=             '</div>';
-        html +=             '<div class="item-subtitle gateway-green">';
-        // +lockLists[x].lockStatus+;
-        // 门锁电量lockPower(4-正常,5-不足)
-        if('4'===lockLists[x].lockPower){
-            html += 		"<p style='color: RED;'>"+"电量充足"+"</p><a href='#'><img src='resources/img/battery80.png' style='max-width: 30px;max-height: 30px;'/></a>";
-        }else{
-            html += 		"<p style='color: RED;'>"+"电量不足"+"</p><a href='#'><img src='resources/img/battery20.png' style='max-width: 30px;max-height: 30px;'/></a>";
-        }
-        // 门锁状态lockStatus
-        if('0'===lockLists[x].lockStatus){
-            html += 		"<p style='color:RED;'>"+"无信息"+"</p><a href='#'><img src='resources/img/caution.png' style='max-width: 30px;max-height: 30px;'/></a>";
-        }else if('1'===lockLists[x].lockStatus){
-            html += 		"<p style='color:#00B83F;'>"+"连接正常"+"</p><a href='#' class='icon icon-down'></a>";
-        }else if('2'===lockLists[x].lockStatus){
-            html += 		"<p style='color:RED;'>"+"工作异常"+"</p><a href='#'><img src='resources/img/caution.png' style='max-width: 30px;max-height: 30px;'/></a>";
-        }
-        else if('3'===lockLists[x].lockStatus){
-            html += 		"<p style='color:RED;'>"+"连接失败"+"</p><a href='#'><img src='resources/img/caution.png' style='max-width: 30px;max-height: 30px;'/></a>";
-        }
-        html +=             '</div>';
-        html +=         '</div>';
-        html +=     '</a>';
-    }
-    return html;
-}
-
-/*
 function showAbnormalDevice(data){
     var UL_lockList=document.createElement('ul');
     UL_lockList.id="UL_lockList";
@@ -191,6 +92,7 @@ function createGatewayNode(json){
         else if('6'===json[x].gatewayStatus){
             LI_gateway += 		"<p style='color: RED;'>"+"连接失败"+"</p><a href='#'><img src='resources/img/caution.png' style='max-width: 30px;max-height: 30px;'/></a>";
         }
+
         LI_gateway += 	"</div>";
         LI_gateway += "</li>"+"<br/>";
     }
@@ -239,4 +141,3 @@ function createLockNode(gatewayCode,json){
     }
     return LI_lock;
 }
-// */

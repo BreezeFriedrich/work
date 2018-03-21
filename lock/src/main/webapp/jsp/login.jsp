@@ -96,7 +96,7 @@
                 </form>
             </div>
         </div>
-        <div class="text-center out-links"><a href="#">&copy; 2017-2018 南京亿数信息科技有限公司 版权所有</a></div>
+        <div class="text-center out-links"><a href="http://www.yishutech.com">&copy;2015-2016 南京亿数信息科技有限公司 版权所有</a></div>
     </div>
 
 </div>

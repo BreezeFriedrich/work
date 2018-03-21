@@ -355,7 +355,7 @@ $(document).ready(function(){
 
     $('#submit-addRoom').click(function () {
         var roomTypeId=$('#select-roomType').val();
-        var gatewayCode=$('#select-lock').attr('gatewayCode');
+        var gatewayCode=$('#select-lock').find("option:selected").attr('gatewayCode');
         var lockCode=$('#select-lock').val();
         var roomName = $("form#form-addRoom input[name='roomName']").val();
         params = {

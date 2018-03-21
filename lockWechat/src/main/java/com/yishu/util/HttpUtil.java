@@ -25,76 +25,14 @@ import java.security.cert.X509Certificate;
 import java.util.Date;
 import java.util.Map;
 
-public class HttpUtil
-{
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("HttpUtil");
+public class HttpUtil{
 
-    public final static String hostName="lock.qixutech.com";
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("HttpUtil");
 
-    public static String httpToGateway(String urlStr){
-        HttpURLConnection connection;
-        BufferedReader in=null;
-        StringBuffer stringBuffer = new StringBuffer();
-        try {
-            String result;
-            URL url = new URL(urlStr);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-//            connection.setRequestProperty("Accept","Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
-//            connection.setRequestProperty("WechatUser-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
-            connection.setRequestProperty("WechatUser-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
+    public final static String qixuHost="lock.qixutech.com";
 
-            logger.info("ContentType : "+connection.getContentType());
-            logger.info("permission : "+connection.getPermission());
-            logger.info("ResponseMessage : "+connection.getResponseMessage());
-            int responseCode = connection.getResponseCode();
-            logger.info("HTTP连接 responseCode : " + responseCode);
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                logger.info("responseCode=200,HTTP连接正常");
-                in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String inputLine = null;
-                while ((inputLine = in.readLine()) != null)
-                {
-                    stringBuffer.append(inputLine);
-                }
-            } else {
-//                logger.info("Can not access the website");
-//                logger.info("responseCode="+responseCode+",HTTP连接异常");
-                Map map=connection.getHeaderFields();
-                for (Object key : map.keySet()) {
-                    logger.info("key= "+ key + " and value= " + map.get(key));
-                }
-
-                in = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-                String inputLine = null;
-                while ((inputLine = in.readLine()) != null)
-                {
-                    stringBuffer.append(inputLine);
-                }
-            }
-        } catch (MalformedURLException e) {
-            logger.info("Wrong URL");
-        } catch (IOException e) {
-            logger.info("Can not connect");
-        }finally {
-            if (null!=in){
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            logger.error("HttpUtil.httpToGateway("+urlStr+")返回值: "+stringBuffer.toString());
-            return stringBuffer.toString();
-        }
-    }
-
-    public static String getQixuIp(){
-        return "43.254.149.28";
-//        return "112.25.233.122";
-        /*
+    public static String getIpFromHost(String hostName){
+//        return "43.254.149.28";
         try {
             InetAddress inetAddress=InetAddress.getByName(hostName);
             return inetAddress.getHostAddress().toString();
@@ -102,12 +40,11 @@ public class HttpUtil
             e.printStackTrace();
         }
         return null;
-        */
     }
 
     public static String httpsPostToQixu(String data){
 //        long time1=new Date().getTime();
-        String qixuIp=HttpUtil.getQixuIp();
+        String qixuIp=HttpUtil.getIpFromHost(qixuHost);
         URL url = null;
         try {
             url=new URL("https://"+qixuIp+":2017/");
@@ -116,12 +53,12 @@ public class HttpUtil
         }
 //        return HttpUtil.doPost(url.toString(),data);
         long time2=new Date().getTime();
-//        logger.warn("getQixuIp     用时: "+(time2-time1));
+//        LOG.warn("getQixuIp     用时: "+(time2-time1));
         String result=HttpUtil.httpsPostToIp(qixuIp,data);
         long time3=new Date().getTime();
-        logger.warn("httpsPostToIp 用时: "+(time3-time2));
+        LOG.warn("httpsPostToIp 用时: "+(time3-time2));
 
-//        logger.info("HTTPS RESPONSE : "+result);
+//        LOG.info("HTTPS RESPONSE : "+result);
         return result;
     }
 
@@ -130,8 +67,7 @@ public class HttpUtil
      * @param url
      * @return
      */
-    public static String doGet(String url)
-    {
+    public static String doGet(String url){
         String result = null;
         try{
             // 根据地址获取请求
@@ -141,13 +77,10 @@ public class HttpUtil
             // 通过请求对象获取响应对象
             HttpResponse response = httpClient.execute(request);
             // 判断网络连接状态码是否正常(0--200都数正常)
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
-            {
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
                 result = EntityUtils.toString(response.getEntity());
             }
-        }
-        catch (Exception e)
-        {
+        }catch (Exception e){
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -158,7 +91,9 @@ public class HttpUtil
      * 向指定ip地址发起https连接. By ChengXinLang
      */
     public static String httpsPostToIp(String ip,String data){
-        System.out.println(ip);
+        if(LOG.isInfoEnabled()){
+            LOG.info("{-->>--ip:"+ip+"-->>--,data:"+data+"}");
+        }
         URL url;
         HttpsURLConnection httpsURLConnection=null;
         OutputStream outputStream=null;
@@ -188,7 +123,7 @@ public class HttpUtil
             //https-http)
 
             url=new URL("https://"+ip+":2017/");
-            System.out.println("Https");
+//            System.out.println("Https");
             httpsURLConnection=(HttpsURLConnection)url.openConnection();
 
             httpsURLConnection.setSSLSocketFactory(socketFactory);//https-http
@@ -259,32 +194,80 @@ public class HttpUtil
                     throw new Exception("https连接返回空串");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    logger.error(e.getMessage());
+                    LOG.error(e.getMessage());
                 }
             }
         }
         return null;
     }
 
+    /*
+    //连接局域网内的网关,当跨域访问时无效所以废弃.
+    public static String httpToGateway(String urlStr){
+        HttpURLConnection connection;
+        BufferedReader in=null;
+        StringBuffer stringBuffer = new StringBuffer();
+        try {
+            String result;
+            URL url = new URL(urlStr);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("WechatUser-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko");
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+
+            LOG.info("ContentType : "+connection.getContentType());
+            LOG.info("permission : "+connection.getPermission());
+            LOG.info("ResponseMessage : "+connection.getResponseMessage());
+            int responseCode = connection.getResponseCode();
+            LOG.info("HTTP连接 responseCode : " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                LOG.info("responseCode=200,HTTP连接正常");
+                in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine = null;
+                while ((inputLine = in.readLine()) != null)
+                {
+                    stringBuffer.append(inputLine);
+                }
+            } else {
+//                LOG.info("Can not access the website");
+//                LOG.info("responseCode="+responseCode+",HTTP连接异常");
+                Map map=connection.getHeaderFields();
+                for (Object key : map.keySet()) {
+                    LOG.info("key= "+ key + " and value= " + map.get(key));
+                }
+
+                in = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                String inputLine = null;
+                while ((inputLine = in.readLine()) != null)
+                {
+                    stringBuffer.append(inputLine);
+                }
+            }
+        } catch (MalformedURLException e) {
+            LOG.info("Wrong URL");
+        } catch (IOException e) {
+            LOG.info("Can not connect");
+        }finally {
+            if (null!=in){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            LOG.error("HttpUtil.httpToGateway("+urlStr+")返回值: "+stringBuffer.toString());
+            return stringBuffer.toString();
+        }
+    }
+    */
 }
 
 /**
  * 证书信任管理器,用于https请求
  */
-class MyTrustManager implements X509TrustManager
-{
-    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException
-    {
-
-    }
-
-    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException
-    {
-
-    }
-
-    public X509Certificate[] getAcceptedIssuers()
-    {
-        return null;
-    }
+class MyTrustManager implements X509TrustManager{
+    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException{}
+    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException{}
+    public X509Certificate[] getAcceptedIssuers(){return null;}
 }

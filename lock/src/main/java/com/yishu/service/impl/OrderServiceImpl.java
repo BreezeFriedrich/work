@@ -36,7 +36,7 @@ public class OrderServiceImpl implements IOrderService{
         reqSign=2002;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();
@@ -82,7 +82,7 @@ public class OrderServiceImpl implements IOrderService{
             e.printStackTrace();
         }
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
         JsonNode rootNode= null;
         try {
@@ -118,7 +118,7 @@ public class OrderServiceImpl implements IOrderService{
             e.printStackTrace();
         }
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         JsonNode rootNode= null;
@@ -139,7 +139,7 @@ public class OrderServiceImpl implements IOrderService{
         reqSign=2004;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"orderNumber\":\""+orderNumber+"\"}";
         LOG.info("reqData : "+reqData);
-        rawData= HttpUtil.httpsPostToQixu(reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
 
         ObjectMapper objectMapper=new ObjectMapper();

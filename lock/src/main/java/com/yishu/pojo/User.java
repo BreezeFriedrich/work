@@ -13,6 +13,7 @@ public class User<X> {
     private String name;
     private String location;
     private List<X> subordinateList;
+    private List<RoomTypeContainRoom> roomTypeContainRoomList;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -52,5 +53,13 @@ public class User<X> {
 
     public void setSubordinateList(List<X> subordinateList) {
         this.subordinateList = subordinateList;
+    }
+
+    public List<RoomTypeContainRoom> getRoomTypeContainRoomList() {
+        return roomTypeContainRoomList;
+    }
+
+    public void setRoomTypeContainRoomList(List<RoomTypeContainRoom> roomTypeContainRoomList) {
+        this.roomTypeContainRoomList = roomTypeContainRoomList;
     }
 }
