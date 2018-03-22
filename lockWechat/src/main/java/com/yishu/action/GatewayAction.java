@@ -6,8 +6,6 @@
 package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.yishu.pojo.Device;
-import com.yishu.service.IDeviceService;
 import com.yishu.service.IGatewayService;
 import com.yishu.util.HttpUtil;
 import org.apache.struts2.ServletActionContext;
@@ -16,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,9 +23,9 @@ import java.util.Map;
  */
 public class GatewayAction extends ActionSupport {
     public GatewayAction() {
-        logger.info(">>>Initialization GatewayAction......................................");
+        LOG.info(">>>Initialization GatewayAction......................................");
     }
-    private org.slf4j.Logger logger= LoggerFactory.getLogger("GatewayAction");
+    private org.slf4j.Logger LOG = LoggerFactory.getLogger("GatewayAction");
 
     @Autowired
     private IGatewayService gatewayService;
@@ -111,16 +107,17 @@ public class GatewayAction extends ActionSupport {
 //    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
 
     public String getGatewayIp(){
-        logger.info("-->>-- gateway/getGatewayIp.action -->>--");
+        LOG.info("-->>-- gateway/getGatewayIp.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        jsonResult=gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+//        jsonResult=gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
+        jsonResult= HttpUtil.getGatewayIp(ownerPhoneNumber,gatewayCode);
         return "json";
     }
 
     public String hasGatewayAdded(){
-        logger.info("-->>-- gateway/hasGatewayAdded.action -->>--");
+        LOG.info("-->>-- gateway/hasGatewayAdded.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -130,7 +127,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String getGatewayLANIp(){
-        logger.info("-->>-- gateway/getGatewayLANIp.action -->>--");
+        LOG.info("-->>-- gateway/getGatewayLANIp.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -140,7 +137,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String isCorrectGatewayVerificationCode(){
-        logger.info("-->>-- gateway/isCorrectGatewayVerificationCode.action -->>--");
+        LOG.info("-->>-- gateway/isCorrectGatewayVerificationCode.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -150,19 +147,19 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String registerGatewayInfo(){
-        logger.info("-->>-- gateway/registerGatewayInfo.action -->>--");
-        logger.info("ownerPhoneNumber-before:"+ownerPhoneNumber);
+        LOG.info("-->>-- gateway/registerGatewayInfo.action -->>--");
+        LOG.info("ownerPhoneNumber-before:"+ownerPhoneNumber);
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        logger.info("ownerPhoneNumber-after:"+ownerPhoneNumber);
+        LOG.info("ownerPhoneNumber-after:"+ownerPhoneNumber);
         boolean resultBoolean=gatewayService.registerGatewayInfo(ownerPhoneNumber,gatewayCode,gatewayName,gatewayLocation,gatewayComment,opCode);
         jsonResult=resultBoolean;
         return "json";
     }
 
     public String modifyGatewayInfo(){
-        logger.info("-->>-- gateway/modifyGatewayInfo.action -->>--");
+        LOG.info("-->>-- gateway/modifyGatewayInfo.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -172,7 +169,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String deleteGateway(){
-        logger.info("-->>-- gateway/deleteGateway.action -->>--");
+        LOG.info("-->>-- gateway/deleteGateway.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -181,11 +178,13 @@ public class GatewayAction extends ActionSupport {
         return "json";
     }
 
+    /*访问局域网内,跨域无效
     public String getVerificationCode(){
-        logger.info("-->>-- gateway/getVerificationCode.action -->>--");
+        LOG.info("-->>-- gateway/getVerificationCode.action -->>--");
         String result=HttpUtil.httpToGateway(url);
-        logger.info("getVerificationCode,httpToGateway("+url+")返回结果为："+result);
+        LOG.info("getVerificationCode,httpToGateway("+url+")返回结果为："+result);
         jsonResult=result.substring(result.indexOf("<h1>")+4,result.indexOf("</h1>"));
         return "json";
     }
+    */
 }

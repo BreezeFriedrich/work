@@ -27,7 +27,7 @@ import java.util.*;
  */
 @Service("recordService")
 public class RecordServiceImpl implements IRecordService {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(RecordServiceImpl.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordServiceImpl");
     @Autowired
     private IDeviceService deviceService;
     int reqSign;
@@ -702,7 +702,7 @@ public class RecordServiceImpl implements IRecordService {
         String startTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(startTimeL));
         String endTimeReqParam= DateUtil.yyyyMMddHHmm.format(new Date(endTimeL));
         LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startDate:"+startDate+";endDate:"+endDate+"}");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
         LOG.info("reqData : "+reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData);
 //        LOG.info("rawData : "+rawData);

@@ -4,12 +4,6 @@ var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var landlord;
 var locks;
 var lock;
-var roomTypeCRs;
-var roomTypeCR;
-var roomTypes;
-var roomType;
-var rooms;
-var room;
 var dateArr=new Array;
 var dateStrArr=new Array;
 var theadDateStrArr=new Array;
@@ -336,20 +330,19 @@ function fillTable() {
     //表格数据行-添加数据
     fixedTable.addRow(function (){
         html = '';
-        roomTypeCRs=landlord.roomTypeContainRoomList;
-        for(var k in roomTypeCRs){
-            roomTypeCR=roomTypeCRs[k];
-            rooms=roomTypeCR.roomInfoList;
-            for(var j in rooms){
-                room=rooms[j];
-                html += '<tr roomtypeid="'+roomTypeCR.roomTypeId+'" roomid="'+room.roomId+'" gatewayid="'+room.gatewayCode+'" lockid="'+room.lockCode+'">';
-                html += '<td><div class="table-hight1 table-cell table-width200 table-butstyle">'+room.roomName+'</div></td>';
+        (function () {
+            locks=landlord.subordinateList;
+            for(var j in locks){
+                lock=locks[j];
+                html += '<tr gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
+                html += '<td class="table-width210"><div class="table-hight1 table-cell table-width210 table-butstyle">'+lock.lockName+'</div></td>';
                 for (var i=0; i<dateArr.length; i++){
-                    html += '<td><div class="table-hight1 table-width140"></div></td>';
+                    // html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
+                    html += '<td class="table-width140"><div class="cd table-hight1 table-width140"></div></td>';
                 }
                 html += '</tr>';
             }
-        }
+        })();
         return html;
     });
 }
@@ -357,24 +350,6 @@ function drawFixedColumn(date) {
     //表格标题栏时间控件label值.
     if($('.current-date label').length>1){
         $('.current-date label')[1].innerText = getDateStr(date);
-    }
-
-    var DIV;
-    DIV=$(".fixed-table_fixed-left tbody tr td div");
-    DIV.removeClass("table-width200");
-    DIV.addClass("table-width100");
-    var roomTypeLength;
-    var lineHeight;
-    var HTML_landlord;
-    var TR_fixedlefttbody;
-    roomTypeCRs=landlord.roomTypeContainRoomList;
-    for(var i in roomTypeCRs) {
-        roomTypeCR = roomTypeCRs[i];
-        roomTypeLength = roomTypeCR.roomInfoList.length;
-        lineHeight=44*roomTypeLength;
-        HTML_landlord='<td rowspan="'+roomTypeLength+'"><div style="line-height: '+lineHeight+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
-        TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[roomtypeid="+roomTypeCR.roomTypeId+"]");
-        TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
     }
 }
 function renderRow(landlord,date) {
@@ -482,15 +457,15 @@ $(document).ready(function () {
 
     var fields=new Array;
     fields[0]={
-        width: "200",
-        field: '<th><div class="table-header-hight58 table-cell table-width200 table-butstyle">'+html+'</div></th>',
+        width: "210",
+        field: '<th class="table-width210"><div class="table-header-hight58 table-cell table-width210 table-butstyle">'+html+'</div></th>',
         htmlDom: true,
         fixed: true
     };
     for(var i=1;i<32;i++){
         fields[i]={
             width: "140px",
-            field: '<th><div class="table-header-hight58 table-cell table-width140 table-butstyle"></div></th>',
+            field: '<th class="table-width140"><div class="table-header-hight58 table-cell table-width140 table-butstyle"></div></th>',
             htmlDom: true,
             fixed: false
         }

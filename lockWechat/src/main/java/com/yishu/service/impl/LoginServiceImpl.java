@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Service("loginService")
 public class LoginServiceImpl implements ILoginService{
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("LoginServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("LoginServiceImpl");
 
     String timetag;
     int reqSign;
@@ -51,15 +51,10 @@ public class LoginServiceImpl implements ILoginService{
     public Map openidExist(String openid) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=201;
-//        logger.info("sign:"+reqSign+" operation:openidExist");
         reqData="{\"sign\":"+reqSign+",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
-        logger.info("reqData:"+reqData);
-        Map resultMap=new HashMap();
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info(rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -67,11 +62,11 @@ public class LoginServiceImpl implements ILoginService{
         }
         //字段result: -1 查询失败 ,0 openid存在 ,1 openid不存在
         respSign=rootNode.path("result").asInt();
+        Map resultMap=new HashMap();
         resultMap.put("result",respSign);
-//        logger.info("respSign:"+String.valueOf(respSign));
         String ownerPhoneNumber=rootNode.path("ownerPhoneNumber").asText();
         resultMap.put("ownerPhoneNumber",ownerPhoneNumber);
-        logger.info("ownerPhoneNumber",ownerPhoneNumber);
+        LOG.info("ownerPhoneNumber",ownerPhoneNumber);
 
         return resultMap;
     }
@@ -88,15 +83,10 @@ public class LoginServiceImpl implements ILoginService{
     public int bindOpenidToPhone(String openid, String ownerPhoneNumber, String ownerPassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=202;
-        logger.info("sign:"+reqSign+" operation:bindOpenidToPhone");
-//        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"openid\":\""+openid+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"timetag\":\""+timetag+"\"}";
-        Map resultMap=new HashMap();
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info(rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -120,15 +110,10 @@ public class LoginServiceImpl implements ILoginService{
     public boolean register(String ownerName, String ownerPhoneNumber, String ownerPassword, String openid) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=203;
-        logger.info("sign:"+reqSign+" operation:register");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerName\":\""+ownerName+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"ownerPassword\":\""+ownerPassword+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
-        Map resultMap=new HashMap();
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info(rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {

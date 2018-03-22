@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Service("accountService")
 public class AccountServiceImpl implements IAccountService {
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AccountServiceImpl.class);
 
     String timetag;
     int reqSign;
@@ -45,15 +45,10 @@ public class AccountServiceImpl implements IAccountService {
     public boolean modifyNickname(String ownerPhoneNumber, String newName) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=24;
-        logger.info("sign:"+reqSign+" operation:modifyNickname");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"newName\":\""+newName+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"newName\":\""+newName+"\",\"timetag\":\""+timetag+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -68,15 +63,10 @@ public class AccountServiceImpl implements IAccountService {
     public boolean modifyPassword(String ownerPhoneNumber, String newPassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=23;
-        logger.info("sign:"+reqSign+" operation:modifyPassword");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"newPassword\":\""+newPassword+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"newPassword\":\""+newPassword+"\",\"timetag\":\""+timetag+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -91,15 +81,10 @@ public class AccountServiceImpl implements IAccountService {
     public Map queryGesturePassword(String ownerPhoneNumber) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=32;
-        logger.info("sign:"+reqSign+" operation:queryGesturePassword");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -111,7 +96,7 @@ public class AccountServiceImpl implements IAccountService {
         Map resultMap=new HashMap();
         resultMap.put("result",respSign);
         resultMap.put("gesturePassword",gesturePassword);
-        logger.info("return resultMap:"+resultMap);
+        LOG.info("return resultMap:"+resultMap);
         return resultMap;
     }
 
@@ -125,15 +110,10 @@ public class AccountServiceImpl implements IAccountService {
     public Map validGesturePassword(String ownerPhoneNumber, String gesturePassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=32;
-        logger.info("sign:"+reqSign+" operation:validGesturePassword");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -161,7 +141,7 @@ public class AccountServiceImpl implements IAccountService {
             resultMap.put("result",3);
             resultMap.put("msg","授权码获取结果未定义");
         }
-        logger.info("resultMap:"+resultMap);
+        LOG.info("resultMap:"+resultMap);
         return resultMap;
     }
     /*
@@ -169,16 +149,12 @@ public class AccountServiceImpl implements IAccountService {
     public boolean validGesturePassword(String ownerPhoneNumber, String gesturePassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=32;
-        logger.info("sign:"+reqSign+" operation:validGesturePassword");
 //        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
         Map resultMap=new HashMap();
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -192,7 +168,7 @@ public class AccountServiceImpl implements IAccountService {
             return realGesturePassword.equals(gesturePassword);
         }else if(2==respSign){
             // 2 未设置手势密码
-            logger.info("sign:"+reqSign+" operation:获取开锁授权密码"+" result:"+respSign+" 结果:未设置手势密码");
+            LOG.info("sign:"+reqSign+" operation:获取开锁授权密码"+" result:"+respSign+" 结果:未设置手势密码");
             return true;
         }
         return false;
@@ -203,15 +179,10 @@ public class AccountServiceImpl implements IAccountService {
     public boolean authGesturePassword(String ownerPhoneNumber, String gesturePassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=31;
-        logger.info("sign:"+reqSign+" operation:authGesturePassword");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"authPassword\":\""+gesturePassword+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"authPassword\":\""+gesturePassword+"\",\"timetag\":\""+timetag+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -227,15 +198,11 @@ public class AccountServiceImpl implements IAccountService {
     public Map queryGesturePassword(String ownerPhoneNumber) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=28;
-        logger.info("sign:"+reqSign+" operation:queryGesturePassword");
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
         Map resultMap=new HashMap();
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -246,7 +213,7 @@ public class AccountServiceImpl implements IAccountService {
         String gesturePassword=rootNode.path("gesturePassword").asText();
         resultMap.put("result",respSign);
         resultMap.put("gesturePassword",gesturePassword);
-        logger.info("return resultMap:"+resultMap);
+        LOG.info("return resultMap:"+resultMap);
         return resultMap;
     }
 
@@ -254,11 +221,10 @@ public class AccountServiceImpl implements IAccountService {
     public boolean authGesturePassword(String ownerPhoneNumber, String gesturePassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=29;
-        logger.info("sign:"+reqSign+" operation:authGesturePassword");
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gesturePassword\":\""+gesturePassword+"\",\"timetag\":\""+timetag+"\"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info("rawData:"+rawData);
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
 //        if ("".equals(rawData)) {
 //            return null;
 //        }
@@ -281,15 +247,10 @@ public class AccountServiceImpl implements IAccountService {
     public Map wechatLogin(String openid) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=201;
-//        logger.info("sign:"+reqSign+" operation:wechatLogin");
-//        reqData="{\"sign\":\""+reqSign+"\",\"openid\":\""+openid+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"openid\":"+openid+",\"timetag\":"+timetag+"}";
-        logger.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-        logger.info("rawData:"+rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -303,7 +264,7 @@ public class AccountServiceImpl implements IAccountService {
         resultMap.put("ownerPhoneNumber",ownerPhoneNumber);
         String ownerName=rootNode.path("ownerName").asText();
         resultMap.put("ownerName",ownerName);
-        logger.info("resultMap",resultMap);
+        LOG.info("resultMap",resultMap);
 
         return resultMap;
     }

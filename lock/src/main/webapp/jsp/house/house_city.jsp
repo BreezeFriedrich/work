@@ -205,7 +205,7 @@
 
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/house_city.js?v=6"></script>
+<script type="text/javascript" src="resources/js/house_city.js?v=13"></script>
 </body>
 
 </html>

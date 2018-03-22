@@ -45,8 +45,6 @@ public class LoginController {
         }
         LOG.info("username : "+username);
         LOG.info("password : "+password);
-//        System.out.println("username : "+username);
-//        System.out.println("password : "+password);
         Map loginResultMap = userService.checkLogin(username,password);
         boolean isSuccess = false;
         if (0==(int)loginResultMap.get("result")){

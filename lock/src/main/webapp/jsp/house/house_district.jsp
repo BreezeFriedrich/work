@@ -195,7 +195,7 @@
 
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/house_district.js"></script>
+<script type="text/javascript" src="resources/js/house_district.js?v=5"></script>
 </body>
 
 </html>

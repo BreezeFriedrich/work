@@ -37,20 +37,16 @@ public class RoomServiceImpl implements IRoomService {
 
         ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;
-        try {
-            rootNode = objectMapper.readTree(rawData);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int respSign=rootNode.path("result").asInt();
-        if (0!=respSign){//请求数据失败
-            return null;
-        }
-        JsonNode roomListNode=rootNode.path("roomList");
         List<RoomTypeContainRoom> roomTypeCRList = null;
         try {
+            rootNode = objectMapper.readTree(rawData);
+            int respSign=rootNode.path("result").asInt();
+            if (0!=respSign){//请求数据失败
+                return null;
+            }
+            JsonNode roomListNode=rootNode.path("roomList");
             roomTypeCRList =objectMapper.readValue(roomListNode.traverse(), new TypeReference<List<RoomTypeContainRoom>>(){});
-        } catch (IOException e) {
+        } catch (IOException|NullPointerException e) {
             e.printStackTrace();
         }
         return roomTypeCRList;

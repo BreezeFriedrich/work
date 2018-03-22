@@ -32,10 +32,8 @@ import java.util.List;
  */
 @Service("unlockService")
 public class UnlockServiceImpl implements IUnlockService {
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("UnlockServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("UnlockServiceImpl");
 
-    @Autowired
-    private IGatewayService gatewayService;
     @Autowired
     private ILockService lockService;
 
@@ -76,7 +74,6 @@ public class UnlockServiceImpl implements IUnlockService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
         if(0 == respSign){
             return false;
         }
@@ -90,17 +87,12 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public List getUnlockId(String ownerPhoneNumber, String gatewayCode, String lockCode) {
-        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
-        if (null == gatewayIp) {
-            return null;
-        }
-
         reqSign=17;
         timetag= DateUtil.getFormat2TimetagStr();
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
-        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        logger.info(rawData);
+        LOG.info("reqData:"+reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
+        LOG.info("rawData:"+rawData);
 
         if (respFail()){//请求数据失败
             return null;
@@ -126,28 +118,19 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public boolean authUnlockById(String ownerPhoneNumber, String gatewayCode, String lockCode, String name, String cardNumb, String dnCode, String startTime, String endTime) {
-        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
-        if (null == gatewayIp) {
-            return false;
-        }
-
         reqSign=18;
         timetag= DateUtil.getFormat2TimetagStr();
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-//        logger.info("startTime-1 : "+startTime);
-//        logger.info("endTime-1   : "+endTime);
         try {
             startTime=DateUtil.format1tillminStringToformat2tillminString(startTime);
             endTime=DateUtil.format1tillminStringToformat2tillminString(endTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        logger.info("startTime-2 : "+startTime);
-//        logger.info("endTime-2   : "+endTime);
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\""+dnCode+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        logger.info(rawData);
+        LOG.info("reqData:"+reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
+        LOG.info("rawData:"+rawData);
 
         if (respFail()){
             return false;
@@ -170,10 +153,10 @@ public class UnlockServiceImpl implements IUnlockService {
 
         reqSign=19;
         timetag= DateUtil.getFormat2TimetagStr();
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"cardNumb\":\""+cardNumb+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"cardNumb\":\""+cardNumb+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
+        LOG.info("reqData:"+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        logger.info(rawData);
+        LOG.info("rawData:"+rawData);
 
         if (respFail()){
             return false;
@@ -189,17 +172,12 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public UnlockPwds getUnlockPwd(String ownerPhoneNumber, String gatewayCode, String lockCode) {
-        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
-        if (null == gatewayIp) {
-            return null;
-        }
-
         reqSign=20;
         timetag= DateUtil.getFormat2TimetagStr();
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
-        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        logger.info(rawData);
+        LOG.info("reqData:"+reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
+        LOG.info("rawData:"+rawData);
 
         if (respFail()){//请求数据失败
             return null;
@@ -227,28 +205,19 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public boolean authUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime) {
-        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
-        if (null == gatewayIp) {
-            return false;
-        }
-
         reqSign=21;
         timetag= DateUtil.getFormat2TimetagStr();
         serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-        logger.info("startTime-1 : "+startTime);
-        logger.info("endTime-1   : "+endTime);
         try {
             startTime=DateUtil.format1tillminStringToformat2tillminString(startTime);
             endTime=DateUtil.format1tillminStringToformat2tillminString(endTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        logger.info("startTime-2 : "+startTime);
-        logger.info("endTime-2   : "+endTime);
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"password\":\""+password+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"password\":\""+password+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        logger.info(rawData);
+        LOG.info("reqData:"+reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
+        LOG.info("rawData:"+rawData);
 
         if (respFail()){
             return false;
@@ -265,18 +234,12 @@ public class UnlockServiceImpl implements IUnlockService {
      */
     @Override
     public boolean prohibitUnlockByPwd(String ownerPhoneNumber, String gatewayCode, String lockCode,String serviceNumb) {
-        gatewayIp = gatewayService.getGatewayIp(ownerPhoneNumber,gatewayCode);
-        if (null == gatewayIp) {
-            return false;
-        }
-
         reqSign=22;
         timetag= DateUtil.getFormat2TimetagStr();
-//        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"gatewayCode\":\""+gatewayCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"gatewayCode\":\""+gatewayCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"timetag\":\""+timetag+"\"}";
-        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
-        logger.info(rawData);
+        LOG.info("reqData:"+reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
+        LOG.info("rawData:"+rawData);
 
         if (respFail()){
             return false;

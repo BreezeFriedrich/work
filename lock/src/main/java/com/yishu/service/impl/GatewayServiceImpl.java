@@ -77,7 +77,7 @@ public class GatewayServiceImpl implements IGatewayService {
     public String getGatewayIp(String ownerPhoneNumber, String gatewayCode) {
         reqSign=5;
         LOG.info("sign:"+reqSign+" operation:getGatewayIp");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
@@ -93,7 +93,7 @@ public class GatewayServiceImpl implements IGatewayService {
     public Map hasGatewayAdded(String ownerPhoneNumber, String gatewayCode) {
         reqSign=6;
         LOG.info("sign:"+reqSign+" operation:hasGatewayAdded");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         LOG.info("reqData : "+reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
@@ -118,7 +118,7 @@ public class GatewayServiceImpl implements IGatewayService {
     public Map getGatewayLANIp(String ownerPhoneNumber, String gatewayCode) {
         reqSign=30;
         LOG.info("sign:"+reqSign+" operation:getGatewayLANIp");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         LOG.info("reqData : "+reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
@@ -151,7 +151,7 @@ public class GatewayServiceImpl implements IGatewayService {
 
         reqSign=7;
         LOG.info("sign:"+reqSign+" operation:isCorrectGatewayVerificationCode");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"opCode\":\""+opCode+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"opCode\":\""+opCode+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);
@@ -169,7 +169,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqSign=8;
         LOG.info("sign:"+reqSign+" operation:registerGatewayInfo");
         timetag= DateUtil.getFormat2TimetagStr();
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);
@@ -192,7 +192,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqSign=9;
         LOG.info("sign:"+reqSign+" operation:modifyGatewayInfo");
         timetag= DateUtil.getFormat2TimetagStr();
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayComment+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);
@@ -215,7 +215,7 @@ public class GatewayServiceImpl implements IGatewayService {
         reqSign=10;
         LOG.info("sign:"+reqSign+" operation:deleteGateway");
         timetag= DateUtil.getFormat2TimetagStr();
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);

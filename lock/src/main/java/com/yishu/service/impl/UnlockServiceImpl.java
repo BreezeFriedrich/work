@@ -28,7 +28,7 @@ import java.util.*;
  */
 @Service("unlockService")
 public class UnlockServiceImpl implements IUnlockService {
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(UnlockServiceImpl.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("UnlockServiceImpl");
 
     @Autowired
     private IGatewayService gatewayService;
@@ -92,7 +92,7 @@ public class UnlockServiceImpl implements IUnlockService {
 //        }
         reqSign = 17;
         timetag = DateUtil.getFormat2TimetagStr();
-        reqData = "{\"sign\":\"" + reqSign + "\",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\"}";
+        reqData = "{\"sign\":" + reqSign + ",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\"}";
         LOG.info("reqData : " + reqData);
 //        rawData = HttpUtil.httpsPostToIp(gatewayIp, reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
@@ -183,7 +183,7 @@ public class UnlockServiceImpl implements IUnlockService {
         }
         reqSign = 19;
         timetag = DateUtil.getFormat2TimetagStr();
-        reqData = "{\"sign\":\"" + reqSign + "\",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"lockCode\":\"" + lockCode + "\",\"cardNumb\":\"" + cardNumb + "\",\"serviceNumb\":\"" + serviceNumb + "\",\"timetag\":\"" + timetag + "\"}";
+        reqData = "{\"sign\":" + reqSign + ",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"lockCode\":\"" + lockCode + "\",\"cardNumb\":\"" + cardNumb + "\",\"serviceNumb\":\"" + serviceNumb + "\",\"timetag\":\"" + timetag + "\"}";
         LOG.info("reqData : " + reqData);
         rawData = HttpUtil.httpsPostToIp(gatewayIp, reqData);
         LOG.info("rawData : " + rawData);
@@ -208,7 +208,7 @@ public class UnlockServiceImpl implements IUnlockService {
 //        }
         reqSign = 20;
         timetag = DateUtil.getFormat2TimetagStr();
-        reqData = "{\"sign\":\"" + reqSign + "\",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\"}";
+        reqData = "{\"sign\":" + reqSign + ",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\"}";
         LOG.info("reqData : " + reqData);
 //        rawData = HttpUtil.httpsPostToIp(gatewayIp, reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
@@ -278,7 +278,7 @@ public class UnlockServiceImpl implements IUnlockService {
         endTime = DateUtil.yyyyMMddHHmm.format(endTimeL);
         LOG.info("startTime-2 : " + startTime);
         LOG.info("endTime-2   : " + endTime);
-        reqData = "{\"sign\":\"" + reqSign + "\",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\",\"password\":\"" + password + "\",\"startTime\":\"" + startTime + "\",\"endTime\":\"" + endTime + "\",\"serviceNumb\":\"" + serviceNumb + "\",\"timetag\":\"" + timetag + "\"}";
+        reqData = "{\"sign\":" + reqSign + ",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\",\"password\":\"" + password + "\",\"startTime\":\"" + startTime + "\",\"endTime\":\"" + endTime + "\",\"serviceNumb\":\"" + serviceNumb + "\",\"timetag\":\"" + timetag + "\"}";
         LOG.info("reqData : " + reqData);
 //        rawData = HttpUtil.httpsPostToIp(gatewayIp, reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
@@ -304,7 +304,7 @@ public class UnlockServiceImpl implements IUnlockService {
         reqSign = 22;
         timetag = DateUtil.getFormat2TimetagStr();
 //        serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-        reqData = "{\"sign\":\"" + reqSign + "\",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"lockCode\":\"" + lockCode + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"serviceNumb\":\"" + serviceNumb + "\",\"timetag\":\"" + timetag + "\"}";
+        reqData = "{\"sign\":" + reqSign + ",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"lockCode\":\"" + lockCode + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"serviceNumb\":\"" + serviceNumb + "\",\"timetag\":\"" + timetag + "\"}";
         LOG.info("reqData : " + reqData);
 //        rawData = HttpUtil.httpsPostToIp(gatewayIp, reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);
@@ -377,7 +377,7 @@ public class UnlockServiceImpl implements IUnlockService {
 
         //获得密码开锁授权
         reqSign = 20;
-        reqData = "{\"sign\":\"" + reqSign + "\",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\"}";
+        reqData = "{\"sign\":" + reqSign + ",\"ownerPhoneNumber\":\"" + ownerPhoneNumber + "\",\"gatewayCode\":\"" + gatewayCode + "\",\"lockCode\":\"" + lockCode + "\"}";
         LOG.info("reqData : " + reqData);
 //        rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         rawData = HttpUtil.httpsPostToGateway(reqData,ownerPhoneNumber,gatewayCode);

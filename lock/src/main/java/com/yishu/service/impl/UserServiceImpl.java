@@ -24,7 +24,7 @@ import java.util.*;
  */
 @Service("userService")
 public class UserServiceImpl implements IUserService {
-    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger("UserServiceImpl");
     @Autowired
     private IDeviceService deviceService;
     @Autowired

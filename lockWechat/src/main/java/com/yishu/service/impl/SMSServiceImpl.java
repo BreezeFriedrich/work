@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Service("smsService")
 public class SMSServiceImpl implements ISMSService {
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("SMSServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("SMSServiceImpl");
 
     int reqSign;
     String reqData;
@@ -44,18 +44,13 @@ public class SMSServiceImpl implements ISMSService {
     @Override
     public Map sendVerifyCode(String phoneNumber) {
         reqSign=33;
-        logger.info("sign:"+reqSign+" operation:openidExist");
-//        reqData="{\"sign\":\""+reqSign+"\",\"sendSmsPhoneNumber\":\""+phoneNumber+"\",\"ownerPhoneNumber\":\""+"\"}";
         reqData="{\"sign\":"+reqSign+",\"sendSmsPhoneNumber\":\""+phoneNumber+"\",\"ownerPhoneNumber\":\""+"\"}";
-        Map resultMap=new HashMap();
+        LOG.info("reqData:"+reqData);
         long time1=new Date().getTime();
-        rawData = HttpUtil.httpsPostToQixu(reqData);
+        rawData = HttpUtil.httpsPostToGateway(reqData);
+        LOG.info("rawData:"+rawData);
         long time2=new Date().getTime();
-        logger.warn("SMSServiceImpl-sendVerifyCode 用时: "+(time2-time1));
-        logger.info(rawData);
-//        if ("".equals(rawData)) {
-//            return null;
-//        }
+        LOG.warn("SMSServiceImpl-sendVerifyCode 用时: "+(time2-time1));
         try {
             rootNode = objectMapper.readTree(rawData);
         } catch (IOException e) {
@@ -63,12 +58,12 @@ public class SMSServiceImpl implements ISMSService {
         }
         //字段result: 0 成功 ,1 失败
         respSign=rootNode.path("result").asInt();
+        Map resultMap=new HashMap();
         resultMap.put("result",respSign);
-        logger.info("respSign:"+String.valueOf(respSign));
         if (0==respSign){
             String verificationCodeStr=rootNode.path("verificationCode").asText();
-//            logger.info("verificationCodeStr toString"+rootNode.path("verificationCode").toString());
-//            logger.info("verificationCodeStr asText"+rootNode.path("verificationCode").asText());
+//            LOG.info("verificationCodeStr toString"+rootNode.path("verificationCode").toString());
+//            LOG.info("verificationCodeStr asText"+rootNode.path("verificationCode").asText());
             SMSVerificationCode smsVerificationCode=new SMSVerificationCode();
             smsVerificationCode.setPhoneNumber(phoneNumber);
             smsVerificationCode.setVerificationCode(verificationCodeStr);

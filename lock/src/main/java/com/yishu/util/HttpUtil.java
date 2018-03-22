@@ -18,16 +18,9 @@ import java.util.Date;
 public class HttpUtil {
 
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("HttpUtil");
-    public HttpUtil() {
-        if(LOG.isTraceEnabled()){
-            LOG.trace("** HttpUtil()");
-        }
-    }
 
     /*
     public final static String hostName="lock.qixutech.com";
-    public final static String ownerIp="lock.qixutech.com";
-    public final static String ADDR_QIXU="https://43.254.149.28:2017";
     public static String getIpFromHost(String hostName){
         try {
             InetAddress inetAddress=InetAddress.getByName(hostName);
@@ -69,11 +62,11 @@ public class HttpUtil {
     }
 
     private static long lastFetchMillis=new Date().getTime();
-    private static int expireMillis=1000*60*30;
+    private static int expireMillis=1000*60/6*1;
     public static String getGatewayIp(String ownerPhoneNumber, String gatewayCode) {
         int reqSign=5;
         LOG.info("sign:"+reqSign+" operation:getGatewayIp");
-        String reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
+        String reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\"}";
         LOG.info("reqData : "+reqData);
         try {
             assignUrl=new URL(assignUrlStr);
@@ -103,6 +96,10 @@ public class HttpUtil {
             gatewayUrl=new URL(gatewayUrlStr);
             if(null==HttpUtil.gatewayUrl || lastFetchMillis+expireMillis<new Date().getTime()){
                 String gatewayip=getGatewayIp(ownerPhoneNumber,gatewayCode);
+                LOG.info("gatewayip:"+gatewayip);
+                if(null==gatewayip){
+                    return HttpUtil.httpsPostToURL(gatewayUrl,data);
+                }
                 try {
                     gatewayUrl=new URL("https://"+gatewayip+":2017/");
                 } catch (MalformedURLException e) {

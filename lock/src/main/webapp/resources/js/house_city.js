@@ -84,27 +84,123 @@ function getLocks() {
                             "location": "一个地址",
                             "subordinateList": [
                                 {"phoneNumber": "18255683932","grade":10,"name":"汪凯","location":"地址",
-                                    "subordinateList": [{
-                                        "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                                        "lockName":"房间A1","lockCode":"LCN0011721000001","lockLocation":"南京市雨花台区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
-                                    },{
-                                        "gatewayName":"网关3","gatewayCode":"GWH0081702000002","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                                        "lockName":"房间A2","lockCode":"LCN0011721000002","lockLocation":"南京市雨花台区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
-                                    },{
-                                        "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                                        "lockName":"房间A3","lockCode":"LCN0011721000003","lockLocation":"南京市雨花台区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
-                                    }]
+                                    "subordinateList":[
+                                        {
+                                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,"lockName":"房间A1","lockCode":"LCN0011721000001","lockLocation":"南京市雨花台区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                                        },{
+                                            "gatewayName":"网关3","gatewayCode":"GWH0081702000002","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,"lockName":"房间A2","lockCode":"LCN0011721000002","lockLocation":"南京市雨花台区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                                        },{
+                                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,"lockName":"房间A3","lockCode":"LCN0011721000003","lockLocation":"南京市雨花台区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                                        }
+                                    ],
+                                    "roomTypeContainRoomList": [
+                                        {
+                                            "roomTypeId": "20180314152405182556839321904192",
+                                            "roomType": "标准单人间",
+                                            "roomInfoList": []
+                                        },{
+                                            "roomTypeId": "20180316152405182556839321904192",
+                                            "roomType": "标准双人间",
+                                            "roomInfoList": [
+                                                {
+                                                    "roomId": "20180323072240182556839322944258",
+                                                    "roomName": "D101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180323082240182556839322944258",
+                                                    "roomName": "D101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180323102240182556839322944258",
+                                                    "roomName": "D101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                }
+                                            ]
+                                        },{
+                                            "roomTypeId": "20180315141955182556839321308676",
+                                            "roomType": "豪华大床房",
+                                            "roomInfoList": [
+                                                {
+                                                    "roomId": "20180318122240182556839322944258",
+                                                    "roomName": "L101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180318132240182556839322944258",
+                                                    "roomName": "L101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180318142240182556839322944258",
+                                                    "roomName": "L101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 },{"phoneNumber":"13998892002","grade":10,"name":"yangwenshang","location":"第2个业主地址",
-                                    "subordinateList":[{
-                                        "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                                        "lockName":"房间B1","lockCode":"LCN0011721000001","lockLocation":"南京市鼓楼区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
-                                    },{
-                                        "gatewayName":"网关3","gatewayCode":"GWH0081702000005","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                                        "lockName":"房间B2","lockCode":"LCN0011721000005","lockLocation":"南京市鼓楼区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
-                                    },{
-                                        "gatewayName":"网关3","gatewayCode":"GWH0081702000006","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,
-                                        "lockName":"房间B3","lockCode":"LCN0011721000006","lockLocation":"南京市鼓楼区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
-                                    }]
+                                    "subordinateList":[
+                                        {
+                                            "gatewayName":"网关3","gatewayCode":"GWH0081702000003","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,"lockName":"房间B1","lockCode":"LCN0011721000001","lockLocation":"南京市鼓楼区西善桥街道22号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                                        },{
+                                            "gatewayName":"网关3","gatewayCode":"GWH0081702000005","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,"lockName":"房间B2","lockCode":"LCN0011721000005","lockLocation":"南京市鼓楼区春江路129号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                                        },{
+                                            "gatewayName":"网关3","gatewayCode":"GWH0081702000006","gatewayLocation":"网关地址","gatewayComment":"网关备注","gatewayStatus":4,"lockName":"房间B3","lockCode":"LCN0011721000006","lockLocation":"南京市鼓楼区江泉路65号","lockComment":"一个门锁","lockStatus":1,"lockPower":3
+                                        }
+                                    ],
+                                    "roomTypeContainRoomList": [
+                                        {
+                                            "roomTypeId": "20180314152405182556839321904192",
+                                            "roomType": "标准单人间",
+                                            "roomInfoList": []
+                                        },{
+                                            "roomTypeId": "20180316152405182556839321904192",
+                                            "roomType": "标准双人间",
+                                            "roomInfoList": [
+                                                {
+                                                    "roomId": "20180323072240182556839322944258",
+                                                    "roomName": "D101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180323082240182556839322944258",
+                                                    "roomName": "D101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180323102240182556839322944258",
+                                                    "roomName": "D101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                }
+                                            ]
+                                        },{
+                                            "roomTypeId": "20180315141955182556839321308676",
+                                            "roomType": "豪华大床房",
+                                            "roomInfoList": [
+                                                {
+                                                    "roomId": "20180318122240182556839322944258",
+                                                    "roomName": "L101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180318132240182556839322944258",
+                                                    "roomName": "L101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                },{
+                                                    "roomId": "20180318142240182556839322944258",
+                                                    "roomName": "L101",
+                                                    "gatewayCode": "GWH0081702000003",
+                                                    "lockCode": "LCN0011721000001"
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -141,11 +237,15 @@ var tableFunc={
         drawTableHead:function drawTableHead(date) {
             getDateArr(date);
             if("city"==tableType){
-                $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width210").removeClass("table-width32");
-                $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").addClass("table-width32");
-            }else{
-                $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width210").removeClass("table-width32");
-                $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").addClass("table-width210");
+                // $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width200").removeClass("table-width300");
+                // $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").addClass("table-width300");
+                $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width200").removeClass("table-width300").addClass("table-width400");
+            }else if("district"==tableType) {
+                // $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width200").removeClass("table-width300");
+                // $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").addClass("table-width200");
+                $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width400").removeClass("table-width200").addClass("table-width300");
+            }else {
+                $(".fixed-table-box").children(".fixed-table_header-wraper").find("th:first div.table-cell").removeClass("table-width400").removeClass("table-width300").addClass("table-width200");
             }
 
             //表格标题-时间重设 function resetTableHeaderTxt
@@ -162,20 +262,24 @@ var tableFunc={
             //表格数据行-添加数据
             fixedTable.addRow(function (){
                 html = '';
-                for(var i in districts){
-                    district=districts[i];
+                for(var m in districts){
+                    district=districts[m];
                     landlords=district.subordinateList;
-                    for(var j in landlords){
-                        landlord=landlords[j];
-                        locks=landlord.subordinateList;
-                        for(var k in locks){
-                            lock=locks[k];
-                            html += '<tr district="'+district.phoneNumber+'" landlord="'+landlord.phoneNumber+'" gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
-                            html +=     '<td><div class="table-hight1 table-width32 table-butstyle">'+lock.lockName+'</div></td>';
-                            for(var i=0; i<dateArr.length; i++){
-                                html += '<td><div class="cd table-hight1 table-width140"></div></td>';
+                    for(var l in landlords){
+                        landlord = landlords[l];
+                        roomTypeCRs = landlord.roomTypeContainRoomList;
+                        for (var k in roomTypeCRs) {
+                            roomTypeCR = roomTypeCRs[k];
+                            rooms = roomTypeCR.roomInfoList;
+                            for (var j in rooms) {
+                                room = rooms[j];
+                                html += '<tr district="'+district.phoneNumber+'" landlord="'+landlord.phoneNumber+'" roomtypeid="' + roomTypeCR.roomTypeId + '" roomid="' + room.roomId + '" gatewayid="' + room.gatewayCode + '" lockid="' + room.lockCode + '">';
+                                html += '<td><div class="table-hight1 table-width400 table-butstyle">' + room.roomName + '</div></td>';
+                                for (var i = 0; i < dateArr.length; i++) {
+                                    html += '<td><div class="table-hight1 table-width140"></div></td>';
+                                }
+                                html += '</tr>';
                             }
-                            html += '</tr>';
                         }
                     }
                 }
@@ -188,43 +292,50 @@ var tableFunc={
                 $('.current-date label')[1].innerText = getDateStr(date);
             }
 
-            $(".fixed-table_fixed-left th div.table-cell").removeClass("table-width210").removeClass("table-width105").addClass("table-width32");
-            (function () {
-                var DIV=$(".fixed-table_fixed-left tbody tr td div");
-                DIV.removeClass("table-width32");
-                DIV.addClass("table-width105");
-                var locksLength;
-                var landlordSize;
-                var landlordHeight;
-                var landlord_html;
-                var districtContainRoomSize;
-                var districtHeight;
-                var district_html;
-                var TR_fixedlefttbody;
-                for(var i in districts){
-                    district=districts[i];
-                    districtContainRoomSize=0;
-                    landlords=district.subordinateList;
-                    landlordSize=landlords.length;
-                    for(var j in landlords){
-                        landlord=landlords[j];
-                        locks=landlord.subordinateList;
-                        locksLength=locks.length;
-                        landlordHeight=44*locksLength;
-                        landlord_html='<td rowspan="'+locksLength+'"><div style="line-height: '+landlordHeight+'px" class="table-width105 table-butstyle">'+landlord.name+'</div></td>';
-                        // lock=locks[0];
-                        // TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[district="+district.phoneNumber+"][landlord="+landlord.phoneNumber+"][gatewayid="+lock.gatewayCode+"][lockid="+lock.lockCode+"]");
-                        // TR_fixedlefttbody.prepend(landlord_html);
-                        TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[district="+district.phoneNumber+"][landlord="+landlord.phoneNumber+"]");
-                        TR_fixedlefttbody.eq(0).prepend(landlord_html);
-                        districtContainRoomSize=districtContainRoomSize+locksLength;
+            $(".fixed-table_fixed-left th div.table-cell").removeClass("table-width300").removeClass("table-width200").addClass("table-width400");
+
+            var DIV;
+            DIV=$(".fixed-table_fixed-left tbody tr td div");
+            DIV.removeClass("table-width400");
+            DIV.addClass("table-width100");
+            var roomtype_size;
+            var roomtype_height;
+            var roomtype_html;
+            var landlord_rowspan;
+            var landlord_height;
+            var landlord_html;
+            var district_rowspan;
+            var district_height;
+            var district_html;
+            var TR_fixedlefttbody;
+            for(var k in districts){
+                district=districts[k];
+                landlords=district.subordinateList;
+                district_rowspan=0;
+                for(var j in landlords){
+                    landlord=landlords[j];
+                    roomTypeCRs=landlord.roomTypeContainRoomList;
+                    landlord_rowspan=0;
+                    for(var i in roomTypeCRs) {
+                        roomTypeCR = roomTypeCRs[i];
+                        roomtype_size = roomTypeCR.roomInfoList.length;
+                        roomtype_height=44*roomtype_size;
+                        roomtype_html='<td rowspan="'+roomtype_size+'"><div style="line-height: '+roomtype_height+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
+                        TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[district="+district.phoneNumber+"][landlord="+landlord.phoneNumber+"][roomtypeid="+roomTypeCR.roomTypeId+"]");
+                        TR_fixedlefttbody.eq(0).prepend(roomtype_html);
+                        landlord_rowspan=landlord_rowspan+roomtype_size;
+                        district_rowspan=district_rowspan+roomtype_size;
                     }
-                    districtHeight=44*districtContainRoomSize;
-                    district_html='<td rowspan="'+districtContainRoomSize+'"><div style="line-height: '+districtHeight+'px" class="table-width105 table-butstyle">'+district.name+'</div></td>';
-                    TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[district="+district.phoneNumber+"]");
-                    TR_fixedlefttbody.eq(0).prepend(district_html);
+                    landlord_height=44*landlord_rowspan;
+                    landlord_html = '<td rowspan="' + landlord_rowspan + '"><div style="line-height:' + landlord_height + 'px" class="table-width100 table-butstyle">'+landlord.name+'</div></td>';
+                    TR_fixedlefttbody = $(".fixed-table_fixed-left tbody tr[district="+district.phoneNumber+"][landlord="+landlord.phoneNumber+"]");
+                    TR_fixedlefttbody.eq(0).prepend(landlord_html);
                 }
-            })();
+                district_height=44*district_rowspan;
+                district_html='<td rowspan="'+district_rowspan+'"><div style="line-height: '+district_height+'px" class="table-width100 table-butstyle">'+district.name+'</div></td>';
+                TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[district="+district.phoneNumber+"]");
+                TR_fixedlefttbody.eq(0).prepend(district_html);
+            }
         },
         renderRow:function renderRow(districts, date) {
             (function () {
@@ -336,18 +447,21 @@ var tableFunc={
             //表格数据行-添加数据
             fixedTable.addRow(function (){
                 html = '';
-                for(var k in landlords){
-                    landlord=landlords[k];
-                    locks=landlord.subordinateList;
-                    for(var j=0,length=locks.length;j<length;j++){
-                        lock=locks[j];
-                        html += '<tr landlord="'+landlord.phoneNumber+'" gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
-                        html +=     '<td><div class="table-hight1 table-width210 table-butstyle">'+lock.lockName+'</div></td>';
-                        for(var i=0; i<31; i++){
-                            // html += '<td><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
-                            html += '<td><div class="cd table-hight1 table-width140"></div></td>';
+                for(var l in landlords) {
+                    landlord = landlords[l];
+                    roomTypeCRs = landlord.roomTypeContainRoomList;
+                    for (var k in roomTypeCRs) {
+                        roomTypeCR = roomTypeCRs[k];
+                        rooms = roomTypeCR.roomInfoList;
+                        for (var j in rooms) {
+                            room = rooms[j];
+                            html += '<tr landlord="'+landlord.phoneNumber+'" roomtypeid="' + roomTypeCR.roomTypeId + '" roomid="' + room.roomId + '" gatewayid="' + room.gatewayCode + '" lockid="' + room.lockCode + '">';
+                            html += '<td><div class="table-hight1 table-cell table-width300 table-butstyle">' + room.roomName + '</div></td>';
+                            for (var i = 0; i < dateArr.length; i++) {
+                                html += '<td><div class="table-hight1 table-width140"></div></td>';
+                            }
+                            html += '</tr>';
                         }
-                        html += '</tr>';
                     }
                 }
                 return html;
@@ -358,27 +472,38 @@ var tableFunc={
             if($('.current-date label').length>1){
                 $('.current-date label')[1].innerText = getDateStr(date);
             }
+            $(".fixed-table_fixed-left th div.table-cell").removeClass("table-width400").removeClass("table-width200").addClass("table-width300");
             // $('.fixed-table-box').children('.fixed-table_header-wraper').find('#datetimepicker').remove();//headdatetimepicker.删除这个div会导致DIV_header[]32->31,drawTableHead会出错.
 
-            $(".fixed-table_fixed-left th div.table-cell").removeClass("table-width32").removeClass("table-width105").addClass("table-width210");
-            (function () {
-                var DIV=$(".fixed-table_fixed-left tbody tr td div");
-                DIV.removeClass("table-width210");
-                DIV.addClass("table-width105");
-                var locksLength;
-                var lineHeight;
-                var HTML_landlord;
-                var TR_fixedlefttbody;
-                for(var k in landlords){
-                    landlord=landlords[k];
-                    locks=landlord.subordinateList;
-                    locksLength=locks.length;
-                    lineHeight=44*locksLength;
-                    HTML_landlord='<td rowspan="'+locksLength+'"><div style="line-height: '+lineHeight+'px" class="table-width105 table-butstyle">'+landlord.name+'</div></td>';
-                    TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"]");
-                    TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
+            var DIV;
+            DIV=$(".fixed-table_fixed-left tbody tr td div");
+            DIV.removeClass("table-width300");
+            DIV.addClass("table-width100");
+            var roomtype_size;
+            var roomtype_height;
+            var roomtype_html;
+            var landlord_rowspan;
+            var landlord_height;
+            var landlord_html;
+            var TR_fixedlefttbody;
+            for(var j in landlords){
+                landlord=landlords[j];
+                roomTypeCRs=landlord.roomTypeContainRoomList;
+                landlord_rowspan=0;
+                for(var i in roomTypeCRs) {
+                    roomTypeCR = roomTypeCRs[i];
+                    roomtype_size = roomTypeCR.roomInfoList.length;
+                    roomtype_height=44*roomtype_size;
+                    roomtype_html='<td rowspan="'+roomtype_size+'"><div style="line-height: '+roomtype_height+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
+                    TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"][roomtypeid="+roomTypeCR.roomTypeId+"]");
+                    TR_fixedlefttbody.eq(0).prepend(roomtype_html);
+                    landlord_rowspan=landlord_rowspan+roomtype_size;
                 }
-            })();
+                landlord_height=44*landlord_rowspan;
+                landlord_html = '<td rowspan="' + landlord_rowspan + '"><div style="line-height: ' + landlord_height + 'px" class="table-width100 table-butstyle">' + landlord.name + '</div></td>';
+                TR_fixedlefttbody = $(".fixed-table_fixed-left tbody tr[landlord="+landlord.phoneNumber+"]");
+                TR_fixedlefttbody.eq(0).prepend(landlord_html);
+            }
         },
         renderRow:function renderRow(landlords,date) {
             (function () {
@@ -487,19 +612,20 @@ var tableFunc={
             //表格数据行-添加数据
             fixedTable.addRow(function (){
                 html = '';
-                (function () {
-                    locks=landlord.subordinateList;
-                    for(var j in locks){
-                        lock=locks[j];
-                        html += '<tr gatewayid="'+lock.gatewayCode+'" lockid="'+lock.lockCode+'">';
-                        html += '<td class="table-width210"><div class="table-hight1 table-cell table-width210 table-butstyle">'+lock.lockName+'</div></td>';
+                roomTypeCRs=landlord.roomTypeContainRoomList;
+                for(var k in roomTypeCRs){
+                    roomTypeCR=roomTypeCRs[k];
+                    rooms=roomTypeCR.roomInfoList;
+                    for(var j in rooms){
+                        room=rooms[j];
+                        html += '<tr roomtypeid="'+roomTypeCR.roomTypeId+'" roomid="'+room.roomId+'" gatewayid="'+room.gatewayCode+'" lockid="'+room.lockCode+'">';
+                        html += '<td><div class="table-hight1 table-cell table-width200 table-butstyle">'+room.roomName+'</div></td>';
                         for (var i=0; i<dateArr.length; i++){
-                            // html += '<td class="table-width140"><div class="cd table-hight1 table-width140">'+dateStrArr[i]+'</div></td>';
-                            html += '<td class="table-width140"><div class="cd table-hight1 table-width140"></div></td>';
+                            html += '<td><div class="table-hight1 table-width140"></div></td>';
                         }
                         html += '</tr>';
                     }
-                })();
+                }
                 return html;
             });
         },
@@ -508,7 +634,25 @@ var tableFunc={
             if($('.current-date label').length>1){
                 $('.current-date label')[1].innerText = getDateStr(date);
             }
-            $(".fixed-table_fixed-left th div.table-cell").removeClass("table-width32").removeClass("table-width105").addClass("table-width210");
+            $(".fixed-table_fixed-left th div.table-cell").removeClass("table-width400").removeClass("table-width300").addClass("table-width200");
+
+            var DIV;
+            DIV=$(".fixed-table_fixed-left tbody tr td div");
+            DIV.removeClass("table-width200");
+            DIV.addClass("table-width100");
+            var roomTypeLength;
+            var lineHeight;
+            var HTML_landlord;
+            var TR_fixedlefttbody;
+            roomTypeCRs=landlord.roomTypeContainRoomList;
+            for(var i in roomTypeCRs) {
+                roomTypeCR = roomTypeCRs[i];
+                roomTypeLength = roomTypeCR.roomInfoList.length;
+                lineHeight=44*roomTypeLength;
+                HTML_landlord='<td rowspan="'+roomTypeLength+'"><div style="line-height: '+lineHeight+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
+                TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[roomtypeid="+roomTypeCR.roomTypeId+"]");
+                TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
+            }
         },
         renderRow:function renderRow(landlord,date) {
             (function () {
@@ -633,8 +777,8 @@ $(document).ready(function(){
     html += '</div>';
     var fields=new Array;
     fields[0]={
-        width: "317px",
-        field: '<th><div class="table-header-hight58 table-cell table-width32 table-butstyle">'+html+'</div></th>',
+        width: "400px",
+        field: '<th><div class="table-header-hight58 table-cell table-width400 table-butstyle">'+html+'</div></th>',
         htmlDom:true,
         fixed:true,
         fixedDirection:"left"
@@ -655,7 +799,7 @@ $(document).ready(function(){
         fields : [
             {
                 width: "317px",
-                field: '<th class="table-width32"><div class="table-header-hight58 table-cell table-width32 table-butstyle">'+html+'</div></th>',
+                field: '<th class="table-width300"><div class="table-header-hight58 table-cell table-width300 table-butstyle">'+html+'</div></th>',
                 htmlDom:true,
                 fixed:true,
                 fixedDirection:"left"

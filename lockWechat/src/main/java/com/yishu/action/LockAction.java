@@ -161,15 +161,19 @@ public class LockAction extends ActionSupport {
             }
         }
         //遍历门锁,找到对应lockCode的门锁信息
-        iter=device.getLockLists().iterator();
-        while (iter.hasNext()) {
-            lock=(Lock)(iter.next());
-            String specificLockCode = lock.getLockCode();
-            if (lockCode.equals(specificLockCode)) {//gatewayCode来自于struts2 拦截器栈 参数拦截器传递类request.getParameter()
-                break;
+        if(null==device.getLockLists()){
+            jsonResult=null;
+        }else {
+            iter=device.getLockLists().iterator();
+            while (iter.hasNext()) {
+                lock=(Lock)(iter.next());
+                String specificLockCode = lock.getLockCode();
+                if (lockCode.equals(specificLockCode)) {//gatewayCode来自于struts2 拦截器栈 参数拦截器传递类request.getParameter()
+                    break;
+                }
             }
+            jsonResult=lock;
         }
-        jsonResult=lock;
         return "json";
     }
 }

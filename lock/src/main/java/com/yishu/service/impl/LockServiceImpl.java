@@ -93,7 +93,7 @@ public class LockServiceImpl implements ILockService {
 
         reqSign=11;
         LOG.info("sign:"+reqSign+" operation:hasLockAdded");
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);
@@ -117,7 +117,7 @@ public class LockServiceImpl implements ILockService {
         reqSign=12;
         LOG.info("sign:"+reqSign+" operation:addLock");
         timetag= DateUtil.getFormat2TimetagStr();
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
@@ -139,7 +139,7 @@ public class LockServiceImpl implements ILockService {
         reqSign=13;
         LOG.info("sign:"+reqSign+" operation:modifyLockInfo");
         timetag= DateUtil.getFormat2TimetagStr();
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"lockName\":\""+lockName+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockComment+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);
@@ -161,7 +161,7 @@ public class LockServiceImpl implements ILockService {
         reqSign=14;
         LOG.info("sign:"+reqSign+" operation:deleteLock");
         timetag= DateUtil.getFormat2TimetagStr();
-        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToIp(gatewayIp,reqData);
         LOG.info("rawData : "+rawData);

@@ -2,6 +2,7 @@ package com.yishu.service.impl;
 
 import com.yishu.service.ManageService;
 import com.yishu.util.HttpUtil;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -9,6 +10,8 @@ import java.util.Date;
 
 @Service("manageService")
 public class ManageServiceImpl implements ManageService {
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("ManageServiceImpl");
+
 	/**
 	 * 得到下级用户
 	 * @param ownerPhoneNumber
@@ -17,7 +20,7 @@ public class ManageServiceImpl implements ManageService {
 	 */
 	public String getJunior(String ownerPhoneNumber, int grade) {
 		int sign=304;
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"grade\":\""+grade+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"grade\":\""+grade+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		System.out.println("getJunior  data "+data);
 		System.out.println("getJunior  result "+result);
@@ -33,7 +36,7 @@ public class ManageServiceImpl implements ManageService {
 	 */
 	public String delJunior(String ownerPhoneNumber, String juniorPhoneNumber, int grade) {
 		int sign=305;
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"grade\":\""+grade+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"grade\":\""+grade+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		System.out.println("doJunior  data "+data);
 		System.out.println("doJunior  result "+result);
@@ -51,7 +54,7 @@ public class ManageServiceImpl implements ManageService {
 	 */
 	public String addJunior(String ownerPhoneNumber, String juniorPhoneNumber, String juniorName, String juniorLocation, int grade) {
 		int sign=303;
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"juniorName\":\""+juniorName+"\",\"juniorLocation\":\""+juniorLocation+"\",\"grade\":\""+grade+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"juniorPhoneNumber\":\""+juniorPhoneNumber+"\",\"juniorName\":\""+juniorName+"\",\"juniorLocation\":\""+juniorLocation+"\",\"grade\":\""+grade+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		System.out.println("addJunior data" +data);
 		System.out.println("addJunior result" +result);
@@ -65,7 +68,7 @@ public class ManageServiceImpl implements ManageService {
 	 */
 	public String getDevices(String ownerPhoneNumber) {
 		int sign=16;
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		System.out.println("getdevices:"+result);
 		return result;
@@ -79,7 +82,7 @@ public class ManageServiceImpl implements ManageService {
 	 */
 	public String judgeLock(String ownerPhoneNumber, String lockCode) {
 		int sign=11;
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -97,7 +100,7 @@ public class ManageServiceImpl implements ManageService {
 	public String addLock(String ownerPhoneNumber, String gatewayCode, String lockName, String lockCode, String lockLocation, String lockComment) {
 		int sign=12;
 		String timetag=getTimetag(new Date());
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockName\":\""+lockName+"\",\"lockCode\":\""+lockCode+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockLocation+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockName\":\""+lockName+"\",\"lockCode\":\""+lockCode+"\",\"lockLocation\":\""+lockLocation+"\",\"lockComment\":\""+lockLocation+"\",\"timetag\":\""+timetag+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -111,7 +114,7 @@ public class ManageServiceImpl implements ManageService {
 	public String delLock(String ownerPhoneNumber, String lockCode) {
 		int sign=14;
 		String timetag=getTimetag(new Date());
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"timetag\":\""+timetag+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		System.out.println("jsonresult"+result);
 		return result;
@@ -126,7 +129,7 @@ public class ManageServiceImpl implements ManageService {
 	 */
 	public String getIDAuth(String ownerPhoneNumber, String gatewayCode, String lockCode) {
 		int sign=17;
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -140,7 +143,7 @@ public class ManageServiceImpl implements ManageService {
 	 */
 	public String getPwdAuth(String ownerPhoneNumber, String gatewayCode, String lockCode) {
 		int sign=20;
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -166,7 +169,7 @@ public class ManageServiceImpl implements ManageService {
 	public String delGateway(String ownerPhoneNumber, String gatewayCode) {
 		int sign=10;
 		String timetag=getTimetag(new Date());
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -183,7 +186,7 @@ public class ManageServiceImpl implements ManageService {
 	public String addGateway(String ownerPhoneNumber, String gatewayCode, String gatewayName, String gatewayLocation, String opCode) {
 		int sign=8;
 		String timetag=getTimetag(new Date());
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayLocation+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayName\":\""+gatewayName+"\",\"gatewayCode\":\""+gatewayCode+"\",\"gatewayLocation\":\""+gatewayLocation+"\",\"gatewayComment\":\""+gatewayLocation+"\",\"opCode\":\""+opCode+"\",\"timetag\":\""+timetag+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -203,7 +206,7 @@ public class ManageServiceImpl implements ManageService {
 		System.out.println("ID cardNumb:  "+cardNumb);
 		System.out.println("ID serviceNumb:  "+serviceNumb);
 		System.out.println("ID lockCode:  "+lockCode);
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"cardNumb\":\""+cardNumb+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"cardNumb\":\""+cardNumb+"\",\"timetag\":\""+timetag+"\"}";
 		System.out.println("delIDAuthData:  "+data);
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
@@ -224,7 +227,7 @@ public class ManageServiceImpl implements ManageService {
 		System.out.println("Pwd gatewayCode:  "+gatewayCode);
 		System.out.println("Pwd serviceNumb:  "+serviceNumb);
 		System.out.println("Pwd lockCode:  "+lockCode);
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"gatewayCode\":\""+gatewayCode+"\",\"timetag\":\""+timetag+"\"}";
 		System.out.println("delPwdAuthData:  "+data);
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
@@ -234,7 +237,7 @@ public class ManageServiceImpl implements ManageService {
 		int sign=18;
 		String timetag=getTimetag(new Date());
 		String serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"name\":\""+name+"\",\"cardNumb\":\""+cardNumb+"\",\"dnCode\":\"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"timetag\":\""+timetag+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -243,7 +246,7 @@ public class ManageServiceImpl implements ManageService {
 		int sign=21;
 		String timetag=getTimetag(new Date());
 		String serviceNumb=getServiceNumb(ownerPhoneNumber,timetag);
-		String data=" {\"sign\":\""+sign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"password\":\""+password+"\",\"dnCode\":\"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"timetag\":\""+timetag+"\"}";
+		String data=" {\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gatewayCode\":\""+gatewayCode+"\",\"lockCode\":\""+lockCode+"\",\"serviceNumb\":\""+serviceNumb+"\",\"password\":\""+password+"\",\"dnCode\":\"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"timetag\":\""+timetag+"\"}";
 		String result= HttpUtil.httpsPostToGateway(data);
 		return result;
 	}
@@ -258,10 +261,5 @@ public class ManageServiceImpl implements ManageService {
 		long num=(long) Math.floor(Math.random()*10000000);
 		String serviceNumb=timetag+ownerPhoneNumber+String.valueOf(num);
 		return serviceNumb;
-	}
-
-	public static void main(String args[]){
-		ManageServiceImpl mm=new ManageServiceImpl();
-		mm.delLock("13998892002","12456");
 	}
 }

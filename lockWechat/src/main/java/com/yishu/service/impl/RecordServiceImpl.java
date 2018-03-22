@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -25,7 +24,7 @@ import java.util.*;
  */
 @Service("recordService")
 public class RecordServiceImpl implements IRecordService {
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("RecordServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordServiceImpl");
     int reqSign;
     String reqData;
     /**
@@ -46,7 +45,6 @@ public class RecordServiceImpl implements IRecordService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-//        logger.info("respSign:"+String.valueOf(respSign));
         return respSign;
     }
 
@@ -63,14 +61,14 @@ public class RecordServiceImpl implements IRecordService {
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
-        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+"}");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
+        LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+"}");
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
-        Map resultMap=new HashMap();
-        rawData = HttpUtil.httpsPostToQixu(reqData);
-//        logger.info("获取unlock record信息,HTTP结果: "+rawData);
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToGateway(reqData);
+//        LOG.info("rawData:"+rawData);
 
         respSign();
+        Map resultMap=new HashMap();
         resultMap.put("result",respSign);
         if (0==respSign){
             //获取开锁记录成功.

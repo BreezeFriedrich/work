@@ -15,7 +15,7 @@ import java.util.*;
 
 @Service("deviceService")
 public class DeviceServiceImpl implements IDeviceService{
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("DeviceServiceImpl");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("DeviceServiceImpl");
 
     int reqSign;
     String reqData;
@@ -31,14 +31,11 @@ public class DeviceServiceImpl implements IDeviceService{
     @Override
     public List getUserGatewayIp(String ownerPhoneNumber) {
         reqSign=15;
-        logger.info("sign:"+reqSign+" operation:getUserGatewayIp");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        rawData=null;
-        rawData= HttpUtil.httpsPostToQixu(reqData);
-//        logger.info(rawData);
+        LOG.info("reqData:"+reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
+        LOG.info("rawData:"+rawData);
 
-        ObjectMapper objectMapper=new ObjectMapper();
         Map gatewayIpMap;
         JsonNode rootNode= null;
         try {
@@ -47,7 +44,6 @@ public class DeviceServiceImpl implements IDeviceService{
             e.printStackTrace();
         }
         int respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
         if (0!=respSign){//请求数据失败
             return null;
         }
@@ -78,16 +74,13 @@ public class DeviceServiceImpl implements IDeviceService{
      * @return
      */
     @Override
-    public List getDeviceInfo(String ownerPhoneNumber) {
+    public List<Device> getDeviceInfo(String ownerPhoneNumber) {
         reqSign=16;
-        logger.info("sign:"+reqSign+" operation:getDeviceInfo");
-//        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        rawData=null;
-        rawData= HttpUtil.httpsPostToQixu(reqData);
-//        logger.info(rawData);
+        LOG.info("reqData:"+reqData);
+        rawData= HttpUtil.httpsPostToGateway(reqData);
+        LOG.info("rawData:"+rawData);
 
-        ObjectMapper objectMapper=new ObjectMapper();
         JsonNode rootNode= null;
         try {
             rootNode = objectMapper.readTree(rawData);
@@ -95,12 +88,11 @@ public class DeviceServiceImpl implements IDeviceService{
             e.printStackTrace();
         }
         int respSign=rootNode.path("result").asInt();
-        logger.info("respSign:"+String.valueOf(respSign));
         if (0!=respSign){//请求数据失败
             return null;
         }
         JsonNode deviceNode=rootNode.path("devices");
-        List accountDeviceList=new ArrayList<Map>();
+        List<Device> accountDeviceList=null;
         try {
             accountDeviceList=objectMapper.readValue(deviceNode.traverse(), new TypeReference<List<Device>>(){});
         } catch (IOException e) {
@@ -112,7 +104,7 @@ public class DeviceServiceImpl implements IDeviceService{
 
     @Override
     public List getAbnormalDevice(String ownerPhoneNumber) {
-        logger.info("sign:"+'空'+" operation:getDeviceInfo");
+        LOG.info("sign:"+'空'+" operation:getDeviceInfo");
         //rawData,获取原始数据:开锁记录的List.
         List<Device> rawList=getDeviceInfo(ownerPhoneNumber);
         /*
@@ -153,7 +145,7 @@ public class DeviceServiceImpl implements IDeviceService{
 
     @Override
     public int countAbnormalDevice(String ownerPhoneNumber) {
-        logger.info("sign:"+'空'+" operation:countAbnormalDevice");
+        LOG.info("sign:"+'空'+" operation:countAbnormalDevice");
         int num=0;
         Device device=null;
         List list=getAbnormalDevice(ownerPhoneNumber);

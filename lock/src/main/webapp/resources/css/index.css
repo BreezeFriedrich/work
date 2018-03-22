@@ -43,9 +43,13 @@
 .table-width22{ width:211px; text-align:center}
 
 .table-width3{ width:286px; text-align:center}
-.table-width32{ width:317px; text-align:center}
-.table-width105{ width:105px; text-align:center}
-.table-width210{ width:210px; text-align:center}
+/*.table-width32{ width:317px; text-align:center}*/
+/*.table-width105{ width:105px; text-align:center}*/
+/*.table-width210{ width:210px; text-align:center}*/
+.table-width100{ width:100px; text-align:center}
+.table-width200{ width:200px; text-align:center}
+.table-width300{ width:300px; text-align:center}
+.table-width400{ width:400px; text-align:center}
 .table-width190{ width:206px; text-align:center}
 .table-width140{ width:140px; text-align:center; overflow: hidden; }
 .table-header-hight58{ height:58px; line-height:58px}

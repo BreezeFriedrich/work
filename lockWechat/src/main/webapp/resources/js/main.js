@@ -31,7 +31,7 @@ $(function(){
     if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     }
-    // ownerPhoneNumber=18255683932;
+    ownerPhoneNumber=18255683932;
 
     $('.my-iphone').html(ownerPhoneNumber);
 
