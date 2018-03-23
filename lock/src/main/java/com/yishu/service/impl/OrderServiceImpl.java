@@ -8,14 +8,15 @@ import com.yishu.pojo.AuthOrder;
 import com.yishu.pojo.CardInfo;
 import com.yishu.service.IOrderService;
 import com.yishu.util.DateUtil;
+import com.yishu.util.FilterList;
+import com.yishu.util.FilterListHook;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.util.*;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -32,9 +33,29 @@ public class OrderServiceImpl implements IOrderService{
     String timetag;
 
     @Override
-    public List<AuthOrder> getAuthOrder(String ownerPhoneNumber, String startTime, String endTime) {
+    public List<AuthOrder> getAuthOrderFromDate(String ownerPhoneNumber, Date theDate) {
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(theDate);
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
+        calendar.set(Calendar.MILLISECOND,999);
+        Date endDate=calendar.getTime();
+        final long endMoment=endDate.getTime();
+        calendar.setTime(theDate);
+        calendar.add(Calendar.DAY_OF_MONTH,-15);
+        Date startDate=calendar.getTime();
+        final long startMoment=startDate.getTime();
+        return getAuthOrder(ownerPhoneNumber,startMoment,endMoment);
+    }
+
+    @Override
+    public List<AuthOrder> getAuthOrder(String ownerPhoneNumber, final long startTime, long endTime) {
         reqSign=2002;
-        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\"}";
+        timetag= DateUtil.getFormat2TimetagStr();
+        String startTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(startTime));
+        String endTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(endTime));
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeStr+"\",\"endTime\":\""+endTimeStr+",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
@@ -57,21 +78,43 @@ public class OrderServiceImpl implements IOrderService{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return authOrderList;
+
+        //filter-recordList-Bytime,过滤掉过时的开锁授权.
+        List<AuthOrder> authOrderListNext = null;
+        authOrderListNext = FilterList.filter(authOrderList, new FilterListHook<AuthOrder>() {
+            @Override
+            public boolean test(AuthOrder authOrder) {
+                try {
+                    long endTime = DateUtil.yyyyMMddHHmm.parse(authOrder.getEndTime()).getTime();
+                    if(new Date().getTime() < endTime){
+                        authOrder.setEndTime(String.valueOf(endTime));
+                        long startTime = DateUtil.yyyyMMddHHmm.parse(authOrder.getStartTime()).getTime();
+                        authOrder.setStartTime(String.valueOf(startTime));
+                        return true;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return false;
+            }
+        });
+        return authOrderListNext;
     }
 
     @Override
-    public boolean increaseOrder(String ownerPhoneNumber, String roomTypeId, String roomId, String startTime, String endTime, String password, List<CardInfo> cardInfoList) {
+    public boolean increaseOrder(String ownerPhoneNumber, String roomTypeId, String roomId, long startTime, long endTime, String password, List<CardInfo> cardInfoList) {
         reqSign=2001;
         timetag= DateUtil.getFormat2TimetagStr();
-//        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\",\"roomId\":\""+roomId+"\",\"startTime\":\""+startTime+"\",\"endTime\":\""+endTime+"\",\"password\":\""+password+"\",\"timetag\":\""+timetag+"\"}";
+        String startTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(startTime));
+        String endTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(endTime));
+//        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\",\"roomId\":\""+roomId+"\",\"startTime\":\""+startTimeStr+"\",\"endTime\":\""+endTimeStr+"\",\"password\":\""+password+"\",\"timetag\":\""+timetag+"\"}";
         Map reqMap=new HashMap(9);
         reqMap.put("sign",reqSign);
         reqMap.put("ownerPhoneNumber",ownerPhoneNumber);
         reqMap.put("roomTypeId",roomTypeId);
         reqMap.put("roomId",roomId);
-        reqMap.put("startTime",startTime);
-        reqMap.put("endTime",endTime);
+        reqMap.put("startTime",startTimeStr);
+        reqMap.put("endTime",endTimeStr);
         reqMap.put("password",password);
         reqMap.put("cardInfoList",cardInfoList);
         reqMap.put("timetag",timetag);
@@ -98,17 +141,19 @@ public class OrderServiceImpl implements IOrderService{
     }
 
     @Override
-    public boolean modifyAuthOrder(String ownerPhoneNumber, String orderNumber, String password, String roomId, String startTime, String endTime, List<CardInfo> cardInfoList) {
+    public boolean modifyAuthOrder(String ownerPhoneNumber, String orderNumber, String password, String roomId, long startTime, long endTime, List<CardInfo> cardInfoList) {
         reqSign=2003;
         timetag= DateUtil.getFormat2TimetagStr();
+        String startTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(startTime));
+        String endTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(endTime));
         Map reqMap=new HashMap(9);
         reqMap.put("sign",reqSign);
         reqMap.put("ownerPhoneNumber",ownerPhoneNumber);
         reqMap.put("orderNumber",orderNumber);
         reqMap.put("password",password);
         reqMap.put("roomId",roomId);
-        reqMap.put("startTime",startTime);
-        reqMap.put("endTime",endTime);
+        reqMap.put("startTime",startTimeStr);
+        reqMap.put("endTime",endTimeStr);
         reqMap.put("cardInfoList",cardInfoList);
         reqMap.put("timetag",timetag);
         ObjectMapper objectMapper=new ObjectMapper();

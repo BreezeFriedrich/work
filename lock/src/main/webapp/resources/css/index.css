@@ -84,7 +84,7 @@
 
 
 /*.rightclick{ background: #9ad8ef }*/
-.contextMenu{ width: 142px ;} 
+.contextMenu{ width: 142px ;}
 .contextMenu ul{ border: 0px ; padding: 0px !important; margin: 0px !important}
 .contextMenu ul li{ border: 0px; padding: 0px !important; margin: 0px !important}
 .rightclickan{width: 142px !important; margin: 0px !important} 
@@ -94,7 +94,7 @@
 
 /*表格  end */
 
-.current-date{ width:160px; float:left; padding:0 0 0 3px}
+.current-date{ width:150px; float:left; padding:0 0 0 3px}
 .current-date  .time3{ margin:0px}
 .date-selection{ width:40px; height:40px; float:right; margin:10px 5px 0 0}
 .date-selection .date-selection-span{ border-radius:5px; -webkit-border-radius:5px;-moz-border-radius:5px; padding:0px !important}

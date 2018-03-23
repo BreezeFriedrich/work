@@ -3,6 +3,7 @@ package com.yishu.service;
 import com.yishu.pojo.AuthOrder;
 import com.yishu.pojo.CardInfo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,8 +12,9 @@ import java.util.List;
  * @since JDK1.7
  */
 public interface IOrderService {
-    public List<AuthOrder> getAuthOrder(String ownerPhoneNumber,String startTime,String endTime);
-    public boolean increaseOrder(String ownerPhoneNumber, String roomTypeId, String roomId, String startTime, String endTime, String password,List<CardInfo> cardInfoList);
-    public boolean modifyAuthOrder(String ownerPhoneNumber,String orderNumber,String password, String roomId, String startTime, String endTime,List<CardInfo> cardInfoList);
+    public List<AuthOrder> getAuthOrderFromDate(String ownerPhoneNumber, Date theDate);
+    public List<AuthOrder> getAuthOrder(String ownerPhoneNumber,long startTime,long endTime);
+    public boolean increaseOrder(String ownerPhoneNumber, String roomTypeId, String roomId, long startTime, long endTime, String password,List<CardInfo> cardInfoList);
+    public boolean modifyAuthOrder(String ownerPhoneNumber,String orderNumber,String password, String roomId, long startTime, long endTime,List<CardInfo> cardInfoList);
     public boolean cancleAuthOrder(String ownerPhoneNumber,String orderNumber);
 }

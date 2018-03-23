@@ -7,6 +7,7 @@ import com.yishu.pojo.BizDto;
 import com.yishu.pojo.CardInfo;
 import com.yishu.pojo.JsonDto;
 import com.yishu.service.IOrderService;
+import com.yishu.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +40,38 @@ public class OrderController {
     private Map resultMap;
     private int resultInt;
 
+    @RequestMapping("/getAuthOrderFromDate.do")
+    @ResponseBody
+    public JsonDto getAuthOrderFromDate(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- order/getAuthOrderFromDate.do -->>--");
+        }
+        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String theDateStr=request.getParameter("theDate");
+        Date theDate= null;
+        JsonDto jsonDto=null;
+        try {
+            theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+            if(null==theDate){
+                jsonDto= JsonDto.EXCEPTION;
+                return jsonDto;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        BizDto bizDto=null;
+        List<AuthOrder> authOrderList=orderService.getAuthOrderFromDate(ownerPhoneNumber,theDate);
+        if(null==authOrderList || authOrderList.isEmpty()){
+            bizDto=BizDto.EMPTY_RESULT;
+        }else {
+            bizDto=new BizDto(authOrderList);
+        }
+        jsonDto=new JsonDto(bizDto);
+        return jsonDto;
+    }
+
     @RequestMapping("/getAuthOrder.do")
     @ResponseBody
     public JsonDto getAuthOrder(HttpServletRequest request){
@@ -45,8 +80,8 @@ public class OrderController {
         }
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        String startTime=request.getParameter("startTime");
-        String endTime=request.getParameter("endTime");
+        long startTime=Long.parseLong(request.getParameter("startTime"));
+        long endTime=Long.parseLong(request.getParameter("endTime"));
         JsonDto jsonDto=null;
         BizDto bizDto=null;
 
@@ -67,11 +102,20 @@ public class OrderController {
             LOG.info("-->>-- order/increaseOrder.do -->>--");
         }
         HttpSession session = request.getSession(false);
-        String ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
+        if(null!=ownerPhoneNumber){
+            ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+        }
         String roomTypeId=request.getParameter("roomTypeId");
         String roomId=request.getParameter("roomId");
-        String startTime=request.getParameter("startTime");
-        String endTime=request.getParameter("endTime");
+        long startTime= 0;
+        long endTime=0;
+        try {
+            startTime=DateUtil.yyyy_MM_dd0HH$mm.parse(request.getParameter("startTime")).getTime();
+            endTime=DateUtil.yyyy_MM_dd0HH$mm.parse(request.getParameter("endTime")).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String password=request.getParameter("password");
         String cardInfoListStr=request.getParameter("cardInfoList");
         ObjectMapper objectMapper=new ObjectMapper();
@@ -96,8 +140,8 @@ public class OrderController {
         String orderNumber=request.getParameter("orderNumber");
         String password=request.getParameter("password");
         String roomId=request.getParameter("roomId");
-        String startTime=request.getParameter("startTime");
-        String endTime=request.getParameter("endTime");
+        long startTime=Long.parseLong(request.getParameter("startTime"));
+        long endTime=Long.parseLong(request.getParameter("endTime"));
         String cardInfoListStr=request.getParameter("cardInfoList");
         ObjectMapper objectMapper=new ObjectMapper();
         List<CardInfo> cardInfoList=null;

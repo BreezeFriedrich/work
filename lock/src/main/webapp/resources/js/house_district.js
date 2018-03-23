@@ -453,18 +453,18 @@ var tableFunc={
             DIV=$(".fixed-table_fixed-left tbody tr td div");
             DIV.removeClass("table-width200");
             DIV.addClass("table-width100");
-            var roomTypeLength;
-            var lineHeight;
-            var HTML_landlord;
+            var roomtype_size;
+            var roomtype_height;
+            var roomtype_html;
             var TR_fixedlefttbody;
             roomTypeCRs=landlord.roomTypeContainRoomList;
             for(var i in roomTypeCRs) {
                 roomTypeCR = roomTypeCRs[i];
-                roomTypeLength = roomTypeCR.roomInfoList.length;
-                lineHeight=44*roomTypeLength;
-                HTML_landlord='<td rowspan="'+roomTypeLength+'"><div style="line-height: '+lineHeight+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
+                roomtype_size = roomTypeCR.roomInfoList.length;
+                roomtype_height=44*roomtype_size;
+                roomtype_html='<td rowspan="'+roomtype_size+'"><div style="line-height: '+roomtype_height+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
                 TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[roomtypeid="+roomTypeCR.roomTypeId+"]");
-                TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
+                TR_fixedlefttbody.eq(0).prepend(roomtype_html);
             }
         },
         renderRow:function renderRow(landlord,date) {

@@ -180,25 +180,39 @@
     </div>
 </div>
 
-<%-- 身份证授权 --%>
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-identity">
+<%-- 预订房间 --%>
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-auth">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
-                <h3>添加身份证开锁授权</h3>
+                <h3>预订房间</h3>
                 <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="content">
-                <form id="form-identity" class="form-horizontal">
+                <form id="form-auth" class="form-horizontal">
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="name" placeholder="用户名">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="password" placeholder="开锁密码">
                         </div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3">
+                            <%--<button id="btn-addpwd" type="button" class="btn btn-primary">添加密码</button>--%>
+                        </div>
+                        <div class="col-sm-3"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="name" placeholder="用户名">
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4">
                             <input type="text" class="form-control" name="cardNumb" placeholder="身份证号码">
                         </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-2">
+                            <button id="btn-addid" type="button" class="btn btn-primary">添加身份证</button>
+                        </div>
+                        <div class="col-sm-1"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -206,7 +220,7 @@
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="input-prepend ">
-                                            <input type="text" name="reservation" id="time-book-identity" class="form-control span4" />
+                                            <input type="text" name="reservation" id="daterangepicker-auth" class="form-control span4" />
                                         </div>
                                     </div>
                                 </div>
@@ -215,53 +229,13 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button id="submit-identity" type="button" class="btn btn-primary">提交授权</button>
+                            <button id="submit-auth" type="button" class="btn btn-primary">提交授权</button>
                             <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">关 闭</button>
                         </div>
                     </div>
                 </form>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<%-- 添加密码开锁授权 --%>
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-pwd">
-    <div class="md-content">
-        <div class="block-flat">
-            <div class="header">
-                <h3>添加密码开锁授权</h3>
-                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-
-            <div class="content">
-                <form id="form-pwd" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" name="password" placeholder="开锁密码">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <fieldset>
-                                <div class="control-group">
-                                    <div class="controls">
-                                        <div class="input-prepend ">
-                                            <input type="text" name="reservation" id="time-book-pwd" class="form-control span4" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <button id="submit-pwd" type="button" class="btn btn-primary">提交授权</button>
-                            <button type="button" class="btn btn-default md-close" data-dismiss="modal">关 闭</button>
-                        </div>
-                    </div>
-                </form>
+                <div><p>密码  :</p></div>
+                <div><p>身份证:</p></div>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -302,7 +276,7 @@
 
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/house_landlord.js?v=4"></script>
+<script type="text/javascript" src="resources/js/house_landlord.js?v=8"></script>
 </body>
 
 </html>

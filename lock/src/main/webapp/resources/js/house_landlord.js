@@ -20,6 +20,8 @@ var startTime;
 var endTime;
 var specificGatewayCode;//specificGatewayCode="GWH0081702000003";
 var specificLockCode;//specificLockCode="LCN0011721000001";
+var roomTypeId;
+var roomId;
 var index;
 var html;
 var fixedTable;
@@ -32,6 +34,9 @@ var tableElement;
 var tableInstance;
 var countTable=0;
 var params;
+var cardInfoList;
+var authparams;
+
 
 function getStartOfDate(date) {
     date.setHours(0);
@@ -89,6 +94,7 @@ function getLocks() {
         dataType:'json',
         success:function(data,status,xhr){
             landlord=data;
+            /*
             landlord={
                 "phoneNumber": "18255683932",
                 "grade": 10,
@@ -315,6 +321,7 @@ function getLocks() {
                     }
                 ]
             };
+            */
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -363,97 +370,150 @@ function drawFixedColumn(date) {
     DIV=$(".fixed-table_fixed-left tbody tr td div");
     DIV.removeClass("table-width200");
     DIV.addClass("table-width100");
-    var roomTypeLength;
-    var lineHeight;
-    var HTML_landlord;
+    var roomtype_size;
+    var roomtype_height;
+    var roomtype_html;
     var TR_fixedlefttbody;
     roomTypeCRs=landlord.roomTypeContainRoomList;
     for(var i in roomTypeCRs) {
         roomTypeCR = roomTypeCRs[i];
-        roomTypeLength = roomTypeCR.roomInfoList.length;
-        lineHeight=44*roomTypeLength;
-        HTML_landlord='<td rowspan="'+roomTypeLength+'"><div style="line-height: '+lineHeight+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
+        roomtype_size = roomTypeCR.roomInfoList.length;
+        roomtype_height=44*roomtype_size;
+        roomtype_html='<td rowspan="'+roomtype_size+'"><div style="line-height: '+roomtype_height+'px" class="table-width100 table-butstyle">'+roomTypeCR.roomType+'</div></td>';
         TR_fixedlefttbody=$(".fixed-table_fixed-left tbody tr[roomtypeid="+roomTypeCR.roomTypeId+"]");
-        TR_fixedlefttbody.eq(0).prepend(HTML_landlord);
+        TR_fixedlefttbody.eq(0).prepend(roomtype_html);
     }
 }
 function renderRow(landlord,date) {
-    (function () {
-        // var time1=new Date();
-        locks=landlord.subordinateList;
-        for(var j in locks){
-            lock=locks[j];
-            var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(j).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
-            //auth获取开锁授权信息
-            $.ajax({
-                type:"POST",
-                url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
-                async:false,
-                data:{
-                    "ownerPhoneNumber":landlord.phoneNumber,
-                    "gatewayCode":lock.gatewayCode,
-                    "lockCode":lock.lockCode,
-                    "theDate":getDateStr(date)
-                },
-                dataType:'json',
-                success:function(data,status,xhr){
-                    if(data.success){
-                        if(data.biz.code===0){
-                            authinfo=data.biz.data;
-                            var authinfodailyArr=authinfo.authinfoDaily;
-                            var authinfodaily;
-                            var authinfodailyArrLength=authinfodailyArr.length;
-                            for(var i=0;i<authinfodailyArrLength;i++){
-                                authinfodaily=authinfodailyArr[i];
-                                if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
-                                    TDs_row.eq(i+15).addClass("cd-booked");
-                                }else {
-                                    TDs_row.eq(i+15).addClass("cd-vacant");
-                                }
-                            }
-                        }else if(data.biz.code===1){
-                            for(var i=0;i<16;i++){
+    var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(0).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
+    for(var i=0;i<16;i++){
+        TDs_row.eq(i+15).addClass("cd-vacant");
+    }
+    /*
+    //auth获取开锁授权信息
+    $.ajax({
+        type:"POST",
+        url:"order/getAuthOrderFromDate.do",
+        async:false,
+        data:{
+            "theDate":getDateStr(date)
+        },
+        dataType:'json',
+        success:function(data,status,xhr){
+            console.log("data:"+data);
+            if(data.success) {
+                if (data.biz.code === 0) {
+                    var authorders = data.biz.data;
+                    var authorder;
+                    for(var i=0;i<authorders.length;i++){
+                        authorder=authorders[i];
+                        var roomTypeId=authorder.roomTypeId;
+                        var roomId=authorder.roomId;
+                        var startTime=parseInt(authorder.startTime,10);
+                        var endTime=parseInt(authorder.endTime,10);
+                        var TR=fixedTable.fixedTableBody.find("tbody tr[roomtypeid="+roomTypeId+"][roomid="+roomId+"]").eq(0);
+                        var startIndex=0;
+                        var endIndex=31;
+                        if(startTime<dateArr[0]){
+                            startIndex=0;
+                        }else{
+                            startIndex=(startTime-dateArr[0])/86400000;
+                        }
+                        if(endTime>dateArr[31]){
+                            endIndex=31;
+                        }else{
+                            endIndex=(endTime-dateArr[0])/86400000;
+                        }
+                        var TDs_row=TR.find("td:not(:first)");
+                        for(var i=startIndex;i<endIndex+1;i++){
+                            TDs_row.eq(i).addClass("cd-booked");
+                        }
+                    }
+                }else if(data.biz.code===1){
+                    for(var i=0;i<16;i++){
+                        TDs_row.eq(i+15).addClass("cd-vacant");
+                    }
+                }
+            }
+        },
+        error:function(xhr,errorType,error){
+            console.log('错误');
+        }
+    });
+    */
+
+    locks=landlord.subordinateList;
+    for(var j in locks){
+        lock=locks[j];
+        /*
+        $.ajax({
+            type:"POST",
+            url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+            async:false,
+            data:{
+                "ownerPhoneNumber":landlord.phoneNumber,
+                "gatewayCode":lock.gatewayCode,
+                "lockCode":lock.lockCode,
+                "theDate":getDateStr(date)
+            },
+            dataType:'json',
+            success:function(data,status,xhr){
+                if(data.success){
+                    if(data.biz.code===0){
+                        authinfo=data.biz.data;
+                        var authinfodailyArr=authinfo.authinfoDaily;
+                        var authinfodaily;
+                        var authinfodailyArrLength=authinfodailyArr.length;
+                        for(var i=0;i<authinfodailyArrLength;i++){
+                            authinfodaily=authinfodailyArr[i];
+                            if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
+                                TDs_row.eq(i+15).addClass("cd-booked");
+                            }else {
                                 TDs_row.eq(i+15).addClass("cd-vacant");
                             }
                         }
+                    }else if(data.biz.code===1){
+                        for(var i=0;i<16;i++){
+                            TDs_row.eq(i+15).addClass("cd-vacant");
+                        }
                     }
-                },
-                error:function(xhr,errorType,error){
-                    console.log('错误');
                 }
-            });
-            //record获取入住记录
-            $.ajax({
-                type:"POST",
-                url:projectPath+"/record/getLockUnlockRecordDaily.do",
-                async:false,
-                data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
-                dataType:'json',
-                success:function(data,status,xhr){
-                    if(data.success){
-                        if(data.biz.code===0){
-                            recordinfo=data.biz.data;
-                            var recordinfoLength=recordinfo.length;
-                            var recordDaily;
-                            for(var i=0;i<recordinfoLength-1;i++){//i<recordinfoLength-1表示当天的刷卡记录不渲染表格cell.
-                                recordDaily=recordinfo[i];
-                                if(recordDaily.totalSize>0){
-                                    TDs_row.eq(i).addClass("cd-unlockrecord");
-                                }else{
-                                    TDs_row.eq(i).addClass("cd-blank");
-                                }
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误');
+            }
+        });
+
+        //record获取入住记录
+        $.ajax({
+            type:"POST",
+            url:projectPath+"/record/getLockUnlockRecordDaily.do",
+            async:false,
+            data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
+            dataType:'json',
+            success:function(data,status,xhr){
+                if(data.success){
+                    if(data.biz.code===0){
+                        recordinfo=data.biz.data;
+                        var recordinfoLength=recordinfo.length;
+                        var recordDaily;
+                        for(var i=0;i<recordinfoLength-1;i++){//i<recordinfoLength-1表示当天的刷卡记录不渲染表格cell.
+                            recordDaily=recordinfo[i];
+                            if(recordDaily.totalSize>0){
+                                TDs_row.eq(i).addClass("cd-unlockrecord");
+                            }else{
+                                TDs_row.eq(i).addClass("cd-blank");
                             }
                         }
                     }
-                },
-                error:function(xhr,errorType,error){
-                    console.log('错误');
                 }
-            });
-        }
-        // var time2=new Date();
-        // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
-    })();
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误');
+            }
+        });
+        */
+    }
 }
 function drawTable(date) {
     drawTableHead(date);
@@ -745,21 +805,12 @@ $(document).ready(function () {
     $.contextMenu({
         selector: ".cd-vacant",
         items: {
-            identity: {
-                name: "身份证授权", callback: function (key, opt) {
+            auth: {
+                name: "预订房间", callback: function (key, opt) {
                     // getCellParam($(this));
-                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
-                    specificLockCode = $(this).parent("tr").attr("lockid");
-                    $('#md-identity').niftyModal();
-                }
-            },
-            separator1: "-----",
-            password: {
-                name: "密码授权", callback: function (key, opt) {
-                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
-                    specificLockCode = $(this).parent("tr").attr("lockid");
-                    $('#md-pwd').niftyModal();
-                    //$('#submit-pwd').click(function(){}),事件click不能嵌入其他事件之中,会造成多次绑定.
+                    roomTypeId = $(this).parent("tr").attr("roomtypeid");
+                    roomId = $(this).parent("tr").attr("roomid");
+                    $('#md-auth').niftyModal();
                 }
             }
         }
@@ -814,58 +865,48 @@ $(document).ready(function () {
         monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         firstDay: 1
     };
-    $('#time-book-identity').daterangepicker(options_daterange,function (start, end, label) {
-        startTime=start.format('YYYY-MM-DD HH:mm');
-        endTime=end.format('YYYY-MM-DD HH:mm');
-        console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
-    });
-    $('#time-book-pwd').daterangepicker(options_daterange,function (start, end, label) {
+    $('#daterangepicker-auth').daterangepicker(options_daterange,function (start, end, label) {
         startTime=start.format('YYYY-MM-DD HH:mm');
         endTime=end.format('YYYY-MM-DD HH:mm');
         console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
     });
 
-    $('#submit-identity').click(function () {
+    cardInfoList=new Array();
+    $('#btn-addid').click(function () {
         name = $("form#form-identity input[name='name']").val();
         cardNumb = $("form#form-identity input[name='cardNumb']").val();
-        params = {
-            "ownerPhoneNumber": landlord.phoneNumber,
-            "gatewayCode": specificGatewayCode,
-            "lockCode": specificLockCode,
-            "name": name,
-            "cardNumb": cardNumb,
-            "startTime": startTime,
-            "endTime": endTime
-        };
-        $.ajax({
-            type: "POST",
-            url: "unlock/authUnlockById.do",
-            async: false,
-            data: params,
-            dataType: 'json',
-            success: function (data, status, xhr) {
-                alert('data:' + data);
-            },
-            error: function (xhr, errorType, error) {
-                console.log('错误');
-            }
-        });
+        if(''!=name & ''!=cardNumb){
+            var cardInfo=new Object();
+            cardInfo.name=name;
+            cardInfo.cardNumber=cardNumb;
+            cardInfoList.push(cardInfo);
+        }
     });
-    $('#submit-pwd').click(function () {
-        password = $("form#form-pwd input[name='password']").val();
-        params = {
-            "ownerPhoneNumber": landlord.phoneNumber,
-            "gatewayCode": specificGatewayCode,
-            "lockCode": specificLockCode,
-            "password": password,
-            "startTime": startTime,
-            "endTime": endTime
-        };
+    $('#submit-auth').click(function () {
+        password = $("form#form-auth input[name='password']").val();
+        // authparams = {
+        //     "ownerPhoneNumber": landlord.phoneNumber,
+        //     "roomTypeId": roomTypeId,
+        //     "roomId": roomId,
+        //     "startTime": startTime,
+        //     "endTime": endTime,
+        //     "password": password,
+        //     "cardInfoList":cardInfoList
+        // };
+        authparams=new Object();
+        authparams.ownerPhoneNumber=landlord.phoneNumber;
+        authparams.startTime=startTime;
+        authparams.endTime=endTime;
+        authparams.roomTypeId=roomTypeId;
+        authparams.roomId=roomId;
+        authparams.password=password;
+        authparams.cardInfoList=JSON.stringify(cardInfoList);
+        cardInfoList.length=0;
         $.ajax({
             type: "POST",
-            url: "unlock/authUnlockByPwd.do",
+            url: "order/increaseOrder.do",
             async: false,
-            data: params,
+            data: authparams,
             dataType: 'json',
             success: function (data, status, xhr) {
                 alert('data:' + data);
