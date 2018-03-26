@@ -73,7 +73,7 @@ $(function(){
 
     //给左边栏绑定事件
     $('.panel-left ul li').eq(0).click(function () {
-        url="jsp/room/roomStatus.jsp";
+        url="jsp/room/roomStatus.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
     $('.panel-left ul li').eq(1).click(function () {
@@ -85,11 +85,11 @@ $(function(){
         window.location.href=encodeURI(url);
     });
     $('.panel-left ul li').eq(3).click(function () {
-        url="jsp/alert.jsp";
+        url="jsp/alert.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
     $('.panel-left ul li').eq(4).click(function () {
-        url="jsp/setting.jsp";
+        url="jsp/setting.jsp?ownerPhoneNumber="+ownerPhoneNumber;
         window.location.href=encodeURI(url);
     });
 
@@ -151,7 +151,8 @@ function createGatewayNode(){
         html +=             '<div class="item-subtitle gateway-red">'+device[x].gatewayStatus+'</div>';
         html +=         '</div>';
         html += '<div style="float: right">';
-        html +=     '<img src="resources/img/right_arrow.png" style="height: 40px;width: 40px;"/>';
+        // html +=     '<img src="resources/img/right_arrow.png" style="height: 40px;width: 40px;"/>';
+        html +=     '<img src="resources/img/link.png" style="height: 40px;width: 40px;"/>';
         html += '</div>';
         html +=     '</a>';
         html += '</li>';

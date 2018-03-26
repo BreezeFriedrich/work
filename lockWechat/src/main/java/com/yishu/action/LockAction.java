@@ -27,9 +27,9 @@ import java.util.Map;
  */
 public class LockAction extends ActionSupport {
     public LockAction() {
-        logger.info(">>>Initialization LockAction......................................");
+        LOG.info(">>>Initialization LockAction......................................");
     }
-    private org.slf4j.Logger logger= LoggerFactory.getLogger("LockAction");
+    private org.slf4j.Logger LOG = LoggerFactory.getLogger("LockAction");
 
     @Autowired
     private ILockService lockService;

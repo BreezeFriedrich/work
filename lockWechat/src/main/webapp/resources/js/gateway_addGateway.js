@@ -14,24 +14,25 @@ var opCode;
 var isCorrectGatewayVerificationCode;
 var url;
 $(function () {
-    clearIframe("frame1");
+    clearIframeById("frame1");
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     document.getElementsByTagName('input')[0].value='';
     document.getElementsByTagName('input')[1].value='';
 
     $.init();
 });
-function clearIframe(id) {
-    var el_iframe = document.getElementById(id);
-    if (el_iframe) {
-        el_iframe.src = 'about:blank';
+function clearIframeById(id) {
+    var iframe = document.getElementById(id);
+    if (iframe) {
+        iframe.src = 'about:blank';
         try {
-            el_iframe.contentWindow.document.write('');
-            el_iframe.contentWindow.document.clear();
+            iframe.contentWindow.document.write('');
+            iframe.contentWindow.document.clear();
         } catch (e) {
         }
     //以上可以清除大部分的内存和文档节点记录数了
-        document.body.removeChild(el_iframe);
+    //     document.body.removeChild(iframe);
+        iframe.parentNode.removeChild(iframe);
     }
 }
     /*

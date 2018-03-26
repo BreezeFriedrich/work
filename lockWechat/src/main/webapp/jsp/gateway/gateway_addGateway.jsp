@@ -22,7 +22,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="resources/img/favicon.png" type="image/x-icon">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -63,8 +63,12 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="content-block">
                 <a href="javascript:void(0);" onclick="getGatewayVerifyCode()" class="button button-big button-fill button-success">获取网关验证码</a>
                 <iframe id="frame1" width="300" height="180" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"/></iframe>
+            </div>
+            <div class="list-block">
                 <ul>
                     <li>
                         <div class="item-content">
@@ -78,6 +82,8 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="content-block">
                 <a href="javascript:void(0);" onclick="addGateway()" class="button button-big button-fill button-success">添加网关</a>
             </div>
         </div>
@@ -88,6 +94,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <%--<script type='text/javascript' src='resources/js/fastclick.js'></script>--%>
-<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=3' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=5' charset='utf-8'></script>
 </body>
 </html>

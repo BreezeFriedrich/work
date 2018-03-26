@@ -19,7 +19,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1">
-    <link rel="shortcut icon" href="resources/img/favicon.ico">
+    <%--<link rel="shortcut icon" href="resources/img/favicon.ico">--%>
+    <link rel="shortcut icon" href="resources/img/favicon.png" type="image/x-icon">
+    <link rel="icon" sizes="any" mask="" href="resources/img/favicon.svg">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -55,6 +57,30 @@
             margin-right: .75rem;
             border-radius: .35rem;
         }
+
+        @font-face {
+            font-family: 'iconfont';  /* project id 604475 */
+            src: url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.eot');
+            src: url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.woff') format('woff'),
+            url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.svg#iconfont') format('svg');
+        }
+        .iconfont{
+            font-family:"iconfont";
+            font-size:24px;
+            font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            /*padding-left:20px*/
+        }
+        .tab-item .tab-label{
+            display: block;
+            font-size: .55rem;
+            position: relative;
+            top: .15rem;
+        }
     </style>
 
     <link rel="apple-touch-icon-precomposed" href="http://m.sui.taobao.org/assets/img/apple-touch-icon-114x114.png">
@@ -69,27 +95,34 @@
           <!-- 工具栏 -->
           <nav class="bar bar-tab">
               <a class="tab-item external active" href="jsp/main.jsp">
-                  <span class="icon icon-home"></span>
+                  <%--<span class="icon icon-home"></span>--%>
+                  <span class="iconfont">&#xe62e;</span>
                   <span class="tab-label">首页</span>
               </a>
               <a class="tab-item external" href="jsp/room/roomStatus.jsp">
-                  <span class="icon icon-code"></span>
+                  <%--<span class="icon icon-code"></span>--%>
+                  <%--<span class="iconfont"><i>&#xe64f;</i></span>--%>
+                  <span class="iconfont">&#xe64f;</span>
                   <span class="tab-label">房态</span>
               </a>
               <a class="tab-item external" href="jsp/gateway/gateway_addGateway.jsp">
-                  <span class="icon icon-browser"></span>
+                  <%--<span class="icon icon-browser"></span>--%>
+                  <span class="iconfont">&#xeb59;</span>
                   <span class="tab-label">网关</span>
               </a>
               <a class="tab-item external" href="jsp/record/record.jsp">
-                  <span class="icon icon-search"></span>
+                  <%--<span class="icon icon-search"></span>--%>
+                  <span class="iconfont">&#xe61e;</span>
                   <span class="tab-label">记录</span>
               </a>
               <a class="tab-item external" href="jsp/alert.jsp">
-                  <span class="icon icon-phone"></span>
+                  <%--<span class="icon icon-phone"></span>--%>
+                  <span class="iconfont">&#xe676;</span>
                   <span class="tab-label">告警<span class="badge" style="vertical-align: -50%;"></span></span>
               </a>
               <a class="tab-item external" href="jsp/setting.jsp">
-                  <span class="icon icon-settings"></span>
+                  <%--<span class="icon icon-settings"></span>--%>
+                  <span class="iconfont">&#xe78a;</span>
                   <span class="tab-label">设置</span>
               </a>
           </nav>
@@ -153,31 +186,36 @@
             <div class="list-block list-my">
                 <ul>
                     <li class="item-content">
-                        <div class="item-media"><i class="icon icon-code"></i></div>
+                        <%--<div class="item-media"><i class="icon icon-code"></i></div>--%>
+                        <div class="item-media"><i class="iconfont">&#xe64f;</i></div>
                         <div class="item-inner my-inner">
                             <div class="item-title">房态</div>
                         </div>
                     </li>
                     <li class="item-content">
-                        <div class="item-media"><i class="icon icon-my1"></i></div>
+                        <%--<div class="item-media"><i class="icon icon-my1"></i></div>--%>
+                        <div class="item-media"><i class="iconfont">&#xeb59;</i></div>
                         <div class="item-inner my-inner">
                             <div class="item-title">添加网关</div>
                         </div>
                     </li>
                     <li class="item-content">
-                        <div class="item-media"><i class="icon icon-my2"></i></div>
+                        <%--<div class="item-media"><i class="icon icon-my2"></i></div>--%>
+                        <div class="item-media"><i class="iconfont">&#xe61e;</i></div>
                         <div class="item-inner my-inner">
                             <div class="item-title">查询统计</div>
                         </div>
                     </li>
                     <li class="item-content">
-                        <div class="item-media"><i class="icon icon-my3"></i></div>
+                        <%--<div class="item-media"><i class="icon icon-my3"></i></div>--%>
+                        <div class="item-media"><i class="iconfont">&#xe676;</i></div>
                         <div class="item-inner my-inner">
                             <div class="item-title">异常警示</div>
                         </div>
                     </li>
                     <li class="item-content">
-                        <div class="item-media"><i class="icon icon-my4"></i></div>
+                        <%--<div class="item-media"><i class="icon icon-my4"></i></div>--%>
+                        <div class="item-media"><i class="iconfont">&#xe78a;</i></div>
                         <div class="item-inner my-inner">
                             <div class="item-title">系统设置</div>
                         </div>

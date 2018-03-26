@@ -11,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class DeviceAction extends ActionSupport {
-    public DeviceAction() {logger.info(">>>Initialization DeviceAction......................................");}
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("DeviceAction");
+    public DeviceAction() {
+        LOG.info(">>>Initialization DeviceAction......................................");}
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("DeviceAction");
 
     @Autowired
     private IDeviceService deviceService;
@@ -61,7 +60,7 @@ public class DeviceAction extends ActionSupport {
      * @return
      */
     public String getUserGatewayIp(){
-        logger.info("-->>-- device/getUserGatewayIp.action -->>--");
+        LOG.info("-->>-- device/getUserGatewayIp.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -82,7 +81,7 @@ public class DeviceAction extends ActionSupport {
      * @return
      */
     public String getDeviceInfo(){
-        logger.info("-->>-- device/getDeviceInfo.action -->>--");
+        LOG.info("-->>-- device/getDeviceInfo.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -93,7 +92,7 @@ public class DeviceAction extends ActionSupport {
 
     /*
     public String getSpecificGateway(){
-        logger.info("-->>-- device/getSpecificGateway.action -->>--");
+        LOG.info("-->>-- device/getSpecificGateway.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -120,7 +119,7 @@ public class DeviceAction extends ActionSupport {
      * @return
      */
     public String getSpecificGateway(){
-        logger.info("-->>-- device/getSpecificGateway.action -->>--");
+        LOG.info("-->>-- device/getSpecificGateway.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -134,14 +133,14 @@ public class DeviceAction extends ActionSupport {
         });
         //通常不会有编码相同的多个网关.
         if (deviceList.size()>1){
-            logger.warn(ownerPhoneNumber+"名下,编号为"+gatewayCode+"的网关不只一个.");
+            LOG.warn(ownerPhoneNumber+"名下,编号为"+gatewayCode+"的网关不只一个.");
         }
         jsonResult=deviceList.get(0);
         return "json";
     }
 
     public String getAbnormalDevice(){
-        logger.info("-->>-- device/getAbnormalDevice.action -->>--");
+        LOG.info("-->>-- device/getAbnormalDevice.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -151,7 +150,7 @@ public class DeviceAction extends ActionSupport {
     }
 
     public String countAbnormalDevice(){
-        logger.info("-->>-- device/countAbnormalDevice.action -->>--");
+        LOG.info("-->>-- device/countAbnormalDevice.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }

@@ -56,7 +56,6 @@ public class WechatWebAccessTokenUtil {
      * @return
      */
     public WechatWebAccessToken getWechatWebAccessTokenByCode(String code) {
-        LOG.info("APPID : "+APPID);
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="
                 + APPID
                 + "&secret="
@@ -65,13 +64,14 @@ public class WechatWebAccessTokenUtil {
                 + code
                 + "&grant_type=authorization_code";
 
+        LOG.info("url : "+url);
         String jsonStr = HttpUtil.doGet(url);
+        LOG.info("获取网页授权openid & access_token,微信返回 : "+jsonStr);
         try{
             jsonStr = new String(jsonStr.getBytes("ISO-8859-1"), "utf-8");
         } catch (UnsupportedEncodingException e){
             e.printStackTrace();
         }
-        LOG.info("获取网页授权openid & access_token,微信返回 : "+jsonStr);
         JSONObject jsonObject = null;
         String openid = null;
         WechatWebAccessToken wechatWebAccessToken=new WechatWebAccessToken();

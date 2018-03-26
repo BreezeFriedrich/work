@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* 添加入住信息*/
+.tjrzxx{ margin: 0px}
+.tjrzr{ margin: 0.75rem 0}
+
+.ry-j-1{ width: 1.8rem; height: 1.8rem}
+.tjrzr-lb{ border:0px  }
+.ry-j{width: 1.8rem; height: 1.8rem; float: left; margin: 0.2rem 0 0 30%}
+.tjrzr-wz{ float:left; margin: 0 0 0 2%}
+/* 添加入住信息 end*/

@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="resources/img/favicon.png" type="image/x-icon">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -86,7 +86,8 @@
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner" id="link_modifyNickname">
                             <div class="item-title">
-                                <img class="auto-zoom-1" src="resources/img/password_set.png" alt="用户昵称"/>
+                                <%--<img class="auto-zoom-1" src="resources/img/password_set.png" alt="用户昵称"/>--%>
+                                <span class="icon icon-edit"></span>
                                 修改用户昵称
                             </div>
                             <div class="item-after"></div>
@@ -98,7 +99,8 @@
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner" id="link_modifyPassword">
                             <div class="item-title">
-                                <img class="auto-zoom-1" src="resources/img/password_set.png" alt="登录密码"/>
+                                <%--<img class="auto-zoom-1" src="resources/img/password_set.png" alt="登录密码"/>--%>
+                                <span class="icon icon-edit"></span>
                                 修改登录密码
                             </div>
                             <div class="item-after"></div>
@@ -110,8 +112,22 @@
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner" id="link_setGesturePassword">
                             <div class="item-title">
-                                <img class="auto-zoom-1" src="resources/img/password_set.png" alt="授权密码"/>
+                                <%--<img class="auto-zoom-1" src="resources/img/password_set.png" alt="授权密码"/>--%>
+                                <span class="icon icon-edit"></span>
                                 设置授权密码
+                            </div>
+                            <div class="item-after"></div>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner" id="link_roomManage">
+                            <div class="item-title">
+                                <%--<img class="auto-zoom-1" src="resources/img/password_set.png" alt="房间设置"/>--%>
+                                <span class="icon icon-edit"></span>
+                                房间设置
                             </div>
                             <div class="item-after"></div>
                         </div>
@@ -136,6 +152,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/fastclick.js'></script>
-<script type='text/javascript' src='resources/js/setting.js?ver=5' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/setting.js?ver=6' charset='utf-8'></script>
 </body>
 </html>

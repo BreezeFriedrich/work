@@ -1,14 +1,9 @@
 package com.yishu.action;
 
-import com.aliyuncs.dysmsapi.model.v20170525.QuerySendDetailsResponse;
-import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
-import com.aliyuncs.exceptions.ClientException;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
 import com.yishu.dao.LockUserDao;
 import com.yishu.service.ILoginService;
-import com.yishu.util.*;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.slf4j.LoggerFactory;
@@ -16,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,9 +20,9 @@ import java.util.Map;
  */
 public class LoginAction extends ActionSupport implements Parameterizable,SessionAware {
     public LoginAction() {
-        logger.info(">>>Initialization LoginAction......................................");
+        LOG.info(">>>Initialization LoginAction......................................");
     }
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("LoginAction");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("LoginAction");
 
     @Autowired
     ILoginService loginService;
@@ -107,31 +100,33 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
      * @return
      */
     public String wxLogin () {
-        logger.info("login&session ￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
-//        logger.info("wxLogin.action");
+        LOG.info("login&session ￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
+//        LOG.info("wxLogin.action");
+        session.setAttribute("cDate",new Date());
+
         openid= (String) session.getAttribute("OPENID");
-        logger.info("openid :"+openid);
+        LOG.info("openid :"+openid);
         Map map=loginService.openidExist(openid);
         //如果http返回的字段result=-1,则http请求查询openid遭遇失败.
         if (-1==(int)map.get("result")){
             errMsg="http请求查询后台openid遭遇失败";
-            logger.info("http请求查询后台openid遭遇失败");
+            LOG.info("http请求查询后台openid遭遇失败");
             return ActionSupport.ERROR;
         }
         //0==result,则openid存在,直接登录.
         if (0==(int)map.get("result")){
             ownerPhoneNumber= (String) map.get("ownerPhoneNumber");
-            logger.info("ownerPhoneNumber :"+ownerPhoneNumber);
+            LOG.info("ownerPhoneNumber :"+ownerPhoneNumber);
             session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
             /*使用struts2操作session,设置session.
             ActionContext.getContext().getSession().put("ownerPhoneNumber", ownerPhoneNumber);
              */
-            logger.warn("openid存在,即将登录");
+            LOG.warn("openid存在,即将登录");
             return "main";
         }
         //如果http返回的字段result=1,则openid不存在,进入注册流程.
         if (1==(int)map.get("result")){
-            logger.warn("openid不存在,即将进入注册流程");
+            LOG.warn("openid不存在,即将进入注册流程");
             return "SMSVerifyCode";
         }
         return ActionSupport.ERROR;
@@ -147,8 +142,8 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
 
 /*
     public String sendVerifyCode() throws Exception {
-        logger.warn("sendVerifyCode.action");
-        logger.info("客户端提交的手机号码："+phoneNumber);
+        LOG.warn("sendVerifyCode.action");
+        LOG.info("客户端提交的手机号码："+phoneNumber);
         String verifyCodeStr=VerifyCodeUtils.generateVerifyCodeNum(6);
         SendSmsResponse smsResponse=null;
         String sms_BizId=null;
@@ -159,10 +154,10 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
         session.setAttribute("verifyCode",verifyCodeStr);
         sms_BizId=smsResponse.getBizId();
         session.setAttribute("sms_BizId",sms_BizId);
-        logger.info("发送 短信验证码为："+verifyCodeStr+" ,流水号为："+sms_BizId);
+        LOG.info("发送 短信验证码为："+verifyCodeStr+" ,流水号为："+sms_BizId);
         Map <String,Object> resultMap=new HashMap<>(1);
         if(smsResponse.getCode() == null || ! smsResponse.getCode().equals("OK")){
-            logger.error("发送短信验证码失败");
+            LOG.error("发送短信验证码失败");
             resultMap.put("result",false);
         }
         resultMap.put("smsverifycode",verifyCodeStr);
@@ -179,11 +174,11 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
     }
 
     public String checkVerifyCode() throws ClientException, ParseException {
-        logger.warn("checkVerifyCode.action");
+        LOG.warn("checkVerifyCode.action");
         String sms_BizId=null;
         sms_BizId= (String) session.getAttribute("sms_BizId");
         String phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        logger.info("查询 已发送短信 流水号为："+sms_BizId);
+        LOG.info("查询 已发送短信 流水号为："+sms_BizId);
         SendSmsResponse smsResponse=null;
         QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(phoneNumber,sms_BizId);
 //        System.out.println("短信明细查询接口返回数据----------------");
@@ -198,35 +193,35 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
 //            System.out.println("ErrCode=" + smsSendDetailDTO.getErrCode());
 //            System.out.println("PhoneNum=" + smsSendDetailDTO.getPhoneNum());
 //            System.out.println("SendDate=" + smsSendDetailDTO.getSendDate());
-            logger.info("查询已发送的短信 内容为："+smsSendDetailDTO.getContent());
+            LOG.info("查询已发送的短信 内容为："+smsSendDetailDTO.getContent());
             phoneNum=smsSendDetailDTO.getPhoneNum();
             sendDateStr=smsSendDetailDTO.getSendDate();
         }
         if (null != sendDateStr){
-            logger.warn("获得短信回执,短信发送时间 : "+ sendDateStr);
+            LOG.warn("获得短信回执,短信发送时间 : "+ sendDateStr);
         }else {
             sendDateStr= (String) session.getAttribute("sendDateStr");
-            logger.info("短信发送时间 : "+sendDateStr);
+            LOG.info("短信发送时间 : "+sendDateStr);
         }
         if (null != phoneNum){
-            logger.warn("获得短信回执,短信发送目标手机 : "+ phoneNum);
+            LOG.warn("获得短信回执,短信发送目标手机 : "+ phoneNum);
         }else {
             phoneNum= (String) session.getAttribute("ownerPhoneNumber");
-            logger.info("短信发送目标手机 : "+phoneNum);
+            LOG.info("短信发送目标手机 : "+phoneNum);
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long timeLag= new Date().getTime()- (dateFormat.parse(sendDateStr).getTime());
-        logger.info("客户端提交验证码:"+verifyCode+" 服务端发送验证码:"+session.getAttribute("verifyCode"));
-        logger.info("验证码发送时间:"+sendDateStr);
+        LOG.info("客户端提交验证码:"+verifyCode+" 服务端发送验证码:"+session.getAttribute("verifyCode"));
+        LOG.info("验证码发送时间:"+sendDateStr);
         Map <String,Object> resultMap=new HashMap<>(1);
         if(timeLag < 5*60*1000 && verifyCode.equals(session.getAttribute("verifyCode")) ){
             //验证码未超时并且客户端提交的验证码与服务器发送的验证码相同,即验证码有效,注册用户信息.
-            logger.info("短信验证码有效!");
+            LOG.info("短信验证码有效!");
             resultMap.put("result",1);
             session.setAttribute("ownerPhoneNumber",phoneNum);
         }else {
             //验证码无效(超时或不正确),重新获取.
-            logger.info("短信验证码无效!");
+            LOG.info("短信验证码无效!");
             resultMap.put("result",2);
             resultMap.put("errMsg","短信验证码错误或超时");
         }
@@ -236,7 +231,7 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
 */
 
     public String bindOpenid(){
-        logger.info("bindOpenid.action");
+        LOG.info("bindOpenid.action");
         openid= (String) session.getAttribute("OPENID");
         phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         int result=loginService.bindOpenidToPhone(openid,phoneNumber,ownerPassword);
@@ -273,14 +268,14 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
     }
 
     public String register(){
-        logger.info("register.action");
+        LOG.info("register.action");
         openid= (String) session.getAttribute("OPENID");
         phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         ownerPassword=(String) session.getAttribute("ownerPassword");
         session.removeAttribute("ownerPhoneNumber");
         session.removeAttribute("ownerPassword");
         boolean booleanResult=loginService.register(ownerName,phoneNumber,ownerPassword,openid);
-        logger.info("register结果为: "+booleanResult);
+        LOG.info("register结果为: "+booleanResult);
         if (booleanResult){
             session.setAttribute("ownerPhoneNumber",phoneNumber);
         }

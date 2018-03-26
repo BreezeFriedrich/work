@@ -30,6 +30,7 @@ $(function(){
         }
     });
     //动态显示门锁列表
+    /*
     UL_gatewayProperty=document.getElementById("UL_gatewayProperty");
     UL_gatewayProperty.innerHTML = getGatewayDetails();
     UL_theSpecificGateway=document.getElementById("UL_theSpecificGateway");
@@ -45,6 +46,24 @@ $(function(){
                 url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode+"&specificLockCode="+specificLockCode;
                 window.location.href=encodeURI(url);
                 break;
+            }
+            target = target.parentNode;
+        }
+    });
+    */
+    $(".content .list-block #UL_theSpecificGateway").html(createLockNode(specificGatewayCode));
+    // $("#UL_theSpecificGateway a").click(function (event) {
+    //     specificLockCode=event.target.id;
+    //     console.log("specificLockCode:"+specificLockCode);
+    // });
+    $("#UL_theSpecificGateway").on('click',function (event) {
+        var target=event.target;
+        while (target != $("#UL_theSpecificGateway")){
+            if(target.nodeName.toLowerCase() == 'a'){
+                specificLockCode=target.id;
+                console.log("specificLockCode:"+specificLockCode);
+                url="jsp/lock/lock_manage.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&specificGatewayCode="+specificGatewayCode+"&specificLockCode="+specificLockCode;
+                window.location.href=encodeURI(url);
             }
             target = target.parentNode;
         }

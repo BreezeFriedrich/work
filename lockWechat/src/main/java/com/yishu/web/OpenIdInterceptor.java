@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  */
 @Component
 public class OpenIdInterceptor extends AbstractInterceptor{
-    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(OpenIdInterceptor.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("OpenIdInterceptor");
 
     @Autowired
     private WechatWebAccessTokenUtil wechatWebAccessTokenUtil;
@@ -76,11 +76,13 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         String code = request.getParameter("code");
         LOG.info("网页授权code: "+code);
         String openid = (String) session.getAttribute("OPENID");
+        LOG.info("网页授权openid: "+openid);
 
         if (null==openid) {
             if (StringUtil.bIsNotNull(code)) {
                 //有code,无openid,获取openid
 //                WechatWebAccessTokenUtil wechatWebAccessTokenUtil = new WechatWebAccessTokenUtil();
+                LOG.info("网页授权code: "+code);
                 WechatWebAccessToken wechatWebAccessToken=wechatWebAccessTokenUtil.getWechatWebAccessTokenByCode(code);
                 String openId=wechatWebAccessToken.getOpenid();
                 String access_token=wechatWebAccessToken.getAccess_token();
