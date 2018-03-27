@@ -16,7 +16,9 @@ public class WechatWebAccessToken {
 //    refresh_token	用户刷新access_token
 //    openid	用户唯一标识，请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID
 //    scope	用户授权的作用域，使用逗号（,）分隔
-    private String access_token,expires_in,refresh_token,openid,scope;
+    private String access_token,refresh_token,openid,scope;
+    private int expires_in;
+    private long fetchtime,deadline;
 
     public String getAccess_token() {
         return access_token;
@@ -26,11 +28,11 @@ public class WechatWebAccessToken {
         this.access_token = access_token;
     }
 
-    public String getExpires_in() {
+    public int getExpires_in() {
         return expires_in;
     }
 
-    public void setExpires_in(String expires_in) {
+    public void setExpires_in(int expires_in) {
         this.expires_in = expires_in;
     }
 
@@ -56,5 +58,21 @@ public class WechatWebAccessToken {
 
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+    public long getFetchtime() {
+        return fetchtime;
+    }
+
+    public void setFetchtime(long fetchtime) {
+        this.fetchtime = fetchtime;
+    }
+
+    public long getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(long deadline) {
+        this.deadline = deadline;
     }
 }

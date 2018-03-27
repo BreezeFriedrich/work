@@ -1,12 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: YS-dell001
-  Date: 2018/1/22
-  Time: 15:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -19,13 +11,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="resources/img/favicon.png" type="image/x-icon">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
-    <!--<link rel="stylesheet" href="resources/css/picSrc.css"/>-->
+
     <style>
         img.auto-zoom-1 {
             width: 1rem;
@@ -84,10 +76,9 @@
             display: none;
         }
     </style>
-
     <link rel="stylesheet" href="resources/css/fixed-table.css" />
-    <script src="resources/js/room/jquery-3.1.0.min.js"></script>
-    <script src="resources/js/room/fixed-table.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="resources/js/room/fixed-table.js"></script>
     <style>
         .fixed-table-box{ position: absolute; top: 0; left: 0; right: 0; bottom: 0px}
         .fixed-table_body-wraper{
@@ -97,8 +88,8 @@
             position: absolute; top: 51px; left: 0; right: 0; bottom: 0px}
 
         .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/
-            position: absolute; top: 51px; left: 0; right: 0; bottom: 0px}
-
+            position: absolute; top: 51px; left: 0; right: 0; bottom: 0px
+        }
 
         .w-50{
             width: 55px !important;overflow: hidden;
@@ -111,25 +102,18 @@
             width: 80px;
         }
     </style>
-
 </head>
 <body>
 
 <div class="page-group">
-    <!-- 单个page ,第一个.page默认被展示,page-current指定第一次进入展示-->
     <div class="page page-current" id="page-1516691372553">
-        <!-- 标题栏 -->
         <header class="bar bar-nav">
+            <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
             <h1 class="title">房态</h1>
-            <a  href="jsp/room/cal.jsp"  class="rili" ><img src="resources/images/rili.png" ></a>
+            <a  href="jsp/room/cal.jsp" class="rili"><img src="resources/images/rili.png" ></a>
         </header>
 
-        <!-- 工具栏 -->
-        <jsp:include page="/jsp/nav.jsp"/>
-
-        <!-- 这里是页面内容区 -->
         <div class="content">
-
             <div class="fixed-table-box row-col-fixed">
                 <!-- 表头 start -->
                 <div class="fixed-table_header-wraper">
@@ -151,7 +135,6 @@
                             <td  class="fixed-table_header-1"><div class="table-cell w-50"><br/></div></td>
                             <td  class="fixed-table_header-1"><div class="table-cell w-50"><br/></div></td>
                             <td  class="fixed-table_header-1"><div class="table-cell w-50"><br/></div></td>
-
                         </tr>
                         </thead>
                     </table>
@@ -161,28 +144,6 @@
                 <div class="fixed-table_body-wraper">
                     <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
                         <tbody id="roomStatus">
-                        <%--<tr >--%>
-                            <%--<td ><div class="table-cell w-81" >日历表</div></td>--%>
-                            <%--<td ><div class="table-cell w-50 cd-select "> no.00<span>密码</span></div></td>--%>
-                            <%--<td ><div class="table-cell w-50 cd-booked"> <span>密码</span></div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-                            <%--<td ><div class="table-cell w-50"> </div></td>--%>
-
-
-
-                        <%--</tr>--%>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -203,9 +164,6 @@
                     <div class="fixed-table_body-wraper">
                         <table class="fixed-table_body  fixed-table_body-left" cellspacing="0" cellpadding="0" border="0">
                             <tbody id="roomList">
-                            <%--<tr >--%>
-                                <%--<td ><div class="table-cell w-80">200<span class="hxlx">大户型</span></div></td>--%>
-                            <%--</tr>--%>
                             </tbody>
                         </table>
                     </div>
@@ -216,25 +174,14 @@
             <script>
                 $(".fixed-table-box").fixedTable();
             </script>
-
-
-
-
         </div>
-
     </div>
-
 </div>
-
-<%--<input type="hidden" id="INPUT_hidden" value="${ownerPhoneNumber}" />--%>
-
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-
 <script type="text/javascript" src="resources/js/room/room.js"></script>
-
 
 </body>
 </html>

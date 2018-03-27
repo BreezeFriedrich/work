@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * @author <a href="http://www.yishutech.com">Nanjing yishu information technology co., LTD</a>
@@ -62,11 +63,40 @@ public class OpenIdInterceptor extends AbstractInterceptor{
      */
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
-        /*使用struts2操作session,获取session.
-        ActionContext ctx = invocation.getInvocationContext();
-        Map<String,Object> session = ctx.getSession();
-        String openid = (String) session.get("OPENID");
-         */
+        HttpServletRequest request=ServletActionContext.getRequest();
+        HttpServletResponse response=ServletActionContext.getResponse();
+        HttpSession session=request.getSession();
+        String code = request.getParameter("code");
+//        LOG.info("网页授权code: "+code);
+        String openid = (String) session.getAttribute("OPENID");
+//        LOG.info("网页授权openid: "+openid);
+        LOG.info("网页授权code: "+code+", 网页授权openid: "+openid);
+        if(null==openid){
+            LOG.info("网页授权openid: "+openid);
+            if(null==code){
+                LOG.info("网页授权code: "+code);
+                response.sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APPID+"&redirect_uri="
+                        + redirectURL + "&response_type=code&scope=snsapi_base#wechat_redirect");
+            }else{
+                LOG.info("网页授权code: "+code);
+                WechatWebAccessToken webAccessToken=wechatWebAccessTokenUtil.getWechatWebAccessTokenByCode(code);
+                openid=webAccessToken.getOpenid();
+                session.setAttribute("OPENID",openid);
+//                String accessToken=webAccessToken.getAccess_token();
+//                return actionInvocation.invoke();
+                response.sendRedirect(redirectURL);
+            }
+        }
+        LOG.info("网页授权code: "+code+", 网页授权openid: "+openid);
+        return actionInvocation.invoke();
+    }
+    /*
+    public String intercept(ActionInvocation actionInvocation) throws Exception {
+        //使用struts2操作session,获取session.
+        //ActionContext ctx = invocation.getInvocationContext();
+        //Map<String,Object> session = ctx.getSession();
+        //String openid = (String) session.get("OPENID");
+
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
 //        String redirectURL= "https://lockwx.manxing1798.com/lockWechat/login/wxLogin.action";
@@ -95,8 +125,6 @@ public class OpenIdInterceptor extends AbstractInterceptor{
                 }
             }else {
                 //code为空,获取code
-//                response.sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6234fc4a502ef625&redirect_uri="
-//                        + url + "&response_type=code&scope=snsapi_base#wechat_redirect");
                 response.sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+APPID+"&redirect_uri="
                         + redirectURL + "&response_type=code&scope=snsapi_base#wechat_redirect");
             }
@@ -106,6 +134,7 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         LOG.info("网页授权openid: "+openid);
         return actionInvocation.invoke();
     }
+    */
 
 //    public void printConfig(){
 //        LOG.info("APPID:"+APPID+",redirectURL:"+redirectURL);

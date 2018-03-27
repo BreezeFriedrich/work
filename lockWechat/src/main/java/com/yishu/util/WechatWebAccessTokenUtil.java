@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 //根据code 获取 openid
 @Component("wechatWebAccessTokenUtil")
@@ -65,6 +66,7 @@ public class WechatWebAccessTokenUtil {
                 + "&grant_type=authorization_code";
 
         LOG.info("url : "+url);
+        long fetchTime=new Date().getTime();
         String jsonStr = HttpUtil.doGet(url);
         LOG.info("获取网页授权openid & access_token,微信返回 : "+jsonStr);
         try{
@@ -76,12 +78,16 @@ public class WechatWebAccessTokenUtil {
         String openid = null;
         WechatWebAccessToken wechatWebAccessToken=new WechatWebAccessToken();
         try{
+//            wechatWebAccessToken.setFetchtime(new Date().getTime());
             jsonObject = JSONObject.fromObject(jsonStr);
             wechatWebAccessToken.setOpenid(jsonObject.getString("openid"));
             wechatWebAccessToken.setAccess_token(jsonObject.getString("access_token"));
-            wechatWebAccessToken.setExpires_in(jsonObject.getString("expires_in"));
+//            wechatWebAccessToken.setExpires_in(jsonObject.getString("expires_in"));
+            wechatWebAccessToken.setExpires_in(jsonObject.getInt("expires_in"));
             wechatWebAccessToken.setRefresh_token(jsonObject.getString("refresh_token"));
             wechatWebAccessToken.setScope(jsonObject.getString("scope"));
+            long deadline=fetchTime+jsonObject.getInt("expires_in")*1000;
+            wechatWebAccessToken.setDeadline(deadline);
         } catch (Exception e1){
             return null;
         }
@@ -100,6 +106,7 @@ public class WechatWebAccessTokenUtil {
                 + "&grant_type=refresh_token"
                 + "&refresh_token="
                 + refreshToken;
+        long fetchTime=new Date().getTime();
         String jsonStr = HttpUtil.doGet(url);
         try{
             jsonStr = new String(jsonStr.getBytes("ISO-8859-1"), "utf-8");
@@ -112,9 +119,11 @@ public class WechatWebAccessTokenUtil {
             jsonObject = JSONObject.fromObject(jsonStr);
             wechatWebAccessToken.setOpenid(jsonObject.getString("openid"));
             wechatWebAccessToken.setAccess_token(jsonObject.getString("access_token"));
-            wechatWebAccessToken.setExpires_in(jsonObject.getString("expires_in"));
+            wechatWebAccessToken.setExpires_in(jsonObject.getInt("expires_in"));
             wechatWebAccessToken.setRefresh_token(jsonObject.getString("refresh_token"));
             wechatWebAccessToken.setScope(jsonObject.getString("scope"));
+            long deadline=fetchTime+jsonObject.getInt("expires_in")*1000;
+            wechatWebAccessToken.setDeadline(deadline);
         } catch (Exception e1){
             return null;
         }

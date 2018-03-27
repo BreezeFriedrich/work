@@ -1,9 +1,3 @@
-
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
@@ -60,11 +54,11 @@
 
         @font-face {
             font-family: 'iconfont';  /* project id 604475 */
-            src: url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.eot');
-            src: url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.eot?#iefix') format('embedded-opentype'),
-            url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.woff') format('woff'),
-            url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.ttf') format('truetype'),
-            url('//at.alicdn.com/t/font_604475_xo1zttx2z7aatt9.svg#iconfont') format('svg');
+            src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot');
+            src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.woff') format('woff'),
+            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.svg#iconfont') format('svg');
         }
         .iconfont{
             font-family:"iconfont";
@@ -118,7 +112,8 @@
               <a class="tab-item external" href="jsp/alert.jsp">
                   <%--<span class="icon icon-phone"></span>--%>
                   <span class="iconfont">&#xe676;</span>
-                  <span class="tab-label">告警<span class="badge" style="vertical-align: -50%;"></span></span>
+                  <%--<span class="tab-label">告警<span class="badge" style="vertical-align: -50%;"></span></span>--%>
+                  <span class="tab-label">告警</span>
               </a>
               <a class="tab-item external" href="jsp/setting.jsp">
                   <%--<span class="icon icon-settings"></span>--%>
@@ -231,6 +226,6 @@
     <script type="text/javascript" src="resources/js/zepto.min.js"></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='resources/js/main.js?v=1' charset='utf-8'></script>
+    <script type='text/javascript' src='resources/js/main.js?v=7' charset='utf-8'></script>
 </body>
 </html>

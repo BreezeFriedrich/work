@@ -11,6 +11,7 @@ var romList=new Array();
 var curDate=new Date();
 
 $(function () {
+    $(".fixed-table-box").fixedTable();
     curDate=new Date(getDatefromSession());
     getOrderList();
     getRoomList();

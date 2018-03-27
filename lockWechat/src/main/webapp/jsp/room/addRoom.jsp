@@ -1,16 +1,9 @@
-
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<!-- saved from url=(0056)http://localhost:8080/lockWechat/jsp/room/roomStatus.jsp -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+
 <html class="pixel-ratio-1">
     <head>
         <base href="<%=basePath%>">
@@ -24,7 +17,9 @@
 
         <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
         <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
-        <!--<link rel="stylesheet" href="resources/css/picSrc.css"/>-->
+        <link rel="stylesheet" href="resources/css/fixed-table.css" />
+        <%--<script src="resources/js/jquery-1.11.3.min.js"></script>--%>
+        <%--<script src="resources/js/fixed-table.js"></script>--%>
         <style>
             img.auto-zoom-1 {
                 width: 1rem;
@@ -83,10 +78,6 @@
                 display: none;
             }
         </style>
-
-        <link rel="stylesheet" href="resources/css/fixed-table.css" />
-        <%--<script src="resources/js/jquery-1.11.3.min.js"></script>--%>
-        <%--<script src="resources/js/fixed-table.js"></script>--%>
         <style>
             .fixed-table-box{ position: absolute; top: 0; left: 0; right: 0; bottom: 0px}
             .fixed-table_body-wraper{
@@ -110,9 +101,8 @@
                 width: 80px;
             }
         </style>
-
     </head>
-<body class="">
+<body>
 <div class="page-group">
     <div class="page page-current" id="page-picker">
         <header class="bar bar-nav">
@@ -151,14 +141,11 @@
             </a>
         </nav>
 
-
         <!-- 这里是页面内容区 -->
-        <div class="content native-scroll" style="">
-
+        <div class="content native-scroll">
 
             <div class="list-block tjrzxx">
                 <ul>
-                    <!-- Text inputs -->
                     <li>
                         <div class="item-content">
                             <div class="item-inner">
@@ -169,8 +156,6 @@
                             </div>
                         </div>
                     </li>
-
-
 
                     <li>
                         <div class="item-content">
@@ -183,7 +168,6 @@
                         </div>
                     </li>
 
-
                     <li>
                         <div class="item-content">
                             <div class="item-inner">
@@ -194,46 +178,25 @@
                             </div>
                         </div>
                     </li>
-
-
-
-
-
-
                 </ul>
             </div>
-
 
             <div class="content-block">
                 <div class="row">
                     <div class="col-100"><a href="#" onclick="addRoom();" class="button button-big button-fill button-success">确认</a></div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 
 </div>
 
-
-<input type="hidden" id="INPUT_hidden" value="">
-
-
-
-
-
-
-
-
-
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script src="resources/js/demos.js"></script>
-
-<script src="resources/js/addRoom.js"></script>
+<script type="text/javascript" src="resources/js/room/demos.js"></script>
+<script type="text/javascript" src="resources/js/room/addRoom.js"></script>
 <script>$.init()</script>
 
-</body></html>
+</body>
+</html>

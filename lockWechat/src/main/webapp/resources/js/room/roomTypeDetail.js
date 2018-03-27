@@ -1,12 +1,9 @@
-
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var roomList=new Array();
 var roomTypeId;
 var roomType;
 var roomInfoList=new Array();
-
-
 
 $(function () {
     roomTypeId = getQueryString("roomTypeId");
@@ -24,10 +21,10 @@ $(function () {
     }
 
     loadPage();
-    $(document).on('click','.icon-remove', function () {
+    // $(document).on('click','.icon-remove', function () {
+    $("header").on('click','.icon-remove', function () {
         $.confirm('是否确定删除?', function () {
             delRoomType();
-
         });
     });
 });
@@ -47,7 +44,7 @@ function delRoomType() {
         data:{
             "roomTypeId":roomTypeId
         },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        dataType:'json',
         success:function(data){
             var obj=JSON.parse(data);
             if(obj.result==0){
@@ -57,8 +54,7 @@ function delRoomType() {
                 $.alert("删除房型失败！");
             }
         },
-        error
-            :function(xhr,errorType,error){
+        error:function(xhr,errorType,error){
             $.alert("获取设备请求失败！");
             console.log('ajax错误');
         }
@@ -71,18 +67,15 @@ function loadPage() {
     // $("#rList li").remove();
     var childs = rList.childNodes;
     for(var s = childs.length - 1; s >= 0; s--) {
-
         rList.removeChild(childs[s]);
     }
     for(var i=0;i<roomInfoList.length;i++){
-
         // $.alert("roomInfo.roomName:  "+roomInfo);
         var li=document.createElement("li");
         var a=document.createElement("a");
         var div=document.createElement("div");
         var div1=document.createElement("div");
         var div2=document.createElement("div");
-
 
         a.setAttribute("class","external item-link item-content");
         a.setAttribute("href","jsp/room/roomInfoSetting.jsp?roomTypeId="+roomTypeId+"&roomId="+roomInfoList[i].roomId);
@@ -117,7 +110,6 @@ function loadPage() {
         div1.innerHTML="房间号";
         div2.innerHTML=roomInfoList[i].roomName;
 
-
         div.appendChild(div1);
         div.appendChild(div2);
         a.appendChild(div);
@@ -126,14 +118,12 @@ function loadPage() {
     }
 }
 
-
-
 function getRooms() {
     $.ajax({
         type:"POST",
         url:projectPath+"/room/getRoomList.action",
         async:false,//异步
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        dataType:'json',
         success:function(data){
             var obj=JSON.parse(data);
             if(obj.result==0){
@@ -150,8 +140,6 @@ function getRooms() {
     });
 }
 
-
-
 function getfromSession(sessionName) {
     var result;
     $.ajax({
@@ -161,7 +149,7 @@ function getfromSession(sessionName) {
         data:{
             "sessionName":sessionName
         },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        dataType:'json',
         success:function(data){
             result=data;
             // alert("getDatefromSession: "+data);

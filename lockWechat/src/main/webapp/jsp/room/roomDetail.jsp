@@ -1,21 +1,11 @@
-
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<!-- saved from url=(0056)http://localhost:8080/lockWechat/jsp/room/roomStatus.jsp -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
-
 <html class="pixel-ratio-1"><head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--<base href="http://localhost:8080/lockWechat/">-->
     <base href="<%=basePath%>">
     <title>亿数智能门锁</title>
 
@@ -26,8 +16,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
+    <%--<link rel="stylesheet" href="resources/css/sm.css">--%>
+    <%--<link rel="stylesheet" href="resources/css/sm-extend.css">--%>
+    <link rel="stylesheet" href="resources/css/demos.css">
+    <link rel="stylesheet" href="resources/css/tjrzxx.css">
 
-    <!--<link rel="stylesheet" href="resources/css/picSrc.css"/>-->
+    <link rel="apple-touch-icon-precomposed" href="http://m.sui.taobao.org/assets/img/apple-touch-icon-114x114.png">
     <style>
         img.auto-zoom-1 {
             width: 1rem;
@@ -86,30 +80,6 @@
             display: none;
         }
     </style>
-
-    <!-- 添加入住信息-->
-
-    <link rel="stylesheet" href="resources/css/sm.css">
-    <link rel="stylesheet" href="resources/css/sm-extend.css">
-    <link rel="stylesheet" href="resources/css/demos.css">
-    <link rel="stylesheet" href="resources/css/tjrzxx.css">
-
-    <link rel="apple-touch-icon-precomposed" href="http://m.sui.taobao.org/assets/img/apple-touch-icon-114x114.png">
-    <script src="resources/js/hm.js"></script><script src="resources/js/zepto.js"></script>
-    <script src="resources/js/config.js"></script>
-
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?ba76f8230db5f616edc89ce066670710";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-    <!-- 添加入住信息 end-->
-
-
 </head>
 <body class="">
 <div class="page-group">
@@ -122,43 +92,11 @@
             <h1 class="title">房间详情</h1>
         </header>
 
-        <!-- 工具栏 -->
-        <%--<nav class="bar bar-tab">--%>
-            <%--<a class="tab-item external" href="http://localhost:8080/lockWechat/jsp/main2.jsp">--%>
-                <%--<span class="icon icon-home"></span>--%>
-                <%--<span class="tab-label">首页</span>--%>
-            <%--</a>--%>
-            <%--<a class="tab-item external" href="http://localhost:8080/lockWechat/jsp/gateway/gateway_addGateway.jsp">--%>
-                <%--<span class="icon icon-edit"></span>--%>
-                <%--<span class="tab-label">网关</span>--%>
-            <%--</a>--%>
-            <%--<a class="tab-item external" href="http://localhost:8080/lockWechat/jsp/record/record.jsp">--%>
-                <%--<span class="icon icon-search"></span>--%>
-                <%--<span class="tab-label">记录</span>--%>
-            <%--</a>--%>
-            <%--<a class="tab-item external active" href="http://localhost:8080/lockWechat/jsp/room/roomStatus.jsp">--%>
-                <%--<span class="icon icon-search"></span>--%>
-                <%--<span class="tab-label">房态</span>--%>
-            <%--</a>--%>
-            <%--<a class="tab-item external" href="http://localhost:8080/lockWechat/jsp/alert.jsp">--%>
-                <%--<span class="icon icon-phone"></span>--%>
-                <%--<span class="tab-label">告警<span class="badge" style="vertical-align: -50%;"></span></span>--%>
-            <%--</a>--%>
-            <%--<a class="tab-item external" href="http://localhost:8080/lockWechat/jsp/setting.jsp">--%>
-                <%--<span class="icon icon-settings"></span>--%>
-                <%--<span class="tab-label">设置</span>--%>
-            <%--</a>--%>
-        <%--</nav>--%>
-
-
         <!-- 这里是页面内容区 -->
         <div class="content native-scroll" style="">
 
-
             <div class="list-block tjrzxx">
                 <ul>
-
-                    <!-- Text inputs -->
                     <li>
                         <div class="item-content">
                             <div class="item-inner">
@@ -169,7 +107,6 @@
                             </div>
                         </div>
                     </li>
-
 
                     <li>
                         <div class="item-content">
@@ -182,7 +119,6 @@
                         </div>
                     </li>
 
-
                     <li>
                         <div class="item-content">
                             <div class="item-inner">
@@ -194,7 +130,6 @@
                         </div>
                     </li>
 
-
                     <li>
                         <div class="item-content">
                             <div class="item-inner">
@@ -205,44 +140,32 @@
                             </div>
                         </div>
                     </li>
-
-
-
-
-
-
                 </ul>
             </div>
-
-
-
-
-
         </div>
     </div>
 
 </div>
 
-
-<input type="hidden" id="INPUT_hidden" value="">
-<script src="resources/js/sm.js"></script>
-<script src="resources/js/sm-extend.js"></script>
-<script src="resources/js/sm-city-picker.js"></script>
-<script src="resources/js/demos.js"></script>
-
-
-
-
-
-
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-<script type="text/javascript">
-    $(function () {
-        
-    });
+<%--<script type="text/javascript" src="resources/js/zepto.js"></script>--%>
+<%--<script type="text/javascript" src="resources/js/sm.js"></script>--%>
+<%--<script type="text/javascript" src="resources/js/sm-extend.js"></script>--%>
+<script type="text/javascript" src="resources/js/room/hm.js"></script>
+<script type="text/javascript" src="resources/js/room/config.js"></script>
+<script type="text/javascript" src="resources/js/room/sm-city-picker.js"></script>
+<script type="text/javascript" src="resources/js/room/demos.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?ba76f8230db5f616edc89ce066670710";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    $.init();
 </script>
-
-<script>$.init()</script>
-</body></html>
+</body>
+</html>

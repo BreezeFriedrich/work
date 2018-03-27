@@ -16,6 +16,7 @@ var url;
 $(function () {
     clearIframeById("frame1");
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
+    ownerPhoneNumber=18255683932;
     document.getElementsByTagName('input')[0].value='';
     document.getElementsByTagName('input')[1].value='';
 
@@ -31,8 +32,8 @@ function clearIframeById(id) {
         } catch (e) {
         }
     //以上可以清除大部分的内存和文档节点记录数了
-    //     document.body.removeChild(iframe);
-        iframe.parentNode.removeChild(iframe);
+        document.body.removeChild(iframe);
+        // iframe.parentNode.removeChild(iframe);
     }
 }
     /*

@@ -1,30 +1,15 @@
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<%--
-  Created by IntelliJ IDEA.
-  User: YS-dell001
-  Date: 2018/1/30
-  Time: 14:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
 <html>
-
 <head>
     <base href="<%=basePath%>">
     <meta charset="UTF-8">
-    <title>选择起始时间</title>
+    <title>亿数智能门锁</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="yes" name="apple-touch-fullscreen">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -375,7 +360,6 @@
         onSlideChangeStart: function(swiper) {
             //swiper.params.allowSwipeToPrev = false;
             swiper.lockSwipes();
-
         },
         onSlideChangeEnd: function(swiper) {
             var nows = $(".swiper-slide-active").find("table").attr("id");
@@ -564,7 +548,6 @@
             }
             swiper.unlockSwipes();
         }
-
     })
 </script>
 <script>
@@ -992,12 +975,9 @@
     });
 
     $('.date').on('click', function() {
-
         $('.tc').show();
         $('.tc-innner').show();
-
         tc();
-
     });
 
     var e = 1;
@@ -1117,7 +1097,7 @@
                 "sessionName":"cDate",
                 "sessionValue":cDate
             },
-            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+            dataType:'json',
             success:function(data){
 //                alert("ywstest: "+data);
             },

@@ -13,7 +13,7 @@ $(function(){
         type:"POST",
         url:projectPath+"/account/getUserFromSession.action",
         async:false,
-        data:{},
+        // data:{},
         dataType:'json',
         success:function(data,status,xhr){
             ownerPhoneNumber=data.wechatUser.phonenumber;
@@ -31,7 +31,7 @@ $(function(){
     if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     }
-    ownerPhoneNumber=18255683932;
+    // ownerPhoneNumber=18255683932;
 
     $('.my-iphone').html(ownerPhoneNumber);
 
@@ -41,7 +41,7 @@ $(function(){
         url:projectPath+"/device/getDeviceInfo.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         // headers:{"Access-Control-Allow-Origin":"*"},
-        data:{"ownerPhoneNumber":ownerPhoneNumber},
+        // data:{"ownerPhoneNumber":ownerPhoneNumber},
         // timeout:3000,
         dataType:'json',
         success:function(data,status,xhr){
@@ -93,8 +93,32 @@ $(function(){
         window.location.href=encodeURI(url);
     });
 
+    initAlertBadge();
+
     $.init();
 });
+
+function initAlertBadge() {
+    $.ajax({
+        type:"POST",
+        url:projectPath+"/device/countAbnormalDevice.action",
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        // data:{"ownerPhoneNumber":ownerPhoneNumber},
+        // data:{},
+        dataType:'json',
+        success:function(data,status,xhr){
+            $("sup").remove();
+            if(null!=data & data>0){
+                var el=$("nav a").eq(4).find("span:last");
+                var html="<sup>"+data+"</sup>";
+                el.append(html);
+            }
+        },
+        error:function(xhr,errorType,error){
+            console.log('错误');
+        }
+    });
+}
 
 function showDevices(){
     $('.content ul:first').html(createGatewayNode);
@@ -150,10 +174,10 @@ function createGatewayNode(){
         html +=             '</div>';
         html +=             '<div class="item-subtitle gateway-red">'+device[x].gatewayStatus+'</div>';
         html +=         '</div>';
-        html += '<div style="float: right">';
-        // html +=     '<img src="resources/img/right_arrow.png" style="height: 40px;width: 40px;"/>';
-        html +=     '<img src="resources/img/link.png" style="height: 40px;width: 40px;"/>';
-        html += '</div>';
+        html +=         '<div style="float: right">';
+        // html +=             '<img src="resources/img/right_arrow.png" style="height: 40px;width: 40px;"/>';
+        html +=             '<img src="resources/img/link.png" style="height: 40px;width: 40px;"/>';
+        html +=         '</div>';
         html +=     '</a>';
         html += '</li>';
     }

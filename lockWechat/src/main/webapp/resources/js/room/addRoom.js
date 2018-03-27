@@ -45,6 +45,7 @@ function getGatewayCode() {
         // $.alert("freeLocks[i]:  "+freeLocks[i]);
         if(lock==freeLocks[i]){
             document.getElementById("gatewaycode").setAttribute("value",gatewayCodes[i]);
+            // $("#gatewaycode").val(gatewayCodes[i]);
             break;
         }
     }

@@ -72,7 +72,7 @@ div_setGesturePassword.addEventListener('click',function(ev){
 
 var div_roomManage=document.getElementById("link_roomManage");
 div_roomManage.addEventListener('click',function(ev){
-    url="jsp/room/roomManage.jsp";
+    url="jsp/room/roomManage.jsp?ownerPhoneNumber="+ownerPhoneNumber;
     window.location.href=encodeURI(url);
 });
 

@@ -27,8 +27,7 @@ function getRooms() {
                 $.alert("获取设备失败！");
             }
         },
-        error
-            :function(xhr,errorType,error){
+        error:function(xhr,errorType,error){
             $.alert("获取设备请求失败！");
             console.log('ajax错误');
         }
@@ -39,7 +38,6 @@ function loadRoom() {
     var rList=document.getElementById("roomList");
     var childs = rList.childNodes;
     for(var s = childs.length - 1; s >= 0; s--) {
-
         rList.removeChild(childs[s]);
     }
     // $("#roomList li").remove();
@@ -87,9 +85,6 @@ function loadRoom() {
         a.appendChild(div);
         li.appendChild(a);
         rList.appendChild(li);
-
-
-
     }
 }
 
@@ -105,7 +100,6 @@ function setToSession(sessionN,sessionV) {
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
             // alert("setDateToSession:  "+data);
-
         },
         error
             :function(xhr,errorType,error){

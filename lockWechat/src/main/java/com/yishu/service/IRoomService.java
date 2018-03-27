@@ -5,9 +5,7 @@
 
 package com.yishu.service;
 
-import java.util.List;
-
-public interface RoomService {
+public interface IRoomService {
 	String getDeviceInfo(String ownerPhoneNumber);
 	String getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime);
 	String getIDAuth(String ownerPhoneNumber, String gatewayCode, String lockCode);

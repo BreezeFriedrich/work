@@ -130,6 +130,26 @@
             padding: 0 0.75rem;
         }
     </style>
+    <style type="text/css">
+        @font-face {
+            font-family: 'iconfont';  /* project id 604475 */
+            src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot');
+            src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.woff') format('woff'),
+            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.svg#iconfont') format('svg');
+        }
+        .iconfont{
+            font-family:"iconfont";
+            font-size:24px;
+            font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            /*padding-left:20px*/
+        }
+        .gateway-linegreen{ border:1px solid #89deba}
+    </style>
 </head>
 <body>
 <div class="page-group">
@@ -153,6 +173,6 @@
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/mescroll.min.js'></script>
-<script type='text/javascript' src='resources/js/alert.js?v=1' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/alert.js?v=9' charset='utf-8'></script>
 </body>
 </html>

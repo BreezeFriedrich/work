@@ -103,6 +103,7 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
         LOG.info("login&session ￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
 //        LOG.info("wxLogin.action");
         session.setAttribute("cDate",new Date());
+//        session.setAttribute("ownerPhoneNumber","13905169824");
 
         openid= (String) session.getAttribute("OPENID");
         LOG.info("openid :"+openid);

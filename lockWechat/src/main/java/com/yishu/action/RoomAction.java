@@ -6,9 +6,8 @@
 package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.yishu.service.RoomService;
+import com.yishu.service.IRoomService;
 import org.apache.struts2.ServletActionContext;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,10 +18,10 @@ public class RoomAction extends ActionSupport {
 	public RoomAction() {
 		LOG.info(">>>Initialization RoomAction......................................");
 	}
-	private Logger LOG = LoggerFactory.getLogger("RoomAction");
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RoomAction");
 
 	@Autowired
-	private RoomService roomService;
+	private IRoomService roomService;
 
 	private Object jsonResult;
 	private String ownerPhoneNumber;
@@ -300,21 +299,21 @@ public class RoomAction extends ActionSupport {
 	}
 
 	public String setToSession(){
-		LOG.info("setToSession>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//		LOG.info("setToSession>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		String name=request.getParameter("sessionName");
 		Object value=request.getParameter("sessionValue");
-		System.out.println("sessionName:  "+name);
-		System.out.println("sessionValue:  "+value);
+//		System.out.println("sessionName:  "+name);
+//		System.out.println("sessionValue:  "+value);
 		session.setAttribute(name,value);
 		jsonResult=session.getAttribute(request.getParameter("sessionName"));
 		return "json";
 	}
 
 	public String getFromSession(){
-		LOG.info("getFromSession>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//		LOG.info("getFromSession>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		jsonResult=session.getAttribute(request.getParameter("sessionName"));
-		System.out.println("sessionName:  "+request.getParameter("sessionName"));
-		System.out.println("sessionValue:  "+jsonResult);
+//		System.out.println("sessionName:  "+request.getParameter("sessionName"));
+//		System.out.println("sessionValue:  "+jsonResult);
 		return "json";
 	}
 

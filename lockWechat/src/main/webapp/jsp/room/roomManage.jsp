@@ -18,14 +18,11 @@
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
-
     <%--<link rel="stylesheet" href="resources/css/sm.css">--%>
     <%--<link rel="stylesheet" href="resources/css/sm-extend.css">--%>
     <link rel="stylesheet" href="resources/css/demos.css">
     <link rel="stylesheet" href="resources/css/tjrzxx.css">
-
     <link rel="apple-touch-icon-precomposed" href="http://m.sui.taobao.org/assets/img/apple-touch-icon-114x114.png">
-
     <style>
         .card .card-footer {
             /*上下 ,左右*/
@@ -63,11 +60,9 @@
             <h1 class="title">房间管理</h1>
         </header>
 
-        <!-- 这里是页面内容区 -->
-        <div class="content native-scroll" style="">
+        <div class="content native-scroll">
             <div class="list-block tjrzxx">
-                <ul id="roomList">
-                </ul>
+                <ul id="roomList"></ul>
             </div>
 
             <div class="content-block">
@@ -79,13 +74,11 @@
     </div>
 </div>
 
-<input type="hidden" id="INPUT_hidden" value="">
-
-<script type="text/javascript" src="resources/js/room/hm.js"></script>
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
-<script type="text/javascript" src="resources/js/room/config.js"></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="resources/js/room/hm.js"></script>
+<script type="text/javascript" src="resources/js/room/config.js"></script>
 <script type="text/javascript" src="resources/js/room/sm-city-picker.js"></script>
 <script type="text/javascript" src="resources/js/room/demos.js"></script>
 <script type='text/javascript' src="resources/js/room/roomManage.js"></script>
@@ -97,7 +90,7 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
-    $.init()
+    $.init();
 </script>
 
 </body>

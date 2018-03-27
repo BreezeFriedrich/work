@@ -5,7 +5,7 @@
 
 package com.yishu.service.impl;
 
-import com.yishu.service.RoomService;
+import com.yishu.service.IRoomService;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service("roomService")
-public class RoomServiceImpl implements RoomService {
-	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("DeviceServiceImpl");
+public class RoomServiceImpl implements IRoomService {
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RoomServiceImpl");
 
 	/**
 	 * 获取设备信息
