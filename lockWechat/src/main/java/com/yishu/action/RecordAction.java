@@ -7,11 +7,9 @@ package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.yishu.pojo.Device;
-import com.yishu.pojo.Lock;
-import com.yishu.pojo.Records;
-import com.yishu.pojo.UnlockRecord;
+import com.yishu.pojo.*;
 import com.yishu.service.IRecordService;
+import com.yishu.service.IRoomService;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +34,8 @@ public class RecordAction extends ActionSupport{
 
     @Autowired
     private IRecordService recordService;
+    @Autowired
+    private IRoomService roomService;
     /**
      * Object jsonResult——返回的JSON格式的Model
      */
@@ -105,6 +105,21 @@ public class RecordAction extends ActionSupport{
     HttpServletRequest request = ServletActionContext.getRequest();
     HttpSession session = request.getSession();
 //    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
+
+    /**
+     * 获取用户ownerPhoneNumber的开锁记录
+     *
+     */
+    public String getRoomRecord() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
+        List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+
+        jsonResult=recordList;
+        return "json";
+    }
 
     /**
      * 获取用户ownerPhoneNumber的开锁记录

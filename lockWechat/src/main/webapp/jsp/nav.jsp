@@ -41,7 +41,8 @@
         display: block;
         font-size: .55rem;
         position: relative;
-        top: .15rem;
+        /*top: .15rem;*/
+        top: -0.2rem;
     }
 </style>
 <nav class="bar bar-tab">

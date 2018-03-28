@@ -181,8 +181,8 @@ function doAuth() {
     password=document.getElementById("password").value;
     var st=document.getElementById("datetime-picker").value;
     var et=document.getElementById("datetime-picker-lk").value;
-    startTime=getTimeString(st)+"00";
-    endTime=getTimeString(et)+"59";
+    startTime=getTimeString(st);
+    endTime=getTimeString(et);
     // $.alert("st:  "+st);
     // $.alert("et:  "+et);
     var cardString=JSON.stringify(cardInfoList);

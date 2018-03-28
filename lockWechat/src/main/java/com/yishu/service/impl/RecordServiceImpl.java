@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -47,7 +48,7 @@ public class RecordServiceImpl implements IRecordService {
         respSign=rootNode.path("result").asInt();
         return respSign;
     }
-
+/*
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         reqSign=26;
@@ -85,8 +86,8 @@ public class RecordServiceImpl implements IRecordService {
         }
         return null;
     }
-
-    /*
+*/
+//    /*
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         final long startTimeL=Long.parseLong(startTime);
@@ -120,7 +121,7 @@ public class RecordServiceImpl implements IRecordService {
         Collections.reverse(recordList2);
         return recordList2;
     }
-    */
+//    */
 
     @Override
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
@@ -481,6 +482,25 @@ public class RecordServiceImpl implements IRecordService {
         records.setRows(recordList3);
 
         return records;
+    }
+
+    @Override
+    public Records<RoomRecord> convertUnlockRecordToRoomRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs) {
+        int unlockRecordSize=unlockRecords.size();
+        UnlockRecord unlockRecord=null;
+        int roomTypeCRSize=roomTypeCRs.size();
+        RoomTypeContainRoom roomTypeCR=null;
+
+        for(int i=0;i<unlockRecordSize;i++){
+            unlockRecord=unlockRecords.get(i);
+            String gatewayCode=unlockRecord.getGatewayCode();
+            String lockCode=unlockRecord.getLockCode();
+            for(int j=0;j<roomTypeCRSize;j++){
+                roomTypeCR=roomTypeCRs.get(i);
+
+            }
+        }
+        return null;
     }
 
 }

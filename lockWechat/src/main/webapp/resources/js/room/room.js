@@ -15,6 +15,7 @@ $(function () {
 
     $(".fixed-table-box").fixedTable();
     curDate=new Date(getDatefromSession());
+    // $.alert("cuiDate:   "+curDate);
     getOrderList();
     getRoomList();
     loadPage();
@@ -423,7 +424,7 @@ function loadRoomStatus() {
                 for(var t=0;t<roomOrder.length;t++){
                     var st=roomOrder[t].startTime;
                     var et=roomOrder[t].endTime;
-                    var tflag1=((parseInt(et) - parseInt(timetag+"120000") )>0);
+                    var tflag1=((parseInt(et) - parseInt(timetag+"1200") )>0);
                     var tflag2=( ( parseInt(st.substring(0,8))-parseInt(timetag) ) <= 0);
                     if(tflag1&&tflag2){
                         var orderNumber=roomOrder[t].orderNumber;

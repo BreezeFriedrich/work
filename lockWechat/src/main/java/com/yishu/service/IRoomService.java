@@ -5,6 +5,10 @@
 
 package com.yishu.service;
 
+import com.yishu.pojo.RoomTypeContainRoom;
+
+import java.util.List;
+
 public interface IRoomService {
 	String getDeviceInfo(String ownerPhoneNumber);
 	String getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime);
@@ -16,6 +20,7 @@ public interface IRoomService {
 	String doPwdAuth(String ownerPhoneNumber, String gatewayCode, String lockCode, String password, String startTime, String endTime);
     String getOrderList(String ownerPhoneNumber, String startTime, String endTime);
 	String getRoomList(String ownerPhoneNumber);
+	public List<RoomTypeContainRoom> getRoom(String ownerPhoneNumber);
 	String addRoomType(String ownerPhoneNumber, String roomType);
 	String getFreeLock(String ownerPhoneNumber);
 	String delRoom(String ownerPhoneNumber, String roomId);

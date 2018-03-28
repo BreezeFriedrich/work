@@ -8,17 +8,7 @@ var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var ownerPhoneNumber;
 var newName;
 
-//fastclick javascript 调用
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-    }, false);
-}
-
 $(function(){
-    //fastclick jQuery 调用
-    // FastClick.attach(document.body);
-
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
 
     $.init();

@@ -48,8 +48,10 @@ function delRoomType() {
         success:function(data){
             var obj=JSON.parse(data);
             if(obj.result==0){
-                $.alert("删除房型成功！");
-
+                // $.alert("删除房型成功！");
+                $.alert('删除房型成功！', function () {
+                    window.history.back();
+                });
             }else{
                 $.alert("删除房型失败！");
             }

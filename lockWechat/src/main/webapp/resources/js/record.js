@@ -200,7 +200,6 @@ function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getUnlockRecordPage.action",
-//            url:"http://localhost/lockWechat"+"/record/getUnlockRecordPage.action",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
         // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
         data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
@@ -259,8 +258,7 @@ function getUnlockDevice(pageNum,pageSize,successCallback,errorCallback) {
     $.ajax({
         type:"POST",
         url:projectPath+"/record/getUnlockRecordDevice.action",
-//            url:"http://localhost/lockWechat"+"/record/getUnlockRecordDevice.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:false,
         // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
         data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
         dataType:'json',

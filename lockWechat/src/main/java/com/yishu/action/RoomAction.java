@@ -6,6 +6,7 @@
 package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.yishu.pojo.RoomTypeContainRoom;
 import com.yishu.service.IRoomService;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public class RoomAction extends ActionSupport {
 	public RoomAction() {
@@ -219,6 +221,16 @@ public class RoomAction extends ActionSupport {
 		jsonResult=result;
 		return  "json";
 	}
+	public String getRoom(){
+		HttpSession session=request.getSession(false);
+		String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+		if(null==ownerPhoneNumber){
+			return null;
+		}
+		List<RoomTypeContainRoom> roomTypeCRList =roomService.getRoom(ownerPhoneNumber);
+		jsonResult=roomTypeCRList;
+		return "json";
+	}
 
 	public String getIDAuth(){
 		checkPhoneNumber();
@@ -319,7 +331,8 @@ public class RoomAction extends ActionSupport {
 
 	private void checkPhoneNumber(){
 		if ("".equals(ownerPhoneNumber)|| null==ownerPhoneNumber){
-			ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+			ownerPhoneNumber="13998892002";
+//			ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
 		}
 	}
 }

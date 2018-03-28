@@ -5,13 +5,19 @@
 
 package com.yishu.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yishu.pojo.RoomTypeContainRoom;
 import com.yishu.service.IRoomService;
 import com.yishu.util.HttpUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service("roomService")
 public class RoomServiceImpl implements IRoomService {
@@ -140,6 +146,31 @@ public class RoomServiceImpl implements IRoomService {
 		LOG.info("data: "+data);
 		LOG.info("result: "+result);
 		return result;
+	}
+
+	@Override
+	public List<RoomTypeContainRoom> getRoom(String ownerPhoneNumber) {
+		int sign=2005;
+		String data="{\"sign\":"+sign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+		LOG.info("data : "+data);
+		String result= HttpUtil.httpsPostToGateway(data);
+		LOG.info("result : "+result);
+
+		ObjectMapper objectMapper=new ObjectMapper();
+		JsonNode rootNode= null;
+		List<RoomTypeContainRoom> roomTypeCRList = null;
+		try {
+			rootNode = objectMapper.readTree(result);
+			int respSign=rootNode.path("result").asInt();
+			if (0!=respSign){//请求数据失败
+				return null;
+			}
+			JsonNode roomListNode=rootNode.path("roomList");
+			roomTypeCRList =objectMapper.readValue(roomListNode.traverse(), new TypeReference<List<RoomTypeContainRoom>>(){});
+		} catch (IOException |NullPointerException e) {
+			e.printStackTrace();
+		}
+		return roomTypeCRList;
 	}
 
 	@Override

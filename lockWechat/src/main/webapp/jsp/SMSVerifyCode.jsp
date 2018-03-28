@@ -53,6 +53,7 @@
 
         <!-- 这里是页面内容区 -->
         <div class="content">
+            <div class="content-block-title">第一步</div>
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
                     <li>
@@ -69,6 +70,7 @@
                 </ul>
                 <a id="A_sendVerifyCode" href="javascript:void(0);" onclick="sendVerifyCode()" class="button button-big button-fill button-success">获取短信验证码</a>
             </div>
+            <div class="content-block-title">第二步</div>
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
                     <li>
@@ -77,7 +79,7 @@
                             <div class="item-inner">
                                 <div class="item-title label">短信验证码</div>
                                 <div class="item-input">
-                                    <input type="text" placeholder="请输入短信验证码"/>
+                                    <input type="text" placeholder="请输入验证码"/>
                                 </div>
                             </div>
                         </div>
@@ -86,9 +88,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">登录密码</div>
+                                <div class="item-title label">设置登录密码</div>
                                 <div class="item-input">
-                                    <input type="text" placeholder="请输入密码"/>
+                                    <input type="text" placeholder="请设置密码"/>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +104,6 @@
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<%--<script type='text/javascript' src='resources/js/fastclick.js'></script>--%>
 <script type='text/javascript' src='resources/js/smsverifycode.js?ver=22' charset='utf-8'></script>
 </body>
 </html>

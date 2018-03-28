@@ -6,6 +6,8 @@
 package com.yishu.service;
 
 import com.yishu.pojo.Records;
+import com.yishu.pojo.RoomRecord;
+import com.yishu.pojo.RoomTypeContainRoom;
 import com.yishu.pojo.UnlockRecord;
 
 import java.text.ParseException;
@@ -33,4 +35,6 @@ public interface IRecordService {
     public Map getUnlockOperator(String ownerPhoneNumber, String startTime, String endTime);
 
     public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String cardNum, int pageNum, int pageSize);
+
+    public Records<RoomRecord> convertUnlockRecordToRoomRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs);
 }

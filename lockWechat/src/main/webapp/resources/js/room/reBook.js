@@ -220,8 +220,8 @@ function doAuth() {
     password=document.getElementById("password").value;
     var st=document.getElementById("datetime-picker").value;
     var et=document.getElementById("datetime-picker-lk").value;
-    startTime=getTimeString(st)+"00";
-    endTime=getTimeString(et)+"59";
+    startTime=getTimeString(st);
+    endTime=getTimeString(et);
     // $.alert("st:  "+st);
     // $.alert("et:  "+et);
     var cardString=JSON.stringify(cardInfoList);
@@ -243,8 +243,10 @@ function doAuth() {
         success:function(data){
             var obj=JSON.parse(data);
             if(obj.result==0){
-                $.alert("修改订单成功！");
-                // window.history.back();
+                $.alert('修改订单成功！', function () {
+                    window.history.back();
+                });
+
             }else{
                 $.alert("修改订单失败！");
             }

@@ -45,7 +45,8 @@ function loadP() {
         if(i==0){
             div11.innerHTML="授权身份证";
         }
-        div12.innerHTML=cardInfoList[i].cardNumber;
+        div12.setAttribute("placeholder",cardInfoList[i].cardNumber);
+        // div12.innerHTML=cardInfoList[i].cardNumber;
 
         div1.appendChild(div11);
         div1.appendChild(div12);
@@ -111,16 +112,18 @@ function delOrder() {
             var obj=JSON.parse(data);
 
             if(obj.result==0){
-                $.alert("删除订单成功！");
+                $.alert('删除订单成功！', function () {
+                    window.history.back();
+                });
+                // $.alert("删除订单成功！");
                 // window.history.back();
             }else{
                 $.alert("删除订单失败！");
             }
             // alert("getDatefromSession: "+data);
         },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
+        error:function(xhr,errorType,error){
+            $.alert("获取设备请求失败！");
             console.log('ajax错误');
         }
     });

@@ -19,11 +19,6 @@ if ('addEventListener' in document) {
         FastClick.attach(document.body);
     }, false);
 }
-/*
-document.querySelector("#box").addEventListener("click",function(){
-        alert("click me!");
-    },false)
- */
 
 $(function(){
     //fastclick jQuery 调用

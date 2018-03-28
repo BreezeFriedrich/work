@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -187,10 +188,12 @@ public class AccountAction {
     }
 
     public String getUserFromSession(){
+        session.setAttribute("cDate",new Date());
         logger.info("-->>-- account/getUserFromSession.action -->>--");
         openid= (String) session.getAttribute("OPENID");
         ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         ownerPassword=(String) session.getAttribute("ownerPassword");
+
         WechatUser wechatUser=new WechatUser();
         wechatUser.setOpenid(openid);
         wechatUser.setPhonenumber(ownerPhoneNumber);
