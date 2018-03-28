@@ -1,13 +1,3 @@
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<%--
-  User: admin
-  Date: 2017/12/16
-  Time: 11:15
---%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
@@ -76,7 +66,7 @@
             <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
             <h1 class="title">用户设置</h1>
         </header>
-
+        <jsp:include page="/jsp/nav.jsp"/>
         <!-- 这里是页面内容区 -->
         <div class="content">
             <div class="content-block-title">帐号相关</div>

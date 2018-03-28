@@ -23,13 +23,13 @@ $(function () {
     });
 
     document.getElementById("picker").addEventListener('blur',function(ev){
-        var lock=document.getElementById("picker").value;
-        // $.alert("lock:  "+lock);
+        // var lock=document.getElementById("picker").value;
+        var lock=$("#picker").val();
 
         for(var i=0;i<freeLocks.length;i++){
-            // $.alert("freeLocks[i]:  "+freeLocks[i]);
             if(lock==freeLocks[i]){
-                document.getElementById("gatewaycode").setAttribute("value",gatewayCodes[i]);
+                // document.getElementById("gatewaycode").setAttribute("value",gatewayCodes[i]);
+                $("#gatewaycode").val(gatewayCodes[i]);
                 break;
             }
         }

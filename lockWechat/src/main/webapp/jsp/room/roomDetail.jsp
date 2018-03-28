@@ -81,7 +81,7 @@
         }
     </style>
 </head>
-<body class="">
+<body>
 <div class="page-group">
     <div class="page page-current" id="page-picker">
         <header class="bar bar-nav">
@@ -93,8 +93,7 @@
         </header>
 
         <!-- 这里是页面内容区 -->
-        <div class="content native-scroll" style="">
-
+        <div class="content native-scroll">
             <div class="list-block tjrzxx">
                 <ul>
                     <li>
@@ -144,7 +143,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>

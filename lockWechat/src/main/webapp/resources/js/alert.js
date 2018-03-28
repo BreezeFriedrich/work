@@ -14,6 +14,7 @@ var lockCode;
 var device;
 
 $(function () {
+    $('nav a').removeClass('active').eq(4).addClass('active');
     $.showIndicator();
     $.ajax({
         type:"POST",

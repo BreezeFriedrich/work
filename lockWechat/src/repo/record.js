@@ -42,6 +42,12 @@ $(function(){
     $("#datetime-picker-2").datetimePicker({
         value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.min,temptime.second]
     });
+
+    /*
+    ownerPhoneNumber=getQueryString("ownerPhoneNumber");
+    ownerPhoneNumber="13905169824";
+    ownerPhoneNumber="17705155208";
+    */
     /*
     startTime="2014-01-01 01:01";
     endTime="2017-12-10 01:01";

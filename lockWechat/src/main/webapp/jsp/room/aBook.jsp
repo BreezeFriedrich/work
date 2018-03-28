@@ -80,7 +80,7 @@
         }
     </style>
 </head>
-<body class="">
+<body>
 <div class="page-group">
     <div class="page page-current" id="page-picker">
         <header class="bar bar-nav">
@@ -92,8 +92,7 @@
         </header>
 
         <!-- 这里是页面内容区 -->
-        <div class="content native-scroll" style="">
-
+        <div class="content native-scroll">
             <div class="list-block tjrzxx">
                 <ul>
                     <li>
@@ -108,7 +107,6 @@
                             </div>
                         </div>
                     </li>
-
                     <%--<li>--%>
                         <%--<div class="item-content">--%>
                             <%--<div class="item-inner">--%>
@@ -119,8 +117,6 @@
                             <%--</div>--%>
                         <%--</div>--%>
                     <%--</li>--%>
-
-
                     <%--<li>--%>
                         <%--<div class="item-content">--%>
                             <%--<div class="item-inner">--%>
@@ -131,9 +127,7 @@
                             <%--</div>--%>
                         <%--</div>--%>
                     <%--</li>--%>
-
                     <li class="tjrzr-lbz" id="addList"></li>
-
                     <li>
                         <div class="item-content">
                             <div class="item-inner">

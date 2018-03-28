@@ -11,6 +11,8 @@ var romList=new Array();
 var curDate=new Date();
 
 $(function () {
+    $('nav a').removeClass('active').eq(1).addClass('active');
+
     $(".fixed-table-box").fixedTable();
     curDate=new Date(getDatefromSession());
     getOrderList();

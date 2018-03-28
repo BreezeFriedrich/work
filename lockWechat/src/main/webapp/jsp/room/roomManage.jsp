@@ -49,7 +49,7 @@
         }
     </style>
 </head>
-<body class="">
+<body>
 <div  class="page-group">
     <div id="page-modal" class="page page-current">
         <header class="bar bar-nav">

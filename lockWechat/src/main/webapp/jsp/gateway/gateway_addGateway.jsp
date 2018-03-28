@@ -47,6 +47,8 @@
             <h1 class="title">增加网关</h1>
         </header>
 
+        <jsp:include page="/jsp/nav.jsp"/>
+
         <!-- 这里是页面内容区 -->
         <div class="content">
             <div class="list-block">
@@ -94,6 +96,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <%--<script type='text/javascript' src='resources/js/fastclick.js'></script>--%>
-<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=6' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/gateway_addGateway.js?ver=7' charset='utf-8'></script>
 </body>
 </html>

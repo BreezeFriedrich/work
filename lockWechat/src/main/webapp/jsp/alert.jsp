@@ -129,25 +129,6 @@
             /*上下 ,左右*/
             padding: 0 0.75rem;
         }
-    </style>
-    <style type="text/css">
-        @font-face {
-            font-family: 'iconfont';  /* project id 604475 */
-            src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot');
-            src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot?#iefix') format('embedded-opentype'),
-            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.woff') format('woff'),
-            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.ttf') format('truetype'),
-            url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.svg#iconfont') format('svg');
-        }
-        .iconfont{
-            font-family:"iconfont";
-            font-size:24px;
-            font-style:normal;
-            -webkit-font-smoothing: antialiased;
-            -webkit-text-stroke-width: 0.2px;
-            -moz-osx-font-smoothing: grayscale;
-            /*padding-left:20px*/
-        }
         .gateway-linegreen{ border:1px solid #89deba}
     </style>
 </head>
@@ -159,6 +140,9 @@
             <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
             <h1 class="title">告警</h1>
         </header>
+
+        <jsp:include page="/jsp/nav.jsp"/>
+
         <!-- 这里是页面内容区 -->
         <div class="content">
             <%--<div class="list-block cards-list" id="cardList"></div>--%>

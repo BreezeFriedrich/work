@@ -93,32 +93,7 @@
         </header>
 
         <!-- 工具栏 -->
-        <nav class="bar bar-tab">
-            <a class="tab-item external" href="jsp/main2.jsp">
-                <span class="icon icon-home"></span>
-                <span class="tab-label">首页</span>
-            </a>
-            <a class="tab-item external" href="jsp/gateway/gateway_addGateway.jsp">
-                <span class="icon icon-edit"></span>
-                <span class="tab-label">网关</span>
-            </a>
-            <a class="tab-item external" href="jsp/record/record.jsp">
-                <span class="icon icon-search"></span>
-                <span class="tab-label">记录</span>
-            </a>
-            <a class="tab-item external active" href="jsp/room/roomStatus.jsp">
-                <span class="icon icon-search"></span>
-                <span class="tab-label">房态</span>
-            </a>
-            <a class="tab-item external" href="jsp/alert.jsp">
-                <span class="icon icon-phone"></span>
-                <span class="tab-label">告警<span class="badge" style="vertical-align: -50%;"></span></span>
-            </a>
-            <a class="tab-item external" href="jsp/setting.jsp">
-                <span class="icon icon-settings"></span>
-                <span class="tab-label">设置</span>
-            </a>
-        </nav>
+        <jsp:include page="/jsp/nav.jsp"/>
 
         <!-- 这里是页面内容区 -->
         <div class="content native-scroll" style="">
@@ -160,7 +135,6 @@
                     </li>
 
                     <li class="tjrzr-lbz" id="addList">
-
                         <div class="content-block tjrzr">
                             <div class="row">
                                 <div class="col-100"><a onclick="addID();" class="button  button-big button-success" ><img src="resources/images/ry-j.png" class="ry-j"><span class="tjrzr-wz">添加入住人</span></a></div>
@@ -211,7 +185,6 @@
                         </div>
                     </li>
                 </ul>
-
             </div>
 
             <div class="content-block">
@@ -221,7 +194,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>

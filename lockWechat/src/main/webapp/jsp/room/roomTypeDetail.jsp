@@ -95,7 +95,7 @@
         </header>
 
         <!-- 这里是页面内容区 -->
-        <div class="content native-scroll" style="">
+        <div class="content native-scroll">
             <div class="list-block tjrzxx">
                 <ul>
                     <li>
@@ -137,15 +137,11 @@
                             <%--</div>--%>
                         <%--</a>--%>
                     <%--</li>--%>
-
-
                 </ul>
             </div>
         </div>
     </div>
-
 </div>
-
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
@@ -155,7 +151,6 @@
 <script type="text/javascript" src="resources/js/room/sm-city-picker.js"></script>
 <script type="text/javascript" src="resources/js/room/demos.js"></script>
 <script type='text/javascript' src="resources/js/room/roomTypeDetail.js"></script>
-
 <script>
     var _hmt = _hmt || [];
     (function() {

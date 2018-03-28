@@ -1,10 +1,3 @@
-
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<!-- saved from url=(0056)http://localhost:8080/lockWechat/jsp/room/roomStatus.jsp -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -16,7 +9,6 @@
 <html class="pixel-ratio-1">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--<base href="http://localhost:8080/lockWechat/">-->
     <base href="<%=basePath%>">
     <title>亿数智能门锁</title>
 
@@ -91,7 +83,8 @@
         }
     </style>
 </head>
-<body class=""><div class="page-group">
+<body>
+<div class="page-group">
     <div class="page page-current" id="page-picker">
         <header class="bar bar-nav">
             <a class="button button-link button-nav pull-left back" href="http://m.sui.taobao.org/demos">
@@ -102,7 +95,7 @@
         </header>
 
         <!-- 这里是页面内容区 -->
-        <div class="content native-scroll" style="">
+        <div class="content native-scroll">
             <div class="list-block tjrzxx">
                 <ul>
                     <li>

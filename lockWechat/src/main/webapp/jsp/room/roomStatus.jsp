@@ -1,12 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: YS-dell001
-  Date: 2018/1/22
-  Time: 15:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -25,7 +17,6 @@
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css"/>
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css"/>
-    <!--<link rel="stylesheet" href="resources/css/picSrc.css"/>-->
     <style>
         img.auto-zoom-1 {
             width: 1rem;
@@ -99,7 +90,6 @@
         .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/
             position: absolute; top: 51px; left: 0; right: 0; bottom: 0px}
 
-
         .w-50{
             width: 55px !important;overflow: hidden;
         }
@@ -111,7 +101,6 @@
             width: 80px;
         }
     </style>
-
 </head>
 <body>
 
@@ -151,7 +140,6 @@
                             <td  class="fixed-table_header-1"><div class="table-cell w-50"><br/></div></td>
                             <td  class="fixed-table_header-1"><div class="table-cell w-50"><br/></div></td>
                             <td  class="fixed-table_header-1"><div class="table-cell w-50"><br/></div></td>
-
                         </tr>
                         </thead>
                     </table>
@@ -177,12 +165,7 @@
                             <%--<td ><div class="table-cell w-50"> </div></td>--%>
                             <%--<td ><div class="table-cell w-50"> </div></td>--%>
                             <%--<td ><div class="table-cell w-50"> </div></td>--%>
-
-
-
                         <%--</tr>--%>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -216,25 +199,14 @@
             <script>
                 $(".fixed-table-box").fixedTable();
             </script>
-
-
-
-
         </div>
-
     </div>
-
 </div>
-
-<%--<input type="hidden" id="INPUT_hidden" value="${ownerPhoneNumber}" />--%>
-
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
-
 <script type="text/javascript" src="resources/js/room/room.js"></script>
-
 
 </body>
 </html>

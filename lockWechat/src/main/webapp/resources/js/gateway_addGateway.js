@@ -14,6 +14,7 @@ var opCode;
 var isCorrectGatewayVerificationCode;
 var url;
 $(function () {
+    $('nav a').removeClass('active').eq(2).addClass('active');
     clearIframeById("frame1");
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     ownerPhoneNumber=18255683932;

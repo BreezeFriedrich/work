@@ -9,6 +9,7 @@ var device;
 var ownerPhoneNumber;
 var url;
 $(function(){
+    $('nav a').removeClass('active').eq(0).addClass('active');
     $.ajax({
         type:"POST",
         url:projectPath+"/account/getUserFromSession.action",

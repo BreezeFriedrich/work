@@ -1,13 +1,3 @@
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<%--
-  WechatUser: admin
-  Date: 2017/9/27
-  Time: 14:07
---%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
@@ -89,6 +79,8 @@
             <!-- 直接用相对路径也可以,是否与<base href="<%=basePath%>">有关? -->
             <a class="icon icon-edit pull-right" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('jsp/gateway/gateway_property.jsp?ownerPhoneNumber='+ownerPhoneNumber+'&specificGatewayCode='+specificGatewayCode);"></a>
         </header>
+
+        <jsp:include page="/jsp/nav.jsp"/>
 
         <!-- 这里是页面内容区 -->
         <div class="content">

@@ -77,6 +77,7 @@ div_roomManage.addEventListener('click',function(ev){
 });
 
 $(function(){
+    $('nav a').removeClass('active').eq(5).addClass('active');
     // FastClick.attach(document.body);
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
