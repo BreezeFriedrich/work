@@ -126,8 +126,9 @@ $(function(){
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
+        var url="record/getUnlockRecordPage.action";
         //联网加载数据
-        getListDataFromNet(page.num, page.size, function(data){
+        getPageData(url,{},page.num, page.size, function(data){
             var curPageData=data.rows;
             var totalSize=data.totalSize;
             //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
@@ -146,8 +147,8 @@ $(function(){
             //方法四 (不推荐),会存在一个小问题:比如列表共有20条数据,每页加载10条,共2页.如果只根据当前页的数据个数判断,则需翻到第三页才会知道无更多数据,如果传了hasNext,则翻到第二页即可显示无更多数据.
 //                mescroll.endSuccess(curPageData.length);
 
-            //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以setListData应该写在最后;
-            setListData(curPageData);
+            //设置列表数据,因为配置了emptyClearId,第一页会清空dataList的数据,所以renderPage应该写在最后;
+            renderPage(curPageData);
         }, function(){
             //联网失败的回调,隐藏下拉刷新和上拉加载的状态;
             mescroll.endErr();
@@ -160,25 +161,12 @@ $(function(){
     $.init();
 });
 
-function showAllRecords() {
-    /*
-    startTime="2014-01-01 01:01";
-    endTime="2017-12-10 01:01";
-    startTime=$("#datetime-picker-1").val();
-    endTime=$("#datetime-picker-2").val();
-    if (timeStr1BigThantimeStr2(formatTimetillminString2(endTime),formatTimetillminString2(startTime))){
-        $.toast('开始时间不能大于截止时间',1500);
-        return null;
-    }
-    */
-    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+function showPage(upCallback) {
     if (timeInSec_start>=timeInSec_end){
         $.toast('开始时间应当小于截止时间',1500);
         return null;
     }
     mescroll.destroy();
-    // setTimeout(console.log('delay...'),5000);
     mescroll = new MeScroll("mescroll", {
         //上拉加载列表项.
         up: {
@@ -193,23 +181,32 @@ function showAllRecords() {
             }
         }
     });
+}
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
-    function upCallback(page){
-        getListDataFromNet(page.num, page.size, function(data){
-            var curPageData=data.rows;
-            var totalSize=data.totalSize;
-            console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
-            mescroll.endBySize(curPageData.length, totalSize);
-            setListData(curPageData);
-        }, function(){
-            mescroll.endErr();
-        });
-    }
+/*联网加载列表数据*/
+function getPageData(url,params,pageNum,pageSize,successCallback,errorCallback) {
+    params.startTime=timeInSec_start;
+    params.endTime=timeInSec_end;
+    params.pageNum=pageNum;
+    params.pageSize=pageSize;
+    $.ajax({
+        type:"POST",
+        url:url,
+        // url:projectPath+"/record/getUnlockRecordPage.action",
+        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        // data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
+        data:params,
+        dataType:'json',
+        success:function(data,status,xhr){
+            successCallback(data);
+        },
+        error:errorCallback
+    });
 }
 
 /*设置列表数据与渲染列表*/
-function setListData(curPageData){
+function renderPage(curPageData){
     var listDom=document.getElementById("dataList");
     for (var i = 0; i < curPageData.length; i++) {
         var pd=curPageData[i];
@@ -221,7 +218,6 @@ function setListData(curPageData){
         str+='<p><img src="resources/img/padlock_64px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</span></p>';
         str+='</div>';
         str+='<div class="pd-right">';
-        console.log(pd.cardInfo);
         if(null !== pd.cardInfo && 'null'!==pd.cardInfo){
             str+='<p><img class="pd-img" src="resources/img/idCard_48px.png"/> <span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
             str+='<p><img class="pd-img" src="resources/img/person_64px.png"/> <span class="entry-val">'+pd.cardInfo.name+'</span></p>';
@@ -239,50 +235,33 @@ function setListData(curPageData){
     }
 }
 
-/*联网加载列表数据*/
-function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
-    //ownerPhoneNumber,startTime,endTime
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/record/getUnlockRecordPage.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
-        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
-        dataType:'json',
-        success:function(data,status,xhr){
-            successCallback(data);
-        },
-        error:errorCallback
-    });
+function showAllRecords() {
+    showPage(upCallback);
+
+    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+    function upCallback(page){
+        var url="record/getUnlockRecordPage.action";
+        getPageData(url,{},page.num, page.size, function(data){
+            var curPageData=data.rows;
+            var totalSize=data.totalSize;
+            console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+            mescroll.endBySize(curPageData.length, totalSize);
+            renderPage(curPageData);
+        }, function(){
+            mescroll.endErr();
+        });
+    }
 }
 
 /*根据开锁记录展示网关和门锁的设备信息*/
 function showDevicesFromRecords() {
-    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
-    if (timeInSec_start>=timeInSec_end){
-        $.toast('开始时间应当小于截止时间',1500);
-        return null;
-    }
-    mescroll.destroy();
-    mescroll = new MeScroll("mescroll", {
-        //上拉加载列表项.
-        up: {
-            clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
-            callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
-            toTop:{ //配置回到顶部按钮
-                src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
-                //offset : 1000
-            },
-            empty:{
-                tip: "我也是有底线的~",
-            }
-        }
-    });
+    showPage(upCallback);
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
-        getUnlockDevice(page.num, page.size, function(data){
+        // url:projectPath+"/record/getUnlockRecordDevice.action",
+        var url="record/getUnlockRecordDevice.action";
+        getPageData(url,{},page.num, page.size, function(data){
             /*
             var curPageData=data.rows;
             var totalSize=data.totalSize;
@@ -299,23 +278,8 @@ function showDevicesFromRecords() {
         });
     }
 }
-function getUnlockDevice(pageNum,pageSize,successCallback,errorCallback) {
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/record/getUnlockRecordDevice.action",
-        async:false,
-        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
-        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
-        dataType:'json',
-        success:function(data,status,xhr){
-            successCallback(data);
-        },
-        error:errorCallback
-    });
-}
 function setDeviceWithRecord(data){
     deviceRecordsMap=data;
-    console.log('data: '+data);
     var listDom=document.getElementById("dataList");
     var mapLength=Object.keys(data).length;
     for(var gatewayNum in data) {
@@ -350,7 +314,6 @@ function setDeviceWithRecord(data){
         listDom.appendChild(liDom);
     }
 }
-
 /*切换显示门锁下拉列表*/
 function shiftExpand(gatewayNum,element) {
     var LI=$(element.parent()[0]).parent()[0];
@@ -393,140 +356,50 @@ function shiftExpand(gatewayNum,element) {
 
 /*按网关展示记录*/
 function showGatewayRecords(gatewayNum) {
-    console.log('gatewayNum : '+gatewayNum);
-    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
-    if (timeInSec_start>=timeInSec_end){
-        $.toast('开始时间应当小于截止时间',1500);
-        return null;
-    }
-    mescroll.destroy();
-    mescroll = new MeScroll("mescroll", {
-        //上拉加载列表项.
-        up: {
-            clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
-            callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
-            toTop:{ //配置回到顶部按钮
-                src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
-                //offset : 1000
-            },
-            empty:{
-                tip: "我也是有底线的~",
-            }
-        }
-    });
+    showPage(upCallback);
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
-        getGatewayRecords(page.num, page.size,gatewayNum, function(data){
+        var url="record/getGatewayUnlockRecordPage.action";
+        getPageData(url,{gatewayCode:gatewayNum},page.num, page.size, function(data){
             var curPageData=data.rows;
             var totalSize=data.totalSize;
             console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
             mescroll.endBySize(curPageData.length, totalSize);
-            setListData(curPageData);
+            renderPage(curPageData);
         }, function(){
             mescroll.endErr();
         });
     }
-}
-function getGatewayRecords(pageNum,pageSize,gatewayNum,successCallback,errorCallback) {
-    // console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",gatewayNum:"+gatewayNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/record/getGatewayUnlockRecordPage.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"gatewayCode":gatewayNum,"pageNum":pageNum,"pageSize":pageSize},
-        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"gatewayCode":gatewayNum,"pageNum":pageNum,"pageSize":pageSize},
-        dataType:'json',
-        success:function(data,status,xhr){
-            successCallback(data);
-        },
-        error:errorCallback
-    });
 }
 
 /*按门锁展示记录*/
 function showLockRecords(lockNum) {
-    // console.log('lockNum : '+lockNum);
-    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
-    if (timeInSec_start>=timeInSec_end){
-        $.toast('开始时间应当小于截止时间',1500);
-        return null;
-    }
-    mescroll.destroy();
-    mescroll = new MeScroll("mescroll", {
-        //上拉加载列表项.
-        up: {
-            clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
-            callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
-            toTop:{ //配置回到顶部按钮
-                src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
-                //offset : 1000
-            },
-            empty:{
-                tip: "我也是有底线的~",
-            }
-        }
-    });
+    showPage(upCallback);
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
-        getLockRecords(page.num, page.size,lockNum, function(data){
+        var url="record/getLockUnlockRecordPage.action";
+        getPageData(url,{lockCode:lockNum},page.num, page.size, function(data){
             var curPageData=data.rows;
             var totalSize=data.totalSize;
             console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
             mescroll.endBySize(curPageData.length, totalSize);
-            setListData(curPageData);
+            renderPage(curPageData);
         }, function(){
             mescroll.endErr();
         });
     }
 }
-function getLockRecords(pageNum,pageSize,lockNum,successCallback,errorCallback) {
-    // console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",lockNum:"+lockNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
-    //ownerPhoneNumber,startTime,endTime
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/record/getLockUnlockRecordPage.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"lockCode":lockNum,"pageNum":pageNum,"pageSize":pageSize},
-        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"lockCode":lockNum,"pageNum":pageNum,"pageSize":pageSize},
-        dataType:'json',
-        success:function(data,status,xhr){
-            successCallback(data);
-        },
-        error:errorCallback
-    });
-}
 
 /*根据开锁记录展示开锁人信息*/
 function showOperatorFromRecords() {
-    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
-    if (timeInSec_start>=timeInSec_end){
-        $.toast('开始时间应当小于截止时间',1500);
-        return null;
-    }
-    mescroll.destroy();
-    mescroll = new MeScroll("mescroll", {
-        //上拉加载列表项.
-        up: {
-            clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
-            callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
-            toTop:{ //配置回到顶部按钮
-                src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
-                //offset : 1000
-            },
-            empty:{
-                tip: "我也是有底线的~",
-            }
-        }
-    });
+    showPage(upCallback);
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
-        getUnlockOperator(page.num, page.size, function(data){
+        var url="record/getUnlockOperator.action";
+        getPageData(url,{},page.num, page.size, function(data){
             console.log('length : '+Object.keys(data).length);
             mescroll.setPageSize(Object.keys(data).length+1);
             mescroll.endSuccess(Object.keys(data).length);
@@ -536,23 +409,8 @@ function showOperatorFromRecords() {
         });
     }
 }
-function getUnlockOperator(pageNum,pageSize,successCallback,errorCallback) {
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/record/getUnlockOperator.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
-        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"pageNum":pageNum,"pageSize":pageSize},
-        dataType:'json',
-        success:function(data,status,xhr){
-            successCallback(data);
-        },
-        error:errorCallback
-    });
-}
 function setOperatorWithRecord(data) {
     operatorRecordsMap=data;
-    // console.log('data: '+data);
     var listDom=document.getElementById("dataList");
     for(var cardNum in data) {
         lockRecordsMap=data[cardNum].data;
@@ -576,63 +434,78 @@ function setOperatorWithRecord(data) {
 
 /*按开锁人展示记录*/
 function showOperatorRecords(cardNum) {
-    // console.log('cardNum : '+cardNum);
-    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
-    if (timeInSec_start>=timeInSec_end){
-        $.toast('开始时间应当小于截止时间',1500);
-        return null;
-    }
-    mescroll.destroy();
-    // setTimeout(console.log('delay...'),5000);
-    mescroll = new MeScroll("mescroll", {
-        //上拉加载列表项.
-        up: {
-            clearEmptyId: "dataList", //1.下拉刷新时会自动先清空此列表,再加入数据; 2.无任何数据时会在此列表自动提示空
-            callback: upCallback, //上拉加载的回调,此处可简写; 相当于 callback: function (page) { getListData(page); }
-            toTop:{ //配置回到顶部按钮
-                src : "resources/img/mescroll-totop.png", //默认滚动到1000px显示,可配置offset修改
-                //offset : 1000
-            },
-            empty:{
-                tip: "我也是有底线的~",
-            }
-        }
-    });
+    showPage(upCallback);
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
-        getOperatorRecords(page.num, page.size,cardNum, function(data){
+        var url="record/getOperatorUnlockRecordPage.action";
+        getPageData(url,{cardNum:cardNum},page.num, page.size, function(data){
             var curPageData=data.rows;
             var totalSize=data.totalSize;
             console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
             mescroll.endBySize(curPageData.length, totalSize);
-            setListData(curPageData);
+            renderPage(curPageData);
         }, function(){
             mescroll.endErr();
         });
     }
 }
-function getOperatorRecords(pageNum,pageSize,cardNum,successCallback,errorCallback) {
-    // console.log("ownerPhoneNumber:"+ownerPhoneNumber+",pageNum:"+pageNum+",pageSize:"+pageSize+",cardNum:"+cardNum+",timeInSec_start:"+timeInSec_start+",timeInSec_end:"+timeInSec_end);
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/record/getOperatorUnlockRecordPage.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        // data:{"ownerPhoneNumber":ownerPhoneNumber,"startTime":timeInSec_start,"endTime":timeInSec_end,"cardNum":cardNum,"pageNum":pageNum,"pageSize":pageSize},
-        data:{"startTime":timeInSec_start,"endTime":timeInSec_end,"cardNum":cardNum,"pageNum":pageNum,"pageSize":pageSize},
-        dataType:'json',
-        success:function(data,status,xhr){
-            successCallback(data);
-        },
-        error:errorCallback
-    });
+
+/*根据开锁记录展示开锁的房间信息*/
+function showRoomFromRecords() {
+    showPage(upCallback);
+
+    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+    function upCallback(page){
+        var url="record/getRecordRoom.action";
+        getPageData(url,{},page.num, page.size, function(data){
+            console.log('length : '+Object.keys(data).length);
+            mescroll.setPageSize(Object.keys(data).length+1);
+            mescroll.endSuccess(Object.keys(data).length);
+            setRoomWithRecord(data);
+        }, function(){
+            mescroll.endErr();
+        });
+    }
+}
+function setRoomWithRecord(data) {
+    operatorRecordsMap=data;
+    var listDom=document.getElementById("dataList");
+    for(var cardNum in data) {
+        lockRecordsMap=data[cardNum].data;
+        recordSize=data[cardNum].size;
+        name=data[cardNum].note;
+        var str='';
+        str+='<div>';
+        str+=    '<a class="a-id" href="javascript:void(0);" onclick="showRoomRecords(\''+cardNum+'\')" style="width: 340px;">';
+        str+=       '<img alt="idCard" src="resources/img/idCard_48px.png">';
+        str+=       '<span style="width: 55px;margin-left: 5px;">'+name+'</span>';
+        str+=       '<img alt="idCard" src="resources/img/person_64px.png">';
+        str+=       '<span style="width: 145px;margin-left: 5px;">'+cardNum+'</span>';
+        str+=       '<span style="width: 65px;margin-left: 5px;">'+recordSize+'</span>';
+        str+=    '</a>';
+        str+='</div>';
+        var liDom=document.createElement("li");
+        liDom.innerHTML=str;
+        listDom.appendChild(liDom);
+    }
 }
 
-//获取链接参数
-function getQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = decodeURI(window.location.search).substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
-    return null;
+/*按开锁人展示记录*/
+function showRoomRecords(cardNum) {
+    showPage(upCallback);
+
+    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+    function upCallback(page){
+        var url="record/getRoomUnlockRecordPage.action";
+        getPageData(url,{cardNum:cardNum},page.num, page.size, function(data){
+            var curPageData=data.rows;
+            var totalSize=data.totalSize;
+            console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+            mescroll.endBySize(curPageData.length, totalSize);
+            renderPage(curPageData);
+        }, function(){
+            mescroll.endErr();
+        });
+    }
 }

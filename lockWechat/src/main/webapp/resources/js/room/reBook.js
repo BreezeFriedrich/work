@@ -56,18 +56,12 @@ function loadpage() {
     document.getElementById("roomtag").addEventListener("blur",function () {
         var room=document.getElementById("roomtag").value;
         roomName=room.split("(")[0];
-        // $.alert("roomID old: "+roomId);
         for(var i=0;i<roomNameList.length;i++){
-            // $.alert("room: "+room);
-            // $.alert("roomNameList[i]: "+roomNameList[i]);
-
             if(room==roomNameList[i]){
                 roomId=roomIDList[i];
-                // $.alert("roomID new: "+roomId);
             }
         }
     });
-
 
     //初始化时间选择
     $("#datetime-picker").datetimePicker({
@@ -94,7 +88,6 @@ function loadpage() {
         div11.setAttribute("name","auname");
         img.setAttribute("class","ry-j-1");
         img.setAttribute("src","resources/images/ry-j-1.png");
-
         div11.innerHTML=cardInfoList[j].name;
         div12.innerHTML=cardInfoList[j].cardNumber;
 
@@ -111,7 +104,6 @@ function loadpage() {
 
         document.getElementById("addList").appendChild(div);
     }
-
     document.getElementById("password").setAttribute("value",password);
 }
 
@@ -222,10 +214,7 @@ function doAuth() {
     var et=document.getElementById("datetime-picker-lk").value;
     startTime=getTimeString(st);
     endTime=getTimeString(et);
-    // $.alert("st:  "+st);
-    // $.alert("et:  "+et);
     var cardString=JSON.stringify(cardInfoList);
-    // $.alert(cardString);
     delOrder();
     $.ajax({
         type:"POST",
@@ -246,14 +235,11 @@ function doAuth() {
                 $.alert('修改订单成功！', function () {
                     window.history.back();
                 });
-
             }else{
                 $.alert("修改订单失败！");
             }
-            // alert("getDatefromSession: "+data);
         },
-        error
-            :function(xhr,errorType,error){
+        error:function(xhr,errorType,error){
             $.alert("获取设备请求失败！");
             console.log('ajax错误');
         }
@@ -298,7 +284,6 @@ function getOrderContent() {
             }else{
                 $.alert("获取订单失败！");
             }
-            // alert("getDatefromSession: "+data);
         },
         error:function(xhr,errorType,error){
             alert("获取设备请求失败！");

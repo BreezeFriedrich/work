@@ -20,9 +20,6 @@ $(function () {
     loadPage();
 });
 
-
-
-
 /**
  * 获取订单列表
  */
@@ -107,83 +104,6 @@ function getDatefromSession() {
     return  date;
 }
 
-function setDateToSession(date) {
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/setToSession.action",
-        async:false,//异步
-        data:{
-            "sessionName":"cDate",
-            "sessionValue":date
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            // alert("setDateToSession:  "+data);
-
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-}
-
-function setGaLToSession(gatewayCode,lockCode,lockName) {
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/setToSession.action",
-        async:false,//异步
-        data:{
-            sessionName:"roomgatewayCode",
-            sessionValue:gatewayCode
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            // alert("setDateToSession:  "+data);
-        },
-        error:function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/setToSession.action",
-        async:false,//异步
-        data:{
-            sessionName:"roomlockCode",
-            sessionValue:lockCode
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            // alert("setDateToSession:  "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/setToSession.action",
-        async:false,//异步
-        data:{
-            sessionName:"roomlockName",
-            sessionValue:lockName
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            // alert("setDateToSession:  "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-}
 
 /**
  * 加载页面
@@ -402,11 +322,9 @@ function loadRoomStatus() {
                         var orderNumber=roomOrder[t].orderNumber;
                         a1.setAttribute("href","jsp/room/aBook.jsp?orderNumber="+orderNumber);
                         if(roomOrder[t].checkInTime==null || roomOrder[t].checkInTime=="" ){
-                            // div1.addClass("cd-booked");
                             var newclass=div1.getAttribute("class")+" "+"cd-booked";
                             div1.setAttribute("class",newclass);
                             if(( parseInt(et.substring(0,8))-parseInt(timetag) ) !=0 ){
-                                // td1.style.borderColor="#9FDBBD";
                                 td1.style.borderRightColor="#9FDBBD";
                                 td1.style.borderLeftColor="#9FDBBD";
                             }
@@ -417,7 +335,6 @@ function loadRoomStatus() {
                                 span.innerHTML="已预订";
                             }
                         }else{
-                            // div1.addClass("");
                             var newclass1=div1.getAttribute("class")+" "+"cd-select";
                             div1.setAttribute("class",newclass1);
                             if(( parseInt(et.substring(0,8))-parseInt(timetag) ) !=0 ){
@@ -592,107 +509,3 @@ function getSTandET(cDate,lDate) {
     return times;
 }
 
-
-/**
- * 获取门锁身份证授权
- * @param gatewayCode
- * @param lockCode
- * @return userList
- */
-function getIDAuth(gatewayCode,lockCode) {
-    var userList=new Array();
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getIDAuth.action",
-        async:false,//异步
-        data:{
-            "gatewayCode":gatewayCode,
-            "lockCode":lockCode
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            var obj=JSON.parse(data);
-            if(obj.result==0){
-                userList=obj.userList;
-            }else{
-                alert("获取身份证授权失败！");
-            }
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取身份证授权请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    return userList;
-}
-
-/**
- * 获取门锁密码授权
- * @param gatewayCode
- * @param lockCode
- * @return passwordList
- */
-function getPwdAuth(gatewayCode,lockCode) {
-    var passwordList=new Array();
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getPwdAuth.action",
-        async:false,//异步
-        data:{
-            "gatewayCode":gatewayCode,
-            "lockCode":lockCode
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            var obj=JSON.parse(data);
-            if(obj.result==0){
-                passwordList=obj.passwordList;
-            }else{
-                alert("获取密码授权失败！");
-            }
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取密码授权请求失败！");
-            console.log('ajax错误');
-        }
-    });
-
-    return passwordList;
-}
-
-
-/**
- * 获取开锁记录
- * @param startTime
- * @param endTime
- * @return recordList 开锁记录
- */
-function getUnlockRecord(startTime,endTime) {
-    var recordList=new Array();
-
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getUnlockRecord.action",
-        async:false,//异步
-        data:{
-            "startTime":startTime,
-            "endTime":endTime
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            var obj=JSON.parse(data);
-            if(obj.result==0){
-                recordList=obj.recordList;
-            }else{
-                alert("获取密码授权失败！");
-            }
-        },
-        error:function(xhr,errorType,error){
-            alert("获取密码授权请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    return recordList;
-}

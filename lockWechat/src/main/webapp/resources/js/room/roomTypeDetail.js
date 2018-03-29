@@ -8,8 +8,6 @@ var roomInfoList=new Array();
 $(function () {
     roomTypeId = getQueryString("roomTypeId");
     document.getElementById("ar").setAttribute("href","jsp/room/addRoom.jsp?roomTypeId="+roomTypeId);
-    // $.alert("roomTypeId:  "+roomTypeId);
-    // roomTypeId = getfromSession("roomTypeId");
     getRooms();
     for(var i=0;i<roomList.length;i++){
         if(roomTypeId==roomList[i].roomTypeId){
@@ -19,7 +17,6 @@ $(function () {
             break;
         }
     }
-
     loadPage();
     // $(document).on('click','.icon-remove', function () {
     $("header").on('click','.icon-remove', function () {

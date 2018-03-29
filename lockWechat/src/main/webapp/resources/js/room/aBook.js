@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
+ * Nanjing yishu information technology co., LTD. All Rights Reserved.
+ */
+
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var orderNumber;
@@ -11,7 +16,6 @@ var password;
 var checkInTime;
 var cardInfoList;
 $(function () {
-
     loadP();
 });
 
@@ -37,21 +41,26 @@ function loadP() {
         var div1=document.createElement("div");
         var div11=document.createElement("div");
         var div12=document.createElement("div");
+        var input=document.createElement("input");
 
         div.setAttribute("class","item-content");
         div1.setAttribute("class","item-inner");
-        div11.setAttribute("class","item-title");
-        div12.setAttribute("class","item-after");
+        div11.setAttribute("class","item-title label");
+        div12.setAttribute("class","item-input");
+        input.setAttribute("type","text");
+
         if(i==0){
             div11.innerHTML="授权身份证";
         }
-        div12.setAttribute("placeholder",cardInfoList[i].cardNumber);
+        input.setAttribute("placeholder",cardInfoList[i].cardNumber);
+        input.setAttribute("readonly","readonly");
+
         // div12.innerHTML=cardInfoList[i].cardNumber;
+        div12.appendChild(input);
 
         div1.appendChild(div11);
         div1.appendChild(div12);
         div.appendChild(div1);
-
         addList.appendChild(div);
 
 
@@ -63,6 +72,7 @@ function loadP() {
     document.getElementById("uoda").setAttribute("href","jsp/room/reBook.jsp?orderNumber="+orderNumber);
 
 }
+
 function getOrderContent() {
     $.ajax({
         type:"POST",
@@ -128,7 +138,6 @@ function delOrder() {
         }
     });
 }
-
 
 //获取链接参数
 function getQueryString(name) {

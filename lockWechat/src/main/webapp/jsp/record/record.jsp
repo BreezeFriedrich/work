@@ -131,7 +131,7 @@
         <!-- 标题栏 -->
         <header class="bar bar-nav">
             <a class="icon icon-left pull-left" href="javascript:history.go(-1);"></a>
-            <h1 class="title">全部记录</h1>
+            <h1 class="title">开锁记录</h1>
             <!--<a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/gatewayDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">网关</a>
                 <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/lockDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">门锁</a>
                 <a class="pageTitle" href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/record/timeDivision.jsp?ownerPhoneNumber='+ownerPhoneNumber);">时间</a>-->
@@ -164,6 +164,7 @@
                 <p><a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()">查询所有记录</a></p>
                 <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesFromRecords()">按设备分类</a></p>
                 <p><a href="javascript:void(0);" class="close-popup" onclick="showOperatorFromRecords()">按开锁人分类</a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showRoomFromRecords()">按房间分类</a></p>
             </div>
         </div>
         <div class="popup-overlay"></div>
@@ -176,6 +177,6 @@
 <%--<script type='text/javascript' src='resources/js/util/date.js'></script>--%>
 <%--<script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>--%>
 <script type="text/javascript" src='resources/js/util/moment-with-locales.js'></script>
-<script type='text/javascript' src='resources/js/record.js' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/record.js?v=7' charset='utf-8'></script>
 </body>
 </html>

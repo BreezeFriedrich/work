@@ -88,14 +88,11 @@ function loadPage() {
         ]
     });
 
-    document.getElementById("picker").addEventListener('change',function(ev){
-        var lock=document.getElementById("picker").value;
-        // $.alert("lock:  "+lock);
-
+    document.getElementById("picker").addEventListener('blur',function(ev){
+        var lock=$('#picker').val();
         for(var i=0;i<lockList.length;i++){
-            // $.alert("freeLocks[i]:  "+freeLocks[i]);
             if(lock==lockList[i]){
-                document.getElementById("gatewayCode").setAttribute("value",lockandgateway[i].gatewayCode);
+                $('#gatewayCode').val(lockandgateway[i].gatewayCode);
                 break;
             }
         }
@@ -167,14 +164,17 @@ function resetRoom() {
         data:{
             "roomTypeId":roomTypeId,
             "roomId":roomInfo.roomId,
-            "newLockCode":lockCode.value,
-            "newRoomName":roomName
+            "newLockCode":$('#picker').val(),
+            "newRoomName":$('#roomName').val()
         },
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
             var obj=JSON.parse(data);
             if(obj.result==0){
-                $.alert('修改房间成功!');
+                $.alert('修改房间成功！', function () {
+                    window.history.back();
+                });
+                // $.alert('修改房间成功!');
             }else{
                 $.alert("修改房间失败！");
             }

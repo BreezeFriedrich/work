@@ -23,12 +23,9 @@ $(function () {
     });
 
     document.getElementById("picker").addEventListener('blur',function(ev){
-        // var lock=document.getElementById("picker").value;
         var lock=$("#picker").val();
-
         for(var i=0;i<freeLocks.length;i++){
             if(lock==freeLocks[i]){
-                // document.getElementById("gatewaycode").setAttribute("value",gatewayCodes[i]);
                 $("#gatewaycode").val(gatewayCodes[i]);
                 break;
             }
@@ -37,15 +34,10 @@ $(function () {
 });
 
 function getGatewayCode() {
-    // $.alert("enter getgatewaycode");
     var lock=document.getElementById("picker").value;
-    // $.alert("lock:  "+lock);
-
     for(var i=0;i<freeLocks.length;i++){
-        // $.alert("freeLocks[i]:  "+freeLocks[i]);
         if(lock==freeLocks[i]){
             document.getElementById("gatewaycode").setAttribute("value",gatewayCodes[i]);
-            // $("#gatewaycode").val(gatewayCodes[i]);
             break;
         }
     }
@@ -76,28 +68,7 @@ function getFreeLock() {
         }
     });
 }
-function getfromSession1(sessionName) {
-    var result;
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getFromSession.action",
-        async:false,//异步
-        data:{
-            "sessionName":sessionName
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            result=data;
-            // alert("getDatefromSession: "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    return  result;
-}
+
 function addRoom() {
     var lock=document.getElementById("picker").value;
     var gatewaycode=document.getElementById("gatewaycode").value;

@@ -10,16 +10,13 @@ var password;
 var clickDate;
 var cardInfoList=new Array();
 var roomList=new Array();
-
 var roomNameList=new Array();
 var roomIDList=new Array();
 
 
 $(function () {
     initAttributes();
-
 });
-
 
 function initAttributes() {
     //初始化属性
@@ -75,46 +72,14 @@ function initAttributes() {
     document.getElementById("roomtag").addEventListener("blur",function () {
         var room=document.getElementById("roomtag").value;
         roomName=room.split("(")[0];
-        // $.alert("roomID old: "+roomId);
         for(var i=0;i<roomNameList.length;i++){
-            // $.alert("room: "+room);
-            // $.alert("roomNameList[i]: "+roomNameList[i]);
-
             if(room==roomNameList[i]){
                 roomId=roomIDList[i];
                 // $.alert("roomID new: "+roomId);
-
             }
         }
     });
 }
-
-
-
-
-function getfromSession(sessionName) {
-    var sessionValue;
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getFromSession.action",
-        async:false,//异步
-        data:{
-            "sessionName":sessionName
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            sessionValue=data;
-            // alert("getDatefromSession: "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    return  sessionValue;
-}
-
 
 function addID() {
 
@@ -161,6 +126,9 @@ function addID() {
         div1.appendChild(div13);
 
     }
+
+    document.getElementById("idname").value="";
+    document.getElementById("idcard").value="";
 }
 
 function doAuth() {
@@ -168,9 +136,6 @@ function doAuth() {
     var names=document.getElementsByName("auname");
     var ids=document.getElementsByName("auid");
     for(var i=0;i<ids.length;i++){
-        // $.alert("names[0]:  "+names[i].innerHTML);
-        // $.alert("ids[0]:  "+ids[i].innerHTML);
-
         cardInfo=new Object();
         cardInfo.cardNumber=ids[i].innerHTML;
         cardInfo.name=names[i].innerHTML;
@@ -183,10 +148,7 @@ function doAuth() {
     var et=document.getElementById("datetime-picker-lk").value;
     startTime=getTimeString(st);
     endTime=getTimeString(et);
-    // $.alert("st:  "+st);
-    // $.alert("et:  "+et);
     var cardString=JSON.stringify(cardInfoList);
-    // $.alert(cardString);
     $.ajax({
         type:"POST",
         url:projectPath+"/room/addOrder.action",
@@ -198,29 +160,31 @@ function doAuth() {
             "roomTypeId":roomTypeId,
             "cardInfoList":cardString,
             "password":password
-
         },
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
             var obj=JSON.parse(data);
-
             if(obj.result==0){
-                $.alert("添加订单成功！");
-                window.history.back();
+                $.alert('添加订单成功！', function () {
+                    window.history.back();
+                });
             }else{
                 $.alert("添加订单失败！");
             }
-            // alert("getDatefromSession: "+data);
         },
-        error
-            :function(xhr,errorType,error){
+        error:function(xhr,errorType,error){
             alert("获取设备请求失败！");
             console.log('ajax错误');
         }
     });
-
 }
 
+/**
+ *
+ * 把datetimepicker的时间转换成yyyyMMDDhhmm字符串
+ * @param sTime
+ * @return {*}
+ */
 function getTimeString(sTime) {
     var t1=sTime.split(" ")[0];
     var t2=sTime.split(" ")[1];
@@ -235,10 +199,6 @@ function getTimeString(sTime) {
     }
     var tag=year+month+day+hour+minute;
     return tag;
-
-
-
-
 }
 
 function getRooms() {
@@ -256,7 +216,6 @@ function getRooms() {
                         roomType=roomList[i].roomType;
                     }
                 }
-
             }else{
                 $.alert("获取设备失败！");
             }

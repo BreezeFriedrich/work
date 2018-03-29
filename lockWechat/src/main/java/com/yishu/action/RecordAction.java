@@ -204,4 +204,22 @@ public class RecordAction extends ActionSupport{
         jsonResult=records;
         return "json";
     }
+
+    public String getRecordRoom() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
+        Map map=recordService.getRecordRoom(ownerPhoneNumber,startTime,endTime);
+        jsonResult=map;
+        return "json";
+    }
+
+    public String getRoomRecordPage() {
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
+        Records<UnlockRecord> records=recordService.getRoomRecordPage(ownerPhoneNumber,startTime,endTime,cardNum,pageNum,pageSize);
+        jsonResult=records;
+        return "json";
+    }
 }

@@ -10,8 +10,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.*;
 import com.yishu.service.IRecordService;
+import com.yishu.service.IRoomService;
 import com.yishu.util.*;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -26,6 +28,9 @@ import java.util.*;
 @Service("recordService")
 public class RecordServiceImpl implements IRecordService {
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordServiceImpl");
+    @Autowired
+    private IRoomService roomService;
+
     int reqSign;
     String reqData;
     /**
@@ -485,22 +490,83 @@ public class RecordServiceImpl implements IRecordService {
     }
 
     @Override
-    public Records<RoomRecord> convertUnlockRecordToRoomRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs) {
+    public List<RoomRecord> convertUnlockRecordToRoomRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs) {
         int unlockRecordSize=unlockRecords.size();
         UnlockRecord unlockRecord=null;
         int roomTypeCRSize=roomTypeCRs.size();
         RoomTypeContainRoom roomTypeCR=null;
+        List<RoomRecord> roomRecords=new ArrayList<>();
+        RoomRecord roomRecord=null;
+        Room room=null;
 
         for(int i=0;i<unlockRecordSize;i++){
             unlockRecord=unlockRecords.get(i);
             String gatewayCode=unlockRecord.getGatewayCode();
             String lockCode=unlockRecord.getLockCode();
+            roomRecord=new RoomRecord();
+            roomRecord.setGatewayCode(unlockRecord.getGatewayCode());
+            roomRecord.setLockCode(unlockRecord.getLockCode());
+            roomRecord.setTimetag(unlockRecord.getTimetag());
+            roomRecord.setOpenMode(unlockRecord.getOpenMode());
+            roomRecord.setCardInfo(unlockRecord.getCardInfo());
+            roomRecord.setPasswordInfo(unlockRecord.getPasswordInfo());
             for(int j=0;j<roomTypeCRSize;j++){
                 roomTypeCR=roomTypeCRs.get(i);
+                List<Room> roomInfoList=roomTypeCR.getRoomInfoList();
+                for(int k=0;k<roomInfoList.size();k++){
+                    room=roomInfoList.get(k);
+                    if(room.getGatewayCode().equals(gatewayCode) && room.getLockCode().equals(lockCode)){
+                        roomRecord.setRoomTypeId(roomTypeCR.getRoomTypeId());
+                        roomRecord.setRoomType(roomTypeCR.getRoomType());
+                        roomRecord.setRoomId(room.getRoomId());
+                        roomRecord.setRoomName(room.getRoomName());
+                        break;
+                    }
+                }
+            }
+            roomRecords.add(roomRecord);
+        }
+        return roomRecords;
+    }
 
+    @Override
+    public Map getRecordRoom(String ownerPhoneNumber, String startTime, String endTime) {
+        List<UnlockRecord> unlockRecords=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+        List<RoomRecord> roomRecords=convertUnlockRecordToRoomRecord(unlockRecords,roomTypeCRs);
+
+        RoomRecord roomRecord=null;
+        List<RoomRecord> roomRecordList=null;
+        Map<String,DataWithNote> roomRecordsMap=null;//List<dataWithNote> : {key-String:roomid,value-DataWithNote:dataWithNote}
+        DataWithNote<List,String> dataWithNote=null;//dataWithNote:(key:,size:roomRecordList.size,data<X-List>:roomRecordList,note<Y-String>:(roomName))
+
+        //数据处理step1: 遍历原数据集合rawList,封装成目标数据结构.
+        roomRecordsMap= new HashMap<>();
+        for(int i=0;i<roomRecords.size();i++){
+            roomRecord=roomRecords.get(i);
+            String roomId=roomRecord.getRoomId();
+            if(!roomRecordsMap.containsKey(roomId)){
+                roomRecordList=new ArrayList<RoomRecord>();
+                roomRecordList.add(roomRecord);
+                dataWithNote=new DataWithNote<List,String>();
+//                dataWithNote.setKey(roomId);
+                dataWithNote.setNote(roomId);
+                dataWithNote.setData(roomRecordList);
+                roomRecordsMap.put(roomId,dataWithNote);
+            }else {
+                dataWithNote=roomRecordsMap.get(roomId);
+                dataWithNote.getData().add(roomRecord);
             }
         }
-        return null;
+        //数据处理step2: dataWithNote.size值.
+        int recordSize=0;
+        for (Map.Entry<String, DataWithNote> entryX : roomRecordsMap.entrySet()) {
+//            System.out.println("key= " + entryX.getKey() + " and value= " + entryX.getValue());
+            dataWithNote=entryX.getValue();
+            recordSize=dataWithNote.getData().size();
+            dataWithNote.setSize(recordSize);
+        }
+        return roomRecordsMap;
     }
 
 }

@@ -188,7 +188,7 @@
 <script type="text/javascript" src="resources/js/room/config.js"></script>
 <script type="text/javascript" src="resources/js/room/sm-city-picker.js"></script>
 <script type="text/javascript" src="resources/js/room/demos.js"></script>
-<script type="text/javascript" src="resources/js/room/aBook.js"></script>
+<script type="text/javascript" src="resources/js/room/aBook.js?v=1"></script>
 <script>
     var _hmt = _hmt || [];
     (function() {
