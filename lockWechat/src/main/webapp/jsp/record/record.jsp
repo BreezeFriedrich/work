@@ -173,8 +173,9 @@
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/mescroll.min.js'></script>
-<script type='text/javascript' src='resources/js/util/date.js'></script>
-<script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>
+<%--<script type='text/javascript' src='resources/js/util/date.js'></script>--%>
+<%--<script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>--%>
+<script type="text/javascript" src='resources/js/util/moment-with-locales.js'></script>
 <script type='text/javascript' src='resources/js/record.js' charset='utf-8'></script>
 </body>
 </html>

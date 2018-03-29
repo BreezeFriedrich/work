@@ -18,50 +18,95 @@ var recordSize;
 var name;
 var operatorRecordsMap;
 
+/*
+//改变输入框datetimepicker的显示,若有yyyy-MM-dd h:mm,则转化为yyyy-MM-dd hh:mm.
+function formatDatetimepicker(datetimepicker){
+    var timeStr=datetimepicker.val();
+    var pattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})/;
+       console.log(pattern.test(timeStr));
+    var rep=timeStr;
+    if(pattern.test(rep)){
+        var reg=new RegExp(pattern);
+        rep=rep.replace(reg,"$1-$2-$3 0$4:$5")
+    }
+    console.log(rep);
+    var newDate=new Date(Date.parse(rep));
+    console.log('newDate : '+newDate);
+    var dateObj=formatDate2Object(newDate);
+    datetimepicker.datetimePicker({
+        value: [dateObj.year,dateObj.month,dateObj.date,dateObj.hour,dateObj.min]
+    });
+}
+*/
+/**
+ * 格式化时间字符串,从yyyyMMddhhmmss到yyyy-MM-dd hh:mm:ss.
+ * @param dateStr
+ */
+function formatTimeString(dateStr) {
+    return dateStr.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,'$1-$2-$3 $4:$5:$6');
+}
+function getDateSeg(date) {
+    var dateObj={};
+    dateObj.year=date.year();
+    dateObj.month=date.month()+1;
+    dateObj.date=date.date();
+    dateObj.hour=date.hour();
+    dateObj.minute=date.minute();
+    dateObj.second=date.second();
+    if(dateObj.month<10){
+        dateObj.month='0'+dateObj.month;
+    }
+    if(dateObj.date<10){
+        dateObj.date='0'+dateObj.date;
+    }
+    if(dateObj.hour<10){
+        dateObj.hour='0'+dateObj.hour;
+    }
+    if(dateObj.minute<10){
+        dateObj.minute='0'+dateObj.minute;
+    }
+    if(dateObj.second<10){
+        dateObj.second='0'+dateObj.second;
+    }
+    return dateObj;
+}
 $(function(){
     $('nav a').removeClass('active').eq(3).addClass('active');
 
-    /*
-    //初始化时间选择器
-    var temptime = new Date();
+    // moment().format('YYYY-MM-DD HH:mm:ss');
+    // moment().set('date',moment().get('date')+1).set('hour',12).set('minute',0).set('second',0)
+    var temptime=new Object();
+    temptime=getDateSeg(moment().subtract(3,'years'));
     $("#datetime-picker-1").datetimePicker({
-        value: [temptime.getFullYear()-3,temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+        dateFormat:'YYYY-MM-DD HH:mm',
+        value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.minute,temptime.second],
+        // value: [moment().format('YYYY-MM-DD HH:mm')],
+        // value: ['2018-03-01 03:09:10'],
+        // value: ['2018','03','01','03',09,'10'],
+        // formatValue: function (picker, value, displayValue){
+        //     if(displayValue[1]<10){
+        //         displayValue[1]='0'+displayValue[1];
+        //     }
+        //     console.log('picker:'+picker+', value:'+value+', displayValue:'+displayValue);
+        // },
+        // onChange:function(picker, values, displayValues){
+        //     console.log('picker:'+picker+', value:'+value+', displayValue:'+displayValue);
+        // }
+        // min:'2016-01-01 1:00',
+        // maxDate:new Date(),
+        onClose:function (p) {
+            timeInSec_start=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
+        }
     });
-    temptime.setDate(temptime.getDate()+1);
+    temptime=getDateSeg(moment());
     $("#datetime-picker-2").datetimePicker({
-        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+        value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.minute,temptime.second],
+        onClose:function (p) {
+            timeInSec_end=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
+        }
     });
-    */
-    var tempDate = new Date();
-    temptime=formatDate2Object(tempDate);
-    $("#datetime-picker-1").datetimePicker({
-        value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.min,temptime.second]
-    });
-    tempDate.setDate(tempDate.getDate()+1);
-    temptime=formatDate2Object(tempDate);
-    $("#datetime-picker-2").datetimePicker({
-        value: [temptime.year,temptime.month,temptime.date,temptime.hour,temptime.min,temptime.second]
-    });
-    /*
-    startTime="2014-01-01 01:01";
-    endTime="2017-12-10 01:01";
-    startTime=$("#datetime-picker-1").val();
-    endTime=$("#datetime-picker-2").val();
-    */
-    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
-
-    document.getElementById("datetime-picker-1").addEventListener('change',function(ev){
-//            $("#datetime-picker-1").val().replace(/^(\d{4})-(\d{2})-(\d{2})\s(\d{1}):(\d{2})$/,'$1-$2-$3 $4:$5');
-        console.log('Event : onchange');
-        console.log($("#datetime-picker-1").val());
-        formatDatetimepicker($("#datetime-picker-1"));
-        getTimeFromDatetimepicker($("#datetime-picker-1"));
-        getTimeInTimestampFromDatetimepicker($("#datetime-picker-1"));
-    });
-    document.getElementById("datetime-picker-2").addEventListener('change',function(ev){
-        formatDatetimepicker($("#datetime-picker-2"));
-    });
+    timeInSec_start=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
+    timeInSec_end=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
 
     //创建MeScroll对象,内部已默认开启下拉刷新,自动执行up.callback,重置列表数据;
     mescroll = new MeScroll("mescroll", {
@@ -126,8 +171,8 @@ function showAllRecords() {
         return null;
     }
     */
-    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
         $.toast('开始时间应当小于截止时间',1500);
         return null;
@@ -213,8 +258,8 @@ function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
 
 /*根据开锁记录展示网关和门锁的设备信息*/
 function showDevicesFromRecords() {
-    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
         $.toast('开始时间应当小于截止时间',1500);
         return null;
@@ -349,8 +394,8 @@ function shiftExpand(gatewayNum,element) {
 /*按网关展示记录*/
 function showGatewayRecords(gatewayNum) {
     console.log('gatewayNum : '+gatewayNum);
-    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
         $.toast('开始时间应当小于截止时间',1500);
         return null;
@@ -403,8 +448,8 @@ function getGatewayRecords(pageNum,pageSize,gatewayNum,successCallback,errorCall
 /*按门锁展示记录*/
 function showLockRecords(lockNum) {
     // console.log('lockNum : '+lockNum);
-    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
         $.toast('开始时间应当小于截止时间',1500);
         return null;
@@ -457,8 +502,8 @@ function getLockRecords(pageNum,pageSize,lockNum,successCallback,errorCallback) 
 
 /*根据开锁记录展示开锁人信息*/
 function showOperatorFromRecords() {
-    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
         $.toast('开始时间应当小于截止时间',1500);
         return null;
@@ -532,8 +577,8 @@ function setOperatorWithRecord(data) {
 /*按开锁人展示记录*/
 function showOperatorRecords(cardNum) {
     // console.log('cardNum : '+cardNum);
-    timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
-    timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
+    // timeInSec_start=getTimeFromDatetimepicker($("#datetime-picker-1"));
+    // timeInSec_end=getTimeFromDatetimepicker($("#datetime-picker-2"));
     if (timeInSec_start>=timeInSec_end){
         $.toast('开始时间应当小于截止时间',1500);
         return null;

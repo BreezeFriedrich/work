@@ -134,7 +134,7 @@ public class RecordServiceImpl implements IRecordService {
         List<UnlockRecord> newRecordList=null;
         int recordListSize=recordList.size();
         if (recordListSize > pageNum*pageSize){
-            newRecordList=recordList.subList((pageNum-1)*pageSize,pageNum*pageSize);
+            newRecordList=recordList.subList((pageNum-1)*pageSize,pageNum*pageSize);//List下标从0开始,subList 的fromindex包含.
         }else if (recordListSize > (pageNum-1)*pageSize && recordListSize <= pageNum*pageSize){
             newRecordList=recordList.subList((pageNum-1)*pageSize,recordListSize);
         }

@@ -15,40 +15,12 @@ $(function () {
 
     $(".fixed-table-box").fixedTable();
     curDate=new Date(getDatefromSession());
-    // $.alert("cuiDate:   "+curDate);
     getOrderList();
     getRoomList();
     loadPage();
 });
 
-/**
- * 获取设备信息
- */
-function getDevices() {
-    var lockLists=new Array();
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getDeviceInfo.action",
-        async:false,//异步
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            var obj=JSON.parse(data);
-            if(obj.result==0){
-                devices=obj.devices;
-                lockLists=devices[0].lockLists;
-                // alert("获取设备成功！"+lockLists[0].lockName);
-                // alert("获取设备成功！"+lockLists[0].lockCode);
-            }else{
-                alert("获取设备失败！");
-            }
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-}
+
 
 
 /**
@@ -441,6 +413,9 @@ function loadRoomStatus() {
                             if(( parseInt(st.substring(0,8))-parseInt(timetag) ) ==0 ){
                                 span.innerHTML="已预订";
                             }
+                            if(k==0){
+                                span.innerHTML="已预订";
+                            }
                         }else{
                             // div1.addClass("");
                             var newclass1=div1.getAttribute("class")+" "+"cd-select";
@@ -450,6 +425,9 @@ function loadRoomStatus() {
                                 td1.style.borderRightColor="#65C596";
                             }
                             if(( parseInt(st.substring(0,8))-parseInt(timetag) ) ==0 ){
+                                span.innerHTML="已入住";
+                            }
+                            if(k==0){
                                 span.innerHTML="已入住";
                             }
                         }

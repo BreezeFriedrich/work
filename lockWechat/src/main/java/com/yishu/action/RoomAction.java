@@ -331,8 +331,8 @@ public class RoomAction extends ActionSupport {
 
 	private void checkPhoneNumber(){
 		if ("".equals(ownerPhoneNumber)|| null==ownerPhoneNumber){
-			ownerPhoneNumber="13998892002";
-//			ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//			ownerPhoneNumber="13998892002";
+			ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
 		}
 	}
 }
