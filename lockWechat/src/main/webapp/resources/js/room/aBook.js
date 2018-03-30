@@ -1,8 +1,3 @@
-/*
- * Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
- * Nanjing yishu information technology co., LTD. All Rights Reserved.
- */
-
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var orderNumber;
@@ -18,7 +13,6 @@ var cardInfoList;
 $(function () {
     loadP();
 });
-
 
 function loadP() {
     orderNumber=getQueryString("orderNumber");
@@ -48,7 +42,6 @@ function loadP() {
         div11.setAttribute("class","item-title label");
         div12.setAttribute("class","item-input");
         input.setAttribute("type","text");
-
         if(i==0){
             div11.innerHTML="授权身份证";
         }
@@ -57,20 +50,15 @@ function loadP() {
 
         // div12.innerHTML=cardInfoList[i].cardNumber;
         div12.appendChild(input);
-
         div1.appendChild(div11);
         div1.appendChild(div12);
         div.appendChild(div1);
         addList.appendChild(div);
-
-
-
     }
     document.getElementById("password").setAttribute("placeholder",password);
     document.getElementById("startTime").setAttribute("placeholder",startTime.substring(0,4)+"-"+startTime.substring(4,6)+"-"+startTime.substring(6,8)+" "+startTime.substring(8,10)+":"+startTime.substring(10,12));
     document.getElementById("endTime").setAttribute("placeholder",endTime.substring(0,4)+"-"+endTime.substring(4,6)+"-"+endTime.substring(6,8)+" "+endTime.substring(8,10)+":"+endTime.substring(10,12));
     document.getElementById("uoda").setAttribute("href","jsp/room/reBook.jsp?orderNumber="+orderNumber);
-
 }
 
 function getOrderContent() {
@@ -125,12 +113,9 @@ function delOrder() {
                 $.alert('删除订单成功！', function () {
                     window.history.back();
                 });
-                // $.alert("删除订单成功！");
-                // window.history.back();
             }else{
                 $.alert("删除订单失败！");
             }
-            // alert("getDatefromSession: "+data);
         },
         error:function(xhr,errorType,error){
             $.alert("获取设备请求失败！");

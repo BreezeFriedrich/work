@@ -53,7 +53,7 @@ public class RecordServiceImpl implements IRecordService {
         respSign=rootNode.path("result").asInt();
         return respSign;
     }
-/*
+///*
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         reqSign=26;
@@ -91,8 +91,8 @@ public class RecordServiceImpl implements IRecordService {
         }
         return null;
     }
-*/
-//    /*
+//*/
+    /*
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, String startTime, String endTime) {
         final long startTimeL=Long.parseLong(startTime);
@@ -126,7 +126,7 @@ public class RecordServiceImpl implements IRecordService {
         Collections.reverse(recordList2);
         return recordList2;
     }
-//    */
+    */
 
     @Override
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
@@ -511,7 +511,7 @@ public class RecordServiceImpl implements IRecordService {
             roomRecord.setCardInfo(unlockRecord.getCardInfo());
             roomRecord.setPasswordInfo(unlockRecord.getPasswordInfo());
             for(int j=0;j<roomTypeCRSize;j++){
-                roomTypeCR=roomTypeCRs.get(i);
+                roomTypeCR=roomTypeCRs.get(j);
                 List<Room> roomInfoList=roomTypeCR.getRoomInfoList();
                 for(int k=0;k<roomInfoList.size();k++){
                     room=roomInfoList.get(k);
@@ -550,7 +550,7 @@ public class RecordServiceImpl implements IRecordService {
                 roomRecordList.add(roomRecord);
                 dataWithNote=new DataWithNote<List,String>();
 //                dataWithNote.setKey(roomId);
-                dataWithNote.setNote(roomId);
+                dataWithNote.setNote(roomRecord.getRoomName());
                 dataWithNote.setData(roomRecordList);
                 roomRecordsMap.put(roomId,dataWithNote);
             }else {
@@ -567,6 +567,41 @@ public class RecordServiceImpl implements IRecordService {
             dataWithNote.setSize(recordSize);
         }
         return roomRecordsMap;
+    }
+
+    @Override
+    public Records<RoomRecord> getRoomRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize, final String roomId) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> unlockRecords=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+        List<RoomRecord> roomRecords=convertUnlockRecordToRoomRecord(unlockRecords,roomTypeCRs);
+
+        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        List<RoomRecord> recordList2=null;
+        recordList2= FilterList.filter(roomRecords, new FilterListHook<RoomRecord>() {
+            @Override
+            public boolean test(RoomRecord roomRecord) {
+                return roomId.equals(roomRecord.getRoomId());
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
+        List<RoomRecord> recordList3=null;
+        int recordList2Size=recordList2.size();
+        if (recordList2Size > pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+        }
+        if (null==recordList3){
+            recordList3=new ArrayList<>();
+        }
+        Records<RoomRecord> records =new Records<>();
+        records.setTotalSize(recordList2Size);
+        records.setRows(recordList3);
+
+        return records;
     }
 
 }

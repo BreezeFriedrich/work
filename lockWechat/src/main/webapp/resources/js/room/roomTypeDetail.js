@@ -45,7 +45,6 @@ function delRoomType() {
         success:function(data){
             var obj=JSON.parse(data);
             if(obj.result==0){
-                // $.alert("删除房型成功！");
                 $.alert('删除房型成功！', function () {
                     window.history.back();
                 });
@@ -137,27 +136,4 @@ function getRooms() {
             console.log('ajax错误');
         }
     });
-}
-
-function getfromSession(sessionName) {
-    var result;
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getFromSession.action",
-        async:false,//异步
-        data:{
-            "sessionName":sessionName
-        },
-        dataType:'json',
-        success:function(data){
-            result=data;
-            // alert("getDatefromSession: "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    return  result;
 }

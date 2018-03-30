@@ -15,16 +15,20 @@ var cardNumb;
 var gesturePassword;
 
 $(function(){
-    FastClick.attach(document.body);
-
     //初始化时间选择器
     var temptime = new Date();
     $("#datetime-picker-1").datetimePicker({
-        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()],
+        onClose:function (p) {
+            startTime=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
+        }
     });
     temptime.setDate(temptime.getDate()+1);
     $("#datetime-picker-2").datetimePicker({
-        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()],
+        onClose:function (p) {
+            endTime=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
+        }
     });
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
@@ -47,8 +51,8 @@ function authById() {
     name=document.getElementsByTagName('input')[1].value;
     cardNumb=document.getElementsByTagName('input')[2].value;
     // 错误的写法 startTime=document.getElementsByTagName('input')[3].value;
-    startTime=$("#datetime-picker-1").val();
-    endTime=$("#datetime-picker-2").val();
+    // startTime=$("#datetime-picker-1").val();
+    // endTime=$("#datetime-picker-2").val();
 
     if(''!=name && ''!=cardNumb && ''!=startTime && ''!=endTime && ''!=gesturePassword){
         if(validateIdCard(cardNumb)){
@@ -122,6 +126,8 @@ function authById() {
         }else {
             $.toast('身份证号码输入错误',1500);
         }
+    }else {
+        $.toast('输入不能为空',1500);
     }
 }
 function validateIdCard(idCard){

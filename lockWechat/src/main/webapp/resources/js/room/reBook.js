@@ -29,6 +29,7 @@ $(function () {
 
 function loadpage() {
     document.getElementById("roomtag").setAttribute("placeholder",roomName+"("+roomType+")");
+
     //初始化房间选择列表
     for(var i=0;i<roomList.length;i++){
         for(var j=0;j<roomList[i].roomInfoList.length;j++){
@@ -101,7 +102,6 @@ function loadpage() {
             var li=document.getElementById("addList");
             li.removeChild(fdiv);
         });
-
         document.getElementById("addList").appendChild(div);
     }
     document.getElementById("password").setAttribute("value",password);
@@ -150,7 +150,11 @@ function addID() {
         div1.appendChild(div12);
         div1.appendChild(div13);
     }
+
+    document.getElementById("idname").value="";
+    document.getElementById("idcard").value="";
 }
+
 function getRooms() {
     $.ajax({
         type:"POST",
@@ -171,6 +175,7 @@ function getRooms() {
         }
     })
 }
+
 function delOrder() {
     $.ajax({
         type:"POST",
@@ -182,14 +187,11 @@ function delOrder() {
         dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
             var obj=JSON.parse(data);
-
             if(obj.result==0){
-                // $.alert("删除订单成功！");
-                // window.history.back();
+                return 0;
             }else{
-                // $.alert("删除订单失败！");
+                $.alert("修改订单失败！");
             }
-            // alert("getDatefromSession: "+data);
         },
         error:function(xhr,errorType,error){
             alert("获取设备请求失败！");
@@ -197,6 +199,7 @@ function delOrder() {
         }
     });
 }
+
 function doAuth() {
     cardInfoList.length=0;
     var names=document.getElementsByName("auname");
@@ -233,7 +236,7 @@ function doAuth() {
             var obj=JSON.parse(data);
             if(obj.result==0){
                 $.alert('修改订单成功！', function () {
-                    window.history.back();
+                    window.location.href="jsp/room/roomStatus.jsp";
                 });
             }else{
                 $.alert("修改订单失败！");
@@ -244,8 +247,8 @@ function doAuth() {
             console.log('ajax错误');
         }
     });
-
 }
+
 function getTimeString(sTime) {
     var t1=sTime.split(" ")[0];
     var t2=sTime.split(" ")[1];
@@ -260,6 +263,7 @@ function getTimeString(sTime) {
     var tag=year+month+day+hour+minute;
     return tag;
 }
+
 function getOrderContent() {
     $.ajax({
         type:"POST",

@@ -205,6 +205,6 @@
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='resources/js/util/date.js'></script>
-<script type='text/javascript' src='resources/js/lock_manage.js?ver=5'></script>
+<script type='text/javascript' src='resources/js/lock_manage.js'></script>
 </body>
 </html>

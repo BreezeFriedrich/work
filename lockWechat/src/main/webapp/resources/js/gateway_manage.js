@@ -11,19 +11,18 @@ var specificLockCode;
 var json_theGateway;
 var url;
 $(function(){
-    // FastClick.attach(document.body);
-
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
     $.ajax({
         type:"POST",
         url:projectPath+"/device/getSpecificGateway.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:true,
         data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode},
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-
+        dataType:'json',
         success:function(data,status,xhr){
             json_theGateway = data;
+            $("#UL_gatewayProperty").html(getGatewayDetails());
+            $(".content .list-block #UL_theSpecificGateway").html(createLockNode(specificGatewayCode));
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -51,7 +50,6 @@ $(function(){
         }
     });
     */
-    $(".content .list-block #UL_theSpecificGateway").html(createLockNode(specificGatewayCode));
     // $("#UL_theSpecificGateway a").click(function (event) {
     //     specificLockCode=event.target.id;
     //     console.log("specificLockCode:"+specificLockCode);

@@ -188,7 +188,7 @@ public class AccountAction {
     }
 
     public String getUserFromSession(){
-        session.setAttribute("cDate",new Date());
+//        session.setAttribute("cDate",new Date());
         logger.info("-->>-- account/getUserFromSession.action -->>--");
         openid= (String) session.getAttribute("OPENID");
         ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");

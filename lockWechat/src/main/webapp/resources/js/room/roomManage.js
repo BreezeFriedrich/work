@@ -1,13 +1,12 @@
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-
 var roomList=new Array();
 
 $(function () {
     getRooms();
     loadRoom();
     $(document).on('click','.prompt-ok', function () {
-        $.prompt('请输入房型', function (value) {
+        $.prompt('请输入房型名称', function (value) {
             addRoomType(value);
         });
     });
@@ -88,27 +87,6 @@ function loadRoom() {
     }
 }
 
-function setToSession(sessionN,sessionV) {
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/setToSession.action",
-        async:false,//异步
-        data:{
-            "sessionName":sessionN,
-            "sessionValue":sessionV
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            // alert("setDateToSession:  "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-}
-
 function addRoomType(roomType) {
     $.ajax({
         type:"POST",
@@ -121,14 +99,14 @@ function addRoomType(roomType) {
         success:function(data){
             var obj=JSON.parse(data);
             if(obj.result==0){
-                $.alert('添加房型："' + roomType + '" 成功！');
-                window.location.reload();
+                $.alert('添加房型："' + roomType + '" 成功！', function () {
+                    window.location.reload();
+                });
             }else{
                 $.alert("添加房型失败！");
             }
         },
-        error
-            :function(xhr,errorType,error){
+        error:function(xhr,errorType,error){
             $.alert("获取房型请求失败！");
             console.log('ajax错误');
         }

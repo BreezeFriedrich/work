@@ -8,37 +8,33 @@ var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var ownerPhoneNumber;
 var specificGatewayCode;
 var specificLockCode;
-var json_theLock;
 var ul_authInfo;
 
 $(function(){
-    FastClick.attach(document.body);
-
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     specificGatewayCode=getQueryString("specificGatewayCode");
     specificLockCode=getQueryString("specificLockCode");
     $.ajax({
         type:"POST",
         url:projectPath+"/lock/getSpecificLock.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:true,
         data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
         // data:{"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
         dataType:'json',
         success:function(data,status,xhr){
-            json_theLock = data;
+            if(null!==data){
+                document.getElementsByClassName('property')[0].innerText=data.lockName;
+                document.getElementsByClassName('property')[1].innerText=data.lockLocation;
+                document.getElementsByClassName('property')[2].innerText=data.lockComment;
+                document.getElementsByClassName('property')[3].innerText=specificLockCode;
+                document.getElementsByClassName('property')[4].innerText=specificGatewayCode;
+                // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
+            }
         },
         error:function(xhr,errorType,error){
             console.log('错误')
         }
     });
-    if(undefined!==json_theLock){
-        document.getElementsByClassName('property')[0].innerText=json_theLock.lockName;
-        document.getElementsByClassName('property')[1].innerText=json_theLock.lockLocation;
-        document.getElementsByClassName('property')[2].innerText=json_theLock.lockComment;
-        document.getElementsByClassName('property')[3].innerText=specificLockCode;
-        document.getElementsByClassName('property')[4].innerText=specificGatewayCode;
-        // document.getElementsByTagName('input')[0].setAttribute('placeholder',json_theLock.lockName);
-    }
 
     //添加开锁身份证授权
     var div_addAuthById=document.getElementById("link_addAuthById");
@@ -47,6 +43,32 @@ $(function(){
         url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
         window.location.href=encodeURI(url);
     });
+    /*
+    div_addAuthById.addEventListener('click',function(ev){
+        var html="<input type='text' id='' placeholder='授权密码' />";
+        $.alert('验证授权密码', 'Custom Title!', function () {
+            $.ajax({
+                    type: "POST",
+                    url: "unlock/getUnlockId.action",
+                    async: false,
+                    data: {
+                        "gatewayCode": specificGatewayCode,
+                        "lockCode": specificLockCode
+                    },
+                    dataType: 'json',
+                    success: function (data, status, xhr) {
+                    },
+                    error: function (xhr, errorType, error) {
+                        console.log('错误');
+                        $.toast('获取开锁授权信息失败');
+                    }
+                });
+            var gesturePassword=241;
+            url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode+"&gesturePassword="+gesturePassword;
+            window.location.href=encodeURI(url);
+        });
+    });
+    */
     /*
     var div_addAuthById=document.getElementById("link_addAuthById");
     div_addAuthById.addEventListener('click',function(ev){
@@ -155,7 +177,7 @@ function getAuthInfo() {
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockId.action",
-        async:false,
+        async:true,
         data:{
             // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
@@ -207,7 +229,7 @@ function getAuthInfo() {
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockPwd.action",
-        async:false,
+        async:true,
         data:{
             // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,

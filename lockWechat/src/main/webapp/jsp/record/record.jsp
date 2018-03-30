@@ -123,6 +123,9 @@
             font-size: 15px;
             line-height: 30px;
         }
+        span{
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -161,10 +164,10 @@
         <!-- About Popup -->
         <div class="popup popup-menu">
             <div class="content-block">
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()">查询所有记录</a></p>
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesFromRecords()">按设备分类</a></p>
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showOperatorFromRecords()">按开锁人分类</a></p>
-                <p><a href="javascript:void(0);" class="close-popup" onclick="showRoomFromRecords()">按房间分类</a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()"><i style="padding-left: 15px" class="iconfont">&#xe6cc;</i><b style="padding-left: 20px">查询所有记录</b></a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesFromRecords()"><i style="padding-left: 15px" class="iconfont">&#xe6d2;</i><b style="padding-left: 20px">按设备查询记录</b></a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showOperatorFromRecords()"><i style="padding-left: 15px" class="iconfont">&#xe687;</i><b style="padding-left: 20px">按身份证查询记录</b></a></p>
+                <p><a href="javascript:void(0);" class="close-popup" onclick="showRoomFromRecords()"><i style="padding-left: 15px" class="iconfont">&#xe7ff;</i><b style="padding-left: 20px">按房间查询记录</b></a></p>
             </div>
         </div>
         <div class="popup-overlay"></div>
@@ -177,6 +180,6 @@
 <%--<script type='text/javascript' src='resources/js/util/date.js'></script>--%>
 <%--<script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>--%>
 <script type="text/javascript" src='resources/js/util/moment-with-locales.js'></script>
-<script type='text/javascript' src='resources/js/record.js?v=7' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/record.js' charset='utf-8'></script>
 </body>
 </html>

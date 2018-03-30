@@ -39,4 +39,6 @@ public interface IRecordService {
     public List<RoomRecord> convertUnlockRecordToRoomRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs);
 
     public Map getRecordRoom(String ownerPhoneNumber, String startTime, String endTime);
+
+    public Records<RoomRecord> getRoomRecordPage(String ownerPhoneNumber,String startTime,String endTime,int pageNum,int pageSize,String roomId);
 }

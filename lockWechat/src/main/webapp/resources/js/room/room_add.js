@@ -28,16 +28,28 @@ function initAttributes() {
     var clickyear=clickDate.substring(0,4);
     var clickmonth=clickDate.substring(4,6);
     var clickday=clickDate.substring(6,8);
-    var nextday=parseInt(clickday)+1;
+    var nextday=new Date();
+    nextday.setFullYear(parseInt(clickyear),parseInt(clickmonth)-1,parseInt(clickday));
+    nextday.setDate(nextday.getDate()+1);
 
+    var nmonth=nextday.getMonth()+1;
+    var nday=nextday.getDate();
+
+    if(nmonth<10){
+        nmonth="0"+nmonth;
+    }
+    if(nday<10){
+        nday="0"+nday;
+    }
 
     document.getElementById("roomtag").setAttribute("placeholder",roomName+"("+roomType+")");
+
     //初始化时间选择
     $("#datetime-picker").datetimePicker({
         value: [clickyear, clickmonth, clickday, '12', '00']
     });
     $("#datetime-picker-lk").datetimePicker({
-        value: [clickyear, clickmonth, ''+nextday, '12', '00']
+        value: [nextday.getFullYear(), nmonth, nday, '12', '00']
     });
     //初始化房间选择列表
     for(var i=0;i<roomList.length;i++){
@@ -48,7 +60,6 @@ function initAttributes() {
         for(var j=0;j<roomList[i].roomInfoList.length;j++){
             var rn=roomList[i].roomInfoList[j].roomName+"("+roomList[i].roomType+")";
             var ri=roomList[i].roomInfoList[j].roomId;
-            // $.alert("rn[0]: "+rn);
             roomNameList.push(rn);
             roomIDList.push(ri);
         }
@@ -75,7 +86,6 @@ function initAttributes() {
         for(var i=0;i<roomNameList.length;i++){
             if(room==roomNameList[i]){
                 roomId=roomIDList[i];
-                // $.alert("roomID new: "+roomId);
             }
         }
     });
@@ -114,7 +124,6 @@ function addID() {
         img.setAttribute("src","resources/images/ry-j-1.png");
         div13.appendChild(img);
 
-
         div13.addEventListener("click",function () {
             var fdiv=div13.parentNode.parentNode;
             var li=document.getElementById("addList");
@@ -124,9 +133,7 @@ function addID() {
         div1.appendChild(div11);
         div1.appendChild(div12);
         div1.appendChild(div13);
-
     }
-
     document.getElementById("idname").value="";
     document.getElementById("idcard").value="";
 }
@@ -168,6 +175,8 @@ function doAuth() {
                 $.alert('添加订单成功！', function () {
                     window.history.back();
                 });
+            }else if(obj.result==2){
+                $.alert("当前时间已有订单，请重新选择时间！");
             }else{
                 $.alert("添加订单失败！");
             }

@@ -14,7 +14,6 @@ var endTime;
 var gesturePassword;
 
 $(function(){
-    FastClick.attach(document.body);
 
     //初始化时间选择器
     var temptime = new Date();

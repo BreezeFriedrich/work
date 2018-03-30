@@ -9,12 +9,6 @@ var ownerPhoneNumber;
 var specificGatewayCode;
 var specificLockCode;
 
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-    }, false);
-}
-
 //修改用户昵称
 var div_modifyNickname=document.getElementById("link_modifyNickname");
 div_modifyNickname.addEventListener('click',function(ev){

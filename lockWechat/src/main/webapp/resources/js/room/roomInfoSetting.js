@@ -195,27 +195,3 @@ function changeGatewayCode() {
         }
     }
 }
-
-
-function getfromSession(sessionName) {
-    var result;
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/getFromSession.action",
-        async:false,//异步
-        data:{
-            sessionName:sessionName
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            result=data;
-            // alert("getDatefromSession: "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-    return  result;
-}

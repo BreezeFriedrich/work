@@ -12,12 +12,23 @@ var curDate=new Date();
 
 $(function () {
     $('nav a').removeClass('active').eq(1).addClass('active');
-
     $(".fixed-table-box").fixedTable();
-    curDate=new Date(getDatefromSession());
+    var cc=getDatefromSession();
+    if(cc==undefined){
+        curDate=new Date();
+    }else {
+        curDate=new Date(cc);
+    }
     getOrderList();
     getRoomList();
     loadPage();
+    if(romList.length==0){
+        var msg=confirm("请先添加房型");
+        if(msg==true){
+            window.location.href="jsp/room/roomManage.jsp";
+        }
+    }
+
 });
 
 /**
@@ -114,35 +125,12 @@ function loadPage(){
     loadRoomStatus();
 }
 
-function setToSession(sessionN,sessionV) {
-    $.ajax({
-        type:"POST",
-        url:projectPath+"/room/setToSession.action",
-        async:false,//异步
-        data:{
-            "sessionName":sessionN,
-            "sessionValue":sessionV
-        },
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            // alert("setDateToSession:  "+data);
-        },
-        error
-            :function(xhr,errorType,error){
-            alert("获取设备请求失败！");
-            console.log('ajax错误');
-        }
-    });
-}
-
-
 /**
  * 生成房态日期格
  * @param date session内日期
  */
 function loadCal(date) {
     var cal=document.getElementById("cal");
-    // $("#cal td").remove();
     var childs = cal.childNodes;
     for(var s = childs.length - 1; s >= 0; s--) {
         cal.removeChild(childs[s]);
@@ -190,7 +178,6 @@ function loadCal(date) {
     }
 }
 
-
 /**
  * 生成房间栏
  */
@@ -201,9 +188,7 @@ function loadRoomList() {
 
         roomList.removeChild(childs[s]);
     }
-    // alert("deviceslength： "+devices.length);
     for(var i=0;i<romList.length;i++){
-
         var roomTypeId=romList[i].roomTypeId;
         var roomType=romList[i].roomType;
         var roomInfoList=romList[i].roomInfoList;
@@ -224,10 +209,8 @@ function loadRoomList() {
             tr.appendChild(td);
             roomList.appendChild(tr);
         }
-
         // var gatewayCode=devices[i].gatewayCode;
         // var lockLists=devices[i].lockLists;
-        //
         // for(var j=0;j<lockLists.length;j++){
         //     var tr=document.createElement("tr");
         //     var td=document.createElement("td");
@@ -239,16 +222,13 @@ function loadRoomList() {
         //     var span=document.createElement("span");
         //     span.setAttribute("class","hxlx");
         //     span.innerHTML=lockLists[j].lockName;
-        //
         //     div.appendChild(span);
         //     td.appendChild(div);
         //     tr.appendChild(td);
         //     roomList.appendChild(tr);
         // }
     }
-
 }
-
 
 /**
  * 生成房态格
@@ -348,7 +328,6 @@ function loadRoomStatus() {
                                 span.innerHTML="已入住";
                             }
                         }
-                        // div1.onmousedown=setToSession("orderNumber",roomOrder[t].orderNumber);
                     }
                 }
                 div1.setAttribute("timetag",timetag);
@@ -472,7 +451,6 @@ function loadRoomStatus() {
     // }
 
 }
-
 
 /**
  * 生成开始时间结束时间

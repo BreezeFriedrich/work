@@ -206,7 +206,7 @@
 <script type="text/javascript" src="resources/js/room/config.js"></script>
 <script type="text/javascript" src="resources/js/room/sm-city-picker.js"></script>
 <script type="text/javascript" src="resources/js/room/demos.js"></script>
-<script type="text/javascript" src="resources/js/room/reBook.js?v=1"></script>
+<script type="text/javascript" src="resources/js/room/reBook.js"></script>
 <script>
     var _hmt = _hmt || [];
     (function() {

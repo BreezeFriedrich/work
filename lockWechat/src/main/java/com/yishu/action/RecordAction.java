@@ -5,7 +5,6 @@
 
 package com.yishu.action;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.pojo.*;
 import com.yishu.service.IRecordService;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +26,9 @@ import java.util.Map;
  */
 public class RecordAction extends ActionSupport{
     public RecordAction() {
-        logger.info(">>>Initialization RecordAction......................................");
+        LOG.info(">>>Initialization RecordAction......................................");
     }
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("RecordAction");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordAction");
 
     @Autowired
     private IRecordService recordService;
@@ -50,6 +48,7 @@ public class RecordAction extends ActionSupport{
     private String gatewayCode;
     private String lockCode;
     private String cardNum;
+    private String roomId;
     public String getOwnerPhoneNumber() {
         return ownerPhoneNumber;
     }
@@ -85,6 +84,12 @@ public class RecordAction extends ActionSupport{
     }
     public void setCardNum(String cardNum) {
         this.cardNum = cardNum;
+    }
+    public String getRoomId() {
+        return roomId;
+    }
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     public int pageNum;
@@ -144,10 +149,10 @@ public class RecordAction extends ActionSupport{
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-//        logger.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+",pageNum:"+pageNum+",pageSize:"+pageSize+"}");
+//        LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+",pageNum:"+pageNum+",pageSize:"+pageSize+"}");
         Records<UnlockRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=records;
-//        logger.info("records: { totalSize: "+records.getTotalSize()+"rowsSize:"+records.getRows().size()+", rows: "+records.getRows()+"}");
+//        LOG.info("records: { totalSize: "+records.getTotalSize()+"rowsSize:"+records.getRows().size()+", rows: "+records.getRows()+"}");
         return "json";
     }
 
@@ -218,7 +223,7 @@ public class RecordAction extends ActionSupport{
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        Records<UnlockRecord> records=recordService.getRoomRecordPage(ownerPhoneNumber,startTime,endTime,cardNum,pageNum,pageSize);
+        Records<RoomRecord> records=recordService.getRoomRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize,roomId);
         jsonResult=records;
         return "json";
     }

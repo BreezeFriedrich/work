@@ -13,11 +13,12 @@ $(function(){
     $.ajax({
         type:"POST",
         url:projectPath+"/account/getUserFromSession.action",
-        async:false,
+        async:true,
         // data:{},
         dataType:'json',
         success:function(data,status,xhr){
             ownerPhoneNumber=data.wechatUser.phonenumber;
+            $('.my-iphone').html(ownerPhoneNumber);
         },
         error:function(xhr,errorType,error){
             console.log('错误');
@@ -32,7 +33,6 @@ $(function(){
     if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     }
-    // ownerPhoneNumber=18255683932;
 
     $('.my-iphone').html(ownerPhoneNumber);
 
@@ -103,9 +103,8 @@ function initAlertBadge() {
     $.ajax({
         type:"POST",
         url:projectPath+"/device/countAbnormalDevice.action",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
+        async:true,
         // data:{"ownerPhoneNumber":ownerPhoneNumber},
-        // data:{},
         dataType:'json',
         success:function(data,status,xhr){
             $("sup").remove();

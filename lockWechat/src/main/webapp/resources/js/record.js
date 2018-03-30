@@ -71,6 +71,7 @@ function getDateSeg(date) {
     return dateObj;
 }
 $(function(){
+    // ownerPhoneNumber=13998892002;
     $('nav a').removeClass('active').eq(3).addClass('active');
 
     // moment().format('YYYY-MM-DD HH:mm:ss');
@@ -205,7 +206,7 @@ function getPageData(url,params,pageNum,pageSize,successCallback,errorCallback) 
     });
 }
 
-/*设置列表数据与渲染列表*/
+/*设置列表数据与渲染列表*//*
 function renderPage(curPageData){
     var listDom=document.getElementById("dataList");
     for (var i = 0; i < curPageData.length; i++) {
@@ -215,18 +216,41 @@ function renderPage(curPageData){
         var str='<div class="pd">';
         str+='<div class="pd-left">';
         str+='<p class="pd-name"><img class="pd-img" src="resources/img/gateway_64px.png"/> '+'<span class="entry-val">'+pd.gatewayCode+'</span></p>';
-        str+='<p><img src="resources/img/padlock_64px.png"/> '+'<span class="entry-val">'+pd.lockCode+'</span></p>';
+        str+='<p><img src="resources/img/padlock_64px.png"/>'+'<span class="entry-val">'+pd.lockCode+'</span></p>';
         str+='</div>';
         str+='<div class="pd-right">';
         if(null !== pd.cardInfo && 'null'!==pd.cardInfo){
-            str+='<p><img class="pd-img" src="resources/img/idCard_48px.png"/> <span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
-            str+='<p><img class="pd-img" src="resources/img/person_64px.png"/> <span class="entry-val">'+pd.cardInfo.name+'</span></p>';
+            str+='<p><img class="pd-img" src="resources/img/idCard_48px.png"/><span class="entry-val">'+pd.cardInfo.cardNumb+'</span></p>';
+            str+='<p><img class="pd-img" src="resources/img/person_64px.png"/><span class="entry-val">'+pd.cardInfo.name+'</span></p>';
         }
         if(null !== pd.passwordInfo && 'null'!==pd.passwordInfo){
-            str+='<p class="pd-unlock"><img class="pd-img" src="resources/img/password_64px.png"/> '+'<span class="entry-val">'+pd.passwordInfo.password+'</span></p>';
+            str+='<p class="pd-unlock"><img class="pd-img" src="resources/img/password_64px.png"/>'+'<span class="entry-val">'+pd.passwordInfo.password+'</span></p>';
         }
-        str+='<p><img class="pd-img" src="resources/img/time_64px.png"/> <span class="entry-val">'+formatTimeString(pd.timetag)+'</span></p>';
+        str+='<p><img class="pd-img" src="resources/img/time_64px.png"/><span class="entry-val">'+formatTimeString(pd.timetag)+'</span></p>';
         str+='</div>';
+        str+='</div>';
+
+        var liDom=document.createElement("li");
+        liDom.innerHTML=str;
+        listDom.appendChild(liDom);
+    }
+}*/
+function renderPage(curPageData){
+    var listDom=document.getElementById("dataList");
+    for (var i = 0; i < curPageData.length; i++) {
+        var pd=curPageData[i];
+
+        str='<div style="width: 340px;">';
+        str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xeb59;</i><b style="width: 260px;padding-left: 10px">'+pd.gatewayCode+'</b></span>';
+        str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe61c;</i><b style="width: 260px;padding-left: 10px">'+pd.lockCode+'</b></span>';
+        if(null !== pd.cardInfo && 'null'!==pd.cardInfo){
+            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe678;</i><b style="width: 260px;padding-left: 10px">'+pd.cardInfo.name+'</b></span>';
+            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe687;</i><b style="width: 260px;padding-left: 10px">'+pd.cardInfo.cardNumb+'</b></span>';
+        }
+        if(null !== pd.passwordInfo && 'null'!==pd.passwordInfo){
+            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe675;</i><b style="width: 260px;padding-left: 10px">'+pd.passwordInfo.password+'</b></span>';
+        }
+        str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe616;</i><b style="width: 260px;padding-left: 10px">'+formatTimeString(pd.timetag)+'</b></span>';
         str+='</div>';
 
         var liDom=document.createElement("li");
@@ -302,11 +326,14 @@ function setDeviceWithRecord(data){
          */
         var str='';
         str+='<div class="row-header">';
-        str+=   '<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
-        str+=   '<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords(\''+gatewayNum+'\')" style="width: 280px;margin-left: 30px;">';
-        str+=       '<img alt="gateway" src="resources/img/gateway_64px.png"/>';
-        str+=       '<span style="width: 180px;margin-left: 20px;">'+gatewayNum+'</span>';
-        str+=       '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
+        // str+=   '<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
+        str+=   '<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><i class="iconfont">&#xe618;</i></a>';
+        str+=   '<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords(\''+gatewayNum+'\')" style="width: 300px;">';
+        // str+=       '<img alt="gateway" src="resources/img/gateway_64px.png"/>';
+        // str+=       '<span style="width: 180px;margin-left: 20px;">'+gatewayNum+'</span>';
+        // str+=       '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
+        str+=       '<span style="width: 200px;padding-left: 20px;"><i class="iconfont">&#xeb59;</i><b style="width: 160px;padding-left: 10px">'+gatewayNum+'</b></span>';
+        str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
         str+=   '</a>';
         str+='</div>';
         var liDom=document.createElement("li");
@@ -320,30 +347,29 @@ function shiftExpand(gatewayNum,element) {
     var DIV_row_expand=$(LI).children(".row-expand");
     //.row-expand存在,删除.row-expand元素并使图标不旋转.
     if (undefined!=DIV_row_expand && DIV_row_expand.size()!==0){
-        element.children("img")[0].style.transform= "rotate(0deg)";
+        // element.children("img")[0].style.transform= "rotate(0deg)";
+        element.children('i').html('&#xe618;');
         DIV_row_expand.remove();
         return null;
     }
     //.row-expand不存在,扩展.row-expand元素并使图标旋转.
-    element.children("img")[0].style.transform= "rotate(180deg)";
+    // element.children("img")[0].style.transform= "rotate(180deg)";
+    element.children('i').html('&#xe6aa;');
     lockRecordsMap=deviceRecordsMap[gatewayNum].data;
     var str='';
-    // var lockHeight=Object.keys(lockRecordsMap).length*75;
-    // var str='<div class="row-expand" style="height:'+lockHeight+'px;">';
     str+='<div class="row-expand" >';
-//        str+='<div class="expand-left" style="width: 100px;float:left;">';
-//        str+="<a href='javascript:void(0);' onclick='deleteExpandLock($(this))'><img alt='arrow-triangle' src='resources/img/arrow-triangle_64px.png'/></a>";
-//        str+='</div>';
-    str+='<div class="expand-right" style="float:left;margin-left: 60px">';
+    str+='<div class="expand-right" style="float:left;margin-left: 18px">';
     str+='<ul>';
     for(var lockCode in lockRecordsMap) {
         unlockRecordList=lockRecordsMap[lockCode].data;
         recordSize=lockRecordsMap[lockCode].size;
-        str+='<li style="width: 280px;height:50px;">';
+        str+='<li style="width: 300px;">';
         str+=   '<div class="row-line">';
-        str+=       '<a class="a-device" href="javascript:void(0);" onclick="showLockRecords(\''+lockCode+'\')"><img alt="lock" src="resources/img/padlock_64px.png"/>';
-        str+=           '<span style="width: 180px;margin-left: 20px;">'+lockCode+'</span>';
-        str+=           '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
+        str+=       '<a class="a-device" href="javascript:void(0);" onclick="showLockRecords(\''+lockCode+'\')">';
+        // str+=           '<span style="width: 180px;margin-left: 20px;">'+lockCode+'</span>';
+        // str+=           '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
+        str+=       '<span style="width: 200px;padding-left: 20px;"><i class="iconfont">&#xe61c;</i><b style="width: 160px;padding-left: 10px">'+lockCode+'</b></span>';
+        str+=       '<span style="width: 80px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 60px;padding-left: 10px">'+recordSize+'</b></span>';
         str+=       '</a>';
         str+=   '</div>';
         str+='</li>';
@@ -419,11 +445,14 @@ function setOperatorWithRecord(data) {
         var str='';
         str+='<div>';
         str+=    '<a class="a-id" href="javascript:void(0);" onclick="showOperatorRecords(\''+cardNum+'\')" style="width: 340px;">';
-        str+=       '<img alt="idCard" src="resources/img/idCard_48px.png">';
-        str+=       '<span style="width: 55px;margin-left: 5px;">'+name+'</span>';
-        str+=       '<img alt="idCard" src="resources/img/person_64px.png">';
-        str+=       '<span style="width: 145px;margin-left: 5px;">'+cardNum+'</span>';
-        str+=       '<span style="width: 65px;margin-left: 5px;">'+recordSize+'</span>';
+        // str+=       '<img alt="idCard" src="resources/img/idCard_48px.png">';
+        // str+=       '<span style="width: 55px;margin-left: 5px;">'+name+'</span>';
+        // str+=       '<img alt="idCard" src="resources/img/person_64px.png">';
+        // str+=       '<span style="width: 145px;margin-left: 5px;">'+cardNum+'</span>';
+        // str+=       '<span style="width: 65px;margin-left: 5px;">'+recordSize+'</span>';
+        str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe678;</i><b style="width: 80px;padding-left: 10px">'+name+'</b></span>';
+        str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe687;</i><b style="width: 80px;padding-left: 10px">'+cardNum+'</b></span>';
+        str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
         str+=    '</a>';
         str+='</div>';
         var liDom=document.createElement("li");
@@ -458,7 +487,7 @@ function showRoomFromRecords() {
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getRecordRoom.action";
-        getPageData(url,{},page.num, page.size, function(data){
+        getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
             console.log('length : '+Object.keys(data).length);
             mescroll.setPageSize(Object.keys(data).length+1);
             mescroll.endSuccess(Object.keys(data).length);
@@ -469,20 +498,18 @@ function showRoomFromRecords() {
     }
 }
 function setRoomWithRecord(data) {
-    operatorRecordsMap=data;
     var listDom=document.getElementById("dataList");
-    for(var cardNum in data) {
-        lockRecordsMap=data[cardNum].data;
-        recordSize=data[cardNum].size;
-        name=data[cardNum].note;
+    for(var roomId in data) {
+        roomRecordsMap=data[roomId].data;
+        recordSize=data[roomId].size;
+        roomName=data[roomId].note;
         var str='';
         str+='<div>';
-        str+=    '<a class="a-id" href="javascript:void(0);" onclick="showRoomRecords(\''+cardNum+'\')" style="width: 340px;">';
-        str+=       '<img alt="idCard" src="resources/img/idCard_48px.png">';
-        str+=       '<span style="width: 55px;margin-left: 5px;">'+name+'</span>';
-        str+=       '<img alt="idCard" src="resources/img/person_64px.png">';
-        str+=       '<span style="width: 145px;margin-left: 5px;">'+cardNum+'</span>';
-        str+=       '<span style="width: 65px;margin-left: 5px;">'+recordSize+'</span>';
+        str+=    '<a class="a-id" href="javascript:void(0);" onclick="showRoomRecords(\''+roomId+'\')" style="width: 340px;">';
+        // str+='<i class="iconfont">&#xe7ff;</i>';
+        str+=       '<span style="width: 150px;padding-left: 20px;"><i class="iconfont">&#xe7ff;</i><b style="width: 80px;padding-left: 10px">'+roomName+'</b></span>';
+        // str+='<span class="iconfont">&#xe608;</span>';
+        str+=       '<span style="width: 150px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
         str+=    '</a>';
         str+='</div>';
         var liDom=document.createElement("li");
@@ -492,13 +519,13 @@ function setRoomWithRecord(data) {
 }
 
 /*按开锁人展示记录*/
-function showRoomRecords(cardNum) {
+function showRoomRecords(roomId) {
     showPage(upCallback);
 
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
-        var url="record/getRoomUnlockRecordPage.action";
-        getPageData(url,{cardNum:cardNum},page.num, page.size, function(data){
+        var url="record/getRoomRecordPage.action";
+        getPageData(url,{roomId:roomId,ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
             var curPageData=data.rows;
             var totalSize=data.totalSize;
             console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);

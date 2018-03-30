@@ -22,11 +22,11 @@
 
     @font-face {
         font-family: 'iconfont';  /* project id 604475 */
-        src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot');
-        src: url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.woff') format('woff'),
-        url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_604475_oruz46qg4sk5u3di.svg#iconfont') format('svg');
+        src: url('//at.alicdn.com/t/font_604475_4scd8qaiwrgousor.eot');
+        src: url('//at.alicdn.com/t/font_604475_4scd8qaiwrgousor.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_604475_4scd8qaiwrgousor.woff') format('woff'),
+        url('//at.alicdn.com/t/font_604475_4scd8qaiwrgousor.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_604475_4scd8qaiwrgousor.svg#iconfont') format('svg');
     }
     .iconfont{
         font-family:"iconfont";
