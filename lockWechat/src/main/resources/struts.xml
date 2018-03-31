@@ -75,6 +75,14 @@
                     <param name="exception.logLevel">error</param>
                 </interceptor-ref>
             </interceptor-stack>
+            <interceptor-stack name="phoneStack">
+                <!--<interceptor-ref name="monitoring" />-->
+                <interceptor-ref name="phoneInterceptor"/>
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+            </interceptor-stack>
         </interceptors>
 
         <!-- 定义默认的拦截器 每个Action都会自动引用如果Action中引用了其它的拦截器 默认的拦截器将无效 -->

@@ -18,7 +18,11 @@ $(function(){
         dataType:'json',
         success:function(data,status,xhr){
             ownerPhoneNumber=data.wechatUser.phonenumber;
-            $('.my-iphone').html(ownerPhoneNumber);
+            $('#p-phone').html(ownerPhoneNumber);
+            var nickname=data.wechatUser.nickname;
+            if(null!=nickname){
+                $('#p-nickname').html(nickname);
+            }
         },
         error:function(xhr,errorType,error){
             console.log('错误');

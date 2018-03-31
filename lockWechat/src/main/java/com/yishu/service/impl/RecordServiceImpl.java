@@ -127,7 +127,7 @@ public class RecordServiceImpl implements IRecordService {
         return recordList2;
     }
     */
-
+/*
     @Override
     public Records<UnlockRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
@@ -152,7 +152,34 @@ public class RecordServiceImpl implements IRecordService {
 
         return records;
     }
+*/
+    @Override
+    public Records<RoomRecord> getUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, int pageNum, int pageSize) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> unlockRecords=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+        List<RoomRecord> roomRecords=convertUnlockRecordToRoomRecord(unlockRecords,roomTypeCRs);
 
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
+        List<RoomRecord> recordList=null;
+        int roomRecordsSize=roomRecords.size();
+        if (roomRecordsSize > pageNum*pageSize){
+            recordList=roomRecords.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (roomRecordsSize > (pageNum-1)*pageSize && roomRecordsSize <= pageNum*pageSize){
+            recordList=roomRecords.subList((pageNum-1)*pageSize,roomRecordsSize);
+        }
+        if (null==recordList){
+            recordList=new ArrayList<>();
+        }
+        Records<RoomRecord> records =new Records<>();
+        records.setTotalSize(roomRecordsSize);
+        records.setRows(recordList);
+
+        return records;
+    }
+/*
     @Override
     public Records<UnlockRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String gatewayCode, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
@@ -185,7 +212,42 @@ public class RecordServiceImpl implements IRecordService {
 
         return records;
     }
+*/
+    @Override
+    public Records<RoomRecord> getGatewayUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String gatewayCode, int pageNum, int pageSize) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> unlockRecords=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+        List<RoomRecord> roomRecords=convertUnlockRecordToRoomRecord(unlockRecords,roomTypeCRs);
 
+        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        List<RoomRecord> recordList2=null;
+        recordList2= FilterList.filter(roomRecords, new FilterListHook<RoomRecord>() {
+            @Override
+            public boolean test(RoomRecord roomRecord) {
+                return gatewayCode.equals(roomRecord.getGatewayCode());
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
+        List<RoomRecord> recordList3=null;
+        int recordList2Size=recordList2.size();
+        if (recordList2Size > pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+        }
+        if (null==recordList3){
+            recordList3=new ArrayList<>();
+        }
+        Records<RoomRecord> records =new Records<>();
+        records.setTotalSize(recordList2Size);
+        records.setRows(recordList3);
+
+        return records;
+    }
+/*
     @Override
     public Records<UnlockRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String lockCode, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
@@ -213,6 +275,41 @@ public class RecordServiceImpl implements IRecordService {
             recordList3=new ArrayList<>();
         }
         Records<UnlockRecord> records =new Records<>();
+        records.setTotalSize(recordList2Size);
+        records.setRows(recordList3);
+
+        return records;
+    }
+*/
+    @Override
+    public Records<RoomRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String lockCode, int pageNum, int pageSize) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> unlockRecords=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+        List<RoomRecord> roomRecords=convertUnlockRecordToRoomRecord(unlockRecords,roomTypeCRs);
+
+        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        List<RoomRecord> recordList2=null;
+        recordList2= FilterList.filter(roomRecords, new FilterListHook<RoomRecord>() {
+            @Override
+            public boolean test(RoomRecord roomRecord) {
+                return lockCode.equals(roomRecord.getLockCode());
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
+        List<RoomRecord> recordList3=null;
+        int recordList2Size=recordList2.size();
+        if (recordList2Size > pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+        }
+        if (null==recordList3){
+            recordList3=new ArrayList<>();
+        }
+        Records<RoomRecord> records =new Records<>();
         records.setTotalSize(recordList2Size);
         records.setRows(recordList3);
 
@@ -451,7 +548,7 @@ public class RecordServiceImpl implements IRecordService {
         }
         return operatorRecordsMap;
     }
-
+/*
     @Override
     public Records<UnlockRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String cardNum, int pageNum, int pageSize) {
         //rawData,获取原始数据:开锁记录的List.
@@ -483,6 +580,46 @@ public class RecordServiceImpl implements IRecordService {
             recordList3=new ArrayList<>();
         }
         Records<UnlockRecord> records =new Records<>();
+        records.setTotalSize(recordList2Size);
+        records.setRows(recordList3);
+
+        return records;
+    }
+*/
+    @Override
+    public Records<RoomRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, final String cardNum, int pageNum, int pageSize) {
+        //rawData,获取原始数据:开锁记录的List.
+        List<UnlockRecord> unlockRecords=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+        List<RoomRecord> roomRecords=convertUnlockRecordToRoomRecord(unlockRecords,roomTypeCRs);
+
+        //filter-recordList-Bytime,按时间&网关过滤开锁记录.
+        List<RoomRecord> recordList2=null;
+        recordList2= FilterList.filter(roomRecords, new FilterListHook<RoomRecord>() {
+            @Override
+            public boolean test(RoomRecord roomRecord) {
+//                return roomId.equals(roomRecord.getRoomId());
+                UnlockRecord.CardInfo cardInfo=roomRecord.getCardInfo();
+                if (null!=cardInfo){
+                    return cardNum.equals(cardInfo.getCardNumb());
+                }
+                return false;
+            }
+        });
+        //reverse-recordList,开锁记录的List元素顺序反转(让结果集中timetag降序).
+//        Collections.reverse(recordList2);
+        //page-recordList-By_pageNum&pageSize,为达到分页效果而截取总结果集中片段.
+        List<RoomRecord> recordList3=null;
+        int recordList2Size=recordList2.size();
+        if (recordList2Size > pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,pageNum*pageSize);
+        }else if (recordList2Size > (pageNum-1)*pageSize && recordList2Size <= pageNum*pageSize){
+            recordList3=recordList2.subList((pageNum-1)*pageSize,recordList2Size);
+        }
+        if (null==recordList3){
+            recordList3=new ArrayList<>();
+        }
+        Records<RoomRecord> records =new Records<>();
         records.setTotalSize(recordList2Size);
         records.setRows(recordList3);
 

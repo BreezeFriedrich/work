@@ -241,13 +241,17 @@ function renderPage(curPageData){
         var pd=curPageData[i];
 
         str='<div style="width: 340px;">';
-        str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xeb59;</i><b style="width: 260px;padding-left: 10px">'+pd.gatewayCode+'</b></span>';
-        str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe61c;</i><b style="width: 260px;padding-left: 10px">'+pd.lockCode+'</b></span>';
-        if(null !== pd.cardInfo && 'null'!==pd.cardInfo){
+        if(null!==pd.roomName && 'null'!==pd.roomName){
+            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xeb59;</i><b style="width: 260px;padding-left: 10px">'+pd.roomName+'</b></span>';
+        }else{
+            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xeb59;</i><b style="width: 260px;padding-left: 10px">'+pd.gatewayCode+'</b></span>';
+            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe61c;</i><b style="width: 260px;padding-left: 10px">'+pd.lockCode+'</b></span>';
+        }
+        if(null!==pd.cardInfo && 'null'!==pd.cardInfo){
             str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe678;</i><b style="width: 260px;padding-left: 10px">'+pd.cardInfo.name+'</b></span>';
             str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe687;</i><b style="width: 260px;padding-left: 10px">'+pd.cardInfo.cardNumb+'</b></span>';
         }
-        if(null !== pd.passwordInfo && 'null'!==pd.passwordInfo){
+        if(null!==pd.passwordInfo && 'null'!==pd.passwordInfo){
             str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe675;</i><b style="width: 260px;padding-left: 10px">'+pd.passwordInfo.password+'</b></span>';
         }
         str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe616;</i><b style="width: 260px;padding-left: 10px">'+formatTimeString(pd.timetag)+'</b></span>';
