@@ -12,7 +12,7 @@ var name;
 var startTime;
 var endTime;
 var cardNumb;
-var gesturePassword;
+var authPassword;
 
 $(function(){
     //初始化时间选择器
@@ -47,14 +47,14 @@ function getQueryString(name) {
 }
 
 function authById() {
-    gesturePassword=document.getElementsByTagName('input')[0].value;
+    authPassword=document.getElementsByTagName('input')[0].value;
     name=document.getElementsByTagName('input')[1].value;
     cardNumb=document.getElementsByTagName('input')[2].value;
     // 错误的写法 startTime=document.getElementsByTagName('input')[3].value;
     // startTime=$("#datetime-picker-1").val();
     // endTime=$("#datetime-picker-2").val();
 
-    if(''!=name && ''!=cardNumb && ''!=startTime && ''!=endTime && ''!=gesturePassword){
+    if(''!=name && ''!=cardNumb && ''!=startTime && ''!=endTime && ''!=authPassword){
         if(validateIdCard(cardNumb)){
             $.showIndicator();
             /*
@@ -70,7 +70,7 @@ function authById() {
                     "startTime":startTime,
                     "endTime":endTime,
                     "cardNumb":cardNumb,
-                    "gesturePassword":gesturePassword
+                    "authPassword":authPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
@@ -101,7 +101,7 @@ function authById() {
                     "startTime":startTime,
                     "endTime":endTime,
                     "cardNumb":cardNumb,
-                    "gesturePassword":gesturePassword
+                    "authPassword":authPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
@@ -111,7 +111,7 @@ function authById() {
                         window.setTimeout("history.go(-1)",2000);
                     }else if(2==data.result){
                         $.toast(data.msg,1500);
-                        url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+                        url="jsp/setting/set_authPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
                         window.location.href=encodeURI(url);
                     }else {
                         $.toast(data.msg,1500);

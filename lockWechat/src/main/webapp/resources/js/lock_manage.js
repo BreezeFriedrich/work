@@ -63,8 +63,8 @@ $(function(){
                         $.toast('获取开锁授权信息失败');
                     }
                 });
-            var gesturePassword=241;
-            url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode+"&gesturePassword="+gesturePassword;
+            var authPassword=241;
+            url="jsp/unlock/unlock_authById.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode+"&authPassword="+authPassword;
             window.location.href=encodeURI(url);
         });
     });

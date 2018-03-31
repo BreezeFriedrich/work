@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +25,9 @@ import java.util.Map;
  */
 public class UnlockAction extends ActionSupport {
     public UnlockAction() {
-        logger.info(">>>Initialization UnlockAction......................................");
+        LOG.info(">>>Initialization UnlockAction......................................");
     }
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger("UnlockAction");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("UnlockAction");
 
     @Autowired
     private IUnlockService unlockService;
@@ -52,7 +49,7 @@ public class UnlockAction extends ActionSupport {
     private String startTime;
     private String endTime;
     private String serviceNumb;
-    private String gesturePassword;
+    private String authPassword;
 
     public IUnlockService getUnlockService() {
         return unlockService;
@@ -142,12 +139,12 @@ public class UnlockAction extends ActionSupport {
         this.serviceNumb = serviceNumb;
     }
 
-    public String getGesturePassword() {
-        return gesturePassword;
+    public String getAuthPassword() {
+        return authPassword;
     }
 
-    public void setGesturePassword(String gesturePassword) {
-        this.gesturePassword = gesturePassword;
+    public void setAuthPassword(String authPassword) {
+        this.authPassword = authPassword;
     }
 
     HttpServletRequest request = ServletActionContext.getRequest();
@@ -165,7 +162,6 @@ public class UnlockAction extends ActionSupport {
         }
         List unlockIdList=unlockService.getUnlockId(ownerPhoneNumber,gatewayCode,lockCode);
         jsonResult=unlockIdList;
-//        System.err.println("jsonResult :"+jsonResult);
         return "json";
     }
 
@@ -179,9 +175,9 @@ public class UnlockAction extends ActionSupport {
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        boolean isValidGesturePassword = accountService.validGesturePassword(ownerPhoneNumber,gesturePassword);
+        boolean isValidAuthPassword = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         boolean isSuccess;
-        if (isValidGesturePassword){
+        if (isValidAuthPassword){
             isSuccess = unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
         }else {
             isSuccess=false;
@@ -195,7 +191,7 @@ public class UnlockAction extends ActionSupport {
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
         Map resultMap=new HashMap();
-        Map validateMap = accountService.validGesturePassword(ownerPhoneNumber,gesturePassword);
+        Map validateMap = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         if(0 == (int) validateMap.get("result")){
             boolean authBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
             if (authBoolean){
@@ -250,15 +246,15 @@ public class UnlockAction extends ActionSupport {
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        boolean isValidGesturePassword = accountService.validGesturePassword(ownerPhoneNumber,gesturePassword);
-        logger.info("isValidGesturePassword:"+isValidGesturePassword);
+        boolean isValidAuthPassword = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
+        LOG.info("isValidAuthPassword:"+isValidAuthPassword);
         boolean isSuccess;
-        if (isValidGesturePassword){
+        if (isValidAuthPassword){
             isSuccess=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
         }else {
             isSuccess=false;
         }
-        logger.info("isSuccess:"+isSuccess);
+        LOG.info("isSuccess:"+isSuccess);
         jsonResult=isSuccess;
         return "json";
     }
@@ -268,7 +264,7 @@ public class UnlockAction extends ActionSupport {
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
         Map resultMap=new HashMap();
-        Map validateMap = accountService.validGesturePassword(ownerPhoneNumber,gesturePassword);
+        Map validateMap = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         if(0 == (int) validateMap.get("result")){
             boolean authBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
             if (authBoolean){

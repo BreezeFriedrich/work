@@ -6,8 +6,8 @@
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 var ownerPhoneNumber;
-var gesturePassword;
-var newGesturePassword;
+var authPassword;
+var newAuthPassword;
 
 $(function(){
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
@@ -23,22 +23,22 @@ function getQueryString(name) {
     return null;
 }
 
-function setGesturePassword() {
-    gesturePassword=document.getElementsByTagName('input')[0].value;
-    newGesturePassword=document.getElementsByTagName('input')[1].value;
+function setAuthPassword() {
+    authPassword=document.getElementsByTagName('input')[0].value;
+    newAuthPassword=document.getElementsByTagName('input')[1].value;
 
-    if(''!==newGesturePassword){
-        if(validateGesturePassword(newGesturePassword)){
+    if(''!==newAuthPassword){
+        if(validateAuthPassword(newAuthPassword)){
             $.showIndicator();
             /*
             $.ajax({
                 type:"POST",
-                url:projectPath+"/account/authGesturePassword.action",
+                url:projectPath+"/account/authAuthPassword.action",
                 async:true,//异步
                 data:{
                     // "ownerPhoneNumber":ownerPhoneNumber,
-                    "gesturePassword":gesturePassword,
-                    "newGesturePassword":newGesturePassword
+                    "authPassword":authPassword,
+                    "newAuthPassword":newAuthPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
@@ -58,12 +58,12 @@ function setGesturePassword() {
             */
             $.ajax({
                 type:"POST",
-                url:projectPath+"/account/authGesturePassword.action",
+                url:projectPath+"/account/authAuthPassword.action",
                 async:true,//异步
                 data:{
                     // "ownerPhoneNumber":ownerPhoneNumber,
-                    "gesturePassword":gesturePassword,
-                    "newGesturePassword":newGesturePassword
+                    "authPassword":authPassword,
+                    "newAuthPassword":newAuthPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
@@ -73,7 +73,7 @@ function setGesturePassword() {
                         window.setTimeout("history.go(-1)",2000);
                     }else if(2==data.result){
                         $.toast(data.msg,1500);
-                        url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+                        url="jsp/setting/set_authPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
                         window.location.href=encodeURI(url);
                     }else {
                         $.toast(data.msg,1500);
@@ -89,9 +89,9 @@ function setGesturePassword() {
         }
     }
 }
-function validateGesturePassword(password){
-    var regGesturePassword=/^[a-zA-Z0-9]{1,9}$/;//1~9位数字、字母.
-    if(regGesturePassword.test(password)){
+function validateAuthPassword(password){
+    var regAuthPassword=/^[a-zA-Z0-9]{1,9}$/;//1~9位数字、字母.
+    if(regAuthPassword.test(password)){
         return true;
     }
     return false;

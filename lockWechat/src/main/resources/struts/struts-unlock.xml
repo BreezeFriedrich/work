@@ -22,6 +22,46 @@
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
 
+        <action name="authUnlockById" class="com.yishu.action.UnlockAction" method="authUnlockById">
+            <interceptor-ref name="authpasswordStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonResult</param>
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
+            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+        </action>
+        <action name="prohibitUnlockById" class="com.yishu.action.UnlockAction" method="prohibitUnlockById">
+            <interceptor-ref name="authpasswordStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonResult</param>
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
+            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+        </action>
+        <action name="authUnlockByPwd" class="com.yishu.action.UnlockAction" method="authUnlockByPwd">
+            <interceptor-ref name="authpasswordStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonResult</param>
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
+            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+        </action>
+        <action name="prohibitUnlockByPwd" class="com.yishu.action.UnlockAction" method="prohibitUnlockByPwd">
+            <interceptor-ref name="authpasswordStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonResult</param>
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
+            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+        </action>
     </package>
 
 </struts>

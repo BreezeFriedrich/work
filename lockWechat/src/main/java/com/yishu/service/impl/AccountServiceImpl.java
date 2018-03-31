@@ -78,8 +78,7 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public Map queryGesturePassword(String ownerPhoneNumber) {
-        timetag= DateUtil.getFormat2TimetagStr();
+    public Map queryAuthPassword(String ownerPhoneNumber) {
         reqSign=32;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData:"+reqData);
@@ -92,10 +91,10 @@ public class AccountServiceImpl implements IAccountService {
         }
         //字段result: 0 成功 ;1 失败 ;2 未设置手势密码
         respSign=rootNode.path("result").asInt();
-        String gesturePassword=rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
+        String authPassword=rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
         Map resultMap=new HashMap();
         resultMap.put("result",respSign);
-        resultMap.put("gesturePassword",gesturePassword);
+        resultMap.put("authPassword",authPassword);
         LOG.info("return resultMap:"+resultMap);
         return resultMap;
     }
@@ -103,12 +102,11 @@ public class AccountServiceImpl implements IAccountService {
     /**
      * 判断开锁授权密码是否有效.若还未设置授权密码,则待检授权密码视为有效,返回true.
      *
-     * @param gesturePassword 待检授权密码
+     * @param authPassword 待检授权密码
      * @return true 待检授权密码是真实密码或者还未设置开锁授权密码; false 待检授权密码与真实开锁授权密码不同.
      */
     @Override
-    public Map validGesturePassword(String ownerPhoneNumber, String gesturePassword) {
-        timetag= DateUtil.getFormat2TimetagStr();
+    public Map validAuthPassword(String ownerPhoneNumber, String authPassword) {
         reqSign=32;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData:"+reqData);
@@ -123,8 +121,8 @@ public class AccountServiceImpl implements IAccountService {
         respSign=rootNode.path("result").asInt();
         Map resultMap=new HashMap();
         if(0==respSign){
-            String realGesturePassword=rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
-            if (realGesturePassword.equals(gesturePassword)){
+            String realAuthPassword=rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
+            if (realAuthPassword.equals(authPassword)){
                 resultMap.put("result",0);
                 resultMap.put("msg","授权码校验结果为正确");
             }else {
@@ -144,10 +142,32 @@ public class AccountServiceImpl implements IAccountService {
         LOG.info("resultMap:"+resultMap);
         return resultMap;
     }
+
+    @Override
+    public boolean proofAuthpassword(String ownerPhoneNumber, String authPassword) {
+        reqSign=32;
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToOwner(reqData);
+        LOG.info("rawData:"+rawData);
+        try {
+            rootNode = objectMapper.readTree(rawData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //字段result: 0 成功 ;1 失败 ;2 未设置开锁授权密码
+        respSign=rootNode.path("result").asInt();
+        if(0==respSign) {
+            String realAuthPassword = rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
+            if (realAuthPassword.equals(authPassword)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /*
     @Override
-    public boolean validGesturePassword(String ownerPhoneNumber, String gesturePassword) {
-        timetag= DateUtil.getFormat2TimetagStr();
+    public boolean validAuthPassword(String ownerPhoneNumber, String authPassword) {
         reqSign=32;
 //        reqData="{\"sign\":\""+reqSign+"\",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
@@ -164,8 +184,8 @@ public class AccountServiceImpl implements IAccountService {
         respSign=rootNode.path("result").asInt();
         if(0==respSign){
             // 0 成功
-            String realGesturePassword=rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
-            return realGesturePassword.equals(gesturePassword);
+            String realAuthPassword=rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
+            return realAuthPassword.equals(authPassword);
         }else if(2==respSign){
             // 2 未设置手势密码
             LOG.info("sign:"+reqSign+" operation:获取开锁授权密码"+" result:"+respSign+" 结果:未设置手势密码");
@@ -176,10 +196,10 @@ public class AccountServiceImpl implements IAccountService {
      */
 
     @Override
-    public boolean authGesturePassword(String ownerPhoneNumber, String gesturePassword) {
+    public boolean authAuthPassword(String ownerPhoneNumber, String authPassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=31;
-        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"authPassword\":\""+gesturePassword+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"authPassword\":\""+authPassword+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData:"+reqData);
         rawData = HttpUtil.httpsPostToOwner(reqData);
         LOG.info("rawData:"+rawData);
@@ -195,8 +215,7 @@ public class AccountServiceImpl implements IAccountService {
 
     /*
     @Override
-    public Map queryGesturePassword(String ownerPhoneNumber) {
-        timetag= DateUtil.getFormat2TimetagStr();
+    public Map queryAuthPassword(String ownerPhoneNumber) {
         reqSign=28;
         reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
         LOG.info("reqData:"+reqData);
@@ -210,18 +229,18 @@ public class AccountServiceImpl implements IAccountService {
         }
         //字段result: 0 成功 ;1 失败 ;2 未设置手势密码
         respSign=rootNode.path("result").asInt();
-        String gesturePassword=rootNode.path("gesturePassword").asText();
+        String authPassword=rootNode.path("authPassword").asText();
         resultMap.put("result",respSign);
-        resultMap.put("gesturePassword",gesturePassword);
+        resultMap.put("authPassword",authPassword);
         LOG.info("return resultMap:"+resultMap);
         return resultMap;
     }
 
     @Override
-    public boolean authGesturePassword(String ownerPhoneNumber, String gesturePassword) {
+    public boolean authAuthPassword(String ownerPhoneNumber, String authPassword) {
         timetag= DateUtil.getFormat2TimetagStr();
         reqSign=29;
-        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"gesturePassword\":\""+gesturePassword+"\",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"authPassword\":\""+authPassword+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData:"+reqData);
         rawData = HttpUtil.httpsPostToOwner(reqData);
         LOG.info("rawData:"+rawData);

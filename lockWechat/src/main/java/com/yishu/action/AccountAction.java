@@ -12,8 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,9 +25,9 @@ import java.util.Map;
  */
 public class AccountAction {
     public AccountAction() {
-        logger.info(">>>Initialization AccountAction......................................");
+        LOG.info(">>>Initialization AccountAction......................................");
     }
-    private org.slf4j.Logger logger= LoggerFactory.getLogger(AccountAction.class);
+    private org.slf4j.Logger LOG = LoggerFactory.getLogger(AccountAction.class);
 
     @Autowired
     private IAccountService accountService;
@@ -39,8 +40,9 @@ public class AccountAction {
         return jsonResult;
     }
 
-    HttpServletRequest request = ServletActionContext.getRequest();
-    HttpSession session = request.getSession();
+    HttpServletResponse response=ServletActionContext.getResponse();
+    HttpServletRequest request=ServletActionContext.getRequest();
+    HttpSession session=request.getSession();
 //    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
 
     private String openid;
@@ -48,8 +50,9 @@ public class AccountAction {
     private String ownerPassword;
     private String newName;
     private String newPassword;
-    private String gesturePassword;
-    private String newGesturePassword;
+    private String authPassword;
+    private String newAuthPassword;
+    private String redirectUrl;
 
     public String getNewName() {
         return newName;
@@ -65,22 +68,29 @@ public class AccountAction {
         this.newPassword = newPassword;
     }
 
-    public String getGesturePassword() {
-        return gesturePassword;
+    public String getAuthPassword() {
+        return authPassword;
     }
-    public void setGesturePassword(String gesturePassword) {
-        this.gesturePassword = gesturePassword;
+    public void setAuthPassword(String authPassword) {
+        this.authPassword = authPassword;
     }
 
-    public String getNewGesturePassword() {
-        return newGesturePassword;
+    public String getNewAuthPassword() {
+        return newAuthPassword;
     }
-    public void setNewGesturePassword(String newGesturePassword) {
-        this.newGesturePassword = newGesturePassword;
+    public void setNewAuthPassword(String newAuthPassword) {
+        this.newAuthPassword = newAuthPassword;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
     }
 
     public String modifyNickname(){
-        logger.info("-->>-- account/modifyNickname.action -->>--");
+        LOG.info("-->>-- account/modifyNickname.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -95,7 +105,7 @@ public class AccountAction {
      *
      */
     public String modifyPassword(){
-        logger.info("-->>-- account/modifyPassword.action -->>--");
+        LOG.info("-->>-- account/modifyPassword.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -114,19 +124,19 @@ public class AccountAction {
     }
 
     /**
-     * param gesturePassword 新授权手势密码.
+     * param authPassword 新授权手势密码.
      * @return
      */
     /*
-    public String authGesturePassword(){
-        logger.info("-->>-- account/authGesturePassword.action -->>--");
+    public String authAuthPassword(){
+        LOG.info("-->>-- account/authAuthPassword.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
         boolean resultBoolean;
-        boolean isValidGesturePwd=accountService.validGesturePassword(ownerPhoneNumber,gesturePassword);
-        if (isValidGesturePwd){
-            resultBoolean=accountService.authGesturePassword(ownerPhoneNumber,newGesturePassword);
+        boolean isValidAuthPwd=accountService.validAuthPassword(ownerPhoneNumber,authPassword);
+        if (isValidAuthPwd){
+            resultBoolean=accountService.authAuthPassword(ownerPhoneNumber,newAuthPassword);
         }else {
             resultBoolean=false;
         }
@@ -134,15 +144,15 @@ public class AccountAction {
         return "json";
     }
     */
-    public String authGesturePassword(){
-        logger.info("-->>-- account/authGesturePassword.action -->>--");
+    public String authAuthPassword(){
+        LOG.info("-->>-- account/authAuthPassword.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
         Map resultMap=new HashMap();
-        Map validateMap=accountService.validGesturePassword(ownerPhoneNumber,gesturePassword);
+        Map validateMap=accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         if(0 == (int) validateMap.get("result")){
-            boolean authBoolean=accountService.authGesturePassword(ownerPhoneNumber,newGesturePassword);
+            boolean authBoolean=accountService.authAuthPassword(ownerPhoneNumber,newAuthPassword);
             if (authBoolean){
                 resultMap.put("result",0);
                 resultMap.put("msg","修改授权码成功");
@@ -157,28 +167,41 @@ public class AccountAction {
         return "json";
     }
 
-    public String queryGesturePassword(){
-        logger.info("-->>-- account/queryGesturePassword.action -->>--");
+    public String queryAuthPassword(){
+        LOG.info("-->>-- account/queryAuthPassword.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        Map resultMap=accountService.queryGesturePassword(ownerPhoneNumber);
+        Map resultMap=accountService.queryAuthPassword(ownerPhoneNumber);
         jsonResult=resultMap;
         return "json";
     }
 
-    public String validGesturePassword(){
-        logger.info("-->>-- account/validGesturePassword.action -->>--");
+    public String validAuthPassword(){
+        LOG.info("-->>-- account/validAuthPassword.action -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
-        Map resultMap=accountService.validGesturePassword(ownerPhoneNumber,gesturePassword);
+        Map resultMap=accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         jsonResult=resultMap;
+        return "json";
+    }
+
+    public String proofAuthpassword() throws IOException {
+        LOG.info("-->>-- account/proofAuthpassword.action -->>--");
+        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        }
+        boolean isTrue=accountService.proofAuthpassword(ownerPhoneNumber,authPassword);
+        if(isTrue & null!=redirectUrl){
+            response.sendRedirect(redirectUrl);
+        }
+        jsonResult=isTrue;
         return "json";
     }
 
     public String wechatLogin(){
-        logger.info("-->>-- account/wechatLogin.action -->>--");
+        LOG.info("-->>-- account/wechatLogin.action -->>--");
         if ("".equals(openid)||null==openid){
             openid= (String) session.getAttribute("OPENID");
         }
@@ -189,7 +212,7 @@ public class AccountAction {
 
     public String getUserFromSession(){
 //        session.setAttribute("cDate",new Date());
-        logger.info("-->>-- account/getUserFromSession.action -->>--");
+        LOG.info("-->>-- account/getUserFromSession.action -->>--");
         openid= (String) session.getAttribute("OPENID");
         ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         ownerPassword=(String) session.getAttribute("ownerPassword");

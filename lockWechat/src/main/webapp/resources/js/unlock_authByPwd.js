@@ -11,7 +11,7 @@ var lockCode;
 var password;
 var startTime;
 var endTime;
-var gesturePassword;
+var authPassword;
 
 $(function(){
 
@@ -41,12 +41,12 @@ function getQueryString(name) {
 }
 
 function authByPwd() {
-    gesturePassword=document.getElementsByTagName('input')[0].value;
+    authPassword=document.getElementsByTagName('input')[0].value;
     password=document.getElementsByTagName('input')[1].value;
     startTime=$("#datetime-picker-1").val();
     endTime=$("#datetime-picker-2").val();
 
-    if(''!=password && ''!=startTime && ''!=endTime && ''!=gesturePassword){
+    if(''!=password && ''!=startTime && ''!=endTime && ''!=authPassword){
         if(validatePwd(password)){
             $.showIndicator();
             /*
@@ -61,7 +61,7 @@ function authByPwd() {
                     "password":password,
                     "startTime":startTime,
                     "endTime":endTime,
-                    "gesturePassword":gesturePassword
+                    "authPassword":authPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
@@ -91,7 +91,7 @@ function authByPwd() {
                     "password":password,
                     "startTime":startTime,
                     "endTime":endTime,
-                    "gesturePassword":gesturePassword
+                    "authPassword":authPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
@@ -101,7 +101,7 @@ function authByPwd() {
                         window.setTimeout("history.go(-1)",2000);
                     }else if(2==data.result){
                         $.toast(data.msg,1500);
-                        url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+                        url="jsp/setting/set_authPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
                         window.location.href=encodeURI(url);
                     }else {
                         $.toast(data.msg,1500);

@@ -46,17 +46,17 @@ div_modifyPassword.addEventListener('click',function(ev){
 });
 */
 //设置授权密码
-var div_setGesturePassword=document.getElementById("link_setGesturePassword");
-div_setGesturePassword.addEventListener('click',function(ev){
-    url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+var div_setAuthPassword=document.getElementById("link_setAuthPassword");
+div_setAuthPassword.addEventListener('click',function(ev){
+    url="jsp/setting/set_authPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
     window.location.href=encodeURI(url);
 });
 /*
-div_setGesturePassword.addEventListener('click',function(ev){
+div_setAuthPassword.addEventListener('click',function(ev){
     var target = ev.target || window.event.srcElement;
-    while(target !== div_setGesturePassword){
+    while(target !== div_setAuthPassword){
         if(target.getAttribute('class')==='item-inner'){
-            url="jsp/setting/set_gesturePassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
+            url="jsp/setting/set_authPassword.jsp?ownerPhoneNumber="+ownerPhoneNumber;
             window.location.href=encodeURI(url);
         }
         target = target.parentNode;

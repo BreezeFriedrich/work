@@ -100,7 +100,7 @@
                 <ul>
                     <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner" id="link_setGesturePassword">
+                        <div class="item-inner" id="link_setAuthPassword">
                             <div class="item-title">
                                 <%--<img class="auto-zoom-1" src="resources/img/password_set.png" alt="授权密码"/>--%>
                                 <span class="icon icon-edit"></span>
@@ -132,7 +132,7 @@
                 <a href="javascript:void(0);" onclick="modifyPassword()" class="button button-big button-fill button-success">修改登录密码</a>
             </div>
             <div class="content-block">
-                <a href="javascript:void(0);" onclick="setGesturePassword()" class="button button-big button-fill button-success">设置授权密码</a>
+                <a href="javascript:void(0);" onclick="setAuthPassword()" class="button button-big button-fill button-success">设置授权密码</a>
             </div>
             -->
         </div>

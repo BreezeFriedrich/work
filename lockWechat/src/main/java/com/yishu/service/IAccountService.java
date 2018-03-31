@@ -15,9 +15,10 @@ import java.util.Map;
 public interface IAccountService {
     public boolean modifyNickname(String ownerPhoneNumber,String newName);
     public boolean modifyPassword(String ownerPhoneNumber,String newPassword);
-    public Map queryGesturePassword(String ownerPhoneNumber);
-//    public boolean validGesturePassword(String ownerPhoneNumber,String gesturePassword);
-    public Map validGesturePassword(String ownerPhoneNumber,String gesturePassword);
-    public boolean authGesturePassword(String ownerPhoneNumber,String gesturePassword);
+    public Map queryAuthPassword(String ownerPhoneNumber);
+//    public boolean validAuthPassword(String ownerPhoneNumber,String authPassword);
+    public Map validAuthPassword(String ownerPhoneNumber,String authPassword);
+    public boolean proofAuthpassword(String ownerPhoneNumber,String authPassword);
+    public boolean authAuthPassword(String ownerPhoneNumber,String authPassword);
     public Map wechatLogin(String openid);
 }

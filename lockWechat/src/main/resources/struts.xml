@@ -47,6 +47,8 @@
             <!-- 定义拦截器 -->
             <interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
             <interceptor name="openIdInterceptor" class="com.yishu.web.OpenIdInterceptor" />
+            <interceptor name="authpasswordInterceptor" class="com.yishu.web.AuthpasswordInterceptor" />
+            <interceptor name="phoneInterceptor" class="com.yishu.web.OwnerphonenumberInterceptor" />
             <!-- 定义拦截器栈 -->
             <interceptor-stack name="monitor_Stack">
                 <!-- 引用拦截器 name:拦截器名称或拦截器栈名称 -->
@@ -64,6 +66,15 @@
                     <param name="exception.logLevel">error</param>
                 </interceptor-ref>
             </interceptor-stack>
+            <interceptor-stack name="authpasswordStack">
+                <!--<interceptor-ref name="monitoring" />-->
+                <interceptor-ref name="phoneInterceptor"/>
+                <interceptor-ref name="authpasswordInterceptor"/>
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+            </interceptor-stack>
         </interceptors>
 
         <!-- 定义默认的拦截器 每个Action都会自动引用如果Action中引用了其它的拦截器 默认的拦截器将无效 -->
@@ -75,7 +86,11 @@
         <!-- 全局results配置 -->
         <global-results>
             <result name="error">/jsp/error_struts.jsp</result>
-            <result name="login">/jsp/login.jsp</result>
+            <!--<result name="login">/jsp/login.jsp</result>-->
+            <result name="login" type="redirectAction">
+                <param name="namespace">/login</param>
+                <param name="actionName">wxLogin.action</param>
+            </result>
         </global-results>
 
         <!--<global-allowed-methods>login</global-allowed-methods>-->

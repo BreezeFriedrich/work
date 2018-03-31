@@ -24,9 +24,9 @@ import java.util.Map;
  */
 public class SMSAction {
     public SMSAction() {
-        logger.info(">>>Initialization SMSAction......................................");
+        LOG.info(">>>Initialization SMSAction......................................");
     }
-    private static final org.slf4j.Logger logger= LoggerFactory.getLogger("SMSAction");
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("SMSAction");
 
     @Autowired
     ISMSService smsService;
@@ -55,7 +55,7 @@ public class SMSAction {
      */
     public String sendVerifyCode(){
 //        session.setAttribute("OPENID","oaxT-szv3F0hz8ZCy6Ke5kTe8QNA");
-//        logger.info("sendVerifyCode.action");
+//        LOG.info("sendVerifyCode.action");
         long time1=new Date().getTime();
         session.setAttribute("ownerPhoneNumber",phoneNumber);
         Map resultMap=smsService.sendVerifyCode(phoneNumber);
@@ -63,10 +63,10 @@ public class SMSAction {
         if (null!=smsVerificationCode){
             session.setAttribute("smsVerificationCode",smsVerificationCode);
         }
-//        logger.info("smsVerificationCode : "+session.getAttribute("smsVerificationCode"));
+//        LOG.info("smsVerificationCode : "+session.getAttribute("smsVerificationCode"));
         jsonResult=resultMap;
         long time2=new Date().getTime();
-        logger.warn("SMSAction-sendVerifyCode 用时: "+(time2-time1));
+        LOG.warn("SMSAction-sendVerifyCode 用时: "+(time2-time1));
         return "json";
     }
 
@@ -86,34 +86,34 @@ public class SMSAction {
      * @return
      */
     public String checkVerifyCode(){
-        logger.info("checkVerifyCode.action");
+        LOG.info("checkVerifyCode.action");
         Map <String,Object> resultMap=new HashMap<>(1);
         phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
 //        session.removeAttribute("ownerPhoneNumber");
         SMSVerificationCode smsVerificationCode= (SMSVerificationCode) session.getAttribute("smsVerificationCode");
 //        session.removeAttribute("smsVerificationCode");
-        logger.info("smsVerificationCode : "+smsVerificationCode);
+        LOG.info("smsVerificationCode : "+smsVerificationCode);
         if (null!=smsVerificationCode && smsVerificationCode.getPhoneNumber().equals(phoneNumber)){
             if (smsVerificationCode.getVerificationCode().equals(verificationCode)){
                 if (new Date().getTime() - smsVerificationCode.getCreateTime() < ISMSService.EXPIRE_TIME){
                     //验证码有效
-                    logger.info("验证码有效");
+                    LOG.info("验证码有效");
                     session.setAttribute("ownerPhoneNumber",phoneNumber);
                     resultMap.put("result",1);
                 }else {
-                    logger.info("短信验证码超时");
+                    LOG.info("短信验证码超时");
                     resultMap.put("result",2);
 //                    resultMap.put("errMsg","expired");
                     resultMap.put("errMsg","短信验证码超时");
                 }
             }else {
-                logger.info("短信验证码无效");
+                LOG.info("短信验证码无效");
                 resultMap.put("result",3);
 //                resultMap.put("errMsg","invalid verificationCode");
                 resultMap.put("errMsg","短信验证码无效");
             }
         }else {
-            logger.info("没有发给"+phoneNumber+"的短信验证码");
+            LOG.info("没有发给"+phoneNumber+"的短信验证码");
             resultMap.put("result",4);
 //            resultMap.put("errMsg","no verificationCode with "+phoneNumber);
             resultMap.put("errMsg","没有发给"+phoneNumber+"的短信验证码");
