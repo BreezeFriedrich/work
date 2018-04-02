@@ -14,7 +14,6 @@ $(function(){
         type:"POST",
         url:projectPath+"/account/getUserFromSession.action",
         async:true,
-        // data:{},
         dataType:'json',
         success:function(data,status,xhr){
             ownerPhoneNumber=data.wechatUser.phonenumber;
@@ -37,8 +36,6 @@ $(function(){
     if(undefined==ownerPhoneNumber || ''==ownerPhoneNumber){
         ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     }
-
-    $('.my-iphone').html(ownerPhoneNumber);
 
     $.showIndicator();
     $.ajax({
@@ -108,14 +105,15 @@ function initAlertBadge() {
         type:"POST",
         url:projectPath+"/device/countAbnormalDevice.action",
         async:true,
-        // data:{"ownerPhoneNumber":ownerPhoneNumber},
+        data:{"ownerPhoneNumber":ownerPhoneNumber},
         dataType:'json',
         success:function(data,status,xhr){
             $("sup").remove();
             if(null!=data & data>0){
                 var el=$("nav a").eq(4).find("span:last");
-                var html="<sup>"+data+"</sup>";
+                var html="<sup><b><i>"+data+"</i></b></sup>";
                 el.append(html);
+                el.find('sup').css("color","red");
             }
         },
         error:function(xhr,errorType,error){

@@ -18,8 +18,7 @@ $(function(){
         type:"POST",
         url:projectPath+"/lock/getSpecificLock.action",
         async:true,
-        data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
-        // data:{"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
+        data:{"gatewayCode":specificGatewayCode,"lockCode":specificLockCode},
         dataType:'json',
         success:function(data,status,xhr){
             if(null!==data){
@@ -130,11 +129,9 @@ function prohibitUnlockAuth() {
                         $.ajax({
                             type:"POST",
                             url:projectPath+"/unlock/prohibitUnlockById.action",
-                            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-                            // data:{"ownerPhoneNumber":ownerPhoneNumber,"lockCode":specificLockCode,"cardNumb":target.getAttribute('id').split('-')[0],"serviceNumb":target.getAttribute('id').split('-')[1]},
+                            async:false,
                             data:{"lockCode":specificLockCode,"cardNumb":target.getAttribute('id').split('-')[0],"serviceNumb":target.getAttribute('id').split('-')[1]},
-                            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-
+                            dataType:'json',
                             success:function(data,status,xhr){
                                 $.toast('操作成功,正在刷新页面...',1500);
                                 window.setTimeout("window.location.reload();",2000);
@@ -152,11 +149,9 @@ function prohibitUnlockAuth() {
                         $.ajax({
                             type:"POST",
                             url:projectPath+"/unlock/prohibitUnlockByPwd.action",
-                            async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-                            // data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":specificGatewayCode,"lockCode":specificLockCode,"serviceNumb":target.getAttribute('id')},
+                            async:false,
                             data:{"gatewayCode":specificGatewayCode,"lockCode":specificLockCode,"serviceNumb":target.getAttribute('id')},
-                            dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
-
+                            dataType:'json',
                             success:function(data,status,xhr){
                                 $.toast('操作成功,正在刷新页面...',1500);
                                 window.setTimeout("window.location.reload();",2000);

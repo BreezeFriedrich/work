@@ -47,6 +47,7 @@ public class AccountAction {
 
     private String openid;
     private String ownerPhoneNumber;
+    private String ownerName;
     private String ownerPassword;
     private String newName;
     private String newPassword;
@@ -66,6 +67,14 @@ public class AccountAction {
     }
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public String getAuthPassword() {
@@ -216,10 +225,12 @@ public class AccountAction {
         openid= (String) session.getAttribute("OPENID");
         ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         ownerPassword=(String) session.getAttribute("ownerPassword");
+        ownerName= (String) session.getAttribute("ownerName");
 
         WechatUser wechatUser=new WechatUser();
         wechatUser.setOpenid(openid);
         wechatUser.setPhonenumber(ownerPhoneNumber);
+        wechatUser.setNickname(ownerName);
         Map resultMap=new HashMap();
         resultMap.put("wechatUser",wechatUser);
         jsonResult=resultMap;

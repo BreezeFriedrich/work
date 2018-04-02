@@ -7,14 +7,35 @@
 
     <package name="unlock" namespace="/unlock" extends="default">
 
-        <action name="*" class="com.yishu.action.UnlockAction" method="{0}">
+        <!--<action name="*" class="com.yishu.action.UnlockAction" method="{0}">-->
+            <!--<interceptor-ref name="defaultStack">-->
+                <!--<param name="exception.logEnabled">true</param>-->
+                <!--<param name="exception.logLevel">error</param>-->
+            <!--</interceptor-ref>-->
+            <!--<interceptor-ref name="phoneStack"/>-->
+            <!--<result name="json" type="json">-->
+                <!--<param name="root">jsonResult</param>-->
+                <!--<param name="excludeNullProperties">false</param>-->
+            <!--</result>-->
+            <!--<result name="error" type="dispatcher">/jsp/error.jsp</result>-->
+        <!--</action>-->
+
+        <action name="getUnlockId" class="com.yishu.action.UnlockAction" method="getUnlockId">
+            <interceptor-ref name="defaultStack">
+            <param name="exception.logEnabled">true</param>
+            <param name="exception.logLevel">error</param>
+            </interceptor-ref>
+            <result name="json" type="json">
+                <param name="root">jsonResult</param>
+                <param name="excludeNullProperties">false</param>
+            </result>
+            <result name="error" type="dispatcher">/jsp/error.jsp</result>
+        </action>
+        <action name="getUnlockPwd" class="com.yishu.action.UnlockAction" method="getUnlockPwd">
             <interceptor-ref name="defaultStack">
                 <param name="exception.logEnabled">true</param>
                 <param name="exception.logLevel">error</param>
             </interceptor-ref>
-            <!--
-            <interceptor-ref name="openidStack"/>
-            -->
             <result name="json" type="json">
                 <param name="root">jsonResult</param>
                 <param name="excludeNullProperties">false</param>
@@ -29,7 +50,7 @@
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
-            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="proofAuthpassword">/jsp/proofAuthpassword.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
         <action name="prohibitUnlockById" class="com.yishu.action.UnlockAction" method="prohibitUnlockById">
@@ -39,7 +60,7 @@
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
-            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="proofAuthpassword">/jsp/proofAuthpassword.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
         <action name="authUnlockByPwd" class="com.yishu.action.UnlockAction" method="authUnlockByPwd">
@@ -49,7 +70,7 @@
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
-            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="proofAuthpassword">/jsp/proofAuthpassword.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
         <action name="prohibitUnlockByPwd" class="com.yishu.action.UnlockAction" method="prohibitUnlockByPwd">
@@ -59,7 +80,7 @@
                 <param name="excludeNullProperties">false</param>
             </result>
             <result name="setAuthpassword">/jsp/setting/set_authPassword.jsp</result>
-            <result name="proofAuthpassword">jsp/proofAuthpassword.jsp</result>
+            <result name="proofAuthpassword">/jsp/proofAuthpassword.jsp</result>
             <result name="error" type="dispatcher">/jsp/error.jsp</result>
         </action>
     </package>

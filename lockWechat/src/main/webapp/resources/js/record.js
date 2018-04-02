@@ -242,7 +242,7 @@ function renderPage(curPageData){
 
         str='<div style="width: 340px;">';
         if(null!==pd.roomName && 'null'!==pd.roomName){
-            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xeb59;</i><b style="width: 260px;padding-left: 10px">'+pd.roomName+'</b></span>';
+            str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe7ff;</i><b style="width: 260px;padding-left: 10px">'+pd.roomName+'</b></span>';
         }else{
             str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xeb59;</i><b style="width: 260px;padding-left: 10px">'+pd.gatewayCode+'</b></span>';
             str+=   '<span style="width: 300px;padding-left: 40px;"><i class="iconfont">&#xe61c;</i><b style="width: 260px;padding-left: 10px">'+pd.lockCode+'</b></span>';

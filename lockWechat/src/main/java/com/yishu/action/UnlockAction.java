@@ -39,7 +39,7 @@ public class UnlockAction extends ActionSupport {
         return jsonResult;
     }
 
-    private String ownerPhoneNumber;
+//    private String ownerPhoneNumber;
     private String gatewayCode;
     private String lockCode;
     private String name;
@@ -59,13 +59,13 @@ public class UnlockAction extends ActionSupport {
         this.unlockService = unlockService;
     }
 
-    public String getOwnerPhoneNumber() {
-        return ownerPhoneNumber;
-    }
-
-    public void setOwnerPhoneNumber(String ownerPhoneNumber) {
-        this.ownerPhoneNumber = ownerPhoneNumber;
-    }
+//    public String getOwnerPhoneNumber() {
+//        return ownerPhoneNumber;
+//    }
+//
+//    public void setOwnerPhoneNumber(String ownerPhoneNumber) {
+//        this.ownerPhoneNumber = ownerPhoneNumber;
+//    }
 
     public String getGatewayCode() {
         return gatewayCode;
@@ -157,9 +157,10 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String getUnlockId (){
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         List unlockIdList=unlockService.getUnlockId(ownerPhoneNumber,gatewayCode,lockCode);
         jsonResult=unlockIdList;
         return "json";
@@ -186,10 +187,9 @@ public class UnlockAction extends ActionSupport {
         return "json";
     }
     */
+    /*
     public String authUnlockById (){
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Map resultMap=new HashMap();
         Map validateMap = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         if(0 == (int) validateMap.get("result")){
@@ -207,6 +207,13 @@ public class UnlockAction extends ActionSupport {
         jsonResult=resultMap;
         return "json";
     }
+    */
+    public String authUnlockById (){
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        boolean resultBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
+        jsonResult=resultBoolean;
+        return "json";
+    }
 
     /**
      * 删除开锁身份证
@@ -215,9 +222,7 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String prohibitUnlockById (){
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         boolean isSuccess=unlockService.prohibitUnlockById(ownerPhoneNumber,lockCode,cardNumb,serviceNumb);
         jsonResult=isSuccess;
         return "json";
@@ -229,9 +234,7 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String getUnlockPwd (){
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         jsonResult=unlockService.getUnlockPwd(ownerPhoneNumber,gatewayCode,lockCode);
         return "json";
     }
@@ -259,10 +262,9 @@ public class UnlockAction extends ActionSupport {
         return "json";
     }
     */
+    /*
     public String authUnlockByPwd (){
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Map resultMap=new HashMap();
         Map validateMap = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         if(0 == (int) validateMap.get("result")){
@@ -280,6 +282,13 @@ public class UnlockAction extends ActionSupport {
         jsonResult=resultMap;
         return "json";
     }
+    */
+    public String authUnlockByPwd (){
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        boolean resultBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
+        jsonResult=resultBoolean;
+        return "json";
+    }
 
     /**
      * 删除开锁密码
@@ -288,9 +297,7 @@ public class UnlockAction extends ActionSupport {
      * @return
      */
     public String prohibitUnlockByPwd (){
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         boolean isSuccess=unlockService.prohibitUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,serviceNumb);
         jsonResult=isSuccess;
         return "json";

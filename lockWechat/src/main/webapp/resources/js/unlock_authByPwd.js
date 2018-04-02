@@ -17,12 +17,24 @@ $(function(){
 
     //初始化时间选择器
     var temptime = new Date();
+    // $("#datetime-picker-1").datetimePicker({
+    //     value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+    // });
     $("#datetime-picker-1").datetimePicker({
-        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()],
+        onClose:function (p) {
+            startTime=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
+        }
     });
     temptime.setDate(temptime.getDate()+1);
+    // $("#datetime-picker-2").datetimePicker({
+    //     value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+    // });
     $("#datetime-picker-2").datetimePicker({
-        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
+        value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()],
+        onClose:function (p) {
+            endTime=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
+        }
     });
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
@@ -41,10 +53,10 @@ function getQueryString(name) {
 }
 
 function authByPwd() {
-    authPassword=document.getElementsByTagName('input')[0].value;
-    password=document.getElementsByTagName('input')[1].value;
-    startTime=$("#datetime-picker-1").val();
-    endTime=$("#datetime-picker-2").val();
+    // authPassword=document.getElementsByTagName('input')[0].value;
+    password=document.getElementsByTagName('input')[0].value;
+    // startTime=$("#datetime-picker-1").val();
+    // endTime=$("#datetime-picker-2").val();
 
     if(''!=password && ''!=startTime && ''!=endTime && ''!=authPassword){
         if(validatePwd(password)){
@@ -91,11 +103,12 @@ function authByPwd() {
                     "password":password,
                     "startTime":startTime,
                     "endTime":endTime,
-                    "authPassword":authPassword
+                    // "authPassword":authPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
                     $.hideIndicator();
+                    /*
                     if(0==data.result){
                         $.toast('开锁授权成功,正在返回上一页...',1500);
                         window.setTimeout("history.go(-1)",2000);
@@ -106,11 +119,18 @@ function authByPwd() {
                     }else {
                         $.toast(data.msg,1500);
                     }
+                    */
+                    if(data){
+                        $.toast('开锁授权成功,正在返回上一页...',1500);
+                        window.setTimeout("history.go(-1)",2000);
+                    }else{
+                        $.toast('开锁授权失败',1500);
+                    }
                 },
                 error:function(xhr,errorType,error){
                     $.hideIndicator();
                     console.log('错误');
-                    $.alert('开锁授权失败', '操作失败！');
+                    $.alert('发送请求失败', '操作失败！');
                 }
             });
         }else {

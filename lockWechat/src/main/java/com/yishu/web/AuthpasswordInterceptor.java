@@ -25,6 +25,10 @@ import java.util.Map;
  * @since JDK1.7
  */
 public class AuthpasswordInterceptor implements Interceptor {
+    public AuthpasswordInterceptor() {
+        LOG.info(">>>Initialization AuthpasswordInterceptor......................................");
+    }
+
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("AuthpasswordInterceptor");
     @Autowired
     private IAccountService accountService;
@@ -62,10 +66,12 @@ public class AuthpasswordInterceptor implements Interceptor {
 //        HttpServletResponse response=ServletActionContext.getResponse();
         HttpSession session=request.getSession();
         if(null!=session.getAttribute("authPassword")){
+            LOG.info("authPassword:"+session.getAttribute("authPassword"));
             return actionInvocation.invoke();
         }
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Map resultMap=accountService.queryAuthPassword(ownerPhoneNumber);
+        LOG.info("queryAuthPassword:result="+resultMap.get("result"));
         if(0==(int)(resultMap.get("result"))){
             //获取到授权码
             /*

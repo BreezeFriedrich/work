@@ -10,12 +10,14 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
+      <!--classpath:spring/spring.xml,-->
       classpath:spring/spring-product.xml,
       classpath:net/bull/javamelody/monitoring-spring.xml
     </param-value>
   </context-param>
 
   <!-- 添加监控器 --><!-- 据说必须是第一个filter,才生效 -->
+  <!--&lt;!&ndash;-->
   <filter>
     <filter-name>monitoring</filter-name>
     <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
@@ -28,6 +30,7 @@
     <filter-name>monitoring</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <!--&ndash;&gt;-->
 
   <!--跨域资源共享CORS-->
   <filter>

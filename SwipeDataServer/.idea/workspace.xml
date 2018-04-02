@@ -7,726 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12261e57-e162-4151-bf6c-dd90fec0ff9c" name="Default" comment="2017.11.06-work">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springBean/src/test/java/com/yishu/bean2/CDPlayerConfig2Test.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/java/com/yishu/dao/UserDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/java/com/yishu/model/User.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/java/com/yishu/service/IUserService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/java/com/yishu/service/impl/UserService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/java/com/yishu/web/UserController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/resources/applicationContext.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/resources/jdbc.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/resources/logback.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/resources/mapper/UserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/resources/spring-mvc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/webapp/WEB-INF/web.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/main/webapp/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/repo/IUserServiceTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/repo/SwipeRecord.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/repo/SwipeRecordDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/repo/SwipeRecordMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/repo/SwipeRecordService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../demo-springtest/src/repo/SwipeRecordServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../docs/spring-配置bean.md" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/controller/DeviceManageController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/controller/DispatcherServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/controller/LockOperateController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/controller/LoginController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/LockOperate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/NoteResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/OwnerInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/ClientTreeNode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/DeviceData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/LockOperateData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/LockOperateJson.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/LoginJSON.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/model/json/ServerTreeNode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/DeviceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/LockOperateService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/UserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/impl/DeviceServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/cache/BaseCacheService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/cache/UserServiceAspect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/dao/ResourceDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/dao/RoleDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/dao/UserDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/filter/ResourceCheckFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/kit/ShiroKit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/model/Resource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/model/Role.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/model/RoleResource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/model/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/model/UserRole.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/permission/UrlPermission.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/permission/UrlPermissionResolver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/realm/MyRealm.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/service/HelloWorld.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/service/IResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/service/IRoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/service/IUserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/service/impl/ResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/service/impl/RoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/service/impl/ShiroUserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/web/InitServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/web/ResourceController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/web/RoleController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/web/ShiroLoginController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/shiro/web/UserController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/DeviceUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/HttpUtil$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/HttpUtil$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/HttpUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/LockOperateUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/NoteUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/Tea.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/com/yishu/util/UserUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/jdbc.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/logback.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/mappers/ResourceMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/mappers/RoleMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/mappers/UserMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/mybatis-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/spring/spring-dao.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/spring/spring-service.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/spring/spring-shiro.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/classes/spring/spring-web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard.war" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/controller/DeviceManageController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/controller/DispatcherServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/controller/LockOperateController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/controller/LoginController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/LockOperate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/NoteResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/OwnerInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/ClientTreeNode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo$LockInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/DeviceData$DeviceInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/DeviceData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Card.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo$Password.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/LockOperateData$RecordInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/LockOperateData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/LockOperateJson$LockOperateRecord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/LockOperateJson.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/LoginJSON.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/model/json/ServerTreeNode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/DeviceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/LockOperateService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/UserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/impl/DeviceServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/impl/LockOperateServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/service/impl/UserServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/cache/BaseCacheService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/cache/UserServiceAspect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/dao/ResourceDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/dao/RoleDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/dao/UserDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/filter/ResourceCheckFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/kit/ShiroKit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/model/Resource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/model/Role.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/model/RoleResource.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/model/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/model/UserRole.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/permission/UrlPermission.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/permission/UrlPermissionResolver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/realm/MyRealm.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/service/HelloWorld.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/service/IResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/service/IRoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/service/IUserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/service/impl/ResourceService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/service/impl/RoleService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/service/impl/ShiroUserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/web/InitServlet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/web/ResourceController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/web/RoleController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/web/ShiroLoginController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/shiro/web/UserController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/DeviceUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/HttpUtil$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/HttpUtil$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/HttpUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/LockOperateUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/NoteUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/Tea.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/com/yishu/util/UserUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/jdbc.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/logback.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/mappers/ResourceMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/mappers/RoleMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/mappers/UserMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/mybatis-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/spring/spring-dao.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/spring/spring-service.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/spring/spring-shiro.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/classes/spring/spring-web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/deviceManage.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/lockoperate.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/login.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/loginShiro.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/main.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/resource/add.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/resource/inc.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/resource/list.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/resource/update.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/role/add.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/role/inc.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/role/list.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/role/resources.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/role/update.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/unAuthorization.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/user/add.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/user/inc.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/user/list.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/user/resources.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/user/update.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/jsp/welcome.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/aspectjrt-1.8.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/aspectjweaver-1.8.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/commons-beanutils-1.8.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/commons-codec-1.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/commons-collections-3.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/commons-lang-2.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/druid-1.0.18.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/ehcache-2.10.2.2.21.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/ehcache-core-2.5.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/ezmorph-1.0.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/gson-2.6.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jackson-annotations-2.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jackson-core-2.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jackson-core-asl-1.9.13.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jackson-databind-2.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jackson-mapper-asl-1.9.13.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jboss-logging-3.1.4.GA.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jcl-over-slf4j-1.7.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/json-lib-2.4-jdk15.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jstl-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/jul-to-slf4j-1.7.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/log4j-over-slf4j-1.7.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/logback-classic-1.0.13.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/logback-core-1.0.13.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/mybatis-3.4.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/mybatis-spring-1.3.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/mysql-connector-java-5.1.38.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/shiro-core-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/shiro-ehcache-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/shiro-spring-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/shiro-web-1.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/slf4j-api-1.7.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-aop-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-beans-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-context-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-context-support-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-core-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-expression-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-jdbc-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-test-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-tx-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-web-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/spring-webmvc-4.2.6.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/lib/standard-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/WEB-INF/web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/jsp/common.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/css/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/bootstrap-3.3.0/js/npm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/demo/demo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/easyloader.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/jquery.easyui.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/locale/easyui-lang-en.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/locale/easyui-lang-zh_CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/locale/easyui-lang-zh_TW.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.accordion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.calendar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.combo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.combobox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.combogrid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.combotree.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.combotreegrid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.datagrid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.datalist.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.datebox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.datetimebox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.datetimespinner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.draggable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.droppable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.filebox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.form.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.layout.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.linkbutton.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.menubutton.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.messager.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.mobile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.numberbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.numberspinner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.pagination.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.panel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.parser.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.passwordbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.progressbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.propertygrid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.resizable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.searchbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.slider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.spinner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.splitbutton.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.switchbutton.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.tabs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.tagbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.textbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.timespinner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.tooltip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.tree.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.treegrid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.validatebox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/plugins/jquery.window.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/easyloader.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.accordion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.calendar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.combobox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.datebox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.draggable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.droppable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.form.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.linkbutton.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.parser.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.progressbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.propertygrid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.resizable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.slider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.tabs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/src/jquery.window.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/combo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/combobox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/datagrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/datalist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/datebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/easyui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/filebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/accordion_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/calendar_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/combo_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/datagrid_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/datebox_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/layout_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/linkbutton_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/menu_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/messager_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/pagination_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/panel_tools.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/passwordbox_close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/passwordbox_open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/searchbox_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/slider_handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/spinner_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/tabs_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/tagbox_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/tree_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/images/validatebox_warning.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/linkbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/menubutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/messager.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/numberbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/pagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/panel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/passwordbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/propertygrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/searchbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/splitbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/switchbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/tagbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/textbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/tree.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/validatebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/black/window.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/combo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/combobox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/datagrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/datalist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/datebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/easyui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/filebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/accordion_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/calendar_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/combo_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/datagrid_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/datebox_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/layout_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/linkbutton_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/menu_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/messager_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/pagination_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/panel_tools.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/passwordbox_close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/passwordbox_open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/searchbox_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/slider_handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/spinner_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/tabs_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/tagbox_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/tree_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/images/validatebox_warning.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/linkbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/menubutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/messager.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/numberbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/pagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/panel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/passwordbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/propertygrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/searchbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/splitbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/switchbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/tagbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/textbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/tree.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/validatebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/bootstrap/window.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/color.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/combo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/combobox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/datagrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/datalist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/datebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/easyui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/filebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/accordion_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/calendar_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/combo_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/datagrid_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/datebox_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/layout_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/linkbutton_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/menu_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/messager_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/pagination_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/panel_tools.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/passwordbox_close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/passwordbox_open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/searchbox_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/slider_handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/spinner_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/tabs_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/tagbox_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/tree_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/images/validatebox_warning.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/linkbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/menubutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/messager.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/numberbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/pagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/panel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/passwordbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/propertygrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/searchbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/splitbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/switchbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/tagbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/textbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/tree.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/validatebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/default/window.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/combo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/combobox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/datagrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/datalist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/datebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/easyui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/filebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/accordion_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/calendar_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/combo_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/datagrid_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/datebox_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/layout_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/linkbutton_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/menu_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/messager_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/pagination_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/panel_tools.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/passwordbox_close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/passwordbox_open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/searchbox_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/slider_handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/spinner_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/tabs_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/tagbox_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/tree_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/images/validatebox_warning.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/linkbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/menubutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/messager.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/numberbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/pagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/panel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/passwordbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/propertygrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/searchbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/splitbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/switchbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/tagbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/textbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/tree.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/validatebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/gray/window.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icon.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/back.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/cancel.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/clear.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/cut.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/edit_add.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/edit_remove.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/filesave.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/filter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/help.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/large_chart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/large_clipart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/large_picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/large_shapes.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/large_smartart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/lock.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/man.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/mini_add.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/mini_edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/mini_refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/more.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/no.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/ok.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/pencil.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/print.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/redo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/reload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/sum.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/tip.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/icons/undo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/combo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/combobox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/datagrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/datalist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/datebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/easyui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/filebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/accordion_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/calendar_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/combo_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/datagrid_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/datebox_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/layout_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/linkbutton_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/menu_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/messager_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/pagination_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/panel_tools.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/passwordbox_close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/passwordbox_open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/searchbox_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/slider_handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/spinner_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/tabs_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/tagbox_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/tree_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/images/validatebox_warning.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/linkbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/menubutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/messager.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/numberbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/pagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/panel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/passwordbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/propertygrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/searchbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/splitbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/switchbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/tagbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/textbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/tree.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/validatebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/material/window.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/combo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/combobox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/datagrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/datalist.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/datebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/easyui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/filebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/accordion_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/calendar_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/combo_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/datagrid_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/datebox_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/layout_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/linkbutton_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/menu_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/messager_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/pagination_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/panel_tools.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/passwordbox_close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/passwordbox_open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/searchbox_button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/slider_handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/spinner_arrows.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/tabs_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/tagbox_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/tree_icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/images/validatebox_warning.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/linkbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/menubutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/messager.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/numberbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/pagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/panel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/passwordbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/propertygrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/searchbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/splitbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/switchbutton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/tagbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/textbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/tree.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/validatebox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/metro/window.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/easyui/themes/mobile.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/jquery-3.1.0.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/scripts/base64.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/scripts/basevalue.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/scripts/cookie_util.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/scripts/device-manage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/scripts/lockoperate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/scripts/login.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/scripts/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/UserManage.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/deviceManage.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/O2loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/Oloading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/SafetyExit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/analyGraphy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/certiAuthBtn.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/certiAuthBtn2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/doorlock.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/equivementManage.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/gateway.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/intellilock.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/pwdAuthBtn.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/querryDatagrid.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/images/refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/login.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Guard/target/guard/resources/styles/main.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Guard/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Guard/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Guard/Guard.iml" afterPath="$PROJECT_DIR$/../Guard/Guard.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Lock0410/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../demo-springBean/src/main/java/com/yishu/bean/CDPlayer.java" afterPath="$PROJECT_DIR$/../demo-springBean/src/main/java/com/yishu/bean/CDPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../demo-springBean/src/main/java/com/yishu/bean2/CDPlayerConfig2.java" afterPath="$PROJECT_DIR$/../demo-springBean/src/main/java/com/yishu/bean2/CDPlayerConfig2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../epLock/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../epLock/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../epLock/epLock.iml" afterPath="$PROJECT_DIR$/../epLock/epLock.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/UnlockAction.java" afterPath="$PROJECT_DIR$/../lockWechat/src/main/java/com/yishu/action/UnlockAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_manage.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_manage.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_property.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/lock/lock_property.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/unlock/unlock_authById.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/unlock/unlock_authById.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/unlock/unlock_authByPwd.jsp" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/jsp/unlock/unlock_authByPwd.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/lock_manage.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/lock_manage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/unlock_authById.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/unlock_authById.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/unlock_authByPwd.js" afterPath="$PROJECT_DIR$/../lockWechat/src/main/webapp/resources/js/unlock_authByPwd.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -773,6 +63,7 @@
     <option name="hideWarnings" value="true" />
     <option name="HIDE_WARNINGS" value="true" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="SwipeDataServer" />
   </component>
@@ -786,9 +77,11 @@
       <file leaf-file-name="Aspect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/aop/Aspect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="1430">
               <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -796,19 +89,33 @@
       <file leaf-file-name="IUserService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shiro/service/IUserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="154">
               <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spring-mybatis.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
+      <file leaf-file-name="DataServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/DataServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="-242">
+              <caret line="151" column="66" lean-forward="true" selection-start-line="151" selection-start-column="66" selection-end-line="151" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -955,9 +262,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="202" />
-    <option name="width" value="1316" />
-    <option name="height" value="890" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -1000,30 +308,54 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SwipeDataServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SwipeDataServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataServer.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeDataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1080,147 +412,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.SwipeDataServer">
-    <configuration name="SwipeDataServer" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="DataServer" />
-      <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.7" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="SwipeDataServer" />
-      <envs>
-        <env name="APP_HOME" value="e:/SwipeDataServer" />
-      </envs>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.7" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SCRATCH_FILE_ID" value="0" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment />
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="_SwipeDataServer_2" />
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="58409" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-    </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -1282,129 +473,6 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-    </configuration>
-    <configuration default="true" type="JarApplication" factoryName="JAR Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="LOCAL" value="false" />
-      <deployment />
-      <server-settings>
-        <data>
-          <option name="targets">
-            <list>
-              <WatchedTargetModelImpl>
-                <option name="name" value="CONTEXT_XML" />
-                <option name="transportStagingTarget">
-                  <TransportTarget>
-                    <option name="id" value="3e14ef45-7ea0-431d-8232-cd3ba2d80660" />
-                    <id>3e14ef45-7ea0-431d-8232-cd3ba2d80660</id>
-                  </TransportTarget>
-                </option>
-                <option name="watchedLocalPath" value="" />
-                <watched-path />
-                <name>CONTEXT_XML</name>
-                <transport-target>
-                  <TransportTarget>
-                    <option name="id" value="3e14ef45-7ea0-431d-8232-cd3ba2d80660" />
-                    <id>3e14ef45-7ea0-431d-8232-cd3ba2d80660</id>
-                  </TransportTarget>
-                </transport-target>
-              </WatchedTargetModelImpl>
-              <StagingTargetModelImpl>
-                <option name="name" value="STAGING" />
-                <option name="stagingRemotePath" value="" />
-                <option name="transportStagingTarget">
-                  <TransportTarget>
-                    <option name="id" value="84a9ace1-4450-40b4-b81c-73e3774b1aa6" />
-                    <id>84a9ace1-4450-40b4-b81c-73e3774b1aa6</id>
-                  </TransportTarget>
-                </option>
-                <staging-path />
-                <name>STAGING</name>
-                <transport-target>
-                  <TransportTarget>
-                    <option name="id" value="84a9ace1-4450-40b4-b81c-73e3774b1aa6" />
-                    <id>84a9ace1-4450-40b4-b81c-73e3774b1aa6</id>
-                  </TransportTarget>
-                </transport-target>
-              </StagingTargetModelImpl>
-            </list>
-          </option>
-          <option name="transportHostId" value="" />
-          <host-id />
-        </data>
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="58410" />
-        <option name="LOCAL" value="false" />
-      </RunnerSettings>
       <method />
     </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
@@ -1464,6 +532,264 @@
       </RunnerSettings>
       <method />
     </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.7" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="_SwipeDataServer_2" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="58409" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method />
+    </configuration>
+    <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="targets">
+            <list>
+              <WatchedTargetModelImpl>
+                <option name="name" value="CONTEXT_XML" />
+                <option name="transportStagingTarget">
+                  <TransportTarget>
+                    <option name="id" value="3e14ef45-7ea0-431d-8232-cd3ba2d80660" />
+                    <id>3e14ef45-7ea0-431d-8232-cd3ba2d80660</id>
+                  </TransportTarget>
+                </option>
+                <option name="watchedLocalPath" value="" />
+                <watched-path />
+                <name>CONTEXT_XML</name>
+                <transport-target>
+                  <TransportTarget>
+                    <option name="id" value="3e14ef45-7ea0-431d-8232-cd3ba2d80660" />
+                    <id>3e14ef45-7ea0-431d-8232-cd3ba2d80660</id>
+                  </TransportTarget>
+                </transport-target>
+              </WatchedTargetModelImpl>
+              <StagingTargetModelImpl>
+                <option name="name" value="STAGING" />
+                <option name="stagingRemotePath" value="" />
+                <option name="transportStagingTarget">
+                  <TransportTarget>
+                    <option name="id" value="84a9ace1-4450-40b4-b81c-73e3774b1aa6" />
+                    <id>84a9ace1-4450-40b4-b81c-73e3774b1aa6</id>
+                  </TransportTarget>
+                </option>
+                <staging-path />
+                <name>STAGING</name>
+                <transport-target>
+                  <TransportTarget>
+                    <option name="id" value="84a9ace1-4450-40b4-b81c-73e3774b1aa6" />
+                    <id>84a9ace1-4450-40b4-b81c-73e3774b1aa6</id>
+                  </TransportTarget>
+                </transport-target>
+              </StagingTargetModelImpl>
+            </list>
+          </option>
+          <option name="transportHostId" value="" />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="58410" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -1471,7 +797,24 @@
       <envs />
       <method />
     </configuration>
-    <configuration name="swipe-jar" type="Application" factoryName="Application">
+    <configuration default="false" name="SwipeDataServer" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="DataServer" />
+      <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.7" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SwipeDataServer" />
+      <envs>
+        <env name="APP_HOME" value="e:/SwipeDataServer" />
+      </envs>
+      <method />
+    </configuration>
+    <configuration default="false" name="swipe-jar" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="DataServer" />
       <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8" />
@@ -1628,6 +971,7 @@
       <workItem from="1521441951521" duration="37000" />
       <workItem from="1521443155103" duration="227000" />
       <workItem from="1521443829419" duration="23000" />
+      <workItem from="1522645312460" duration="176000" />
     </task>
     <task id="LOCAL-00001" summary="2017.05.26">
       <created>1495796219498</created>
@@ -1801,7 +1145,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="807358000" />
+    <option name="totallyTimeSpent" value="807534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1813,23 +1157,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="202" y="0" width="1316" height="890" extended-state="0" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32867134" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29090908" sideWeight="0.095115684" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925257" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35220996" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25702247" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957748" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35070422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22044729" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14967811" sideWeight="0.47534516" order="6" side_tool="false" content_ui="combo" x="600" y="27" width="400" height="806" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17416452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44084507" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28277636" sideWeight="0.5246548" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1839,12 +1184,10 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3547486" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44084507" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2859155" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35220996" sideWeight="0.90488434" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32816902" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1883,7 +1226,7 @@
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -2041,7 +1384,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2084,7 +1426,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2106,20 +1447,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-845">
           <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <marker date="1501124493896" expanded="true" signature="249:420" ph="INSERT INTO TABLE_SAMLIST... " />
-            <marker date="1501124493896" expanded="true" signature="499:897" ph="UPDATE TABLE... " />
-            <marker date="1501124493896" expanded="true" signature="976:1050" ph="DELETE FROM " />
-            <marker date="1501124493896" expanded="true" signature="1189:1249" ph="DELETE FROM " />
-            <marker date="1501124493896" expanded="true" signature="1356:1535" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="1637:1814" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="1916:2171" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="2257:2450" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="2568:3298" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="3381:3686" ph="SELECT `devi... TABLE_SAMLIST" />
-            <marker date="1501124493896" expanded="true" signature="5136:5267" ph="DELETE FROM " />
-            <marker date="1501124493896" expanded="true" signature="5202:5266" ph="SELECT SEQ,M... TABLE_SAMLIST" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2127,15 +1454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-845">
           <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11683">
-          <caret line="699" column="36" lean-forward="false" selection-start-line="699" selection-start-column="36" selection-end-line="699" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2143,7 +1461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2172,18 +1489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <marker date="1509947703507" expanded="true" signature="296:419" ph="INSERT INTO t_user... " />
-            <marker date="1509947703507" expanded="true" signature="513:981" ph="UPDATE t_use... " />
-            <marker date="1509947703507" expanded="true" signature="1050:1093" ph="DELETE FROM " />
-            <marker date="1509947703507" expanded="true" signature="1425:1577" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="1646:1765" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="1863:2027" ph="SELECT id, u... t_user" />
-            <marker date="1509947703507" expanded="true" signature="2118:2391" ph="SELECT tu.id... t_user" />
-            <marker date="1509947703507" expanded="true" signature="2539:2790" ph="SELECT tr.`i... t_resource" />
-            <marker date="1509947703507" expanded="true" signature="2926:3118" ph="SELECT tr.sn... t_role" />
-            <marker date="1509947703507" expanded="true" signature="3247:3477" ph="SELECT tr.`i... t_role" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2198,18 +1503,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="54" column="48" lean-forward="false" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
-          <folding>
-            <element signature="e#1212#1213#0" expanded="true" />
-            <element signature="e#1267#1268#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aop/Aspect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="1430">
           <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2222,9 +1525,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shiro/service/IUserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="154">
           <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2232,7 +1537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2240,17 +1544,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/spring-mybatis.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="22">
           <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-242">
+          <caret line="151" column="66" lean-forward="true" selection-start-line="151" selection-start-column="66" selection-end-line="151" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

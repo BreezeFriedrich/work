@@ -119,6 +119,10 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
             ownerPhoneNumber= (String) map.get("ownerPhoneNumber");
             LOG.info("ownerPhoneNumber :"+ownerPhoneNumber);
             session.setAttribute("ownerPhoneNumber",ownerPhoneNumber);
+            ownerName= (String) map.get("ownerName");
+            if(null!=ownerName){
+                session.setAttribute("ownerName",ownerName);
+            }
             /*使用struts2操作session,设置session.
             ActionContext.getContext().getSession().put("ownerPhoneNumber", ownerPhoneNumber);
              */

@@ -67,6 +67,8 @@ public class LoginServiceImpl implements ILoginService{
         String ownerPhoneNumber=rootNode.path("ownerPhoneNumber").asText();
         resultMap.put("ownerPhoneNumber",ownerPhoneNumber);
         LOG.info("ownerPhoneNumber",ownerPhoneNumber);
+        String ownerName=rootNode.path("ownerName").asText();
+        resultMap.put("ownerName",ownerName);
 
         return resultMap;
     }

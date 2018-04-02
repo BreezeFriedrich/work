@@ -1,13 +1,3 @@
-<%--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  --%>
-
-<%--
-  WechatUser: admin
-  Date: 2017/10/19
-  Time: 14:46
---%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
@@ -44,7 +34,7 @@
         <div class="content">
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
-                    <li>
+                    <%--<li>
                         <div class="item-content">
                             <div class="item-inner">
                                 <div class="item-title label">授权密码</div>
@@ -53,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li>--%>
                     <li>
                         <div class="item-content">
                             <div class="item-inner">

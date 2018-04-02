@@ -23,8 +23,9 @@
 .list-my .item-inner:before{background-color:#2a2a2a !important}
 
 .my-yonghu{ margin: 2rem 0  3rem 0}
-.my-yonghu .my-tx{ width: 60px; height: 60px; border-radius: 60px; height: 60px; margin:0 auto; display:block}
-.my-yonghu .my-iphone{ text-align: center;color: #fff; line-height: 2.2rem; }
+.my-yonghu .avatar{ width: 60px; height: 60px; border-radius: 60px; height: 60px; margin:0 auto; display:block}
+.my-yonghu .p-phone{ text-align: center;color: #fff; line-height: 2.2rem; }
+.my-yonghu .p-nickname{ text-align: center;color: #fff; line-height: 2.2rem; }
 
 .list-my  .my-inner{position:static}
 .list-my ul{ background:none !important; color:#fff}

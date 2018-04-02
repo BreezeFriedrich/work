@@ -180,6 +180,6 @@
 <%--<script type='text/javascript' src='resources/js/util/date.js'></script>--%>
 <%--<script type='text/javascript' src='resources/js/util/datetimepicker.js'></script>--%>
 <script type="text/javascript" src='resources/js/util/moment-with-locales.js'></script>
-<script type='text/javascript' src='resources/js/record.js?v=8' charset='utf-8'></script>
+<script type='text/javascript' src='resources/js/record.js?v=9' charset='utf-8'></script>
 </body>
 </html>

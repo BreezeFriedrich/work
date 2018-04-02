@@ -47,9 +47,9 @@ function getQueryString(name) {
 }
 
 function authById() {
-    authPassword=document.getElementsByTagName('input')[0].value;
-    name=document.getElementsByTagName('input')[1].value;
-    cardNumb=document.getElementsByTagName('input')[2].value;
+    // authPassword=document.getElementsByTagName('input')[0].value;
+    name=document.getElementsByTagName('input')[0].value;
+    cardNumb=document.getElementsByTagName('input')[1].value;
     // 错误的写法 startTime=document.getElementsByTagName('input')[3].value;
     // startTime=$("#datetime-picker-1").val();
     // endTime=$("#datetime-picker-2").val();
@@ -101,11 +101,12 @@ function authById() {
                     "startTime":startTime,
                     "endTime":endTime,
                     "cardNumb":cardNumb,
-                    "authPassword":authPassword
+                    // "authPassword":authPassword
                 },
                 dataType:'json',
                 success:function(data,status,xhr){
                     $.hideIndicator();
+                    /*
                     if(0==data.result){
                         $.toast('开锁授权成功,正在返回上一页...',1500);
                         window.setTimeout("history.go(-1)",2000);
@@ -116,11 +117,18 @@ function authById() {
                     }else {
                         $.toast(data.msg,1500);
                     }
+                    */
+                    if(data){
+                        $.toast('开锁授权成功,正在返回上一页...',1500);
+                        window.setTimeout("history.go(-1)",2000);
+                    }else{
+                        $.toast('开锁授权失败',1500);
+                    }
                 },
                 error:function(xhr,errorType,error){
                     $.hideIndicator();
                     console.log('错误');
-                    $.alert('开锁授权失败', '操作失败！');
+                    $.alert('发送请求失败', '操作失败！');
                 }
             });
         }else {
