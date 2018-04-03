@@ -161,7 +161,7 @@ public class LockAction extends ActionSupport {
             }
         }
         //遍历门锁,找到对应lockCode的门锁信息
-        if(null==device.getLockLists()){
+        if(null==device || null==device.getLockLists()){
             jsonResult=null;
         }else {
             iter=device.getLockLists().iterator();

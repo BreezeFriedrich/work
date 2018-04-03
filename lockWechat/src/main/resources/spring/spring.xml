@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright (C) 2006-${YEAR} 南京亿数信息科技有限公司 版权所有
-  ~ Nanjing yishu information technology co., LTD. All Rights Reserved.
-  -->
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -23,26 +18,24 @@
 	http://www.springframework.org/schema/task
 	http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-	<!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-		<!--<property name="location" value="classpath:jwt.properties" />-->
-	<!--</bean>-->
 	<!-- 自动扫描组件 -->
-	<!--<context:component-scan base-package="com.yishu.jwt"/>-->
 	<context:component-scan base-package="com.yishu.service"/>
 	<context:component-scan base-package="com.yishu.util"/>
 	<context:component-scan base-package="com.yishu.web"/>
 
 	<!--javamelody与Spring集成-->
+	<!--
 	<bean id= "facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor" >
 		<property name ="pointcut">
 			<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut" >
-				<property name ="pattern" value="com.yishu.service.*" /><!--正则表达式-->
+				<property name ="pattern" value="com.yishu.service.*" />
 			</bean>
 		</property>
 	</bean>
+	-->
 
 	<!-- 引入.properties配置文件 -->
-	<context:property-placeholder location="classpath:jwt.properties,classpath:properties/wechat.properties,classpath:properties/application.properties"  ignore-unresolvable="true"/>
+	<context:property-placeholder location="classpath:properties/wechat.properties,classpath:properties/application.properties"  ignore-unresolvable="true"/>
 
 	<!--
 	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

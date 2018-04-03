@@ -2,7 +2,6 @@ package com.yishu.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.Parameterizable;
-import com.yishu.dao.LockUserDao;
 import com.yishu.service.ILoginService;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,8 +24,6 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
 
     @Autowired
     ILoginService loginService;
-    @Autowired
-    LockUserDao lockUserDao;
 
     private String code;
     private String state;

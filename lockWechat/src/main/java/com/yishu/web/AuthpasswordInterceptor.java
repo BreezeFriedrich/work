@@ -8,6 +8,7 @@ package com.yishu.web;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.yishu.service.IAccountService;
 import org.apache.struts2.ServletActionContext;
@@ -24,7 +25,7 @@ import java.util.Map;
  * @version 1.0.0.0 2018-03-31 9:55 admin
  * @since JDK1.7
  */
-public class AuthpasswordInterceptor implements Interceptor {
+public class AuthpasswordInterceptor extends AbstractInterceptor {
     public AuthpasswordInterceptor() {
         LOG.info(">>>Initialization AuthpasswordInterceptor......................................");
     }
@@ -48,22 +49,10 @@ public class AuthpasswordInterceptor implements Interceptor {
     public void setRedirectUrl(String redirectUrl) {
         this.redirectUrl = redirectUrl;
     }
-
-    @Override
-    public void destroy() {
-
-    }
-
-    @Override
-    public void init() {
-
-    }
-
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
-//        response.sendRedirect(redirectURL);
         HttpServletRequest request=ServletActionContext.getRequest();
-//        HttpServletResponse response=ServletActionContext.getResponse();
+        HttpServletResponse response=ServletActionContext.getResponse();
         HttpSession session=request.getSession();
         if(null!=session.getAttribute("authPassword")){
             LOG.info("authPassword:"+session.getAttribute("authPassword"));

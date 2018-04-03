@@ -26,6 +26,7 @@ $(function(){
             startTime=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
         }
     });
+    startTime=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
     temptime.setDate(temptime.getDate()+1);
     // $("#datetime-picker-2").datetimePicker({
     //     value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
@@ -36,6 +37,7 @@ $(function(){
             endTime=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
         }
     });
+    endTime=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     gatewayCode=getQueryString("gatewayCode");

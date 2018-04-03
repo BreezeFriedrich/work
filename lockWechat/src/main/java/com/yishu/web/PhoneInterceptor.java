@@ -7,8 +7,10 @@ package com.yishu.web;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,16 +21,8 @@ import javax.servlet.http.HttpSession;
  * @version 1.0.0.0 2018-03-31 14:59 admin
  * @since JDK1.7
  */
-public class OwnerphonenumberInterceptor implements Interceptor {
-    @Override
-    public void destroy() {
-
-    }
-
-    @Override
-    public void init() {
-
-    }
+@Component
+public class PhoneInterceptor extends AbstractInterceptor {
 
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {

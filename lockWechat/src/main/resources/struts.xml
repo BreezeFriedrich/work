@@ -48,7 +48,7 @@
             <interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
             <interceptor name="openIdInterceptor" class="com.yishu.web.OpenIdInterceptor" />
             <interceptor name="authpasswordInterceptor" class="com.yishu.web.AuthpasswordInterceptor" />
-            <interceptor name="phoneInterceptor" class="com.yishu.web.OwnerphonenumberInterceptor" />
+            <interceptor name="phoneInterceptor" class="com.yishu.web.PhoneInterceptor" />
             <!-- 定义拦截器栈 -->
             <interceptor-stack name="monitor_Stack">
                 <!-- 引用拦截器 name:拦截器名称或拦截器栈名称 -->

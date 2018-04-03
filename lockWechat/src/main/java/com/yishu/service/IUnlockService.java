@@ -16,9 +16,9 @@ import java.util.List;
  */
 public interface IUnlockService {
     public List getUnlockId(String ownerPhoneNumber,String gatewayCode,String lockCode);
-    public boolean authUnlockById(String ownerPhoneNumber,String gatewayCode,String lockCode,String name,String cardNumb,String dnCode,String startTime,String endTime);
+    public boolean authUnlockById(String ownerPhoneNumber,String gatewayCode,String lockCode,String name,String cardNumb,String dnCode,long startTime,long endTime);
     public boolean prohibitUnlockById(String ownerPhoneNumber,String lockCode,String cardNumb,String serviceNumb);
     public UnlockPwds getUnlockPwd(String ownerPhoneNumber,String gatewayCode,String lockCode);
-    public boolean authUnlockByPwd(String ownerPhoneNumber,String gatewayCode,String lockCode,String password,String startTime,String endTime);
+    public boolean authUnlockByPwd(String ownerPhoneNumber,String gatewayCode,String lockCode,String password,long startTime,long endTime);
     public boolean prohibitUnlockByPwd(String ownerPhoneNumber,String gatewayCode,String lockCode,String serviceNumb);
 }
