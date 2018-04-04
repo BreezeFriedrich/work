@@ -1,10 +1,28 @@
 package com.yishu.pojo;
 
 public class Room {
+    private String roomTypeId;
+    private String roomTypeName;
     private String roomId;
     private String roomName;
     private String gatewayCode;
     private String lockCode;
+
+    public String getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(String roomTypeId) {
+        this.roomTypeId = roomTypeId;
+    }
+
+    public String getRoomTypeName() {
+        return roomTypeName;
+    }
+
+    public void setRoomTypeName(String roomTypeName) {
+        this.roomTypeName = roomTypeName;
+    }
 
     public String getRoomId() {
         return roomId;

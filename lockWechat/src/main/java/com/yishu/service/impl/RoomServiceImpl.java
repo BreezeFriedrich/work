@@ -8,6 +8,7 @@ package com.yishu.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yishu.pojo.Room;
 import com.yishu.pojo.RoomTypeContainRoom;
 import com.yishu.service.IRoomService;
 import com.yishu.util.HttpUtil;
@@ -159,6 +160,7 @@ public class RoomServiceImpl implements IRoomService {
 		ObjectMapper objectMapper=new ObjectMapper();
 		JsonNode rootNode= null;
 		List<RoomTypeContainRoom> roomTypeCRList = null;
+		RoomTypeContainRoom roomTypeCR=null;
 		try {
 			rootNode = objectMapper.readTree(result);
 			int respSign=rootNode.path("result").asInt();
@@ -167,6 +169,15 @@ public class RoomServiceImpl implements IRoomService {
 			}
 			JsonNode roomListNode=rootNode.path("roomList");
 			roomTypeCRList =objectMapper.readValue(roomListNode.traverse(), new TypeReference<List<RoomTypeContainRoom>>(){});
+			for(int i=0;i<roomTypeCRList.size();i++){
+				roomTypeCR=roomTypeCRList.get(i);
+				List<Room> rooms=roomTypeCR.getRoomInfoList();
+				for(int j=0;j<rooms.size();j++){
+					Room room=rooms.get(i);
+					room.setRoomTypeId(roomTypeCR.getRoomTypeId());
+					room.setRoomTypeName(roomTypeCR.getRoomType());
+				}
+			}
 		} catch (IOException |NullPointerException e) {
 			e.printStackTrace();
 		}

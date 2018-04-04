@@ -129,7 +129,7 @@ $(function(){
     function upCallback(page){
         var url="record/getUnlockRecordPage.action";
         //联网加载数据
-        getPageData(url,{},page.num, page.size, function(data){
+        getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
             var curPageData=data.rows;
             var totalSize=data.totalSize;
             //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
@@ -269,7 +269,7 @@ function showAllRecords() {
     /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getUnlockRecordPage.action";
-        getPageData(url,{},page.num, page.size, function(data){
+        getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
             var curPageData=data.rows;
             var totalSize=data.totalSize;
             console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
@@ -289,7 +289,7 @@ function showDevicesFromRecords() {
     function upCallback(page){
         // url:projectPath+"/record/getUnlockRecordDevice.action",
         var url="record/getUnlockRecordDevice.action";
-        getPageData(url,{},page.num, page.size, function(data){
+        getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
             /*
             var curPageData=data.rows;
             var totalSize=data.totalSize;
@@ -485,10 +485,10 @@ function showOperatorRecords(cardNum) {
 }
 
 /*根据开锁记录展示开锁的房间信息*/
+/*
 function showRoomFromRecords() {
     showPage(upCallback);
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getRecordRoom.action";
         getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
@@ -514,6 +514,49 @@ function setRoomWithRecord(data) {
         str+=       '<span style="width: 150px;padding-left: 20px;"><i class="iconfont">&#xe7ff;</i><b style="width: 80px;padding-left: 10px">'+roomName+'</b></span>';
         // str+='<span class="iconfont">&#xe608;</span>';
         str+=       '<span style="width: 150px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
+        str+=    '</a>';
+        str+='</div>';
+        var liDom=document.createElement("li");
+        liDom.innerHTML=str;
+        listDom.appendChild(liDom);
+    }
+}
+*/
+function showRoomFromRecords() {
+    showPage(upCallback);
+
+    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
+    function upCallback(page){
+        var url="record/getRoomAndRecords.action";
+        getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
+            console.log('length : '+Object.keys(data).length);
+            mescroll.setPageSize(Object.keys(data).length+1);
+            mescroll.endSuccess(Object.keys(data).length);
+            setRoomWithRecord(data);
+        }, function(){
+            mescroll.endErr();
+        });
+    }
+}
+function setRoomWithRecord(data) {//data:[RoomAndRecords]
+    var listDom=document.getElementById("dataList");
+    var roomAndRecord=null;
+    for(var i=0;i<data.length;i++){
+        roomAndRecord=data[i];
+        var room=roomAndRecord.room;
+        var roomTypeName=room.roomTypeName;
+        var roomId=room.roomId;
+        var roomName=room.roomName;
+        var recordSize=roomAndRecord.size;
+        var str='';
+        str+='<div>';
+        str+=    '<a class="a-id" href="javascript:void(0);" onclick="showRoomRecords(\''+roomId+'\')" style="width: 340px;">';
+        if(null==roomTypeName){
+            roomTypeName='';
+        }
+        str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe64f;</i><b style="width: 80px;padding-left: 10px">'+roomTypeName+'</b></span>';
+        str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe7ff;</i><b style="width: 80px;padding-left: 10px">'+roomName+'</b></span>';
+        str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
         str+=    '</a>';
         str+='</div>';
         var liDom=document.createElement("li");

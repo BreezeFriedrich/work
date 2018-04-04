@@ -5,12 +5,8 @@
 
 package com.yishu.service;
 
-import com.yishu.pojo.Records;
-import com.yishu.pojo.RoomRecord;
-import com.yishu.pojo.RoomTypeContainRoom;
-import com.yishu.pojo.UnlockRecord;
+import com.yishu.pojo.*;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +28,7 @@ public interface IRecordService {
     public Records<RoomRecord> getLockUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String lockCode, int pageNum, int pageSize);
 
     public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime);
+    public List<GatewayAndRecord> getGatewayAndRecords(String ownerPhoneNumber, String startTime, String endTime);
 
     public Map getUnlockRecordDevicePage(String ownerPhoneNumber, String startTime, String endTime, int pageNum,int pageSize);
 
@@ -41,8 +38,10 @@ public interface IRecordService {
     public Records<RoomRecord> getOperatorUnlockRecordPage(String ownerPhoneNumber, String startTime, String endTime, String cardNum, int pageNum, int pageSize);
 
     public List<RoomRecord> convertUnlockRecordToRoomRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs);
+    public List<RoomAndRecord> convertUnlockRecordToRoomAndRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs);
 
     public Map getRecordRoom(String ownerPhoneNumber, String startTime, String endTime);
+    public List<RoomAndRecord> getRoomAndRecords(String ownerPhoneNumber, String startTime, String endTime);
 
     public Records<RoomRecord> getRoomRecordPage(String ownerPhoneNumber,String startTime,String endTime,int pageNum,int pageSize,String roomId);
 }

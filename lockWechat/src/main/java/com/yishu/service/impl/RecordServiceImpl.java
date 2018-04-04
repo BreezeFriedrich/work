@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yishu.pojo.*;
+import com.yishu.service.IDeviceService;
 import com.yishu.service.IRecordService;
 import com.yishu.service.IRoomService;
 import com.yishu.util.*;
@@ -30,6 +31,8 @@ public class RecordServiceImpl implements IRecordService {
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordServiceImpl");
     @Autowired
     private IRoomService roomService;
+    @Autowired
+    private IDeviceService deviceService;
 
     int reqSign;
     String reqData;
@@ -357,6 +360,7 @@ public class RecordServiceImpl implements IRecordService {
         return deviceRecordsMap;
     }
     */
+//    /*
     public Map getUnlockRecordDevice(String ownerPhoneNumber, String startTime, String endTime) {
         List<UnlockRecord> rawUnlockRecordList=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         UnlockRecord unlockRecord=null;
@@ -424,6 +428,79 @@ public class RecordServiceImpl implements IRecordService {
             dataWithSizeGatewayRecords.setSize(gatewayRecordsSize);
         }
         return deviceRecordsMap;
+    }
+
+    @Override
+    public List<GatewayAndRecord> getGatewayAndRecords(String ownerPhoneNumber, String startTime, String endTime) {
+        List<Device> devices=deviceService.getDeviceInfo(ownerPhoneNumber);
+        List<UnlockRecord> rawUnlockRecord=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<UnlockRecord> unlockRecords=null;
+        UnlockRecord unlockRecord=null;
+        GatewayAndRecord gatewayAndRecord=null;
+        LockAndRecord lockAndRecord=null;
+        List<LockAndRecord> lockAndRecords=null;
+        Device device=null;
+        List<Lock> locks=null;
+        Lock lock=null;
+        Gateway gateway=null;
+
+        List<GatewayAndRecord> gatewayAndRecords=new ArrayList<GatewayAndRecord>();
+        for(int i=0;i<devices.size();i++){
+            device=devices.get(i);
+            gatewayAndRecord=new GatewayAndRecord();
+            gateway=new Gateway();
+            gateway.setGatewayCode(device.getGatewayCode());
+            gateway.setGatewayName(device.getGatewayName());
+            gateway.setGatewayStatus(device.getGatewayStatus());
+            gateway.setGatewayLocation(device.getGatewayLocation());
+            gateway.setGatewayComment(device.getGatewayComment());
+            gatewayAndRecord.setGateway(gateway);
+
+            lockAndRecords=new ArrayList<LockAndRecord>();
+            locks=device.getLockLists();
+            for(int j=0;j<locks.size();j++){
+                lock=locks.get(j);
+                lockAndRecord=new LockAndRecord();
+                lockAndRecord.setLock(lock);
+
+//                unlockRecords=new ArrayList<UnlockRecord>();
+//                for(int k=0;k<rawUnlockRecord.size();k++){
+//                    unlockRecord=rawUnlockRecord.get(k);
+//                    if(device.getGatewayCode().equals(unlockRecord.getGatewayCode()) && lock.getLockCode().equals(unlockRecord.getLockCode())){
+//                        unlockRecords.add(unlockRecord);
+//                    }
+//                }
+//                lockAndRecord.setUnlockRecords(unlockRecords);
+//                lockAndRecord.setSize(unlockRecords.size());
+            }
+            lockAndRecords.add(lockAndRecord);
+            gatewayAndRecord.setLockAndRecords(lockAndRecords);
+        }
+        gatewayAndRecords.add(gatewayAndRecord);
+
+        for(int i=0;i<rawUnlockRecord.size();i++){
+            unlockRecord=rawUnlockRecord.get(i);
+
+            unlockRecords=new ArrayList<UnlockRecord>();
+            for(int j=0;j<gatewayAndRecords.size();j++){
+                gatewayAndRecord=gatewayAndRecords.get(j);
+
+                String gatewayCode=gatewayAndRecord.getGateway().getGatewayCode();
+
+                lockAndRecords=gatewayAndRecord.getLockAndRecords();
+                for(int k=0;k<lockAndRecords.size();k++){
+                    lockAndRecord=lockAndRecords.get(j);
+                    String lockCode=lockAndRecord.getLock().getLockCode();
+                    if(gatewayCode.equals(unlockRecord.getGatewayCode()) && lockCode.equals(unlockRecord.getLockCode())){
+                        unlockRecords.add(unlockRecord);
+                    }
+                }
+            }
+        }
+        lockAndRecord.setUnlockRecords(unlockRecords);
+        lockAndRecord.setSize(unlockRecords.size());
+
+        return gatewayAndRecords;
     }
 
     //未使用.引用的方法getUnlockRecordDevice()已被注释.
@@ -665,6 +742,47 @@ public class RecordServiceImpl implements IRecordService {
         }
         return roomRecords;
     }
+    @Override
+    public List<RoomAndRecord> convertUnlockRecordToRoomAndRecord(List<UnlockRecord> unlockRecords, List<RoomTypeContainRoom> roomTypeCRs) {
+        int roomTypeCRSize=roomTypeCRs.size();
+        RoomTypeContainRoom roomTypeCR=null;
+        int unlockRecordSize=unlockRecords.size();
+        UnlockRecord unlockRecord=null;
+        List<RoomAndRecord> roomAndRecords=new ArrayList<>();
+        RoomAndRecord roomAndRecord=null;
+        List<Room> rooms=null;
+        Room room=null;
+        String gatewayCode=null;
+        String lockCode=null;
+
+        for(int i=0;i<roomTypeCRSize;i++){
+            roomTypeCR=roomTypeCRs.get(i);
+            rooms=roomTypeCR.getRoomInfoList();
+            for(int j=0;j<rooms.size();j++){
+                roomAndRecord=new RoomAndRecord();
+                room=rooms.get(j);
+                roomAndRecord.setRoom(room);
+                roomAndRecords.add(roomAndRecord);
+            }
+        }
+        List<UnlockRecord> newUnlockRecords=null;
+        for(int i=0;i<roomAndRecords.size();i++){
+            roomAndRecord=roomAndRecords.get(i);
+            room=roomAndRecord.getRoom();
+            gatewayCode=room.getGatewayCode();
+            lockCode=room.getLockCode();
+            newUnlockRecords=new ArrayList<UnlockRecord>();
+            for(int j=0;j<unlockRecordSize;j++){
+                unlockRecord=unlockRecords.get(j);
+                if(gatewayCode.equals(unlockRecord.getGatewayCode()) && lockCode.equals(unlockRecord.getLockCode())){
+                    newUnlockRecords.add(unlockRecord);
+                }
+            }
+            roomAndRecord.setUnlockRecords(newUnlockRecords);
+            roomAndRecord.setSize(roomAndRecord.getUnlockRecords().size());
+        }
+        return roomAndRecords;
+    }
 
     @Override
     public Map getRecordRoom(String ownerPhoneNumber, String startTime, String endTime) {
@@ -704,6 +822,14 @@ public class RecordServiceImpl implements IRecordService {
             dataWithNote.setSize(recordSize);
         }
         return roomRecordsMap;
+    }
+
+    @Override
+    public List<RoomAndRecord> getRoomAndRecords(String ownerPhoneNumber, String startTime, String endTime) {
+        List<UnlockRecord> unlockRecords=getUnlockRecord(ownerPhoneNumber,startTime,endTime);
+        List<RoomTypeContainRoom> roomTypeCRs=roomService.getRoom(ownerPhoneNumber);
+        List<RoomAndRecord> roomAndRecords=convertUnlockRecordToRoomAndRecord(unlockRecords,roomTypeCRs);
+        return roomAndRecords;
     }
 
     @Override
