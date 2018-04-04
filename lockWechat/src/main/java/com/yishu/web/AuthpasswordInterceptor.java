@@ -14,6 +14,7 @@ import com.yishu.service.IAccountService;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ import java.util.Map;
  * @version 1.0.0.0 2018-03-31 9:55 admin
  * @since JDK1.7
  */
+@Component
 public class AuthpasswordInterceptor extends AbstractInterceptor {
     public AuthpasswordInterceptor() {
         LOG.info(">>>Initialization AuthpasswordInterceptor......................................");

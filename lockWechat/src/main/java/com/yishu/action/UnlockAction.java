@@ -210,7 +210,7 @@ public class UnlockAction extends ActionSupport {
     */
     public String authUnlockById (){
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        boolean resultBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
+        boolean resultBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,Long.parseLong(startTime),Long.parseLong(endTime));
         jsonResult=resultBoolean;
         return "json";
     }
@@ -285,7 +285,7 @@ public class UnlockAction extends ActionSupport {
     */
     public String authUnlockByPwd (){
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        boolean resultBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
+        boolean resultBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,Long.parseLong(startTime),Long.parseLong(endTime));
         jsonResult=resultBoolean;
         return "json";
     }

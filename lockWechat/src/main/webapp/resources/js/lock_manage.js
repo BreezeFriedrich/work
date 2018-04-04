@@ -83,8 +83,8 @@ $(function(){
     */
 
     //添加开锁密码授权
-    var div_addAuthById=document.getElementById("link_addAuthByPwd");
-    div_addAuthById.addEventListener('click',function(ev){
+    var div_addAuthByPwd=document.getElementById("link_addAuthByPwd");
+    div_addAuthByPwd.addEventListener('click',function(ev){
         // var target = ev.target || window.event.srcElement;
         url="jsp/unlock/unlock_authByPwd.jsp?ownerPhoneNumber="+ownerPhoneNumber+"&gatewayCode="+specificGatewayCode+"&lockCode="+specificLockCode;
         window.location.href=encodeURI(url);
@@ -172,7 +172,7 @@ function getAuthInfo() {
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockId.action",
-        async:true,
+        async:false,
         data:{
             // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
@@ -224,7 +224,7 @@ function getAuthInfo() {
     $.ajax({
         type:"POST",
         url:projectPath+"/unlock/getUnlockPwd.action",
-        async:true,
+        async:false,
         data:{
             // "ownerPhoneNumber":ownerPhoneNumber,
             "gatewayCode":specificGatewayCode,
