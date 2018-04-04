@@ -135,8 +135,4 @@ public class OpenIdInterceptor extends AbstractInterceptor{
         return actionInvocation.invoke();
     }
     */
-
-//    public void printConfig(){
-//        LOG.info("APPID:"+APPID+",redirectURL:"+redirectURL);
-//    }
 }

@@ -97,9 +97,6 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
      */
     public String wxLogin () {
         LOG.info("login&session ￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
-//        LOG.info("wxLogin.action");
-//        LOG.info("cDate:"+session.getAttribute("cDate"));
-//        session.setAttribute("ownerPhoneNumber","13905169824");
 
         openid= (String) session.getAttribute("OPENID");
         LOG.info("openid :"+openid);
@@ -140,96 +137,6 @@ public class LoginAction extends ActionSupport implements Parameterizable,Sessio
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-/*
-    public String sendVerifyCode() throws Exception {
-        LOG.warn("sendVerifyCode.action");
-        LOG.info("客户端提交的手机号码："+phoneNumber);
-        String verifyCodeStr=VerifyCodeUtils.generateVerifyCodeNum(6);
-        SendSmsResponse smsResponse=null;
-        String sms_BizId=null;
-        smsResponse=SmsUtil.sendVerifyCode(phoneNumber,verifyCodeStr);
-        session.setAttribute("ownerPhoneNumber",phoneNumber);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        session.setAttribute("sendDateStr",dateFormat.format(new Date()));
-        session.setAttribute("verifyCode",verifyCodeStr);
-        sms_BizId=smsResponse.getBizId();
-        session.setAttribute("sms_BizId",sms_BizId);
-        LOG.info("发送 短信验证码为："+verifyCodeStr+" ,流水号为："+sms_BizId);
-        Map <String,Object> resultMap=new HashMap<>(1);
-        if(smsResponse.getCode() == null || ! smsResponse.getCode().equals("OK")){
-            LOG.error("发送短信验证码失败");
-            resultMap.put("result",false);
-        }
-        resultMap.put("smsverifycode",verifyCodeStr);
-        jsonResult=resultMap;
-        return "json";
-    }
-
-    private String verifyCode;
-    public String getVerifyCode() {
-        return verifyCode;
-    }
-    public void setVerifyCode(String verifyCode) {
-        this.verifyCode = verifyCode;
-    }
-
-    public String checkVerifyCode() throws ClientException, ParseException {
-        LOG.warn("checkVerifyCode.action");
-        String sms_BizId=null;
-        sms_BizId= (String) session.getAttribute("sms_BizId");
-        String phoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        LOG.info("查询 已发送短信 流水号为："+sms_BizId);
-        SendSmsResponse smsResponse=null;
-        QuerySendDetailsResponse querySendDetailsResponse = SmsUtil.querySendDetails(phoneNumber,sms_BizId);
-//        System.out.println("短信明细查询接口返回数据----------------");
-//        System.out.println("Code=" + querySendDetailsResponse.getCode());
-//        System.out.println("Message=" + querySendDetailsResponse.getMessage());
-        String phoneNum=null;
-        String sendDateStr=null;
-        int i = 0;
-        for (QuerySendDetailsResponse.SmsSendDetailDTO smsSendDetailDTO : querySendDetailsResponse.getSmsSendDetailDTOs()) {
-//            System.out.println("SmsSendDetailDTO["+i+"]:");
-//            System.out.println("Content=" + smsSendDetailDTO.getContent());
-//            System.out.println("ErrCode=" + smsSendDetailDTO.getErrCode());
-//            System.out.println("PhoneNum=" + smsSendDetailDTO.getPhoneNum());
-//            System.out.println("SendDate=" + smsSendDetailDTO.getSendDate());
-            LOG.info("查询已发送的短信 内容为："+smsSendDetailDTO.getContent());
-            phoneNum=smsSendDetailDTO.getPhoneNum();
-            sendDateStr=smsSendDetailDTO.getSendDate();
-        }
-        if (null != sendDateStr){
-            LOG.warn("获得短信回执,短信发送时间 : "+ sendDateStr);
-        }else {
-            sendDateStr= (String) session.getAttribute("sendDateStr");
-            LOG.info("短信发送时间 : "+sendDateStr);
-        }
-        if (null != phoneNum){
-            LOG.warn("获得短信回执,短信发送目标手机 : "+ phoneNum);
-        }else {
-            phoneNum= (String) session.getAttribute("ownerPhoneNumber");
-            LOG.info("短信发送目标手机 : "+phoneNum);
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        long timeLag= new Date().getTime()- (dateFormat.parse(sendDateStr).getTime());
-        LOG.info("客户端提交验证码:"+verifyCode+" 服务端发送验证码:"+session.getAttribute("verifyCode"));
-        LOG.info("验证码发送时间:"+sendDateStr);
-        Map <String,Object> resultMap=new HashMap<>(1);
-        if(timeLag < 5*60*1000 && verifyCode.equals(session.getAttribute("verifyCode")) ){
-            //验证码未超时并且客户端提交的验证码与服务器发送的验证码相同,即验证码有效,注册用户信息.
-            LOG.info("短信验证码有效!");
-            resultMap.put("result",1);
-            session.setAttribute("ownerPhoneNumber",phoneNum);
-        }else {
-            //验证码无效(超时或不正确),重新获取.
-            LOG.info("短信验证码无效!");
-            resultMap.put("result",2);
-            resultMap.put("errMsg","短信验证码错误或超时");
-        }
-        jsonResult=resultMap;
-        return "json";
-    }
-*/
 
     public String bindOpenid(){
         LOG.info("bindOpenid.action");

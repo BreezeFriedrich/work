@@ -143,28 +143,6 @@ public class AccountServiceImpl implements IAccountService {
         return resultMap;
     }
 
-    @Override
-    public boolean proofAuthpassword(String ownerPhoneNumber, String authPassword) {
-        reqSign=32;
-        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\"}";
-        LOG.info("reqData:"+reqData);
-        rawData = HttpUtil.httpsPostToOwner(reqData);
-        LOG.info("rawData:"+rawData);
-        try {
-            rootNode = objectMapper.readTree(rawData);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //字段result: 0 成功 ;1 失败 ;2 未设置开锁授权密码
-        respSign=rootNode.path("result").asInt();
-        if(0==respSign) {
-            String realAuthPassword = rootNode.path("authPassword").asText();//authPassword授权密码,由数字与字母组成.
-            if (realAuthPassword.equals(authPassword)) {
-                return true;
-            }
-        }
-        return false;
-    }
     /*
     @Override
     public boolean validAuthPassword(String ownerPhoneNumber, String authPassword) {

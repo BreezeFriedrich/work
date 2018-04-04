@@ -8,12 +8,14 @@ package com.yishu.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.yishu.service.IAccountService;
 import com.yishu.service.IUnlockService;
+import com.yishu.util.DateUtil;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -187,13 +189,14 @@ public class UnlockAction extends ActionSupport {
         return "json";
     }
     */
-    /*
     public String authUnlockById (){
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        long startTimeL=Long.parseLong(startTime);
+        long endTimeL=Long.parseLong(endTime);
         Map resultMap=new HashMap();
         Map validateMap = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         if(0 == (int) validateMap.get("result")){
-            boolean authBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTime,endTime);
+            boolean authBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,startTimeL,endTimeL);
             if (authBoolean){
                 resultMap.put("result",0);
                 resultMap.put("msg","修改授权码成功");
@@ -205,13 +208,6 @@ public class UnlockAction extends ActionSupport {
             resultMap=validateMap;
         }
         jsonResult=resultMap;
-        return "json";
-    }
-    */
-    public String authUnlockById (){
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        boolean resultBoolean=unlockService.authUnlockById(ownerPhoneNumber,gatewayCode,lockCode,name,cardNumb,dnCode,Long.parseLong(startTime),Long.parseLong(endTime));
-        jsonResult=resultBoolean;
         return "json";
     }
 
@@ -262,13 +258,14 @@ public class UnlockAction extends ActionSupport {
         return "json";
     }
     */
-    /*
     public String authUnlockByPwd (){
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        long startTimeL=Long.parseLong(startTime);
+        long endTimeL=Long.parseLong(endTime);
         Map resultMap=new HashMap();
         Map validateMap = accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         if(0 == (int) validateMap.get("result")){
-            boolean authBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTime,endTime);
+            boolean authBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,startTimeL,endTimeL);
             if (authBoolean){
                 resultMap.put("result",0);
                 resultMap.put("msg","修改授权码成功");
@@ -280,13 +277,6 @@ public class UnlockAction extends ActionSupport {
             resultMap=validateMap;
         }
         jsonResult=resultMap;
-        return "json";
-    }
-    */
-    public String authUnlockByPwd (){
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        boolean resultBoolean=unlockService.authUnlockByPwd(ownerPhoneNumber,gatewayCode,lockCode,password,Long.parseLong(startTime),Long.parseLong(endTime));
-        jsonResult=resultBoolean;
         return "json";
     }
 

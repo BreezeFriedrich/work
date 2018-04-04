@@ -53,7 +53,6 @@ public class AccountAction {
     private String newPassword;
     private String authPassword;
     private String newAuthPassword;
-    private String redirectUrl;
 
     public String getNewName() {
         return newName;
@@ -89,13 +88,6 @@ public class AccountAction {
     }
     public void setNewAuthPassword(String newAuthPassword) {
         this.newAuthPassword = newAuthPassword;
-    }
-
-    public String getRedirectUrl() {
-        return redirectUrl;
-    }
-    public void setRedirectUrl(String redirectUrl) {
-        this.redirectUrl = redirectUrl;
     }
 
     public String modifyNickname(){
@@ -193,19 +185,6 @@ public class AccountAction {
         }
         Map resultMap=accountService.validAuthPassword(ownerPhoneNumber,authPassword);
         jsonResult=resultMap;
-        return "json";
-    }
-
-    public String proofAuthpassword() throws IOException {
-        LOG.info("-->>-- account/proofAuthpassword.action -->>--");
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
-        boolean isTrue=accountService.proofAuthpassword(ownerPhoneNumber,authPassword);
-        if(isTrue & null!=redirectUrl){
-            response.sendRedirect(redirectUrl);
-        }
-        jsonResult=isTrue;
         return "json";
     }
 

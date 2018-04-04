@@ -18,7 +18,6 @@ public interface IAccountService {
     public Map queryAuthPassword(String ownerPhoneNumber);
 //    public boolean validAuthPassword(String ownerPhoneNumber,String authPassword);
     public Map validAuthPassword(String ownerPhoneNumber,String authPassword);
-    public boolean proofAuthpassword(String ownerPhoneNumber,String authPassword);
     public boolean authAuthPassword(String ownerPhoneNumber,String authPassword);
     public Map wechatLogin(String openid);
 }

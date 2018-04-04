@@ -23,6 +23,7 @@ $(function(){
             startTime=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
         }
     });
+    startTime=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
     temptime.setDate(temptime.getDate()+1);
     $("#datetime-picker-2").datetimePicker({
         value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()],
@@ -30,6 +31,7 @@ $(function(){
             endTime=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
         }
     });
+    endTime=moment($("#datetime-picker-2").val(),'YYYY-MM-DD HH:mm').valueOf();
 
     ownerPhoneNumber=getQueryString("ownerPhoneNumber");
     gatewayCode=getQueryString("gatewayCode");
@@ -47,9 +49,9 @@ function getQueryString(name) {
 }
 
 function authById() {
-    // authPassword=document.getElementsByTagName('input')[0].value;
-    name=document.getElementsByTagName('input')[0].value;
-    cardNumb=document.getElementsByTagName('input')[1].value;
+    authPassword=document.getElementsByTagName('input')[0].value;
+    name=document.getElementsByTagName('input')[1].value;
+    cardNumb=document.getElementsByTagName('input')[2].value;
     // 错误的写法 startTime=document.getElementsByTagName('input')[3].value;
     // startTime=$("#datetime-picker-1").val();
     // endTime=$("#datetime-picker-2").val();
@@ -57,11 +59,10 @@ function authById() {
     if(''!=name && ''!=cardNumb && ''!=startTime && ''!=endTime && ''!=authPassword){
         if(validateIdCard(cardNumb)){
             $.showIndicator();
-            /*
             $.ajax({
                 type:"POST",
                 url:projectPath+"/unlock/authUnlockById.action",
-                async:false,
+                async:true,
                 data:{
                     // "ownerPhoneNumber":ownerPhoneNumber,
                     "gatewayCode":gatewayCode,
@@ -75,38 +76,6 @@ function authById() {
                 dataType:'json',
                 success:function(data,status,xhr){
                     $.hideIndicator();
-                    if(data){
-                        $.toast('开锁授权成功,正在返回上一页...',1500);
-                        window.setTimeout("history.go(-1)",2000);
-                    }else {
-                        $.toast('开锁授权失败',1500);
-                    }
-                },
-                error:function(xhr,errorType,error){
-                    $.hideIndicator();
-                    console.log('错误');
-                    $.alert('开锁授权失败', '操作失败！');
-                }
-            });
-            */
-            $.ajax({
-                type:"POST",
-                url:projectPath+"/unlock/authUnlockById.action",
-                async:true,
-                data:{
-                    // "ownerPhoneNumber":ownerPhoneNumber,
-                    "gatewayCode":gatewayCode,
-                    "lockCode":lockCode,
-                    "name":name,
-                    "startTime":startTime,
-                    "endTime":endTime,
-                    "cardNumb":cardNumb,
-                    // "authPassword":authPassword
-                },
-                dataType:'json',
-                success:function(data,status,xhr){
-                    $.hideIndicator();
-                    /*
                     if(0==data.result){
                         $.toast('开锁授权成功,正在返回上一页...',1500);
                         window.setTimeout("history.go(-1)",2000);
@@ -117,18 +86,11 @@ function authById() {
                     }else {
                         $.toast(data.msg,1500);
                     }
-                    */
-                    if(data){
-                        $.toast('开锁授权成功,正在返回上一页...',1500);
-                        window.setTimeout("history.go(-1)",2000);
-                    }else{
-                        $.toast('开锁授权失败',1500);
-                    }
                 },
                 error:function(xhr,errorType,error){
                     $.hideIndicator();
                     console.log('错误');
-                    $.alert('发送请求失败', '操作失败！');
+                    $.alert('开锁授权失败', '操作失败！');
                 }
             });
         }else {

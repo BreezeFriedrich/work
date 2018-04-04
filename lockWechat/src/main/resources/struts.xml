@@ -47,7 +47,6 @@
             <!-- 定义拦截器 -->
             <interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor" />
             <interceptor name="openIdInterceptor" class="com.yishu.web.OpenIdInterceptor" />
-            <interceptor name="authpasswordInterceptor" class="com.yishu.web.AuthpasswordInterceptor" />
             <interceptor name="phoneInterceptor" class="com.yishu.web.PhoneInterceptor" />
             <!-- 定义拦截器栈 -->
             <interceptor-stack name="monitor_Stack">
@@ -61,23 +60,6 @@
             <interceptor-stack name="openidStack">
                 <!--<interceptor-ref name="monitoring" />-->
                 <interceptor-ref name="openIdInterceptor"/>
-                <interceptor-ref name="defaultStack">
-                    <param name="exception.logEnabled">true</param>
-                    <param name="exception.logLevel">error</param>
-                </interceptor-ref>
-            </interceptor-stack>
-            <interceptor-stack name="authpasswordStack">
-                <!--<interceptor-ref name="monitoring" />-->
-                <interceptor-ref name="phoneInterceptor"/>
-                <interceptor-ref name="authpasswordInterceptor"/>
-                <interceptor-ref name="defaultStack">
-                    <param name="exception.logEnabled">true</param>
-                    <param name="exception.logLevel">error</param>
-                </interceptor-ref>
-            </interceptor-stack>
-            <interceptor-stack name="phoneStack">
-                <!--<interceptor-ref name="monitoring" />-->
-                <interceptor-ref name="phoneInterceptor"/>
                 <interceptor-ref name="defaultStack">
                     <param name="exception.logEnabled">true</param>
                     <param name="exception.logLevel">error</param>

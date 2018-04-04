@@ -17,9 +17,6 @@ $(function(){
 
     //初始化时间选择器
     var temptime = new Date();
-    // $("#datetime-picker-1").datetimePicker({
-    //     value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
-    // });
     $("#datetime-picker-1").datetimePicker({
         value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()],
         onClose:function (p) {
@@ -28,9 +25,6 @@ $(function(){
     });
     startTime=moment($("#datetime-picker-1").val(),'YYYY-MM-DD HH:mm').valueOf();
     temptime.setDate(temptime.getDate()+1);
-    // $("#datetime-picker-2").datetimePicker({
-    //     value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()]
-    // });
     $("#datetime-picker-2").datetimePicker({
         value: [temptime.getFullYear(),temptime.getMonth()+1, temptime.getDate(),temptime.getHours(),temptime.getMinutes()],
         onClose:function (p) {
@@ -55,7 +49,7 @@ function getQueryString(name) {
 }
 
 function authByPwd() {
-    // authPassword=document.getElementsByTagName('input')[0].value;
+    authPassword=document.getElementsByTagName('input')[0].value;
     password=document.getElementsByTagName('input')[0].value;
     // startTime=$("#datetime-picker-1").val();
     // endTime=$("#datetime-picker-2").val();
@@ -63,11 +57,10 @@ function authByPwd() {
     if(''!=password && ''!=startTime && ''!=endTime && ''!=authPassword){
         if(validatePwd(password)){
             $.showIndicator();
-            /*
             $.ajax({
                 type:"POST",
                 url:projectPath+"/unlock/authUnlockByPwd.action",
-                async:false,
+                async:true,
                 data:{
                     // "ownerPhoneNumber":ownerPhoneNumber,
                     "gatewayCode":gatewayCode,
@@ -80,37 +73,6 @@ function authByPwd() {
                 dataType:'json',
                 success:function(data,status,xhr){
                     $.hideIndicator();
-                    if(data){
-                        $.toast('开锁授权成功,正在返回上一页...',1500);
-                        window.setTimeout("history.go(-1)",2000);
-                    }else {
-                        $.toast('开锁授权失败',1500);
-                    }
-                },
-                error:function(xhr,errorType,error){
-                    $.hideIndicator();
-                    console.log('错误');
-                    $.alert('开锁授权失败', '操作失败！');
-                }
-            });
-            */
-            $.ajax({
-                type:"POST",
-                url:projectPath+"/unlock/authUnlockByPwd.action",
-                async:true,
-                data:{
-                    // "ownerPhoneNumber":ownerPhoneNumber,
-                    "gatewayCode":gatewayCode,
-                    "lockCode":lockCode,
-                    "password":password,
-                    "startTime":startTime,
-                    "endTime":endTime,
-                    // "authPassword":authPassword
-                },
-                dataType:'json',
-                success:function(data,status,xhr){
-                    $.hideIndicator();
-                    /*
                     if(0==data.result){
                         $.toast('开锁授权成功,正在返回上一页...',1500);
                         window.setTimeout("history.go(-1)",2000);
@@ -120,13 +82,6 @@ function authByPwd() {
                         window.location.href=encodeURI(url);
                     }else {
                         $.toast(data.msg,1500);
-                    }
-                    */
-                    if(data){
-                        $.toast('开锁授权成功,正在返回上一页...',1500);
-                        window.setTimeout("history.go(-1)",2000);
-                    }else{
-                        $.toast('开锁授权失败',1500);
                     }
                 },
                 error:function(xhr,errorType,error){

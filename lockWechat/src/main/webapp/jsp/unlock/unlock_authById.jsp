@@ -34,7 +34,7 @@
         <div class="content">
             <div class="list-block" style="margin: 3rem 0;min-height: 3rem;line-height: 2.2rem;font-size: 1.0rem;">
                 <ul>
-                    <%--<li>
+                    <li>
                         <div class="item-content">
                             <div class="item-inner">
                                 <div class="item-title label">授权密码</div>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>--%>
+                    </li>
                     <li>
                         <div class="item-content">
                             <div class="item-inner">
