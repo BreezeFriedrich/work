@@ -1,8 +1,3 @@
-<%--
-  User: admin
-  Date: 2018/2/26
-  Time: 9:33
---%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%
     String path = request.getContextPath();
