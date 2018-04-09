@@ -462,7 +462,7 @@ public class RecordServiceImpl implements IRecordService {
                 lock=locks.get(j);
                 lockAndRecord=new LockAndRecord();
                 lockAndRecord.setLock(lock);
-
+                lockAndRecord.setUnlockRecords(new ArrayList<UnlockRecord>());
 //                unlockRecords=new ArrayList<UnlockRecord>();
 //                for(int k=0;k<rawUnlockRecord.size();k++){
 //                    unlockRecord=rawUnlockRecord.get(k);
@@ -480,8 +480,6 @@ public class RecordServiceImpl implements IRecordService {
 
         for(int i=0;i<rawUnlockRecord.size();i++){
             unlockRecord=rawUnlockRecord.get(i);
-
-            unlockRecords=new ArrayList<UnlockRecord>();
             for(int j=0;j<gatewayAndRecords.size();j++){
                 gatewayAndRecord=gatewayAndRecords.get(j);
 
@@ -492,13 +490,24 @@ public class RecordServiceImpl implements IRecordService {
                     lockAndRecord=lockAndRecords.get(j);
                     String lockCode=lockAndRecord.getLock().getLockCode();
                     if(gatewayCode.equals(unlockRecord.getGatewayCode()) && lockCode.equals(unlockRecord.getLockCode())){
-                        unlockRecords.add(unlockRecord);
+                        lockAndRecord.getUnlockRecords().add(unlockRecord);
                     }
                 }
             }
         }
-        lockAndRecord.setUnlockRecords(unlockRecords);
-        lockAndRecord.setSize(unlockRecords.size());
+        for(int i=0;i<gatewayAndRecords.size();i++){
+            gatewayAndRecord=gatewayAndRecords.get(i);
+            int gatewayRecordSize=0;
+            int lockRecordSize=0;
+            lockAndRecords=gatewayAndRecord.getLockAndRecords();
+            for(int j=0;j<lockAndRecords.size();j++){
+                lockAndRecord=lockAndRecords.get(j);
+                lockRecordSize=lockAndRecord.getUnlockRecords().size();
+                lockAndRecord.setSize(lockRecordSize);
+                gatewayRecordSize += lockRecordSize;
+            }
+            gatewayAndRecord.setSize(gatewayRecordSize);
+        }
 
         return gatewayAndRecords;
     }

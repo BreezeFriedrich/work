@@ -14,6 +14,7 @@ var mescroll;
 var gatewayCode;
 var lockCode;
 var deviceRecordsMap;
+var gatewayAndRecords;
 var recordSize;
 var name;
 var operatorRecordsMap;
@@ -285,10 +286,10 @@ function showAllRecords() {
 function showDevicesFromRecords() {
     showPage(upCallback);
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         // url:projectPath+"/record/getUnlockRecordDevice.action",
-        var url="record/getUnlockRecordDevice.action";
+        // var url="record/getUnlockRecordDevice.action";
+        var url="record/getGatewayAndRecords.action";
         getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
             /*
             var curPageData=data.rows;
@@ -307,42 +308,47 @@ function showDevicesFromRecords() {
     }
 }
 function setDeviceWithRecord(data){
-    deviceRecordsMap=data;
     var listDom=document.getElementById("dataList");
-    var mapLength=Object.keys(data).length;
-    for(var gatewayNum in data) {
-        lockRecordsMap=data[gatewayNum].data;
-        recordSize=data[gatewayNum].size;
-        /*
-        gatewayNum="'"+gatewayNum+"'";
+    var gatewayAndRecord=null;
+    var gateway=null;
+    var lockAndRecords=null;
+    var lockAndRecord=null;
+    var lock=null;
+    var unlockRecords=null;
+    var unlockRecord=null;
+    gatewayAndRecords=data;
+    for(var i=0;i<data.length;i++){
+        gatewayAndRecord=data[i];
+        gateway=gatewayAndRecord.gateway;
+        recordSize=gatewayAndRecord.size;
         var str='';
         str+='<div class="row-header">';
-        str+='<a href="javascript:void(0);" onclick="shiftExpand('+gatewayNum+',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
-        str+='<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords('+gatewayNum+')" style="width: 280px;margin-left: 30px;">';
-        str+='<img alt="gateway" src="resources/img/gateway_64px.png"/>';
-        str+='<span style="width: 230px;margin-left: 20px;">'+gatewayNum.substring(1,gatewayNum.length-1);
-        str+='</span>';
-        str+='</a>';
-        str+='</div>';
-        var liDom=document.createElement("li");
-        liDom.innerHTML=str;
-        listDom.appendChild(liDom);
-         */
-        var str='';
-        str+='<div class="row-header">';
-        // str+=   '<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><img alt="arrow-triangle" src="resources/img/arrow-triangle_64px.png" /></a>';
-        str+=   '<a href="javascript:void(0);" onclick="shiftExpand(\''+gatewayNum+'\',$(this))"><i class="iconfont">&#xe618;</i></a>';
-        str+=   '<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords(\''+gatewayNum+'\')" style="width: 300px;">';
-        // str+=       '<img alt="gateway" src="resources/img/gateway_64px.png"/>';
-        // str+=       '<span style="width: 180px;margin-left: 20px;">'+gatewayNum+'</span>';
-        // str+=       '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
-        str+=       '<span style="width: 200px;padding-left: 20px;"><i class="iconfont">&#xeb59;</i><b style="width: 160px;padding-left: 10px">'+gatewayNum+'</b></span>';
+        str+=   '<a href="javascript:void(0);" onclick="shiftExpand(\''+gateway.gatewayCode+'\',$(this))"><i class="iconfont">&#xe618;</i></a>';
+        str+=   '<a class="a-device" href="javascript:void(0);" onclick="showGatewayRecords(\''+gateway.gatewayCode+'\')" style="width: 300px;">';
+        if(undefined!=gateway.gatewayName && null !=gateway.gatewayName){
+            str+=       '<span style="width: 200px;padding-left: 20px;"><i class="iconfont">&#xeb59;</i><b style="width: 160px;padding-left: 10px">'+gateway.gatewayName+'</b></span>';
+        }else{
+            str+=       '<span style="width: 200px;padding-left: 20px;"><i class="iconfont">&#xeb59;</i><b style="width: 160px;padding-left: 10px">'+gateway.gatewayCode+'</b></span>';
+        }
         str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
         str+=   '</a>';
         str+='</div>';
         var liDom=document.createElement("li");
         liDom.innerHTML=str;
         listDom.appendChild(liDom);
+    }
+    for(var i=0;i<data.length;i++){
+        gatewayAndRecord=data[i];
+        gateway=gatewayAndRecord.gateway;
+        lockAndRecords=gatewayAndRecord.lockAndRecords;
+        for(var j=0;j<lockAndRecords.length;j++){
+            lockAndRecord=lockAndRecords[j];
+            lock=lockAndRecord.lock;
+            unlockRecords=lockAndRecord.unlockRecords;
+            for(var k=0;k<unlockRecords.length;k++){
+                unlockRecord=unlockRecords[k];
+            }
+        }
     }
 }
 /*切换显示门锁下拉列表*/
@@ -351,32 +357,35 @@ function shiftExpand(gatewayNum,element) {
     var DIV_row_expand=$(LI).children(".row-expand");
     //.row-expand存在,删除.row-expand元素并使图标不旋转.
     if (undefined!=DIV_row_expand && DIV_row_expand.size()!==0){
-        // element.children("img")[0].style.transform= "rotate(0deg)";
         element.children('i').html('&#xe618;');
         DIV_row_expand.remove();
         return null;
     }
     //.row-expand不存在,扩展.row-expand元素并使图标旋转.
-    // element.children("img")[0].style.transform= "rotate(180deg)";
     element.children('i').html('&#xe6aa;');
-    lockRecordsMap=deviceRecordsMap[gatewayNum].data;
     var str='';
     str+='<div class="row-expand" >';
     str+='<div class="expand-right" style="float:left;margin-left: 18px">';
     str+='<ul>';
-    for(var lockCode in lockRecordsMap) {
-        unlockRecordList=lockRecordsMap[lockCode].data;
-        recordSize=lockRecordsMap[lockCode].size;
-        str+='<li style="width: 300px;">';
-        str+=   '<div class="row-line">';
-        str+=       '<a class="a-device" href="javascript:void(0);" onclick="showLockRecords(\''+lockCode+'\')">';
-        // str+=           '<span style="width: 180px;margin-left: 20px;">'+lockCode+'</span>';
-        // str+=           '<span style="width: 30px;margin-left: 20px;">'+recordSize+'</span>';
-        str+=       '<span style="width: 200px;padding-left: 20px;"><i class="iconfont">&#xe61c;</i><b style="width: 160px;padding-left: 10px">'+lockCode+'</b></span>';
-        str+=       '<span style="width: 80px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 60px;padding-left: 10px">'+recordSize+'</b></span>';
-        str+=       '</a>';
-        str+=   '</div>';
-        str+='</li>';
+    for(var i=0;i<gatewayAndRecords.length;i++){
+        gatewayAndRecord=gatewayAndRecords[i];
+        gateway=gatewayAndRecord.gateway;
+        if(gatewayNum===gateway.gatewayCode){
+            lockAndRecords=gatewayAndRecord.lockAndRecords;
+            for(var j=0;j<lockAndRecords.length;j++){
+                lockAndRecord=lockAndRecords[j];
+                lock=lockAndRecord.lock;
+                unlockRecords=lockAndRecord.unlockRecords;
+                str+='<li style="width: 300px;">';
+                str+=   '<div class="row-line">';
+                str+=       '<a class="a-device" href="javascript:void(0);" onclick="showLockRecords(\''+lock.lockCode+'\')">';
+                str+=       '<span style="width: 200px;padding-left: 20px;"><i class="iconfont">&#xe61c;</i><b style="width: 160px;padding-left: 10px">'+lock.lockCode+'</b></span>';
+                str+=       '<span style="width: 80px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 60px;padding-left: 10px">'+lockAndRecord.size+'</b></span>';
+                str+=       '</a>';
+                str+=   '</div>';
+                str+='</li>';
+            }
+        }
     }
     str+='</ul>';
     str+='</div>';
@@ -388,7 +397,6 @@ function shiftExpand(gatewayNum,element) {
 function showGatewayRecords(gatewayNum) {
     showPage(upCallback);
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getGatewayUnlockRecordPage.action";
         getPageData(url,{gatewayCode:gatewayNum},page.num, page.size, function(data){
@@ -407,7 +415,6 @@ function showGatewayRecords(gatewayNum) {
 function showLockRecords(lockNum) {
     showPage(upCallback);
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getLockUnlockRecordPage.action";
         getPageData(url,{lockCode:lockNum},page.num, page.size, function(data){
@@ -426,7 +433,6 @@ function showLockRecords(lockNum) {
 function showOperatorFromRecords() {
     showPage(upCallback);
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getUnlockOperator.action";
         getPageData(url,{},page.num, page.size, function(data){
@@ -449,11 +455,6 @@ function setOperatorWithRecord(data) {
         var str='';
         str+='<div>';
         str+=    '<a class="a-id" href="javascript:void(0);" onclick="showOperatorRecords(\''+cardNum+'\')" style="width: 340px;">';
-        // str+=       '<img alt="idCard" src="resources/img/idCard_48px.png">';
-        // str+=       '<span style="width: 55px;margin-left: 5px;">'+name+'</span>';
-        // str+=       '<img alt="idCard" src="resources/img/person_64px.png">';
-        // str+=       '<span style="width: 145px;margin-left: 5px;">'+cardNum+'</span>';
-        // str+=       '<span style="width: 65px;margin-left: 5px;">'+recordSize+'</span>';
         str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe678;</i><b style="width: 80px;padding-left: 10px">'+name+'</b></span>';
         str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe687;</i><b style="width: 80px;padding-left: 10px">'+cardNum+'</b></span>';
         str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
@@ -469,7 +470,6 @@ function setOperatorWithRecord(data) {
 function showOperatorRecords(cardNum) {
     showPage(upCallback);
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getOperatorUnlockRecordPage.action";
         getPageData(url,{cardNum:cardNum},page.num, page.size, function(data){
@@ -485,47 +485,9 @@ function showOperatorRecords(cardNum) {
 }
 
 /*根据开锁记录展示开锁的房间信息*/
-/*
 function showRoomFromRecords() {
     showPage(upCallback);
 
-    function upCallback(page){
-        var url="record/getRecordRoom.action";
-        getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
-            console.log('length : '+Object.keys(data).length);
-            mescroll.setPageSize(Object.keys(data).length+1);
-            mescroll.endSuccess(Object.keys(data).length);
-            setRoomWithRecord(data);
-        }, function(){
-            mescroll.endErr();
-        });
-    }
-}
-function setRoomWithRecord(data) {
-    var listDom=document.getElementById("dataList");
-    for(var roomId in data) {
-        roomRecordsMap=data[roomId].data;
-        recordSize=data[roomId].size;
-        roomName=data[roomId].note;
-        var str='';
-        str+='<div>';
-        str+=    '<a class="a-id" href="javascript:void(0);" onclick="showRoomRecords(\''+roomId+'\')" style="width: 340px;">';
-        // str+='<i class="iconfont">&#xe7ff;</i>';
-        str+=       '<span style="width: 150px;padding-left: 20px;"><i class="iconfont">&#xe7ff;</i><b style="width: 80px;padding-left: 10px">'+roomName+'</b></span>';
-        // str+='<span class="iconfont">&#xe608;</span>';
-        str+=       '<span style="width: 150px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
-        str+=    '</a>';
-        str+='</div>';
-        var liDom=document.createElement("li");
-        liDom.innerHTML=str;
-        listDom.appendChild(liDom);
-    }
-}
-*/
-function showRoomFromRecords() {
-    showPage(upCallback);
-
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getRoomAndRecords.action";
         getPageData(url,{ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){
@@ -569,7 +531,6 @@ function setRoomWithRecord(data) {//data:[RoomAndRecords]
 function showRoomRecords(roomId) {
     showPage(upCallback);
 
-    /*联网加载列表数据  page = {num:1, size:10}; num:当前页 从1开始, size:每页数据条数 */
     function upCallback(page){
         var url="record/getRoomRecordPage.action";
         getPageData(url,{roomId:roomId,ownerPhoneNumber:ownerPhoneNumber},page.num, page.size, function(data){

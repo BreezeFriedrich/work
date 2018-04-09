@@ -8,6 +8,7 @@ import java.util.List;
 public class GatewayAndRecord {
     private Gateway gateway;
     private List<LockAndRecord> lockAndRecords;
+    private int size;
 
     public Gateway getGateway() {
         return gateway;
@@ -23,5 +24,13 @@ public class GatewayAndRecord {
 
     public void setLockAndRecords(List<LockAndRecord> lockAndRecords) {
         this.lockAndRecords = lockAndRecords;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }

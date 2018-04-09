@@ -27,7 +27,7 @@ import java.util.Map;
 public class RecordAction extends ActionSupport{
     public RecordAction() {
         LOG.info(">>>Initialization RecordAction......................................");
-        session.setAttribute("ownerPhoneNumber","13905169824");
+//        session.setAttribute("ownerPhoneNumber","13905169824");
     }
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordAction");
 
@@ -132,9 +132,10 @@ public class RecordAction extends ActionSupport{
      *
      */
     public String getUnlockRecord() throws ParseException {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         jsonResult=recordList;
         return "json";
@@ -147,101 +148,108 @@ public class RecordAction extends ActionSupport{
      *
      */
     public String getUnlockRecordPage() throws ParseException {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
-//        Records<UnlockRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Records<RoomRecord> records=recordService.getUnlockRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=records;
         return "json";
     }
 
     public String getGatewayUnlockRecordPage() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
-//        Records<UnlockRecord> records=recordService.getGatewayUnlockRecordPage(ownerPhoneNumber,startTime,endTime,gatewayCode,pageNum,pageSize);
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Records<RoomRecord> records=recordService.getGatewayUnlockRecordPage(ownerPhoneNumber,startTime,endTime,gatewayCode,pageNum,pageSize);
         jsonResult=records;
         return "json";
     }
 
     public String getLockUnlockRecordPage() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
-//        Records<UnlockRecord> records=recordService.getLockUnlockRecordPage(ownerPhoneNumber,startTime,endTime,lockCode,pageNum,pageSize);
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Records<RoomRecord> records=recordService.getLockUnlockRecordPage(ownerPhoneNumber,startTime,endTime,lockCode,pageNum,pageSize);
         jsonResult=records;
         return "json";
     }
 
     public String getUnlockRecordDevice() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Map recordMap=recordService.getUnlockRecordDevice(ownerPhoneNumber,startTime,endTime);
         jsonResult=recordMap;
         return "json";
     }
     public String getGatewayAndRecords() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         List<GatewayAndRecord> gatewayAndRecords=recordService.getGatewayAndRecords(ownerPhoneNumber,startTime,endTime);
         jsonResult=gatewayAndRecords;
         return "json";
     }
 
     public String getUnlockRecordDevicePage() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Map map=recordService.getUnlockRecordDevicePage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize);
         jsonResult=map;
         return "json";
     }
 
     public String getUnlockOperator() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Map map=recordService.getUnlockOperator(ownerPhoneNumber,startTime,endTime);
         jsonResult=map;
         return "json";
     }
 
     public String getOperatorUnlockRecordPage() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
-//        Records<UnlockRecord> records=recordService.getOperatorUnlockRecordPage(ownerPhoneNumber,startTime,endTime,cardNum,pageNum,pageSize);
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Records<RoomRecord> records=recordService.getOperatorUnlockRecordPage(ownerPhoneNumber,startTime,endTime,cardNum,pageNum,pageSize);
         jsonResult=records;
         return "json";
     }
 
     public String getRecordRoom() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Map map=recordService.getRecordRoom(ownerPhoneNumber,startTime,endTime);
         jsonResult=map;
         return "json";
     }
     public String getRoomAndRecords() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         List<RoomAndRecord> roomAndRecords=recordService.getRoomAndRecords(ownerPhoneNumber,startTime,endTime);
         jsonResult=roomAndRecords;
         return "json";
     }
 
     public String getRoomRecordPage() {
-        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
-            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-        }
+//        if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
+//            ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        }
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         Records<RoomRecord> records=recordService.getRoomRecordPage(ownerPhoneNumber,startTime,endTime,pageNum,pageSize,roomId);
         jsonResult=records;
         return "json";
