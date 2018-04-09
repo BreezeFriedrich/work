@@ -158,15 +158,15 @@ function showDevices(){
 function createGatewayNode(){
     var html='';
     for(x in device) {
-        if ('4' === device[x].gatewayStatus) {
-            device[x].gatewayStatus = "正常"
-        }
-        if ('5' === device[x].gatewayStatus) {
-            device[x].gatewayStatus = "异常"
-        }
-        if ('6' === device[x].gatewayStatus) {
-            device[x].gatewayStatus = "连接失败"
-        }
+        // if ('4' === device[x].gatewayStatus) {
+        //     device[x].gatewayStatus = "正常"
+        // }
+        // if ('5' === device[x].gatewayStatus) {
+        //     device[x].gatewayStatus = "异常"
+        // }
+        // if ('6' === device[x].gatewayStatus) {
+        //     device[x].gatewayStatus = "连接失败"
+        // }
         html += '<li>';
         html +=     '<a id="'+device[x].gatewayCode+'" href="javascript:void(0);" class="gateway item-content item-gateway gateway-linegreen">';
         html +=         '<div class="item-media"><img src="resources/images/inco-gateway.png" width="44"></div>';
@@ -174,15 +174,22 @@ function createGatewayNode(){
         html +=             '<div class="item-title-row">';
         html +=                 '<div class="item-title">'+device[x].gatewayName+'</div>';
         html +=             '</div>';
-        html +=             '<div class="item-subtitle gateway-red">'+device[x].gatewayStatus+'</div>';
+        // html +=             '<div class="item-subtitle gateway-red">'+device[x].gatewayStatus+'</div>';
+        if ('4' === device[x].gatewayStatus) {
+            // html +=             '<div class="item-subtitle">'+"正常"+'</div>';
+        }else if ('5' === device[x].gatewayStatus) {
+            html +=             '<div class="item-subtitle gateway-red">'+"异常"+'</div>';
+        }else if ('6' === device[x].gatewayStatus) {
+            html +=             '<div class="item-subtitle gateway-red">'+"连接失败"+'</div>';
+        }
         html +=         '</div>';
         html +=         '<div style="float: right">';
-        // html +=             '<img src="resources/img/right_arrow.png" style="height: 40px;width: 40px;"/>';
         html +=             '<img src="resources/img/link.png" style="height: 40px;width: 40px;"/>';
         html +=         '</div>';
         html +=     '</a>';
         html += '</li>';
     }
+    $('.item-subtitle').addClass("gateway-red");
     return html;
 }
 
@@ -195,10 +202,10 @@ function createLockNode(gatewayCode){
         }
     }
     for(x in lockLists){
-        if('0'===lockLists[x].lockStatus){lockLists[x].lockStatus="无消息"}
-        if('1'===lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
-        if('2'===lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
-        if('3'===lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
+        // if('0'===lockLists[x].lockStatus){lockLists[x].lockStatus="无消息"}
+        // if('1'===lockLists[x].lockStatus){lockLists[x].lockStatus="正常"}
+        // if('2'===lockLists[x].lockStatus){lockLists[x].lockStatus="异常"}
+        // if('3'===lockLists[x].lockStatus){lockLists[x].lockStatus="连接失败"}
 
         html +=     '<a id="'+lockLists[x].lockCode+'" href="javascript:void(0);" class="lock item-link item-content item-gateway">';
         html +=         '<div class="item-media"><img src="resources/images/inco-doorlock.png" width="44"></div>';
@@ -206,7 +213,16 @@ function createLockNode(gatewayCode){
         html +=             '<div class="item-title-row">';
         html +=                 '<div class="item-title">'+lockLists[x].lockName+'</div>';
         html +=             '</div>';
-        html +=             '<div class="item-subtitle gateway-green">'+lockLists[x].lockStatus+'</div>';
+        // html +=             '<div class="item-subtitle gateway-green">'+lockLists[x].lockStatus+'</div>';
+        if('0'===lockLists[x].lockStatus){
+            html +=             '<div class="item-subtitle gateway-green">'+"无消息"+'</div>';
+        }else if('1'===lockLists[x].lockStatus){
+            // html +=             '<div class="item-subtitle gateway-green">'+"正常"+'</div>';
+        }else if('2'===lockLists[x].lockStatus){
+            html +=             '<div class="item-subtitle gateway-green">'+"异常"+'</div>';
+        }else if('3'===lockLists[x].lockStatus){
+            html +=             '<div class="item-subtitle gateway-green">'+"连接失败"+'</div>';
+        }
         html +=         '</div>';
         html +=     '</a>';
     }

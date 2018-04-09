@@ -472,11 +472,11 @@ public class RecordServiceImpl implements IRecordService {
 //                }
 //                lockAndRecord.setUnlockRecords(unlockRecords);
 //                lockAndRecord.setSize(unlockRecords.size());
+                lockAndRecords.add(lockAndRecord);
             }
-            lockAndRecords.add(lockAndRecord);
             gatewayAndRecord.setLockAndRecords(lockAndRecords);
+            gatewayAndRecords.add(gatewayAndRecord);
         }
-        gatewayAndRecords.add(gatewayAndRecord);
 
         for(int i=0;i<rawUnlockRecord.size();i++){
             unlockRecord=rawUnlockRecord.get(i);
@@ -487,7 +487,7 @@ public class RecordServiceImpl implements IRecordService {
 
                 lockAndRecords=gatewayAndRecord.getLockAndRecords();
                 for(int k=0;k<lockAndRecords.size();k++){
-                    lockAndRecord=lockAndRecords.get(j);
+                    lockAndRecord=lockAndRecords.get(k);
                     String lockCode=lockAndRecord.getLock().getLockCode();
                     if(gatewayCode.equals(unlockRecord.getGatewayCode()) && lockCode.equals(unlockRecord.getLockCode())){
                         lockAndRecord.getUnlockRecords().add(unlockRecord);
