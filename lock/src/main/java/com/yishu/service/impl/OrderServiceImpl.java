@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.yishu.pojo.AuthOrder;
 import com.yishu.pojo.CardInfo;
 import com.yishu.service.IOrderService;
@@ -36,16 +37,20 @@ public class OrderServiceImpl implements IOrderService{
     public List<AuthOrder> getAuthOrderFromDate(String ownerPhoneNumber, Date theDate) {
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(theDate);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        Date startDate=calendar.getTime();
+        final long startMoment=startDate.getTime();
+        calendar.setTime(theDate);
+        calendar.add(Calendar.DAY_OF_MONTH,15);
         calendar.set(Calendar.HOUR_OF_DAY,23);
         calendar.set(Calendar.MINUTE,59);
         calendar.set(Calendar.SECOND,59);
         calendar.set(Calendar.MILLISECOND,999);
         Date endDate=calendar.getTime();
         final long endMoment=endDate.getTime();
-        calendar.setTime(theDate);
-        calendar.add(Calendar.DAY_OF_MONTH,-15);
-        Date startDate=calendar.getTime();
-        final long startMoment=startDate.getTime();
         return getAuthOrder(ownerPhoneNumber,startMoment,endMoment);
     }
 
@@ -55,7 +60,7 @@ public class OrderServiceImpl implements IOrderService{
         timetag= DateUtil.getFormat2TimetagStr();
         String startTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(startTime));
         String endTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(endTime));
-        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeStr+"\",\"endTime\":\""+endTimeStr+",\"timetag\":\""+timetag+"\"}";
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeStr+"\",\"endTime\":\""+endTimeStr+"\",\"timetag\":\""+timetag+"\"}";
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);
@@ -107,7 +112,6 @@ public class OrderServiceImpl implements IOrderService{
         timetag= DateUtil.getFormat2TimetagStr();
         String startTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(startTime));
         String endTimeStr=DateUtil.yyyyMMddHHmm.format(new Date(endTime));
-//        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"roomTypeId\":\""+roomTypeId+"\",\"roomId\":\""+roomId+"\",\"startTime\":\""+startTimeStr+"\",\"endTime\":\""+endTimeStr+"\",\"password\":\""+password+"\",\"timetag\":\""+timetag+"\"}";
         Map reqMap=new HashMap(9);
         reqMap.put("sign",reqSign);
         reqMap.put("ownerPhoneNumber",ownerPhoneNumber);
@@ -119,11 +123,13 @@ public class OrderServiceImpl implements IOrderService{
         reqMap.put("cardInfoList",cardInfoList);
         reqMap.put("timetag",timetag);
         ObjectMapper objectMapper=new ObjectMapper();
-        try {
-            reqData=objectMapper.writeValueAsString(reqMap);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            reqData=objectMapper.writeValueAsString(reqMap);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+        Gson gson=new Gson();
+        reqData=gson.toJson(reqMap);
         LOG.info("reqData : "+reqData);
         rawData= HttpUtil.httpsPostToGateway(reqData);
         LOG.info("rawData : "+rawData);

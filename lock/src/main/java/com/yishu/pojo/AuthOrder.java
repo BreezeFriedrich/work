@@ -8,6 +8,8 @@ import java.util.List;
  * @since JDK1.7
  */
 public class AuthOrder {
+    private String gatewayCode;
+    private String lockCode;
     private String orderNumber;
     private String checkInTime;
     private String roomTypeId;
@@ -18,6 +20,22 @@ public class AuthOrder {
     private String endTime;
     private String password;
     private List<CardInfo> cardInfoList;
+
+    public String getGatewayCode() {
+        return gatewayCode;
+    }
+
+    public void setGatewayCode(String gatewayCode) {
+        this.gatewayCode = gatewayCode;
+    }
+
+    public String getLockCode() {
+        return lockCode;
+    }
+
+    public void setLockCode(String lockCode) {
+        this.lockCode = lockCode;
+    }
 
     public String getOrderNumber() {
         return orderNumber;

@@ -27,7 +27,7 @@ import java.util.Map;
 public class RecordAction extends ActionSupport{
     public RecordAction() {
         LOG.info(">>>Initialization RecordAction......................................");
-//        session.setAttribute("ownerPhoneNumber","13905169824");
+        session.setAttribute("ownerPhoneNumber","13905169824");
     }
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger("RecordAction");
 

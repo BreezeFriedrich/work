@@ -149,9 +149,21 @@
                         <input type="text" placeholder="" id='datetime-picker-2' />
                     </div>
                     <div style="width:30%;height: 75px; margin:22.5px 5%;float: left;">
-                        <a href="javascript:void(0);" class="open-popup" data-popup=".popup-menu">
-                            <img alt="menu" src="resources/img/menu-dots_128px.png" width="75px;"/>
-                        </a>
+                        <%--<a href="javascript:void(0);" class="open-popup" data-popup=".popup-menu">--%>
+                            <%--<img alt="menu" src="resources/img/menu-dots_128px.png" width="75px;"/>--%>
+                        <%--</a>--%>
+                        <div>
+                            <a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()"><b>所有记录</b></a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);" class="close-popup" onclick="showDevicesFromRecords()"><b>按设备查询</b></a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);" class="close-popup" onclick="showOperatorFromRecords()"><b>按身份证查询</b></a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);" class="close-popup" onclick="showRoomFromRecords()"><b>按房间查询</b></a>
+                        </div>
                     </div>
                 </div>
                 <div id="mescroll" class="mescroll">
@@ -161,8 +173,7 @@
             </div>
         </div>
 
-        <!-- About Popup -->
-        <div class="popup popup-menu">
+        <%--<div class="popup popup-menu">
             <div class="content-block">
                 <p><a href="javascript:void(0);" class="close-popup" onclick="showAllRecords()"><i style="padding-left: 15px" class="iconfont">&#xe6cc;</i><b style="padding-left: 20px">查询所有记录</b></a></p>
                 <p><a href="javascript:void(0);" class="close-popup" onclick="showDevicesFromRecords()"><i style="padding-left: 15px" class="iconfont">&#xe6d2;</i><b style="padding-left: 20px">按设备查询记录</b></a></p>
@@ -171,6 +182,7 @@
             </div>
         </div>
         <div class="popup-overlay"></div>
+        --%>
     </div>
 </div>
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>

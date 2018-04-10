@@ -210,6 +210,15 @@
                         <div class="col-sm-1"></div>
                     </div>
                     <div class="form-group">
+                        <div class="col-sm-12" id="auth-credentialPrompt">
+
+                        </div>
+                    </div>
+                    <%--<div id="auth-credentialPrompt">--%>
+                        <%--<p>密码  :</p>--%>
+                        <%--<p>身份证:</p>--%>
+                    <%--</div>--%>
+                    <div class="form-group">
                         <div class="col-sm-12">
                             <fieldset>
                                 <div class="control-group">
@@ -229,8 +238,6 @@
                         </div>
                     </div>
                 </form>
-                <div><p>密码  :</p></div>
-                <div><p>身份证:</p></div>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -271,7 +278,7 @@
 
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/house_landlord.js?v=8"></script>
+<script type="text/javascript" src="resources/js/house_landlord.js"></script>
 </body>
 
 </html>

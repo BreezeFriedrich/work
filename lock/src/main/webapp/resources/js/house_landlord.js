@@ -90,7 +90,6 @@ function getLocks() {
         type:"POST",
         url:"user/getSubordinateHierarchyTillLock.do",
         async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{},
         dataType:'json',
         success:function(data,status,xhr){
             landlord=data;
@@ -386,10 +385,6 @@ function drawFixedColumn(date) {
 }
 function renderRow(landlord,date) {
     var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(0).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
-    for(var i=0;i<16;i++){
-        TDs_row.eq(i+15).addClass("cd-vacant");
-    }
-    /*
     //auth获取开锁授权信息
     $.ajax({
         type:"POST",
@@ -417,16 +412,20 @@ function renderRow(landlord,date) {
                         if(startTime<dateArr[0]){
                             startIndex=0;
                         }else{
-                            startIndex=(startTime-dateArr[0])/86400000;
+                            startIndex=Math.floor((startTime-dateArr[0])/86400000);
                         }
                         if(endTime>dateArr[31]){
                             endIndex=31;
                         }else{
-                            endIndex=(endTime-dateArr[0])/86400000;
+                            endIndex=Math.floor((endTime-dateArr[0])/86400000);
                         }
                         var TDs_row=TR.find("td:not(:first)");
-                        for(var i=startIndex;i<endIndex+1;i++){
-                            TDs_row.eq(i).addClass("cd-booked");
+                        for(var j=15;j<31;j++){
+                            if(j>=startIndex && j<endIndex+1){
+                                TDs_row.eq(j).addClass("cd-booked");
+                            }else{
+                                TDs_row.eq(j).addClass("cd-vacant");
+                            }
                         }
                     }
                 }else if(data.biz.code===1){
@@ -440,7 +439,6 @@ function renderRow(landlord,date) {
             console.log('错误');
         }
     });
-    */
 
     locks=landlord.subordinateList;
     for(var j in locks){
@@ -873,26 +871,21 @@ $(document).ready(function () {
 
     cardInfoList=new Array();
     $('#btn-addid').click(function () {
-        name = $("form#form-identity input[name='name']").val();
-        cardNumb = $("form#form-identity input[name='cardNumb']").val();
-        if(''!=name & ''!=cardNumb){
+        name = $("form#form-auth input[name='name']").val();
+        cardNumb = $("form#form-auth input[name='cardNumb']").val();
+        if(undefined!=name & undefined!=cardNumb){
             var cardInfo=new Object();
             cardInfo.name=name;
             cardInfo.cardNumber=cardNumb;
+            cardInfo.dnCode='';
             cardInfoList.push(cardInfo);
+        }
+        for(var i=0;i<cardInfoList.length;i++){
+            $('div #auth-credentialPrompt').html('<p>身份证:'+cardInfoList[i].cardNumber+'</p>');
         }
     });
     $('#submit-auth').click(function () {
         password = $("form#form-auth input[name='password']").val();
-        // authparams = {
-        //     "ownerPhoneNumber": landlord.phoneNumber,
-        //     "roomTypeId": roomTypeId,
-        //     "roomId": roomId,
-        //     "startTime": startTime,
-        //     "endTime": endTime,
-        //     "password": password,
-        //     "cardInfoList":cardInfoList
-        // };
         authparams=new Object();
         authparams.ownerPhoneNumber=landlord.phoneNumber;
         authparams.startTime=startTime;
@@ -901,7 +894,6 @@ $(document).ready(function () {
         authparams.roomId=roomId;
         authparams.password=password;
         authparams.cardInfoList=JSON.stringify(cardInfoList);
-        cardInfoList.length=0;
         $.ajax({
             type: "POST",
             url: "order/increaseOrder.do",
@@ -916,6 +908,7 @@ $(document).ready(function () {
             }
         });
     });
+    cardInfoList.length=0;
 
     App.init();
 });

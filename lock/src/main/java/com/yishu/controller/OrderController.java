@@ -47,7 +47,10 @@ public class OrderController {
             LOG.info("-->>-- order/getAuthOrderFromDate.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        session.setAttribute("ownerPhoneNumber","18255683932");
+//        String ownerPhoneNumber="18255683932";
+        String ownerPhoneNumber="13905169824";
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         String theDateStr=request.getParameter("theDate");
         Date theDate= null;
         JsonDto jsonDto=null;
@@ -79,7 +82,12 @@ public class OrderController {
             LOG.info("-->>-- order/getAuthOrder.do -->>--");
         }
         HttpSession session=request.getSession(false);
-        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        session.setAttribute("ownerPhoneNumber","13905169824");
+//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
+        if(null!=ownerPhoneNumber){
+            ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+        }
         long startTime=Long.parseLong(request.getParameter("startTime"));
         long endTime=Long.parseLong(request.getParameter("endTime"));
         JsonDto jsonDto=null;

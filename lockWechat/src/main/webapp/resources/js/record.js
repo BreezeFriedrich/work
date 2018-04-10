@@ -516,9 +516,9 @@ function setRoomWithRecord(data) {//data:[RoomAndRecords]
         if(null==roomTypeName){
             roomTypeName='';
         }
-        str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe64f;</i><b style="width: 80px;padding-left: 10px">'+roomTypeName+'</b></span>';
-        str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe7ff;</i><b style="width: 80px;padding-left: 10px">'+roomName+'</b></span>';
-        str+=       '<span style="width: 100px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
+        str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe64f;</i><b style="width: 80px;padding-left: 10px">'+roomTypeName+'</b></span>';
+        str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe7ff;</i><b style="width: 80px;padding-left: 10px">'+roomName+'</b></span>';
+        str+=       '<span style="width: 300px;padding-left: 20px;"><i class="iconfont">&#xe6be;</i><b style="width: 80px;padding-left: 10px">'+recordSize+'</b></span>';
         str+=    '</a>';
         str+='</div>';
         var liDom=document.createElement("li");
