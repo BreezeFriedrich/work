@@ -790,7 +790,7 @@ $(document).ready(function(){
             }],
         */
         fields : fields,
-        tableDefaultContent: "<div>我是一个默认的div</div>"
+        tableDefaultContent: "<div>表格数据内容为空</div>"
     });
     tableFunc.city.completeTable(districts,theDate);
 

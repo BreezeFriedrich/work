@@ -443,45 +443,6 @@ function renderRow(landlord,date) {
     locks=landlord.subordinateList;
     for(var j in locks){
         lock=locks[j];
-        /*
-        $.ajax({
-            type:"POST",
-            url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
-            async:false,
-            data:{
-                "ownerPhoneNumber":landlord.phoneNumber,
-                "gatewayCode":lock.gatewayCode,
-                "lockCode":lock.lockCode,
-                "theDate":getDateStr(date)
-            },
-            dataType:'json',
-            success:function(data,status,xhr){
-                if(data.success){
-                    if(data.biz.code===0){
-                        authinfo=data.biz.data;
-                        var authinfodailyArr=authinfo.authinfoDaily;
-                        var authinfodaily;
-                        var authinfodailyArrLength=authinfodailyArr.length;
-                        for(var i=0;i<authinfodailyArrLength;i++){
-                            authinfodaily=authinfodailyArr[i];
-                            if(authinfodaily.idIndexes.length+authinfodaily.pwdIndexes.length>0){
-                                TDs_row.eq(i+15).addClass("cd-booked");
-                            }else {
-                                TDs_row.eq(i+15).addClass("cd-vacant");
-                            }
-                        }
-                    }else if(data.biz.code===1){
-                        for(var i=0;i<16;i++){
-                            TDs_row.eq(i+15).addClass("cd-vacant");
-                        }
-                    }
-                }
-            },
-            error:function(xhr,errorType,error){
-                console.log('错误');
-            }
-        });
-
         //record获取入住记录
         $.ajax({
             type:"POST",
@@ -510,7 +471,6 @@ function renderRow(landlord,date) {
                 console.log('错误');
             }
         });
-        */
     }
 }
 function drawTable(date) {
@@ -724,7 +684,7 @@ $(document).ready(function () {
         ],
         */
         fields: fields,
-        tableDefaultContent: "<div>我是一个默认的div</div>"
+        tableDefaultContent: "<div>表格数据内容为空</div>"
     });
     // plugin datetimepicker event on changeDate 要在drawTable之前才有效.
     $('#datetimepicker')
@@ -754,22 +714,6 @@ $(document).ready(function () {
     $.contextMenu({
         selector: ".cd-booked:not(.cd-unlockrecord)",
         items: {
-            identity: {
-                name: "身份证授权", callback: function (key, opt) {
-                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
-                    specificLockCode = $(this).parent("tr").attr("lockid");
-                    $('#md-identity').niftyModal();
-                }
-            },
-            separator1: "-----",
-            password: {
-                name: "密码授权", callback: function (key, opt) {
-                    specificGatewayCode = $(this).parent("tr").attr("gatewayid");
-                    specificLockCode = $(this).parent("tr").attr("lockid");
-                    $('#md-pwd').niftyModal();
-                }
-            },
-            separator2: "-----",
             authorization : {
                 name: "开锁信息", callback: function(key, opt){
                     $('#md-authorization').niftyModal();

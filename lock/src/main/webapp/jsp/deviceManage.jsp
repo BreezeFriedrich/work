@@ -380,7 +380,7 @@
 <script type="text/javascript" src="resources/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/js/fixed-table.js"></script>
 <script type="text/javascript" src="resources/plugin/behaviour/general.js"></script>
-<script type="text/javascript" src="resources/js/gatewayJs.js?v=6"></script>
+<script type="text/javascript" src="resources/js/gatewayJs.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){

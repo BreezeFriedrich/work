@@ -48,9 +48,8 @@ public class OrderController {
         }
         HttpSession session=request.getSession(false);
 //        session.setAttribute("ownerPhoneNumber","18255683932");
-//        String ownerPhoneNumber="18255683932";
-        String ownerPhoneNumber="13905169824";
-//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber="13905169824";
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         String theDateStr=request.getParameter("theDate");
         Date theDate= null;
         JsonDto jsonDto=null;

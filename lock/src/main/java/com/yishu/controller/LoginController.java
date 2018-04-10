@@ -172,10 +172,10 @@ public class LoginController {
             LOG.info("-->>-- user/getSubordinateHierarchyTillLock.do -->>--");
         }
         HttpSession session=request.getSession(false);
-//        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
-//        int grade= (int) session.getAttribute("grade");
-        String ownerPhoneNumber="13905169824";
-        int grade=10;
+        String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+        int grade= (int) session.getAttribute("grade");
+//        String ownerPhoneNumber="13905169824";
+//        int grade=10;
         User user=userService.getUserWithSubordinate(ownerPhoneNumber,grade);
         user.setName((String) session.getAttribute("ownerName"));
         User userHierarchyTillLock=userService.getSubordinateHierarchyTillLock(user);

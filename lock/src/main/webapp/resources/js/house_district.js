@@ -94,6 +94,7 @@ function getLocks() {
                         }]}
                     ]};
                 */
+                /*
                 district={
                     "phoneNumber":"17705155208","grade":20,"name":"雨花台区","location":null,
                     "subordinateList":[
@@ -214,6 +215,7 @@ function getLocks() {
                     ],
                 };
                 landlords=district.subordinateList;
+                */
             // }
         },
         error:function(xhr,errorType,error){
@@ -747,7 +749,7 @@ $(document).ready(function(){
             }],
         */
         fields : fields,
-        tableDefaultContent: "<div>我是一个默认的div</div>"
+        tableDefaultContent: "<div>表格数据内容为空</div>"
     });
     tableFunc.district.completeTable(landlords,theDate);
 

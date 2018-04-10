@@ -641,7 +641,7 @@ $(document).ready(function () {
         ],
         */
         fields: fields,
-        tableDefaultContent: "<div>我是一个默认的div</div>"
+        tableDefaultContent: "<div>表格数据内容为空</div>"
     });
     // plugin datetimepicker event on changeDate 要在drawTable之前才有效.
     $('#datetimepicker')

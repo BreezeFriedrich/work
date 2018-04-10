@@ -17,7 +17,6 @@ $(function () {
     $('nav a').removeClass('active').eq(2).addClass('active');
     clearIframeById("frame1");
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
-    ownerPhoneNumber=18255683932;
     document.getElementsByTagName('input')[0].value='';
     document.getElementsByTagName('input')[1].value='';
 

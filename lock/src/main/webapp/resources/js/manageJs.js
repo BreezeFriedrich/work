@@ -1,8 +1,8 @@
 var pathName=window.document.location.pathname;
 var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 //当前用户手机和级别
-var ownerPhoneNumber="18255683932";
-var grade=10;
+var ownerPhoneNumber;
+var grade;
 
 var PageSize = 1; //每页个数
 var Page = 1; //当前页码
@@ -11,9 +11,8 @@ $(function () {
     $.ajax({
         type:"GET",
         url:"user/getUserFromSession.do",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{},
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        async:false,
+        dataType:'json',
         success:function(data,status,xhr){
             ownerPhoneNumber=data.phoneNumber;
             grade=data.grade;

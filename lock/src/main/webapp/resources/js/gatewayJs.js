@@ -3,7 +3,7 @@ var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 
 //当前用户手机和级别
 var ownerPhoneNumber;
-// var grade=10;
+var grade;
 
 var PageSize = 10; //每页个数
 var Page = 1; //当前页码
