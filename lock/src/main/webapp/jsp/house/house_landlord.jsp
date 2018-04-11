@@ -234,7 +234,7 @@
                     <div class="form-group">
                         <div class="col-sm-10">
                             <button id="submit-auth" type="button" class="btn btn-primary">提交授权</button>
-                            <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">关 闭</button>
+                            <button type="submit" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">关 闭</button>
                         </div>
                     </div>
                 </form>

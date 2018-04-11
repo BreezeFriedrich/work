@@ -1,6 +1,3 @@
-var pathName=window.document.location.pathname;
-var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-
 //当前用户手机和级别
 var ownerPhoneNumber;
 var grade;
@@ -9,13 +6,12 @@ var PageSize = 10; //每页个数
 var Page = 1; //当前页码
 
 $(function () {
-    console.log('projectPath : '+projectPath);
+    clearIframeById("frame1");
     $.ajax({
         type:"GET",
         url:"user/getUserFromSession.do",
-        async:false,//设置为同步，即浏览器等待服务器返回数据再执行下一步.
-        data:{},
-        dataType:'json',//返回的数据格式：json/xml/html/script/jsonp/text
+        async:false,
+        dataType:'json',
         success:function(data,status,xhr){
             ownerPhoneNumber=data.phoneNumber;
             grade=data.grade;
@@ -29,6 +25,63 @@ $(function () {
 
     showDevices();
 });
+
+function clearIframeById(id) {
+    var iframe = document.getElementById(id);
+    if (iframe) {
+        iframe.src = 'about:blank';
+        try {
+            iframe.contentWindow.document.write('');
+            iframe.contentWindow.document.clear();
+        } catch (e) {
+        }
+        //以上可以清除大部分的内存和文档节点记录数了
+        document.body.removeChild(iframe);
+    }
+}
+function getGatewayVerifyCode() {
+    var gatewayIp=null;
+    var gatewayCode=document.getElementsByTagName('input')[0].value;
+    $.ajax({
+        type:"POST",
+        url:"gateway/getGatewayIp.do",
+        async:true,
+        data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
+        dataType:'json',
+        success:function(data,status,xhr){
+            gatewayIp=data;
+            var LANaddr=null;
+            if(null!=gatewayIp && ''!==gatewayIp){
+                $.ajax({
+                    type:"POST",
+                    url:"gateway/getGatewayLANIp.action",
+                    async:true,
+                    data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
+                    dataType:'json',
+                    success:function(data,status,xhr){
+                        LANip=data.ip;
+                        opCode=null;
+                        if(null!=LANip && ''!==LANip){
+                            LANaddr='http://'+data.ip+':9018';
+                            document.getElementById("frame1").src=LANaddr;
+                        }else {
+                            //获取网关所在局域网地址失败,可能是网关已被添加过
+                            $.toast('网关已被添加过');
+                        }
+                    },
+                    error:function(xhr,errorType,error){
+                        console.log('ajax错误');
+                    }
+                });
+            }else {
+                $.toast('获取网关所在数据服务器地址失败');
+            }
+        },
+        error:function(xhr,errorType,error){
+            console.log('ajax错误');
+        }
+    });
+}
 
 /**
  * 展示网关与门锁
@@ -311,6 +364,67 @@ function addGateway(form) {
             }
         });
     }
+}
+
+function getgateway() {
+    var devices=getDevices();
+    var gatewayCode=document.getElementById("gatewayCode");
+    var childs = gatewayCode.childNodes;
+    for(var s = childs.length - 1; s >= 0; s--) {
+        gatewayCode.removeChild(childs[s]);
+    }
+    for(var i=0;i<devices.length;i++){
+        var op=document.createElement("option");
+        op.setAttribute("value",devices[i].gatewayCode);
+        op.innerHTML=devices[i].gatewayCode;
+        gatewayCode.appendChild(op);
+    }
+}
+function addLock(form) {
+    var lockName=form.lockName.value;
+    var lockLocation=form.lockLocation.value;
+    var lockCode=form.lockCode.value;
+    var gatewayCode=form.gatewayCode.value;
+    $.ajax({
+        type:"POST",
+        url:"manageController/addLock.do",
+        data:{
+            "lockName":lockName,
+            "lockLocation":lockLocation,
+            "lockCode":lockCode,
+            "gatewayCode":gatewayCode,
+            "ownerPhoneNumber":ownerPhoneNumber
+        },
+        dataType:"json",
+        async:false,
+        success:function(jsonData){
+            var jsonResult=eval(jsonData);
+            if(jsonResult.result==0){
+                alert("添加成功！");
+            }else {
+                alert("添加失败！");
+            }
+        },
+        error:function(XMLHttpRequest, textStatus, errorThrown) {
+            $.ajax({
+                type:"POST",
+                url:"manageController/getjunior.do",
+                data:{"ownerPhoneNumber":ownerPhoneNumber,"grade":grade},
+                dataType:"json",
+                async:false,
+                success:function(jsonData){
+                    var jsonResult=eval(jsonData);
+                    if(jsonResult.result==0){
+                        // alert("获取锁数据成功");
+                        devices=jsonResult.devices;
+                    }
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    alert('操作失败');
+                }
+            })
+        }
+    });
 }
 
 /**

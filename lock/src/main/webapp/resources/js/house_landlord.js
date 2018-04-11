@@ -420,6 +420,7 @@ function renderRow(landlord,date) {
                             endIndex=Math.floor((endTime-dateArr[0])/86400000);
                         }
                         var TDs_row=TR.find("td:not(:first)");
+                        /*
                         for(var j=15;j<31;j++){
                             if(j>=startIndex && j<endIndex+1){
                                 TDs_row.eq(j).addClass("cd-booked");
@@ -427,10 +428,25 @@ function renderRow(landlord,date) {
                                 TDs_row.eq(j).addClass("cd-vacant");
                             }
                         }
+                        */
+                        for(var j=startIndex;j<endIndex+1;j++){
+                            TDs_row.eq(j).addClass("cd-booked");
+                        }
+                    }
+                    var TRs=fixedTable.fixedTableBody.find("tbody tr");
+                    for(var i=0;i<TRs.length;i++){
+                        var TDs=TRs.eq(i).find("td:gt(15)");
+                        // TDs.find(":not(cd-booked)")
+                        TDs.not(".cd-booked").addClass("cd-vacant");
                     }
                 }else if(data.biz.code===1){
-                    for(var i=0;i<16;i++){
-                        TDs_row.eq(i+15).addClass("cd-vacant");
+                    // for(var i=0;i<16;i++){
+                    //     TDs_row.eq(i+15).addClass("cd-vacant");
+                    // }
+                    var TRs=fixedTable.fixedTableBody.find("tbody tr");
+                    for(var i=0;i<TRs.length;i++){
+                        var TDs=TRs.eq(i).find("td:gt(15)");
+                        TDs.not(".cd-booked").addClass("cd-vacant");
                     }
                 }
             }

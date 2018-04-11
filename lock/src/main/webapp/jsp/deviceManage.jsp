@@ -49,6 +49,7 @@
             <div class="block-flat table0-top gateway-table">
 
                 <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket"><i class="fa fa-plus"></i>新增网关</button>
+                <button type="button" onclick="getgateway();" class="btn btn-success btn-rad md-trigger" data-modal="reply-lock"><i class="fa fa-plus"></i>新增门锁</button>
 
                 <div class="content">
                     <!--网关和锁-->
@@ -224,7 +225,52 @@
                         </div>
                     </div>
                     <%--<div class="md-overlay"></div>--%>
-                    <!-- 新增网关  end-->
+                    <!-- 新增网关end -->
+
+                    <!-- 新增门锁-->
+                    <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-lock">
+                        <div class="md-content">
+                            <div class="block-flat">
+                                <div class="header">
+                                    <h3>新增门锁 </h3>
+                                    <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="content">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="lockName" placeholder="门锁名称">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="lockCode" placeholder="门锁编码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="lockLocation"  placeholder="门锁地址">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <%--<input type="text" class="form-control" name="gatewayCode"  placeholder="网关编码">--%>
+                                                <select id="gatewayCode" name="gatewayCode" placeholder="网关编码" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" >
+                                            <div class="col-sm-10" >
+                                                <button type="button" class="btn btn-primary" onclick="addLock(this.form);">确认新增</button>
+                                                <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%--<div class="md-overlay"></div>--%>
+                    <!-- 新增门锁end -->
 
                     <!-- 添加密码开锁授权  -->
                     <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-password">
@@ -268,7 +314,7 @@
                         </div>
                     </div>
                     <%--<div class="md-overlay"></div>--%>
-                    <!-- 添加密码开锁授权   end -->
+                    <!-- 添加密码开锁授权end -->
 
                     <!-- 身份证授权 -->
                     <div class="md-modal2 colored-header custom-width md-effect-9" id="reply-identity">
@@ -316,7 +362,7 @@
                         </div>
                     </div>
                     <%--<div class="md-overlay"></div>--%>
-                    <!-- 身份证授权  end -->
+                    <!-- 身份证授权end -->
 
                     <!-- 开锁授权信息  -->
                     <div class="md-modal colored-header custom-width md-effect-9" id="reply-unlocking">
@@ -350,7 +396,7 @@
                         </div>
                     </div>
                     <div class="md-overlay"></div>
-                    <!-- 开锁信息  end -->
+                    <!-- 开锁信息end -->
                 </div>
                 <div class="clearfix"></div>
             </div>

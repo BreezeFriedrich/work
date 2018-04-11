@@ -107,7 +107,7 @@ public class GatewayAction extends ActionSupport {
 //    Map<String,Object> sessionMap=ActionContext.getContext().getSession();
 
     public String getGatewayIp(){
-        LOG.info("-->>-- gateway/getGatewayIp.action -->>--");
+        LOG.info("-->>-- gateway/getGatewayIp.do -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -117,7 +117,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String hasGatewayAdded(){
-        LOG.info("-->>-- gateway/hasGatewayAdded.action -->>--");
+        LOG.info("-->>-- gateway/hasGatewayAdded.do -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -127,7 +127,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String getGatewayLANIp(){
-        LOG.info("-->>-- gateway/getGatewayLANIp.action -->>--");
+        LOG.info("-->>-- gateway/getGatewayLANIp.do -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -137,7 +137,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String isCorrectGatewayVerificationCode(){
-        LOG.info("-->>-- gateway/isCorrectGatewayVerificationCode.action -->>--");
+        LOG.info("-->>-- gateway/isCorrectGatewayVerificationCode.do -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -147,7 +147,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String registerGatewayInfo(){
-        LOG.info("-->>-- gateway/registerGatewayInfo.action -->>--");
+        LOG.info("-->>-- gateway/registerGatewayInfo.do -->>--");
         LOG.info("ownerPhoneNumber-before:"+ownerPhoneNumber);
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
@@ -159,7 +159,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String modifyGatewayInfo(){
-        LOG.info("-->>-- gateway/modifyGatewayInfo.action -->>--");
+        LOG.info("-->>-- gateway/modifyGatewayInfo.do -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -169,7 +169,7 @@ public class GatewayAction extends ActionSupport {
     }
 
     public String deleteGateway(){
-        LOG.info("-->>-- gateway/deleteGateway.action -->>--");
+        LOG.info("-->>-- gateway/deleteGateway.do -->>--");
         if ("".equals(ownerPhoneNumber)||null==ownerPhoneNumber){
             ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
         }
@@ -180,7 +180,7 @@ public class GatewayAction extends ActionSupport {
 
     /*访问局域网内,跨域无效
     public String getVerificationCode(){
-        LOG.info("-->>-- gateway/getVerificationCode.action -->>--");
+        LOG.info("-->>-- gateway/getVerificationCode.do -->>--");
         String result=HttpUtil.httpToGateway(url);
         LOG.info("getVerificationCode,httpToGateway("+url+")返回结果为："+result);
         jsonResult=result.substring(result.indexOf("<h1>")+4,result.indexOf("</h1>"));
