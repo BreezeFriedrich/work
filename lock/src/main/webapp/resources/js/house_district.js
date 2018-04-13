@@ -856,7 +856,7 @@ var datatableSet = {
             bLengthChange : false, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
             lengthMenu : [5,10,15],
             ordering : true,
-            stateSave : true,
+            stateSave : false,
             retrieve : true
             //bPaginate: true, //翻页功能
             //bFilter : true, //过滤功能

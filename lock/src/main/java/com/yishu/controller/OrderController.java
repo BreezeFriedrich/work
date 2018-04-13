@@ -2,12 +2,12 @@ package com.yishu.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yishu.pojo.AuthOrder;
-import com.yishu.pojo.BizDto;
-import com.yishu.pojo.CardInfo;
-import com.yishu.pojo.JsonDto;
+import com.yishu.pojo.*;
 import com.yishu.service.IOrderService;
 import com.yishu.util.DateUtil;
+import com.yishu.util.FilterList;
+import com.yishu.util.FilterListHook;
+import com.yishu.util.PageUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,67 @@ public class OrderController {
     private List resultList;
     private Map resultMap;
     private int resultInt;
+
+    @RequestMapping("/getAuthOrderRecordOnTheDay.do")
+    @ResponseBody
+    public JsonDto getAuthOrderRecordOnTheDay(HttpServletRequest request){
+        if (LOG.isInfoEnabled()){
+            LOG.info("-->>-- order/getAuthOrderRecordOnTheDay.do -->>--");
+        }
+//        HttpSession session=request.getSession(false);
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
+        String theDateStr=request.getParameter("date");
+        final String roomTypeId=request.getParameter("roomTypeId");
+        final String roomId=request.getParameter("roomId");
+        String startIndex = request.getParameter("startIndex");
+        String pageSize = request.getParameter("pageSize");
+        String draw = request.getParameter("draw");
+
+//        HashMap filterMap= new HashMap(3);
+        JsonDto jsonDto=null;
+        BizDto bizDto=null;
+        Date theDate= null;
+        try {
+            theDate = DateUtil.yyyy_MM_dd.parse(theDateStr);
+            List<AuthOrder> authOrders=orderService.getAuthOrderOnTheDay(ownerPhoneNumber,theDate);
+            if(null==authOrders || authOrders.isEmpty()){
+                bizDto= BizDto.EMPTY_RESULT;
+                jsonDto=new JsonDto(bizDto);
+                return jsonDto;
+            }
+//            filterMap.put("roomTypeId",roomTypeId);
+//            filterMap.put("roomId",roomId);
+//            List<AuthOrder> authOrders1=orderService.filterAuthOrder(authOrders,filterMap);
+            //filter,按房间过滤授权订单.
+            List<AuthOrder> authOrdersFiltered = null;
+            authOrdersFiltered = FilterList.filter(authOrders, new FilterListHook<AuthOrder>() {
+                @Override
+                public boolean test(AuthOrder authOrder) {
+                    return (roomTypeId.equals(authOrder.getRoomTypeId()) && roomId.equals(authOrder.getRoomId()));
+                }
+            });
+            Map<String, Object> info = new HashMap<String, Object>();
+            if(null==authOrdersFiltered || authOrdersFiltered.isEmpty()){
+                info.put("pageData",null);
+                info.put("total",0);
+            }else{
+                List<OrderTableData> tableDatas=orderService.convertAuthOrderToTabularData(authOrdersFiltered);
+                List<UnlockAuthorizationTableData> tableDatasLast= PageUtil.page(tableDatas,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+                info.put("pageData", tableDatasLast);
+                info.put("total", tableDatas.size());
+            }
+            info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
+            bizDto=new BizDto(info);
+            jsonDto=new JsonDto(bizDto);
+            return jsonDto;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            LOG.error(null,e);
+            jsonDto= JsonDto.EXCEPTION;
+        }finally {
+            return jsonDto;
+        }
+    }
 
     @RequestMapping("/getAuthOrderFromDate.do")
     @ResponseBody
@@ -167,8 +229,9 @@ public class OrderController {
         if (LOG.isInfoEnabled()) {
             LOG.info("-->>-- order/cancleAuthOrder.do -->>--");
         }
-        HttpSession session = request.getSession(false);
-        String ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+//        HttpSession session = request.getSession(false);
+//        String ownerPhoneNumber = (String) session.getAttribute("ownerPhoneNumber");
+        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String orderNumber=request.getParameter("orderNumber");
         resultBoolean=orderService.cancleAuthOrder(ownerPhoneNumber,orderNumber);
         return resultBoolean;

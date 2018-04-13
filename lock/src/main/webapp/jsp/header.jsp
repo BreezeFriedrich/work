@@ -7,7 +7,7 @@
             <a class="navbar-brand" href="#"></a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav menu">
                 <li><button id="sidebar-collapse" class="button-open" style=""></button></li>
                 <li class="nav-left">
                     <a href="javascript:void(0);" onclick="javascript:window.location.href=encodeURI('${pageContext.request.contextPath}/jsp/deviceManage.jsp');">设备管理</a>
@@ -57,6 +57,13 @@
             sessionuser.name=data.name;
 //            console.log('{ ownerPhoneNumber:'+ownerPhoneNumber+' ; grade:'+grade+' }');
             $('.user-nav a.dropdown-toggle').html('<img alt="Avatar" src="resources/images/avatar2.jpg" />'+sessionuser.name+'<b class="caret"></b>');
+
+            if(10!=sessionuser.grade){
+                $('ul.menu li').eq(6).remove();
+                $('ul.menu li').eq(5).remove();
+                $('ul.menu li').eq(2).remove();
+                $('ul.menu li').eq(1).remove();
+            }
         },
         error:function(xhr,errorType,error){
             console.log('会话过期,请重新登录');

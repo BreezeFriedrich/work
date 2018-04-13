@@ -48,7 +48,8 @@
 
             <div class="block-flat table0-top gateway-table">
 
-                <button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket"><i class="fa fa-plus"></i>新增网关</button>
+                <%--<button type="button" class="btn btn-success btn-rad md-trigger" data-modal="reply-ticket"><i class="fa fa-plus"></i>新增网关</button>--%>
+                <button id="addGateway" type="button" class="btn btn-success btn-rad md-trigger"><i class="fa fa-plus"></i>新增网关</button>
                 <button type="button" onclick="getgateway();" class="btn btn-success btn-rad md-trigger" data-modal="reply-lock"><i class="fa fa-plus"></i>新增门锁</button>
 
                 <div class="content">
@@ -199,8 +200,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-8">
                                                 <input type="text" class="form-control" name="gatewayCode" placeholder="网关编码">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="button" class="btn btn-primary" onclick="getGatewayVerifyCode();">获取验证码</button>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -212,10 +216,13 @@
                                             <div class="col-sm-12">
                                                 <input type="text" class="form-control" name="opCode"  placeholder="网关验证码">
                                             </div>
+                                            <div class="col-sm-12">
+                                                <iframe style="top: -0px;position: relative;" id="frame1" width="300" height="180" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"/></iframe>
+                                            </div>
                                         </div>
                                         <div class="form-group" >
                                             <div class="col-sm-10" >
-                                                <button type="button" class="btn btn-primary" onclick="addGateway(this.form)">确认新增</button>
+                                                <button type="submit" class="btn btn-primary" onclick="addGateway(this.form)">确认新增</button>
                                                 <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>
@@ -260,8 +267,8 @@
                                         </div>
                                         <div class="form-group" >
                                             <div class="col-sm-10" >
-                                                <button type="button" class="btn btn-primary" onclick="addLock(this.form);">确认新增</button>
-                                                <button class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
+                                                <button type="submit" class="btn btn-primary" onclick="addLock(this.form);">确认新增</button>
+                                                <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>
                                     </form>
@@ -303,7 +310,7 @@
                                         </div>
                                         <div class="form-group" >
                                             <div class="col-sm-12" >
-                                                <button type="button" class="btn btn-primary" onclick="doPwdAuth(this.form)">确认授权</button>
+                                                <button type="submit" class="btn btn-primary" onclick="doPwdAuth(this.form)">确认授权</button>
                                                 <button type="button" class="btn btn-default  md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>
@@ -351,7 +358,7 @@
                                         </div>
                                         <div class="form-group" >
                                             <div class="col-sm-10" >
-                                                <button type="button" class="btn btn-primary" onclick="doIDAuth(this.form)">提交授权</button>
+                                                <button type="submit" class="btn btn-primary" onclick="doIDAuth(this.form)">提交授权</button>
                                                 <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">取  消</button>
                                             </div>
                                         </div>

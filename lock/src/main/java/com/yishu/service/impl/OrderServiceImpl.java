@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.yishu.pojo.AuthOrder;
 import com.yishu.pojo.CardInfo;
+import com.yishu.pojo.OrderTableData;
+import com.yishu.pojo.UnlockAuthorization;
 import com.yishu.service.IOrderService;
 import com.yishu.util.DateUtil;
 import com.yishu.util.FilterList;
@@ -32,6 +34,84 @@ public class OrderServiceImpl implements IOrderService{
     String reqData;
     String rawData;
     String timetag;
+
+    @Override
+    public List<OrderTableData> convertAuthOrderToTabularData(List<AuthOrder> authOrders) {
+        List<OrderTableData> tableDatas=new ArrayList<>();
+        OrderTableData tableData=null;
+        AuthOrder authOrder=null;
+        String startTime=null;
+        String endTime=null;
+        List<CardInfo> cardInfos=null;
+        CardInfo cardInfo=null;
+        for(int i=0;i<authOrders.size();i++){
+            authOrder=authOrders.get(i);
+            cardInfos=authOrder.getCardInfoList();
+            if(null!=authOrder.getPassword()){
+                //密码开锁授权
+                tableData=new OrderTableData();
+                tableData.setOrderNumber(authOrder.getOrderNumber());
+                tableData.setRoomType(authOrder.getRoomType());
+                tableData.setRoomName(authOrder.getRoomName());
+//                try {
+//                    startTime=DateUtil.yyyy_MM_dd0HH$mm.format(DateUtil.yyyyMMddHHmm.parse(authOrder.getStartTime()));
+//                    endTime=DateUtil.yyyy_MM_dd0HH$mm.format(DateUtil.yyyyMMddHHmm.parse(authOrder.getEndTime()));
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+                startTime=DateUtil.yyyy_MM_dd0HH$mm.format(new Date(Long.valueOf(authOrder.getStartTime())));
+                endTime=DateUtil.yyyy_MM_dd0HH$mm.format(new Date(Long.valueOf(authOrder.getEndTime())));
+                tableData.setStartTime(startTime);
+                tableData.setEndTime(endTime);
+                tableData.setPassword(authOrder.getPassword());
+                tableDatas.add(tableData);
+            }
+            if(null!=cardInfos){
+                //身份证开锁授权
+                for(int j=0;j<cardInfos.size();j++){
+                    cardInfo=cardInfos.get(j);
+                    tableData=new OrderTableData();
+                    tableData.setOrderNumber(authOrder.getOrderNumber());
+                    tableData.setRoomType(authOrder.getRoomType());
+                    tableData.setRoomName(authOrder.getRoomName());
+//                    try {
+//                        startTime=DateUtil.yyyy_MM_dd0HH$mm.format(DateUtil.yyyyMMddHHmm.parse(authOrder.getStartTime()));
+//                        endTime=DateUtil.yyyy_MM_dd0HH$mm.format(DateUtil.yyyyMMddHHmm.parse(authOrder.getEndTime()));
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+                    startTime=DateUtil.yyyy_MM_dd0HH$mm.format(new Date(Long.valueOf(authOrder.getStartTime())));
+                    endTime=DateUtil.yyyy_MM_dd0HH$mm.format(new Date(Long.valueOf(authOrder.getEndTime())));
+                    tableData.setStartTime(startTime);
+                    tableData.setEndTime(endTime);
+                    tableData.setName(cardInfo.getName());
+                    tableData.setCardNumb(cardInfo.getCardNumber());
+                    tableDatas.add(tableData);
+                }
+            }
+        }
+        return tableDatas;
+    }
+
+    @Override
+    public List<AuthOrder> getAuthOrderOnTheDay(String ownerPhoneNumber, Date theDate) {
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(theDate);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        Date startDate=calendar.getTime();
+        final long startMoment=startDate.getTime();
+        calendar.setTime(theDate);
+        calendar.set(Calendar.HOUR_OF_DAY,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
+        calendar.set(Calendar.MILLISECOND,999);
+        Date endDate=calendar.getTime();
+        final long endMoment=endDate.getTime();
+        return getAuthOrder(ownerPhoneNumber,startMoment,endMoment);
+    }
 
     @Override
     public List<AuthOrder> getAuthOrderFromDate(String ownerPhoneNumber, Date theDate) {
@@ -93,8 +173,10 @@ public class OrderServiceImpl implements IOrderService{
                     long endTime = DateUtil.yyyyMMddHHmm.parse(authOrder.getEndTime()).getTime();
                     if(new Date().getTime() < endTime){
                         authOrder.setEndTime(String.valueOf(endTime));
+//                        authOrder.setEndTime(authOrder.getEndTime());
                         long startTime = DateUtil.yyyyMMddHHmm.parse(authOrder.getStartTime()).getTime();
                         authOrder.setStartTime(String.valueOf(startTime));
+//                        authOrder.setStartTime(authOrder.getStartTime());
                         return true;
                     }
                 } catch (ParseException e) {

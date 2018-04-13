@@ -50,10 +50,39 @@ public class RecordServiceImpl implements IRecordService {
             e.printStackTrace();
         }
         respSign=rootNode.path("result").asInt();
-//        LOG.info("respSign:"+String.valueOf(respSign));
         return respSign;
     }
 
+    @Override
+    public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, final long startTime, final long endTime) {
+        reqSign=26;
+        String startTimeReqParam=DateUtil.yyyyMMddHHmm.format(new Date(startTime));
+        String endTimeReqParam=DateUtil.yyyyMMddHHmm.format(new Date(endTime));
+        LOG.info("{ownerPhoneNumber:"+ownerPhoneNumber+",startTime:"+startTime+";endTime:"+endTime+"}");
+        reqData="{\"sign\":"+reqSign+",\"ownerPhoneNumber\":\""+ownerPhoneNumber+"\",\"startTime\":\""+startTimeReqParam+"\",\"endTime\":\""+endTimeReqParam+"\"}";
+        LOG.info("reqData:"+reqData);
+        rawData = HttpUtil.httpsPostToGateway(reqData);
+//        LOG.info("rawData:"+rawData);
+
+        respSign();
+        Map resultMap=new HashMap();
+        resultMap.put("result",respSign);
+        if (0==respSign){
+            //获取开锁记录成功.
+//            String recordListTemp=rootNode.path("recordList").asText();
+            String recordListTemp=rootNode.path("recordList").toString();//!!!toString多了引号
+            List<UnlockRecord> recordList=null;
+            try {
+                recordList = objectMapper.readValue(recordListTemp, new TypeReference<List<UnlockRecord>>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Collections.reverse(recordList);
+            return recordList;
+        }
+        return null;
+    }
+    /*
     @Override
     public List<UnlockRecord> getUnlockRecord(String ownerPhoneNumber, final long startTime, final long endTime) {
         //rawData,获取原始数据:开锁记录的List.
@@ -103,6 +132,7 @@ public class RecordServiceImpl implements IRecordService {
         }
         return recordList2;
     }
+    */
 
     @Override
     public List<UnlockRecord> getUnlockRecordFilter(String ownerPhoneNumber, long startTime, long endTime, final Map<String,Object> filterparamMap) {
@@ -252,7 +282,139 @@ public class RecordServiceImpl implements IRecordService {
         });
         return recordList;
     }
-
+/*
+    @Override
+    public List<UnlockRecord> orderUnlockRecord(List<UnlockRecord> unlockRecords, final Order order) {
+        Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+            @Override
+            public int compare(UnlockRecord o1, UnlockRecord o2) {
+                int compareNum=1;
+                switch (order.getOrderColumn()) {
+                    case "gatewayCode":
+                        compareNum=o1.getGatewayCode().compareTo(o2.getGatewayCode());
+                        break;
+                    case "lockCode":
+                        compareNum=o1.getLockCode().compareTo(o2.getLockCode());
+                        break;
+                    case "openMode":
+                        compareNum=o1.getOpenMode()-o2.getOpenMode();
+                        break;
+                    case "timestamp":
+                        compareNum=o1.getTimetag().compareTo(o2.getTimetag());
+                        break;
+                    case "credential":
+                        if(o1.getOpenMode()==o2.getOpenMode()){
+                            if(null!=o1.getPasswordInfo() && null!=o2.getPasswordInfo()){
+                                compareNum=o1.getPasswordInfo().getPassword().compareTo(o2.getPasswordInfo().getPassword());
+                            }
+                            if (null!=o1.getCardInfo() && null!=o2.getCardInfo()){
+                                compareNum=o1.getCardInfo().getCardNumb().compareTo(o2.getCardInfo().getCardNumb());
+                            }
+                        }else{
+                            compareNum=1;
+                        }
+                        break;
+                    case "name":
+                        break;
+                    default:
+                        break;
+                }
+                if ("asc".equals(order.getOrderDir())) {
+                    return compareNum;
+                }else{
+                    return -1*compareNum;
+                }
+            }
+        });
+        return unlockRecords;
+    }
+*/
+    @Override
+    public List<UnlockRecord> orderUnlockRecord(List<UnlockRecord> unlockRecords, final Order order) {
+        int directionInt=1;
+        if (!"asc".equals(order.getOrderDir())) {
+            directionInt=-1*directionInt;
+        }
+        final int finalDirectionInt = directionInt;
+        switch (order.getOrderColumn()) {
+            case "gatewayCode":
+                Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                    @Override
+                    public int compare(UnlockRecord o1, UnlockRecord o2) {
+                        return finalDirectionInt *(o1.getGatewayCode().compareTo(o2.getGatewayCode()));
+                    }
+                });
+                break;
+            case "lockCode":
+                Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                    @Override
+                    public int compare(UnlockRecord o1, UnlockRecord o2) {
+                        return finalDirectionInt *(o1.getLockCode().compareTo(o2.getLockCode()));
+                    }
+                });
+                break;
+            case "openMode":
+                Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                    @Override
+                    public int compare(UnlockRecord o1, UnlockRecord o2) {
+                        return finalDirectionInt *(o1.getOpenMode()-o2.getOpenMode());
+                    }
+                });
+                break;
+            case "timestamp":
+                Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                    @Override
+                    public int compare(UnlockRecord o1, UnlockRecord o2) {
+                        return finalDirectionInt *(o1.getTimetag().compareTo(o2.getTimetag()));
+                    }
+                });
+                break;
+            case "credential":
+                Order orderTemp=new Order();
+                orderTemp.setOrderColumn("openMode");
+                orderTemp.setOrderDir("asc");
+                orderUnlockRecord(unlockRecords,orderTemp);
+                Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                    @Override
+                    public int compare(UnlockRecord o1, UnlockRecord o2) {
+                        if(o1.getOpenMode()==o2.getOpenMode()){
+                            if(null!=o1.getPasswordInfo() && null!=o2.getPasswordInfo()){
+                                return finalDirectionInt *(o1.getPasswordInfo().getPassword().compareTo(o2.getPasswordInfo().getPassword()));
+                            }
+                            if (null!=o1.getCardInfo() && null!=o2.getCardInfo()){
+                                return finalDirectionInt *(o1.getCardInfo().getCardNumb().compareTo(o2.getCardInfo().getCardNumb()));
+                            }
+                        }
+                        return 1;
+                    }
+                });
+                break;
+            case "name":
+                Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                    @Override
+                    public int compare(UnlockRecord o1, UnlockRecord o2) {
+                        String name1;
+                        if(null==o1.getCardInfo()){
+                            name1="";
+                        }else{
+                            name1=o1.getCardInfo().getName();
+                        }
+                        String name2;
+                        if(null==o2.getCardInfo()){
+                            name2="";
+                        }else{
+                            name2=o2.getCardInfo().getName();
+                        }
+                        return finalDirectionInt *(name1.compareTo(name2));
+                    }
+                });
+                break;
+            default:
+                break;
+        }
+        return unlockRecords;
+    }
+/*
     @Override
     public List<UnlockRecord> orderUnlockRecord(final List<UnlockRecord> unlockRecords, final List<Order> orderList) {
         for(final Order order:orderList) {
@@ -271,13 +433,6 @@ public class RecordServiceImpl implements IRecordService {
                             compareNum=o1.getOpenMode()-o2.getOpenMode();
                             break;
                         case "timestamp":
-                            /*
-                            try {
-                                compareNum=DateUtil.yyyyMMddHHmmss.parse(o1.getTimetag()).getTime()-DateUtil.yyyyMMddHHmmss.parse(o2.getTimetag()).getTime();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                             */
                             compareNum=o1.getTimetag().compareTo(o2.getTimetag());
                             break;
                         case "credential":
@@ -293,6 +448,20 @@ public class RecordServiceImpl implements IRecordService {
                             }
                             break;
                         case "name":
+                            String name1;
+                            if(null==o1.getCardInfo()){
+                                name1="";
+                            }else{
+                                name1=o1.getCardInfo().getName();
+                            }
+                            String name2;
+                            if(null==o2.getCardInfo()){
+                                name2="";
+                            }else{
+                                name2=o1.getCardInfo().getName();
+                            }
+
+                            compareNum=name1.compareTo(name2);
                             break;
                         default:
                             break;
@@ -304,6 +473,94 @@ public class RecordServiceImpl implements IRecordService {
                     }
                 }
             });
+        }
+        return unlockRecords;
+    }
+*/
+    @Override
+    public List<UnlockRecord> orderUnlockRecord(final List<UnlockRecord> unlockRecords, final List<Order> orderList) {
+        int directionInt=1;
+        for(final Order order:orderList) {
+            if (!"asc".equals(order.getOrderDir())) {
+                directionInt=-1*directionInt;
+            }
+            final int finalDirectionInt = directionInt;
+            switch (order.getOrderColumn()) {
+                case "gatewayCode":
+                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                        @Override
+                        public int compare(UnlockRecord o1, UnlockRecord o2) {
+                            return finalDirectionInt *(o1.getGatewayCode().compareTo(o2.getGatewayCode()));
+                        }
+                    });
+                    break;
+                case "lockCode":
+                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                        @Override
+                        public int compare(UnlockRecord o1, UnlockRecord o2) {
+                            return finalDirectionInt *(o1.getLockCode().compareTo(o2.getLockCode()));
+                        }
+                    });
+                    break;
+                case "openMode":
+                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                        @Override
+                        public int compare(UnlockRecord o1, UnlockRecord o2) {
+                            return finalDirectionInt *(o1.getOpenMode()-o2.getOpenMode());
+                        }
+                    });
+                    break;
+                case "timestamp":
+                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                        @Override
+                        public int compare(UnlockRecord o1, UnlockRecord o2) {
+                            return finalDirectionInt *(o1.getTimetag().compareTo(o2.getTimetag()));
+                        }
+                    });
+                    break;
+                case "credential":
+                    Order orderTemp=new Order();
+                    orderTemp.setOrderColumn("openMode");
+                    orderTemp.setOrderDir("asc");
+                    orderUnlockRecord(unlockRecords,orderTemp);
+                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                        @Override
+                        public int compare(UnlockRecord o1, UnlockRecord o2) {
+                            if(o1.getOpenMode()==o2.getOpenMode()){
+                                if(null!=o1.getPasswordInfo() && null!=o2.getPasswordInfo()){
+                                    return finalDirectionInt *(o1.getPasswordInfo().getPassword().compareTo(o2.getPasswordInfo().getPassword()));
+                                }
+                                if (null!=o1.getCardInfo() && null!=o2.getCardInfo()){
+                                    return finalDirectionInt *(o1.getCardInfo().getCardNumb().compareTo(o2.getCardInfo().getCardNumb()));
+                                }
+                            }
+                            return 1;
+                        }
+                    });
+                    break;
+                case "name":
+                    Collections.sort(unlockRecords, new Comparator<UnlockRecord>() {
+                        @Override
+                        public int compare(UnlockRecord o1, UnlockRecord o2) {
+                            String name1;
+                            if(null==o1.getCardInfo()){
+                                name1="";
+                            }else{
+                                name1=o1.getCardInfo().getName();
+                            }
+                            String name2;
+                            if(null==o2.getCardInfo()){
+                                name2="";
+                            }else{
+                                name2=o2.getCardInfo().getName();
+                            }
+                            return finalDirectionInt *(name1.compareTo(name2));
+                        }
+                    });
+                    break;
+                default:
+                    break;
+            }
         }
         return unlockRecords;
     }

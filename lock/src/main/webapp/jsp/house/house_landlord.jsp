@@ -105,6 +105,9 @@
             margin: 0;
             /*border-bottom: 1px solid #e6e6e6;*/
         }
+        button {
+            border: 0px;
+        }
     </style>
 </head>
 <body>
@@ -149,7 +152,7 @@
 </div>
 
 <%-- 开锁信息 --%>
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-authorization" style="width: 930px;">
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-authorization" style="width: 1300px;">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
@@ -158,14 +161,16 @@
             </div>
 
             <div class="content">
-                <table id="table-authorization" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                <table id="table-authorization" class="table table-striped table-bordered table-hover" cellspacing="0" style="width: 960px;">
                     <thead>
                     <tr>
-                        <th width="150px">开锁类型</th>
-                        <th width="180px">开锁凭据</th>
-                        <th width="100px">开锁人</th>
-                        <th width="200px">生效时间</th>
-                        <th width="200px">失效时间</th>
+                        <th width="100px">房型</th>
+                        <th width="100px">房间</th>
+                        <th width="180px">生效时间</th>
+                        <th width="180px">失效时间</th>
+                        <th width="100px">密码</th>
+                        <th width="100px">姓名</th>
+                        <th width="150px">身份证</th>
                         <th width="50px">操作</th>
                     </tr>
                     </thead>
@@ -176,7 +181,7 @@
 </div>
 
 <%-- 预订房间 --%>
-<div class="md-modal2 colored-header custom-width md-effect-9" id="md-auth">
+<div class="md-modal2 colored-header custom-width md-effect-9" id="md-book">
     <div class="md-content">
         <div class="block-flat">
             <div class="header">
@@ -211,13 +216,10 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12" id="auth-credentialPrompt">
-
+                            <%--<div><span style="width: 200px;">身份证:43197464616</span><button class="id-minus"><img style="color:red;max-width: 20px;max-height: 20px;" src="resources/images/minus.png"></button></div>--%>
+                            <%--<div idCard="43197464616">身份证:43197464616<img class="id-minus" style="color:red;max-width: 20px;max-height: 20px;" src="resources/images/minus.png" /></div>--%>
                         </div>
                     </div>
-                    <%--<div id="auth-credentialPrompt">--%>
-                        <%--<p>密码  :</p>--%>
-                        <%--<p>身份证:</p>--%>
-                    <%--</div>--%>
                     <div class="form-group">
                         <div class="col-sm-12">
                             <fieldset>
@@ -233,8 +235,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <button id="submit-auth" type="button" class="btn btn-primary">提交授权</button>
-                            <button type="submit" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">关 闭</button>
+                            <button id="submit-book" type="submit" class="btn btn-primary">提交授权</button>
+                            <button type="button" class="btn btn-default md-close" data-dismiss="modal" aria-hidden="true">关 闭</button>
                         </div>
                     </div>
                 </form>
@@ -278,7 +280,7 @@
 
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/house_landlord.js"></script>
+<script type="text/javascript" src="resources/js/house_landlord.js?v=4"></script>
 </body>
 
 </html>

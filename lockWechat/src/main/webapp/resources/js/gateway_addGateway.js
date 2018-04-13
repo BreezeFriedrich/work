@@ -15,7 +15,8 @@ var isCorrectGatewayVerificationCode;
 var url;
 $(function () {
     $('nav a').removeClass('active').eq(2).addClass('active');
-    clearIframeById("frame1");
+    // clearIframeById("frame1");
+    document.getElementById('ifram').src = "about:blank";
     ownerPhoneNumber=getQueryString('ownerPhoneNumber');
     document.getElementsByTagName('input')[0].value='';
     document.getElementsByTagName('input')[1].value='';
@@ -32,7 +33,7 @@ function clearIframeById(id) {
         } catch (e) {
         }
     //以上可以清除大部分的内存和文档节点记录数了
-        document.body.removeChild(iframe);
+    //     document.body.removeChild(iframe);
         // iframe.parentNode.removeChild(iframe);
     }
 }

@@ -22,6 +22,16 @@ $(function () {
             window.location.href=('user/login.do');
         }
     });
+    // $('#addGateway').click(function () {
+    //     $('#reply-ticket').niftyModal({
+    //         afterOpen: function( modal ){
+    //             getGatewayVerifyCode;
+    //         }
+    //     });
+    // });
+    $('#addGateway').click(function () {
+        $('#reply-ticket').niftyModal();
+    });
 
     showDevices();
 });
@@ -36,45 +46,26 @@ function clearIframeById(id) {
         } catch (e) {
         }
         //以上可以清除大部分的内存和文档节点记录数了
-        document.body.removeChild(iframe);
+        // document.body.removeChild(iframe);
     }
 }
 function getGatewayVerifyCode() {
-    var gatewayIp=null;
-    var gatewayCode=document.getElementsByTagName('input')[0].value;
+    var gatewayCode=$("#reply-ticket input[name='gatewayCode']").val();
     $.ajax({
         type:"POST",
-        url:"gateway/getGatewayIp.do",
+        url:"gateway/getGatewayLANIp.do",
         async:true,
         data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
         dataType:'json',
         success:function(data,status,xhr){
-            gatewayIp=data;
-            var LANaddr=null;
-            if(null!=gatewayIp && ''!==gatewayIp){
-                $.ajax({
-                    type:"POST",
-                    url:"gateway/getGatewayLANIp.action",
-                    async:true,
-                    data:{"ownerPhoneNumber":ownerPhoneNumber,"gatewayCode":gatewayCode},
-                    dataType:'json',
-                    success:function(data,status,xhr){
-                        LANip=data.ip;
-                        opCode=null;
-                        if(null!=LANip && ''!==LANip){
-                            LANaddr='http://'+data.ip+':9018';
-                            document.getElementById("frame1").src=LANaddr;
-                        }else {
-                            //获取网关所在局域网地址失败,可能是网关已被添加过
-                            $.toast('网关已被添加过');
-                        }
-                    },
-                    error:function(xhr,errorType,error){
-                        console.log('ajax错误');
-                    }
-                });
+            LANip=data.ip;
+            opCode=null;
+            if(null!=LANip && ''!==LANip){
+                LANaddr='http://'+data.ip+':9018';
+                document.getElementById("frame1").src=LANaddr;
             }else {
-                $.toast('获取网关所在数据服务器地址失败');
+                //获取网关所在局域网地址失败,可能是网关已被添加过
+                alert('网关已被添加过');
             }
         },
         error:function(xhr,errorType,error){
@@ -138,9 +129,11 @@ function  showDevices() {
             var li1=document.createElement("li");
             var li2=document.createElement("li");
             var li3=document.createElement("li");
+            var li4=document.createElement("li");
             var a1=document.createElement("a");
             var a2=document.createElement("a");
             var a3=document.createElement("a");
+            var a4=document.createElement("a");
 
             // $('#home_keleyi_com').attr('href','http://keleyi.com');
             // a1.setAttribute('href','#');
@@ -170,13 +163,23 @@ function  showDevices() {
             a3.setAttribute("onclick","showAuth(\'"+gatewayCode+"\',\'"+lockLists[j].lockCode+"\');");
             a3.innerHTML= "查看授权信息";
 
+            a4.href="javascript:void(0);";
+            a4.setAttribute("class","md-trigger");
+            a4.setAttribute("data-modal","reply-unlocking");
+            a4.setAttribute("gatewayCode",gatewayCode);
+            a4.setAttribute("lockCode",lockLists[j].lockCode);
+            a4.setAttribute("onclick","deleteLock(\""+lockLists[j].lockCode+"\");");
+            a4.innerHTML= "删除门锁";
+
             li1.appendChild(a1);
             li2.appendChild(a2);
             li3.appendChild(a3);
+            li4.appendChild(a4);
 
             ul.appendChild(li1);
             ul.appendChild(li2);
             ul.appendChild(li3);
+            ul.appendChild(li4);
 
             div.appendChild(button);
             div.appendChild(ul);
@@ -196,6 +199,28 @@ function  showDevices() {
         tr.appendChild(td);
         tr.appendChild(th1);
         showDevices.appendChild(tr);
+    }
+}
+
+function deleteLock(lockCode){
+    if(confirm('确认删除')){
+        $.ajax({
+            type:"POST",
+            url:"lock/deleteLock.do",
+            async:false,
+            data:{
+                // "ownerPhoneNumber":ownerPhoneNumber,
+                "lockCode":lockCode
+            },
+            dataType:'json',
+            success:function(data,status,xhr){
+                // alert('ajax-result : '+data)
+                window.location.reload();
+            },
+            error:function(xhr,errorType,error){
+                console.log('错误')
+            }
+        });
     }
 }
 

@@ -92,6 +92,7 @@ public class LockController {
         }
         HttpSession session=request.getSession(false);
         String ownerPhoneNumber= (String) session.getAttribute("ownerPhoneNumber");
+//        String ownerPhoneNumber=request.getParameter("ownerPhoneNumber");
         String lockCode=request.getParameter("lockCode");
         resultBoolean=lockService.deleteLock(ownerPhoneNumber,lockCode);
         return resultBoolean;

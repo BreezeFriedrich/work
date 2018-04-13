@@ -65,7 +65,7 @@
                             <label for="form-lockCode" class="col-lg-2 control-label">门锁</label>
                             <div class="col-lg-2">
                                 <div class="switch">
-                                    <input type="checkbox" name="switchbox" checked data-label-width="auto" data-handle-width="auto" data-label-text="&nbsp;" data-on-text="编号" data-off-text="名称" data-size="small" data-on-color="primary" data-off-color="default"/>
+                                    <input type="checkbox" name="switchbox" checked data-label-width="auto" data-handle-width="25" data-label-text="&nbsp;" data-on-text="编号" data-off-text="名称" data-size="small" data-on-color="primary" data-off-color="default"/>
                                 </div>
                             </div>
                             <div class="col-lg-4">

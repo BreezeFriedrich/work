@@ -11,7 +11,8 @@
     <title>亿数智能门锁</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <%--<meta name="viewport" content="initial-scale=1, maximum-scale=1">--%>
+    <meta name="viewport" content="width=device-width,initial-scale=2.0 ,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="shortcut icon" href="resources/img/favicon.png" type="image/x-icon">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -24,7 +25,25 @@
             line-height: 2.0rem;
             font-size: 1.1rem;
         }
+        #ifram {
+            border: 0;
+            width: 1px;
+            min-width: 100%;
+            *width: 100%;
+        }
     </style>
+    <script>
+        var ifram = document.getElementById('ifram');
+        if (navigator.userAgent.match(/iPad|iPhone/i)) {
+            var iframe_box = document.getElementById('iframe-box');
+            iframe_box.style.width = 100 + '%';
+            iframe_box.style.overflowX = 'hidden';
+            iframe_box.style.overflowY = 'scroll';
+            iframe_box.style.webkitOverflowScrolling = 'touch';
+            ifram.setAttribute('scrolling', 'no');
+            iframe_box.appendChild(ifram)
+        }
+    </script>
 </head>
 <body>
 
@@ -58,7 +77,12 @@
             </div>
             <div class="content-block">
                 <a href="javascript:void(0);" onclick="getGatewayVerifyCode()" class="button button-big button-fill button-success">获取网关验证码</a>
-                <iframe id="frame1" width="300" height="180" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"/></iframe>
+                <%--<iframe id="frame1" width="300" height="180" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"/></iframe>--%>
+                <%--<iframe id="frame1" style="width: 300px;height: 180px;border: 0px;margin: 0px 0px;overflow: hidden;-webkit-overflow-scrolling: touch;" frameborder="0" scrolling="no"/></iframe>--%>
+                <div id="iframe-box">
+                    <iframe id="ifram" width="100%"></iframe>
+                    <%--<iframe id="ifram" src="http://192.168.1.14:9018" width="100%"></iframe>--%>
+                </div>
             </div>
             <div class="list-block">
                 <ul>

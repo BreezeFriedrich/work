@@ -455,14 +455,13 @@ function renderRow(landlord,date) {
         }
     });
 
-    var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(0).find("td:not(:first)");
     locks=landlord.subordinateList;
     for(var j in locks){
         lock=locks[j];
         //record获取入住记录
         $.ajax({
             type:"POST",
-            url:"record/getLockUnlockRecordDaily.do",
+            url:projectPath+"/record/getLockUnlockRecordDaily.do",
             async:false,
             data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
             dataType:'json',
@@ -499,8 +498,6 @@ function drawTable(date) {
 function getCellParam(element) {
     specificGatewayCode=element.parent("tr").attr("gatewayid");
     specificLockCode=element.parent("tr").attr("lockid");
-    roomTypeId=element.parent("tr").attr("roomtypeid");
-    roomId=element.parent("tr").attr("roomid");
     index=element.index();//index==0是房间cell.
     TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");//第0个thead的th即房间号cell.
     theTime=TH_header.eq(index).attr("time");
@@ -770,7 +767,7 @@ $(document).ready(function () {
                     // getCellParam($(this));
                     roomTypeId = $(this).parent("tr").attr("roomtypeid");
                     roomId = $(this).parent("tr").attr("roomid");
-                    $('#md-book').niftyModal();
+                    $('#md-auth').niftyModal();
                 }
             }
         }
@@ -842,17 +839,11 @@ $(document).ready(function () {
             cardInfo.dnCode='';
             cardInfoList.push(cardInfo);
         }
-        var idCard=null;
-        var html=null;
-        $('div #auth-credentialPrompt').children('div').remove();
         for(var i=0;i<cardInfoList.length;i++){
-            cardNumb=cardInfoList[i].cardNumber;
-            // $('div #auth-credentialPrompt').html('<p>身份证:'+idCard+'</p>');
-            html='<div class="idCard" idCard='+cardNumb+'>身份证:'+cardNumb+'<img class="id-minus" style="color:red;max-width: 20px;max-height: 20px;" src="resources/images/minus.png" /></div>';
-            $('div #auth-credentialPrompt').append(html);
+            $('div #auth-credentialPrompt').html('<p>身份证:'+cardInfoList[i].cardNumber+'</p>');
         }
     });
-    $('#submit-book').click(function () {
+    $('#submit-auth').click(function () {
         password = $("form#form-auth input[name='password']").val();
         authparams=new Object();
         authparams.ownerPhoneNumber=landlord.phoneNumber;
@@ -877,21 +868,8 @@ $(document).ready(function () {
         });
     });
     cardInfoList.length=0;
-    
-    $('img .id-minus').click(function (event) {
-        var cardNumb=$(event.target).parent('idCard').attr("idCard");
-        var idCard=null;
-        for(var i=0;i<cardInfoList.length;i++){
-            idCard=cardInfoList[i].cardNumber;
-            if(idCard.cardNumber=cardNumb){
-                cardInfoList.remove(idCard);
-                break;
-            }
-        }
-    });
 
-    // App.init();
-    App.init({dateTime:true,datepicker:true});
+    App.init();
 });
 
 var datatableSet = {
@@ -934,7 +912,7 @@ var datatableSet = {
                 bLengthChange : false, //改变每页显示数据数量,bLengthChange==false会隐藏lengthMenu
                 lengthMenu : [5,10,15],
                 ordering : true,
-                stateSave : false,
+                stateSave : true,
                 retrieve : true
                 //bPaginate: true, //翻页功能
                 //bFilter : true, //过滤功能
@@ -966,7 +944,6 @@ var datatableSet = {
             getQueryParams: function (data) {
                 var param = {};
                 //组装排序参数
-                /*
                 if (data.order && data.order.length && data.order[0]) {
                     switch (data.order[0].column) {
                         case 0:
@@ -988,33 +965,11 @@ var datatableSet = {
                     //排序方式asc或者desc
                     param.orderDir = data.order[0].dir;
                 }
-                */
-                if (data.order && data.order.length && data.order[0]) {
-                    console.log('data.order.length:'+data.order.length);
-                    var order=new Array();
-                    for(var index in data.order){
-                        order[index]={};
-                        order[index].orderDir = data.order[index].dir;
-                        switch (data.order[index].column) {
-                            case 0:
-                                order[index].orderColumn = "openMode";
-                                break;
-                            case 1:
-                                order[index].orderColumn = "timestamp";
-                                break;
-                            case 2:
-                                order[index].orderColumn = "credential";
-                                break;
-                            case 3:
-                                order[index].orderColumn = "name";
-                                break;
-                            default:
-                                order[index].orderColumn = "timestamp";
-                                break;
-                        }
-                    }
-                    param.order=JSON.stringify(order);
-                }
+                // param.deviceid = $("#deviceid-search").val();
+                // param.deviceip = $("#deviceip-search").val();
+                // param.status = $("#status-search").val();
+                // param.startTime=startTime;
+                // param.endTime=endTime;
 
                 param.ownerPhoneNumber=landlord.phoneNumber;
                 param.date=theTime;//yyyy_MM_dd格式的日期字符串.
@@ -1041,7 +996,7 @@ var datatableSet = {
                         tableWrapper.spinModal();
                         $.ajax({
                             type: "POST",
-                            url: 'record/getDailyUnlockRecordLockPage.do',
+                            url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
                             cache: false,  //禁用缓存
                             data: param,  //传入组装的参数
                             dataType: "json",
@@ -1080,7 +1035,7 @@ var datatableSet = {
                     columns: [
                         {
                             data: "openMode",
-                            orderable: true,
+                            orderable: false,
                             render: function (data, type, row, meta) {
                                 if(1==data){
                                     return "身份证开锁"
@@ -1121,12 +1076,34 @@ var datatableSet = {
             getQueryParams: function (data) {
                 var param = {};
                 //组装排序参数
+                if (data.order && data.order.length && data.order[0]) {
+                    switch (data.order[0].column) {
+                        case 0:
+                            param.orderColumn = "openMode";
+                            break;
+                        case 1:
+                            param.orderColumn = "credential";
+                            break;
+                        case 2:
+                            param.orderColumn = "name";
+                            break;
+                        case 3:
+                            param.orderColumn = "startTime";
+                            break;
+                        case 4:
+                            param.orderColumn = "endTime";
+                            break;
+                        default:
+                            param.orderColumn = "openMode";
+                            break;
+                    }
+                    //排序方式asc或者desc
+                    param.orderDir = data.order[0].dir;
+                }
                 param.ownerPhoneNumber=landlord.phoneNumber;
                 param.date=theTime;//yyyy_MM_dd格式的日期字符串.
-                // param.gatewayCode=specificGatewayCode;
-                // param.lockCode=specificLockCode;
-                param.roomTypeId=roomTypeId;
-                param.roomId=roomId;
+                param.gatewayCode=specificGatewayCode;
+                param.lockCode=specificLockCode;
                 param.startIndex = data.start;
                 param.pageSize = data.length;
                 param.draw = data.draw;
@@ -1141,10 +1118,11 @@ var datatableSet = {
                 tableInstance = element.dataTable($.extend(true, {}, datatableSet.options.DEFAULT_OPTION, {
                     ajax: function (data, callback, settings) {
                         param = datatableSet.function_authorization.getQueryParams(data);
+                        // console.log('contextMenu --> authorization index:'+countTable++);
                         tableWrapper.spinModal();
                         $.ajax({
                             type: "POST",
-                            url: 'order/getAuthOrderRecordOnTheDay.do',
+                            url: projectPath+'/unlock/getDailyUnlockAuthorizationRecord.do',
                             cache: false,
                             data: param,
                             dataType: "json",
@@ -1181,32 +1159,29 @@ var datatableSet = {
                     //绑定数据
                     columns: [
                         {
-                            data: "roomType",
-                            orderable : false
+                            data: "openMode",
+                            orderable: false,
+                            render: function (data, type, row, meta) {
+                                if(1==data){
+                                    return "身份证"
+                                }else if(2==data){
+                                    return "密码"
+                                }else if(3==data){
+                                    return "门卡"
+                                }else{
+                                    return null;
+                                }
+                            }
                         },{
-                            data: "roomName",
-                            orderable : false
-                        }
-                        // ,{
-                        //     data: "orderNumber"
-                        // }
-                        ,{
+                            data: "credential"
+                        },{
+                            data: "name"
+                        },{
                             data: "startTime",
-                            orderable : false,
                             // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
                         },{
                             data: "endTime",
-                            orderable : false,
                             // render: datatableSet.options.RENDER.ELLIPSIS//alt效果
-                        },{
-                            data: "password",
-                            orderable : false
-                        },{
-                            data: "name",
-                            orderable : false
-                        },{
-                            data: "cardNumb",
-                            orderable : false
                         },{
                             // className : "td-operation",
                             data: null,
@@ -1224,68 +1199,29 @@ var datatableSet = {
                     "createdRow": function ( row, data, index ) {
                         //行渲染回调,在这里可以对该行dom元素进行任何操作
                         //给当前行加样式
-                        if(undefined!=row){
-                            $(row).attr('orderNumber',data.orderNumber);
+                        if (data.role) {
+                            $(row).addClass("info");
                         }
-                        // if (data.role) {
-                        //     $(row).addClass("info");
-                        // }
+                        //给当前行某列加样式
+                        // $('td', row).eq(3).addClass(data.status?"text-success":"text-error");
+                        // //不使用render，改用jquery文档操作呈现单元格
+                        // var $btnDel = $('<button type="button" class="btn btn-small btn-danger btn-del">删除</button>');
+                    // '<a class="label label-danger btn btn-danger btn-xs" onclick="delJunior(13998892002);"><i class="fa fa-times"></i></a>
                         var $btnDel = $('<button type="button" class="btn btn-xs btn-danger btn-del">删除</button>');
-                        $('td', row).eq(7).append($btnDel);
+                        $('td', row).eq(5).append($btnDel);
                     },
                     "drawCallback": function (settings) {}
                 })).api();
                 tableElement.on("click", ".btn-del", function () {
                     //点击删除按钮
-                    var row = tableInstance.row($(this).closest('tr')).node();
-                    // var item = row.data();
-                    // datatableSet.function_authorization.deleteItem(item);
-
-                    var orderNumber=$(row).attr('orderNumber');
-                    datatableSet.function_authorization.deleteItem(orderNumber);
+                    var row = tableInstance.row($(this).closest('tr'));
+                    var item = row.data();
+                    datatableSet.function_authorization.deleteItem(item);
                     row.remove().draw(false);
                 });
             },
-            deleteItem: function (orderNumber) {
-                alert('orderNumber:'+orderNumber);
-                params = {
-                    "ownerPhoneNumber": landlord.phoneNumber,
-                    "orderNumber": orderNumber
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "order/cancleAuthOrder.do",
-                    async: false,
-                    data: params,
-                    dataType: 'json',
-                    success: function (data, status, xhr) {
-                        console.log('cancleAuthOrder:' + data);
-                    },
-                    error: function (xhr, errorType, error) {
-                        console.log('错误');
-                    }
-                });
-            }
-            // deleteItem: function (item) {
-            //     params = {
-            //         "ownerPhoneNumber":landlord.phoneNumber,
-            //         "orderNumber":item.orderNumber
-            //     };
-            //     $.ajax({
-            //         type: "POST",
-            //         url: "order/cancleAuthOrder.do",
-            //         async: false,
-            //         data: params,
-            //         dataType: 'json',
-            //         success: function (data, status, xhr) {
-            //             console.log('cancleAuthOrder:' + data);
-            //         },
-            //         error: function (xhr, errorType, error) {
-            //             console.log('错误');
-            //         }
-            //     });
-                /*
-                console.log("item:"+item+" --> {\"openMode\":"+item.openMode + ";\"credential\":" + item.credential+"}");
+            deleteItem: function (item) {
+                // console.log("item:"+item+" --> {\"openMode\":"+item.openMode + ";\"credential\":" + item.credential+"}");
                 if(1==item.openMode){
                     params = {
                         "ownerPhoneNumber":landlord.phoneNumber,
@@ -1327,7 +1263,6 @@ var datatableSet = {
                         }
                     });
                 }
-                */
-            // }
+            }
         }
     };

@@ -206,25 +206,46 @@ public class RecordController {
         String lockCode=request.getParameter("lockCode");
         filterMap.put("gatewayCode",gatewayCode);
         filterMap.put("lockCode",lockCode);
-        //获取排序字段
-        HashMap orderMap= new HashMap(2);
+
+        /*
+        //单列排序
         String orderColumn = request.getParameter("orderColumn");
         if(orderColumn == null){
             orderColumn = "timestamp";
         }
-        orderMap.put("orderColumn",orderColumn);
-        //获取排序方式
         String orderDir = request.getParameter("orderDir");
         if(orderDir == null){
             orderDir = "desc";
         }
-        orderMap.put("orderDir",orderDir);
+        Order order=new Order();
+        order.setOrderColumn(orderColumn);
+        order.setOrderDir(orderDir);
+        */
+        //多列混合排序
+        String orderStr=request.getParameter("order");
+        ObjectMapper objectMapper=new ObjectMapper();
+        JsonNode rootNode= null;
+        List orderList=new ArrayList(2);
+        if(null!=orderStr){
+            try {
+                rootNode = objectMapper.readTree(orderStr);
+                orderList=objectMapper.readValue(rootNode.traverse(), new TypeReference<List<Order>>(){});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(orderList.isEmpty()){
+            Order order=new Order();
+            order.setOrderColumn("timestamp");
+            order.setOrderDir("desc");
+            orderList.add(order);
+        }
+
         String draw = request.getParameter("draw");//防跨站脚本随机数,直接返回前台
         //数据起始位置
         String startIndex = request.getParameter("startIndex");
         //每页显示的条数
         String pageSize = request.getParameter("pageSize");
-
 
         List<UnlockRecord> recordList=recordService.getUnlockRecord(ownerPhoneNumber,startTime,endTime);
         if(null==recordList){
@@ -233,21 +254,16 @@ public class RecordController {
             return jsonDto;
         }
         List<UnlockRecord> recordList2=recordService.filterUnlockRecord(recordList,filterMap);
+        List<UnlockRecord> recordList3=recordService.orderUnlockRecord(recordList2,orderList);
         Map<String, Object> info = new HashMap<String, Object>();
-        if(recordList2==null){
+        if(recordList3==null){
             info.put("pageData",null);
             info.put("total",0);
         }else{
-            /*
-            PageUtil<UnlockRecord> pageUtil=new PageUtil<UnlockRecord>(recordList2);
-            pageUtil.remodel((Integer.parseInt(pageSize)),Integer.parseInt(startIndex));
-            info.put("pageData", pageUtil.getList());
-            info.put("total", pageUtil.getTotal());
-            */
-            List<UnlockRecord> recordList3=PageUtil.page(recordList2,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
-            List<UnlockRecordTableData> recordTableDataList=recordService.convertUnlockRecordToTabularData(recordList3);
+            List<UnlockRecord> recordList4=PageUtil.page(recordList3,Integer.parseInt(pageSize),Integer.parseInt(startIndex));
+            List<UnlockRecordTableData> recordTableDataList=recordService.convertUnlockRecordToTabularData(recordList4);
             info.put("pageData", recordTableDataList);
-            info.put("total", recordTableDataList.size());
+            info.put("total", recordList2.size());
         }
         info.put("draw", Integer.parseInt(draw));//防止跨站脚本（XSS）攻击
         bizDto=new BizDto(info);
