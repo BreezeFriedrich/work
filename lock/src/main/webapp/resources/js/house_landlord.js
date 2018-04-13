@@ -382,8 +382,9 @@ function drawFixedColumn(date) {
         TR_fixedlefttbody.eq(0).prepend(roomtype_html);
     }
 }
-function renderRow(landlord,date) {
-    var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(0).find("td:not(:first)");//表格每一行row的第一个td是房间信息所以舍弃.
+function orderRender(landlord,date) {
+    var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(0).find("td:not(:first)");
+    TDs_row.removeClass('cd-booked').remove('cd-vacant');
     //auth获取开锁授权信息
     $.ajax({
         type:"POST",
@@ -420,14 +421,14 @@ function renderRow(landlord,date) {
                         }
                         var TDs_row=TR.find("td:not(:first)");
                         /*
-                        for(var j=15;j<31;j++){
-                            if(j>=startIndex && j<endIndex+1){
-                                TDs_row.eq(j).addClass("cd-booked");
-                            }else{
-                                TDs_row.eq(j).addClass("cd-vacant");
-                            }
-                        }
-                        */
+                         for(var j=15;j<31;j++){
+                         if(j>=startIndex && j<endIndex+1){
+                         TDs_row.eq(j).addClass("cd-booked");
+                         }else{
+                         TDs_row.eq(j).addClass("cd-vacant");
+                         }
+                         }
+                         */
                         for(var j=startIndex;j<endIndex+1;j++){
                             TDs_row.eq(j).addClass("cd-booked");
                         }
@@ -454,8 +455,10 @@ function renderRow(landlord,date) {
             console.log('错误');
         }
     });
-
+}
+function recordRender(landlord,date) {
     var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(0).find("td:not(:first)");
+    TDs_row.removeClass('cd-unlockrecord').removeClass('cd-blank');
     locks=landlord.subordinateList;
     for(var j in locks){
         lock=locks[j];
@@ -488,6 +491,10 @@ function renderRow(landlord,date) {
             }
         });
     }
+}
+function renderRow(landlord,date) {
+    orderRender(landlord,date);
+    recordRender(landlord,date);
 }
 function drawTable(date) {
     drawTableHead(date);
@@ -770,7 +777,15 @@ $(document).ready(function () {
                     // getCellParam($(this));
                     roomTypeId = $(this).parent("tr").attr("roomtypeid");
                     roomId = $(this).parent("tr").attr("roomid");
-                    $('#md-book').niftyModal();
+                    $('#md-book').niftyModal({
+                        afterOpen: function( modal ){
+                            cardInfoList.length=0;
+                            $('div #auth-credentialPrompt').children('div').remove();
+                        },
+                        afterClose: function( modal ){
+                            cardInfoList.length=0;
+                        }
+                    });
                 }
             }
         }
@@ -828,30 +843,54 @@ $(document).ready(function () {
     $('#daterangepicker-auth').daterangepicker(options_daterange,function (start, end, label) {
         startTime=start.format('YYYY-MM-DD HH:mm');
         endTime=end.format('YYYY-MM-DD HH:mm');
-        console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
+        // console.log("startTime:"+startTime+";endTime:"+endTime+"predefined range:"+label);
     });
 
     cardInfoList=new Array();
     $('#btn-addid').click(function () {
         name = $("form#form-auth input[name='name']").val();
         cardNumb = $("form#form-auth input[name='cardNumb']").val();
-        if(undefined!=name & undefined!=cardNumb){
-            var cardInfo=new Object();
-            cardInfo.name=name;
-            cardInfo.cardNumber=cardNumb;
-            cardInfo.dnCode='';
-            cardInfoList.push(cardInfo);
+        if(undefined!=name && undefined!=cardNumb){
+            var isExist=false;
+            for(var i=0;i<cardInfoList.length;i++){
+                if(cardInfoList[i].cardNumber==cardNumb){
+                    isExist=true;
+                    break;
+                }
+            }
+            var cardInfo=null;
+            if(!isExist){
+                cardInfo=new Object();
+                cardInfo.name=name;
+                cardInfo.cardNumber=cardNumb;
+                cardInfo.dnCode='';
+                cardInfoList.push(cardInfo);
+            }
         }
         var idCard=null;
         var html=null;
         $('div #auth-credentialPrompt').children('div').remove();
         for(var i=0;i<cardInfoList.length;i++){
+            name=cardInfoList[i].name;
             cardNumb=cardInfoList[i].cardNumber;
-            // $('div #auth-credentialPrompt').html('<p>身份证:'+idCard+'</p>');
-            html='<div class="idCard" idCard='+cardNumb+'>身份证:'+cardNumb+'<img class="id-minus" style="color:red;max-width: 20px;max-height: 20px;" src="resources/images/minus.png" /></div>';
+            // html='<div class="idCard" idCard='+cardNumb+'>姓名:'+name+' , 身份证:'+cardNumb+'<img class="id-minus" style="color:red;max-width: 20px;max-height: 20px;" src="resources/images/minus.png" /></div>';
+            html='<div class="idCard" idCard='+cardNumb+'>姓名:'+name+' , 身份证:'+cardNumb+'</div>';
             $('div #auth-credentialPrompt').append(html);
         }
     });
+    /*
+    $('img.id-minus').click(function (event) {
+        var cardNumb=$(event.target).parent('idCard').attr("idCard");
+        var idCard=null;
+        for(var i=0;i<cardInfoList.length;i++){
+            idCard=cardInfoList[i].cardNumber;
+            if(idCard.cardNumber=cardNumb){
+                cardInfoList.remove(idCard);
+                break;
+            }
+        }
+    });
+    */
     $('#submit-book').click(function () {
         password = $("form#form-auth input[name='password']").val();
         authparams=new Object();
@@ -862,31 +901,20 @@ $(document).ready(function () {
         authparams.roomId=roomId;
         authparams.password=password;
         authparams.cardInfoList=JSON.stringify(cardInfoList);
-        $.ajax({
-            type: "POST",
-            url: "order/increaseOrder.do",
-            async: false,
-            data: authparams,
-            dataType: 'json',
-            success: function (data, status, xhr) {
-                alert('data:' + data);
-            },
-            error: function (xhr, errorType, error) {
-                console.log('错误');
-            }
-        });
-    });
-    cardInfoList.length=0;
-    
-    $('img .id-minus').click(function (event) {
-        var cardNumb=$(event.target).parent('idCard').attr("idCard");
-        var idCard=null;
-        for(var i=0;i<cardInfoList.length;i++){
-            idCard=cardInfoList[i].cardNumber;
-            if(idCard.cardNumber=cardNumb){
-                cardInfoList.remove(idCard);
-                break;
-            }
+        if(""!=password || cardInfoList.length>0){
+            $.ajax({
+                type: "POST",
+                url: "order/increaseOrder.do",
+                async: false,
+                data: authparams,
+                dataType: 'json',
+                success: function (data, status, xhr) {
+                    alert('data:' + data);
+                },
+                error: function (xhr, errorType, error) {
+                    console.log('错误');
+                }
+            });
         }
     });
 
@@ -1243,11 +1271,12 @@ var datatableSet = {
 
                     var orderNumber=$(row).attr('orderNumber');
                     datatableSet.function_authorization.deleteItem(orderNumber);
-                    row.remove().draw(false);
+                    // row.remove().draw(false);
+                    tableInstance.row('[orderNumber='+orderNumber+']').remove().draw(false);
+                    orderRender(landlord,date);
                 });
             },
             deleteItem: function (orderNumber) {
-                alert('orderNumber:'+orderNumber);
                 params = {
                     "ownerPhoneNumber": landlord.phoneNumber,
                     "orderNumber": orderNumber

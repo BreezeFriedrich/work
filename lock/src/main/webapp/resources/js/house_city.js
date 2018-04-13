@@ -1,6 +1,3 @@
-var pathName=window.document.location.pathname;
-var projectPath=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-
 var city;
 var districts;
 var district;
@@ -20,7 +17,10 @@ var districtPhoneNumber;
 var landlordPhoneNumber;
 var specificGatewayCode;
 var specificLockCode;
+var roomTypeId;
+var roomId;
 var index;
+var TH_header;
 var fixedTable;
 var html;
 var phoneNumber;
@@ -341,7 +341,6 @@ var tableFunc={
         },
         renderRow:function renderRow(districts, date) {
             (function () {
-                var time1=new Date();
                 var tr_num=0;
                 for(var l in districts){
                     district=districts[l];
@@ -354,7 +353,7 @@ var tableFunc={
                             var TDs_row=fixedTable.fixedTableBody.find("tbody tr").eq(tr_num).find("td:not(:first)");
                             $.ajax({
                                 type:"POST",
-                                url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                                url:"unlock/getUnlockAuthorizationDailyArr.do",
                                 async:false,
                                 data:{
                                     "ownerPhoneNumber":landlord.phoneNumber,
@@ -391,7 +390,7 @@ var tableFunc={
                             });
                             $.ajax({
                                 type:"POST",
-                                url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                                url:"record/getLockUnlockRecordDaily.do",
                                 async:false,
                                 data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
                                 dataType:'json',
@@ -420,8 +419,6 @@ var tableFunc={
                         }
                     }
                 }
-                var time2=new Date();
-                // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
             })();
         },
         drawTable:function drawTable(districts, date) {
@@ -509,7 +506,6 @@ var tableFunc={
         },
         renderRow:function renderRow(landlords,date) {
             (function () {
-                // var time1=new Date();
                 var tr_num=0;
                 for(var k in landlords){
                     landlord=landlords[k];
@@ -520,7 +516,7 @@ var tableFunc={
                         // var TDs_row=fixedTable.fixedTableBody.find("tbody tr[gatewayid="+lock.gatewayCode+"][lockid="+lock.lockCode+"]").find("td:not(:first)");//多个同gatewayCode和lockCode的门锁对应的tbody->tr只有第一个会被选中并渲染.
                         $.ajax({
                             type:"POST",
-                            url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                            url:"unlock/getUnlockAuthorizationDailyArr.do",
                             async:false,
                             data:{
                                 "ownerPhoneNumber":landlord.phoneNumber,
@@ -557,7 +553,7 @@ var tableFunc={
                         });
                         $.ajax({
                             type:"POST",
-                            url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                            url:"record/getLockUnlockRecordDaily.do",
                             async:false,
                             data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
                             dataType:'json',
@@ -585,8 +581,6 @@ var tableFunc={
                         tr_num=tr_num+1;
                     }
                 }
-                // var time2=new Date();
-                // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
             })();
         },
         drawTable:function drawTable(landlords,date) {
@@ -658,7 +652,6 @@ var tableFunc={
         },
         renderRow:function renderRow(landlord,date) {
             (function () {
-                // var time1=new Date();
                 locks=landlord.subordinateList;
                 for(var j in locks){
                     lock=locks[j];
@@ -666,7 +659,7 @@ var tableFunc={
                     //auth获取开锁授权信息
                     $.ajax({
                         type:"POST",
-                        url:projectPath+"/unlock/getUnlockAuthorizationDailyArr.do",
+                        url:"unlock/getUnlockAuthorizationDailyArr.do",
                         async:false,
                         data:{
                             "ownerPhoneNumber":landlord.phoneNumber,
@@ -704,7 +697,7 @@ var tableFunc={
                     //record获取入住记录
                     $.ajax({
                         type:"POST",
-                        url:projectPath+"/record/getLockUnlockRecordDaily.do",
+                        url:"record/getLockUnlockRecordDaily.do",
                         async:false,
                         data:{"ownerPhoneNumber":landlord.phoneNumber,"lockCode":lock.lockCode,"theDate":getDateStr(date)},
                         dataType:'json',
@@ -730,8 +723,6 @@ var tableFunc={
                         }
                     });
                 }
-                // var time2=new Date();
-                // console.log("ajax num:"+locks.length+",time:"+(time2.getTime()-time1.getTime())/1000);
             })();
         },
         drawTable:function drawTable(landlord,date) {
@@ -761,8 +752,10 @@ function getCellParam(element) {
     // landlordPhoneNumber=element.parent("tr").attr("landlord");
     specificGatewayCode=element.parent("tr").attr("gatewayid");
     specificLockCode=element.parent("tr").attr("lockid");
+    roomTypeId=element.parent("tr").attr("roomtypeid");
+    roomId=element.parent("tr").attr("roomid");
     index=element.index();//index==0是房间cell.
-    var TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");//第0个thead的th即房间号cell.
+    TH_header=$(".fixed-table-box").children(".fixed-table_header-wraper").find("th");//第0个thead的th即房间号cell.
     theTime=TH_header.eq(index).attr("time");
 }
 
@@ -947,7 +940,7 @@ $(document).ready(function(){
     });
     $("ul.cl-vnavigation").children('li:not(:first)').find('a').dblclick(function(){
         phoneNumber=$(this).attr('phone');
-        alert('district.phoneNumber:'+phoneNumber);
+        // alert('district.phoneNumber:'+phoneNumber);
         district=null;
         for (var index = 0; index < districts.length; index++) {
             if(phoneNumber==districts[index].phoneNumber){
@@ -1151,7 +1144,7 @@ var datatableSet = {
                     tableWrapper.spinModal();
                     $.ajax({
                         type: "POST",
-                        url: projectPath+'/record/getDailyUnlockRecordLockPage.do',
+                        url: 'record/getDailyUnlockRecordLockPage.do',
                         cache: false,
                         data: param,
                         dataType: "json",
@@ -1265,7 +1258,7 @@ var datatableSet = {
                     tableWrapper.spinModal();
                     $.ajax({
                         type: "POST",
-                        url: projectPath+'/unlock/getDailyUnlockAuthorizationRecord.do',
+                        url: 'unlock/getDailyUnlockAuthorizationRecord.do',
                         cache: false,
                         data: param,
                         dataType: "json",

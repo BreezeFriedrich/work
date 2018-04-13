@@ -280,7 +280,7 @@
 
 <script type="text/javascript" src="resources/plugin/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="resources/js/spin-2.1.0/jquery.spin.merge.js"></script>
-<script type="text/javascript" src="resources/js/house_landlord.js?v=4"></script>
+<script type="text/javascript" src="resources/js/house_landlord.js?v=6"></script>
 </body>
 
 </html>

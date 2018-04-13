@@ -116,20 +116,17 @@
            afterClose: function(modal) {
             //do your suff
            }
-        }
+        };
  
-        var config = {}
+        var config = {};
  
         var methods = {
- 
           init : function(options) {
               return this.each(function() {
                   config = $.extend({}, defaults, options);
                   var modal = $(this);
-                  
                   //Show modal
                   helpers.showModal(modal);
-                  
               });
           },
 
@@ -158,10 +155,9 @@
               helpers.removeModal($(this));  
             });            
           }
-        }
+        };
  
         var helpers = {
- 
           removeModal: function(mod) {
             mod.removeClass(config.classAddAfterOpen);
             mod.css({'perspective':'1300px'});
@@ -172,35 +168,29 @@
             var overlay = $(config.overlaySelector);
             var close = $(config.closeSelector, mod);
             mod.addClass(config.classAddAfterOpen);
-            
             //Overlay Click Event
             overlay.on('click', function () {
                helpers.removeModal(mod);
                config.afterClose(mod);
                overlay.off('click');
             });
-            
             //Fire after open event
             config.afterOpen(mod);
             setTimeout( function() {
               mod.css({'perspective':'none'});
-              
               //3D Blur Bug Fix
-              if(modal.height() % 2 != 0){modal.css({'height':modal.height() + 1});}
-
-            }, 500 ); 
-            
+              // if(modal.height() % 2 != 0){modal.css({'height':modal.height() + 1});}
+              if(mod.height() % 2 != 0){mod.css({'height':mod.height() + 1});}
+            }, 500 );
             //Close Event
             close.on( 'click', function( ev ) {
               ev.stopPropagation();
               helpers.removeModal(mod);
               config.afterClose(mod);
             });
-            
             mod.trigger('show');
           }
- 
-        }
+        };
  
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));

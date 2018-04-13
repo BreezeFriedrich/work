@@ -44,6 +44,13 @@
 
     line-4 修改初始化config参数(即组件是否开启的参数),几乎全部初始化为false.
 
+文件 resources/plugin/jquery.niftymodals/js/jquery.modalEffects.js
+    line-182:
+        if(modal.height() % 2 != 0){modal.css({'height':modal.height() + 1});}
+     注释掉并添加一行，最终:
+     line-182、line-183:
+        // if(modal.height() % 2 != 0){modal.css({'height':modal.height() + 1});}
+        if(mod.height() % 2 != 0){mod.css({'height':mod.height() + 1});}
 组件 bootstrap datetimepicker
 	http://www.bootcss.com/p/bootstrap-datetimepicker/
 	
