@@ -13,7 +13,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.reporting.outputDirectory>target</project.reporting.outputDirectory>
     <jdk-version>1.7</jdk-version>
-    <spring-version>4.2.6.RELEASE</spring-version>
+    <spring-version>6.0.0</spring-version>
     <slf4j-version>1.7.25</slf4j-version>
     <logback-version>1.2.3</logback-version>
     <additionalparam>-Xdoclint:none</additionalparam>
